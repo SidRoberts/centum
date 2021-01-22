@@ -26,7 +26,7 @@
 
     "autoload": {
         "psr-4": {
-            "Centum\\": "src/php/",
+            "Centum\\": "src/",
             "Centum\\Tests\\": "tests/_support/"
         }
     }
