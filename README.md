@@ -9,6 +9,14 @@
 
 
 
+## Installation
+
+```bash
+composer require sidroberts/centum
+```
+
+
+
 ## Documentation
 
 See the [docs/](docs/) folder.
