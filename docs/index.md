@@ -1,8 +1,4 @@
-# Centum
-
-
-
-## Installation
+# Installation
 
 ```bash
 composer require sidroberts/centum
