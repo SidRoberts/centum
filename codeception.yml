@@ -1,0 +1,24 @@
+namespace: Centum\Tests
+
+paths:
+  tests: tests
+  data: tests/_data
+  output: tests/_output
+  support: tests/_support
+
+settings:
+  lint: true
+  shuffle: true
+
+suites:
+  unit:
+    path: unit
+    actor: UnitTester
+    modules:
+      enabled:
+        - Asserts
+    coverage:
+      enabled: true
+      whitelist:
+        include:
+          - src/*
