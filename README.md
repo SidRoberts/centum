@@ -19,7 +19,7 @@ composer require sidroberts/centum
 
 ## Documentation
 
-See the [docs/](docs/) folder.
+Documentation is available at [https://sidroberts.co.uk/centum](https://sidroberts.co.uk/centum) and in the [docs/](docs/) folder.
 
 
 
