@@ -1,4 +1,4 @@
-name: Run Codeception tests
+name: tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ development ]
 
 jobs:
-  test:
+  codeception:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2

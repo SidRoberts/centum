@@ -2,7 +2,7 @@
 
 
 
-[![Build Status](https://img.shields.io/github/workflow/status/SidRoberts/centum/codeception.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/actions)
+[![Build Status](https://img.shields.io/github/workflow/status/SidRoberts/centum/tests/development.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/actions)
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/SidRoberts/centum.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/SidRoberts/centum.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/pulls)
