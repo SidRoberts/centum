@@ -2,6 +2,6 @@
 
 namespace Centum\Mvc;
 
-class Controller
+abstract class Controller
 {
 }
