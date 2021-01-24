@@ -2,11 +2,11 @@
 
 namespace Centum\Mvc;
 
+use Centum\Http\Request;
+use Centum\Http\Response;
 use Centum\Mvc\Dispatcher\Path;
 use Centum\Mvc\Router\Exception\RouteNotFoundException;
 use Centum\Mvc\Router\RouterMatch;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class Application
 {

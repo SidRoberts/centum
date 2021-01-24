@@ -2,9 +2,9 @@
 
 namespace Centum\Tests\Mvc\Controller;
 
+use Centum\Http\Response;
 use Centum\Mvc\Controller;
 use Centum\Mvc\Router\Route\Uri;
-use Symfony\Component\HttpFoundation\Response;
 
 class ErrorController extends Controller
 {

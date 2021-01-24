@@ -2,6 +2,8 @@
 
 namespace Centum\Http;
 
-class Response
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+
+class Response extends SymfonyResponse
 {
 }

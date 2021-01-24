@@ -3,6 +3,7 @@
 namespace Centum\Tests\Mvc;
 
 use Centum\Container\Resolver;
+use Centum\Http\Request;
 use Centum\Mvc\Dispatcher;
 use Centum\Mvc\Dispatcher\Path;
 use Centum\Mvc\Application;
@@ -13,7 +14,6 @@ use Centum\Container\Container;
 use Centum\Tests\Mvc\Controller\ErrorController;
 use Centum\Tests\Mvc\Controller\IndexController;
 use Centum\Tests\UnitTester;
-use Symfony\Component\HttpFoundation\Request;
 
 class ApplicationCest
 {
