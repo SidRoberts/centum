@@ -18,7 +18,7 @@ class Parameters
 
     public function get(string $name)
     {
-        if (!isset($this->parameters[$name])) {
+        if (!$this->has($name)) {
             throw new \Exception(
                 sprintf(
                     "Parameter not found (%s)",
@@ -28,5 +28,17 @@ class Parameters
         }
 
         return $this->parameters[$name];
+    }
+
+    public function has(string $name) : bool
+    {
+        return isset($this->parameters[$name]);
+    }
+
+
+
+    public function toArray() : array
+    {
+        return $this->parameters;
     }
 }
