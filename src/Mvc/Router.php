@@ -128,17 +128,18 @@ class Router
     {
         $converters = $route->getConverters();
 
-        foreach ($params as $key => $value) {
-            // Check if the part has a converter.
-            if (!isset($converters[$key])) {
+        foreach ($converters as $converterAttribute) {
+            $key = $converterAttribute->getParam();
+
+            if (!isset($params[$key])) {
                 continue;
             }
 
-            $converterName = $converters[$key];
+            $converterName = $converterAttribute->getConverter();
 
             $converter = $this->resolver->typehintClass($converterName);
 
-            $params[$key] = $converter->convert($value);
+            $params[$key] = $converter->convert($params[$key]);
         }
 
         return $params;

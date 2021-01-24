@@ -61,16 +61,10 @@ This example will match `/post/1`, `/post/2`, `/post/3` and so on but will not m
 ```php
 use Centum\Mvc\Parameters;
 use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Requirements;
+use Centum\Mvc\Router\Route\Requirement;
 
-#[
-Uri("/post/{id}"),
-Requirements(
-    [
-        "id" => "\d+",
-    ]
-)
-]
+#[Uri("/post/{id}")]
+#[Requirement("id", "\d+")]
 public function viewSingle(Parameters $parameters)
 {
     $id = $parameters->get("id");

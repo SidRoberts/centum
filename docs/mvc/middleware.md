@@ -46,31 +46,21 @@ For example, you may want to separate guests and logged in users:
 ```php
 use Centum\Mvc\Controller;
 use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Middlewares;
+use Centum\Mvc\Router\Route\Middleware;
+use Middleware\IsLoggedOutMiddleware;
+use Middleware\IsLoggedInMiddleware;
 
 class UserController extends Controller
 {
-    #[
-    Uri("/something"),
-    Middlewares(
-        [
-            "Middleware\IsLoggedOutMiddleware",
-        ]
-    )
-    ]
+    #[Uri("/something")]
+    #[Middleware(IsLoggedOutMiddleware::class)]
     public function guest()
     {
         //TODO
     }
 
-    #[
-    Uri("/something"),
-    Middlewares(
-        [
-            "Middleware\IsLoggedInMiddleware",
-        ]
-    )
-    ]
+    #[Uri("/something")]
+    #[Middleware(IsLoggedInMiddleware::class)]
     public function user()
     {
         //TODO
@@ -80,23 +70,20 @@ class UserController extends Controller
 
 (`Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect)
 
-You can even create action methods with multiple Middlewares.
+You can even create action methods with multiple middlewares.
 If any of them of fail, the action will fail to match:
 
 ```php
 use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Middlewares;
+use Centum\Mvc\Router\Route\Middleware;
+use Middleware\OneMiddleware;
+use Middleware\AnotherMiddleware;
+use Middleware\AndAnotherMiddleware;
 
-#[
-Uri("/something"),
-Middlewares(
-    [
-        "Middleware\OneMiddleware",
-        "Middleware\AnotherMiddleware",
-        "Middleware\AndAnotherMiddleware",
-    ]
-)
-]
+#[Uri("/something")]
+#[Middleware(OneMiddleware::class)]
+#[Middleware(AnotherMiddleware::class)]
+#[Middleware(AndAnotherMiddleware::class)]
 public function something()
 {
     //TODO

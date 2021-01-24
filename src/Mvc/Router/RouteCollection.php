@@ -8,9 +8,9 @@ use Centum\Mvc\Dispatcher\Path;
 use Centum\Mvc\Router\Exception\ControllerNotFoundException;
 use Centum\Mvc\Router\Exception\NotAControllerException;
 use Centum\Mvc\Router\Exception\NotAnActionMethodException;
-use Centum\Mvc\Router\Route\Converters;
-use Centum\Mvc\Router\Route\Middlewares;
-use Centum\Mvc\Router\Route\Requirements;
+use Centum\Mvc\Router\Route\Converter;
+use Centum\Mvc\Router\Route\Middleware;
+use Centum\Mvc\Router\Route\Requirement;
 use Centum\Mvc\Router\Route\Uri;
 
 class RouteCollection
@@ -53,9 +53,9 @@ class RouteCollection
 
 
             $uri = null;
-            $requirements = null;
-            $middlewares = null;
-            $converters = null;
+            $requirements = [];
+            $middlewares = [];
+            $converters = [];
 
 
             $attributes = $reflectionMethod->getAttributes();
@@ -65,12 +65,12 @@ class RouteCollection
 
                 if (is_a($attribute, Uri::class)) {
                     $uri = $attribute;
-                } elseif (is_a($attribute, Requirements::class)) {
-                    $requirements = $attribute;
-                } elseif (is_a($attribute, Middlewares::class)) {
-                    $middlewares = $attribute;
-                } elseif (is_a($attribute, Converters::class)) {
-                    $converters = $attribute;
+                } elseif (is_a($attribute, Requirement::class)) {
+                    $requirements[] = $attribute;
+                } elseif (is_a($attribute, Middleware::class)) {
+                    $middlewares[] = $attribute;
+                } elseif (is_a($attribute, Converter::class)) {
+                    $converters[] = $attribute;
                 }
             }
 

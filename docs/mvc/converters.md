@@ -54,22 +54,12 @@ In the above example, if the `Post` object cannot be found in the database, this
 use Post;
 use Centum\Mvc\Parameters;
 use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Requirements;
-use Centum\Mvc\Router\Route\Converters;
+use Centum\Mvc\Router\Route\Requirement;
+use Centum\Mvc\Router\Route\Converter;
 
-#[
-Uri("/post/{post}"),
-Requirements(
-    [
-        "post" => "\d+",
-    ]
-),
-Converters(
-    [
-        "post" => "Converter\PostConverter",
-    ]
-)
-]
+#[Uri("/post/{post}")]
+#[Requirement("post", "\d+")]
+#[Converter("post", "Converter\PostConverter")]
 public function viewSingle(Parameters $parameters)
 {
     /**

@@ -3,9 +3,9 @@
 namespace Centum\Mvc\Router;
 
 use Centum\Mvc\Dispatcher\Path;
-use Centum\Mvc\Router\Route\Converters;
-use Centum\Mvc\Router\Route\Middlewares;
-use Centum\Mvc\Router\Route\Requirements;
+use Centum\Mvc\Router\Route\Converter;
+use Centum\Mvc\Router\Route\Middleware;
+use Centum\Mvc\Router\Route\Requirement;
 use Centum\Mvc\Router\Route\Uri;
 
 class Route
@@ -14,11 +14,11 @@ class Route
 
     protected Path $path;
 
-    protected Requirements $requirements;
+    protected array $requirements;
 
-    protected Middlewares $middlewares;
+    protected array $middlewares;
 
-    protected Converters $converters;
+    protected array $converters;
 
     protected $compiledPattern;
 
@@ -27,15 +27,15 @@ class Route
     public function __construct(
         Uri $uri,
         Path $path,
-        Requirements $requirements = null,
-        Middlewares $middlewares = null,
-        Converters $converters = null
+        array $requirements = [],
+        array $middlewares = [],
+        array $converters = []
     ) {
         $this->uri          = $uri;
         $this->path         = $path;
-        $this->requirements = $requirements ?: new Requirements([]);
-        $this->middlewares  = $middlewares ?: new Middlewares([]);
-        $this->converters   = $converters ?: new Converters([]);
+        $this->requirements = $requirements;
+        $this->middlewares  = $middlewares;
+        $this->converters   = $converters;
 
         $this->createCompiledPattern();
     }
@@ -52,17 +52,25 @@ class Route
         return $this->path;
     }
 
-    public function getRequirements() : Requirements
+    public function getRequirements() : array
     {
         return $this->requirements;
     }
 
-    public function getMiddlewares() : Middlewares
+    public function getMiddlewares() : array
     {
-        return $this->middlewares;
+        $middlewareAttributes = $this->middlewares;
+
+        $middlewares = [];
+
+        foreach ($middlewareAttributes as $attribute) {
+            $middlewares[] = $attribute->getMiddleware();
+        }
+
+        return $middlewares;
     }
 
-    public function getConverters() : Converters
+    public function getConverters() : array
     {
         return $this->converters;
     }
@@ -94,16 +102,25 @@ class Route
             $params[$key] = "[^/]+";
         }
 
+        $requirements = [];
+
+        foreach ($this->requirements as $requirement) {
+            $param = $requirement->getParam();
+            $regEx = $requirement->getRegEx();
+
+            $requirements[$param] = $regEx;
+        }
+
         // Merge with the requirements.
         $params = array_merge(
             $params,
-            $this->requirements->toArray()
+            $requirements
         );
 
-        foreach ($params as $param => $requirement) {
+        foreach ($params as $param => $regEx) {
             $pattern = str_replace(
                 "{" . $param . "}",
-                "(?P<" . $param . ">" . $requirement . ")",
+                "(?P<" . $param . ">" . $regEx . ")",
                 $pattern
             );
         }
