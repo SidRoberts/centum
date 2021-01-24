@@ -79,7 +79,6 @@ You can also specify which HTTP method to match (eg. `GET`, `POST`, `HEAD`, `PUT
 
 ```php
 use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Method;
 
 #[Uri("/url", "GET")]
 public function get()
