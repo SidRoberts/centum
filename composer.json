@@ -17,6 +17,7 @@
     "require": {
         "php": "~8.0",
 
+        "dragonmantank/cron-expression": "~3.0",
         "laminas/laminas-filter": "~2.0",
         "laminas/laminas-validator": "~2.0",
         "symfony/http-foundation": "~5.0"
