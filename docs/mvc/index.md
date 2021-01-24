@@ -12,7 +12,7 @@ permalink: mvc
 **A working example is coming soon.**
 
 This library can be divided into three components:
-* [Kernel](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Kernel.php):
+* [Application](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Application.php):
   couples Router and Dispatcher together.
   It is better able to deal with 404 errors and returns Symfony Response objects.
 * [Router](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router.php):

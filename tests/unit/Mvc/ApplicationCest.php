@@ -5,7 +5,7 @@ namespace Centum\Tests\Mvc;
 use Centum\Container\Resolver;
 use Centum\Mvc\Dispatcher;
 use Centum\Mvc\Dispatcher\Path;
-use Centum\Mvc\Kernel;
+use Centum\Mvc\Application;
 use Centum\Mvc\Router;
 use Centum\Mvc\Router\Exception\RouteNotFoundException;
 use Centum\Mvc\Router\RouteCollection;
@@ -15,7 +15,7 @@ use Centum\Tests\Mvc\Controller\IndexController;
 use Centum\Tests\UnitTester;
 use Symfony\Component\HttpFoundation\Request;
 
-class KernelCest
+class ApplicationCest
 {
     public function basicHandle(UnitTester $I)
     {
@@ -38,7 +38,7 @@ class KernelCest
         $router = new Router($resolver, $routeCollection);
         $dispatcher = new Dispatcher($resolver);
 
-        $kernel = new Kernel($router, $dispatcher);
+        $application = new Application($router, $dispatcher);
 
 
 
@@ -49,7 +49,7 @@ class KernelCest
 
 
 
-        $response = $kernel->handle($request);
+        $response = $application->handle($request);
 
         $I->assertEquals(
             "homepage",
@@ -78,7 +78,7 @@ class KernelCest
         $router = new Router($resolver, $routeCollection);
         $dispatcher = new Dispatcher($resolver);
 
-        $kernel = new Kernel($router, $dispatcher);
+        $application = new Application($router, $dispatcher);
 
 
 
@@ -90,16 +90,16 @@ class KernelCest
 
 
         $I->assertNull(
-            $kernel->getNotFoundPath()
+            $application->getNotFoundPath()
         );
 
-        $kernel->setNotFoundPath(
+        $application->setNotFoundPath(
             $notFoundPath
         );
 
         $I->assertEquals(
             $notFoundPath,
-            $kernel->getNotFoundPath()
+            $application->getNotFoundPath()
         );
     }
 
@@ -118,7 +118,7 @@ class KernelCest
         $router = new Router($resolver, $routeCollection);
         $dispatcher = new Dispatcher($resolver);
 
-        $kernel = new Kernel($router, $dispatcher);
+        $application = new Application($router, $dispatcher);
 
 
 
@@ -127,7 +127,7 @@ class KernelCest
             "notFound"
         );
 
-        $kernel->setNotFoundPath(
+        $application->setNotFoundPath(
             $notFoundPath
         );
 
@@ -138,7 +138,7 @@ class KernelCest
             "GET"
         );
 
-        $response = $kernel->handle($request);
+        $response = $application->handle($request);
 
 
 
@@ -163,19 +163,19 @@ class KernelCest
         $router = new Router($resolver, $routeCollection);
         $dispatcher = new Dispatcher($resolver);
 
-        $kernel = new Kernel($router, $dispatcher);
+        $application = new Application($router, $dispatcher);
 
 
 
         $I->expectThrowable(
             RouteNotFoundException::class,
-            function () use ($kernel) {
+            function () use ($application) {
                 $request = Request::create(
                     "/this/route/does/not/exist",
                     "GET"
                 );
 
-                $response = $kernel->handle($request);
+                $response = $application->handle($request);
             }
         );
     }
