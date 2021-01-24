@@ -4,7 +4,7 @@ namespace Centum\Cron;
 
 use DateTime;
 
-class Cron implements CronInterface
+class Cron
 {
     protected array $jobs = [];
 
