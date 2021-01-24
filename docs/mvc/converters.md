@@ -7,7 +7,7 @@ parent: Mvc
 
 
 Converters are particularly useful at preprocessing URL parameters - for example, converting an ID number into an actual object.
-Any Converters you create must implement [`\Centum\Mvc\ConverterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/ConverterInterface.php) and you can inject any services you require via the constructor.
+Any Converters you create must implement [`Centum\Mvc\ConverterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/ConverterInterface.php) and you can inject any services you require via the constructor.
 
 ```php
 namespace Converter;
@@ -47,7 +47,7 @@ class PostConverter implements ConverterInterface
 }
 ```
 
-By throwing [`\Centum\Mvc\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router/Exception/RouteNotFoundException.php), you can trigger a 404 error.
+By throwing [`Centum\Mvc\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router/Exception/RouteNotFoundException.php), you can trigger a 404 error.
 In the above example, if the `Post` object cannot be found in the database, this exception is thrown to avoid having to deal with it in the action method.
 
 ```php

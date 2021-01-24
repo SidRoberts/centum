@@ -6,10 +6,10 @@ parent: Mvc
 
 
 
-All controllers should extend [`\Centum\Mvc\Controller`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Controller.php).
+All controllers should extend [`Centum\Mvc\Controller`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Controller.php).
 Specify what services you require in the method signature.
 
-Every public method is classed as an action and, although they do not require a suffix (you're free to call it however you want), they must have a [`\Centum\Mvc\Router\Route\Uri`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router/Route/Uri.php) annotation.
+Every public method is classed as an action and, although they do not require a suffix (you're free to call it however you want), they must have a [`Centum\Mvc\Router\Route\Uri`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router/Route/Uri.php) annotation.
 
 ```php
 use Auth;
