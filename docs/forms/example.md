@@ -48,8 +48,6 @@ use Centum\Forms\Form;
 
 $loginForm = new Form();
 
-
-
 $loginForm->add($emailField);
 
 $loginForm->add($passwordField);
@@ -74,7 +72,6 @@ To reuse the same form in multiple places, you can extend the `Form` class and d
 
 use Centum\Forms\Field;
 use Centum\Forms\Form;
-
 use Zend\Filter\StringTrim;
 use Zend\Validator\NotEmpty;
 
