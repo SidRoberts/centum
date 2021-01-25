@@ -13,9 +13,9 @@ First of all, we need to be able to access our configuration data:
 ```php
 namespace MyApp\Service;
 
+use Centum\Config\Config;
 use Centum\Container\Service;
 use Symfony\Component\Yaml\Yaml;
-use Zend\Config\Config;
 
 class ConfigService extends Service
 {
@@ -32,11 +32,12 @@ class ConfigService extends Service
     public function resolve()
     {
         $config = new Config(
-            Yaml::parse(
-                file_get_contents(
-                    "config/config.yaml"
-                )
-            )
+            [
+                "pheanstalk" => [
+                    "host" => "localhost",
+                    "port" => 11300,
+                ],
+            ]
         );
 
         return $config;
@@ -59,9 +60,9 @@ Here, we'll create another service that requires the 'config' service:
 ```php
 namespace MyApp\Service;
 
+use Centum\Config\Config;
 use Centum\Container\Service;
 use Pheanstalk\Pheanstalk;
-use Zend\Config\Config;
 
 class PheanstalkService extends Service
 {
@@ -87,7 +88,7 @@ class PheanstalkService extends Service
 }
 ```
 
-The example above has used typehinting to ensure that `$config` is an instance of `Zend\Config\Config`.
+The example above has used typehinting to ensure that `$config` is an instance of [`Centum\Config\Config`](https://github.com/SidRoberts/centum/blob/development/src/Config/Config.php).
 This isn't necessary but it's for useful for IDE autocompletion and may help uncover possible bugs earlier.
 
 Now we need to add these service classes to the container:
