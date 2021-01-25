@@ -25,7 +25,7 @@ Documentation is available at [https://sidroberts.co.uk/centum](https://sidrober
 
 ## License
 
-Licensed under the MIT License.
+[![License](https://img.shields.io/github/license/SidRoberts/centum?style=for-the-badge)](LICENSE.md)
 
 See [LICENSE.md](LICENSE.md) for more details.
 
