@@ -2,6 +2,6 @@
 
 namespace Centum\Console;
 
-class Command
+abstract class Command
 {
 }
