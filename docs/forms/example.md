@@ -68,8 +68,6 @@ $errorMessages = $loginForm->getMessages($_POST);
 To reuse the same form in multiple places, you can extend the `Form` class and define the Fields in the constructor:
 
 ```php
-<?php
-
 use Centum\Forms\Field;
 use Centum\Forms\Form;
 use Zend\Filter\StringTrim;
