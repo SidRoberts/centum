@@ -10,12 +10,12 @@ Converters are particularly useful at preprocessing URL parameters - for example
 Any Converters you create must implement [`Centum\Mvc\ConverterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/ConverterInterface.php) and you can inject any services you require via the constructor.
 
 ```php
-namespace Converter;
+namespace App\Converter;
 
-use Doctrine\ORM\EntityManager;
-use Post;
+use App\Model\Post;
 use Centum\Mvc\ConverterInterface;
 use Centum\Mvc\Router\Exception\RouteNotFoundException;
+use Doctrine\ORM\EntityManager;
 
 class PostConverter implements ConverterInterface
 {
@@ -48,10 +48,11 @@ class PostConverter implements ConverterInterface
 ```
 
 By throwing [`Centum\Mvc\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router/Exception/RouteNotFoundException.php), you can trigger a 404 error.
-In the above example, if the `Post` object cannot be found in the database, this exception is thrown to avoid having to deal with it in the action method.
+In the above example, if the `App\Model\Post` object cannot be found in the database, this exception is thrown to avoid having to deal with it in the action method.
 
 ```php
-use Post;
+use App\Converter\PostConverter;
+use App\Model\Post;
 use Centum\Mvc\Parameters;
 use Centum\Mvc\Router\Route\Uri;
 use Centum\Mvc\Router\Route\Requirement;
@@ -59,7 +60,7 @@ use Centum\Mvc\Router\Route\Converter;
 
 #[Uri("/post/{post}")]
 #[Requirement("post", "\d+")]
-#[Converter("post", "Converter\PostConverter")]
+#[Converter("post", PostConverter::class)]
 public function viewSingle(Parameters $parameters)
 {
     /**

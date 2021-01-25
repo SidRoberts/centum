@@ -11,7 +11,7 @@ Let's start by defining some of our services.
 First of all, we need to be able to access our configuration data:
 
 ```php
-namespace MyApp\Service;
+namespace App\Service;
 
 use Centum\Config\Config;
 use Centum\Container\Service;
@@ -58,7 +58,7 @@ By using the names from `getName()`, you can access other services via the `reso
 Here, we'll create another service that requires the 'config' service:
 
 ```php
-namespace MyApp\Service;
+namespace App\Service;
 
 use Centum\Config\Config;
 use Centum\Container\Service;
@@ -94,9 +94,9 @@ This isn't necessary but it's for useful for IDE autocompletion and may help unc
 Now we need to add these service classes to the container:
 
 ```php
+use App\Service\ConfigService;
+use App\Service\PheanstalkService;
 use Centum\Container\Container;
-use MyApp\Service\ConfigService;
-use MyApp\Service\PheanstalkService;
 
 $container = new Container();
 

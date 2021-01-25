@@ -13,7 +13,7 @@ By returning `false` in a Middleware, the Router will ignore the action and assu
 Any Middlewares you create must implement [`Centum\Mvc\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/MiddlewareInterface.php) and, like with Converters, you can inject any services you require via the constructor.
 
 ```php
-namespace Middleware;
+namespace App\Middleware;
 
 use Centum\Mvc\MiddlewareInterface;
 use Centum\Mvc\Router\Route;
@@ -44,11 +44,11 @@ This is useful for when you want to separate the controller logic into two or mo
 For example, you may want to separate guests and logged in users:
 
 ```php
+use App\Middleware\IsLoggedOutMiddleware;
+use App\Middleware\IsLoggedInMiddleware;
 use Centum\Mvc\Controller;
 use Centum\Mvc\Router\Route\Uri;
 use Centum\Mvc\Router\Route\Middleware;
-use Middleware\IsLoggedOutMiddleware;
-use Middleware\IsLoggedInMiddleware;
 
 class UserController extends Controller
 {
@@ -68,17 +68,17 @@ class UserController extends Controller
 }
 ```
 
-(`Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect)
+(`App\Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect)
 
 You can even create action methods with multiple middlewares.
 If any of them of fail, the action will fail to match:
 
 ```php
+use App\Middleware\OneMiddleware;
+use App\Middleware\AnotherMiddleware;
+use App\Middleware\AndAnotherMiddleware;
 use Centum\Mvc\Router\Route\Uri;
 use Centum\Mvc\Router\Route\Middleware;
-use Middleware\OneMiddleware;
-use Middleware\AnotherMiddleware;
-use Middleware\AndAnotherMiddleware;
 
 #[Uri("/something")]
 #[Middleware(OneMiddleware::class)]
