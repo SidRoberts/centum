@@ -9,7 +9,7 @@ class Job implements JobInterface
 {
     protected string $expression;
 
-   protected $data;
+    protected $data;
 
 
 
