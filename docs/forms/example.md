@@ -21,22 +21,29 @@ Now we need to add some filters and validators to these fields.
 Obviously, neither of these fields should be empty and the email field should contain a valid email address:
 
 ```php
-$trimFilter = new \Zend\Filter\StringTrim();
-
-$notEmptyValidator = new \Zend\Validator\NotEmpty();
-
-$emailValidator = new \Zend\Validator\EmailAddress();
+use Zend\Filter\StringTrim;
+use Zend\Validator\NotEmpty;
+use Zend\Validator\EmailAddress;
 
 
 
-$emailField->addFilter($trimFilter);
+$emailField->addFilter(
+    new StringTrim()
+);
 
-$emailField->addValidator($notEmptyValidator);
-$emailField->addValidator($emailValidator);
+$emailField->addValidator(
+    new NotEmpty()
+);
+
+$emailField->addValidator(
+    new EmailAddress()
+);
 
 
 
-$passwordField->addValidator($notEmptyValidator);
+$passwordField->addValidator(
+    new NotEmpty()
+);
 ```
 
 Filters are applied before validating the data.
