@@ -7,7 +7,7 @@ permalink: mvc
 
 
 
-## Usage
+# Usage
 
 **A working example is coming soon.**
 

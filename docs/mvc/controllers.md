@@ -23,7 +23,7 @@ public function index(Auth $auth, EntityManager $doctrine)
 }
 ```
 
-## URL Parameters
+# URL Parameters
 
 You can also create URLs with dynamic values by enclosing their identifier in curly brackets (eg. `{id}`).
 These values are available from the [`Centum\Mvc\Parameters`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Parameters.php) object:
@@ -53,7 +53,7 @@ public function something(Parameters $parameters)
 
 The `$parameters` property can be anywhere in the method signature.
 
-## Parameter Requirements
+# Parameter Requirements
 
 You can also require that the parameters adhere to a certain regular expression.
 This example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
@@ -73,7 +73,7 @@ public function viewSingle(Parameters $parameters)
 }
 ```
 
-## HTTP Methods
+# HTTP Methods
 
 You can also specify which HTTP method to match (eg. `GET`, `POST`, `HEAD`, `PUT`, `DELETE`, `TRACE`, `OPTIONS`, `CONNECT`, `PATCH`):
 
