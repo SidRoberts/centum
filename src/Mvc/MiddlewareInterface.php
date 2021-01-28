@@ -2,9 +2,11 @@
 
 namespace Centum\Mvc;
 
-use Centum\Mvc\Router\Route;
+use Centum\Container\Container;
+use Centum\Http\Request;
+use Centum\Mvc\Route;
 
 interface MiddlewareInterface
 {
-    public function middleware(string $uri, Route $route) : bool;
+    public function middleware(Request $request, Route $route, Container $container) : bool;
 }

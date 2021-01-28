@@ -3,38 +3,44 @@
 namespace Centum\Tests\Mvc;
 
 use Centum\Container\Container;
-use Centum\Container\Resolver;
+use Centum\Http\Request;
+use Centum\Http\Response;
 use Centum\Mvc\Router;
-use Centum\Mvc\Router\Exception\RouteNotFoundException;
-use Centum\Mvc\Router\Route;
-use Centum\Mvc\Router\RouteCollection;
-use Centum\Tests\Mvc\Controller\ConverterController;
-use Centum\Tests\Mvc\Controller\HttpMethodController;
-use Centum\Tests\Mvc\Controller\IndexController;
-use Centum\Tests\Mvc\Controller\MiddlewareController;
-use Centum\Tests\Mvc\Controller\RequirementsController;
+use Centum\Mvc\Exception\RouteNotFoundException;
+use Centum\Mvc\Route;
+use Centum\Tests\Mvc\Route\ConverterRoute;
+use Centum\Tests\Mvc\Route\IndexRoute;
+use Centum\Tests\Mvc\Route\HttpMethodGetRoute;
+use Centum\Tests\Mvc\Route\HttpMethodPostRoute;
+use Centum\Tests\Mvc\Route\Middleware\TrueRoute;
+use Centum\Tests\Mvc\Route\Middleware\FalseRoute;
+use Centum\Tests\Mvc\Route\Middleware\Multiple1Route;
+use Centum\Tests\Mvc\Route\Middleware\Multiple2Route;
+use Centum\Tests\Mvc\Route\RequirementsRoute;
 use Centum\Tests\UnitTester;
 use Codeception\Example;
 
 class RouterCest
 {
-    public function getRouteCollection(UnitTester $I)
+    public function basicHandle(UnitTester $I)
     {
         $container = new Container();
 
-        $resolver = new Resolver($container);
+        $router = new Router($container);
+
+        $router->addRoute(
+            new IndexRoute()
+        );
 
 
 
-        $routeCollection = new RouteCollection();
+        $request = Request::create("/", "GET");
 
-
-
-        $router = new Router($resolver, $routeCollection);
+        $response = $router->handle($request);
 
         $I->assertEquals(
-            $routeCollection,
-            $router->getRouteCollection()
+            "homepage",
+            $response->getContent()
         );
     }
 
@@ -42,27 +48,24 @@ class RouterCest
     {
         $container = new Container();
 
-        $resolver = new Resolver($container);
+        $router = new Router($container);
 
-
-
-        $routeCollection = new RouteCollection();
-
-
-
-        $routeCollection->addController(
-            ConverterController::class
+        $router->addRoute(
+            new ConverterRoute()
         );
 
 
 
-        $router = new Router($resolver, $routeCollection);
+        $request = Request::create(
+            "/converter/double/123",
+            "GET"
+        );
 
-        $match = $router->handle("/converter/double/123", "GET");
+        $response = $router->handle($request);
 
         $I->assertEquals(
             246,
-            $match->getParams()->get("i")
+            $response->getContent()
         );
     }
 
@@ -73,26 +76,33 @@ class RouterCest
     {
         $container = new Container();
 
-        $resolver = new Resolver($container);
+        $router = new Router($container);
 
+        $router->addRoute(
+            new TrueRoute()
+        );
 
+        $router->addRoute(
+            new FalseRoute()
+        );
 
-        $routeCollection = new RouteCollection();
+        $router->addRoute(
+            new Multiple1Route()
+        );
 
-
-
-        $routeCollection->addController(
-            MiddlewareController::class
+        $router->addRoute(
+            new Multiple2Route()
         );
 
 
 
-        $router = new Router($resolver, $routeCollection);
-
-
-
         try {
-            $match = $router->handle($example["url"], "GET");
+            $request = Request::create(
+                $example["url"],
+                "GET"
+            );
+
+            $response = $router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -132,26 +142,21 @@ class RouterCest
     {
         $container = new Container();
 
-        $resolver = new Resolver($container);
+        $router = new Router($container);
 
-
-
-        $routeCollection = new RouteCollection();
-
-
-
-        $routeCollection->addController(
-            RequirementsController::class
+        $router->addRoute(
+            new RequirementsRoute()
         );
 
 
 
-        $router = new Router($resolver, $routeCollection);
-
-
+        $request = Request::create(
+            $example["url"],
+            "GET"
+        );
 
         try {
-            $match = $router->handle($example["url"], "GET");
+            $response = $router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -179,120 +184,67 @@ class RouterCest
         ];
     }
 
+    /**
+     * @dataProvider httpMethodsProvider
+     */
+    public function httpMethods(UnitTester $I, Example $example)
+    {
+        $container = new Container();
+
+        $router = new Router($container);
+
+        $router->addRoute(
+            new HttpMethodGetRoute()
+        );
+
+        $router->addRoute(
+            new HttpMethodPostRoute()
+        );
+
+
+
+        $request = Request::create(
+            "/",
+            $example["method"]
+        );
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            $example["method"],
+            $response->getContent()
+        );
+    }
+
+    public function httpMethodsProvider()
+    {
+        return [
+            [
+                "method" => "GET",
+            ],
+
+            [
+                "method" => "POST",
+            ],
+        ];
+    }
+
     public function routeNotFoundException(UnitTester $I)
     {
         $container = new Container();
 
-        $resolver = new Resolver($container);
+        $router = new Router($container);
 
-
-
-        $routeCollection = new RouteCollection();
-
-
-
-        $router = new Router($resolver, $routeCollection);
-
-
+        $request = Request::create(
+            "/this/route/does/not/exist",
+            "GET"
+        );
 
         $I->expectThrowable(
             RouteNotFoundException::class,
-            function () use ($router) {
-                $router->handle("/this/is/a/route/that/doesnt/exist", "GET");
+            function () use ($request, $router) {
+                $response = $router->handle($request);
             }
         );
-    }
-
-    public function httpMethods(UnitTester $I)
-    {
-        $container = new Container();
-
-        $resolver = new Resolver($container);
-
-
-
-        $routeCollection = new RouteCollection();
-
-
-
-        $routeCollection->addController(
-            HttpMethodController::class
-        );
-
-
-
-        $router = new Router($resolver, $routeCollection);
-
-
-
-        $getRouterMatch = $router->handle("/", "GET");
-
-        $I->assertEquals(
-            "get",
-            $getRouterMatch->getPath()->getAction()
-        );
-
-
-
-        $postRouterMatch = $router->handle("/", "POST");
-
-        $I->assertEquals(
-            "post",
-            $postRouterMatch->getPath()->getAction()
-        );
-    }
-
-    public function getRoutes(UnitTester $I)
-    {
-        $container = new Container();
-
-        $resolver = new Resolver($container);
-
-
-
-        $routeCollection = new RouteCollection();
-
-
-
-        $router = new Router($resolver, $routeCollection);
-
-
-        $I->assertCount(
-            0,
-            $routeCollection->getRoutes()
-        );
-
-
-
-        $routeCollection->addController(
-            IndexController::class
-        );
-
-        $I->assertCount(
-            1,
-            $routeCollection->getRoutes()
-        );
-
-
-
-        $routeCollection->addController(
-            RequirementsController::class
-        );
-
-        $I->assertCount(
-            2,
-            $routeCollection->getRoutes()
-        );
-
-
-
-        $routes = $routeCollection->getRoutes();
-
-        foreach ($routes as $route) {
-            $I->assertInstanceOf(
-                Route::class,
-                $route
-            );
-        }
     }
 }

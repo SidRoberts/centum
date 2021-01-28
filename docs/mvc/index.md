@@ -7,15 +7,8 @@ permalink: mvc
 
 
 
-# Usage
+This interpretation of MVC differs slightly from others.
+Instead of controllers with multiple action methods, this one treats every application endpoint as a [Route](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Route.php) object - in place of controllers.
+The [Router](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router.php) essentially converts a [Request](https://github.com/SidRoberts/centum/blob/development/src/Http/Request.php) object into a [Response](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) object.
+It does so by extracting the Request's URI, it iterates through the Routes until it finds one that matches, and then executes the Route's code which returns a Response.
 
-**A working example is coming soon.**
-
-This library can be divided into three components:
-* [Application](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Application.php):
-  couples Router and Dispatcher together.
-  It is better able to deal with 404 errors and essentially converts a [Request](https://github.com/SidRoberts/centum/blob/development/src/Http/Request.php) object into a [Response](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) object.
-* [Router](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router.php):
-  takes a URL and determines which action method should be executed.
-* [Dispatcher](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Dispatcher.php):
-  executes the Controller code.

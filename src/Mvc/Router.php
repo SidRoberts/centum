@@ -2,84 +2,116 @@
 
 namespace Centum\Mvc;
 
-use Centum\Container\Resolver;
-use Centum\Mvc\Middleware\Runner as MiddlewareRunner;
-use Centum\Mvc\Router\Exception\RouteNotFoundException;
-use Centum\Mvc\Router\RouterMatch;
-use Centum\Mvc\Router\Route;
-use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\RouteCollection;
+use Centum\Container\Container;
+use Centum\Http\Request;
+use Centum\Http\Response;
+use Centum\Mvc\Exception\InvalidConverterException;
+use Centum\Mvc\Exception\InvalidMiddlewareException;
+use Centum\Mvc\Exception\ParamNotFoundException;
+use Centum\Mvc\Exception\RouteNotFoundException;
 
 class Router
 {
-    protected Resolver $resolver;
+    protected Container $container;
 
-    protected RouteCollection $routeCollection;
+    protected array $routes = [];
 
 
 
-    public function __construct(Resolver $resolver, RouteCollection $routeCollection)
+    public function __construct(Container $container)
     {
-        $this->resolver        = $resolver;
-        $this->routeCollection = $routeCollection;
+        $this->container = $container;
     }
 
 
 
-    public function getRouteCollection() : RouteCollection
+    public function addRoute(Route $route)
     {
-        return $this->routeCollection;
+        $this->routes[] = $route;
     }
 
 
 
-    public function handle(string $uri, string $method) : RouterMatch
+    public function handle(Request $request) : Response
     {
-        // Remove parameters from URI.
-        $uri = explode("?", $uri)[0];
-
-        // Remove redundant slashes.
-        $uri = "/" . trim($uri, "/");
-
-
-
-        $routeFound = false;
-        $params = [];
-
-
-
-        $routes = $this->routeCollection->getRoutes();
-
-        foreach ($routes as $route) {
-            $routeMethod = $route->getUri()->getMethod();
-
-            $pattern = $route->getCompiledPattern();
-
-
-
-            $routeFound =
-                // Check if the current HTTP method is allowed by the route.
-                ($routeMethod === $method)
-                &&
-                (preg_match($pattern, $uri, $params) === 1)
-                &&
-                $this->runMiddlewares($route, $uri);
-
-            if ($routeFound) {
-                break;
+        foreach ($this->routes as $route) {
+            try {
+                $params = $this->matchRouteToRequest($request, $route);
+            } catch (RouteNotFoundException $exception) {
+                $params = false;
             }
+
+            if ($params !== false) {
+                return $route->execute($request, $this->container, $params);
+            }
+        }
+
+        throw new RouteNotFoundException($request);
+    }
+
+
+
+    protected function getUriPattern(Route $route) : string
+    {
+        $pattern = $route->getUri();
+
+        $replacements = [
+            "int"  => "[\d]+",
+            "slug" => "[a-z0-9\-]+",
+            "char" => "[^/]",
+            "any"  => "[^/]+",
+        ];
+
+        $pattern = preg_replace_callback(
+            "/\{([A-Za-z]+)(\:([a-z]+))?\}/",
+            function ($match) use ($replacements) {
+                $name = $match[1];
+                $regExId = $match[3] ?? "any";
+
+                $regEx = $replacements[$regExId] ?? $replacements["any"];
+
+                return "(?P<" . $name . ">" . $regEx . ")";
+            },
+            $pattern
+        );
+
+        $pattern = "#^" . $pattern . "$#u";
+
+        return $pattern;
+    }
+
+
+
+    protected function matchRouteToRequest(Request $request, Route $route) : array|bool
+    {
+        if ($route->getMethod() !== $request->getMethod()) {
+            return false;
         }
 
 
 
-        if (!$routeFound) {
-            throw new RouteNotFoundException(
-                sprintf(
-                    "None of the routes match the path '%s %s'",
-                    $method,
-                    $uri
-                )
-            );
+        $uri = $request->getRequestUri();
+
+        $pattern = $this->getUriPattern($route);
+
+        if (preg_match($pattern, $uri, $params) !== 1) {
+            return false;
+        }
+
+
+
+        $middlewares = $route->getMiddlewares();
+
+        foreach ($middlewares as $middleware) {
+            if (!($middleware instanceof MiddlewareInterface)) {
+                throw new InvalidMiddlewareException();
+            }
+
+            $success = $middleware->middleware($request, $route, $this->container);
+
+            if (!$success) {
+                return false;
+            }
         }
 
 
@@ -95,52 +127,23 @@ class Router
 
 
 
-        $path = $route->getPath();
-
-        $params = $this->convertParams($route, $params);
-
-        return new RouterMatch(
-            $path,
-            $params
-        );
-    }
-
-
-
-    protected function runMiddlewares(Route $route, string $uri) : bool
-    {
-        $middlewares = $route->getMiddlewares();
-
-        $middlewareRunner = new MiddlewareRunner();
-
-        foreach ($middlewares as $middlewareName) {
-            $middleware = $this->resolver->typehintClass($middlewareName);
-
-            $middlewareRunner->addMiddleware($middleware);
-        }
-
-        return $middlewareRunner->run($uri, $route);
-    }
-
-
-
-    protected function convertParams(Route $route, array $params) : array
-    {
         $converters = $route->getConverters();
 
-        foreach ($converters as $converterAttribute) {
-            $key = $converterAttribute->getParam();
-
-            if (!isset($params[$key])) {
-                continue;
+        foreach ($converters as $key => $converter) {
+            if (!($converter instanceof ConverterInterface)) {
+                throw new InvalidConverterException();
             }
 
-            $converterName = $converterAttribute->getConverter();
+            if (!isset($params[$key])) {
+                throw new ParamNotFoundException();
+            }
 
-            $converter = $this->resolver->typehintClass($converterName);
+            $value = $params[$key];
 
-            $params[$key] = $converter->convert($params[$key]);
+            $params[$key] = $converter->convert($value, $this->container);
         }
+
+
 
         return $params;
     }

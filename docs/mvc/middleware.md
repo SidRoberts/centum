@@ -10,82 +10,122 @@ Middlewares are run by the Router when it is trying to find a matching Route.
 If the Route matches the URL pattern, the Router will run the Middlewares which are able to perform additional checks to determine whether the Route should match or not.
 By returning `false` in a Middleware, the Router will ignore the action and assume that it is not suitable for the particular URL.
 
-Any Middlewares you create must implement [`Centum\Mvc\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/MiddlewareInterface.php) and, like with Converters, you can inject any services you require via the constructor.
+Any Middlewares you create must implement [`Centum\Mvc\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/MiddlewareInterface.php).
 
 ```php
 namespace App\Middleware;
 
+use App\Auth;
+use Centum\Container\Container;
+use Centum\Http\Request;
 use Centum\Mvc\MiddlewareInterface;
-use Centum\Mvc\Router\Route;
+use Centum\Mvc\Route;
 
 class IsLoggedInMiddleware implements MiddlewareInterface
 {
-    protected Auth $auth;
-
-
-
-    public function __construct(Auth $auth)
+    public function middleware(Request $request, Route $route, Container $container) : bool
     {
-        $this->auth = $auth;
-    }
+        /**
+         * @var Auth
+         */
+        $auth = $container->get("auth");
 
-
-
-    public function middleware(string $uri, Route $route) : bool
-    {
-        return $this->auth->isLoggedIn();
+        return $auth->isLoggedIn();
     }
 }
 ```
 
-(The `Auth` class is not shown and is just used as an example)
+(The `App\Auth` class is not shown and is just used as an example.)
 
-This is useful for when you want to separate the controller logic into two or more distinct use cases.
+This is useful for when you want to separate the Routes into two or more distinct use cases.
 For example, you may want to separate guests and logged in users:
 
 ```php
 use App\Middleware\IsLoggedOutMiddleware;
 use App\Middleware\IsLoggedInMiddleware;
-use Centum\Mvc\Controller;
-use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Middleware;
+use Centum\Container\Container;
+use Centum\Http\Request;
+use Centum\Http\Response;
+use Centum\Mvc\Route;
 
-class UserController extends Controller
+class GuestRoute extends Route
 {
-    #[Uri("/something")]
-    #[Middleware(IsLoggedOutMiddleware::class)]
-    public function guest()
+    public function getUri() : string
     {
-        //TODO
+        return "/something";
     }
 
-    #[Uri("/something")]
-    #[Middleware(IsLoggedInMiddleware::class)]
-    public function user()
+    public function getMiddlewares() : array
+    {
+        return [
+            new IsLoggedOutMiddleware(),
+        ];
+    }
+
+    public function execute(Request $request, Container $container, array $params) : Response
     {
         //TODO
+        return new Response("this user is logged out");
+    }
+}
+
+class UserRoute extends Route
+{
+    public function getUri() : string
+    {
+        return "/something";
+    }
+
+    public function getMiddlewares() : array
+    {
+        return [
+            new IsLoggedInMiddleware(),
+        ];
+    }
+
+    public function execute(Request $request, Container $container, array $params) : Response
+    {
+        //TODO
+        return new Response("this user is logged in");
     }
 }
 ```
 
-(`App\Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect)
+(`App\Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect.)
 
-You can even create action methods with multiple middlewares.
-If any of them of fail, the action will fail to match:
+You can even create Routes with multiple middlewares.
+If any of them of fail, the Route will fail to match:
 
 ```php
 use App\Middleware\OneMiddleware;
 use App\Middleware\AnotherMiddleware;
 use App\Middleware\AndAnotherMiddleware;
-use Centum\Mvc\Router\Route\Uri;
-use Centum\Mvc\Router\Route\Middleware;
+use Centum\Container\Container;
+use Centum\Http\Request;
+use Centum\Http\Response;
+use Centum\Mvc\Route;
 
-#[Uri("/something")]
-#[Middleware(OneMiddleware::class)]
-#[Middleware(AnotherMiddleware::class)]
-#[Middleware(AndAnotherMiddleware::class)]
-public function something()
+class SomethingRoute extends Route
 {
-    //TODO
+    public function getUri() : string
+    {
+        return "/something";
+    }
+
+    public function getMiddlewares() : array
+    {
+        return [
+            new OneMiddleware(),
+            new AnotherMiddleware(),
+            new AndAnotherMiddleware(),
+        ];
+    }
+
+    public function execute(Request $request, Container $container, array $params) : Response
+    {
+        return new Response("hello");
+    }
 }
 ```
+
+The example above will only execute if all 3 middlewares return `true`.
