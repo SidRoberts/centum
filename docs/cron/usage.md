@@ -9,7 +9,10 @@ parent: Cron
 Cron Jobs are handled by [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Cron.php) and it determines which jobs are due at any given time.
 
 ```php
-$job1 = new \Centum\Cron\Job(
+use Centum\Cron\Cron;
+use Centum\Cron\Job;
+
+$job1 = new Job(
     "* * * * *",
     [
         "task",
@@ -18,14 +21,14 @@ $job1 = new \Centum\Cron\Job(
     ]
 );
 
-$job2 = new \Centum\Cron\Job(
+$job2 = new Job(
     "@daily",
     "echo 'hello world'"
 );
 
 
 
-$cron = new \Centum\Cron\Cron();
+$cron = new Cron();
 
 $cron->add($job1);
 $cron->add($job2);

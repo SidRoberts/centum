@@ -12,7 +12,9 @@ You could even mix and match several data types together.
 For example, you could store shell commands and run them with `shell_exec()`:
 
 ```php
-$job = new \Centum\Cron\Job(
+use Centum\Cron\Job;
+
+$job = new Job(
     "* * * * *",
     "sh do-something.sh"
 );
@@ -33,7 +35,9 @@ foreach ($dueJobs as $job) {
 You could wrap your code in a function and execute them when they are due:
 
 ```php
-$job = new \Centum\Cron\Job(
+use Centum\Cron\Job;
+
+$job = new Job(
     "* * * * *",
     function () {
         // ...

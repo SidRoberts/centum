@@ -9,7 +9,7 @@ parent: Url
 This component takes care of trailing and leading slashes.
 
 ```php
-use Sid\Url\Url;
+use Centum\Url\Url;
 
 $baseUri = "https://example.com";
 
