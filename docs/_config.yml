@@ -1,2 +1,20 @@
 title: "Centum Docs"
 remote_theme: pmarsceill/just-the-docs
+
+# Aux links for the upper right navigation
+aux_links:
+  "Centum on GitHub":
+    - "https://github.com/SidRoberts/centum"
+
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: "Copyright &copy; 2021 Sid Roberts. Distributed by an <a href=\"https://github.com/SidRoberts/centum/blob/development/LICENSE.md\">MIT license.</a>"
+
+# Footer "Edit this page on GitHub" link text
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/SidRoberts/centum"
+gh_edit_branch: "development"
+gh_edit_source: "docs"
+gh_edit_view_mode: "edit"
