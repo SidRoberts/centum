@@ -42,7 +42,7 @@ class PostConverter implements ConverterInterface
 }
 ```
 
-By throwing [`Centum\Mvc\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router/Exception/RouteNotFoundException.php), you can tell the Router that this Route does not match and it will continue iterating through the other Routes.
+By throwing [`Centum\Mvc\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteNotFoundException.php), you can tell the Router that this Route does not match and it will continue iterating through the other Routes.
 In the above example, if the `App\Model\Post` object cannot be found in the database, this exception is thrown to avoid having to deal with it in the Route's `execute()` method.
 
 ```php
