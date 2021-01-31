@@ -134,11 +134,7 @@ class Router
                 throw new InvalidConverterException();
             }
 
-            if (!isset($params[$key])) {
-                throw new ParamNotFoundException();
-            }
-
-            $value = $params[$key];
+            $value = $params[$key] ?? throw new ParamNotFoundException();
 
             $params[$key] = $converter->convert($value, $this->container);
         }
