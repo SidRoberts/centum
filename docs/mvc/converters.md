@@ -31,11 +31,7 @@ class PostConverter implements ConverterInterface
             Post::class
         );
 
-        $post = $postRepository->find($id);
-
-        if (!$post) {
-            throw new RouteNotFoundException();
-        }
+        $post = $postRepository->find($id) ?? throw new RouteNotFoundException();
 
         return $post;
     }
