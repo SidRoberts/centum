@@ -22,19 +22,19 @@ class Terminal
 
 
 
-    public function write(string $string)
+    public function write(string $string) : void
     {
         fwrite(STDOUT, $string);
 
         fflush(STDOUT);
     }
 
-    public function writeLine(string $string = "")
+    public function writeLine(string $string = "") : void
     {
         $this->write($string . PHP_EOL);
     }
 
-    public function writeList(array $list)
+    public function writeList(array $list) : void
     {
         $this->writeLine();
 

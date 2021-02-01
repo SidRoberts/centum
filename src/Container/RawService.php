@@ -33,7 +33,7 @@ class RawService extends Service
         return $this->isShared;
     }
 
-    public function resolve(Container $container)
+    public function resolve(Container $container) : mixed
     {
         $closure = $this->closure;
 

@@ -41,19 +41,19 @@ class Field
 
 
 
-    public function addFilter(FilterInterface $filter)
+    public function addFilter(FilterInterface $filter) : void
     {
         $this->filters[] = $filter;
     }
 
-    public function addValidator(ValidatorInterface $validator)
+    public function addValidator(ValidatorInterface $validator) : void
     {
         $this->validators[] = $validator;
     }
 
 
 
-    public function getFilteredValue($value)
+    public function getFilteredValue(mixed $value) : mixed
     {
         // Apply filters to value.
         foreach ($this->filters as $filter) {
@@ -65,7 +65,7 @@ class Field
 
 
 
-    public function isValid($value) : bool
+    public function isValid(mixed $value) : bool
     {
         $messages = $this->getMessages($value);
 
@@ -74,7 +74,7 @@ class Field
 
 
 
-    public function getMessages($value) : array
+    public function getMessages(mixed $value) : array
     {
         $filteredValue = $this->getFilteredValue($value);
 

@@ -25,7 +25,7 @@ class Router
 
 
 
-    public function addRoute(Route $route)
+    public function addRoute(Route $route) : void
     {
         $this->routes[] = $route;
     }

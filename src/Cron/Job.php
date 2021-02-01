@@ -9,11 +9,11 @@ class Job implements JobInterface
 {
     protected string $expression;
 
-    protected $data;
+    protected mixed $data;
 
 
 
-    public function __construct(string $expression, $data)
+    public function __construct(string $expression, mixed $data)
     {
         $this->expression = $expression;
         $this->data       = $data;
@@ -26,7 +26,7 @@ class Job implements JobInterface
         return $this->expression;
     }
 
-    public function getData()
+    public function getData() : mixed
     {
         return $this->data;
     }

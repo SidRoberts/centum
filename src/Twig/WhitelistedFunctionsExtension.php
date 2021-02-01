@@ -18,7 +18,7 @@ class WhitelistedFunctionsExtension extends AbstractExtension
 
 
 
-    public function getFunctions()
+    public function getFunctions() : array
     {
         $functions = [];
 
@@ -29,7 +29,7 @@ class WhitelistedFunctionsExtension extends AbstractExtension
         return $functions;
     }
 
-    public function getName()
+    public function getName() : string
     {
         return "whitelistedFunctions";
     }

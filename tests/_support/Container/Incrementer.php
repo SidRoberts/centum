@@ -8,7 +8,7 @@ class Incrementer
 
 
 
-    public function increment()
+    public function increment() : void
     {
         $this->i++;
     }

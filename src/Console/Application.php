@@ -23,7 +23,7 @@ class Application
 
 
 
-    public function addCommand(Command $command)
+    public function addCommand(Command $command) : void
     {
         $name = $command->getName();
 

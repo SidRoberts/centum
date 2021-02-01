@@ -4,7 +4,7 @@ namespace Centum\Validation;
 
 interface ValidatorInterface
 {
-    public function validate($value);
+    public function validate(mixed $value) : bool;
 
     public function getMessages() : array;
 }

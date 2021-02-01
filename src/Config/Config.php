@@ -40,12 +40,12 @@ class Config
 
 
 
-    public function __get(string $name)
+    public function __get(string $name) : mixed
     {
         return $this->data[$name];
     }
 
-    public function __set(string $name, $value)
+    public function __set(string $name, mixed $value) : void
     {
         if (is_array($value)) {
             $value = new Config($value);

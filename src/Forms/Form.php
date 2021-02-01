@@ -8,7 +8,7 @@ class Form
 
 
 
-    public function add(Field $field)
+    public function add(Field $field) : void
     {
         $name = $field->getName();
 
@@ -43,7 +43,7 @@ class Form
         return $messages;
     }
 
-    public function getMessagesFor(string $name, $value) : array
+    public function getMessagesFor(string $name, mixed $value) : array
     {
         if (!isset($this->fields[$name])) {
             return [];

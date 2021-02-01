@@ -10,7 +10,7 @@ class BufferedTerminal extends Terminal
 
 
 
-    public function write(string $string)
+    public function write(string $string) : void
     {
         $this->output .= $string;
     }

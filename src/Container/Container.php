@@ -28,7 +28,7 @@ class Container
 
 
 
-    public function get(string $name)
+    public function get(string $name) : mixed
     {
         if (isset($this->sharedServices[$name])) {
             return $this->sharedServices[$name];
@@ -51,7 +51,7 @@ class Container
         return $resolvedService;
     }
 
-    public function set(string $name, $value)
+    public function set(string $name, mixed $value) : void
     {
         $this->sharedServices[$name] = $value;
     }

@@ -8,7 +8,7 @@ class MessageBag
 
 
 
-    public function add(string $level, string $message)
+    public function add(string $level, string $message) : void
     {
         $this->messages[] = [
             "level" => $level,

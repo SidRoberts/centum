@@ -10,7 +10,7 @@ class Cron
 
 
 
-    public function add(JobInterface $job)
+    public function add(JobInterface $job) : void
     {
         $this->jobs[] = $job;
     }

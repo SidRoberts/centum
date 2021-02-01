@@ -22,7 +22,7 @@ class Access
 
 
 
-    public function allow(string $user, string $activity)
+    public function allow(string $user, string $activity) : void
     {
         if (!isset($this->access[$activity])) {
             $this->access[$activity] = [];
@@ -31,7 +31,7 @@ class Access
         $this->access[$activity][$user] = self::ALLOW;
     }
 
-    public function deny(string $user, string $activity)
+    public function deny(string $user, string $activity) : void
     {
         if (!isset($this->access[$activity])) {
             $this->access[$activity] = [];
@@ -40,7 +40,7 @@ class Access
         $this->access[$activity][$user] = self::DENY;
     }
 
-    public function remove(string $user, string $activity)
+    public function remove(string $user, string $activity) : void
     {
         unset(
             $this->access[$activity][$user]

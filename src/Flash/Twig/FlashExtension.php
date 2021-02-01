@@ -19,7 +19,7 @@ class FlashExtension extends AbstractExtension
 
 
 
-    public function getFunctions()
+    public function getFunctions() : array
     {
         return [
             new TwigFunction(
@@ -33,7 +33,7 @@ class FlashExtension extends AbstractExtension
 
 
 
-    public function getName()
+    public function getName() : string
     {
         return "flash";
     }
