@@ -15,7 +15,7 @@ namespace App\Converter;
 use App\Model\Post;
 use Centum\Container\Container;
 use Centum\Mvc\ConverterInterface;
-use Centum\Mvc\Router\Exception\RouteNotFoundException;
+use Centum\Mvc\Exception\RouteNotFoundException;
 use Doctrine\ORM\EntityManager;
 
 class PostConverter implements ConverterInterface
