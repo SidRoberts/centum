@@ -12,9 +12,9 @@ class Terminal
 
 
 
-    public function __construct(array $argv, $stdin = STDIN, $stdout = STDOUT)
+    public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT)
     {
-        $this->argv = $argv;
+        $this->argv = $argv ?? $_SERVER["argv"];
 
         if (!is_resource($stdin) || !is_resource($stdout)) {
             throw new InvalidArgumentException();
