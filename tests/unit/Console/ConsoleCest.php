@@ -39,6 +39,7 @@ class ApplicationCest
 
         $terminal = new Terminal(
             [
+                "cli.php",
                 "",
             ],
             $stdin,
@@ -74,6 +75,7 @@ class ApplicationCest
 
         $terminal = new Terminal(
             [
+                "cli.php",
                 "converter:double",
                 "--i",
                 "123",
@@ -144,22 +146,22 @@ class ApplicationCest
     {
         return [
             [
-                "argv"       => ["middleware:true"],
+                "argv"       => ["cli.php", "middleware:true"],
                 "shouldPass" => true,
             ],
 
             [
-                "argv"       => ["middleware:false"],
+                "argv"       => ["cli.php", "middleware:false"],
                 "shouldPass" => false,
             ],
 
             [
-                "argv"       => ["middleware:true-false"],
+                "argv"       => ["cli.php", "middleware:true-false"],
                 "shouldPass" => false,
             ],
 
             [
-                "argv"       => ["middleware:false-true"],
+                "argv"       => ["cli.php", "middleware:false-true"],
                 "shouldPass" => false,
             ],
         ];
@@ -177,6 +179,7 @@ class ApplicationCest
 
         $terminal = new Terminal(
             [
+                "cli.php",
                 "this:command:does:not:exist",
             ],
             $stdin,

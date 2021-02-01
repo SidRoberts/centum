@@ -68,7 +68,7 @@ class Application
 
     protected function getCommandFromTerminal(Terminal $terminal) : Command
     {
-        $name = $terminal->getArgv()[0];
+        $name = $terminal->getArgv()[1];
 
         $command = $this->commands[$name] ?? throw new CommandNotFoundException();
 
@@ -98,6 +98,12 @@ class Application
     protected function getParamsFromArgv(array $argv) : array
     {
         $params = [];
+
+        // Remove script filename.
+        array_shift($argv);
+
+        // Remove command name.
+        array_shift($argv);
 
         while ($argv) {
             $token = array_shift($argv);
