@@ -49,11 +49,11 @@ use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
-class ViewSingleCommand extends Command
+class PostDetailsCommand extends Command
 {
     public function getName() : string
     {
-        return "post/{post:int}";
+        return "post-details";
     }
 
     public function getConverters() : array
@@ -72,6 +72,10 @@ class ViewSingleCommand extends Command
 
         $terminal->writeLine(
             $post->getTitle()
+        );
+
+        $terminal->writeLine(
+            $post->getBody()
         );
 
         return 0;
