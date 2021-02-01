@@ -11,7 +11,7 @@ If the Route matches the URL pattern, the Router will run the Middlewares which 
 By returning `false` in a Middleware, the Router will ignore the Route and assume that it is not suitable for the particular URL.
 Alternatively, by throwing [`Centum\Mvc\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteNotFoundException.php), the Router will also ignore the Route and continue iterating through the other Routes.
 
-Any Middlewares you create must implement [`Centum\Mvc\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/MiddlewareInterface.php).
+Any Middlewares you create must implement [`Centum\Mvc\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/MiddlewareInterface.php).
 
 ```php
 namespace App\Middleware;
