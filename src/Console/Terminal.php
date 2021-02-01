@@ -9,19 +9,21 @@ class Terminal
     protected array $argv;
     protected $stdin;
     protected $stdout;
+    protected $stderr;
 
 
 
-    public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT)
+    public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT, $stderr = STDERR)
     {
         $this->argv = $argv ?? $_SERVER["argv"];
 
-        if (!is_resource($stdin) || !is_resource($stdout)) {
+        if (!is_resource($stdin) || !is_resource($stdout) || !is_resource($stderr)) {
             throw new InvalidArgumentException();
         }
 
         $this->stdin = $stdin;
         $this->stdout = $stdout;
+        $this->stderr = $stderr;
     }
 
 
@@ -59,5 +61,19 @@ class Terminal
         }
 
         $this->writeLine();
+    }
+
+
+
+    public function writeError(string $string) : void
+    {
+        fwrite($this->stderr, $string);
+
+        fflush($this->stderr);
+    }
+
+    public function writeErrorLine(string $string = "") : void
+    {
+        $this->writeError($string . PHP_EOL);
     }
 }

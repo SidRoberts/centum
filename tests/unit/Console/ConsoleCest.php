@@ -35,13 +35,15 @@ class ApplicationCest
 
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
 
         $terminal = new Terminal(
             [
                 "",
             ],
             $stdin,
-            $stdout
+            $stdout,
+            $stderr
         );
 
         $exitCode = $application->handle($terminal);
@@ -68,6 +70,7 @@ class ApplicationCest
 
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
 
         $terminal = new Terminal(
             [
@@ -76,7 +79,8 @@ class ApplicationCest
                 "123",
             ],
             $stdin,
-            $stdout
+            $stdout,
+            $stderr
         );
 
         $exitCode = $application->handle($terminal);
@@ -118,11 +122,13 @@ class ApplicationCest
 
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
 
         $terminal = new Terminal(
             $example["argv"],
             $stdin,
-            $stdout
+            $stdout,
+            $stderr
         );
 
         try {
@@ -167,13 +173,15 @@ class ApplicationCest
 
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
 
         $terminal = new Terminal(
             [
                 "this:command:does:not:exist",
             ],
             $stdin,
-            $stdout
+            $stdout,
+            $stderr
         );
 
         $I->expectThrowable(
