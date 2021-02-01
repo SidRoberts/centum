@@ -2,15 +2,26 @@
 
 namespace Centum\Console;
 
+use InvalidArgumentException;
+
 class Terminal
 {
     protected array $argv;
+    protected $stdin;
+    protected $stdout;
 
 
 
-    public function __construct(array $argv)
+    public function __construct(array $argv, $stdin = STDIN, $stdout = STDOUT)
     {
         $this->argv = $argv;
+
+        if (!is_resource($stdin) || !is_resource($stdout)) {
+            throw new InvalidArgumentException();
+        }
+
+        $this->stdin = $stdin;
+        $this->stdout = $stdout;
     }
 
 
@@ -24,9 +35,9 @@ class Terminal
 
     public function write(string $string) : void
     {
-        fwrite(STDOUT, $string);
+        fwrite($this->stdout, $string);
 
-        fflush(STDOUT);
+        fflush($this->stdout);
     }
 
     public function writeLine(string $string = "") : void

@@ -5,7 +5,7 @@ namespace Centum\Tests\Console;
 use Centum\Container\Container;
 use Centum\Console\Application;
 use Centum\Console\Command;
-use Centum\Console\Terminal\BufferedTerminal;
+use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Tests\Console\Command\ConverterCommand;
 use Centum\Tests\Console\Command\MainCommand;
@@ -33,17 +33,24 @@ class ApplicationCest
 
 
 
-        $terminal = new BufferedTerminal(
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+
+        $terminal = new Terminal(
             [
                 "",
-            ]
+            ],
+            $stdin,
+            $stdout
         );
 
         $exitCode = $application->handle($terminal);
 
+        rewind($stdout);
+
         $I->assertEquals(
             "main page",
-            $terminal->getContent()
+            stream_get_contents($stdout)
         );
     }
 
@@ -59,19 +66,26 @@ class ApplicationCest
 
 
 
-        $terminal = new BufferedTerminal(
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+
+        $terminal = new Terminal(
             [
                 "converter:double",
                 "--i",
                 "123",
-            ]
+            ],
+            $stdin,
+            $stdout
         );
 
         $exitCode = $application->handle($terminal);
 
+        rewind($stdout);
+
         $I->assertEquals(
             246,
-            $terminal->getContent()
+            stream_get_contents($stdout)
         );
     }
 
@@ -102,8 +116,13 @@ class ApplicationCest
 
 
 
-        $terminal = new BufferedTerminal(
-            $example["argv"]
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+
+        $terminal = new Terminal(
+            $example["argv"],
+            $stdin,
+            $stdout
         );
 
         try {
@@ -146,10 +165,15 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $terminal = new BufferedTerminal(
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+
+        $terminal = new Terminal(
             [
                 "this:command:does:not:exist",
-            ]
+            ],
+            $stdin,
+            $stdout
         );
 
         $I->expectThrowable(
