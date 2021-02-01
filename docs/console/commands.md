@@ -14,9 +14,8 @@ By default, a Command has no middlewares or parameter converters and can be as s
 
 ```php
 use Centum\Console\Command;
+use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Centum\Http\Request;
-use Centum\Http\Response;
 
 class IndexCommand extends Command
 {
