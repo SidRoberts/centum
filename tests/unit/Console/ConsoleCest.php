@@ -33,19 +33,16 @@ class ApplicationCest
 
 
 
+        $argv = [
+            "cli.php",
+            "",
+        ];
+
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal(
-            [
-                "cli.php",
-                "",
-            ],
-            $stdin,
-            $stdout,
-            $stderr
-        );
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
 
         $exitCode = $application->handle($terminal);
 
@@ -69,21 +66,18 @@ class ApplicationCest
 
 
 
+        $argv = [
+            "cli.php",
+            "converter:double",
+            "--i",
+            "123",
+        ];
+
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal(
-            [
-                "cli.php",
-                "converter:double",
-                "--i",
-                "123",
-            ],
-            $stdin,
-            $stdout,
-            $stderr
-        );
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
 
         $exitCode = $application->handle($terminal);
 
@@ -122,16 +116,13 @@ class ApplicationCest
 
 
 
+        $argv = $example["argv"];
+
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal(
-            $example["argv"],
-            $stdin,
-            $stdout,
-            $stderr
-        );
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
 
         try {
             $exitCode = $application->handle($terminal);
@@ -173,19 +164,16 @@ class ApplicationCest
 
         $application = new Application($container);
 
+        $argv = [
+            "cli.php",
+            "this:command:does:not:exist",
+        ];
+
         $stdin = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal(
-            [
-                "cli.php",
-                "this:command:does:not:exist",
-            ],
-            $stdin,
-            $stdout,
-            $stderr
-        );
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
 
         $I->expectThrowable(
             CommandNotFoundException::class,
