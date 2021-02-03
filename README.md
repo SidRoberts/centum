@@ -1,5 +1,7 @@
 # Centum
 
+Centum is an all-encompassing framework designed to simplify the building of MVC-style web applications.
+
 
 
 [![Code Build Status](https://img.shields.io/github/workflow/status/SidRoberts/centum/tests/development.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/actions)
