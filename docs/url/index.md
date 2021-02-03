@@ -7,7 +7,7 @@ permalink: url
 
 
 
-This component takes care of trailing and leading slashes.
+This component takes care of trailing/leading slashes and enables you to easily change your base URI depending on the environment (for example: development and production).
 
 ```php
 use Centum\Url\Url;
@@ -23,9 +23,8 @@ echo $url->get("path/to/something");
 echo $url->get("/path/to/something");
 ```
 
-You can now easily change your base URI depending on the environment (for example: development and production).
-
-You can also specify URL arguments which are automatically sanitised and encoded by [`http_build_query()`](http://php.net/http_build_query):
+You can also specify URL arguments.
+They are automatically sanitised and encoded by [`http_build_query()`](http://php.net/http_build_query):
 
 ```php
 // https://example.com/path/to/something?title=hello+world&page=123
