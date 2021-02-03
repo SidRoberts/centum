@@ -15,7 +15,6 @@ namespace App\Service;
 
 use Centum\Config\Config;
 use Centum\Container\Service;
-use Symfony\Component\Yaml\Yaml;
 
 class ConfigService extends Service
 {
