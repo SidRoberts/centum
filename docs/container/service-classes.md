@@ -1,12 +1,25 @@
 ---
 layout: default
-title: Usage
+title: Service Classes
 parent: Container
 ---
 
 
 
+The Container's functionality can be better utilised with [Service classes](https://github.com/SidRoberts/centum/blob/development/src/Container/Service.php).
+Service classes better compartmentalise service definitions and make it easier to define numerous services.
+
+Service classes have 3 methods:
+
+* `getName()` allows you to specify the name that you'll use to access this service.
+
+* `isShared()` allows you to reuse the same instance multiple times (`true`) or use the service as a singleton (`false`).
+
+* `resolve()` is where you can actually write your service code.
+
 Let's start by defining some of our services.
+In this example, we'll create two services: a 'config' service and a 'pheanstalk' service.
+The 'pheanstalk' service will depend on the 'config' service.
 
 First of all, we need to be able to access our configuration data:
 
@@ -43,14 +56,6 @@ class ConfigService extends Service
     }
 }
 ```
-
-[Service classes](https://github.com/SidRoberts/centum/blob/development/src/Container/Service.php) have 3 methods:
-
-* `getName()` allows you to specify the name that you'll use to access this service.
-
-* `isShared()` allows you to reuse the same instance multiple times (`true`) or use the service as a singleton (`false`).
-
-* `resolve()` is where you can actually write your service code.
 
 A service may depend on another service in order to function.
 By using the names from `getName()`, you can access other services via the `resolve()` method's parameters.
@@ -115,10 +120,3 @@ $pheanstalk = $container->get("pheanstalk");
 ```
 
 The container will handle all of the dependencies and either return the same instance or create a fresh instance depending on whether the service is shared or not.
-
-If a service does not exist, `get()` will throw a [`Centum\Container\Exception\ServiceNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/ServiceNotFoundException.php).
-You can also check if a service exists using `has()` which will return a boolean:
-
-```php
-$container->has("myService");
-```
