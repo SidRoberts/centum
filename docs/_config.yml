@@ -1,6 +1,8 @@
 title: "Centum Docs"
 remote_theme: pmarsceill/just-the-docs
 
+permalink: pretty
+
 # Aux links for the upper right navigation
 aux_links:
   "Centum on GitHub":
