@@ -72,55 +72,50 @@ If the data isn't valid, you can find out why:
 $errorMessages = $loginForm->getMessages($_POST);
 ```
 
-To reuse the same form in multiple places, you can extend the `Form` class and define the Fields in the constructor:
+To reuse the same form in multiple places, you can define the fields in a Form Template.
+Form Templates are designed to simplify the process of creating Forms.
+
+In a Form Template, each public method represents a Field.
+The Field's name is defined as the method's name.
+The Field is passed as a parameter and does not need to be returned.
 
 ```php
+namespace App\Forms;
+
 use Centum\Forms\Field;
-use Centum\Forms\Form;
+use Centum\Forms\FormTemplate;
 use Zend\Filter\StringTrim;
 use Zend\Validator\NotEmpty;
 
-class LoginForm extends Form
+class LoginTemplate extends FormTemplate
 {
-    public function __construct()
+    public function username(Field $field)
     {
-        $this->add(
-            $this->createUsernameField()
-        );
-
-        $this->add(
-            $this->createPasswordField()
-        );
-    }
-
-
-
-    protected function createUsernameField() : Field
-    {
-        $usernameField = new Field("username");
-
-        $usernameField->addFilter(
+        $field->addFilter(
             new StringTrim()
         );
 
-        $usernameField->addValidator(
+        $field->addValidator(
             new NotEmpty()
         );
-
-        return $usernameField;
     }
 
-    protected function createPasswordField() : Field
+    public function password(Field $field)
     {
-        $passwordField = new Field("password");
-
-        $passwordField->addValidator(
+        $field->addValidator(
             new NotEmpty()
         );
-
-        return $passwordField;
     }
 }
 ```
 
-I personally like to create methods using the `create...Field` naming scheme instead of defining everything in the constructor.
+You can then use the Factory class to build the actual Form:
+
+```php
+use App\Forms\LoginTemplate;
+use Centum\Forms\Factory;
+
+$loginTemplate = new LoginTemplate();
+
+$loginForm = Factory::build($template);
+```
