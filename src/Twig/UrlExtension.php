@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Url\Twig;
+namespace Centum\Twig;
 
 use Centum\Url\Url;
 use Twig\Extension\AbstractExtension;

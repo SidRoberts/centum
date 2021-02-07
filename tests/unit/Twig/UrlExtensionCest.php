@@ -1,11 +1,11 @@
 <?php
 
-namespace Centum\Tests\Url\Twig;
+namespace Centum\Tests\Twig;
 
 use Codeception\Example;
 use Centum\Tests\UnitTester;
 use Centum\Url\Url;
-use Centum\Url\Twig\UrlExtension;
+use Centum\Twig\UrlExtension;
 use Twig\Loader\ArrayLoader;
 
 class UrlExtensionCest
