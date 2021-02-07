@@ -35,9 +35,9 @@ $terminal->write(
 Producing:
 
 ```bash
-[31mThis text is red.[0m
-[32mThis text is green.[0m
-[34mThis text is blue.[0m
+{% raw %}<span style="color: red;">This text is red.</span>{% endraw %}
+{% raw %}<span style="color: green;">This text is green.</span>{% endraw %}
+{% raw %}<span style="color: blue;">This text is blue.</span>{% endraw %}
 ```
 
 
@@ -57,7 +57,7 @@ $terminal->write(
 Producing:
 
 ```bash
-[41mThis text has a red background.[0m
-[42mThis text has a green background.[0m
-[44mThis text has a blue background.[0m
+{% raw %}<span style="background-color: red;">This text has a red background.</span>{% endraw %}
+{% raw %}<span style="background-color: green;">This text has a green background.</span>{% endraw %}
+{% raw %}<span style="background-color: blue;">This text has a blue background.</span>{% endraw %}
 ```
