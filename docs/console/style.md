@@ -49,3 +49,19 @@ $terminal->write(
 ```
 
 Produces three lines of text with different colored backgrounds.
+
+
+
+# Combining Decorations
+
+Style decorations can be combined to produce more interesting effects.
+
+```php
+$terminal->write(
+    $style->textYellow(
+        $style->backgroundBlue(
+            "This text is yellow and has a blue background."
+        )
+    )
+);
+```
