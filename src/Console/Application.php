@@ -68,7 +68,7 @@ class Application
 
     protected function getCommandFromTerminal(Terminal $terminal) : Command
     {
-        $name = $terminal->getArgv()[1];
+        $name = $terminal->getArgv()[1] ?? "";
 
         $command = $this->commands[$name] ?? throw new CommandNotFoundException();
 

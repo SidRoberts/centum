@@ -158,6 +158,36 @@ class ApplicationCest
         ];
     }
 
+    public function commandNotSpecified(UnitTester $I)
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(
+            new MainCommand()
+        );
+
+        $argv = [
+            "cli.php",
+        ];
+
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $application->handle($terminal);
+
+        rewind($stdout);
+
+        $I->assertEquals(
+            "main page",
+            stream_get_contents($stdout)
+        );
+    }
+
     public function commandNotFoundException(UnitTester $I)
     {
         $container = new Container();
