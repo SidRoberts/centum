@@ -36,7 +36,7 @@ $twig->addExtension(
 Within your Twig files, you can now use these functions:
 
 ```twig
-{{ ucfirst('the first letter will be capitalised.') }}
+{% raw %}{{ ucfirst('the first letter will be capitalised.') }}{% endraw %}
 ```
 
 For bonus points, set your whitelisted functions in a config file. ;)
