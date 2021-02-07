@@ -32,13 +32,7 @@ $terminal->write(
 );
 ```
 
-Producing:
-
-```bash
-{% raw %}<span style="color: red;">This text is red.</span>{% endraw %}
-{% raw %}<span style="color: green;">This text is green.</span>{% endraw %}
-{% raw %}<span style="color: blue;">This text is blue.</span>{% endraw %}
-```
+Produces three lines of different colored text.
 
 
 
@@ -54,10 +48,4 @@ $terminal->write(
 );
 ```
 
-Producing:
-
-```bash
-{% raw %}<span style="background-color: red;">This text has a red background.</span>{% endraw %}
-{% raw %}<span style="background-color: green;">This text has a green background.</span>{% endraw %}
-{% raw %}<span style="background-color: blue;">This text has a blue background.</span>{% endraw %}
-```
+Produces three lines of text with different colored backgrounds.
