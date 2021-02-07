@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Flash\Twig;
+namespace Centum\Twig;
 
 use Centum\Flash\Flash;
 use Twig\Extension\AbstractExtension;

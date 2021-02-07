@@ -1,10 +1,10 @@
 <?php
 
-namespace Centum\Tests\Flash\Twig;
+namespace Centum\Tests\Twig;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Flash\Twig\FlashExtension;
+use Centum\Twig\FlashExtension;
 use Centum\Tests\UnitTester;
 use Centum\Http\Session;
 use Twig\Loader\ArrayLoader;
