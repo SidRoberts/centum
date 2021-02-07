@@ -145,6 +145,36 @@ class StyleCest
 
 
 
+    public function combinedColors(UnitTester $I)
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[31mRed\e[32mGreen\e[0m\e[31m\e[34mBlue\e[0m\e[31mRed\e[0m",
+            $style->textRed(
+                "Red" . $style->textGreen("Green") . $style->textBlue("Blue") . "Red"
+            )
+        );
+    }
+
+
+
+    public function colorTextAndBackground(UnitTester $I)
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[31m\e[47mDanger\e[0m\e[31m\e[0m",
+            $style->textRed(
+                $style->backgroundWhite(
+                    "Danger"
+                )
+            )
+        );
+    }
+
+
+
     public function reset(UnitTester $I)
     {
         $style = new Style();
