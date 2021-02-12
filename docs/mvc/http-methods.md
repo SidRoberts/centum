@@ -24,12 +24,12 @@ class UrlRoute extends Route
         return "/url";
     }
 
-    public function get(Request $request, Container $container, array $params = []) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response("hello GET");
     }
 
-    public function post(Request $request, Container $container, array $params = []) : Response
+    public function post(Request $request, Container $container, array $params) : Response
     {
         return new Response("hello POST");
     }
