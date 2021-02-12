@@ -11,12 +11,12 @@ use Centum\Tests\Mvc\Middleware\ExampleFalse;
 
 class Multiple2Route extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/middleware/false-true";
     }
 
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [
             new ExampleFalse(),
@@ -24,7 +24,7 @@ class Multiple2Route extends Route
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response();
     }

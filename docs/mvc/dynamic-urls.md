@@ -20,12 +20,12 @@ use Centum\Mvc\Route;
 
 class ViewSingleRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/post/{id}";
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         $id = $params["id"];
 
@@ -41,12 +41,12 @@ Multiple parameters can also be defined:
 ```php
 class SomethingRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/something-crazy/{a}/{b}/{c}";
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         $a = $params["a"];
         $b = $params["b"];
@@ -82,12 +82,12 @@ use Centum\Mvc\Route;
 
 class ViewSingleRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/post/{id:int}";
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         $id = $params["id"];
 

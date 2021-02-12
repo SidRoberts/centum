@@ -11,19 +11,19 @@ use Centum\Tests\Mvc\Middleware\ExampleFalse;
 
 class FalseRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/middleware/false";
     }
 
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [
             new ExampleFalse(),
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response();
     }

@@ -10,19 +10,19 @@ use Centum\Tests\Mvc\Middleware\ExampleTrue;
 
 class TrueRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/middleware/true";
     }
 
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [
             new ExampleTrue(),
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response();
     }

@@ -9,12 +9,12 @@ use Centum\Http\Response;
 
 class IndexRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/";
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response("homepage");
     }

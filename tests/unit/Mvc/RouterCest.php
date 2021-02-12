@@ -10,8 +10,7 @@ use Centum\Mvc\Exception\RouteNotFoundException;
 use Centum\Mvc\Route;
 use Centum\Tests\Mvc\Route\ConverterRoute;
 use Centum\Tests\Mvc\Route\IndexRoute;
-use Centum\Tests\Mvc\Route\HttpMethodGetRoute;
-use Centum\Tests\Mvc\Route\HttpMethodPostRoute;
+use Centum\Tests\Mvc\Route\HttpMethodRoute;
 use Centum\Tests\Mvc\Route\Middleware\TrueRoute;
 use Centum\Tests\Mvc\Route\Middleware\FalseRoute;
 use Centum\Tests\Mvc\Route\Middleware\Multiple1Route;
@@ -194,11 +193,7 @@ class RouterCest
         $router = new Router($container);
 
         $router->addRoute(
-            new HttpMethodGetRoute()
-        );
-
-        $router->addRoute(
-            new HttpMethodPostRoute()
+            new HttpMethodRoute()
         );
 
 

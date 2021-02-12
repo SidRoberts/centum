@@ -5,25 +5,66 @@ namespace Centum\Mvc;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
+use Centum\Mvc\Exception\RouteNotFoundException;
 
 abstract class Route
 {
-    abstract public function getUri() : string;
+    abstract public function uri() : string;
 
-    public function getMethod() : string
-    {
-        return "GET";
-    }
-
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [];
     }
 
-    public function getConverters() : array
+    public function converters() : array
     {
         return [];
     }
 
-    abstract public function execute(Request $request, Container $container, array $params) : Response;
+
+
+    public function get(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function post(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function head(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function put(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function delete(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function trace(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function options(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function connect(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
+
+    public function patch(Request $request, Container $container, array $params) : Response
+    {
+        throw new RouteNotFoundException();
+    }
 }

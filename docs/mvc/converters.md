@@ -54,19 +54,19 @@ use Centum\Mvc\Route;
 
 class ViewSingleRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/post/{post:int}";
     }
 
-    public function getConverters() : array
+    public function converters() : array
     {
         return [
             "post" => new PostConverter(),
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         /**
          * @var Post

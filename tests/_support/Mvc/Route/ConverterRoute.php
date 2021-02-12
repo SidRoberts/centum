@@ -10,19 +10,19 @@ use Centum\Tests\Mvc\Converter\Doubler;
 
 class ConverterRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/converter/double/{i:int}";
     }
 
-    public function getConverters() : array
+    public function converters() : array
     {
         return [
             "i" => new Doubler(),
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response(
             $params["i"]

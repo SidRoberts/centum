@@ -36,13 +36,13 @@ class Router
     {
         foreach ($this->routes as $route) {
             try {
-                $params = $this->matchRouteToRequest($request, $route);
-            } catch (RouteNotFoundException $exception) {
-                $params = false;
-            }
+                $response = $this->matchRouteToRequest($request, $route);
 
-            if ($params !== false) {
-                return $route->execute($request, $this->container, $params);
+                if ($response !== false) {
+                    return $response;
+                }
+            } catch (RouteNotFoundException $exception) {
+                continue;
             }
         }
 
@@ -53,7 +53,7 @@ class Router
 
     protected function getUriPattern(Route $route) : string
     {
-        $pattern = $route->getUri();
+        $pattern = $route->uri();
 
         $replacements = [
             "int"  => "[\d]+",
@@ -82,14 +82,8 @@ class Router
 
 
 
-    protected function matchRouteToRequest(Request $request, Route $route) : array|bool
+    protected function matchRouteToRequest(Request $request, Route $route) : Response|bool
     {
-        if ($route->getMethod() !== $request->getMethod()) {
-            return false;
-        }
-
-
-
         $uri = $request->getRequestUri();
 
         $pattern = $this->getUriPattern($route);
@@ -100,7 +94,7 @@ class Router
 
 
 
-        $middlewares = $route->getMiddlewares();
+        $middlewares = $route->middlewares();
 
         foreach ($middlewares as $middleware) {
             if (!($middleware instanceof MiddlewareInterface)) {
@@ -127,7 +121,7 @@ class Router
 
 
 
-        $converters = $route->getConverters();
+        $converters = $route->converters();
 
         foreach ($converters as $key => $converter) {
             if (!($converter instanceof ConverterInterface)) {
@@ -141,6 +135,34 @@ class Router
 
 
 
-        return $params;
+        $method = strtolower($request->getMethod());
+
+        $allowedMethods = [
+            "get",
+            "post",
+            "head",
+            "put",
+            "delete",
+            "trace",
+            "options",
+            "connect",
+            "patch",
+        ];
+
+        if (!in_array($method, $allowedMethods)) {
+            throw new RouteNotFoundException();
+        }
+
+        return call_user_func_array(
+            [
+                $route,
+                $method,
+            ],
+            [
+                $request,
+                $this->container,
+                $params,
+            ]
+        );
     }
 }

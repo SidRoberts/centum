@@ -9,12 +9,12 @@ use Centum\Mvc\Route;
 
 class MathRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/math/add/{a:int}/{b:int}";
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         $a = $params["a"];
         $b = $params["b"];

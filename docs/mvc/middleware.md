@@ -53,19 +53,19 @@ use Centum\Mvc\Route;
 
 class GuestRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/something";
     }
 
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [
             new IsLoggedOutMiddleware(),
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         //TODO
         return new Response("this user is logged out");
@@ -74,19 +74,19 @@ class GuestRoute extends Route
 
 class UserRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/something";
     }
 
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [
             new IsLoggedInMiddleware(),
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         //TODO
         return new Response("this user is logged in");
@@ -110,12 +110,12 @@ use Centum\Mvc\Route;
 
 class SomethingRoute extends Route
 {
-    public function getUri() : string
+    public function uri() : string
     {
         return "/something";
     }
 
-    public function getMiddlewares() : array
+    public function middlewares() : array
     {
         return [
             new OneMiddleware(),
@@ -124,7 +124,7 @@ class SomethingRoute extends Route
         ];
     }
 
-    public function execute(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, array $params) : Response
     {
         return new Response("hello");
     }
