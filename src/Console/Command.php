@@ -8,6 +8,16 @@ abstract class Command
 {
     abstract public function getName() : string;
 
+    public function getDescription() : string
+    {
+        return "";
+    }
+
+    public function getHelp() : string
+    {
+        return "";
+    }
+
 
 
     public function getMiddlewares() : array
