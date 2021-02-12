@@ -7,6 +7,8 @@ permalink: mvc
 
 
 
+# `Centum\Mvc`
+
 This interpretation of MVC differs slightly from others.
 
 Instead of controllers with multiple action methods, this one treats every application endpoint as a [Route](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Route.php) object - in place of controllers.

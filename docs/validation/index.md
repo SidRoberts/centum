@@ -4,3 +4,9 @@ title: Validation
 has_children: true
 permalink: validation
 ---
+
+
+
+# `Centum\Validation`
+
+...

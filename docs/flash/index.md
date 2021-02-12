@@ -7,6 +7,8 @@ permalink: flash
 
 
 
+# `Centum\Flash`
+
 ```php
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\TextFormatter;

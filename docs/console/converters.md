@@ -6,6 +6,8 @@ parent: Console
 
 
 
+# Converters
+
 Converters are particularly useful at preprocessing command parameters - for example, converting an ID number into an actual object.
 Any Converters you create must implement [`Centum\Console\ConverterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Console/ConverterInterface.php).
 

@@ -7,6 +7,8 @@ nav_order: 2
 
 
 
+# HTTP Methods
+
 You can also specify which HTTP method to match using the `getMethod()` method.
 
 ```php

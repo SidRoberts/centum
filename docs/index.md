@@ -6,6 +6,8 @@ nav_order: 1
 
 
 
+# Centum
+
 Centum is an all-encompassing framework designed to simplify the building of MVC-style web applications.
 
 **Centum is currently under heavy development.**

@@ -6,6 +6,8 @@ nav_order: 2
 
 
 
+# Installation
+
 ```bash
 composer require sidroberts/centum
 ```

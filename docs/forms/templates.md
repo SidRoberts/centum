@@ -6,6 +6,8 @@ parent: Forms
 
 
 
+# Templates
+
 To reuse the same form in multiple places, you can define the fields in a Form Template.
 Form Templates are designed to simplify the process of creating Forms.
 

@@ -7,6 +7,8 @@ permalink: console
 
 
 
+# `Centum\Console`
+
 Application endpoints are treated as [Command](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
 These Commands contain all of the code and metadata relating to that endpoint.
 

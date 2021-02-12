@@ -7,6 +7,8 @@ nav_order: 1
 
 
 
+# Routes
+
 A Route is responsible for providing the URL pattern (`getUri()`), the HTTP method (`getMethod()`), any middlewares (`getMiddlewares()`), parameter converters (`getConverters()`), and the actual code to run (`execute()`).
 
 By default, a Route has no middlewares or parameter converters and can be as simple as this:

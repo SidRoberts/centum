@@ -6,6 +6,8 @@ parent: Twig
 
 
 
+# Whitelisted Functions
+
 ```php
 use Centum\Twig\WhitelistedFunctionsExtension;
 use Twig\Environment;

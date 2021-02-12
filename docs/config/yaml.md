@@ -6,6 +6,8 @@ parent: Config
 
 
 
+# YAML
+
 The Config Factory makes it very easy to access your configuration data from a YAML file:
 
 ```php

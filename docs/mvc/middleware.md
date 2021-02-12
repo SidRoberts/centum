@@ -6,6 +6,8 @@ parent: Mvc
 
 
 
+# Middlewares
+
 Middlewares are run by the Router when it is trying to find a matching Route.
 If the Route matches the URL pattern, the Router will run the Middlewares which are able to perform additional checks to determine whether the Route should match or not.
 By returning `false` in a Middleware, the Router will ignore the Route and assume that it is not suitable for the particular URL.

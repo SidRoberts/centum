@@ -7,6 +7,8 @@ permalink: cron
 
 
 
+# `Centum\Cron`
+
 This component is designed for development workflows that would benefit from having scheduled tasks defined in PHP or at least in the same codebase as the rest of the code.
 
 Cron Jobs are handled by [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Cron.php) and it determines which jobs are due at any given time.

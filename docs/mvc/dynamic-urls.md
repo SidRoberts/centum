@@ -7,6 +7,8 @@ nav_order: 3
 
 
 
+# Dynamic URLs
+
 URLs can be defined with dynamic values by enclosing their identifier in curly brackets (eg. `{id}`).
 This value is then available from the `$params` property:
 
@@ -57,7 +59,7 @@ class SomethingRoute extends Route
 }
 ```
 
-# Parameter Requirements
+## Parameter Requirements
 
 You can require that the parameters adhere to a certain format by appending the type onto the end of the parameter identifier.
 Currently, 4 types exist.

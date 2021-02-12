@@ -7,6 +7,8 @@ permalink: url
 
 
 
+# `Centum\Url`
+
 This component takes care of trailing/leading slashes and enables you to easily change your base URI depending on the environment (for example: development and production).
 
 ```php

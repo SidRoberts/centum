@@ -7,7 +7,9 @@ permalink: access
 
 
 
-# Purpose
+# `Centum\Access`
+
+## Purpose
 
 This library simplifies access control management.
 Users (or groups of users) can allowed or denied the privilege of an activity.

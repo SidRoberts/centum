@@ -6,6 +6,8 @@ parent: Console
 
 
 
+# Style
+
 Writing plain text to the terminal can be pretty boring.
 The Style class allows you to jazz up your terminal output with various text decorations.
 
@@ -20,7 +22,7 @@ $style = new Style();
 
 
 
-# Text Color
+## Text Color
 
 The `text*()` methods allow you to change the color of the text:
 
@@ -36,7 +38,7 @@ Produces three lines of different colored text.
 
 
 
-# Background Color
+## Background Color
 
 The `background*()` methods allow you to change the background color of the text:
 
@@ -52,7 +54,7 @@ Produces three lines of text with different colored backgrounds.
 
 
 
-# Combining Decorations
+## Combining Decorations
 
 Style decorations can be combined to produce more interesting effects.
 

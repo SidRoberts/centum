@@ -6,6 +6,8 @@ parent: Cron
 
 
 
+# Job data types
+
 By design, Cron Job objects can hold any kind of data - strings, arrays, functions, etc;.
 You could even mix and match several data types together.
 

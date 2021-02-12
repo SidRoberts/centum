@@ -6,6 +6,8 @@ parent: Cron
 
 
 
+# Building from an array
+
 It is possible to build a Cron manager from an array using the [Factory class](https://github.com/SidRoberts/centum/blob/development/src/Cron/Factory.php):
 
 ```php

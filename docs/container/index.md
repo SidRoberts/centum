@@ -7,6 +7,8 @@ permalink: container
 
 
 
+# `Centum\Container`
+
 The Container component handles object dependencies.
 It allows you to centralise object creation and reuse them in various parts of your project.
 

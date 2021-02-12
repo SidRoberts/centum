@@ -6,6 +6,8 @@ parent: Forms
 
 
 
+# Example
+
 Let's create a login form with a email and a password field.
 First, we need to create these fields:
 
