@@ -6,6 +6,7 @@ use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Exception\InvalidConverterException;
+use Centum\Mvc\Exception\InvalidMethodException;
 use Centum\Mvc\Exception\InvalidMiddlewareException;
 use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\ParamNotFoundException;
@@ -35,6 +36,24 @@ class Router
 
     public function handle(Request $request) : Response
     {
+        $method = $request->getMethod();
+
+        $allowedMethods = [
+            "GET",
+            "POST",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "TRACE",
+            "OPTIONS",
+            "CONNECT",
+            "PATCH",
+        ];
+
+        if (!in_array($method, $allowedMethods)) {
+            throw new InvalidMethodException();
+        }
+
         foreach ($this->routes as $route) {
             try {
                 return $this->matchRouteToRequest($request, $route);
@@ -135,22 +154,6 @@ class Router
 
 
         $method = strtolower($request->getMethod());
-
-        $allowedMethods = [
-            "get",
-            "post",
-            "head",
-            "put",
-            "delete",
-            "trace",
-            "options",
-            "connect",
-            "patch",
-        ];
-
-        if (!in_array($method, $allowedMethods)) {
-            throw new RouteNotFoundException();
-        }
 
         return call_user_func_array(
             [
