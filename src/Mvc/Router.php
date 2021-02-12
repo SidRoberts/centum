@@ -7,6 +7,7 @@ use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Exception\InvalidConverterException;
 use Centum\Mvc\Exception\InvalidMiddlewareException;
+use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\ParamNotFoundException;
 use Centum\Mvc\Exception\RouteNotFoundException;
 
@@ -36,12 +37,10 @@ class Router
     {
         foreach ($this->routes as $route) {
             try {
-                $response = $this->matchRouteToRequest($request, $route);
-
-                if ($response !== false) {
-                    return $response;
-                }
+                return $this->matchRouteToRequest($request, $route);
             } catch (RouteNotFoundException $exception) {
+                continue;
+            } catch (RouteMismatchException $exception) {
                 continue;
             }
         }
@@ -82,14 +81,14 @@ class Router
 
 
 
-    protected function matchRouteToRequest(Request $request, Route $route) : Response|bool
+    protected function matchRouteToRequest(Request $request, Route $route) : Response
     {
         $uri = $request->getRequestUri();
 
         $pattern = $this->getUriPattern($route);
 
         if (preg_match($pattern, $uri, $params) !== 1) {
-            return false;
+            throw new RouteMismatchException();
         }
 
 
@@ -104,7 +103,7 @@ class Router
             $success = $middleware->middleware($request, $route, $this->container);
 
             if (!$success) {
-                return false;
+                throw new RouteMismatchException();
             }
         }
 
