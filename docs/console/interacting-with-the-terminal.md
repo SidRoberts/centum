@@ -18,3 +18,51 @@ use Centum\Console\Terminal;
 
 $terminal = new Terminal();
 ```
+
+
+
+## Input
+
+### Getting `$argv`
+
+```php
+$terminal->getArgv();
+```
+
+
+
+## Output
+
+### Writing to the Terminal
+
+```php
+$terminal->write("hello");
+```
+
+```php
+$terminal->writeLine("hello");
+```
+
+### Error messages
+
+```php
+$terminal->writeError("hello");
+```
+
+```php
+$terminal->writeErrorLine("hello");
+```
+
+
+
+### Displaying a list
+
+```php
+$terminal->writeList(
+    [
+        "Item 1",
+        "Item 2",
+        "Item 3",
+    ]
+);
+```
