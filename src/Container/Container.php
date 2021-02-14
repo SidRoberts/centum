@@ -34,13 +34,7 @@ class Container
             return $this->sharedServices[$name];
         }
 
-        if (!isset($this->services[$name])) {
-            throw new ServiceNotFoundException($name);
-        }
-
-
-
-        $service = $this->services[$name];
+        $service = $this->services[$name] ?? throw new ServiceNotFoundException($name);
 
         $resolvedService = $this->resolver->typehintService($service);
 

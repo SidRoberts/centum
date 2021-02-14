@@ -103,15 +103,9 @@ class Resolver
                 throw new InvalidArgumentException();
             }
 
-
-
             $name = $reflectionParameter->getName();
 
-            if (isset($custom[$name])) {
-                $params[] = $custom[$name];
-            } else {
-                $params[] = $this->resolveParam($reflectionParameter);
-            }
+            $params[] = $custom[$name] ?? $this->resolveParam($reflectionParameter);
         }
 
         return $params;
