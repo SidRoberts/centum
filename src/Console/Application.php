@@ -3,6 +3,7 @@
 namespace Centum\Console;
 
 use Centum\Container\Container;
+use Centum\Console\Command\ListCommand;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidConverterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
@@ -19,6 +20,8 @@ class Application
     public function __construct(Container $container)
     {
         $this->container = $container;
+
+        $this->addCommand(new ListCommand());
     }
 
 
