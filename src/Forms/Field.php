@@ -2,8 +2,8 @@
 
 namespace Centum\Forms;
 
-use Zend\Filter\FilterInterface;
-use Zend\Validator\ValidatorInterface;
+use Laminas\Filter\FilterInterface;
+use Laminas\Validator\ValidatorInterface;
 
 class Field
 {

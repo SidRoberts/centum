@@ -4,9 +4,9 @@ namespace Centum\Tests\Forms;
 
 use Centum\Forms\Field;
 use Centum\Tests\UnitTester;
-use Zend\Filter\Word\DashToCamelCase;
-use Zend\Validator\NotEmpty;
-use Zend\Validator\Regex;
+use Laminas\Filter\Word\DashToCamelCase;
+use Laminas\Validator\NotEmpty;
+use Laminas\Validator\Regex;
 
 class FieldCest
 {

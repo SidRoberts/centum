@@ -5,7 +5,7 @@ namespace Centum\Tests\Forms;
 use Centum\Forms\Field;
 use Centum\Forms\Form;
 use Centum\Tests\UnitTester;
-use Zend\Validator\NotEmpty;
+use Laminas\Validator\NotEmpty;
 
 class FormCest
 {
