@@ -3,6 +3,7 @@
 namespace Centum\Container;
 
 use Centum\Container\Exception\UnresolvableParameterException;
+use Closure;
 use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionFunction;
@@ -59,9 +60,9 @@ class Container
 
 
 
-    public function typehintFunction(string $functionName) : mixed
+    public function typehintFunction(Closure|string $function) : mixed
     {
-        $reflectionFunction = new ReflectionFunction($functionName);
+        $reflectionFunction = new ReflectionFunction($function);
 
         $params = $this->resolveParams($reflectionFunction);
 
@@ -78,6 +79,11 @@ class Container
     public function set(string $class, object $object) : void
     {
         $this->objects[$class] = $object;
+    }
+
+    public function setDynamic(string $class, Closure|string $function) : void
+    {
+        $this->objects[$class] = $this->typehintFunction($function);
     }
 
 
