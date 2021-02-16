@@ -23,47 +23,47 @@ abstract class Route
 
 
 
-    public function get(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function post(Request $request, Container $container, array $params) : Response
+    public function post(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function head(Request $request, Container $container, array $params) : Response
+    public function head(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function put(Request $request, Container $container, array $params) : Response
+    public function put(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function delete(Request $request, Container $container, array $params) : Response
+    public function delete(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function trace(Request $request, Container $container, array $params) : Response
+    public function trace(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function options(Request $request, Container $container, array $params) : Response
+    public function options(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function connect(Request $request, Container $container, array $params) : Response
+    public function connect(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }
 
-    public function patch(Request $request, Container $container, array $params) : Response
+    public function patch(Request $request, Container $container, Parameters $parameters) : Response
     {
         throw new RouteNotFoundException();
     }

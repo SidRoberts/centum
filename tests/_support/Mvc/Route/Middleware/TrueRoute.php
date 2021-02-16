@@ -6,6 +6,7 @@ use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Route;
+use Centum\Mvc\Parameters;
 use Centum\Tests\Mvc\Middleware\ExampleTrue;
 
 class TrueRoute extends Route
@@ -22,7 +23,7 @@ class TrueRoute extends Route
         ];
     }
 
-    public function get(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, Parameters $parameters) : Response
     {
         return new Response();
     }

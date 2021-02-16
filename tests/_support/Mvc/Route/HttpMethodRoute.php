@@ -4,6 +4,7 @@ namespace Centum\Tests\Mvc\Route;
 
 use Centum\Container\Container;
 use Centum\Mvc\Route;
+use Centum\Mvc\Parameters;
 use Centum\Http\Request;
 use Centum\Http\Response;
 
@@ -14,12 +15,12 @@ class HttpMethodRoute extends Route
         return "/";
     }
 
-    public function get(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, Parameters $parameters) : Response
     {
         return new Response("GET");
     }
 
-    public function post(Request $request, Container $container, array $params) : Response
+    public function post(Request $request, Container $container, Parameters $parameters) : Response
     {
         return new Response("POST");
     }

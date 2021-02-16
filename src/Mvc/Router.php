@@ -153,6 +153,8 @@ class Router
 
 
 
+        $params = new Parameters($params);
+
         $method = strtolower($request->getMethod());
 
         return call_user_func_array(

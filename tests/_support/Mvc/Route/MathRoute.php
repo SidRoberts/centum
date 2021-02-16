@@ -6,6 +6,7 @@ use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Route;
+use Centum\Mvc\Parameters;
 
 class MathRoute extends Route
 {
@@ -14,10 +15,10 @@ class MathRoute extends Route
         return "/math/add/{a:int}/{b:int}";
     }
 
-    public function get(Request $request, Container $container, array $params) : Response
+    public function get(Request $request, Container $container, Parameters $parameters) : Response
     {
-        $a = $params["a"];
-        $b = $params["b"];
+        $a = $parameters->get("a");
+        $b = $parameters->get("b");
 
         return new Response($a + $b);
     }
