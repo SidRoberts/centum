@@ -4,10 +4,8 @@ namespace Centum\Tests\Container;
 
 class ResolvableClass
 {
-    public function __construct(string $hello, Incrementer $incrementer, string $parameter)
+    public function __construct(Incrementer $incrementer)
     {
-        $this->hello       = $hello;
         $this->incrementer = $incrementer;
-        $this->parameter   = $parameter;
     }
 }

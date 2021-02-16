@@ -2,6 +2,7 @@
 
 namespace Centum\Console\Command;
 
+use Centum\Console\Application;
 use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
@@ -20,7 +21,7 @@ class ListCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, array $params) : int
     {
-        $console = $container->get("console");
+        $console = $container->typehintClass(Application::class);
 
         $commands = $console->getCommands();
 

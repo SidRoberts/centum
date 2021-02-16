@@ -19,6 +19,8 @@ class Application
 
     public function __construct(Container $container)
     {
+        $container->set(self::class, $this);
+
         $this->container = $container;
 
         $this->addCommand(new ListCommand());

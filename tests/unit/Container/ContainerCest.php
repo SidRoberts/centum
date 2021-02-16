@@ -3,225 +3,103 @@
 namespace Centum\Tests\Container;
 
 use Centum\Container\Container;
-use Centum\Container\Exception\ServiceNotFoundException;
-use Centum\Container\RawService;
-use Centum\Container\Resolver;
+use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Tests\UnitTester;
-use Centum\Tests\Container\Services\HelloService;
-use Centum\Tests\Container\Services\IncrementerService;
-use Centum\Tests\Container\Services\InheritsHelloService;
-use Centum\Tests\Container\Services\ParameterService;
-use Centum\Tests\Container\Services\TypeHintedResolverService;
+use stdClass;
 
 class ContainerCest
 {
-    public function testBasic(UnitTester $I)
+    public function testGetContainer(UnitTester $I)
     {
         $container = new Container();
 
-        $container->add(
-            new HelloService()
-        );
-
-
-
-        $I->assertEquals(
-            "hello",
-            $container->get("hello")
+        $I->assertSame(
+            $container,
+            $container->typehintClass(Container::class)
         );
     }
 
+    public function testTypehintClass(UnitTester $I)
+    {
+        $container = new Container();
 
+        $a = $container->typehintClass(stdClass::class);
 
-    public function testServiceDoesntExist(UnitTester $I)
+        $I->assertInstanceOf(
+            stdClass::class,
+            $a
+        );
+
+        $a->name = "Sid";
+
+        $b = $container->typehintClass(stdClass::class);
+
+        $b->city = "Busan";
+
+        $I->assertSame($a, $b);
+
+        $I->assertEquals("Sid", $b->name);
+
+        $I->assertEquals("Busan", $a->city);
+    }
+
+    public function testIncrementer(UnitTester $I)
+    {
+        $container = new Container();
+
+        $incrementer0 = $container->typehintClass(Incrementer::class);
+
+        $incrementer0->increment();
+
+        $incrementer1 = $container->typehintClass(Incrementer::class);
+
+        $incrementer1->increment();
+
+        $incrementer2 = $container->typehintClass(Incrementer::class);
+
+        $I->assertEquals(
+            2,
+            $incrementer2->getI()
+        );
+
+        $I->assertSame($incrementer0, $incrementer2);
+    }
+
+    public function testResolvableClass(UnitTester $I)
+    {
+        $container = new Container();
+
+        $resolvableClass = $container->typehintClass(ResolvableClass::class);
+
+        $incrementer = $container->typehintClass(Incrementer::class);
+
+        $I->assertSame(
+            $incrementer,
+            $resolvableClass->incrementer
+        );
+    }
+
+    public function testResolvableClassNoConstructor(UnitTester $I)
+    {
+        $container = new Container();
+
+        $resolvableClassNoConstructor = $container->typehintClass(ResolvableClassNoConstructor::class);
+
+        $I->assertInstanceOf(
+            ResolvableClassNoConstructor::class,
+            $resolvableClassNoConstructor
+        );
+    }
+
+    public function testUnresolvableClass(UnitTester $I)
     {
         $container = new Container();
 
         $I->expectThrowable(
-            ServiceNotFoundException::class,
+            UnresolvableParameterException::class,
             function () use ($container) {
-                $container->get("serviceThatDoesntExist");
+                $unresolvableClass = $container->typehintClass(UnresolvableClass::class);
             }
-        );
-    }
-
-
-
-    public function testInheritance(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new HelloService()
-        );
-
-        $container->add(
-            new InheritsHelloService()
-        );
-
-
-
-        $I->assertEquals(
-            "hello",
-            $container->get("hello")
-        );
-
-        $I->assertEquals(
-            "hello",
-            $container->get("inheritsHello")
-        );
-    }
-
-
-
-    public function testServiceWithAParameter(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new ParameterService("Sid")
-        );
-
-
-
-        $I->assertEquals(
-            "Hello Sid",
-            $container->get("parameter")
-        );
-    }
-
-
-
-    public function testHas(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new HelloService()
-        );
-
-
-
-        $I->assertTrue(
-            $container->has("hello")
-        );
-
-        $I->assertFalse(
-            $container->has("doesntExist")
-        );
-    }
-
-
-
-    public function testSingleton(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new IncrementerService(false)
-        );
-
-
-
-        $I->assertEquals(
-            0,
-            $container->get("incrementer")->getI()
-        );
-
-        $container->get("incrementer")->increment();
-
-        $I->assertEquals(
-            0,
-            $container->get("incrementer")->getI()
-        );
-    }
-
-
-
-    public function testShared(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new IncrementerService(true)
-        );
-
-
-
-        $I->assertEquals(
-            0,
-            $container->get("incrementer")->getI()
-        );
-
-        $container->get("incrementer")->increment();
-
-        $I->assertEquals(
-            1,
-            $container->get("incrementer")->getI()
-        );
-    }
-
-
-
-    public function testRawService(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new RawService(
-                "example",
-                true,
-                function (Container $container) {
-                    return "hello";
-                }
-            )
-        );
-
-
-
-        $I->assertTrue(
-            $container->has("example")
-        );
-
-        $I->assertEquals(
-            "hello",
-            $container->get("example")
-        );
-    }
-
-
-
-    public function testTypeHintedResolver(UnitTester $I)
-    {
-        $container = new Container();
-
-        $container->add(
-            new TypeHintedResolverService()
-        );
-
-        $container->add(
-            new ParameterService("Sid")
-        );
-
-
-
-        $I->assertEquals(
-            "The 'parameter' service says: Hello Sid",
-            $container->get("typeHintedResolver")
-        );
-    }
-
-
-
-    public function testGetResolver(UnitTester $I)
-    {
-        $container = new Container();
-
-        $resolver = $container->getResolver();
-
-        $I->assertInstanceOf(
-            Resolver::class,
-            $resolver
         );
     }
 }

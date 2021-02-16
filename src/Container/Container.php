@@ -2,69 +2,114 @@
 
 namespace Centum\Container;
 
-use Centum\Container\Exception\ServiceNotFoundException;
+use Centum\Container\Exception\UnresolvableParameterException;
+use InvalidArgumentException;
+use ReflectionClass;
+use ReflectionFunction;
+use ReflectionMethod;
+use ReflectionParameter;
 
 class Container
 {
-    protected array $services = [];
+    protected array $objects = [];
 
-    protected array $sharedServices = [];
-
-    protected Resolver $resolver;
+    protected array $aliases = [];
 
 
 
     public function __construct()
     {
-        $this->resolver = new Resolver($this);
+        $this->set(self::class, $this);
     }
 
 
 
-    public function getResolver() : Resolver
+    public function typehintClass(string $class) : object
     {
-        return $this->resolver;
-    }
+        $class = $this->aliases[$class] ?? $class;
 
+        if (!isset($this->objects[$class])) {
+            $reflectionClass = new ReflectionClass($class);
 
+            if ($reflectionClass->hasMethod("__construct")) {
+                $reflectionMethod = $reflectionClass->getMethod("__construct");
 
-    public function get(string $name) : mixed
-    {
-        if (isset($this->sharedServices[$name])) {
-            return $this->sharedServices[$name];
+                $params = $this->resolveParams($reflectionMethod);
+
+                $this->objects[$class] = $reflectionClass->newInstanceArgs($params);
+            } else {
+                $this->objects[$class] = $reflectionClass->newInstance();
+            }
         }
 
-        $service = $this->services[$name] ?? throw new ServiceNotFoundException($name);
+        return $this->objects[$class];
+    }
 
-        $resolvedService = $this->resolver->typehintService($service);
 
-        if ($service->isShared()) {
-            $this->sharedServices[$name] = $resolvedService;
+
+    public function typehintMethod(object $class, string $methodName) : mixed
+    {
+        $reflectionMethod = new ReflectionMethod($class, $methodName);
+
+        $params = $this->resolveParams($reflectionMethod);
+
+        return $reflectionMethod->invokeArgs($class, $params);
+    }
+
+
+
+    public function typehintFunction(string $functionName) : mixed
+    {
+        $reflectionFunction = new ReflectionFunction($functionName);
+
+        $params = $this->resolveParams($reflectionFunction);
+
+        return $reflectionFunction->invokeArgs($class, $params);
+    }
+
+
+
+    public function addAlias(string $class, string $alias) : void
+    {
+        $this->aliases[$class] = $alias;
+    }
+
+    public function set(string $class, object $object) : void
+    {
+        $this->objects[$class] = $object;
+    }
+
+
+
+    protected function resolveParams(ReflectionMethod $method) : array
+    {
+        $parameters = $method->getParameters();
+
+        $params = [];
+
+        foreach ($parameters as $parameter) {
+            $params[] = $this->resolveParam($parameter);
         }
 
-        return $resolvedService;
+        return $params;
     }
 
-    public function set(string $name, mixed $value) : void
+    protected function resolveParam(ReflectionParameter $parameter) : mixed
     {
-        $this->sharedServices[$name] = $value;
-    }
+        $type = $parameter->getType();
 
+        if ($type === null || $type->isBuiltIn()) {
+            if (!$parameter->allowsNull()) {
+                $name = $parameter->getName();
 
+                throw new UnresolvableParameterException($name);
+            }
 
-    public function add(Service $service) : self
-    {
-        $name = $service->getName();
+            return null;
+        }
 
-        $this->services[$name] = $service;
+        $class = $type->getName();
 
-        return $this;
-    }
-
-
-
-    public function has(string $name) : bool
-    {
-        return isset($this->services[$name]) || isset($this->sharedServices[$name]);
+        return $this->typehintClass($class);
     }
 }
