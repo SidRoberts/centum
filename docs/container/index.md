@@ -54,13 +54,9 @@ The Container will handle all of the parameters.
 
 
 
+## Specifying objects
 
-
-
-
-
-
-A very simplistic approach involves setting objects using the `set()` method:
+Objects can be set using the `set()` method:
 
 ```php
 use App\Console\Application;
