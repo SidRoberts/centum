@@ -5,9 +5,7 @@ namespace Centum\Mvc;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Exception\InvalidConverterException;
 use Centum\Mvc\Exception\InvalidMethodException;
-use Centum\Mvc\Exception\InvalidMiddlewareException;
 use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\ParamNotFoundException;
 use Centum\Mvc\Exception\RouteNotFoundException;
@@ -16,7 +14,17 @@ class Router
 {
     protected Container $container;
 
-    protected array $routes = [];
+    protected array $routes = [
+        "GET"     => [],
+        "POST"    => [],
+        "HEAD"    => [],
+        "PUT"     => [],
+        "DELETE"  => [],
+        "TRACE"   => [],
+        "OPTIONS" => [],
+        "CONNECT" => [],
+        "PATCH"   => [],
+    ];
 
 
 
@@ -27,9 +35,85 @@ class Router
 
 
 
-    public function addRoute(Route $route) : void
+    public function get(string $uri, string $class, string $method) : Route
     {
-        $this->routes[] = $route;
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["GET"][] = $route;
+
+        return $route;
+    }
+
+    public function post(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["POST"][] = $route;
+
+        return $route;
+    }
+
+    public function head(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["HEAD"][] = $route;
+
+        return $route;
+    }
+
+    public function put(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["PUT"][] = $route;
+
+        return $route;
+    }
+
+    public function delete(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["DELETE"][] = $route;
+
+        return $route;
+    }
+
+    public function trace(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["TRACE"][] = $route;
+
+        return $route;
+    }
+
+    public function options(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["OPTIONS"][] = $route;
+
+        return $route;
+    }
+
+    public function connect(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["CONNECT"][] = $route;
+
+        return $route;
+    }
+
+    public function patch(string $uri, string $class, string $method) : Route
+    {
+        $route = new Route($uri, $class, $method);
+
+        $this->routes["PATCH"][] = $route;
+
+        return $route;
     }
 
 
@@ -38,23 +122,9 @@ class Router
     {
         $method = $request->getMethod();
 
-        $allowedMethods = [
-            "GET",
-            "POST",
-            "HEAD",
-            "PUT",
-            "DELETE",
-            "TRACE",
-            "OPTIONS",
-            "CONNECT",
-            "PATCH",
-        ];
+        $routes = $this->routes[$method] ?? throw new InvalidMethodException();
 
-        if (!in_array($method, $allowedMethods)) {
-            throw new InvalidMethodException();
-        }
-
-        foreach ($this->routes as $route) {
+        foreach ($routes as $route) {
             try {
                 return $this->matchRouteToRequest($request, $route);
             } catch (RouteNotFoundException $exception) {
@@ -69,42 +139,11 @@ class Router
 
 
 
-    protected function getUriPattern(Route $route) : string
-    {
-        $pattern = $route->uri();
-
-        $replacements = [
-            "int"  => "[\d]+",
-            "slug" => "[a-z0-9\-]+",
-            "char" => "[^/]",
-            "any"  => "[^/]+",
-        ];
-
-        $pattern = preg_replace_callback(
-            "/\{([A-Za-z]+)(\:([a-z]+))?\}/",
-            function ($match) use ($replacements) {
-                $name = $match[1];
-                $regExId = $match[3] ?? "any";
-
-                $regEx = $replacements[$regExId] ?? $replacements["any"];
-
-                return "(?P<" . $name . ">" . $regEx . ")";
-            },
-            $pattern
-        );
-
-        $pattern = "#^" . $pattern . "$#u";
-
-        return $pattern;
-    }
-
-
-
     protected function matchRouteToRequest(Request $request, Route $route) : Response
     {
         $uri = $request->getRequestUri();
 
-        $pattern = $this->getUriPattern($route);
+        $pattern = $route->getUriPattern();
 
         if (preg_match($pattern, $uri, $params) !== 1) {
             throw new RouteMismatchException();
@@ -112,13 +151,9 @@ class Router
 
 
 
-        $middlewares = $route->middlewares();
+        $middlewares = $route->getMiddlewares();
 
         foreach ($middlewares as $middleware) {
-            if (!($middleware instanceof MiddlewareInterface)) {
-                throw new InvalidMiddlewareException();
-            }
-
             $success = $middleware->middleware($request, $route, $this->container);
 
             if (!$success) {
@@ -139,13 +174,9 @@ class Router
 
 
 
-        $converters = $route->converters();
+        $converters = $route->getConverters();
 
         foreach ($converters as $key => $converter) {
-            if (!($converter instanceof ConverterInterface)) {
-                throw new InvalidConverterException();
-            }
-
             $value = $params[$key] ?? throw new ParamNotFoundException();
 
             $params[$key] = $converter->convert($value, $this->container);
@@ -155,18 +186,14 @@ class Router
 
         $params = new Parameters($params);
 
-        $method = strtolower($request->getMethod());
+        $this->container->set(Parameters::class, $params);
+        $this->container->set(Request::class, $request);
 
-        return call_user_func_array(
-            [
-                $route,
-                $method,
-            ],
-            [
-                $request,
-                $this->container,
-                $params,
-            ]
-        );
+        $class = $route->getClass();
+        $method = $route->getMethod();
+
+        $controller = $this->container->typehintClass($route->getClass());
+
+        return $this->container->typehintMethod($controller, $method);
     }
 }

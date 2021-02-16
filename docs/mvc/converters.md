@@ -40,38 +40,22 @@ class PostConverter implements ConverterInterface
 }
 ```
 
-By throwing [`Centum\Mvc\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteMismatchException.php), you can tell the Router that this Route does not match and it will continue iterating through the other Routes.
-In the above example, if the `App\Model\Post` object cannot be found in the database, this exception is thrown to avoid having to deal with it in the Route's `execute()` method.
+In the above example, if the `App\Model\Post` object cannot be found in the database, [`Centum\Mvc\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Route's `execute()` method.
 When this exception is thrown, the Router understands that to mean that this Route isn't suitable and will continue iterating through the remaining Routes to find another match.
 
 ```php
-use App\Converter\PostConverter;
 use App\Model\Post;
-use Centum\Container\Container;
-use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Route;
+use Centum\Mvc\Parameters;
 
-class ViewSingleRoute extends Route
+class PostController
 {
-    public function uri() : string
-    {
-        return "/post/{post:int}";
-    }
-
-    public function converters() : array
-    {
-        return [
-            "post" => new PostConverter(),
-        ];
-    }
-
-    public function get(Request $request, Container $container, array $params) : Response
+    public function view(Parameters $parameters) : Response
     {
         /**
          * @var Post
          */
-        $post = $params["post"];
+        $post = $parameters->get("post");
 
         //TODO Do something with the $post object.
         return new Response(
@@ -79,4 +63,14 @@ class ViewSingleRoute extends Route
         );
     }
 }
+```
+
+```php
+use App\Converter\PostConverter;
+
+$router->get("/post/{post:int}", PostController::class, "view")
+    ->addConverter(
+        "post",
+        new PostConverter()
+    );
 ```

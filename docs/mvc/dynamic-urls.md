@@ -10,24 +10,17 @@ nav_order: 3
 # Dynamic URLs
 
 URLs can be defined with dynamic values by enclosing their identifier in curly brackets (eg. `{id}`).
-This value is then available from the `$params` property:
+This value is then available from the `$parameters` property:
 
 ```php
-use Centum\Container\Container;
-use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Route;
+use Centum\Mvc\Parameters;
 
-class ViewSingleRoute extends Route
+class PostController
 {
-    public function uri() : string
+    public function view(Parameters $parameters) : Response
     {
-        return "/post/{id}";
-    }
-
-    public function get(Request $request, Container $container, array $params) : Response
-    {
-        $id = $params["id"];
+        $id = $parameters->get("id");
 
         //TODO Do something with $id.
 
@@ -36,21 +29,23 @@ class ViewSingleRoute extends Route
 }
 ```
 
+```php
+$router->get("/post/{id}", PostController::class, "view");
+```
+
 Multiple parameters can also be defined:
 
 ```php
-class SomethingRoute extends Route
-{
-    public function uri() : string
-    {
-        return "/something-crazy/{a}/{b}/{c}";
-    }
+use Centum\Http\Response;
+use Centum\Mvc\Parameters;
 
-    public function get(Request $request, Container $container, array $params) : Response
+class SomethingController
+{
+    public function index(Parameters $parameters) : Response
     {
-        $a = $params["a"];
-        $b = $params["b"];
-        $c = $params["c"];
+        $a = $parameters->get("a");
+        $b = $parameters->get("b");
+        $c = $parameters->get("c");
 
         //TODO Do something with $a, $b and $c.
 
@@ -58,6 +53,12 @@ class SomethingRoute extends Route
     }
 }
 ```
+
+```php
+$router->get("/something-crazy/{a}/{b}/{c}", SomethingController::class, "index");
+```
+
+
 
 ## Parameter Requirements
 
@@ -75,25 +76,22 @@ If no type is specified, the Router will default to `any`.
 This example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
 ```php
-use Centum\Container\Container;
-use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Route;
+use Centum\Mvc\Parameters;
 
-class ViewSingleRoute extends Route
+class PostController
 {
-    public function uri() : string
+    public function view(Parameters $parameters) : Response
     {
-        return "/post/{id:int}";
-    }
-
-    public function get(Request $request, Container $container, array $params) : Response
-    {
-        $id = $params["id"];
+        $id = $parameters->get("id");
 
         //TODO Do something with $id.
 
         return new Response("hello $id");
     }
 }
+```
+
+```php
+$router->get("/post/{id:int}", PostController::class, "view");
 ```

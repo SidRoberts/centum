@@ -22,7 +22,6 @@ use App\Auth;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Mvc\MiddlewareInterface;
-use Centum\Mvc\Route;
 
 class IsLoggedInMiddleware implements MiddlewareInterface
 {
@@ -49,49 +48,29 @@ use App\Middleware\IsLoggedInMiddleware;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Route;
 
-class GuestRoute extends Route
+class AccountController
 {
-    public function uri() : string
-    {
-        return "/something";
-    }
-
-    public function middlewares() : array
-    {
-        return [
-            new IsLoggedOutMiddleware(),
-        ];
-    }
-
-    public function get(Request $request, Container $container, array $params) : Response
+    public function guest() : Response
     {
         //TODO
         return new Response("this user is logged out");
     }
-}
 
-class UserRoute extends Route
-{
-    public function uri() : string
-    {
-        return "/something";
-    }
-
-    public function middlewares() : array
-    {
-        return [
-            new IsLoggedInMiddleware(),
-        ];
-    }
-
-    public function get(Request $request, Container $container, array $params) : Response
+    public function user() : Response
     {
         //TODO
         return new Response("this user is logged in");
     }
 }
+```
+
+```php
+$router->get("/something", AccountController::class, "guest")
+    ->addMiddleware(new IsLoggedOutMiddleware());
+
+$router->get("/something", AccountController::class, "user")
+    ->addMiddleware(new IsLoggedInMiddleware());
 ```
 
 (`App\Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect.)
@@ -100,35 +79,26 @@ You can even create Routes with multiple middlewares.
 If any of them of fail, the Route will fail to match:
 
 ```php
-use App\Middleware\OneMiddleware;
-use App\Middleware\AnotherMiddleware;
-use App\Middleware\AndAnotherMiddleware;
-use Centum\Container\Container;
-use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Route;
 
-class SomethingRoute extends Route
+class SomethingController
 {
-    public function uri() : string
-    {
-        return "/something";
-    }
-
-    public function middlewares() : array
-    {
-        return [
-            new OneMiddleware(),
-            new AnotherMiddleware(),
-            new AndAnotherMiddleware(),
-        ];
-    }
-
-    public function get(Request $request, Container $container, array $params) : Response
+    public function get() : Response
     {
         return new Response("hello");
     }
 }
+```
+
+```php
+use App\Middleware\OneMiddleware;
+use App\Middleware\AnotherMiddleware;
+use App\Middleware\AndAnotherMiddleware;
+
+$router->get("/something", SomethingController::class, "get")
+    ->addMiddleware(new OneMiddleware())
+    ->addMiddleware(new AnotherMiddleware())
+    ->addMiddleware(new AndAnotherMiddleware());
 ```
 
 The example above will only execute if all 3 middlewares return `true`.

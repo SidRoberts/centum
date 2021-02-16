@@ -7,64 +7,94 @@ use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Exception\RouteNotFoundException;
 
-abstract class Route
+class Route
 {
-    abstract public function uri() : string;
+    protected string $uri;
+    protected string $class;
+    protected string $method;
+    protected array $middlewares = [];
+    protected array $converters = [];
 
-    public function middlewares() : array
+
+
+    public function __construct(string $uri, string $class, string $method)
     {
-        return [];
+        $this->uri    = $uri;
+        $this->class  = $class;
+        $this->method = $method;
     }
 
-    public function converters() : array
+
+
+    public function getUri() : string
     {
-        return [];
+        return $this->uri;
+    }
+
+    public function getClass() : string
+    {
+        return $this->class;
+    }
+
+    public function getMethod() : string
+    {
+        return $this->method;
     }
 
 
 
-    public function get(Request $request, Container $container, Parameters $parameters) : Response
+    public function getUriPattern() : string
     {
-        throw new RouteNotFoundException();
+        $replacements = [
+            "int"  => "[\d]+",
+            "slug" => "[a-z0-9\-]+",
+            "char" => "[^/]",
+            "any"  => "[^/]+",
+        ];
+
+        $pattern = preg_replace_callback(
+            "/\{([A-Za-z]+)(\:([a-z]+))?\}/",
+            function ($match) use ($replacements) {
+                $name = $match[1];
+                $regExId = $match[3] ?? "any";
+
+                $regEx = $replacements[$regExId] ?? $replacements["any"];
+
+                return "(?P<" . $name . ">" . $regEx . ")";
+            },
+            $this->uri
+        );
+
+        $pattern = "#^" . $pattern . "$#u";
+
+        return $pattern;
     }
 
-    public function post(Request $request, Container $container, Parameters $parameters) : Response
+
+
+    public function getMiddlewares() : array
     {
-        throw new RouteNotFoundException();
+        return $this->middlewares;
     }
 
-    public function head(Request $request, Container $container, Parameters $parameters) : Response
+    public function addMiddleware(MiddlewareInterface $middleware) : Route
     {
-        throw new RouteNotFoundException();
+        $this->middlewares[] = $middleware;
+
+        return $this;
     }
 
-    public function put(Request $request, Container $container, Parameters $parameters) : Response
+
+
+    public function getConverters() : array
     {
-        throw new RouteNotFoundException();
+        return $this->converters;
     }
 
-    public function delete(Request $request, Container $container, Parameters $parameters) : Response
+    public function addConverter(string $key, ConverterInterface $converter) : Route
     {
-        throw new RouteNotFoundException();
-    }
+        $this->converters[$key] = $converter;
 
-    public function trace(Request $request, Container $container, Parameters $parameters) : Response
-    {
-        throw new RouteNotFoundException();
-    }
-
-    public function options(Request $request, Container $container, Parameters $parameters) : Response
-    {
-        throw new RouteNotFoundException();
-    }
-
-    public function connect(Request $request, Container $container, Parameters $parameters) : Response
-    {
-        throw new RouteNotFoundException();
-    }
-
-    public function patch(Request $request, Container $container, Parameters $parameters) : Response
-    {
-        throw new RouteNotFoundException();
+        return $this;
     }
 }

@@ -7,15 +7,14 @@ use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Router;
 use Centum\Mvc\Exception\RouteNotFoundException;
-use Centum\Mvc\Route;
-use Centum\Tests\Mvc\Route\ConverterRoute;
-use Centum\Tests\Mvc\Route\IndexRoute;
-use Centum\Tests\Mvc\Route\HttpMethodRoute;
-use Centum\Tests\Mvc\Route\Middleware\TrueRoute;
-use Centum\Tests\Mvc\Route\Middleware\FalseRoute;
-use Centum\Tests\Mvc\Route\Middleware\Multiple1Route;
-use Centum\Tests\Mvc\Route\Middleware\Multiple2Route;
-use Centum\Tests\Mvc\Route\RequirementsRoute;
+use Centum\Tests\Mvc\Controllers\ConverterController;
+use Centum\Tests\Mvc\Controllers\IndexController;
+use Centum\Tests\Mvc\Controllers\HttpMethodController;
+use Centum\Tests\Mvc\Controllers\MiddlewareController;
+use Centum\Tests\Mvc\Controllers\RequirementsController;
+use Centum\Tests\Mvc\Converter\Doubler;
+use Centum\Tests\Mvc\Middleware\ExampleTrue;
+use Centum\Tests\Mvc\Middleware\ExampleFalse;
 use Centum\Tests\UnitTester;
 use Codeception\Example;
 
@@ -27,9 +26,7 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->addRoute(
-            new IndexRoute()
-        );
+        $router->get("/", IndexController::class, "index");
 
 
 
@@ -49,9 +46,8 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->addRoute(
-            new ConverterRoute()
-        );
+        $router->get("/converter/double/{i:int}", ConverterController::class, "get")
+            ->addConverter("i", new Doubler());
 
 
 
@@ -77,21 +73,19 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->addRoute(
-            new TrueRoute()
-        );
+        $router->get("/middleware/true", MiddlewareController::class, "index")
+            ->addMiddleware(new ExampleTrue());
 
-        $router->addRoute(
-            new FalseRoute()
-        );
+        $router->get("/middleware/false", MiddlewareController::class, "index")
+            ->addMiddleware(new ExampleFalse());
 
-        $router->addRoute(
-            new Multiple1Route()
-        );
+        $router->get("/middleware/true-false", MiddlewareController::class, "index")
+            ->addMiddleware(new ExampleTrue())
+            ->addMiddleware(new ExampleFalse());
 
-        $router->addRoute(
-            new Multiple2Route()
-        );
+        $router->get("/middleware/false-true", MiddlewareController::class, "index")
+            ->addMiddleware(new ExampleFalse())
+            ->addMiddleware(new ExampleTrue());
 
 
 
@@ -143,8 +137,10 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->addRoute(
-            new RequirementsRoute()
+        $router->get(
+            "/requirements/{id:int}",
+            RequirementsController::class,
+            "required"
         );
 
 
@@ -192,9 +188,8 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->addRoute(
-            new HttpMethodRoute()
-        );
+        $router->get("/", HttpMethodController::class, "get");
+        $router->post("/", HttpMethodController::class, "post");
 
 
 
