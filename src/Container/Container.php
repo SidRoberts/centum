@@ -6,6 +6,7 @@ use Centum\Container\Exception\UnresolvableParameterException;
 use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionFunction;
+use ReflectionFunctionAbstract;
 use ReflectionMethod;
 use ReflectionParameter;
 
@@ -64,7 +65,7 @@ class Container
 
         $params = $this->resolveParams($reflectionFunction);
 
-        return $reflectionFunction->invokeArgs($class, $params);
+        return $reflectionFunction->invokeArgs($params);
     }
 
 
@@ -81,7 +82,7 @@ class Container
 
 
 
-    protected function resolveParams(ReflectionMethod $method) : array
+    protected function resolveParams(ReflectionFunctionAbstract $method) : array
     {
         $parameters = $method->getParameters();
 
