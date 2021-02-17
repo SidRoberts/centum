@@ -20,8 +20,8 @@ namespace App\Forms;
 
 use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
-use Zend\Filter\StringTrim;
-use Zend\Validator\NotEmpty;
+use Laminas\Filter\StringTrim;
+use Laminas\Validator\NotEmpty;
 
 class LoginTemplate extends FormTemplate
 {

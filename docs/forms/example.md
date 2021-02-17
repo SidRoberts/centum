@@ -23,9 +23,9 @@ Now we need to add some filters and validators to these fields.
 Obviously, neither of these fields should be empty and the email field should contain a valid email address:
 
 ```php
-use Zend\Filter\StringTrim;
-use Zend\Validator\NotEmpty;
-use Zend\Validator\EmailAddress;
+use Laminas\Filter\StringTrim;
+use Laminas\Validator\NotEmpty;
+use Laminas\Validator\EmailAddress;
 
 
 
