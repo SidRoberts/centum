@@ -127,8 +127,6 @@ class Router
         foreach ($routes as $route) {
             try {
                 return $this->matchRouteToRequest($request, $route);
-            } catch (RouteNotFoundException $exception) {
-                continue;
             } catch (RouteMismatchException $exception) {
                 continue;
             }
