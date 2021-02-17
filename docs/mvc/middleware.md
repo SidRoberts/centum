@@ -53,13 +53,11 @@ class AccountController
 {
     public function guest() : Response
     {
-        //TODO
         return new Response("this user is logged out");
     }
 
     public function user() : Response
     {
-        //TODO
         return new Response("this user is logged in");
     }
 }
