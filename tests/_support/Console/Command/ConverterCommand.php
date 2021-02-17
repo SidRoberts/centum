@@ -1,11 +1,11 @@
 <?php
 
-namespace Centum\Tests\Console\Command;
+namespace Tests\Console\Command;
 
 use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Centum\Tests\Console\Converter\Doubler;
+use Tests\Console\Converter\Doubler;
 
 class ConverterCommand extends Command
 {

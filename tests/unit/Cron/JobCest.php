@@ -1,10 +1,10 @@
 <?php
 
-namespace Centum\Tests\Cron;
+namespace Tests\Cron;
 
 use Codeception\Example;
 use Centum\Cron\Job;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class JobCest
 {

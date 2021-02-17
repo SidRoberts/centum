@@ -1,12 +1,12 @@
 <?php
 
-namespace Centum\Tests\Console\Command\Middleware;
+namespace Tests\Console\Command\Middleware;
 
 use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Centum\Tests\Console\Middleware\ExampleTrue;
-use Centum\Tests\Console\Middleware\ExampleFalse;
+use Tests\Console\Middleware\ExampleTrue;
+use Tests\Console\Middleware\ExampleFalse;
 
 class Multiple1Command extends Command
 {

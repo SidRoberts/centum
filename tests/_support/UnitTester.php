@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests;
+namespace Tests;
 
 use Codeception\Actor;
 

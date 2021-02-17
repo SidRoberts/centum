@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Console\Terminal;
+namespace Tests\Console\Terminal;
 
 use Centum\Console\Terminal\Style;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Codeception\Example;
 
 class StyleCest

@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Forms;
+namespace Tests\Forms;
 
 use Centum\Forms\Field;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Laminas\Filter\Word\DashToCamelCase;
 use Laminas\Validator\NotEmpty;
 use Laminas\Validator\Regex;

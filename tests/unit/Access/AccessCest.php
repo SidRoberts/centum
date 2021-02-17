@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Access;
+namespace Tests\Access;
 
 use Centum\Access\Access;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class AccessCest
 {

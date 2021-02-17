@@ -38,7 +38,7 @@
     "autoload": {
         "psr-4": {
             "Centum\\": "src/",
-            "Centum\\Tests\\": "tests/_support/"
+            "Tests\\": "tests/_support/"
         }
     }
 }

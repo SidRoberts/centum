@@ -1,4 +1,4 @@
-namespace: Centum\Tests
+namespace: Tests
 
 paths:
   tests: tests

@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Twig;
+namespace Tests\Twig;
 
 use Codeception\Example;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Centum\Url\Url;
 use Centum\Twig\UrlExtension;
 use Twig\Loader\ArrayLoader;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Console\Converter;
+namespace Tests\Console\Converter;
 
 use Centum\Container\Container;
 use Centum\Console\ConverterInterface;

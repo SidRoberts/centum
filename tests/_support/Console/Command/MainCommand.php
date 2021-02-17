@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Console\Command;
+namespace Tests\Console\Command;
 
 use Centum\Console\Command;
 use Centum\Console\Terminal;

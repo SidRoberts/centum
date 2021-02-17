@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Console;
+namespace Tests\Console;
 
 use Centum\Console\Terminal;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class TerminalCest
 {

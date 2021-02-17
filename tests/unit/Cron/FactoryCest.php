@@ -1,11 +1,11 @@
 <?php
 
-namespace Centum\Tests\Cron;
+namespace Tests\Cron;
 
 use Centum\Cron\Cron;
 use Centum\Cron\Factory;
 use Centum\Cron\Job;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class FactoryCest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Centum\Tests\Url;
+namespace Tests\Url;
 
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Centum\Url\Url;
 use Codeception\Example;
 

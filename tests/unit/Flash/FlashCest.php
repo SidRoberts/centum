@@ -1,10 +1,10 @@
 <?php
 
-namespace Centum\Tests\Flash;
+namespace Tests\Flash;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\TextFormatter;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Centum\Http\Session;
 
 class FlashCest

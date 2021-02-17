@@ -1,12 +1,12 @@
 <?php
 
-namespace Centum\Tests\Container;
+namespace Tests\Container;
 
 use Centum\Config\Config;
 use Centum\Url\Url;
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use stdClass;
 
 class ContainerCest

@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Flash;
+namespace Tests\Flash;
 
 use Centum\Flash\MessageBag;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class MessageBagCest
 {

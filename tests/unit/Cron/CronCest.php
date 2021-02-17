@@ -1,10 +1,10 @@
 <?php
 
-namespace Centum\Tests\Cron;
+namespace Tests\Cron;
 
 use Centum\Cron\Job;
 use Centum\Cron\Cron;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class CronCest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Centum\Tests\Twig;
+namespace Tests\Twig;
 
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Centum\Twig\WhitelistedFunctionsExtension;
 use Twig\Environment;
 use Twig\Error\SyntaxError;

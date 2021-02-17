@@ -1,22 +1,22 @@
 <?php
 
-namespace Centum\Tests\Console;
+namespace Tests\Console;
 
 use Centum\Container\Container;
 use Centum\Console\Application;
 use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Tests\Console\Command\ConverterCommand;
-use Centum\Tests\Console\Command\MainCommand;
-use Centum\Tests\Console\Command\HttpMethodGetCommand;
-use Centum\Tests\Console\Command\HttpMethodPostCommand;
-use Centum\Tests\Console\Command\Middleware\TrueCommand;
-use Centum\Tests\Console\Command\Middleware\FalseCommand;
-use Centum\Tests\Console\Command\Middleware\Multiple1Command;
-use Centum\Tests\Console\Command\Middleware\Multiple2Command;
-use Centum\Tests\Console\Command\RequirementsCommand;
-use Centum\Tests\UnitTester;
+use Tests\Console\Command\ConverterCommand;
+use Tests\Console\Command\MainCommand;
+use Tests\Console\Command\HttpMethodGetCommand;
+use Tests\Console\Command\HttpMethodPostCommand;
+use Tests\Console\Command\Middleware\TrueCommand;
+use Tests\Console\Command\Middleware\FalseCommand;
+use Tests\Console\Command\Middleware\Multiple1Command;
+use Tests\Console\Command\Middleware\Multiple2Command;
+use Tests\Console\Command\RequirementsCommand;
+use Tests\UnitTester;
 use Codeception\Example;
 
 class ApplicationCest

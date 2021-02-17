@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Mvc\Controllers;
+namespace Tests\Mvc\Controllers;
 
 use Centum\Container\Container;
 use Centum\Http\Request;

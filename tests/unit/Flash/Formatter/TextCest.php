@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Flash\Formatter;
+namespace Tests\Flash\Formatter;
 
 use Centum\Flash\Formatter\TextFormatter;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class TextCest
 {

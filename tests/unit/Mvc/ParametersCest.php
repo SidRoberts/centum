@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Mvc;
+namespace Tests\Mvc;
 
 use Centum\Mvc\Parameters;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Codeception\Example;
 
 class ParametersCest

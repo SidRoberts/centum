@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Container;
+namespace Tests\Container;
 
 class ResolvableClassNoConstructor
 {

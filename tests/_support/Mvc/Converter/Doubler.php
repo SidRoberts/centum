@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Mvc\Converter;
+namespace Tests\Mvc\Converter;
 
 use Centum\Container\Container;
 use Centum\Mvc\ConverterInterface;

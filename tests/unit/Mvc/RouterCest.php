@@ -1,21 +1,21 @@
 <?php
 
-namespace Centum\Tests\Mvc;
+namespace Tests\Mvc;
 
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Router;
 use Centum\Mvc\Exception\RouteNotFoundException;
-use Centum\Tests\Mvc\Controllers\ConverterController;
-use Centum\Tests\Mvc\Controllers\IndexController;
-use Centum\Tests\Mvc\Controllers\HttpMethodController;
-use Centum\Tests\Mvc\Controllers\MiddlewareController;
-use Centum\Tests\Mvc\Controllers\RequirementsController;
-use Centum\Tests\Mvc\Converter\Doubler;
-use Centum\Tests\Mvc\Middleware\ExampleTrue;
-use Centum\Tests\Mvc\Middleware\ExampleFalse;
-use Centum\Tests\UnitTester;
+use Tests\Mvc\Controllers\ConverterController;
+use Tests\Mvc\Controllers\IndexController;
+use Tests\Mvc\Controllers\HttpMethodController;
+use Tests\Mvc\Controllers\MiddlewareController;
+use Tests\Mvc\Controllers\RequirementsController;
+use Tests\Mvc\Converter\Doubler;
+use Tests\Mvc\Middleware\ExampleTrue;
+use Tests\Mvc\Middleware\ExampleFalse;
+use Tests\UnitTester;
 use Codeception\Example;
 
 class RouterCest

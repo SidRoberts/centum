@@ -1,9 +1,9 @@
 <?php
 
-namespace Centum\Tests\Config;
+namespace Tests\Config;
 
 use Centum\Config\Config;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 
 class ConfigCest
 {

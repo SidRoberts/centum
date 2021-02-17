@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Mvc\Middleware;
+namespace Tests\Mvc\Middleware;
 
 use Centum\Container\Container;
 use Centum\Mvc\MiddlewareInterface;

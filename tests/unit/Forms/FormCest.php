@@ -1,10 +1,10 @@
 <?php
 
-namespace Centum\Tests\Forms;
+namespace Tests\Forms;
 
 use Centum\Forms\Field;
 use Centum\Forms\Form;
-use Centum\Tests\UnitTester;
+use Tests\UnitTester;
 use Laminas\Validator\NotEmpty;
 
 class FormCest

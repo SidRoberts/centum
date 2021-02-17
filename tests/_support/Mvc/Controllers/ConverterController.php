@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Mvc\Controllers;
+namespace Tests\Mvc\Controllers;
 
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;

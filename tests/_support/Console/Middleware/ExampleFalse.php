@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Tests\Console\Middleware;
+namespace Tests\Console\Middleware;
 
 use Centum\Console\Command;
 use Centum\Console\MiddlewareInterface;
