@@ -8,6 +8,12 @@ class RouteNotFoundException extends \Exception
 {
     public function __construct(Request $request)
     {
-        //TODO
+        $message = sprintf(
+            "%s %s",
+            $request->getMethod(),
+            $request->getRequestUri()
+        );
+
+        parent::__construct($message);
     }
 }
