@@ -9,13 +9,10 @@ use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
 use Tests\Console\Command\ConverterCommand;
 use Tests\Console\Command\MainCommand;
-use Tests\Console\Command\HttpMethodGetCommand;
-use Tests\Console\Command\HttpMethodPostCommand;
 use Tests\Console\Command\Middleware\TrueCommand;
 use Tests\Console\Command\Middleware\FalseCommand;
 use Tests\Console\Command\Middleware\Multiple1Command;
 use Tests\Console\Command\Middleware\Multiple2Command;
-use Tests\Console\Command\RequirementsCommand;
 use Tests\UnitTester;
 use Codeception\Example;
 
