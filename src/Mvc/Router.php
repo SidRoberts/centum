@@ -192,7 +192,7 @@ class Router
         $class = $route->getClass();
         $method = $route->getMethod();
 
-        $controller = $this->container->typehintClass($route->getClass());
+        $controller = $this->container->typehintClass($class);
 
         return $this->container->typehintMethod($controller, $method);
     }
