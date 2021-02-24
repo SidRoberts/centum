@@ -3,6 +3,7 @@
 namespace Centum\Console;
 
 use Centum\Console\Command\ListCommand;
+use Centum\Console\Command\ProcessTaskCommand;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidConverterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
@@ -24,6 +25,7 @@ class Application
         $this->container = $container;
 
         $this->addCommand(new ListCommand());
+        $this->addCommand(new ProcessTaskCommand());
     }
 
 
