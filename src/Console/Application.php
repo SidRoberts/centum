@@ -2,12 +2,12 @@
 
 namespace Centum\Console;
 
-use Centum\Container\Container;
 use Centum\Console\Command\ListCommand;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidConverterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
+use Centum\Container\Container;
 
 class Application
 {

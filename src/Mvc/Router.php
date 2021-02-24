@@ -6,8 +6,8 @@ use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Exception\InvalidMethodException;
-use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\ParamNotFoundException;
+use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\RouteNotFoundException;
 
 class Router

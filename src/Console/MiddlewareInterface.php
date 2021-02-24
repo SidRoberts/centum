@@ -2,9 +2,9 @@
 
 namespace Centum\Console;
 
-use Centum\Container\Container;
 use Centum\Console\Command;
 use Centum\Console\Terminal;
+use Centum\Container\Container;
 
 interface MiddlewareInterface
 {
