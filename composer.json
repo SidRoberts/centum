@@ -25,7 +25,6 @@
         "pda/pheanstalk": "~4.0",
         "symfony/http-foundation": "~5.0",
 
-
         "twig/twig": "~3.0"
     },
 
