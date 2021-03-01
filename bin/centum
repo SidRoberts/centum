@@ -1,14 +1,24 @@
 #!/usr/bin/env php
 <?php
 
-chdir(__DIR__ . "/../");
-
-require "vendor/autoload.php";
-
-
-
 use Centum\Boot\ConsoleBootstrap;
 use Centum\Container\Container;
+
+// Standardise folder location.
+chdir(__DIR__ . "/../");
+
+
+
+$autoloaders = [
+    "vendor/autoload.php",
+    "../autoload.php",
+];
+
+foreach ($autoloaders as $autoloader) {
+    if (file_exists($autoloader)) {
+        require_once $autoloader;
+    }
+}
 
 
 
