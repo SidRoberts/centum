@@ -41,5 +41,11 @@
             "Centum\\": "src/",
             "Tests\\": "tests/_support/"
         }
-    }
+    },
+
+
+
+    "bin": [
+        "bin/centum"
+    ]
 }

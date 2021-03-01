@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+
+chdir(__DIR__ . "/../");
+
+require "vendor/autoload.php";
+
+
+
+use Centum\Boot\ConsoleBootstrap;
+use Centum\Container\Container;
+
+
+
+$container = new Container(); //require "config/container.php";
+
+$bootstrap = new ConsoleBootstrap();
+
+$bootstrap->boot($container);
