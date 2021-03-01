@@ -27,6 +27,8 @@ class ListCommand extends Command
 
         $commandNames = array_keys($commands);
 
+        sort($commandNames);
+
         $terminal->writeList($commandNames);
 
         return 0;
