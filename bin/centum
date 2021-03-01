@@ -3,26 +3,22 @@
 
 use Centum\Boot\ConsoleBootstrap;
 use Centum\Container\Container;
+use Exception;
 
 // Standardise folder location.
 chdir(__DIR__ . "/../");
 
+if (file_exists("vendor/autoload.php")) {
+    require_once "vendor/autoload.php";
 
+    $container = new Container();
+} elseif (file_exists("../../autoload.php")) {
+    require_once "../../autoload.php";
 
-$autoloaders = [
-    "vendor/autoload.php",
-    "../../autoload.php",
-];
-
-foreach ($autoloaders as $autoloader) {
-    if (file_exists($autoloader)) {
-        require_once $autoloader;
-    }
+    $container = require "config/container.php";
+} else {
+    throw new Exception("Couldn't find \`autoload.php\`.");
 }
-
-
-
-$container = new Container(); //require "config/container.php";
 
 $bootstrap = new ConsoleBootstrap();
 
