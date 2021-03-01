@@ -65,11 +65,11 @@ use Centum\Container\Container;
 
 $container = new Container();
 
-$container->set(Application::class, new Application());
-$container->set(Router::class, new Router());
+$container->set(Application::class, $application);
+$container->set(Router::class, $router);
 ```
 
-You can then retrieve them with the `typehintClass()` method:
+You can then retrieve them with the `typehint*()` methods:
 
 ```php
 use App\Console\Application;
