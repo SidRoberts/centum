@@ -3,7 +3,6 @@
 
 use Centum\Boot\ConsoleBootstrap;
 use Centum\Container\Container;
-use Exception;
 
 // Standardise folder location.
 chdir(__DIR__ . "/../");
