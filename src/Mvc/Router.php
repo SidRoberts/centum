@@ -118,6 +118,15 @@ class Router
 
 
 
+    public function submission(string $uri, string $class) : void
+    {
+        $this->get($uri, $class, "form");
+
+        $this->post($uri, $class, "submit");
+    }
+
+
+
     public function handle(Request $request) : Response
     {
         $method = $request->getMethod();

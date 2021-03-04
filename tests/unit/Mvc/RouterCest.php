@@ -10,6 +10,7 @@ use Centum\Mvc\Exception\RouteNotFoundException;
 use Tests\Mvc\Controllers\ConverterController;
 use Tests\Mvc\Controllers\IndexController;
 use Tests\Mvc\Controllers\HttpMethodController;
+use Tests\Mvc\Controllers\LoginController;
 use Tests\Mvc\Controllers\MiddlewareController;
 use Tests\Mvc\Controllers\RequirementsController;
 use Tests\Mvc\Converter\Doubler;
@@ -235,6 +236,37 @@ class RouterCest
             function () use ($request, $router) {
                 $response = $router->handle($request);
             }
+        );
+    }
+
+    public function submission(UnitTester $I)
+    {
+        $container = new Container();
+
+        $router = new Router($container);
+
+        $router->submission("/login", LoginController::class);
+
+
+
+        $getRequest = Request::create("/login", "GET");
+
+        $getResponse = $router->handle($getRequest);
+
+        $I->assertEquals(
+            "login form",
+            $getResponse->getContent()
+        );
+
+
+
+        $postRequest = Request::create("/login", "POST");
+
+        $postResponse = $router->handle($postRequest);
+
+        $I->assertEquals(
+            "login successful",
+            $postResponse->getContent()
         );
     }
 }
