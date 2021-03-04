@@ -149,6 +149,7 @@ class Router
     protected function matchRouteToRequest(Request $request, Route $route) : Response
     {
         $uri = $request->getRequestUri();
+        $uri = explode("?", $uri)[0];
 
         $pattern = $route->getUriPattern();
 
