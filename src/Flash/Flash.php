@@ -85,11 +85,7 @@ class Flash implements FlashInterface
         /**
          * @var MessageBag
          */
-        $messageBag = $this->session->get(self::SESSION_ID);
-
-        if ($messageBag === null) {
-            return new MessageBag();
-        }
+        $messageBag = $this->session->get(self::SESSION_ID) ?? new MessageBag();
 
         $this->session->remove(self::SESSION_ID);
 
