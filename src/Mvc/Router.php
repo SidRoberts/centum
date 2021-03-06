@@ -131,8 +131,14 @@ class Router
     {
         $method = $request->getMethod();
 
+        /**
+         * @var array
+         */
         $routes = $this->routes[$method] ?? throw new InvalidMethodException();
 
+        /**
+         * @var Route $route
+         */
         foreach ($routes as $route) {
             try {
                 return $this->matchRouteToRequest($request, $route);
@@ -161,6 +167,9 @@ class Router
 
         $middlewares = $route->getMiddlewares();
 
+        /**
+         * @var MiddlewareInterface $middleware
+         */
         foreach ($middlewares as $middleware) {
             $success = $middleware->middleware($request, $route, $this->container);
 
@@ -174,7 +183,7 @@ class Router
         // Remove integer keys from params.
         $params = array_filter(
             $params,
-            function ($value, $key) {
+            function (mixed $value, mixed $key) {
                 return !is_int($key);
             },
             ARRAY_FILTER_USE_BOTH
@@ -184,6 +193,9 @@ class Router
 
         $converters = $route->getConverters();
 
+        /**
+         * @var ConverterInterface $converter
+         */
         foreach ($converters as $key => $converter) {
             $value = $params[$key] ?? throw new ParamNotFoundException();
 
@@ -202,6 +214,9 @@ class Router
 
         $controller = $this->container->typehintClass($class);
 
+        /**
+         * @var Response
+         */
         return $this->container->typehintMethod($controller, $method);
     }
 }

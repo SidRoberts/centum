@@ -8,7 +8,7 @@ use Centum\Mvc\Router;
 
 class WebBootstrap extends Bootstrap
 {
-    public function boot(Container $container)
+    public function boot(Container $container) : void
     {
         $router  = $container->typehintClass(Router::class);
         $request = $container->typehintClass(Request::class);

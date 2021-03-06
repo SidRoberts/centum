@@ -54,8 +54,15 @@ class Route
 
         $pattern = preg_replace_callback(
             "/\{([A-Za-z]+)(\:([a-z]+))?\}/",
-            function ($match) use ($replacements) {
+            function (array $match) use ($replacements) : string {
+                /**
+                 * @var string
+                 */
                 $name = $match[1];
+
+                /**
+                 * @var string
+                 */
                 $regExId = $match[3] ?? "any";
 
                 $regEx = $replacements[$regExId] ?? $replacements["any"];

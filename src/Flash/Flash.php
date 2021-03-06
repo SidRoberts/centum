@@ -63,6 +63,9 @@ class Flash implements FlashInterface
 
         $output = "";
 
+        /**
+         * @var array $message
+         */
         foreach ($messages as $message) {
             $formattedMessage = $this->formatter->output(
                 $message["level"],
@@ -79,6 +82,9 @@ class Flash implements FlashInterface
 
     protected function getMessageBag() : MessageBag
     {
+        /**
+         * @var MessageBag
+         */
         $messageBag = $this->session->get(self::SESSION_ID);
 
         if ($messageBag === null) {

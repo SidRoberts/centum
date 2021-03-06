@@ -19,7 +19,7 @@ class Cron
     {
         $jobs = array_filter(
             $this->jobs,
-            function ($job) use ($now) {
+            function (JobInterface $job) use ($now) : bool {
                 return $job->isDue($now);
             }
         );

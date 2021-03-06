@@ -8,7 +8,7 @@ use Centum\Container\Container;
 
 class ConsoleBootstrap extends Bootstrap
 {
-    public function boot(Container $container)
+    public function boot(Container $container) : void
     {
         $console = $container->typehintClass(Application::class);
 

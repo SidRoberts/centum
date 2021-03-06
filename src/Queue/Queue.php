@@ -21,7 +21,7 @@ class Queue
 
 
 
-    public function put(Task $task)
+    public function put(Task $task) : void
     {
         $this->pheanstalk->put(
             serialize($task)
@@ -32,11 +32,14 @@ class Queue
     {
         $job = $this->pheanstalk->reserve();
 
-        try {
-            $task = unserialize(
-                $job->getData()
-            );
+        /**
+         * @var Task
+         */
+        $task = unserialize(
+            $job->getData()
+        );
 
+        try {
             $task->execute($this->container);
 
             $this->pheanstalk->delete($job);
