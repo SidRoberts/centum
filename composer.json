@@ -30,7 +30,9 @@
 
     "require-dev": {
         "codeception/codeception": "~4.0",
-        "codeception/module-asserts": "~1.0"
+        "codeception/module-asserts": "~1.0",
+
+        "vimeo/psalm": "~4.0"
     },
 
 
