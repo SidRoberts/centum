@@ -6,6 +6,9 @@ use DateTime;
 
 class Cron
 {
+    /**
+     * @var JobInterface[] $jobs
+     */
     protected array $jobs = [];
 
 

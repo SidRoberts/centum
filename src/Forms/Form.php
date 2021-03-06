@@ -30,6 +30,9 @@ class Form
     {
         $messages = [];
 
+        /**
+         * @var Field $field
+         */
         foreach ($this->fields as $name => $field) {
             $value = $data[$name] ?? null;
 

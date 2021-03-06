@@ -12,7 +12,15 @@ class Route
     protected string $uri;
     protected string $class;
     protected string $method;
+
+    /**
+     * @var MiddlewareInterface[] $middlewares
+     */
     protected array $middlewares = [];
+
+    /**
+     * @var ConverterInterface[] $converters
+     */
     protected array $converters = [];
 
 

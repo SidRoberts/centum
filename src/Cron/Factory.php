@@ -8,9 +8,16 @@ class Factory
     {
         $cron = new Cron();
 
+        /**
+         * @var array $jobArray
+         */
         foreach ($array as $jobArray) {
+            /**
+             * @var string
+             */
             $expression = $jobArray[0];
-            $data       = $jobArray[1];
+
+            $data = $jobArray[1];
 
             $job = new Job($expression, $data);
 

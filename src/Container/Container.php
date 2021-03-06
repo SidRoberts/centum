@@ -28,6 +28,9 @@ class Container
 
     public function typehintClass(string $class) : object
     {
+        /**
+         * @var string
+         */
         $class = $this->aliases[$class] ?? $class;
 
         if (!isset($this->objects[$class])) {

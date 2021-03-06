@@ -51,6 +51,9 @@ class Terminal
     {
         $this->writeLine();
 
+        /**
+         * @var string $item
+         */
         foreach ($list as $item) {
             $this->writeLine(
                 sprintf(

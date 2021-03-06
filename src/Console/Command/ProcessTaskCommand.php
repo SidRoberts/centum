@@ -16,6 +16,9 @@ class ProcessTaskCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, array $params) : int
     {
+        /**
+         * @var Queue
+         */
         $queue = $container->typehintClass(Queue::class);
 
         $queue->processNextTask();
