@@ -137,4 +137,45 @@ class ContainerCest
             $url->getBaseUri()
         );
     }
+
+    public function resolveDifferentTypes(UnitTester $I)
+    {
+        $container = new Container();
+
+        $differentTypes = new DifferentTypes();
+
+
+
+        $name = $container->typehintMethod($differentTypes, "resolvable");
+
+        $I->assertEquals(
+            "Sid",
+            $name
+        );
+
+
+
+        $name = $container->typehintMethod($differentTypes, "resolvable2");
+
+        $I->assertNull(
+            $name
+        );
+
+
+
+        $name = $container->typehintMethod($differentTypes, "resolvable3");
+
+        $I->assertNull(
+            $name
+        );
+
+
+
+        $I->expectThrowable(
+            UnresolvableParameterException::class,
+            function () use ($container, $differentTypes) {
+                $container->typehintMethod($differentTypes, "unresolvable");
+            }
+        );
+    }
 }

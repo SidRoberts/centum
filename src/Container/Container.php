@@ -109,13 +109,17 @@ class Container
         $type = $parameter->getType();
 
         if ($type === null || $type->isBuiltIn()) {
-            if (!$parameter->allowsNull()) {
-                $name = $parameter->getName();
-
-                throw new UnresolvableParameterException($name);
+            if ($parameter->isOptional()) {
+                return $parameter->getDefaultValue();
             }
 
-            return null;
+            if ($parameter->allowsNull()) {
+                return null;
+            }
+
+            $name = $parameter->getName();
+
+            throw new UnresolvableParameterException($name);
         }
 
         $class = $type->getName();
