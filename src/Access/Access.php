@@ -12,7 +12,7 @@ class Access
     protected bool $default;
 
     /**
-     * @var Activity[]
+     * @var array<string, Activity>
      */
     protected array $activities = [];
 

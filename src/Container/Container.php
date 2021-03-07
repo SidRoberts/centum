@@ -99,11 +99,17 @@ class Container
      */
     public function setDynamic(string $class, Closure|string $function) : void
     {
+        /**
+         * @var object
+         */
         $this->objects[$class] = $this->typehintFunction($function);
     }
 
 
 
+    /**
+     * @return array<int, mixed>
+     */
     protected function resolveParams(ReflectionFunctionAbstract $method) : array
     {
         $parameters = $method->getParameters();

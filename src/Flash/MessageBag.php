@@ -18,6 +18,9 @@ class MessageBag
 
 
 
+    /**
+     * @return Message[]
+     */
     public function getMessages() : array
     {
         return $this->messages;

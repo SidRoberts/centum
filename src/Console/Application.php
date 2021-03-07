@@ -65,7 +65,7 @@ class Application
             }
 
             /**
-             * @var mixed
+             * @var string|boolean
              */
             $value = $params[$key] ?? throw new ParamNotFoundException();
 
@@ -117,6 +117,9 @@ class Application
 
 
 
+    /**
+     * @return string[]|boolean[]
+     */
     protected function getParamsFromArgv(array $argv) : array
     {
         $params = [];

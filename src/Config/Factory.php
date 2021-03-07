@@ -10,6 +10,10 @@ class Factory
     {
         $data = yaml_parse_file($path);
 
+        if (!is_array($data)) {
+            throw new ValueError();
+        }
+
         $config = new Config($data);
 
         return $config;

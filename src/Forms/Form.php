@@ -5,7 +5,7 @@ namespace Centum\Forms;
 class Form
 {
     /**
-     * @var Field[]
+     * @var array<string, Field>
      */
     protected array $fields = [];
 
