@@ -14,17 +14,10 @@ class Router
 {
     protected Container $container;
 
-    protected array $routes = [
-        "GET"     => [],
-        "POST"    => [],
-        "HEAD"    => [],
-        "PUT"     => [],
-        "DELETE"  => [],
-        "TRACE"   => [],
-        "OPTIONS" => [],
-        "CONNECT" => [],
-        "PATCH"   => [],
-    ];
+    /**
+     * @var Route[]
+     */
+    protected array $routes = [];
 
 
 
@@ -40,9 +33,9 @@ class Router
      */
     public function get(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("GET", $uri, $class, $method);
 
-        $this->routes["GET"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -52,9 +45,9 @@ class Router
      */
     public function post(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("POST", $uri, $class, $method);
 
-        $this->routes["POST"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -64,9 +57,9 @@ class Router
      */
     public function head(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("HEAD", $uri, $class, $method);
 
-        $this->routes["HEAD"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -76,9 +69,9 @@ class Router
      */
     public function put(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("PUT", $uri, $class, $method);
 
-        $this->routes["PUT"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -88,9 +81,9 @@ class Router
      */
     public function delete(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("DELETE", $uri, $class, $method);
 
-        $this->routes["DELETE"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -100,9 +93,9 @@ class Router
      */
     public function trace(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("TRACE", $uri, $class, $method);
 
-        $this->routes["TRACE"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -112,9 +105,9 @@ class Router
      */
     public function options(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("OPTIONS", $uri, $class, $method);
 
-        $this->routes["OPTIONS"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -124,9 +117,9 @@ class Router
      */
     public function connect(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("CONNECT", $uri, $class, $method);
 
-        $this->routes["CONNECT"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -136,9 +129,9 @@ class Router
      */
     public function patch(string $uri, string $class, string $method) : Route
     {
-        $route = new Route($uri, $class, $method);
+        $route = new Route("PATCH", $uri, $class, $method);
 
-        $this->routes["PATCH"][] = $route;
+        $this->routes[] = $route;
 
         return $route;
     }
@@ -159,17 +152,7 @@ class Router
 
     public function handle(Request $request) : Response
     {
-        $method = $request->getMethod();
-
-        /**
-         * @var array
-         */
-        $routes = $this->routes[$method] ?? throw new InvalidMethodException();
-
-        /**
-         * @var Route $route
-         */
-        foreach ($routes as $route) {
+        foreach ($this->routes as $route) {
             try {
                 return $this->matchRouteToRequest($request, $route);
             } catch (RouteMismatchException $exception) {
@@ -184,6 +167,12 @@ class Router
 
     protected function matchRouteToRequest(Request $request, Route $route) : Response
     {
+        if ($request->getMethod() !== $route->getHttpMethod()) {
+            throw new RouteMismatchException();
+        }
+
+
+
         $uri = $request->getRequestUri();
         $uri = explode("?", $uri)[0];
 
