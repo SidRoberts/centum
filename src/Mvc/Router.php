@@ -213,7 +213,7 @@ class Router
         // Remove integer keys from params.
         $params = array_filter(
             $params,
-            function (mixed $value, mixed $key) {
+            function (mixed $value, mixed $key) : bool {
                 return !is_int($key);
             },
             ARRAY_FILTER_USE_BOTH
@@ -227,8 +227,14 @@ class Router
          * @var ConverterInterface $converter
          */
         foreach ($converters as $key => $converter) {
+            /**
+             * @var string
+             */
             $value = $params[$key] ?? throw new ParamNotFoundException();
 
+            /**
+             * @var mixed
+             */
             $params[$key] = $converter->convert($value, $this->container);
         }
 

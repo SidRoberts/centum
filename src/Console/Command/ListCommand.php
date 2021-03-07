@@ -21,6 +21,9 @@ class ListCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, array $params) : int
     {
+        /**
+         * @var Application
+         */
         $console = $container->typehintClass(Application::class);
 
         $commands = $console->getCommands();

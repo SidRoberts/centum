@@ -17,6 +17,9 @@ class Factory
              */
             $expression = $jobArray[0];
 
+            /**
+             * @var mixed
+             */
             $data = $jobArray[1];
 
             $job = new Job($expression, $data);

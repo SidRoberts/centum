@@ -7,19 +7,35 @@ use InvalidArgumentException;
 class Terminal
 {
     protected array $argv;
+
+    /**
+     * @var resource
+     */
     protected $stdin;
+
+    /**
+     * @var resource
+     */
     protected $stdout;
+
+    /**
+     * @var resource
+     */
     protected $stderr;
 
 
 
+    /**
+     * @param resource $stdin
+     * @param resource $stdout
+     * @param resource $stderr
+     */
     public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT, $stderr = STDERR)
     {
+        /**
+         * @var array
+         */
         $this->argv = $argv ?? $_SERVER["argv"];
-
-        if (!is_resource($stdin) || !is_resource($stdout) || !is_resource($stderr)) {
-            throw new InvalidArgumentException();
-        }
 
         $this->stdin = $stdin;
         $this->stdout = $stdout;

@@ -64,8 +64,14 @@ class Application
                 throw new InvalidConverterException();
             }
 
+            /**
+             * @var mixed
+             */
             $value = $params[$key] ?? throw new ParamNotFoundException();
 
+            /**
+             * @var mixed
+             */
             $params[$key] = $converter->convert($value, $this->container);
         }
 
@@ -78,8 +84,14 @@ class Application
 
     protected function getCommandFromTerminal(Terminal $terminal) : Command
     {
+        /**
+         * @var string
+         */
         $name = $terminal->getArgv()[1] ?? "";
 
+        /**
+         * @var Command
+         */
         $command = $this->commands[$name] ?? throw new CommandNotFoundException();
 
 
@@ -116,7 +128,14 @@ class Application
         array_shift($argv);
 
         while ($argv) {
+            /**
+             * @var string
+             */
             $token = array_shift($argv);
+
+            /**
+             * @var string
+             */
             $nextToken = $argv[0] ?? "";
 
             if (!preg_match("/^\-\-([A-Za-z0-9\-]+)(\=(.*)|$)/", $token, $match)) {
@@ -127,9 +146,15 @@ class Application
             $value = $match[3] ?? true;
 
             if ($match[2] === "" && !str_starts_with($nextToken, "--")) {
+                /**
+                 * @var string
+                 */
                 $value = array_shift($argv);
             }
 
+            /**
+             * @var string|boolean
+             */
             $params[$name] = $value;
         }
 

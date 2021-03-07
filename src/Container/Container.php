@@ -14,6 +14,9 @@ use ReflectionParameter;
 
 class Container
 {
+    /**
+     * @var object[]
+     */
     protected array $objects = [];
 
     protected array $aliases = [];
@@ -108,6 +111,9 @@ class Container
         $params = [];
 
         foreach ($parameters as $parameter) {
+            /**
+             * @var mixed
+             */
             $params[] = $this->resolveParam($parameter);
         }
 

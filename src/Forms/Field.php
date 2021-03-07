@@ -9,8 +9,14 @@ class Field
 {
     protected string $name;
 
+    /**
+     * @var FilterInterface[]
+     */
     protected array $filters = [];
 
+    /**
+     * @var ValidatorInterface[]
+     */
     protected array $validators = [];
 
 
@@ -56,10 +62,10 @@ class Field
     public function getFilteredValue(mixed $value) : mixed
     {
         // Apply filters to value.
-        /**
-         * @var FilterInterface $filter
-         */
         foreach ($this->filters as $filter) {
+            /**
+             * @var mixed
+             */
             $value = $filter->filter($value);
         }
         
@@ -79,12 +85,12 @@ class Field
 
     public function getMessages(mixed $value) : array
     {
+        /**
+         * @var mixed
+         */
         $filteredValue = $this->getFilteredValue($value);
 
         // Validate filtered value.
-        /**
-         * @var ValidatorInterface $validator
-         */
         foreach ($this->validators as $validator) {
             $success = $validator->isValid($filteredValue);
 

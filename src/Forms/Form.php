@@ -4,6 +4,9 @@ namespace Centum\Forms;
 
 class Form
 {
+    /**
+     * @var Field[]
+     */
     protected array $fields = [];
 
 
@@ -34,6 +37,9 @@ class Form
          * @var Field $field
          */
         foreach ($this->fields as $name => $field) {
+            /**
+             * @var mixed
+             */
             $value = $data[$name] ?? null;
 
             $fieldMessages = $this->getMessagesFor($name, $value);
@@ -54,9 +60,6 @@ class Form
 
 
 
-        /**
-         * @var Field
-         */
         $field = $this->fields[$name];
 
         return $field->getMessages($value);
