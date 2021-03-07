@@ -35,6 +35,9 @@ class Router
 
 
 
+    /**
+     * @param class-string $class
+     */
     public function get(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -44,6 +47,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function post(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -53,6 +59,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function head(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -62,6 +71,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function put(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -71,6 +83,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function delete(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -80,6 +95,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function trace(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -89,6 +107,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function options(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -98,6 +119,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function connect(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -107,6 +131,9 @@ class Router
         return $route;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function patch(string $uri, string $class, string $method) : Route
     {
         $route = new Route($uri, $class, $method);
@@ -118,6 +145,9 @@ class Router
 
 
 
+    /**
+     * @param class-string $class
+     */
     public function submission(string $uri, string $class) : void
     {
         $this->get($uri, $class, "form");

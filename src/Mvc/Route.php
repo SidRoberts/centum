@@ -10,7 +10,12 @@ use Centum\Mvc\Exception\RouteNotFoundException;
 class Route
 {
     protected string $uri;
+
+    /**
+     * @var class-string
+     */
     protected string $class;
+
     protected string $method;
 
     /**
@@ -25,6 +30,9 @@ class Route
 
 
 
+    /**
+     * @param class-string $class
+     */
     public function __construct(string $uri, string $class, string $method)
     {
         $this->uri    = $uri;
@@ -39,6 +47,9 @@ class Route
         return $this->uri;
     }
 
+    /**
+     * @return class-string
+     */
     public function getClass() : string
     {
         return $this->class;

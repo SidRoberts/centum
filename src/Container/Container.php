@@ -9,6 +9,7 @@ use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
+use ReflectionNamedType;
 use ReflectionParameter;
 
 class Container
@@ -26,10 +27,13 @@ class Container
 
 
 
+    /**
+     * @param class-string $class
+     */
     public function typehintClass(string $class) : object
     {
         /**
-         * @var string
+         * @var class-string
          */
         $class = $this->aliases[$class] ?? $class;
 
@@ -63,6 +67,9 @@ class Container
 
 
 
+    /**
+     * @param Closure|callable-string $function
+     */
     public function typehintFunction(Closure|string $function) : mixed
     {
         $reflectionFunction = new ReflectionFunction($function);
@@ -84,6 +91,9 @@ class Container
         $this->objects[$class] = $object;
     }
 
+    /**
+     * @param Closure|callable-string $function
+     */
     public function setDynamic(string $class, Closure|string $function) : void
     {
         $this->objects[$class] = $this->typehintFunction($function);
@@ -108,8 +118,24 @@ class Container
     {
         $type = $parameter->getType();
 
-        if ($type === null || $type->isBuiltIn()) {
-            if ($parameter->isOptional()) {
+        if ($type === null) {
+            if ($parameter->isDefaultValueAvailable()) {
+                return $parameter->getDefaultValue();
+            }
+
+            if ($parameter->allowsNull()) {
+                return null;
+            }
+        }
+
+        if (!($type instanceof ReflectionNamedType)) {
+            $name = $parameter->getName();
+
+            throw new UnresolvableParameterException($name);
+        }
+
+        if ($type->isBuiltIn()) {
+            if ($parameter->isDefaultValueAvailable()) {
                 return $parameter->getDefaultValue();
             }
 
@@ -122,6 +148,9 @@ class Container
             throw new UnresolvableParameterException($name);
         }
 
+        /**
+         * @var class-string $class
+         */
         $class = $type->getName();
 
         return $this->typehintClass($class);
