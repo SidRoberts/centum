@@ -3,6 +3,7 @@
 namespace Tests\Flash\Formatter;
 
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Flash\Message;
 use Tests\UnitTester;
 
 class HtmlFormatterCest
@@ -11,13 +12,14 @@ class HtmlFormatterCest
     {
         $formatter = new HtmlFormatter();
 
-        $message = "Hello world";
-
-        $expected = "<div class=\"alert alert-danger\">" . $message . "</div>";
+        $message = new Message(
+            "danger",
+            "Hello world"
+        );
 
         $I->assertEquals(
-            $expected,
-            $formatter->output("danger", $message)
+            "<div class=\"alert alert-danger\">Hello world</div>",
+            $formatter->output($message)
         );
     }
 }

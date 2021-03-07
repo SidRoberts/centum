@@ -2,6 +2,7 @@
 
 namespace Tests\Flash;
 
+use Centum\Flash\Message;
 use Centum\Flash\MessageBag;
 use Tests\UnitTester;
 
@@ -20,25 +21,20 @@ class MessageBagCest
 
 
 
-        $messageBag->add("danger", "sample danger");
-        $messageBag->add("success", "sample success");
-        $messageBag->add("danger", "sample danger 2");
+        $message1 = new Message("danger", "sample danger");
+        $message2 = new Message("success", "sample success");
+        $message3 = new Message("danger", "sample danger 2");
+
+        $messageBag->add($message1);
+        $messageBag->add($message2);
+        $messageBag->add($message3);
 
 
 
         $expected = [
-            [
-                "level"   => "danger",
-                "message" => "sample danger",
-            ],
-            [
-                "level"   => "success",
-                "message" => "sample success",
-            ],
-            [
-                "level"   => "danger",
-                "message" => "sample danger 2",
-            ],
+            $message1,
+            $message2,
+            $message3,
         ];
 
         $I->assertEquals(

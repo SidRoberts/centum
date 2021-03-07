@@ -4,16 +4,16 @@ namespace Centum\Flash;
 
 class MessageBag
 {
+    /**
+     * @var Message[]
+     */
     protected array $messages = [];
 
 
 
-    public function add(string $level, string $message) : void
+    public function add(Message $message) : void
     {
-        $this->messages[] = [
-            "level" => $level,
-            "message" => $message,
-        ];
+        $this->messages[] = $message;
     }
 
 

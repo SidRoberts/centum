@@ -4,5 +4,5 @@ namespace Centum\Flash;
 
 interface FormatterInterface
 {
-    public function output(string $level, string $message) : string;
+    public function output(Message $message) : string;
 }

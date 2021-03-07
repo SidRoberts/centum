@@ -3,6 +3,7 @@
 namespace Tests\Flash\Formatter;
 
 use Centum\Flash\Formatter\TextFormatter;
+use Centum\Flash\Message;
 use Tests\UnitTester;
 
 class TextCest
@@ -11,13 +12,14 @@ class TextCest
     {
         $formatter = new TextFormatter();
 
-        $message = "Hello world";
-
-        $expected = "[DANGER] " . $message;
+        $message = new Message(
+            "danger",
+            "Hello world"
+        );
 
         $I->assertEquals(
-            $expected,
-            $formatter->output("danger", $message)
+            "[DANGER] Hello world",
+            $formatter->output($message)
         );
     }
 }

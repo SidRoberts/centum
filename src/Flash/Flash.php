@@ -24,31 +24,33 @@ class Flash implements FlashInterface
 
 
 
-    public function success(string $message) : void
+    public function success(string $text) : void
     {
-        $this->add("success", $message);
+        $this->add("success", $text);
     }
 
-    public function info(string $message) : void
+    public function info(string $text) : void
     {
-        $this->add("info", $message);
+        $this->add("info", $text);
     }
 
-    public function warning(string $message) : void
+    public function warning(string $text) : void
     {
-        $this->add("warning", $message);
+        $this->add("warning", $text);
     }
 
-    public function danger(string $message) : void
+    public function danger(string $text) : void
     {
-        $this->add("danger", $message);
+        $this->add("danger", $text);
     }
 
-    protected function add(string $level, string $message) : void
+    protected function add(string $level, string $text) : void
     {
         $messageBag = $this->getMessageBag();
 
-        $messageBag->add($level, $message);
+        $message = new Message($level, $text);
+
+        $messageBag->add($message);
 
         $this->session->set(self::SESSION_ID, $messageBag);
     }
@@ -63,16 +65,8 @@ class Flash implements FlashInterface
 
         $output = "";
 
-        /**
-         * @var array $message
-         */
         foreach ($messages as $message) {
-            $formattedMessage = $this->formatter->output(
-                $message["level"],
-                $message["message"]
-            );
-
-            $output .= $formattedMessage . PHP_EOL;
+            $output .= $this->formatter->output($message) . PHP_EOL;
         }
 
         return $output;
