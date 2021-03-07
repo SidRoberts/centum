@@ -3,6 +3,7 @@
 namespace Tests\Console\Command;
 
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
@@ -13,7 +14,7 @@ class MainCommand extends Command
         return "";
     }
 
-    public function execute(Terminal $terminal, Container $container, array $params) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
         $terminal->write(
             "main page"

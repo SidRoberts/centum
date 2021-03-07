@@ -77,7 +77,9 @@ class Application
 
 
 
-        return $command->execute($terminal, $this->container, $params);
+        $parameters = new Parameters($params);
+
+        return $command->execute($terminal, $this->container, $parameters);
     }
 
 

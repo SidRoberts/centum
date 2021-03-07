@@ -40,6 +40,7 @@ For example, you may want to check that a user is running Linux:
 ```php
 use App\Middleware\IsLinuxMiddleware;
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
@@ -57,7 +58,7 @@ class AdministrationCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, array $params) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
         $terminal->writeLine("this command is running on linux");
 
@@ -74,6 +75,7 @@ use App\Middleware\OneMiddleware;
 use App\Middleware\AnotherMiddleware;
 use App\Middleware\AndAnotherMiddleware;
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
@@ -93,7 +95,7 @@ class SomethingCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, array $params) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
         $terminal->writeLine("hello");
 

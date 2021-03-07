@@ -3,6 +3,7 @@
 namespace Tests\Console\Command;
 
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 use Tests\Console\Converter\Doubler;
@@ -21,10 +22,10 @@ class ConverterCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, array $params) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
         $terminal->write(
-            $params["i"]
+            $parameters->get("i")
         );
 
         return 0;

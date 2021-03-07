@@ -16,6 +16,7 @@ By default, a Command has no middlewares or parameter converters and can be as s
 
 ```php
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
@@ -26,7 +27,7 @@ class IndexCommand extends Command
         return "this:is:your:name";
     }
 
-    public function execute(Terminal $terminal, Container $container, array $params) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
         $terminal->writeLine("hello");
 

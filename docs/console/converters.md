@@ -48,6 +48,7 @@ When this exception is thrown, the Application understands that to mean that thi
 use App\Converter\PostConverter;
 use App\Model\Post;
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
@@ -65,12 +66,12 @@ class PostDetailsCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, array $params) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
         /**
          * @var Post
          */
-        $post = $params["post"];
+        $post = $parameters->get("post");
 
         $terminal->writeLine(
             $post->getTitle()

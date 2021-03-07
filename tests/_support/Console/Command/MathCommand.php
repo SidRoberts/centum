@@ -3,6 +3,7 @@
 namespace Tests\Console\Command;
 
 use Centum\Console\Command;
+use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
@@ -23,8 +24,8 @@ class MathCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, array $params) : int
     {
-        $a = $params["a"];
-        $b = $params["b"];
+        $a = $parameters->get("a");
+        $b = $parameters->get("b");
 
         $terminal->write(
             $a + $b

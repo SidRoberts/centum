@@ -32,5 +32,5 @@ abstract class Command
 
 
 
-    abstract public function execute(Terminal $terminal, Container $container, array $params) : int;
+    abstract public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int;
 }
