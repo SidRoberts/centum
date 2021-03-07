@@ -11,7 +11,10 @@ class Access
 
     protected bool $default;
 
-    protected array $access = [];
+    /**
+     * @var Activity[]
+     */
+    protected array $activities = [];
 
 
 
@@ -22,45 +25,44 @@ class Access
 
 
 
-    public function allow(string $user, string $activity) : void
+    public function allow(string $user, string $activityName) : void
     {
-        if (!isset($this->access[$activity])) {
-            $this->access[$activity] = [];
-        }
+        $activity = $this->getActivity($activityName);
 
-        $this->access[$activity][$user] = self::ALLOW;
+        $activity->allow($user);
     }
 
-    public function deny(string $user, string $activity) : void
+    public function deny(string $user, string $activityName) : void
     {
-        if (!isset($this->access[$activity])) {
-            $this->access[$activity] = [];
-        }
+        $activity = $this->getActivity($activityName);
 
-        $this->access[$activity][$user] = self::DENY;
+        $activity->deny($user);
     }
 
-    public function remove(string $user, string $activity) : void
+    public function remove(string $user, string $activityName) : void
     {
-        unset(
-            $this->access[$activity][$user]
-        );
+        $activity = $this->getActivity($activityName);
 
-        if (empty($this->access[$activity])) {
-            unset(
-                $this->access[$activity]
-            );
-        }
+        $activity->remove($user);
     }
 
 
 
-    public function isAllowed(string $user, string $activity) : bool
+    public function isAllowed(string $user, string $activityName) : bool
     {
-        if (!isset($this->access[$activity][$user])) {
-            return ($this->default === self::ALLOW);
+        $activity = $this->getActivity($activityName);
+
+        return $activity->isAllowed($user);
+    }
+
+
+
+    protected function getActivity(string $name) : Activity
+    {
+        if (!isset($this->activities[$name])) {
+            $this->activities[$name] = new Activity($name, $this->default);
         }
 
-        return ($this->access[$activity][$user] === self::ALLOW);
+        return $this->activities[$name];
     }
 }
