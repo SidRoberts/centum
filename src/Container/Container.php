@@ -130,14 +130,8 @@ class Container
     {
         $type = $parameter->getType();
 
-        if ($type === null) {
-            if ($parameter->isDefaultValueAvailable()) {
-                return $parameter->getDefaultValue();
-            }
-
-            if ($parameter->allowsNull()) {
-                return null;
-            }
+        if ($type === null && $parameter->isDefaultValueAvailable()) {
+            return $parameter->getDefaultValue();
         }
 
         if (!($type instanceof ReflectionNamedType)) {
