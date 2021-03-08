@@ -19,6 +19,16 @@ class DifferentTypes
         return $name;
     }
 
+    public function resolvable4($name = "Sid")
+    {
+        return $name;
+    }
+
+    public function resolvable5($name = null)
+    {
+        return $name;
+    }
+
     public function unresolvable(string $name)
     {
         return $name;

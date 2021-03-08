@@ -171,6 +171,23 @@ class ContainerCest
 
 
 
+        $name = $container->typehintMethod($differentTypes, "resolvable4");
+
+        $I->assertEquals(
+            "Sid",
+            $name
+        );
+
+
+
+        $name = $container->typehintMethod($differentTypes, "resolvable5");
+
+        $I->assertNull(
+            $name
+        );
+
+
+
         $I->expectThrowable(
             UnresolvableParameterException::class,
             function () use ($container, $differentTypes) {
