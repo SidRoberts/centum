@@ -7,17 +7,17 @@ use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Mvc\Exception\RouteNotFoundException;
 use Centum\Mvc\Router;
+use Codeception\Example;
 use Tests\Mvc\Controllers\ConverterController;
-use Tests\Mvc\Controllers\IndexController;
 use Tests\Mvc\Controllers\HttpMethodController;
+use Tests\Mvc\Controllers\IndexController;
 use Tests\Mvc\Controllers\LoginController;
 use Tests\Mvc\Controllers\MiddlewareController;
 use Tests\Mvc\Controllers\RequirementsController;
 use Tests\Mvc\Converter\Doubler;
-use Tests\Mvc\Middleware\ExampleTrue;
 use Tests\Mvc\Middleware\ExampleFalse;
+use Tests\Mvc\Middleware\ExampleTrue;
 use Tests\UnitTester;
-use Codeception\Example;
 
 class RouterCest
 {
@@ -191,6 +191,13 @@ class RouterCest
 
         $router->get("/", HttpMethodController::class, "get");
         $router->post("/", HttpMethodController::class, "post");
+        $router->head("/", HttpMethodController::class, "head");
+        $router->put("/", HttpMethodController::class, "put");
+        $router->delete("/", HttpMethodController::class, "delete");
+        $router->trace("/", HttpMethodController::class, "trace");
+        $router->options("/", HttpMethodController::class, "options");
+        $router->connect("/", HttpMethodController::class, "connect");
+        $router->patch("/", HttpMethodController::class, "patch");
 
 
 
@@ -211,11 +218,39 @@ class RouterCest
     {
         return [
             [
-                "method" => "GET",
+                "method"=> "GET",
             ],
 
             [
-                "method" => "POST",
+                "method"=> "POST",
+            ],
+
+            [
+                "method"=> "HEAD",
+            ],
+
+            [
+                "method"=> "PUT",
+            ],
+
+            [
+                "method"=> "DELETE",
+            ],
+
+            [
+                "method"=> "TRACE",
+            ],
+
+            [
+                "method"=> "OPTIONS",
+            ],
+
+            [
+                "method"=> "CONNECT",
+            ],
+
+            [
+                "method"=> "PATCH",
             ],
         ];
     }
