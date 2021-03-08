@@ -1,0 +1,13 @@
+"namespaceTests",
+
+"paths" => [
+    "tests" => "tests",
+    "data" => "tests/_data",
+    "output" => "tests/_output",
+    "support" => "tests/_support",
+],
+
+"settings" => [
+    "lint" => true,
+    "shuffle" => true,
+],
