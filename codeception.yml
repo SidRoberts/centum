@@ -17,6 +17,7 @@ suites:
     modules:
       enabled:
         - Asserts
+        - Mockery
     coverage:
       enabled: true
       whitelist:
