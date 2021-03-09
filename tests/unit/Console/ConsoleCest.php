@@ -13,6 +13,7 @@ use Tests\Console\Command\InvalidConvertersCommand;
 use Tests\Console\Command\InvalidMiddlewaresCommand;
 use Tests\Console\Command\ConverterCommand;
 use Tests\Console\Command\MainCommand;
+use Tests\Console\Command\MathCommand;
 use Tests\Console\Command\Middleware\TrueCommand;
 use Tests\Console\Command\Middleware\FalseCommand;
 use Tests\Console\Command\Middleware\Multiple1Command;
@@ -265,6 +266,28 @@ class ApplicationCest
             function () use ($terminal, $application) {
                 $exitCode = $application->handle($terminal);
             }
+        );
+    }
+
+    public function getCommands(UnitTester $I)
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(new ConverterCommand());
+        $application->addCommand(new MathCommand());
+
+        $commands = $application->getCommands();
+
+        $I->assertArrayHasKey(
+            "math:add",
+            $commands
+        );
+
+        $I->assertArrayHasKey(
+            "converter:double",
+            $commands
         );
     }
 }
