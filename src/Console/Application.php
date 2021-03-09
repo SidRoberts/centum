@@ -9,6 +9,7 @@ use Centum\Console\Exception\InvalidConverterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
+use OutOfRangeException;
 
 class Application
 {
@@ -38,6 +39,11 @@ class Application
         $name = $command->getName();
 
         $this->commands[$name] = $command;
+    }
+
+    public function getCommand(string $name) : Command
+    {
+        return $this->commands[$name] ?? throw new OutOfRangeException();
     }
 
     public function getCommands() : array

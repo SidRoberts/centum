@@ -269,6 +269,26 @@ class ApplicationCest
         );
     }
 
+    public function getCommand(UnitTester $I)
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(new ConverterCommand());
+        $application->addCommand(new MathCommand());
+
+        $I->assertInstanceOf(
+            MathCommand::class,
+            $application->getCommand("math:add")
+        );
+
+        $I->assertInstanceOf(
+            ConverterCommand::class,
+            $application->getCommand("converter:double")
+        );
+    }
+
     public function getCommands(UnitTester $I)
     {
         $container = new Container();
