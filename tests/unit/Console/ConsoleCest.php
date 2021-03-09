@@ -7,6 +7,10 @@ use Centum\Console\Application;
 use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
+use Centum\Console\Exception\InvalidConverterException;
+use Centum\Console\Exception\InvalidMiddlewareException;
+use Tests\Console\Command\InvalidConvertersCommand;
+use Tests\Console\Command\InvalidMiddlewaresCommand;
 use Tests\Console\Command\ConverterCommand;
 use Tests\Console\Command\MainCommand;
 use Tests\Console\Command\Middleware\TrueCommand;
@@ -204,6 +208,60 @@ class ApplicationCest
 
         $I->expectThrowable(
             CommandNotFoundException::class,
+            function () use ($terminal, $application) {
+                $exitCode = $application->handle($terminal);
+            }
+        );
+    }
+
+    public function commandWithInvalidConverters(UnitTester $I)
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(new InvalidConvertersCommand());
+
+        $argv = [
+            "cli.php",
+            "invalid-converters",
+        ];
+
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $I->expectThrowable(
+            InvalidConverterException::class,
+            function () use ($terminal, $application) {
+                $exitCode = $application->handle($terminal);
+            }
+        );
+    }
+
+    public function commandWithInvalidMiddlewares(UnitTester $I)
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(new InvalidMiddlewaresCommand());
+
+        $argv = [
+            "cli.php",
+            "invalid-middlewares",
+        ];
+
+        $stdin = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $I->expectThrowable(
+            InvalidMiddlewareException::class,
             function () use ($terminal, $application) {
                 $exitCode = $application->handle($terminal);
             }
