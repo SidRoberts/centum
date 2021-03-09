@@ -33,4 +33,9 @@ class DifferentTypes
     {
         return $name;
     }
+
+    public function unresolvable2(string|int $name)
+    {
+        return $name;
+    }
 }
