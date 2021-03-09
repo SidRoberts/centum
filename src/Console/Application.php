@@ -53,7 +53,7 @@ class Application
 
         $command = $this->getCommandFromTerminal($terminal);
 
-        $params = $this->getParamsFromArgv($argv);
+        $parameters = new Parameters($argv);
 
 
 
@@ -64,20 +64,18 @@ class Application
                 throw new InvalidConverterException();
             }
 
-            /**
-             * @var string|boolean
-             */
-            $value = $params[$key] ?? throw new ParamNotFoundException();
+            if (!$parameters->has($key)) {
+                throw new ParamNotFoundException();
+            }
 
-            /**
-             * @var mixed
-             */
-            $params[$key] = $converter->convert($value, $this->container);
+            $value = $parameters->get($key);
+
+            $value = $converter->convert($value, $this->container);
+
+            $parameters->set($key, $value);
         }
 
 
-
-        $parameters = new Parameters($params);
 
         return $command->execute($terminal, $this->container, $parameters);
     }
@@ -115,54 +113,5 @@ class Application
 
 
         return $command;
-    }
-
-
-
-    /**
-     * @return string[]|boolean[]
-     */
-    protected function getParamsFromArgv(array $argv) : array
-    {
-        $params = [];
-
-        // Remove script filename.
-        array_shift($argv);
-
-        // Remove command name.
-        array_shift($argv);
-
-        while ($argv) {
-            /**
-             * @var string
-             */
-            $token = array_shift($argv);
-
-            /**
-             * @var string
-             */
-            $nextToken = $argv[0] ?? "";
-
-            if (!preg_match("/^\-\-([A-Za-z0-9\-]+)(\=(.*)|$)/", $token, $match)) {
-                continue;
-            }
-
-            $name = $match[1];
-            $value = $match[3] ?? true;
-
-            if ($match[2] === "" && !str_starts_with($nextToken, "--")) {
-                /**
-                 * @var string
-                 */
-                $value = array_shift($argv);
-            }
-
-            /**
-             * @var string|boolean
-             */
-            $params[$name] = $value;
-        }
-
-        return $params;
     }
 }
