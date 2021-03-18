@@ -79,7 +79,7 @@ class ContainerCest
 
         $I->assertSame(
             $incrementer,
-            $resolvableClass->incrementer
+            $resolvableClass->getIncrementer()
         );
     }
 
