@@ -6,6 +6,8 @@ use Centum\Config\Config;
 use Centum\Url\Url;
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
+use Tests\Container\Alias\ACommand;
+use Tests\Container\Alias\CommandInterface;
 use Tests\UnitTester;
 use stdClass;
 
@@ -202,6 +204,20 @@ class ContainerCest
             function () use ($container, $differentTypes) {
                 $container->typehintMethod($differentTypes, "unresolvable2");
             }
+        );
+    }
+
+    public function aliases(UnitTester $I)
+    {
+        $container = new Container();
+
+        $container->addAlias(CommandInterface::class, ACommand::class);
+
+        $object = $container->typehintClass(CommandInterface::class);
+
+        $I->assertInstanceOf(
+            ACommand::class,
+            $object
         );
     }
 }
