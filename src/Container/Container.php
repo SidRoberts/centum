@@ -15,10 +15,13 @@ use ReflectionParameter;
 class Container
 {
     /**
-     * @var object[]
+     * @var array<class-string, object>
      */
     protected array $objects = [];
 
+    /**
+     * @var array<class-string, class-string>
+     */
     protected array $aliases = [];
 
 
@@ -35,9 +38,6 @@ class Container
      */
     public function typehintClass(string $class) : object
     {
-        /**
-         * @var class-string
-         */
         $class = $this->aliases[$class] ?? $class;
 
         if (!isset($this->objects[$class])) {
@@ -84,17 +84,25 @@ class Container
 
 
 
+    /**
+     * @param class-string $class
+     * @param class-string $alias
+     */
     public function addAlias(string $class, string $alias) : void
     {
         $this->aliases[$class] = $alias;
     }
 
+    /**
+     * @param class-string $class
+     */
     public function set(string $class, object $object) : void
     {
         $this->objects[$class] = $object;
     }
 
     /**
+     * @param class-string $class
      * @param Closure|callable-string $function
      */
     public function setDynamic(string $class, Closure|string $function) : void

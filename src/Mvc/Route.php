@@ -21,12 +21,12 @@ class Route
     protected string $method;
 
     /**
-     * @var MiddlewareInterface[] $middlewares
+     * @var MiddlewareInterface[]
      */
     protected array $middlewares = [];
 
     /**
-     * @var ConverterInterface[] $converters
+     * @var array<string, ConverterInterface>
      */
     protected array $converters = [];
 
@@ -120,6 +120,9 @@ class Route
 
 
 
+    /**
+     * @return array<string, ConverterInterface>
+     */
     public function getConverters() : array
     {
         return $this->converters;

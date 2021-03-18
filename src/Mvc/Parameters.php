@@ -4,10 +4,16 @@ namespace Centum\Mvc;
 
 class Parameters
 {
+    /**
+     * @var array<string, mixed>
+     */
     protected array $parameters = [];
 
 
 
+    /**
+     * @param array<string, mixed> $parameters
+     */
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;

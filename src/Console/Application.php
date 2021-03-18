@@ -16,7 +16,7 @@ class Application
     protected Container $container;
 
     /**
-     * @var Command[]
+     * @var array<string, Command>
      */
     protected array $commands = [];
 

@@ -63,13 +63,13 @@ class Terminal
         $this->write($string . PHP_EOL);
     }
 
+    /**
+     * @param string[] $list
+     */
     public function writeList(array $list) : void
     {
         $this->writeLine();
 
-        /**
-         * @var string $item
-         */
         foreach ($list as $item) {
             $this->writeLine(
                 sprintf(

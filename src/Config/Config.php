@@ -4,10 +4,16 @@ namespace Centum\Config;
 
 class Config
 {
+    /**
+     * @var array<string, mixed>
+     */
     protected array $data;
 
 
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function __construct(array $data)
     {
         foreach ($data as $key => $value) {

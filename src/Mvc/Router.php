@@ -212,9 +212,6 @@ class Router
 
         $converters = $route->getConverters();
 
-        /**
-         * @var ConverterInterface $converter
-         */
         foreach ($converters as $key => $converter) {
             /**
              * @var string
