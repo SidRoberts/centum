@@ -11,7 +11,7 @@ class StyleCest
     /**
      * @dataProvider decorationProvider
      */
-    public function decorations(UnitTester $I, Example $example)
+    public function decorations(UnitTester $I, Example $example) : void
     {
         $style = new Style();
 
@@ -62,7 +62,7 @@ class StyleCest
     /**
      * @dataProvider colorProvider
      */
-    public function colors(UnitTester $I, Example $example)
+    public function colors(UnitTester $I, Example $example) : void
     {
         $style = new Style();
 
@@ -145,7 +145,7 @@ class StyleCest
 
 
 
-    public function combinedColors(UnitTester $I)
+    public function combinedColors(UnitTester $I) : void
     {
         $style = new Style();
 
@@ -159,7 +159,7 @@ class StyleCest
 
 
 
-    public function colorTextAndBackground(UnitTester $I)
+    public function colorTextAndBackground(UnitTester $I) : void
     {
         $style = new Style();
 
@@ -175,7 +175,7 @@ class StyleCest
 
 
 
-    public function reset(UnitTester $I)
+    public function reset(UnitTester $I) : void
     {
         $style = new Style();
 

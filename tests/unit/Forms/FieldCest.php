@@ -10,7 +10,7 @@ use Laminas\Validator\Regex;
 
 class FieldCest
 {
-    public function getters(UnitTester $I)
+    public function getters(UnitTester $I) : void
     {
         $field = new Field("thisIsTheName");
 
@@ -37,7 +37,7 @@ class FieldCest
         );
     }
 
-    public function testFilter(UnitTester $I)
+    public function testFilter(UnitTester $I) : void
     {
         $field = new Field("thisIsTheName");
 
@@ -112,7 +112,7 @@ class FieldCest
         );
     }
 
-    public function testValidator(UnitTester $I)
+    public function testValidator(UnitTester $I) : void
     {
         $field = new Field("thisIsTheName");
 

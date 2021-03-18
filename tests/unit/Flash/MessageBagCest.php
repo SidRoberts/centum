@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class MessageBagCest
 {
-    public function getMessages(UnitTester $I)
+    public function getMessages(UnitTester $I) : void
     {
         $messageBag = new MessageBag();
 

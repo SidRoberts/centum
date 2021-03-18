@@ -9,7 +9,7 @@ use Centum\Container\Container;
 
 class ExampleFalse implements MiddlewareInterface
 {
-    public function middleware(Terminal $terminal, Command $route, Container $container) : bool
+    public function middleware(Terminal $terminal, Command $command, Container $container) : bool
     {
         return false;
     }

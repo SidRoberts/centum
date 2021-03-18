@@ -23,7 +23,7 @@ use Codeception\Example;
 
 class ApplicationCest
 {
-    public function basicHandle(UnitTester $I)
+    public function basicHandle(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -56,7 +56,7 @@ class ApplicationCest
         );
     }
 
-    public function converters(UnitTester $I)
+    public function converters(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -94,7 +94,7 @@ class ApplicationCest
     /**
      * @dataProvider middlewaresProvider
      */
-    public function middlewares(UnitTester $I, Example $example)
+    public function middlewares(UnitTester $I, Example $example) : void
     {
         $container = new Container();
 
@@ -160,7 +160,7 @@ class ApplicationCest
         ];
     }
 
-    public function commandNotSpecified(UnitTester $I)
+    public function commandNotSpecified(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -190,7 +190,7 @@ class ApplicationCest
         );
     }
 
-    public function commandNotFoundException(UnitTester $I)
+    public function commandNotFoundException(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -215,7 +215,7 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidConverters(UnitTester $I)
+    public function commandWithInvalidConverters(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -242,7 +242,7 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidMiddlewares(UnitTester $I)
+    public function commandWithInvalidMiddlewares(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -269,7 +269,7 @@ class ApplicationCest
         );
     }
 
-    public function getCommand(UnitTester $I)
+    public function getCommand(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -289,7 +289,7 @@ class ApplicationCest
         );
     }
 
-    public function getCommands(UnitTester $I)
+    public function getCommands(UnitTester $I) : void
     {
         $container = new Container();
 

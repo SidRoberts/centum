@@ -9,7 +9,7 @@ use Tests\UnitTester;
 
 class FactoryCest
 {
-    public function addJobsFromArray(UnitTester $I)
+    public function addJobsFromArray(UnitTester $I) : void
     {
         $cron = Factory::buildFromArray(
             [

@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class RouteCest
 {
-    public function basicGetters(UnitTester $I)
+    public function basicGetters(UnitTester $I) : void
     {
         $httpMethod = "GET";
         $uri = "/";

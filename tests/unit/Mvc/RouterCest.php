@@ -21,7 +21,7 @@ use Tests\UnitTester;
 
 class RouterCest
 {
-    public function basicHandle(UnitTester $I)
+    public function basicHandle(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -41,7 +41,7 @@ class RouterCest
         );
     }
 
-    public function converters(UnitTester $I)
+    public function converters(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -68,7 +68,7 @@ class RouterCest
     /**
      * @dataProvider middlewaresProvider
      */
-    public function middlewares(UnitTester $I, Example $example)
+    public function middlewares(UnitTester $I, Example $example) : void
     {
         $container = new Container();
 
@@ -132,7 +132,7 @@ class RouterCest
     /**
      * @dataProvider requirementsProvider
      */
-    public function requirements(UnitTester $I, Example $example)
+    public function requirements(UnitTester $I, Example $example) : void
     {
         $container = new Container();
 
@@ -160,7 +160,7 @@ class RouterCest
         }
     }
 
-    public function requirementsProvider()
+    public function requirementsProvider() : array
     {
         return [
             [
@@ -183,7 +183,7 @@ class RouterCest
     /**
      * @dataProvider httpMethodsProvider
      */
-    public function httpMethods(UnitTester $I, Example $example)
+    public function httpMethods(UnitTester $I, Example $example) : void
     {
         $container = new Container();
 
@@ -214,7 +214,7 @@ class RouterCest
         );
     }
 
-    public function httpMethodsProvider()
+    public function httpMethodsProvider() : array
     {
         return [
             [
@@ -255,7 +255,7 @@ class RouterCest
         ];
     }
 
-    public function routeNotFoundException(UnitTester $I)
+    public function routeNotFoundException(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -274,7 +274,7 @@ class RouterCest
         );
     }
 
-    public function submission(UnitTester $I)
+    public function submission(UnitTester $I) : void
     {
         $container = new Container();
 

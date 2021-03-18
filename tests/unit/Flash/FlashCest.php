@@ -9,7 +9,7 @@ use Centum\Http\Session;
 
 class FlashCest
 {
-    public function output(UnitTester $I)
+    public function output(UnitTester $I) : void
     {
         $message1 = "sample message 1";
         $message2 = "sample message 2";

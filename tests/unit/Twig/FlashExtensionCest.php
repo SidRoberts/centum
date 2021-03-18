@@ -11,7 +11,7 @@ use Twig\Loader\ArrayLoader;
 
 class FlashExtensionCest
 {
-    public function extension(UnitTester $I)
+    public function extension(UnitTester $I) : void
     {
         $session   = new Session();
         $formatter = new HtmlFormatter();

@@ -13,7 +13,7 @@ use stdClass;
 
 class ContainerCest
 {
-    public function testGetContainer(UnitTester $I)
+    public function testGetContainer(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -23,7 +23,7 @@ class ContainerCest
         );
     }
 
-    public function testTypehintClass(UnitTester $I)
+    public function testTypehintClass(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -47,7 +47,7 @@ class ContainerCest
         $I->assertEquals("Busan", $a->city);
     }
 
-    public function testIncrementer(UnitTester $I)
+    public function testIncrementer(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -69,7 +69,7 @@ class ContainerCest
         $I->assertSame($incrementer0, $incrementer2);
     }
 
-    public function testResolvableClass(UnitTester $I)
+    public function testResolvableClass(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -83,7 +83,7 @@ class ContainerCest
         );
     }
 
-    public function testResolvableClassNoConstructor(UnitTester $I)
+    public function testResolvableClassNoConstructor(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -95,7 +95,7 @@ class ContainerCest
         );
     }
 
-    public function testUnresolvableClass(UnitTester $I)
+    public function testUnresolvableClass(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -107,7 +107,7 @@ class ContainerCest
         );
     }
 
-    public function testSetDynamic(UnitTester $I)
+    public function testSetDynamic(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -140,7 +140,7 @@ class ContainerCest
         );
     }
 
-    public function resolveDifferentTypes(UnitTester $I)
+    public function resolveDifferentTypes(UnitTester $I) : void
     {
         $container = new Container();
 
@@ -207,7 +207,7 @@ class ContainerCest
         );
     }
 
-    public function aliases(UnitTester $I)
+    public function aliases(UnitTester $I) : void
     {
         $container = new Container();
 

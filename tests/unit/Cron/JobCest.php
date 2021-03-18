@@ -11,7 +11,7 @@ class JobCest
     /**
      * @dataProvider providerGetters
      */
-    public function getters(UnitTester $I, Example $example)
+    public function getters(UnitTester $I, Example $example) : void
     {
         $job = new Job(
             $example["expression"],
@@ -33,7 +33,7 @@ class JobCest
 
 
 
-    public function providerGetters()
+    public function providerGetters() : array
     {
         return [
             [

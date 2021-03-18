@@ -9,7 +9,7 @@ use ValueError;
 
 class FactoryCest
 {
-    public function test(UnitTester $I)
+    public function test(UnitTester $I) : void
     {
         $config = Factory::yaml(
             codecept_data_dir() . "/config-factory/good.yml"
@@ -26,7 +26,7 @@ class FactoryCest
         );
     }
 
-    public function invalidYaml(UnitTester $I)
+    public function invalidYaml(UnitTester $I) : void
     {
         $I->expectThrowable(
             ValueError::class,

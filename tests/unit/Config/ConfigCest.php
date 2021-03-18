@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class ConfigCest
 {
-    public function testGet(UnitTester $I)
+    public function testGet(UnitTester $I) : void
     {
         $config = new Config(
             [
@@ -29,7 +29,7 @@ class ConfigCest
         );
     }
 
-    public function testToArray(UnitTester $I)
+    public function testToArray(UnitTester $I) : void
     {
         $data = [
             "a" => 1,
@@ -46,7 +46,7 @@ class ConfigCest
         );
     }
 
-    public function testSet(UnitTester $I)
+    public function testSet(UnitTester $I) : void
     {
         $config = new Config(
             []
@@ -76,7 +76,7 @@ class ConfigCest
         );
     }
 
-    public function testIsset(UnitTester $I)
+    public function testIsset(UnitTester $I) : void
     {
         $data = [
             "a" => 1,
@@ -100,7 +100,7 @@ class ConfigCest
         );
     }
 
-    public function testUnset(UnitTester $I)
+    public function testUnset(UnitTester $I) : void
     {
         $data = [
             "a" => 1,

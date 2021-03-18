@@ -9,7 +9,7 @@ use Laminas\Validator\NotEmpty;
 
 class FormCest
 {
-    public function getters(UnitTester $I)
+    public function getters(UnitTester $I) : void
     {
         $form = new Form();
 
@@ -23,7 +23,7 @@ class FormCest
         );
     }
 
-    public function emptyForm(UnitTester $I)
+    public function emptyForm(UnitTester $I) : void
     {
         $form = new Form();
 
@@ -46,7 +46,7 @@ class FormCest
         );
     }
 
-    public function actualForm(UnitTester $I)
+    public function actualForm(UnitTester $I) : void
     {
         $form = new Form();
 

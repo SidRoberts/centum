@@ -8,7 +8,7 @@ use Codeception\Example;
 
 class ParametersCest
 {
-    public function test(UnitTester $I)
+    public function test(UnitTester $I) : void
     {
         $parameters = new Parameters(
             [
@@ -34,7 +34,7 @@ class ParametersCest
         );
     }
 
-    public function testDefaultValue(UnitTester $I)
+    public function testDefaultValue(UnitTester $I) : void
     {
         $parameters = new Parameters(
             []
