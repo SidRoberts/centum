@@ -9,6 +9,8 @@ class Doubler implements ConverterInterface
 {
     public function convert(string|bool $value, Container $container) : int
     {
+        $value = (int) $value;
+
         return ($value * 2);
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Queue;
 
 use Centum\Container\Container;
 use Centum\Queue\Task;
+use Exception;
 
 class ProblematicTask extends Task
 {
