@@ -5,7 +5,7 @@ namespace Centum\Access;
 class Access
 {
     const ALLOW = true;
-    const DENY = false;
+    const DENY  = false;
 
 
 

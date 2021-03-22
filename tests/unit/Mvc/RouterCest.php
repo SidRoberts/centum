@@ -217,39 +217,39 @@ class RouterCest
     {
         return [
             [
-                "method"=> "GET",
+                "method" => "GET",
             ],
 
             [
-                "method"=> "POST",
+                "method" => "POST",
             ],
 
             [
-                "method"=> "HEAD",
+                "method" => "HEAD",
             ],
 
             [
-                "method"=> "PUT",
+                "method" => "PUT",
             ],
 
             [
-                "method"=> "DELETE",
+                "method" => "DELETE",
             ],
 
             [
-                "method"=> "TRACE",
+                "method" => "TRACE",
             ],
 
             [
-                "method"=> "OPTIONS",
+                "method" => "OPTIONS",
             ],
 
             [
-                "method"=> "CONNECT",
+                "method" => "CONNECT",
             ],
 
             [
-                "method"=> "PATCH",
+                "method" => "PATCH",
             ],
         ];
     }

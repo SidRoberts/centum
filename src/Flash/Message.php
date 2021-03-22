@@ -12,7 +12,7 @@ class Message
     public function __construct(string $level, string $text)
     {
         $this->level = $level;
-        $this->text = $text;
+        $this->text  = $text;
     }
 
 

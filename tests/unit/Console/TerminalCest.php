@@ -14,7 +14,7 @@ class TerminalCest
             "this:command:does:not:exist",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 

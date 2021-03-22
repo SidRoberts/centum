@@ -35,7 +35,7 @@ class Terminal
          */
         $this->argv = $argv ?? $_SERVER["argv"];
 
-        $this->stdin = $stdin;
+        $this->stdin  = $stdin;
         $this->stdout = $stdout;
         $this->stderr = $stderr;
     }

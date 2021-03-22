@@ -230,7 +230,7 @@ class Router
         $this->container->set(Parameters::class, $params);
         $this->container->set(Request::class, $request);
 
-        $class = $route->getClass();
+        $class  = $route->getClass();
         $method = $route->getMethod();
 
         $controller = $this->container->typehintClass($class);

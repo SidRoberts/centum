@@ -11,9 +11,9 @@ class RouteCest
     public function basicGetters(UnitTester $I) : void
     {
         $httpMethod = "GET";
-        $uri = "/";
-        $class = IndexController::class;
-        $method = "index";
+        $uri        = "/";
+        $class      = IndexController::class;
+        $method     = "index";
 
         $route = new Route($httpMethod, $uri, $class, $method);
 

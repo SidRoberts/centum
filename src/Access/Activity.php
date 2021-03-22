@@ -17,7 +17,7 @@ class Activity
 
     public function __construct(string $name, bool $default = Access::ALLOW)
     {
-        $this->name = $name;
+        $this->name    = $name;
         $this->default = $default;
     }
 

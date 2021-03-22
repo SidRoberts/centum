@@ -15,7 +15,7 @@ class Queue
 
     public function __construct(Container $container, Pheanstalk $pheanstalk)
     {
-        $this->container = $container;
+        $this->container  = $container;
         $this->pheanstalk = $pheanstalk;
     }
 

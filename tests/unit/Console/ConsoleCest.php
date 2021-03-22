@@ -39,7 +39,7 @@ class ApplicationCest
             "",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
@@ -74,7 +74,7 @@ class ApplicationCest
             "123",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
@@ -119,7 +119,7 @@ class ApplicationCest
 
         $argv = $example["argv"];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
@@ -173,7 +173,7 @@ class ApplicationCest
             "cli.php",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
@@ -200,7 +200,7 @@ class ApplicationCest
             "this:command:does:not:exist",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
@@ -227,7 +227,7 @@ class ApplicationCest
             "invalid-converters",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
@@ -254,7 +254,7 @@ class ApplicationCest
             "invalid-middlewares",
         ];
 
-        $stdin = fopen("php://memory", "r");
+        $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
