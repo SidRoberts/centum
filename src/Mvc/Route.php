@@ -2,11 +2,6 @@
 
 namespace Centum\Mvc;
 
-use Centum\Container\Container;
-use Centum\Http\Request;
-use Centum\Http\Response;
-use Centum\Mvc\Exception\RouteNotFoundException;
-
 class Route
 {
     protected string $httpMethod;

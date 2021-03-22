@@ -4,7 +4,6 @@ namespace Centum\Container;
 
 use Centum\Container\Exception\UnresolvableParameterException;
 use Closure;
-use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;

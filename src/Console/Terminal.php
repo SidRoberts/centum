@@ -2,8 +2,6 @@
 
 namespace Centum\Console;
 
-use InvalidArgumentException;
-
 class Terminal
 {
     protected array $argv;

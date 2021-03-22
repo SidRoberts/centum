@@ -2,9 +2,7 @@
 
 namespace Tests\Cron;
 
-use Centum\Cron\Cron;
 use Centum\Cron\Factory;
-use Centum\Cron\Job;
 use Tests\UnitTester;
 
 class FactoryCest

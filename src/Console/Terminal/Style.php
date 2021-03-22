@@ -2,8 +2,6 @@
 
 namespace Centum\Console\Terminal;
 
-use InvalidArgumentException;
-
 class Style
 {
     public function bold(string $text) : string

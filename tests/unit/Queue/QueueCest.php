@@ -4,12 +4,9 @@ namespace Tests\Queue;
 
 use Centum\Container\Container;
 use Centum\Queue\Queue;
-use Codeception\Example;
 use Mockery;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
-use Tests\Queue\DoNothingTask;
-use Tests\Queue\ProblematicTask;
 use Tests\UnitTester;
 
 class QueueCest

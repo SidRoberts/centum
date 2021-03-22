@@ -4,7 +4,6 @@ namespace Tests\Mvc;
 
 use Centum\Mvc\Parameters;
 use Tests\UnitTester;
-use Codeception\Example;
 
 class ParametersCest
 {

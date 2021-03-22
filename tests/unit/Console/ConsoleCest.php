@@ -4,7 +4,6 @@ namespace Tests\Console;
 
 use Centum\Container\Container;
 use Centum\Console\Application;
-use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidConverterException;

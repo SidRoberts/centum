@@ -4,7 +4,6 @@ namespace Tests\Mvc;
 
 use Centum\Container\Container;
 use Centum\Http\Request;
-use Centum\Http\Response;
 use Centum\Mvc\Exception\RouteNotFoundException;
 use Centum\Mvc\Router;
 use Codeception\Example;
