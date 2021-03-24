@@ -68,7 +68,7 @@ class Field
              */
             $value = $filter->filter($value);
         }
-        
+
         return $value;
     }
 

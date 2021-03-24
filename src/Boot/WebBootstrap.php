@@ -20,7 +20,7 @@ class WebBootstrap extends Bootstrap
          */
         $request = $container->typehintClass(Request::class);
 
- 
+
 
         $response = $router->handle($request);
 

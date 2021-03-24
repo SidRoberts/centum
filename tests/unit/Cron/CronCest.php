@@ -11,7 +11,7 @@ class CronCest
     public function addJobsToCron(UnitTester $I) : void
     {
         $cron = new Cron();
-        
+
         $job1 = new Job(
             "* * * * *",
             [
