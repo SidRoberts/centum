@@ -27,6 +27,21 @@ class Response
         return $this->content;
     }
 
+    public function getStatus() : Status
+    {
+        return $this->status;
+    }
+
+    public function getHeaders() : Headers
+    {
+        return $this->headers;
+    }
+
+    public function getCookies() : Cookies
+    {
+        return $this->cookies;
+    }
+
 
 
     public function sendHeaders() : Response
