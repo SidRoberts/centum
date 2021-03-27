@@ -22,7 +22,19 @@ class RequestFactory
             $parameters = [];
         }
 
-        $request = new Request($uri, $method, $parameters, $content);
+        $headers = [];
+
+        foreach (getallheaders() as $name => $value) {
+            $headers[] = new Header($name, $value);
+        }
+
+        $cookies = [];
+
+        foreach ($_COOKIE as $name => $value) {
+            $cookies[] = new Cookie($name, $value);
+        }
+
+        $request = new Request($uri, $method, $parameters, $headers, $cookies, $content);
 
         return $request;
     }
