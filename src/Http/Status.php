@@ -78,7 +78,7 @@ class Status
     /**
      * @link https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
      */
-    protected static array $codes = [
+    protected static array $texts = [
         self::CONTINUE                        => "Continue",
         self::SWITCHING_PROTOCOLS             => "Switching Protocols",
         self::PROCESSING                      => "Processing",
@@ -158,7 +158,7 @@ class Status
 
 
         $this->code = $code;
-        $this->text = self::$codes[$code] ?? "Unknown";
+        $this->text = self::$texts[$code] ?? "Unknown";
     }
 
 
