@@ -9,6 +9,44 @@ use Tests\Forms\LoginTemplate;
 
 class RequestCest
 {
+    public function getters(UnitTester $I) : void
+    {
+        $request = new Request(
+            "/login",
+            "POST",
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ],
+            "Hello world"
+        );
+
+
+
+        $I->assertEquals(
+            "/login",
+            $request->getUri()
+        );
+
+        $I->assertEquals(
+            "POST",
+            $request->getMethod()
+        );
+
+        $I->assertEquals(
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ],
+            $request->getParameters()
+        );
+
+        $I->assertEquals(
+            "Hello world",
+            $request->getContent()
+        );
+    }
+
     public function validate(UnitTester $I) : void
     {
         $template = new LoginTemplate();
@@ -17,7 +55,7 @@ class RequestCest
 
 
 
-        $request = Request::create(
+        $request = new Request(
             "/login",
             "POST",
             [
@@ -32,7 +70,7 @@ class RequestCest
 
 
 
-        $request = Request::create(
+        $request = new Request(
             "/login",
             "POST",
             [
@@ -54,7 +92,7 @@ class RequestCest
 
 
 
-        $request = Request::create(
+        $request = new Request(
             "/login",
             "POST",
             [

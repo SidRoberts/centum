@@ -30,7 +30,7 @@ class RouterCest
 
 
 
-        $request = Request::create("/", "GET");
+        $request = new Request("/", "GET");
 
         $response = $router->handle($request);
 
@@ -51,7 +51,7 @@ class RouterCest
 
 
 
-        $request = Request::create(
+        $request = new Request(
             "/converter/double/123",
             "GET"
         );
@@ -90,7 +90,7 @@ class RouterCest
 
 
         try {
-            $request = Request::create(
+            $request = new Request(
                 $example["url"],
                 "GET"
             );
@@ -145,7 +145,7 @@ class RouterCest
 
 
 
-        $request = Request::create(
+        $request = new Request(
             $example["url"],
             "GET"
         );
@@ -200,7 +200,7 @@ class RouterCest
 
 
 
-        $request = Request::create(
+        $request = new Request(
             "/",
             $example["method"]
         );
@@ -260,7 +260,7 @@ class RouterCest
 
         $router = new Router($container);
 
-        $request = Request::create(
+        $request = new Request(
             "/this/route/does/not/exist",
             "GET"
         );
@@ -283,7 +283,7 @@ class RouterCest
 
 
 
-        $getRequest = Request::create("/login", "GET");
+        $getRequest = new Request("/login", "GET");
 
         $getResponse = $router->handle($getRequest);
 
@@ -294,7 +294,7 @@ class RouterCest
 
 
 
-        $postRequest = Request::create("/login", "POST");
+        $postRequest = new Request("/login", "POST");
 
         $postResponse = $router->handle($postRequest);
 

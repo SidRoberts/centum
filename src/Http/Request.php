@@ -3,27 +3,55 @@
 namespace Centum\Http;
 
 use Centum\Forms\Form;
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
-class Request extends SymfonyRequest
+class Request
 {
+    protected string $uri;
+    protected string $method;
+    protected array $parameters;
+    protected $content;
+
+
+
+    public function __construct(string $uri, string $method = "GET", array $parameters = [], $content = null)
+    {
+        $this->uri        = $uri;
+        $this->method     = strtoupper($method);
+        $this->parameters = $parameters;
+        $this->content    = $content;
+    }
+
+
+
+    public function getUri() : string
+    {
+        return $this->uri;
+    }
+
+    public function getMethod() : string
+    {
+        return $this->method;
+    }
+
+    public function getParameters() : array
+    {
+        return $this->parameters;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+
+
     public function validate(Form $form) : bool
     {
-        $data = match ($this->getMethod()) {
-            "GET"   => $this->query->all(),
-            default => $this->request->all(),
-        };
-
-        return $form->isValid($data);
+        return $form->isValid($this->parameters);
     }
 
     public function getValidationMessages(Form $form) : array
     {
-        $data = match ($this->getMethod()) {
-            "GET"   => $this->query->all(),
-            default => $this->request->all(),
-        };
-
-        return $form->getMessages($data);
+        return $form->getMessages($this->parameters);
     }
 }

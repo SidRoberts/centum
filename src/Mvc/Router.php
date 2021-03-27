@@ -172,7 +172,7 @@ class Router
 
 
 
-        $uri = $request->getRequestUri();
+        $uri = $request->getUri();
         $uri = explode("?", $uri)[0];
 
         $pattern = $route->getUriPattern();

@@ -11,7 +11,7 @@ class RouteNotFoundException extends \Exception
         $message = sprintf(
             "%s %s",
             $request->getMethod(),
-            $request->getRequestUri()
+            $request->getUri()
         );
 
         parent::__construct($message);
