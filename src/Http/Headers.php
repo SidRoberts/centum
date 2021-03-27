@@ -33,4 +33,15 @@ class Headers
     {
         return $this->headers;
     }
+
+    public function toArray() : array
+    {
+        $headers = [];
+
+        foreach ($this->headers as $name => $header) {
+            $headers[$name] = $header->getValue();
+        }
+
+        return $headers;
+    }
 }

@@ -33,4 +33,15 @@ class Cookies
     {
         return $this->cookies;
     }
+
+    public function toArray() : array
+    {
+        $cookies = [];
+
+        foreach ($this->cookies as $name => $cookie) {
+            $cookies[$name] = $cookie->getValue();
+        }
+
+        return $cookies;
+    }
 }
