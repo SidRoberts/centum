@@ -34,9 +34,4 @@ class WhitelistedFunctionsExtension extends AbstractExtension
 
         return $functions;
     }
-
-    public function getName() : string
-    {
-        return "whitelistedFunctions";
-    }
 }

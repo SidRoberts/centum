@@ -31,9 +31,4 @@ class UrlExtension extends AbstractExtension
             )
         ];
     }
-
-    public function getName() : string
-    {
-        return "url";
-    }
 }

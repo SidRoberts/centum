@@ -30,11 +30,4 @@ class FlashExtension extends AbstractExtension
             ),
         ];
     }
-
-
-
-    public function getName() : string
-    {
-        return "flash";
-    }
 }
