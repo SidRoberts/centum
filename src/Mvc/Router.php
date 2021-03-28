@@ -155,6 +155,7 @@ class Router
 
 
     /**
+     * @param class-string $exceptionClass
      * @param class-string $class
      */
     public function addExceptionHandler(string $exceptionClass, string $class, string $method) : void
