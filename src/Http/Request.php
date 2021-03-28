@@ -15,6 +15,10 @@ class Request
 
 
 
+    /**
+     * @param Header[] $headers
+     * @param Cookie[] $cookies
+     */
     public function __construct(string $uri, string $method = "GET", array $parameters = [], array $headers = [], array $cookies = [], string $content = null)
     {
         $this->uri        = $uri;

@@ -76,6 +76,9 @@ class Application
 
             $value = $parameters->get($key);
 
+            /**
+             * @var mixed
+             */
             $value = $converter->convert($value, $this->container);
 
             $parameters->set($key, $value);

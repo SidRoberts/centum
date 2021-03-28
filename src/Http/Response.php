@@ -11,6 +11,10 @@ class Response
 
 
 
+    /**
+     * @param Header[] $headers
+     * @param Cookie[] $cookies
+     */
     public function __construct(string $content = "", int $statusCode = 200, array $headers = [], array $cookies = [])
     {
         $this->content = $content;

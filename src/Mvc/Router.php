@@ -185,7 +185,14 @@ class Router
                 if (is_a($exception, $exceptionClass)) {
                     $this->container->set(Request::class, $request);
 
-                    $class  = $path[0];
+                    /**
+                     * @var class-string
+                     */
+                    $class = $path[0];
+
+                    /**
+                     * @var string
+                     */
                     $method = $path[1];
 
                     return $this->executeMethod($class, $method);

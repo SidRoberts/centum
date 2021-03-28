@@ -11,6 +11,9 @@ class Cookies
 
 
 
+    /**
+     * @param Cookie[] $cookies
+     */
     public function __construct(array $cookies = [])
     {
         foreach ($cookies as $cookie) {
@@ -29,6 +32,9 @@ class Cookies
 
 
 
+    /**
+     * @return array<string, Cookie>
+     */
     public function all() : array
     {
         return $this->cookies;

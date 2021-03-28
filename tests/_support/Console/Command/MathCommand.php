@@ -24,11 +24,16 @@ class MathCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
     {
-        $a = $parameters->get("a");
-        $b = $parameters->get("b");
+        $a = (int) $parameters->get("a");
+        $b = (int) $parameters->get("b");
 
         $terminal->write(
-            $a + $b
+            sprintf(
+                "%d+%d=%d",
+                $a,
+                $b,
+                $a + $b
+            )
         );
 
         return 0;

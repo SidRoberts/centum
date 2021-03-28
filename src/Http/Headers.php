@@ -11,6 +11,9 @@ class Headers
 
 
 
+    /**
+     * @param Header[] $headers
+     */
     public function __construct(array $headers = [])
     {
         foreach ($headers as $header) {
@@ -29,6 +32,9 @@ class Headers
 
 
 
+    /**
+     * @return array<string, Header>
+     */
     public function all() : array
     {
         return $this->headers;

@@ -76,6 +76,8 @@ class Status
 
 
     /**
+     * @var array<int, string>
+     *
      * @link https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
      */
     protected static array $texts = [
@@ -158,6 +160,10 @@ class Status
 
 
         $this->code = $code;
+
+        /**
+         * @var string
+         */
         $this->text = self::$texts[$code] ?? "Unknown";
     }
 
