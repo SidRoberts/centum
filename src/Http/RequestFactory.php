@@ -18,6 +18,8 @@ class RequestFactory
             $parameters = $_POST;
         } elseif ($contentType === "application/x-www-form-urlencoded") {
             parse_str($content, $parameters);
+        } elseif ($contentType === "application/json") {
+            $parameters = json_decode($content);
         } else {
             $parameters = [];
         }
