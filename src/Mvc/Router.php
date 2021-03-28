@@ -18,6 +18,11 @@ class Router
      */
     protected array $routes = [];
 
+    /**
+     * @var array<class-string, array>
+     */
+    protected array $exceptionHandlers = [];
+
 
 
     public function __construct(Container $container)
@@ -149,19 +154,44 @@ class Router
 
 
 
-    public function handle(Request $request) : Response
+    /**
+     * @param class-string $class
+     */
+    public function addExceptionHandler(string $exceptionClass, string $class, string $method) : void
     {
-        foreach ($this->routes as $route) {
-            try {
-                return $this->matchRouteToRequest($request, $route);
-            } catch (RouteMismatchException $exception) {
-                continue;
-            }
-        }
-
-        throw new RouteNotFoundException($request);
+        $this->exceptionHandlers[$exceptionClass] = [
+            $class,
+            $method,
+        ];
     }
 
+
+
+    public function handle(Request $request) : Response
+    {
+        try {
+            foreach ($this->routes as $route) {
+                try {
+                    return $this->matchRouteToRequest($request, $route);
+                } catch (RouteMismatchException $exception) {
+                    continue;
+                }
+            }
+
+            throw new RouteNotFoundException($request);
+        } catch (\Throwable $exception) {
+            foreach ($this->exceptionHandlers as $exceptionClass => $path) {
+                if (is_a($exception, $exceptionClass)) {
+                    $class  = $path[0];
+                    $method = $path[1];
+
+                    return $this->executeMethod($class, $method);
+                }
+            }
+
+            throw $exception;
+        }
+    }
 
 
     protected function matchRouteToRequest(Request $request, Route $route) : Response
@@ -233,6 +263,14 @@ class Router
         $class  = $route->getClass();
         $method = $route->getMethod();
 
+        return $this->executeMethod($class, $method);
+    }
+
+    /**
+     * @param class-string $class
+     */
+    protected function executeMethod(string $class, string $method) : Response
+    {
         $controller = $this->container->typehintClass($class);
 
         /**

@@ -7,7 +7,9 @@ use Centum\Http\Request;
 use Centum\Mvc\Exception\RouteNotFoundException;
 use Centum\Mvc\Router;
 use Codeception\Example;
+use Exception;
 use Tests\Mvc\Controllers\ConverterController;
+use Tests\Mvc\Controllers\ExceptionController;
 use Tests\Mvc\Controllers\HttpMethodController;
 use Tests\Mvc\Controllers\IndexController;
 use Tests\Mvc\Controllers\LoginController;
@@ -301,6 +303,49 @@ class RouterCest
         $I->assertEquals(
             "login successful",
             $postResponse->getContent()
+        );
+    }
+
+    public function exceptionHandlers(UnitTester $I) : void
+    {
+        $container = new Container();
+
+        $router = new Router($container);
+
+        $router->get("/", ExceptionController::class, "index");
+
+        $router->addExceptionHandler(
+            RouteNotFoundException::class,
+            ExceptionController::class,
+            "pageNotFound"
+        );
+
+        $router->addExceptionHandler(
+            Exception::class,
+            ExceptionController::class,
+            "internalServerError"
+        );
+
+
+
+        $request = new Request("/", "GET");
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "Internal server error",
+            $response->getContent()
+        );
+
+
+
+        $request = new Request("/does-not-exist", "GET");
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "Page not found",
+            $response->getContent()
         );
     }
 }
