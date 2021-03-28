@@ -11,11 +11,11 @@ class Request
     protected array $parameters;
     protected Headers $headers;
     protected Cookies $cookies;
-    protected $content;
+    protected ?string $content;
 
 
 
-    public function __construct(string $uri, string $method = "GET", array $parameters = [], array $headers = [], array $cookies = [], $content = null)
+    public function __construct(string $uri, string $method = "GET", array $parameters = [], array $headers = [], array $cookies = [], string $content = null)
     {
         $this->uri        = $uri;
         $this->method     = strtoupper($method);
@@ -52,7 +52,7 @@ class Request
         return $this->cookies;
     }
 
-    public function getContent()
+    public function getContent() : ?string
     {
         return $this->content;
     }
