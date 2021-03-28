@@ -183,6 +183,8 @@ class Router
         } catch (\Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $path) {
                 if (is_a($exception, $exceptionClass)) {
+                    $this->container->set(Request::class, $request);
+
                     $class  = $path[0];
                     $method = $path[1];
 
