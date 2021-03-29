@@ -12,8 +12,6 @@ permalink: mvc
 A controller can be as simple as this:
 
 ```php
-use Centum\Container\Container;
-use Centum\Http\Request;
 use Centum\Http\Response;
 
 class IndexController
