@@ -30,7 +30,7 @@ class IsLoggedInMiddleware implements MiddlewareInterface
         /**
          * @var Auth
          */
-        $auth = $container->get("auth");
+        $auth = $container->typehintClass(Auth::class);
 
         return $auth->isLoggedIn();
     }

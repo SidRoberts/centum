@@ -27,7 +27,7 @@ class PostConverter implements ConverterInterface
         /**
          * @var EntityManager
          */
-        $doctrine = $container->get("doctrine");
+        $doctrine = $container->typehintClass(EntityManager::class);
 
         $postRepository = $doctrine->getRepository(
             Post::class
