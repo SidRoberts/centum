@@ -31,9 +31,9 @@ class RedirectResponse extends Response
     </body>
 </html>', htmlspecialchars($url, \ENT_QUOTES, "UTF-8"));
 
-        $headers["Content-Type"] = "text/html";
+        $headers[] = new Header("Content-Type", "text/html");
 
-        $headers["Location"] = $url;
+        $headers[] = new Header("Location", $url);
 
         if ($status < 300 || $status >= 400) {
             throw new InvalidArgumentException(
