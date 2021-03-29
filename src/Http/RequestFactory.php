@@ -30,7 +30,7 @@ class RequestFactory
         } elseif ($contentType === "application/x-www-form-urlencoded") {
             parse_str($content, $parameters);
         } elseif ($contentType === "application/json") {
-            $parameters = json_decode($content);
+            $parameters = json_decode($content, true);
         } else {
             $parameters = [];
         }
