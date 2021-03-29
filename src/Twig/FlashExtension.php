@@ -26,7 +26,10 @@ class FlashExtension extends AbstractExtension
                 "flash",
                 function () : string {
                     return $this->flash->output();
-                }
+                },
+                [
+                    "is_safe" => ["html"],
+                ]
             ),
         ];
     }

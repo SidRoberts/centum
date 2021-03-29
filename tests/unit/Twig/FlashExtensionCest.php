@@ -29,7 +29,7 @@ class FlashExtensionCest
 
         $loader = new ArrayLoader(
             [
-                "template" => "{{ flash()|raw }}",
+                "template" => "{{ flash() }}",
             ]
         );
 
