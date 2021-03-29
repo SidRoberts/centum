@@ -14,7 +14,7 @@ class RequestFactory
         /**
          * @var string
          */
-        $method = $_SERVER["REQUEST_METHOD"] ?? "GET";
+        $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"] ?? "GET";
 
         $content = stream_get_contents(fopen("php://input", "r"));
 
