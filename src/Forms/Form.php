@@ -20,16 +20,7 @@ class Form
 
 
 
-    public function isValid(array $data): bool
-    {
-        $messages = $this->getMessages($data);
-
-        return (count($messages) === 0);
-    }
-
-
-
-    public function getMessages(array $data): array
+    public function validate(array $data): Status
     {
         $messages = [];
 
@@ -42,26 +33,13 @@ class Form
              */
             $value = $data[$name] ?? null;
 
-            $fieldMessages = $this->getMessagesFor($name, $value);
+            $fieldMessages = $field->getMessages($value);
 
             if (count($fieldMessages) > 0) {
                 $messages[$name] = $fieldMessages;
             }
         }
 
-        return $messages;
-    }
-
-    public function getMessagesFor(string $name, mixed $value): array
-    {
-        if (!isset($this->fields[$name])) {
-            return [];
-        }
-
-
-
-        $field = $this->fields[$name];
-
-        return $field->getMessages($value);
+        return new Status($messages);
     }
 }

@@ -15,11 +15,13 @@ class FormCest
 
         $field = new Field("thisIsTheName");
 
+        $status = $form->validate(
+            []
+        );
+
         $I->assertEquals(
             [],
-            $field->getMessages(
-                []
-            )
+            $status->getMessages()
         );
     }
 
@@ -27,22 +29,17 @@ class FormCest
     {
         $form = new Form();
 
+        $status = $form->validate(
+            []
+        );
+
         $I->assertTrue(
-            $form->isValid(
-                []
-            )
+            $status->isValid()
         );
 
         $I->assertEquals(
             [],
-            $form->getMessages(
-                []
-            )
-        );
-
-        $I->assertEquals(
-            [],
-            $form->getMessagesFor("exampleField", null)
+            $status->getMessages()
         );
     }
 
@@ -64,29 +61,29 @@ class FormCest
 
 
 
+        $status = $form->validate(
+            [
+                "exampleField" => "This is not empty.",
+            ]
+        );
+
         $I->assertTrue(
-            $form->isValid(
-                [
-                    "exampleField" => "This is not empty.",
-                ]
-            )
+            $status->isValid()
         );
 
         $I->assertEquals(
             [],
-            $form->getMessages(
-                [
-                    "exampleField" => "This is not empty.",
-                ]
-            )
+            $status->getMessages()
         );
 
 
 
+        $status = $form->validate(
+            []
+        );
+
         $I->assertFalse(
-            $form->isValid(
-                []
-            )
+            $status->isValid()
         );
 
         $I->assertEquals(
@@ -95,26 +92,19 @@ class FormCest
                     "isEmpty" => "Value is required and can't be empty",
                 ],
             ],
-            $form->getMessages(
-                []
-            )
+            $status->getMessages()
         );
 
-        $I->assertEquals(
+
+
+        $status = $form->validate(
             [
-                "isEmpty" => "Value is required and can't be empty",
-            ],
-            $form->getMessagesFor("exampleField", null)
+                "exampleField" => "",
+            ]
         );
-
-
 
         $I->assertFalse(
-            $form->isValid(
-                [
-                    "exampleField" => "",
-                ]
-            )
+            $status->isValid()
         );
 
         $I->assertEquals(
@@ -123,42 +113,24 @@ class FormCest
                     "isEmpty" => "Value is required and can't be empty",
                 ],
             ],
-            $form->getMessages(
-                [
-                    "exampleField" => "",
-                ]
-            )
+            $status->getMessages()
         );
 
-        $I->assertEquals(
+
+
+        $status = $form->validate(
             [
-                "isEmpty" => "Value is required and can't be empty",
-            ],
-            $form->getMessagesFor("exampleField", "")
+                "exampleField" => "This is not empty.",
+            ]
         );
-
-
 
         $I->assertTrue(
-            $form->isValid(
-                [
-                    "exampleField" => "This is not empty.",
-                ]
-            )
+            $status->isValid()
         );
 
         $I->assertEquals(
             [],
-            $form->getMessages(
-                [
-                    "exampleField" => "This is not empty.",
-                ]
-            )
-        );
-
-        $I->assertEquals(
-            [],
-            $form->getMessagesFor("exampleField", "This is not empty.")
+            $status->getMessages()
         );
     }
 }

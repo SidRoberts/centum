@@ -65,11 +65,15 @@ $loginForm->add($passwordField);
 Validating data against these filters and validators is as easy as:
 
 ```php
-$success = $loginForm->isValid($_POST);
+$status = $loginForm->validate($_POST);
+
+$success = $status->isValid();
 ```
 
 If the data isn't valid, you can find out why:
 
 ```php
-$errorMessages = $loginForm->getMessages($_POST);
+$status = $loginForm->validate($_POST);
+
+$errorMessages = $status->getMessages();
 ```

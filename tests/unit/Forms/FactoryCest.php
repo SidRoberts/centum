@@ -15,12 +15,14 @@ class FactoryCest
 
 
 
-        $messages = $form->getMessages(
+        $status = $form->validate(
             [
                 "username" => "",
                 "password" => "",
             ]
         );
+
+        $messages = $status->getMessages();
 
         $I->assertArrayHasKey("username", $messages);
         $I->assertArrayHasKey("password", $messages);
@@ -30,13 +32,15 @@ class FactoryCest
 
 
 
+        $status = $form->validate(
+            [
+                "username" => "username",
+                "password" => "password",
+            ]
+        );
+
         $I->assertTrue(
-            $form->isValid(
-                [
-                    "username" => "username",
-                    "password" => "password",
-                ]
-            )
+            $status->isValid()
         );
     }
 }

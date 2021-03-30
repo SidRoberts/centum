@@ -65,11 +65,15 @@ class Request
 
     public function validate(Form $form): bool
     {
-        return $form->isValid($this->parameters);
+        $status = $form->validate($this->parameters);
+
+        return $status->isValid();
     }
 
     public function getValidationMessages(Form $form): array
     {
-        return $form->getMessages($this->parameters);
+        $status = $form->validate($this->parameters);
+
+        return $status->getMessages();
     }
 }
