@@ -10,19 +10,19 @@ use Tests\Console\Converter\Doubler;
 
 class ConverterCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "converter:double";
     }
 
-    public function getConverters() : array
+    public function getConverters(): array
     {
         return [
             "i" => new Doubler(),
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         $terminal->write(
             $parameters->get("i")

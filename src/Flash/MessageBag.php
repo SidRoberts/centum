@@ -11,7 +11,7 @@ class MessageBag
 
 
 
-    public function add(Message $message) : void
+    public function add(Message $message): void
     {
         $this->messages[] = $message;
     }
@@ -21,7 +21,7 @@ class MessageBag
     /**
      * @return Message[]
      */
-    public function getMessages() : array
+    public function getMessages(): array
     {
         return $this->messages;
     }

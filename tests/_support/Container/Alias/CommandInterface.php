@@ -4,5 +4,5 @@ namespace Tests\Container\Alias;
 
 interface CommandInterface
 {
-    public function execute() : string;
+    public function execute(): string;
 }

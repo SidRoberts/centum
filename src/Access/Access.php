@@ -4,8 +4,8 @@ namespace Centum\Access;
 
 class Access
 {
-    const ALLOW = true;
-    const DENY  = false;
+    public const ALLOW = true;
+    public const DENY  = false;
 
 
 
@@ -25,21 +25,21 @@ class Access
 
 
 
-    public function allow(string $user, string $activityName) : void
+    public function allow(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
 
         $activity->allow($user);
     }
 
-    public function deny(string $user, string $activityName) : void
+    public function deny(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
 
         $activity->deny($user);
     }
 
-    public function remove(string $user, string $activityName) : void
+    public function remove(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
 
@@ -48,7 +48,7 @@ class Access
 
 
 
-    public function isAllowed(string $user, string $activityName) : bool
+    public function isAllowed(string $user, string $activityName): bool
     {
         $activity = $this->getActivity($activityName);
 
@@ -57,7 +57,7 @@ class Access
 
 
 
-    protected function getActivity(string $name) : Activity
+    protected function getActivity(string $name): Activity
     {
         if (!isset($this->activities[$name])) {
             $this->activities[$name] = new Activity($name, $this->default);

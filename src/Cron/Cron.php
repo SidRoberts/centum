@@ -13,16 +13,16 @@ class Cron
 
 
 
-    public function add(JobInterface $job) : void
+    public function add(JobInterface $job): void
     {
         $this->jobs[] = $job;
     }
 
-    public function getDueJobs(DateTime $now = null) : array
+    public function getDueJobs(DateTime $now = null): array
     {
         $jobs = array_filter(
             $this->jobs,
-            function (JobInterface $job) use ($now) : bool {
+            function (JobInterface $job) use ($now): bool {
                 return $job->isDue($now);
             }
         );
@@ -30,7 +30,7 @@ class Cron
         return $jobs;
     }
 
-    public function getAllJobs() : array
+    public function getAllJobs(): array
     {
         return $this->jobs;
     }

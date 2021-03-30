@@ -8,7 +8,7 @@ use Centum\Container\Container;
 
 class ConsoleBootstrap extends Bootstrap
 {
-    public function boot(Container $container) : void
+    public function boot(Container $container): void
     {
         /**
          * @var Application

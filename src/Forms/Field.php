@@ -28,38 +28,38 @@ class Field
 
 
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
 
 
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return $this->filters;
     }
 
-    public function getValidators() : array
+    public function getValidators(): array
     {
         return $this->validators;
     }
 
 
 
-    public function addFilter(FilterInterface $filter) : void
+    public function addFilter(FilterInterface $filter): void
     {
         $this->filters[] = $filter;
     }
 
-    public function addValidator(ValidatorInterface $validator) : void
+    public function addValidator(ValidatorInterface $validator): void
     {
         $this->validators[] = $validator;
     }
 
 
 
-    public function getFilteredValue(mixed $value) : mixed
+    public function getFilteredValue(mixed $value): mixed
     {
         // Apply filters to value.
         foreach ($this->filters as $filter) {
@@ -74,7 +74,7 @@ class Field
 
 
 
-    public function isValid(mixed $value) : bool
+    public function isValid(mixed $value): bool
     {
         $messages = $this->getMessages($value);
 
@@ -83,7 +83,7 @@ class Field
 
 
 
-    public function getMessages(mixed $value) : array
+    public function getMessages(mixed $value): array
     {
         /**
          * @var mixed

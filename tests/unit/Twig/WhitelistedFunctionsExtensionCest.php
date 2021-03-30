@@ -10,7 +10,7 @@ use Twig\Loader\ArrayLoader;
 
 class WhitelistedFunctionsExtensionCest
 {
-    public function testUndefinedFunctionThrowsException(UnitTester $I) : void
+    public function testUndefinedFunctionThrowsException(UnitTester $I): void
     {
         $loader = new ArrayLoader(
             [
@@ -47,7 +47,7 @@ class WhitelistedFunctionsExtensionCest
 
 
 
-    public function testDefinedFunction(UnitTester $I) : void
+    public function testDefinedFunction(UnitTester $I): void
     {
         $loader = new ArrayLoader(
             [

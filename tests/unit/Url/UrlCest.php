@@ -8,7 +8,7 @@ use Codeception\Example;
 
 class UrlCest
 {
-    public function getBaseUrl(UnitTester $I) : void
+    public function getBaseUrl(UnitTester $I): void
     {
         $baseUri = "http://www.example.com";
 
@@ -25,7 +25,7 @@ class UrlCest
     /**
      * @dataProvider providerUrl
      */
-    public function url(UnitTester $I, Example $example) : void
+    public function url(UnitTester $I, Example $example): void
     {
         $url = new Url(
             $example["baseUri"]
@@ -43,7 +43,7 @@ class UrlCest
         );
     }
 
-    public function providerUrl() : array
+    public function providerUrl(): array
     {
         return [
             [
@@ -89,7 +89,7 @@ class UrlCest
     /**
      * @dataProvider providerArguments
      */
-    public function arguments(UnitTester $I, Example $example) : void
+    public function arguments(UnitTester $I, Example $example): void
     {
         $url = new Url();
 
@@ -106,7 +106,7 @@ class UrlCest
         );
     }
 
-    public function providerArguments() : array
+    public function providerArguments(): array
     {
         return [
             [

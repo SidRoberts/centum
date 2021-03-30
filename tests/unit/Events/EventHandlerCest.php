@@ -11,7 +11,7 @@ use Tests\UnitTester;
 
 class EventHandlerCest
 {
-    public function test(UnitTester $I) : void
+    public function test(UnitTester $I): void
     {
         $event = new ExampleEvent();
 
@@ -58,7 +58,7 @@ class EventHandlerCest
         );
     }
 
-    public function buryJobWhenExceptionIsThrown(UnitTester $I) : void
+    public function buryJobWhenExceptionIsThrown(UnitTester $I): void
     {
         $event = new ProblematicEvent();
 

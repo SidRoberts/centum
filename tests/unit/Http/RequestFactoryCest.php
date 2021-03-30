@@ -2,9 +2,7 @@
 
 namespace Tests\Http;
 
-use Centum\Http\Request;
 use Centum\Http\RequestFactory;
-use Codeception\Example;
 use Tests\UnitTester;
 
 class RequestFactoryCest

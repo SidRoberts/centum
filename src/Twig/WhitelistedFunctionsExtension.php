@@ -24,7 +24,7 @@ class WhitelistedFunctionsExtension extends AbstractExtension
 
 
 
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         $functions = [];
 

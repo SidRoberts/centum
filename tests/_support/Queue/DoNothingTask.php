@@ -7,7 +7,7 @@ use Centum\Queue\Task;
 
 class DoNothingTask extends Task
 {
-    public function execute(Container $container) : bool
+    public function execute(Container $container): bool
     {
         return true;
     }

@@ -10,17 +10,17 @@ use Centum\Container\Container;
 
 class ListCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "list";
     }
 
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return "Lists all available commands.";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         /**
          * @var Application

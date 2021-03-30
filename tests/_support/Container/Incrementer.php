@@ -8,14 +8,14 @@ class Incrementer
 
 
 
-    public function increment() : void
+    public function increment(): void
     {
         $this->i++;
     }
 
 
 
-    public function getI() : int
+    public function getI(): int
     {
         return $this->i;
     }

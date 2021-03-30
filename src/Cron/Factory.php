@@ -4,7 +4,7 @@ namespace Centum\Cron;
 
 class Factory
 {
-    public static function buildFromArray(array $array) : Cron
+    public static function buildFromArray(array $array): Cron
     {
         $cron = new Cron();
 

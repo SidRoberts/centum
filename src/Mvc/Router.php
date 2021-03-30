@@ -35,7 +35,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function get(string $uri, string $class, string $method) : Route
+    public function get(string $uri, string $class, string $method): Route
     {
         $route = new Route("GET", $uri, $class, $method);
 
@@ -47,7 +47,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function post(string $uri, string $class, string $method) : Route
+    public function post(string $uri, string $class, string $method): Route
     {
         $route = new Route("POST", $uri, $class, $method);
 
@@ -59,7 +59,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function head(string $uri, string $class, string $method) : Route
+    public function head(string $uri, string $class, string $method): Route
     {
         $route = new Route("HEAD", $uri, $class, $method);
 
@@ -71,7 +71,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function put(string $uri, string $class, string $method) : Route
+    public function put(string $uri, string $class, string $method): Route
     {
         $route = new Route("PUT", $uri, $class, $method);
 
@@ -83,7 +83,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function delete(string $uri, string $class, string $method) : Route
+    public function delete(string $uri, string $class, string $method): Route
     {
         $route = new Route("DELETE", $uri, $class, $method);
 
@@ -95,7 +95,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function trace(string $uri, string $class, string $method) : Route
+    public function trace(string $uri, string $class, string $method): Route
     {
         $route = new Route("TRACE", $uri, $class, $method);
 
@@ -107,7 +107,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function options(string $uri, string $class, string $method) : Route
+    public function options(string $uri, string $class, string $method): Route
     {
         $route = new Route("OPTIONS", $uri, $class, $method);
 
@@ -119,7 +119,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function connect(string $uri, string $class, string $method) : Route
+    public function connect(string $uri, string $class, string $method): Route
     {
         $route = new Route("CONNECT", $uri, $class, $method);
 
@@ -131,7 +131,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function patch(string $uri, string $class, string $method) : Route
+    public function patch(string $uri, string $class, string $method): Route
     {
         $route = new Route("PATCH", $uri, $class, $method);
 
@@ -145,7 +145,7 @@ class Router
     /**
      * @param class-string $class
      */
-    public function submission(string $uri, string $class) : void
+    public function submission(string $uri, string $class): void
     {
         $this->get($uri, $class, "form");
 
@@ -158,7 +158,7 @@ class Router
      * @param class-string $exceptionClass
      * @param class-string $class
      */
-    public function addExceptionHandler(string $exceptionClass, string $class, string $method) : void
+    public function addExceptionHandler(string $exceptionClass, string $class, string $method): void
     {
         $this->exceptionHandlers[$exceptionClass] = [
             $class,
@@ -168,7 +168,7 @@ class Router
 
 
 
-    public function handle(Request $request) : Response
+    public function handle(Request $request): Response
     {
         try {
             foreach ($this->routes as $route) {
@@ -204,7 +204,7 @@ class Router
     }
 
 
-    protected function matchRouteToRequest(Request $request, Route $route) : Response
+    protected function matchRouteToRequest(Request $request, Route $route): Response
     {
         if ($request->getMethod() !== $route->getHttpMethod()) {
             throw new RouteMismatchException();
@@ -241,7 +241,7 @@ class Router
         // Remove integer keys from params.
         $params = array_filter(
             $params,
-            function (mixed $value, mixed $key) : bool {
+            function (mixed $value, mixed $key): bool {
                 return !is_int($key);
             },
             ARRAY_FILTER_USE_BOTH
@@ -279,7 +279,7 @@ class Router
     /**
      * @param class-string $class
      */
-    protected function executeMethod(string $class, string $method) : Response
+    protected function executeMethod(string $class, string $method): Response
     {
         $controller = $this->container->typehintClass($class);
 

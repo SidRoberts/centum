@@ -4,37 +4,37 @@ namespace Tests\Container;
 
 class DifferentTypes
 {
-    public function resolvable(string $name = "Sid") : string
+    public function resolvable(string $name = "Sid"): string
     {
         return $name;
     }
 
-    public function resolvable2(string $name = null) : ?string
+    public function resolvable2(string $name = null): ?string
     {
         return $name;
     }
 
-    public function resolvable3(?string $name) : ?string
+    public function resolvable3(?string $name): ?string
     {
         return $name;
     }
 
-    public function resolvable4(mixed $name = "Sid") : mixed
+    public function resolvable4(mixed $name = "Sid"): mixed
     {
         return $name;
     }
 
-    public function resolvable5(mixed $name = null) : mixed
+    public function resolvable5(mixed $name = null): mixed
     {
         return $name;
     }
 
-    public function unresolvable(string $name) : string
+    public function unresolvable(string $name): string
     {
         return $name;
     }
 
-    public function unresolvable2(string|int $name) : string|int
+    public function unresolvable2(string | int $name): string | int
     {
         return $name;
     }

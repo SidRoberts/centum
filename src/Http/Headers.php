@@ -23,7 +23,7 @@ class Headers
 
 
 
-    public function add(Header $header) : void
+    public function add(Header $header): void
     {
         $name = $header->getName();
 
@@ -35,12 +35,12 @@ class Headers
     /**
      * @return array<string, Header>
      */
-    public function all() : array
+    public function all(): array
     {
         return $this->headers;
     }
 
-    public function toArray() : array
+    public function toArray(): array
     {
         $headers = [];
 

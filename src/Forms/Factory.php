@@ -4,7 +4,7 @@ namespace Centum\Forms;
 
 class Factory
 {
-    public static function build(FormTemplate $template) : Form
+    public static function build(FormTemplate $template): Form
     {
         $form = new Form();
 

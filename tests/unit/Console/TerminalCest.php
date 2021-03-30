@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class TerminalCest
 {
-    public function testMultipleWritesToStdOut(UnitTester $I) : void
+    public function testMultipleWritesToStdOut(UnitTester $I): void
     {
         $argv = [
             "cli.php",

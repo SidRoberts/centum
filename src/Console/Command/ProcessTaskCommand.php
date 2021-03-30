@@ -10,12 +10,12 @@ use Centum\Queue\Queue;
 
 class ProcessTaskCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "process-task";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         /**
          * @var Queue

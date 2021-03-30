@@ -9,7 +9,7 @@ use Centum\Http\Request;
 
 class ExampleTrue implements MiddlewareInterface
 {
-    public function middleware(Request $request, Route $route, Container $container) : bool
+    public function middleware(Request $request, Route $route, Container $container): bool
     {
         return true;
     }

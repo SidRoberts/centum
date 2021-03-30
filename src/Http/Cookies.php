@@ -23,7 +23,7 @@ class Cookies
 
 
 
-    public function add(Cookie $cookie) : void
+    public function add(Cookie $cookie): void
     {
         $name = $cookie->getName();
 
@@ -35,12 +35,12 @@ class Cookies
     /**
      * @return array<string, Cookie>
      */
-    public function all() : array
+    public function all(): array
     {
         return $this->cookies;
     }
 
-    public function toArray() : array
+    public function toArray(): array
     {
         $cookies = [];
 

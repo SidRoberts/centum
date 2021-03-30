@@ -10,19 +10,19 @@ use Tests\Console\Middleware\ExampleTrue;
 
 class TrueCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "middleware:true";
     }
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [
             new ExampleTrue(),
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         return 0;
     }

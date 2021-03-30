@@ -31,44 +31,44 @@ class Request
 
 
 
-    public function getUri() : string
+    public function getUri(): string
     {
         return $this->uri;
     }
 
-    public function getMethod() : string
+    public function getMethod(): string
     {
         return $this->method;
     }
 
-    public function getParameters() : array
+    public function getParameters(): array
     {
         return $this->parameters;
     }
 
-    public function getHeaders() : Headers
+    public function getHeaders(): Headers
     {
         return $this->headers;
     }
 
-    public function getCookies() : Cookies
+    public function getCookies(): Cookies
     {
         return $this->cookies;
     }
 
-    public function getContent() : ?string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
 
 
-    public function validate(Form $form) : bool
+    public function validate(Form $form): bool
     {
         return $form->isValid($this->parameters);
     }
 
-    public function getValidationMessages(Form $form) : array
+    public function getValidationMessages(Form $form): array
     {
         return $form->getMessages($this->parameters);
     }

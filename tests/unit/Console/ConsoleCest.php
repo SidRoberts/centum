@@ -22,7 +22,7 @@ use Codeception\Example;
 
 class ApplicationCest
 {
-    public function basicHandle(UnitTester $I) : void
+    public function basicHandle(UnitTester $I): void
     {
         $container = new Container();
 
@@ -55,7 +55,7 @@ class ApplicationCest
         );
     }
 
-    public function converters(UnitTester $I) : void
+    public function converters(UnitTester $I): void
     {
         $container = new Container();
 
@@ -93,7 +93,7 @@ class ApplicationCest
     /**
      * @dataProvider middlewaresProvider
      */
-    public function middlewares(UnitTester $I, Example $example) : void
+    public function middlewares(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -134,7 +134,7 @@ class ApplicationCest
         }
     }
 
-    public function middlewaresProvider() : array
+    public function middlewaresProvider(): array
     {
         return [
             [
@@ -159,7 +159,7 @@ class ApplicationCest
         ];
     }
 
-    public function commandNotSpecified(UnitTester $I) : void
+    public function commandNotSpecified(UnitTester $I): void
     {
         $container = new Container();
 
@@ -189,7 +189,7 @@ class ApplicationCest
         );
     }
 
-    public function commandNotFoundException(UnitTester $I) : void
+    public function commandNotFoundException(UnitTester $I): void
     {
         $container = new Container();
 
@@ -214,7 +214,7 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidConverters(UnitTester $I) : void
+    public function commandWithInvalidConverters(UnitTester $I): void
     {
         $container = new Container();
 
@@ -241,7 +241,7 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidMiddlewares(UnitTester $I) : void
+    public function commandWithInvalidMiddlewares(UnitTester $I): void
     {
         $container = new Container();
 
@@ -268,7 +268,7 @@ class ApplicationCest
         );
     }
 
-    public function getCommand(UnitTester $I) : void
+    public function getCommand(UnitTester $I): void
     {
         $container = new Container();
 
@@ -288,7 +288,7 @@ class ApplicationCest
         );
     }
 
-    public function getCommands(UnitTester $I) : void
+    public function getCommands(UnitTester $I): void
     {
         $container = new Container();
 

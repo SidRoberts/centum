@@ -11,7 +11,7 @@ use Tests\Forms\LoginTemplate;
 
 class RequestCest
 {
-    public function getters(UnitTester $I) : void
+    public function getters(UnitTester $I): void
     {
         $request = new Request(
             "/login",
@@ -69,7 +69,7 @@ class RequestCest
         );
     }
 
-    public function validate(UnitTester $I) : void
+    public function validate(UnitTester $I): void
     {
         $template = new LoginTemplate();
 
@@ -106,7 +106,7 @@ class RequestCest
         );
     }
 
-    public function getValidationMessages(UnitTester $I) : void
+    public function getValidationMessages(UnitTester $I): void
     {
         $template = new LoginTemplate();
 

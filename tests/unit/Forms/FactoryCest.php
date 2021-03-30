@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class FactoryCest
 {
-    public function test(UnitTester $I) : void
+    public function test(UnitTester $I): void
     {
         $template = new LoginTemplate();
 

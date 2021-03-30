@@ -47,7 +47,7 @@ class ResponseCest
         );
     }
 
-    public function sendContent(UnitTester $I) : void
+    public function sendContent(UnitTester $I): void
     {
         $I->expectEcho(
             "Hello world",

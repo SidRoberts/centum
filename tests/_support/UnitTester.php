@@ -25,7 +25,7 @@ class UnitTester extends Actor
 {
     use _generated\UnitTesterActions;
 
-    public function expectEcho(string $expected, callable $callable) : void
+    public function expectEcho(string $expected, callable $callable): void
     {
         ob_start();
 

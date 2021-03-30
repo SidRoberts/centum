@@ -4,7 +4,7 @@ namespace Centum\Http;
 
 class RequestFactory
 {
-    public static function createFromGlobals() : Request
+    public static function createFromGlobals(): Request
     {
         /**
          * @var string

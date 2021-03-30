@@ -8,14 +8,14 @@ use InvalidArgumentException;
 
 class ExceptionController
 {
-    public function index() : Response
+    public function index(): Response
     {
         throw new InvalidArgumentException();
     }
 
 
 
-    public function pageNotFound() : Response
+    public function pageNotFound(): Response
     {
         return new Response(
             "Page not found",
@@ -23,12 +23,11 @@ class ExceptionController
         );
     }
 
-    public function internalServerError() : Response
+    public function internalServerError(): Response
     {
         return new Response(
             "Internal server error",
             Status::INTERNAL_SERVER_ERROR
         );
     }
-
 }

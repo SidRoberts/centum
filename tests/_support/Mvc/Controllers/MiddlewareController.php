@@ -6,7 +6,7 @@ use Centum\Http\Response;
 
 class MiddlewareController
 {
-    public function index() : Response
+    public function index(): Response
     {
         return new Response();
     }

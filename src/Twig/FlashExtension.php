@@ -19,12 +19,12 @@ class FlashExtension extends AbstractExtension
 
 
 
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction(
                 "flash",
-                function () : string {
+                function (): string {
                     return $this->flash->output();
                 },
                 [

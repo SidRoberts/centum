@@ -11,7 +11,7 @@ class StyleCest
     /**
      * @dataProvider decorationProvider
      */
-    public function decorations(UnitTester $I, Example $example) : void
+    public function decorations(UnitTester $I, Example $example): void
     {
         $style = new Style();
 
@@ -21,7 +21,7 @@ class StyleCest
         );
     }
 
-    public function decorationProvider() : array
+    public function decorationProvider(): array
     {
         return [
             [
@@ -62,7 +62,7 @@ class StyleCest
     /**
      * @dataProvider colorProvider
      */
-    public function colors(UnitTester $I, Example $example) : void
+    public function colors(UnitTester $I, Example $example): void
     {
         $style = new Style();
 
@@ -72,7 +72,7 @@ class StyleCest
         );
     }
 
-    public function colorProvider() : array
+    public function colorProvider(): array
     {
         return [
             [
@@ -145,7 +145,7 @@ class StyleCest
 
 
 
-    public function combinedColors(UnitTester $I) : void
+    public function combinedColors(UnitTester $I): void
     {
         $style = new Style();
 
@@ -159,7 +159,7 @@ class StyleCest
 
 
 
-    public function colorTextAndBackground(UnitTester $I) : void
+    public function colorTextAndBackground(UnitTester $I): void
     {
         $style = new Style();
 
@@ -175,7 +175,7 @@ class StyleCest
 
 
 
-    public function reset(UnitTester $I) : void
+    public function reset(UnitTester $I): void
     {
         $style = new Style();
 

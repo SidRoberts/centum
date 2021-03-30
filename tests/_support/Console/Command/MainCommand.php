@@ -9,12 +9,12 @@ use Centum\Container\Container;
 
 class MainCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         $terminal->write(
             "main page"

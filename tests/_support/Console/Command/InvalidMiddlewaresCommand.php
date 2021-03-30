@@ -9,12 +9,12 @@ use Centum\Container\Container;
 
 class InvalidMiddlewaresCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "invalid-middlewares";
     }
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [
             new Terminal(),
@@ -22,7 +22,7 @@ class InvalidMiddlewaresCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         return 0;
     }

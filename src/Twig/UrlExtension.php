@@ -19,7 +19,7 @@ class UrlExtension extends AbstractExtension
 
 
 
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction(
@@ -28,7 +28,7 @@ class UrlExtension extends AbstractExtension
                     $this->url,
                     "get",
                 ]
-            )
+            ),
         ];
     }
 }

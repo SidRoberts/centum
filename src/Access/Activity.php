@@ -23,17 +23,17 @@ class Activity
 
 
 
-    public function allow(string $user) : void
+    public function allow(string $user): void
     {
         $this->users[$user] = Access::ALLOW;
     }
 
-    public function deny(string $user) : void
+    public function deny(string $user): void
     {
         $this->users[$user] = Access::DENY;
     }
 
-    public function remove(string $user) : void
+    public function remove(string $user): void
     {
         unset(
             $this->users[$user]
@@ -42,7 +42,7 @@ class Activity
 
 
 
-    public function isAllowed(string $user) : bool
+    public function isAllowed(string $user): bool
     {
         if (!isset($this->users[$user])) {
             return ($this->default === Access::ALLOW);

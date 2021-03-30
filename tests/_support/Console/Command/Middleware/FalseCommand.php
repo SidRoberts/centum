@@ -10,19 +10,19 @@ use Tests\Console\Middleware\ExampleFalse;
 
 class FalseCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "middleware:false";
     }
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [
             new ExampleFalse(),
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         return 0;
     }

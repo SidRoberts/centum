@@ -13,7 +13,7 @@ use stdClass;
 
 class ContainerCest
 {
-    public function testGetContainer(UnitTester $I) : void
+    public function testGetContainer(UnitTester $I): void
     {
         $container = new Container();
 
@@ -23,7 +23,7 @@ class ContainerCest
         );
     }
 
-    public function testTypehintClass(UnitTester $I) : void
+    public function testTypehintClass(UnitTester $I): void
     {
         $container = new Container();
 
@@ -47,7 +47,7 @@ class ContainerCest
         $I->assertEquals("Busan", $a->city);
     }
 
-    public function testIncrementer(UnitTester $I) : void
+    public function testIncrementer(UnitTester $I): void
     {
         $container = new Container();
 
@@ -69,7 +69,7 @@ class ContainerCest
         $I->assertSame($incrementer0, $incrementer2);
     }
 
-    public function testResolvableClass(UnitTester $I) : void
+    public function testResolvableClass(UnitTester $I): void
     {
         $container = new Container();
 
@@ -83,7 +83,7 @@ class ContainerCest
         );
     }
 
-    public function testResolvableClassNoConstructor(UnitTester $I) : void
+    public function testResolvableClassNoConstructor(UnitTester $I): void
     {
         $container = new Container();
 
@@ -95,7 +95,7 @@ class ContainerCest
         );
     }
 
-    public function testUnresolvableClass(UnitTester $I) : void
+    public function testUnresolvableClass(UnitTester $I): void
     {
         $container = new Container();
 
@@ -107,7 +107,7 @@ class ContainerCest
         );
     }
 
-    public function testSetDynamic(UnitTester $I) : void
+    public function testSetDynamic(UnitTester $I): void
     {
         $container = new Container();
 
@@ -140,7 +140,7 @@ class ContainerCest
         );
     }
 
-    public function resolveDifferentTypes(UnitTester $I) : void
+    public function resolveDifferentTypes(UnitTester $I): void
     {
         $container = new Container();
 
@@ -207,7 +207,7 @@ class ContainerCest
         );
     }
 
-    public function aliases(UnitTester $I) : void
+    public function aliases(UnitTester $I): void
     {
         $container = new Container();
 

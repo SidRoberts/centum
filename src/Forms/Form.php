@@ -11,7 +11,7 @@ class Form
 
 
 
-    public function add(Field $field) : void
+    public function add(Field $field): void
     {
         $name = $field->getName();
 
@@ -20,7 +20,7 @@ class Form
 
 
 
-    public function isValid(array $data) : bool
+    public function isValid(array $data): bool
     {
         $messages = $this->getMessages($data);
 
@@ -29,7 +29,7 @@ class Form
 
 
 
-    public function getMessages(array $data) : array
+    public function getMessages(array $data): array
     {
         $messages = [];
 
@@ -52,7 +52,7 @@ class Form
         return $messages;
     }
 
-    public function getMessagesFor(string $name, mixed $value) : array
+    public function getMessagesFor(string $name, mixed $value): array
     {
         if (!isset($this->fields[$name])) {
             return [];

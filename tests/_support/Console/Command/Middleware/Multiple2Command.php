@@ -11,12 +11,12 @@ use Tests\Console\Middleware\ExampleFalse;
 
 class Multiple2Command extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "middleware:false-true";
     }
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [
             new ExampleFalse(),
@@ -24,7 +24,7 @@ class Multiple2Command extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         return 0;
     }

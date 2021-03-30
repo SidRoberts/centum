@@ -7,7 +7,7 @@ use Centum\Console\ConverterInterface;
 
 class Doubler implements ConverterInterface
 {
-    public function convert(string|bool $value, Container $container) : int
+    public function convert(string | bool $value, Container $container): int
     {
         $value = (int) $value;
 

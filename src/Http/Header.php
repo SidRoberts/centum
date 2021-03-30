@@ -17,19 +17,19 @@ class Header
 
 
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getValue() : string
+    public function getValue(): string
     {
         return $this->value;
     }
 
 
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return sprintf(
             "%s: %s\r\n",

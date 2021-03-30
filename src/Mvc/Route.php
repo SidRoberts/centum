@@ -40,12 +40,12 @@ class Route
 
 
 
-    public function getHttpMethod() : string
+    public function getHttpMethod(): string
     {
         return $this->httpMethod;
     }
 
-    public function getUri() : string
+    public function getUri(): string
     {
         return $this->uri;
     }
@@ -53,19 +53,19 @@ class Route
     /**
      * @return class-string
      */
-    public function getClass() : string
+    public function getClass(): string
     {
         return $this->class;
     }
 
-    public function getMethod() : string
+    public function getMethod(): string
     {
         return $this->method;
     }
 
 
 
-    public function getUriPattern() : string
+    public function getUriPattern(): string
     {
         $replacements = [
             "int"  => "[\d]+",
@@ -76,7 +76,7 @@ class Route
 
         $pattern = preg_replace_callback(
             "/\{([A-Za-z]+)(\:([a-z]+))?\}/",
-            function (array $match) use ($replacements) : string {
+            function (array $match) use ($replacements): string {
                 /**
                  * @var string
                  */
@@ -101,12 +101,12 @@ class Route
 
 
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return $this->middlewares;
     }
 
-    public function addMiddleware(MiddlewareInterface $middleware) : Route
+    public function addMiddleware(MiddlewareInterface $middleware): Route
     {
         $this->middlewares[] = $middleware;
 
@@ -118,12 +118,12 @@ class Route
     /**
      * @return array<string, ConverterInterface>
      */
-    public function getConverters() : array
+    public function getConverters(): array
     {
         return $this->converters;
     }
 
-    public function addConverter(string $key, ConverterInterface $converter) : Route
+    public function addConverter(string $key, ConverterInterface $converter): Route
     {
         $this->converters[$key] = $converter;
 

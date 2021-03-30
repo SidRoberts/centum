@@ -21,14 +21,14 @@ class Queue
 
 
 
-    public function put(Task $task) : void
+    public function put(Task $task): void
     {
         $this->pheanstalk->put(
             serialize($task)
         );
     }
 
-    public function processNextTask() : Task
+    public function processNextTask(): Task
     {
         $job = $this->pheanstalk->reserve();
 

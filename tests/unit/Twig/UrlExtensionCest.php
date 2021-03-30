@@ -13,7 +13,7 @@ class UrlExtensionCest
     /**
      * @dataProvider provider
      */
-    public function extension(UnitTester $I, Example $example) : void
+    public function extension(UnitTester $I, Example $example): void
     {
         $url = new Url(
             $example["baseUri"]
@@ -52,7 +52,7 @@ class UrlExtensionCest
         );
     }
 
-    protected function provider() : array
+    protected function provider(): array
     {
         return [
             [

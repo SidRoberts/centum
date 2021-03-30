@@ -17,12 +17,12 @@ class Message
 
 
 
-    public function getLevel() : string
+    public function getLevel(): string
     {
         return $this->level;
     }
 
-    public function getText() : string
+    public function getText(): string
     {
         return $this->text;
     }

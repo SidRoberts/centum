@@ -34,26 +34,26 @@ class Application
 
 
 
-    public function addCommand(Command $command) : void
+    public function addCommand(Command $command): void
     {
         $name = $command->getName();
 
         $this->commands[$name] = $command;
     }
 
-    public function getCommand(string $name) : Command
+    public function getCommand(string $name): Command
     {
         return $this->commands[$name] ?? throw new OutOfRangeException();
     }
 
-    public function getCommands() : array
+    public function getCommands(): array
     {
         return $this->commands;
     }
 
 
 
-    public function handle(Terminal $terminal) : int
+    public function handle(Terminal $terminal): int
     {
         $argv = $terminal->getArgv();
 
@@ -91,7 +91,7 @@ class Application
 
 
 
-    protected function getCommandFromTerminal(Terminal $terminal) : Command
+    protected function getCommandFromTerminal(Terminal $terminal): Command
     {
         /**
          * @var string

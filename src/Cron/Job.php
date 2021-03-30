@@ -21,19 +21,19 @@ class Job implements JobInterface
 
 
 
-    public function getExpression() : string
+    public function getExpression(): string
     {
         return $this->expression;
     }
 
-    public function getData() : mixed
+    public function getData(): mixed
     {
         return $this->data;
     }
 
 
 
-    public function isDue(DateTime $datetime = null) : bool
+    public function isDue(DateTime $datetime = null): bool
     {
         $cronExpression = new CronExpression(
             $this->getExpression()

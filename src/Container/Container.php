@@ -35,7 +35,7 @@ class Container
     /**
      * @param class-string $class
      */
-    public function typehintClass(string $class) : object
+    public function typehintClass(string $class): object
     {
         $class = $this->aliases[$class] ?? $class;
 
@@ -58,7 +58,7 @@ class Container
 
 
 
-    public function typehintMethod(object $class, string $methodName) : mixed
+    public function typehintMethod(object $class, string $methodName): mixed
     {
         $reflectionMethod = new ReflectionMethod($class, $methodName);
 
@@ -72,7 +72,7 @@ class Container
     /**
      * @param Closure|callable-string $function
      */
-    public function typehintFunction(Closure|string $function) : mixed
+    public function typehintFunction(Closure | string $function): mixed
     {
         $reflectionFunction = new ReflectionFunction($function);
 
@@ -87,7 +87,7 @@ class Container
      * @param class-string $class
      * @param class-string $alias
      */
-    public function addAlias(string $class, string $alias) : void
+    public function addAlias(string $class, string $alias): void
     {
         $this->aliases[$class] = $alias;
     }
@@ -95,7 +95,7 @@ class Container
     /**
      * @param class-string $class
      */
-    public function set(string $class, object $object) : void
+    public function set(string $class, object $object): void
     {
         $this->objects[$class] = $object;
     }
@@ -104,7 +104,7 @@ class Container
      * @param class-string $class
      * @param Closure|callable-string $function
      */
-    public function setDynamic(string $class, Closure|string $function) : void
+    public function setDynamic(string $class, Closure | string $function): void
     {
         /**
          * @var object
@@ -117,7 +117,7 @@ class Container
     /**
      * @return array<int, mixed>
      */
-    protected function resolveParams(ReflectionFunctionAbstract $method) : array
+    protected function resolveParams(ReflectionFunctionAbstract $method): array
     {
         $parameters = $method->getParameters();
 
@@ -133,7 +133,7 @@ class Container
         return $params;
     }
 
-    protected function resolveParam(ReflectionParameter $parameter) : mixed
+    protected function resolveParam(ReflectionParameter $parameter): mixed
     {
         $type = $parameter->getType();
 

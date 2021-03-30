@@ -12,7 +12,7 @@ class Flash implements FlashInterface
 
 
 
-    const SESSION_ID = "_flashMessages";
+    public const SESSION_ID = "_flashMessages";
 
 
 
@@ -24,27 +24,27 @@ class Flash implements FlashInterface
 
 
 
-    public function success(string $text) : void
+    public function success(string $text): void
     {
         $this->add("success", $text);
     }
 
-    public function info(string $text) : void
+    public function info(string $text): void
     {
         $this->add("info", $text);
     }
 
-    public function warning(string $text) : void
+    public function warning(string $text): void
     {
         $this->add("warning", $text);
     }
 
-    public function danger(string $text) : void
+    public function danger(string $text): void
     {
         $this->add("danger", $text);
     }
 
-    protected function add(string $level, string $text) : void
+    protected function add(string $level, string $text): void
     {
         $messageBag = $this->getMessageBag();
 
@@ -57,7 +57,7 @@ class Flash implements FlashInterface
 
 
 
-    public function output() : string
+    public function output(): string
     {
         $messageBag = $this->getMessageBag();
 
@@ -74,7 +74,7 @@ class Flash implements FlashInterface
 
 
 
-    protected function getMessageBag() : MessageBag
+    protected function getMessageBag(): MessageBag
     {
         /**
          * @var MessageBag

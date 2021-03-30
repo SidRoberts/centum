@@ -61,17 +61,17 @@ class Parameters
 
 
 
-    public function get(string $name, mixed $defaultValue = null) : mixed
+    public function get(string $name, mixed $defaultValue = null): mixed
     {
         return $this->parameters[$name] ?? $defaultValue;
     }
 
-    public function set(string $name, mixed $value) : void
+    public function set(string $name, mixed $value): void
     {
         $this->parameters[$name] = $value;
     }
 
-    public function has(string $name) : bool
+    public function has(string $name): bool
     {
         return isset($this->parameters[$name]);
     }

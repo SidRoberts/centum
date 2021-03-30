@@ -21,7 +21,7 @@ class Parameters
 
 
 
-    public function get(string $name, mixed $defaultValue = null) : mixed
+    public function get(string $name, mixed $defaultValue = null): mixed
     {
         return $this->parameters[$name] ?? $defaultValue;
     }

@@ -4,7 +4,7 @@ namespace Centum\Console\Terminal;
 
 class Style
 {
-    public function bold(string $text) : string
+    public function bold(string $text): string
     {
         return $this->embed(
             "\e[1m",
@@ -13,7 +13,7 @@ class Style
         );
     }
 
-    public function italics(string $text) : string
+    public function italics(string $text): string
     {
         return $this->embed(
             "\e[3m",
@@ -22,7 +22,7 @@ class Style
         );
     }
 
-    public function underline(string $text) : string
+    public function underline(string $text): string
     {
         return $this->embed(
             "\e[4m",
@@ -31,7 +31,7 @@ class Style
         );
     }
 
-    public function highlight(string $text) : string
+    public function highlight(string $text): string
     {
         return $this->embed(
             "\e[7m",
@@ -40,7 +40,7 @@ class Style
         );
     }
 
-    public function dim(string $text) : string
+    public function dim(string $text): string
     {
         return $this->embed(
             "\e[2m",
@@ -49,7 +49,7 @@ class Style
         );
     }
 
-    public function blink(string $text) : string
+    public function blink(string $text): string
     {
         return $this->embed(
             "\e[5m",
@@ -58,7 +58,7 @@ class Style
         );
     }
 
-    public function reversed(string $text) : string
+    public function reversed(string $text): string
     {
         return $this->embed(
             "\e[7m",
@@ -69,7 +69,7 @@ class Style
 
 
 
-    public function textBlack(string $text) : string
+    public function textBlack(string $text): string
     {
         return $this->embed(
             "\e[30m",
@@ -78,7 +78,7 @@ class Style
         );
     }
 
-    public function textRed(string $text) : string
+    public function textRed(string $text): string
     {
         return $this->embed(
             "\e[31m",
@@ -87,7 +87,7 @@ class Style
         );
     }
 
-    public function textGreen(string $text) : string
+    public function textGreen(string $text): string
     {
         return $this->embed(
             "\e[32m",
@@ -96,7 +96,7 @@ class Style
         );
     }
 
-    public function textYellow(string $text) : string
+    public function textYellow(string $text): string
     {
         return $this->embed(
             "\e[33m",
@@ -105,7 +105,7 @@ class Style
         );
     }
 
-    public function textBlue(string $text) : string
+    public function textBlue(string $text): string
     {
         return $this->embed(
             "\e[34m",
@@ -114,7 +114,7 @@ class Style
         );
     }
 
-    public function textMagenta(string $text) : string
+    public function textMagenta(string $text): string
     {
         return $this->embed(
             "\e[35m",
@@ -123,7 +123,7 @@ class Style
         );
     }
 
-    public function textCyan(string $text) : string
+    public function textCyan(string $text): string
     {
         return $this->embed(
             "\e[36m",
@@ -132,7 +132,7 @@ class Style
         );
     }
 
-    public function textWhite(string $text) : string
+    public function textWhite(string $text): string
     {
         return $this->embed(
             "\e[37m",
@@ -143,7 +143,7 @@ class Style
 
 
 
-    public function backgroundBlack(string $text) : string
+    public function backgroundBlack(string $text): string
     {
         return $this->embed(
             "\e[40m",
@@ -152,7 +152,7 @@ class Style
         );
     }
 
-    public function backgroundRed(string $text) : string
+    public function backgroundRed(string $text): string
     {
         return $this->embed(
             "\e[41m",
@@ -161,7 +161,7 @@ class Style
         );
     }
 
-    public function backgroundGreen(string $text) : string
+    public function backgroundGreen(string $text): string
     {
         return $this->embed(
             "\e[42m",
@@ -170,7 +170,7 @@ class Style
         );
     }
 
-    public function backgroundYellow(string $text) : string
+    public function backgroundYellow(string $text): string
     {
         return $this->embed(
             "\e[43m",
@@ -179,7 +179,7 @@ class Style
         );
     }
 
-    public function backgroundBlue(string $text) : string
+    public function backgroundBlue(string $text): string
     {
         return $this->embed(
             "\e[44m",
@@ -188,7 +188,7 @@ class Style
         );
     }
 
-    public function backgroundMagenta(string $text) : string
+    public function backgroundMagenta(string $text): string
     {
         return $this->embed(
             "\e[45m",
@@ -197,7 +197,7 @@ class Style
         );
     }
 
-    public function backgroundCyan(string $text) : string
+    public function backgroundCyan(string $text): string
     {
         return $this->embed(
             "\e[46m",
@@ -206,7 +206,7 @@ class Style
         );
     }
 
-    public function backgroundWhite(string $text) : string
+    public function backgroundWhite(string $text): string
     {
         return $this->embed(
             "\e[47m",
@@ -217,14 +217,14 @@ class Style
 
 
 
-    public function reset() : string
+    public function reset(): string
     {
         return "\e[0m";
     }
 
 
 
-    protected function embed(string $startCode, string $text, string $endCode) : string
+    protected function embed(string $startCode, string $text, string $endCode): string
     {
         return $startCode . str_replace("\e[0m", "\e[0m" . $startCode, $text) . $endCode;
     }

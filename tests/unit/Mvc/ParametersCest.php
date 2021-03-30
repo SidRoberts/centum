@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class ParametersCest
 {
-    public function test(UnitTester $I) : void
+    public function test(UnitTester $I): void
     {
         $parameters = new Parameters(
             [
@@ -33,7 +33,7 @@ class ParametersCest
         );
     }
 
-    public function testDefaultValue(UnitTester $I) : void
+    public function testDefaultValue(UnitTester $I): void
     {
         $parameters = new Parameters(
             []

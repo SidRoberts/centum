@@ -26,29 +26,29 @@ class Response
 
 
 
-    public function getContent() : string
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function getStatus() : Status
+    public function getStatus(): Status
     {
         return $this->status;
     }
 
-    public function getHeaders() : Headers
+    public function getHeaders(): Headers
     {
         return $this->headers;
     }
 
-    public function getCookies() : Cookies
+    public function getCookies(): Cookies
     {
         return $this->cookies;
     }
 
 
 
-    public function sendHeaders() : Response
+    public function sendHeaders(): Response
     {
         if (headers_sent()) {
             return $this;
@@ -91,14 +91,14 @@ class Response
         return $this;
     }
 
-    public function sendContent() : Response
+    public function sendContent(): Response
     {
         echo $this->content;
 
         return $this;
     }
 
-    public function send() : Response
+    public function send(): Response
     {
         $this->sendHeaders();
         $this->sendContent();

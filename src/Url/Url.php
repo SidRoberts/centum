@@ -15,14 +15,14 @@ class Url
 
 
 
-    public function getBaseUri() : string
+    public function getBaseUri(): string
     {
         return $this->baseUri;
     }
 
 
 
-    public function get(string $uri = "", array $arguments = []) : string
+    public function get(string $uri = "", array $arguments = []): string
     {
         $uri = rtrim($this->baseUri, "/") . "/" . ltrim($uri, "/");
 

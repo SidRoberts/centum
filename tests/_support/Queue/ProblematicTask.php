@@ -8,7 +8,7 @@ use Exception;
 
 class ProblematicTask extends Task
 {
-    public function execute(Container $container) : bool
+    public function execute(Container $container): bool
     {
         throw new Exception("I'm just being difficult.");
     }

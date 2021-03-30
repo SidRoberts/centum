@@ -7,5 +7,5 @@ use Centum\Http\Request;
 
 interface MiddlewareInterface
 {
-    public function middleware(Request $request, Route $route, Container $container) : bool;
+    public function middleware(Request $request, Route $route, Container $container): bool;
 }

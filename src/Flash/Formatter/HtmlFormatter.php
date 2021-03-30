@@ -7,7 +7,7 @@ use Centum\Flash\Message;
 
 class HtmlFormatter implements FormatterInterface
 {
-    public function output(Message $message) : string
+    public function output(Message $message): string
     {
         return sprintf(
             "<div class=\"alert alert-%s\">%s</div>",

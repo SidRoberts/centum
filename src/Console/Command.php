@@ -6,31 +6,31 @@ use Centum\Container\Container;
 
 abstract class Command
 {
-    abstract public function getName() : string;
+    abstract public function getName(): string;
 
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return "";
     }
 
-    public function getHelp() : string
+    public function getHelp(): string
     {
         return "";
     }
 
 
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [];
     }
 
-    public function getConverters() : array
+    public function getConverters(): array
     {
         return [];
     }
 
 
 
-    abstract public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int;
+    abstract public function execute(Terminal $terminal, Container $container, Parameters $parameters): int;
 }

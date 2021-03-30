@@ -22,7 +22,7 @@ class EventHandler
 
 
 
-    public function handle(EventInterface $event) : void
+    public function handle(EventInterface $event): void
     {
         $this->pheanstalk->put(
             serialize($event)
@@ -31,7 +31,7 @@ class EventHandler
 
 
 
-    public function process() : EventInterface
+    public function process(): EventInterface
     {
         $job = $this->pheanstalk->reserve();
 

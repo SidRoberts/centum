@@ -7,7 +7,7 @@ use Centum\Mvc\Parameters;
 
 class ConverterController
 {
-    public function get(Parameters $parameters) : Response
+    public function get(Parameters $parameters): Response
     {
         $i = $parameters->get("i");
 

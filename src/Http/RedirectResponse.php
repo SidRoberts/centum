@@ -51,7 +51,7 @@ class RedirectResponse extends Response
 
 
 
-    public function getTargetUrl() : string
+    public function getTargetUrl(): string
     {
         return $this->targetUrl;
     }

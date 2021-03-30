@@ -8,7 +8,7 @@ use Exception;
 
 class ProblematicEvent implements EventInterface
 {
-    public function handle(Container $container) : void
+    public function handle(Container $container): void
     {
         throw new Exception("I'm just being difficult.");
     }

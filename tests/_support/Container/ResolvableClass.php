@@ -15,7 +15,7 @@ class ResolvableClass
 
 
 
-    public function getIncrementer() : Incrementer
+    public function getIncrementer(): Incrementer
     {
         return $this->incrementer;
     }

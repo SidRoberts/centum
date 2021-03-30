@@ -9,12 +9,12 @@ use Centum\Container\Container;
 
 class InvalidConvertersCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "invalid-converters";
     }
 
-    public function getConverters() : array
+    public function getConverters(): array
     {
         return [
             "a" => new Terminal(),
@@ -22,7 +22,7 @@ class InvalidConvertersCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         return 0;
     }

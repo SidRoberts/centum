@@ -11,7 +11,7 @@ use Tests\UnitTester;
 
 class QueueCest
 {
-    public function put(UnitTester $I) : void
+    public function put(UnitTester $I): void
     {
         $task = new DoNothingTask();
 
@@ -39,7 +39,7 @@ class QueueCest
         $queue->put($task);
     }
 
-    public function processRegularTask(UnitTester $I) : void
+    public function processRegularTask(UnitTester $I): void
     {
         $task = new DoNothingTask();
 
@@ -71,7 +71,7 @@ class QueueCest
         $queue->processNextTask();
     }
 
-    public function buryJobWhenExceptionIsThrown(UnitTester $I) : void
+    public function buryJobWhenExceptionIsThrown(UnitTester $I): void
     {
         $task = new ProblematicTask();
 

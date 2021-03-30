@@ -22,7 +22,7 @@ use Tests\UnitTester;
 
 class RouterCest
 {
-    public function basicHandle(UnitTester $I) : void
+    public function basicHandle(UnitTester $I): void
     {
         $container = new Container();
 
@@ -42,7 +42,7 @@ class RouterCest
         );
     }
 
-    public function converters(UnitTester $I) : void
+    public function converters(UnitTester $I): void
     {
         $container = new Container();
 
@@ -69,7 +69,7 @@ class RouterCest
     /**
      * @dataProvider middlewaresProvider
      */
-    public function middlewares(UnitTester $I, Example $example) : void
+    public function middlewares(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -105,7 +105,7 @@ class RouterCest
         }
     }
 
-    public function middlewaresProvider() : array
+    public function middlewaresProvider(): array
     {
         return [
             [
@@ -133,7 +133,7 @@ class RouterCest
     /**
      * @dataProvider requirementsProvider
      */
-    public function requirements(UnitTester $I, Example $example) : void
+    public function requirements(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -161,7 +161,7 @@ class RouterCest
         }
     }
 
-    public function requirementsProvider() : array
+    public function requirementsProvider(): array
     {
         return [
             [
@@ -184,7 +184,7 @@ class RouterCest
     /**
      * @dataProvider httpMethodsProvider
      */
-    public function httpMethods(UnitTester $I, Example $example) : void
+    public function httpMethods(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -215,7 +215,7 @@ class RouterCest
         );
     }
 
-    public function httpMethodsProvider() : array
+    public function httpMethodsProvider(): array
     {
         return [
             [
@@ -256,7 +256,7 @@ class RouterCest
         ];
     }
 
-    public function routeNotFoundException(UnitTester $I) : void
+    public function routeNotFoundException(UnitTester $I): void
     {
         $container = new Container();
 
@@ -275,7 +275,7 @@ class RouterCest
         );
     }
 
-    public function submission(UnitTester $I) : void
+    public function submission(UnitTester $I): void
     {
         $container = new Container();
 
@@ -306,7 +306,7 @@ class RouterCest
         );
     }
 
-    public function exceptionHandlers(UnitTester $I) : void
+    public function exceptionHandlers(UnitTester $I): void
     {
         $container = new Container();
 

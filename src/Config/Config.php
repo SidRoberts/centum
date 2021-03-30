@@ -29,7 +29,7 @@ class Config
 
 
 
-    public function toArray() : array
+    public function toArray(): array
     {
         $data = $this->data;
 
@@ -46,12 +46,12 @@ class Config
 
 
 
-    public function __get(string $name) : mixed
+    public function __get(string $name): mixed
     {
         return $this->data[$name];
     }
 
-    public function __set(string $name, mixed $value) : void
+    public function __set(string $name, mixed $value): void
     {
         if (is_array($value)) {
             $value = new Config($value);
@@ -60,12 +60,12 @@ class Config
         $this->data[$name] = $value;
     }
 
-    public function __isset(string $name) : bool
+    public function __isset(string $name): bool
     {
         return isset($this->data[$name]);
     }
 
-    public function __unset(string $name) : void
+    public function __unset(string $name): void
     {
         unset($this->data[$name]);
     }

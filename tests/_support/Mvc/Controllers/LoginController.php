@@ -6,12 +6,12 @@ use Centum\Http\Response;
 
 class LoginController
 {
-    public function form() : Response
+    public function form(): Response
     {
         return new Response("login form");
     }
 
-    public function submit() : Response
+    public function submit(): Response
     {
         return new Response("login successful");
     }

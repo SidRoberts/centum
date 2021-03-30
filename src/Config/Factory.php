@@ -6,7 +6,7 @@ use ValueError;
 
 class Factory
 {
-    public static function yaml(string $path) : Config
+    public static function yaml(string $path): Config
     {
         $data = yaml_parse_file($path);
 

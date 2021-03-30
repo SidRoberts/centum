@@ -42,21 +42,21 @@ class Terminal
 
 
 
-    public function getArgv() : array
+    public function getArgv(): array
     {
         return $this->argv;
     }
 
 
 
-    public function write(string $string) : void
+    public function write(string $string): void
     {
         fwrite($this->stdout, $string);
 
         fflush($this->stdout);
     }
 
-    public function writeLine(string $string = "") : void
+    public function writeLine(string $string = ""): void
     {
         $this->write($string . PHP_EOL);
     }
@@ -64,7 +64,7 @@ class Terminal
     /**
      * @param string[] $list
      */
-    public function writeList(array $list) : void
+    public function writeList(array $list): void
     {
         $this->writeLine();
 
@@ -82,14 +82,14 @@ class Terminal
 
 
 
-    public function writeError(string $string) : void
+    public function writeError(string $string): void
     {
         fwrite($this->stderr, $string);
 
         fflush($this->stderr);
     }
 
-    public function writeErrorLine(string $string = "") : void
+    public function writeErrorLine(string $string = ""): void
     {
         $this->writeError($string . PHP_EOL);
     }

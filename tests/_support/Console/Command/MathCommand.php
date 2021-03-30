@@ -9,12 +9,12 @@ use Centum\Container\Container;
 
 class MathCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "math:add";
     }
 
-    public function getParams() : array
+    public function getParams(): array
     {
         return [
             "a" => "int",
@@ -22,7 +22,7 @@ class MathCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         $a = (int) $parameters->get("a");
         $b = (int) $parameters->get("b");
