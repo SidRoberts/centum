@@ -2,11 +2,11 @@
 
 namespace Tests\Forms;
 
+use Centum\Filter\StringToUpper;
 use Centum\Forms\Field;
-use Tests\UnitTester;
-use Laminas\Filter\Word\DashToCamelCase;
 use Laminas\Validator\NotEmpty;
 use Laminas\Validator\Regex;
+use Tests\UnitTester;
 
 class FieldCest
 {
@@ -43,15 +43,15 @@ class FieldCest
 
 
 
-        $dashToCamelCaseFilter = new DashToCamelCase();
+        $stringToUpperFilter = new StringToUpper();
 
-        $field->addFilter($dashToCamelCaseFilter);
+        $field->addFilter($stringToUpperFilter);
 
 
 
 
         $regularExpressionValidator = new Regex(
-            "/^[A-Za-z]+$/"
+            "/^[A-Z]+$/"
         );
 
         $field->addValidator($regularExpressionValidator);
@@ -60,7 +60,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                $dashToCamelCaseFilter,
+                $stringToUpperFilter,
             ],
             $field->getFilters()
         );
@@ -77,12 +77,12 @@ class FieldCest
 
 
         $I->assertTrue(
-            $field->isValid("this-is-valid")
+            $field->isValid("thisIsValid")
         );
 
         $I->assertEquals(
             [],
-            $field->getMessages("this-is-valid")
+            $field->getMessages("thisIsValid")
         );
 
 
@@ -93,7 +93,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'",
+                "regexNotMatch" => "The input does not match against pattern '/^[A-Z]+$/'",
             ],
             $field->getMessages("This is not valid.")
         );
@@ -106,7 +106,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'",
+                "regexNotMatch" => "The input does not match against pattern '/^[A-Z]+$/'",
             ],
             $field->getMessages("")
         );

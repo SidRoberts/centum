@@ -2,7 +2,7 @@
 
 namespace Centum\Forms;
 
-use Laminas\Filter\FilterInterface;
+use Centum\Filter\FilterInterface;
 use Laminas\Validator\ValidatorInterface;
 
 class Field

@@ -18,9 +18,9 @@ The Field is passed as a parameter and does not need to be returned.
 ```php
 namespace App\Forms;
 
+use Centum\Filter\StringTrim;
 use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
-use Laminas\Filter\StringTrim;
 use Laminas\Validator\NotEmpty;
 
 class LoginTemplate extends FormTemplate

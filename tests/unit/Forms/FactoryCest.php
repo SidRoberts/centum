@@ -16,7 +16,10 @@ class FactoryCest
 
 
         $messages = $form->getMessages(
-            []
+            [
+                "username" => "",
+                "password" => "",
+            ]
         );
 
         $I->assertArrayHasKey("username", $messages);

@@ -2,9 +2,9 @@
 
 namespace Tests\Forms;
 
+use Centum\Filter\StringTrim;
 use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
-use Laminas\Filter\StringTrim;
 use Laminas\Validator\NotEmpty;
 
 class LoginTemplate extends FormTemplate
