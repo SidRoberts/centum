@@ -46,4 +46,16 @@ class ResponseCest
             $response->getCookies()->toArray()
         );
     }
+
+    public function sendContent(UnitTester $I) : void
+    {
+        $I->expectEcho(
+            "Hello world",
+            function () {
+                $response = new Response("Hello world");
+
+                $response->sendContent();
+            }
+        );
+    }
 }
