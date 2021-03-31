@@ -25,4 +25,14 @@ class Parameters
     {
         return $this->parameters[$name] ?? $defaultValue;
     }
+
+
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return $this->parameters;
+    }
 }

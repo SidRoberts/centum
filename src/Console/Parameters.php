@@ -75,4 +75,14 @@ class Parameters
     {
         return isset($this->parameters[$name]);
     }
+
+
+
+    /**
+     * @var array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return $this->parameters;
+    }
 }

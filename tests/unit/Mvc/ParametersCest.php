@@ -48,4 +48,20 @@ class ParametersCest
             $parameters->get("doesnt-exist", "default")
         );
     }
+
+    public function testToArray(UnitTester $I): void
+    {
+        $data = [
+            "a" => 123,
+            "b" => 456,
+            "c" => 789,
+        ];
+
+        $parameters = new Parameters($data);
+
+        $I->assertEquals(
+            $data,
+            $parameters->toArray()
+        );
+    }
 }
