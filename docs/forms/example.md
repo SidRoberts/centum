@@ -23,14 +23,14 @@ Now we need to add some filters and validators to these fields.
 Obviously, neither of these fields should be empty and the email field should contain a valid email address:
 
 ```php
-use Centum\Filter\StringTrim;
+use Centum\Filter\String\Trim;
 use Laminas\Validator\NotEmpty;
 use Laminas\Validator\EmailAddress;
 
 
 
 $emailField->addFilter(
-    new StringTrim()
+    new Trim()
 );
 
 $emailField->addValidator(

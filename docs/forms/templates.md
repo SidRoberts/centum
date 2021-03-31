@@ -18,7 +18,7 @@ The Field is passed as a parameter and does not need to be returned.
 ```php
 namespace App\Forms;
 
-use Centum\Filter\StringTrim;
+use Centum\Filter\String\Trim;
 use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
 use Laminas\Validator\NotEmpty;
@@ -28,7 +28,7 @@ class LoginTemplate extends FormTemplate
     public function username(Field $field)
     {
         $field->addFilter(
-            new StringTrim()
+            new Trim()
         );
 
         $field->addValidator(
