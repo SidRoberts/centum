@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Flash;
+namespace Tests\Filter;
 
 use Centum\Filter\StringToLower;
 use Codeception\Example;
