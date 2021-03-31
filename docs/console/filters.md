@@ -33,7 +33,7 @@ class PostFilter implements FilterInterface
 
 
 
-    public function filter(mixed $value) : Post
+    public function filter(mixed $value): Post
     {
         /**
          * @var EntityManager
@@ -65,19 +65,19 @@ use Centum\Container\Container;
 
 class PostDetailsCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "post-details";
     }
 
-    public function getFilters(Container $container) : array
+    public function getFilters(Container $container): array
     {
         return [
             "post" => new PostFilter($container),
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         /**
          * @var Post

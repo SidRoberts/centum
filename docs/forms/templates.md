@@ -25,7 +25,7 @@ use Laminas\Validator\NotEmpty;
 
 class LoginTemplate extends FormTemplate
 {
-    public function username(Field $field)
+    public function username(Field $field): void
     {
         $field->addFilter(
             new Trim()
@@ -36,7 +36,7 @@ class LoginTemplate extends FormTemplate
         );
     }
 
-    public function password(Field $field)
+    public function password(Field $field): void
     {
         $field->addValidator(
             new NotEmpty()

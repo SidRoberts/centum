@@ -33,7 +33,7 @@ class IdToPostFilter implements FilterInterface
 
 
 
-    public function filter(mixed $value) : Post
+    public function filter(mixed $value): Post
     {
         /**
          * @var EntityManager
@@ -61,7 +61,7 @@ use Centum\Mvc\Parameters;
 
 class PostController
 {
-    public function view(Parameters $parameters) : Response
+    public function view(Parameters $parameters): Response
     {
         /**
          * @var Post

@@ -31,12 +31,12 @@ use Centum\Http\Response;
 
 class LoginController
 {
-    public function form() : Response
+    public function form(): Response
     {
         return new Response("hello GET");
     }
 
-    public function submit() : Response
+    public function submit(): Response
     {
         return new Response("hello POST");
     }

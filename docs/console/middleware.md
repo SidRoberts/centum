@@ -25,7 +25,7 @@ use Centum\Container\Container;
 
 class IsLinuxMiddleware implements MiddlewareInterface
 {
-    public function middleware(Terminal $terminal, Command $command, Container $container) : bool
+    public function middleware(Terminal $terminal, Command $command, Container $container): bool
     {
         $uname = posix_uname();
 
@@ -46,19 +46,19 @@ use Centum\Container\Container;
 
 class AdministrationCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "something";
     }
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [
             new IsLinuxMiddleware(),
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         $terminal->writeLine("this command is running on linux");
 
@@ -81,12 +81,12 @@ use Centum\Container\Container;
 
 class SomethingCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "something";
     }
 
-    public function getMiddlewares() : array
+    public function getMiddlewares(): array
     {
         return [
             new OneMiddleware(),
@@ -95,7 +95,7 @@ class SomethingCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         $terminal->writeLine("hello");
 

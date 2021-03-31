@@ -22,12 +22,12 @@ use Centum\Container\Container;
 
 class IndexCommand extends Command
 {
-    public function getName() : string
+    public function getName(): string
     {
         return "this:is:your:name";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters) : int
+    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
         $terminal->writeLine("hello");
 

@@ -18,7 +18,7 @@ use Centum\Mvc\Parameters;
 
 class PostController
 {
-    public function view(Parameters $parameters) : Response
+    public function view(Parameters $parameters): Response
     {
         $id = $parameters->get("id");
 
@@ -41,7 +41,7 @@ use Centum\Mvc\Parameters;
 
 class SomethingController
 {
-    public function index(Parameters $parameters) : Response
+    public function index(Parameters $parameters): Response
     {
         $a = $parameters->get("a");
         $b = $parameters->get("b");
@@ -81,7 +81,7 @@ use Centum\Mvc\Parameters;
 
 class PostController
 {
-    public function view(Parameters $parameters) : Response
+    public function view(Parameters $parameters): Response
     {
         $id = $parameters->get("id");
 

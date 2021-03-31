@@ -25,7 +25,7 @@ use Centum\Mvc\MiddlewareInterface;
 
 class IsLoggedInMiddleware implements MiddlewareInterface
 {
-    public function middleware(Request $request, Route $route, Container $container) : bool
+    public function middleware(Request $request, Route $route, Container $container): bool
     {
         /**
          * @var Auth
@@ -51,12 +51,11 @@ use Centum\Http\Response;
 
 class AccountController
 {
-    public function guest() : Response
+    public function guest(): Response
     {
         return new Response("this user is logged out");
     }
-
-    public function user() : Response
+    public function user(): Response
     {
         return new Response("this user is logged in");
     }
@@ -81,7 +80,7 @@ use Centum\Http\Response;
 
 class SomethingController
 {
-    public function get() : Response
+    public function get(): Response
     {
         return new Response("hello");
     }
