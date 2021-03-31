@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Filter;
+namespace Tests\Filter\String;
 
-use Centum\Filter\StringToLower;
+use Centum\Filter\String\ToLower;
 use Codeception\Example;
 use Tests\UnitTester;
 
-class StringToLowerCest
+class ToLowerCest
 {
     /**
      * @dataProvider provider
      */
     public function test(UnitTester $I, Example $example): void
     {
-        $filter = new StringToLower();
+        $filter = new ToLower();
 
         $actual = $filter->filter(
             $example["value"]

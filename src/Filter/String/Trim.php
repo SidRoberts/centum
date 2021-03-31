@@ -1,10 +1,11 @@
 <?php
 
-namespace Centum\Filter;
+namespace Centum\Filter\String;
 
+use Centum\Filter\FilterInterface;
 use InvalidArgumentException;
 
-class StringTrim implements FilterInterface
+class Trim implements FilterInterface
 {
     public function filter(mixed $value): mixed
     {

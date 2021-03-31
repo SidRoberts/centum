@@ -2,7 +2,7 @@
 
 namespace Tests\Forms;
 
-use Centum\Filter\StringToUpper;
+use Centum\Filter\String\ToUpper;
 use Centum\Forms\Field;
 use Laminas\Validator\NotEmpty;
 use Laminas\Validator\Regex;
@@ -43,9 +43,9 @@ class FieldCest
 
 
 
-        $stringToUpperFilter = new StringToUpper();
+        $toUpperFilter = new ToUpper();
 
-        $field->addFilter($stringToUpperFilter);
+        $field->addFilter($toUpperFilter);
 
 
 
@@ -60,7 +60,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                $stringToUpperFilter,
+                $toUpperFilter,
             ],
             $field->getFilters()
         );

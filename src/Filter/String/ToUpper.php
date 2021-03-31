@@ -1,10 +1,11 @@
 <?php
 
-namespace Centum\Filter;
+namespace Centum\Filter\String;
 
+use Centum\Filter\FilterInterface;
 use InvalidArgumentException;
 
-class StringToUpper implements FilterInterface
+class ToUpper implements FilterInterface
 {
     public function filter(mixed $value): mixed
     {

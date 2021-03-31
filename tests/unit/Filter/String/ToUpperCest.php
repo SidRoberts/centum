@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Filter;
+namespace Tests\Filter\String;
 
-use Centum\Filter\StringTrim;
+use Centum\Filter\String\ToUpper;
 use Codeception\Example;
 use Tests\UnitTester;
 
-class StringTrimCest
+class ToUpperCest
 {
     /**
      * @dataProvider provider
      */
     public function test(UnitTester $I, Example $example): void
     {
-        $filter = new StringTrim();
+        $filter = new ToUpper();
 
         $actual = $filter->filter(
             $example["value"]
@@ -29,23 +29,23 @@ class StringTrimCest
     {
         return [
             [
-                "value"    => "Sid",
-                "expected" => "Sid",
+                "value"    => "Sid Roberts",
+                "expected" => "SID ROBERTS",
             ],
 
             [
-                "value"    => "  Sid  ",
-                "expected" => "Sid",
+                "value"    => "sid roberts",
+                "expected" => "SID ROBERTS",
             ],
 
             [
-                "value"    => "   ",
-                "expected" => "",
+                "value"    => "SID ROBERTS",
+                "expected" => "SID ROBERTS",
             ],
 
             [
-                "value"    => "",
-                "expected" => "",
+                "value"    => "sId RoBeRtS",
+                "expected" => "SID ROBERTS",
             ],
         ];
     }
