@@ -2,6 +2,8 @@
 
 namespace Centum\Mvc;
 
+use Centum\Filter\FilterInterface;
+
 class Route
 {
     protected string $httpMethod;
@@ -21,9 +23,9 @@ class Route
     protected array $middlewares = [];
 
     /**
-     * @var array<string, ConverterInterface>
+     * @var array<string, FilterInterface>
      */
-    protected array $converters = [];
+    protected array $filters = [];
 
 
 
@@ -116,16 +118,16 @@ class Route
 
 
     /**
-     * @return array<string, ConverterInterface>
+     * @return array<string, FilterInterface>
      */
-    public function getConverters(): array
+    public function getFilters(): array
     {
-        return $this->converters;
+        return $this->filters;
     }
 
-    public function addConverter(string $key, ConverterInterface $converter): Route
+    public function addFilter(string $key, FilterInterface $filter): Route
     {
-        $this->converters[$key] = $converter;
+        $this->filters[$key] = $filter;
 
         return $this;
     }

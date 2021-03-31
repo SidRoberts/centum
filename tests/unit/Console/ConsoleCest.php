@@ -6,11 +6,11 @@ use Centum\Container\Container;
 use Centum\Console\Application;
 use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Console\Exception\InvalidConverterException;
+use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
-use Tests\Console\Command\InvalidConvertersCommand;
+use Tests\Console\Command\InvalidFiltersCommand;
 use Tests\Console\Command\InvalidMiddlewaresCommand;
-use Tests\Console\Command\ConverterCommand;
+use Tests\Console\Command\FilterCommand;
 use Tests\Console\Command\MainCommand;
 use Tests\Console\Command\MathCommand;
 use Tests\Console\Command\Middleware\TrueCommand;
@@ -55,21 +55,21 @@ class ApplicationCest
         );
     }
 
-    public function converters(UnitTester $I): void
+    public function filters(UnitTester $I): void
     {
         $container = new Container();
 
         $application = new Application($container);
 
         $application->addCommand(
-            new ConverterCommand()
+            new FilterCommand()
         );
 
 
 
         $argv = [
             "cli.php",
-            "converter:double",
+            "filter:double",
             "--i",
             "123",
         ];
@@ -214,17 +214,17 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidConverters(UnitTester $I): void
+    public function commandWithInvalidFilters(UnitTester $I): void
     {
         $container = new Container();
 
         $application = new Application($container);
 
-        $application->addCommand(new InvalidConvertersCommand());
+        $application->addCommand(new InvalidFiltersCommand());
 
         $argv = [
             "cli.php",
-            "invalid-converters",
+            "invalid-filters",
         ];
 
         $stdin  = fopen("php://memory", "r");
@@ -234,7 +234,7 @@ class ApplicationCest
         $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
 
         $I->expectThrowable(
-            InvalidConverterException::class,
+            InvalidFilterException::class,
             function () use ($terminal, $application) {
                 $exitCode = $application->handle($terminal);
             }
@@ -274,7 +274,7 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(new ConverterCommand());
+        $application->addCommand(new FilterCommand());
         $application->addCommand(new MathCommand());
 
         $I->assertInstanceOf(
@@ -283,8 +283,8 @@ class ApplicationCest
         );
 
         $I->assertInstanceOf(
-            ConverterCommand::class,
-            $application->getCommand("converter:double")
+            FilterCommand::class,
+            $application->getCommand("filter:double")
         );
     }
 
@@ -294,7 +294,7 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(new ConverterCommand());
+        $application->addCommand(new FilterCommand());
         $application->addCommand(new MathCommand());
 
         $commands = $application->getCommands();
@@ -305,7 +305,7 @@ class ApplicationCest
         );
 
         $I->assertArrayHasKey(
-            "converter:double",
+            "filter:double",
             $commands
         );
     }

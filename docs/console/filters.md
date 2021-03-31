@@ -1,39 +1,50 @@
 ---
 layout: default
-title: Converters
+title: Filters
 parent: Console
 ---
 
 
 
-# Converters
+# Filters
 
-Converters are particularly useful at preprocessing command parameters - for example, converting an ID number into an actual object.
-Any Converters you create must implement [`Centum\Console\ConverterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Console/ConverterInterface.php).
+Filters are particularly useful at preprocessing command parameters - for example, converting an ID number into an actual object.
+Any Filters you create must implement [`Centum\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Filter/FilterInterface.php).
 
 ```php
-namespace App\Converter;
+namespace App\Filter;
 
 use App\Model\Post;
-use Centum\Console\ConverterInterface;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Container\Container;
+use Centum\Filter\FilterInterface;
 use Doctrine\ORM\EntityManager;
 
-class PostConverter implements ConverterInterface
+class PostFilter implements FilterInterface
 {
-    public function convert(string $id, Container $container) : Post
+    protected Container $container;
+
+
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+
+
+    public function filter(mixed $value) : Post
     {
         /**
          * @var EntityManager
          */
-        $doctrine = $container->typehintClass(EntityManager::class);
+        $doctrine = $this->container->typehintClass(EntityManager::class);
 
         $postRepository = $doctrine->getRepository(
             Post::class
         );
 
-        $post = $postRepository->find($id) ?? throw new CommandNotFoundException();
+        $post = $postRepository->find($value) ?? throw new CommandNotFoundException();
 
         return $post;
     }
@@ -45,7 +56,7 @@ In the above example, if the `App\Model\Post` object cannot be found in the data
 When this exception is thrown, the Application understands that to mean that this Command isn't suitable and will fail.
 
 ```php
-use App\Converter\PostConverter;
+use App\Filter\PostFilter;
 use App\Model\Post;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
@@ -59,10 +70,10 @@ class PostDetailsCommand extends Command
         return "post-details";
     }
 
-    public function getConverters() : array
+    public function getFilters(Container $container) : array
     {
         return [
-            "post" => new PostConverter(),
+            "post" => new PostFilter($container),
         ];
     }
 

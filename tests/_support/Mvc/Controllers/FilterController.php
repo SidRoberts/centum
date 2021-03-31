@@ -5,7 +5,7 @@ namespace Tests\Mvc\Controllers;
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;
 
-class ConverterController
+class FilterController
 {
     public function get(Parameters $parameters): Response
     {

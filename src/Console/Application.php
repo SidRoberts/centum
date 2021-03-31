@@ -5,10 +5,11 @@ namespace Centum\Console;
 use Centum\Console\Command\ListCommand;
 use Centum\Console\Command\ProcessTaskCommand;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Console\Exception\InvalidConverterException;
+use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
+use Centum\Filter\FilterInterface;
 use OutOfRangeException;
 
 class Application
@@ -63,11 +64,11 @@ class Application
 
 
 
-        $converters = $command->getConverters();
+        $filters = $command->getFilters($this->container);
 
-        foreach ($converters as $key => $converter) {
-            if (!($converter instanceof ConverterInterface)) {
-                throw new InvalidConverterException();
+        foreach ($filters as $key => $filter) {
+            if (!($filter instanceof FilterInterface)) {
+                throw new InvalidFilterException();
             }
 
             if (!$parameters->has($key)) {
@@ -79,7 +80,7 @@ class Application
             /**
              * @var mixed
              */
-            $value = $converter->convert($value, $this->container);
+            $value = $filter->filter($value);
 
             $parameters->set($key, $value);
         }

@@ -4,6 +4,6 @@ namespace Centum\Console\Exception;
 
 use UnexpectedValueException;
 
-class InvalidConverterException extends UnexpectedValueException
+class InvalidFilterException extends UnexpectedValueException
 {
 }

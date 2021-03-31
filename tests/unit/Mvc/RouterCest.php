@@ -8,14 +8,14 @@ use Centum\Mvc\Exception\RouteNotFoundException;
 use Centum\Mvc\Router;
 use Codeception\Example;
 use Exception;
-use Tests\Mvc\Controllers\ConverterController;
+use Tests\Mvc\Controllers\FilterController;
 use Tests\Mvc\Controllers\ExceptionController;
 use Tests\Mvc\Controllers\HttpMethodController;
 use Tests\Mvc\Controllers\IndexController;
 use Tests\Mvc\Controllers\LoginController;
 use Tests\Mvc\Controllers\MiddlewareController;
 use Tests\Mvc\Controllers\RequirementsController;
-use Tests\Mvc\Converter\Doubler;
+use Tests\Mvc\Filter\Doubler;
 use Tests\Mvc\Middleware\ExampleFalse;
 use Tests\Mvc\Middleware\ExampleTrue;
 use Tests\UnitTester;
@@ -42,19 +42,19 @@ class RouterCest
         );
     }
 
-    public function converters(UnitTester $I): void
+    public function filters(UnitTester $I): void
     {
         $container = new Container();
 
         $router = new Router($container);
 
-        $router->get("/converter/double/{i:int}", ConverterController::class, "get")
-            ->addConverter("i", new Doubler());
+        $router->get("/filter/double/{i:int}", FilterController::class, "get")
+            ->addFilter("i", new Doubler());
 
 
 
         $request = new Request(
-            "/converter/double/123",
+            "/filter/double/123",
             "GET"
         );
 

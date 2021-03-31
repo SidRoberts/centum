@@ -25,7 +25,7 @@ abstract class Command
         return [];
     }
 
-    public function getConverters(): array
+    public function getFilters(Container $container): array
     {
         return [];
     }

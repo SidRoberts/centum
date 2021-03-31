@@ -6,28 +6,24 @@ use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Tests\Console\Converter\Doubler;
 
-class ConverterCommand extends Command
+class InvalidFiltersCommand extends Command
 {
     public function getName(): string
     {
-        return "converter:double";
+        return "invalid-filters";
     }
 
-    public function getConverters(): array
+    public function getFilters(Container $container): array
     {
         return [
-            "i" => new Doubler(),
+            "a" => new Terminal(),
+            "b" => new Container(),
         ];
     }
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
-        $terminal->write(
-            $parameters->get("i")
-        );
-
         return 0;
     }
 }

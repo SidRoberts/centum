@@ -249,9 +249,9 @@ class Router
 
 
 
-        $converters = $route->getConverters();
+        $filters = $route->getFilters();
 
-        foreach ($converters as $key => $converter) {
+        foreach ($filters as $key => $filter) {
             /**
              * @var string
              */
@@ -260,7 +260,7 @@ class Router
             /**
              * @var mixed
              */
-            $params[$key] = $converter->convert($value, $this->container);
+            $params[$key] = $filter->filter($value);
         }
 
 

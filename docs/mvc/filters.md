@@ -1,39 +1,50 @@
 ---
 layout: default
-title: Converters
+title: Filters
 parent: Mvc
 ---
 
 
 
-# Converters
+# Filters
 
-Converters are particularly useful at preprocessing URL parameters - for example, converting an ID number into an actual object.
-Any Converters you create must implement [`Centum\Mvc\ConverterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/ConverterInterface.php).
+Filters are particularly useful at preprocessing URL parameters - for example, converting an ID number into an actual object.
+Any Filters you create must implement [`Centum\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Filter/FilterInterface.php).
 
 ```php
-namespace App\Converter;
+namespace App\Filter;
 
 use App\Model\Post;
 use Centum\Container\Container;
-use Centum\Mvc\ConverterInterface;
+use Centum\Filter\FilterInterface;
 use Centum\Mvc\Exception\RouteMismatchException;
 use Doctrine\ORM\EntityManager;
 
-class PostConverter implements ConverterInterface
+class IdToPostFilter implements FilterInterface
 {
-    public function convert(string $id, Container $container) : Post
+    protected Container $container;
+
+
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+
+
+    public function filter(mixed $value) : Post
     {
         /**
          * @var EntityManager
          */
-        $doctrine = $container->typehintClass(EntityManager::class);
+        $doctrine = $this->container->typehintClass(EntityManager::class);
 
         $postRepository = $doctrine->getRepository(
             Post::class
         );
 
-        $post = $postRepository->find($id) ?? throw new RouteMismatchException();
+        $post = $postRepository->find($value) ?? throw new RouteMismatchException();
 
         return $post;
     }
@@ -66,11 +77,11 @@ class PostController
 ```
 
 ```php
-use App\Converter\PostConverter;
+use App\Filter\IdToPostFilter;
 
 $router->get("/post/{post:int}", PostController::class, "view")
-    ->addConverter(
+    ->addFilter(
         "post",
-        new PostConverter()
+        new IdToPostFilter($container)
     );
 ```
