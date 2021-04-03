@@ -57,8 +57,7 @@ class Response
                     $header->getName(),
                     $header->getValue()
                 ),
-                false,
-                $this->status->getCode()
+                false
             );
         }
 
@@ -69,8 +68,7 @@ class Response
                     $cookie->getName(),
                     $cookie->getValue()
                 ),
-                false,
-                $this->status->getCode()
+                false
             );
         }
 
