@@ -1,7 +1,9 @@
 <?php
 
-namespace Centum\Http;
+namespace Centum\Http\Response;
 
+use Centum\Http\Header;
+use Centum\Http\Response;
 use InvalidArgumentException;
 
 class RedirectResponse extends Response
@@ -10,6 +12,9 @@ class RedirectResponse extends Response
 
 
 
+    /**
+     * @param Header[] $headers
+     */
     public function __construct(string $url, int $status = 302, array $headers = [])
     {
         if ($url === "") {
