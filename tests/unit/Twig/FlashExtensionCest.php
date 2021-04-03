@@ -7,13 +7,16 @@ use Centum\Flash\Formatter\HtmlFormatter;
 use Centum\Twig\FlashExtension;
 use Tests\UnitTester;
 use Centum\Http\Session;
+use Centum\Http\Session\ArrayHandler;
 use Twig\Loader\ArrayLoader;
 
 class FlashExtensionCest
 {
     public function extension(UnitTester $I): void
     {
-        $session   = new Session();
+        $arrayHandler = new ArrayHandler();
+
+        $session   = new Session($arrayHandler);
         $formatter = new HtmlFormatter();
 
         $flash = new Flash(

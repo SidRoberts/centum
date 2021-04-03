@@ -22,7 +22,6 @@
         "dragonmantank/cron-expression": "~3.0",
         "laminas/laminas-validator": "~2.0",
         "pda/pheanstalk": "~4.0",
-        "symfony/http-foundation": "~5.0",
 
         "twig/twig": "~3.0"
     },
