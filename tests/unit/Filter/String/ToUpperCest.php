@@ -4,6 +4,7 @@ namespace Tests\Filter\String;
 
 use Centum\Filter\String\ToUpper;
 use Codeception\Example;
+use InvalidArgumentException;
 use Tests\UnitTester;
 
 class ToUpperCest
@@ -46,6 +47,50 @@ class ToUpperCest
             [
                 "value"    => "sId RoBeRtS",
                 "expected" => "SID ROBERTS",
+            ],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerException
+     */
+    public function exception(UnitTester $I, Example $example): void
+    {
+        $filter = new ToUpper();
+
+        $I->expectThrowable(
+            new InvalidArgumentException("Value must be a string."),
+            function () use ($filter, $example): void {
+                $actual = $filter->filter(
+                    $example["value"]
+                );
+            }
+        );
+    }
+
+    public function providerException(): array
+    {
+        return [
+            [
+                "value" => true,
+            ],
+
+            [
+                "value" => 0,
+            ],
+
+            [
+                "value" => 123.456,
+            ],
+
+            [
+                "value" => ["1", 2, "three"],
+            ],
+
+            [
+                "value" => (object) ["1", 2, "three"],
             ],
         ];
     }

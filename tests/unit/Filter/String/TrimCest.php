@@ -4,6 +4,7 @@ namespace Tests\Filter\String;
 
 use Centum\Filter\String\Trim;
 use Codeception\Example;
+use InvalidArgumentException;
 use Tests\UnitTester;
 
 class TrimCest
@@ -46,6 +47,50 @@ class TrimCest
             [
                 "value"    => "",
                 "expected" => "",
+            ],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerException
+     */
+    public function exception(UnitTester $I, Example $example): void
+    {
+        $filter = new Trim();
+
+        $I->expectThrowable(
+            new InvalidArgumentException("Value must be a string."),
+            function () use ($filter, $example): void {
+                $actual = $filter->filter(
+                    $example["value"]
+                );
+            }
+        );
+    }
+
+    public function providerException(): array
+    {
+        return [
+            [
+                "value" => true,
+            ],
+
+            [
+                "value" => 0,
+            ],
+
+            [
+                "value" => 123.456,
+            ],
+
+            [
+                "value" => ["1", 2, "three"],
+            ],
+
+            [
+                "value" => (object) ["1", 2, "three"],
             ],
         ];
     }
