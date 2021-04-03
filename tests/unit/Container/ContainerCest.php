@@ -3,13 +3,13 @@
 namespace Tests\Container;
 
 use Centum\Config\Config;
-use Centum\Url\Url;
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Url\Url;
+use stdClass;
 use Tests\Container\Alias\ACommand;
 use Tests\Container\Alias\CommandInterface;
 use Tests\UnitTester;
-use stdClass;
 
 class ContainerCest
 {

@@ -2,8 +2,8 @@
 
 namespace Tests\Twig;
 
-use Tests\UnitTester;
 use Centum\Twig\WhitelistedFunctionsExtension;
+use Tests\UnitTester;
 use Twig\Environment;
 use Twig\Error\SyntaxError;
 use Twig\Loader\ArrayLoader;

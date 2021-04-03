@@ -2,8 +2,8 @@
 
 namespace Tests\Cron;
 
-use Codeception\Example;
 use Centum\Cron\Job;
+use Codeception\Example;
 use Tests\UnitTester;
 
 class JobCest

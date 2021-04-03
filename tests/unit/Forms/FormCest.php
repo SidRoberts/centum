@@ -4,8 +4,8 @@ namespace Tests\Forms;
 
 use Centum\Forms\Field;
 use Centum\Forms\Form;
-use Tests\UnitTester;
 use Laminas\Validator\NotEmpty;
+use Tests\UnitTester;
 
 class FormCest
 {

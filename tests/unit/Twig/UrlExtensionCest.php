@@ -2,10 +2,10 @@
 
 namespace Tests\Twig;
 
+use Centum\Twig\UrlExtension;
+use Centum\Url\Url;
 use Codeception\Example;
 use Tests\UnitTester;
-use Centum\Url\Url;
-use Centum\Twig\UrlExtension;
 use Twig\Loader\ArrayLoader;
 
 class UrlExtensionCest

@@ -4,10 +4,10 @@ namespace Tests\Twig;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Twig\FlashExtension;
-use Tests\UnitTester;
 use Centum\Http\Session;
 use Centum\Http\Session\ArrayHandler;
+use Centum\Twig\FlashExtension;
+use Tests\UnitTester;
 use Twig\Loader\ArrayLoader;
 
 class FlashExtensionCest

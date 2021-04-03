@@ -2,23 +2,23 @@
 
 namespace Tests\Console;
 
-use Centum\Container\Container;
 use Centum\Console\Application;
-use Centum\Console\Terminal;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
+use Centum\Console\Terminal;
+use Centum\Container\Container;
+use Codeception\Example;
+use Tests\Console\Command\FilterCommand;
 use Tests\Console\Command\InvalidFiltersCommand;
 use Tests\Console\Command\InvalidMiddlewaresCommand;
-use Tests\Console\Command\FilterCommand;
 use Tests\Console\Command\MainCommand;
 use Tests\Console\Command\MathCommand;
-use Tests\Console\Command\Middleware\TrueCommand;
 use Tests\Console\Command\Middleware\FalseCommand;
 use Tests\Console\Command\Middleware\Multiple1Command;
 use Tests\Console\Command\Middleware\Multiple2Command;
+use Tests\Console\Command\Middleware\TrueCommand;
 use Tests\UnitTester;
-use Codeception\Example;
 
 class ApplicationCest
 {

@@ -2,12 +2,12 @@
 
 namespace Tests\Http;
 
-use Centum\Http\Cookie;
-use Centum\Http\Request;
-use Centum\Http\Header;
 use Centum\Forms\Factory;
-use Tests\UnitTester;
+use Centum\Http\Cookie;
+use Centum\Http\Header;
+use Centum\Http\Request;
 use Tests\Forms\LoginTemplate;
+use Tests\UnitTester;
 
 class RequestCest
 {

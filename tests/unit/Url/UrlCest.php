@@ -2,9 +2,9 @@
 
 namespace Tests\Url;
 
-use Tests\UnitTester;
 use Centum\Url\Url;
 use Codeception\Example;
+use Tests\UnitTester;
 
 class UrlCest
 {

@@ -3,8 +3,8 @@
 namespace Tests\Console\Terminal;
 
 use Centum\Console\Terminal\Style;
-use Tests\UnitTester;
 use Codeception\Example;
+use Tests\UnitTester;
 
 class StyleCest
 {

@@ -2,8 +2,8 @@
 
 namespace Tests\Cron;
 
-use Centum\Cron\Job;
 use Centum\Cron\Cron;
+use Centum\Cron\Job;
 use Tests\UnitTester;
 
 class CronCest

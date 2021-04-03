@@ -3,9 +3,9 @@
 namespace Tests\Mvc\Middleware;
 
 use Centum\Container\Container;
+use Centum\Http\Request;
 use Centum\Mvc\MiddlewareInterface;
 use Centum\Mvc\Route;
-use Centum\Http\Request;
 
 class ExampleTrue implements MiddlewareInterface
 {
