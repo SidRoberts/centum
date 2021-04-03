@@ -3,6 +3,7 @@
 namespace Centum\Http;
 
 use Centum\Forms\Form;
+use Centum\Forms\Status;
 
 class Request
 {
@@ -63,17 +64,8 @@ class Request
 
 
 
-    public function validate(Form $form): bool
+    public function validate(Form $form): Status
     {
-        $status = $form->validate($this->parameters);
-
-        return $status->isValid();
-    }
-
-    public function getValidationMessages(Form $form): array
-    {
-        $status = $form->validate($this->parameters);
-
-        return $status->getMessages();
+        return $form->validate($this->parameters);
     }
 }

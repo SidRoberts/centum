@@ -86,8 +86,19 @@ class RequestCest
             ]
         );
 
+        $status = $request->validate($form);
+
         $I->assertFalse(
-            $request->validate($form)
+            $status->isValid()
+        );
+
+        $I->assertEquals(
+            [
+                "password" => [
+                    "isEmpty" => "Value is required and can't be empty",
+                ],
+            ],
+            $status->getMessages()
         );
 
 
@@ -101,37 +112,14 @@ class RequestCest
             ]
         );
 
+        $status = $request->validate($form);
+
         $I->assertTrue(
-            $request->validate($form)
-        );
-    }
-
-    public function getValidationMessages(UnitTester $I): void
-    {
-        $template = new LoginTemplate();
-
-        $form = Factory::build($template);
-
-
-
-        $request = new Request(
-            "/login",
-            "POST",
-            [
-                "username" => "sidroberts",
-                "password" => "",
-            ]
+            $status->isValid()
         );
 
-
-
-        $I->assertEquals(
-            [
-                "password" => [
-                    "isEmpty" => "Value is required and can't be empty",
-                ],
-            ],
-            $request->getValidationMessages($form)
+        $I->assertEmpty(
+            $status->getMessages()
         );
     }
 }
