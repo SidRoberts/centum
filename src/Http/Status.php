@@ -178,4 +178,18 @@ class Status
     {
         return $this->text;
     }
+
+
+    public function send(): void
+    {
+        header(
+            sprintf(
+                "HTTP/1.0 %s %s",
+                $this->code,
+                $this->text
+            ),
+            true,
+            $this->code
+        );
+    }
 }

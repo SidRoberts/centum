@@ -29,6 +29,20 @@ class Cookie
 
 
 
+    public function send(): void
+    {
+        header(
+            sprintf(
+                "Set-Cookie: %s: %s",
+                $this->name,
+                $this->value
+            ),
+            false
+        );
+    }
+
+
+
     public function __toString(): string
     {
         return sprintf(

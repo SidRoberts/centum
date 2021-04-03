@@ -50,37 +50,11 @@ class Response
             return $this;
         }
 
-        foreach ($this->headers->all() as $header) {
-            header(
-                sprintf(
-                    "%s: %s",
-                    $header->getName(),
-                    $header->getValue()
-                ),
-                false
-            );
-        }
+        $this->headers->send();
 
-        foreach ($this->cookies->all() as $cookie) {
-            header(
-                sprintf(
-                    "Set-Cookie: %s: %s",
-                    $cookie->getName(),
-                    $cookie->getValue()
-                ),
-                false
-            );
-        }
+        $this->cookies->send();
 
-        header(
-            sprintf(
-                "HTTP/1.0 %s %s",
-                $this->status->getCode(),
-                $this->status->getText()
-            ),
-            true,
-            $this->status->getCode()
-        );
+        $this->status->send();
 
         return $this;
     }

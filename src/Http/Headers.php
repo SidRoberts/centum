@@ -32,6 +32,15 @@ class Headers
 
 
 
+    public function send(): void
+    {
+        foreach ($this->headers as $header) {
+            $header->send();
+        }
+    }
+
+
+
     /**
      * @return array<string, Header>
      */

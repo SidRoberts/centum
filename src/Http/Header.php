@@ -29,6 +29,20 @@ class Header
 
 
 
+    public function send(): void
+    {
+        header(
+            sprintf(
+                "%s: %s",
+                $this->name,
+                $this->value
+            ),
+            false
+        );
+    }
+
+
+
     public function __toString(): string
     {
         return sprintf(

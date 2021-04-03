@@ -32,6 +32,15 @@ class Cookies
 
 
 
+    public function send(): void
+    {
+        foreach ($this->cookies as $cookie) {
+            $cookie->send();
+        }
+    }
+
+
+
     /**
      * @return array<string, Cookie>
      */

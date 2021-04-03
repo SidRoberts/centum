@@ -23,7 +23,6 @@ class StatusCest
         );
     }
 
-
     public function testUnknownCode(UnitTester $I)
     {
         $status = new Status(499);
