@@ -11,17 +11,13 @@ class Response
 
 
 
-    /**
-     * @param Header[] $headers
-     * @param Cookie[] $cookies
-     */
-    public function __construct(string $content = "", int $statusCode = 200, array $headers = [], array $cookies = [])
+    public function __construct(string $content = "", int $statusCode = 200, Headers $headers = null, Cookies $cookies = null)
     {
         $this->content = $content;
 
         $this->status  = new Status($statusCode);
-        $this->headers = new Headers($headers);
-        $this->cookies = new Cookies($cookies);
+        $this->headers = $headers ?? new Headers();
+        $this->cookies = $cookies ?? new Cookies();
     }
 
 

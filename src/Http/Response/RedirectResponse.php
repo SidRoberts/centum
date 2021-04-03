@@ -12,10 +12,7 @@ class RedirectResponse extends Response
 
 
 
-    /**
-     * @param Header[] $headers
-     */
-    public function __construct(string $url, int $status = 302, array $headers = [])
+    public function __construct(string $url, int $status = 302, Headers $headers = null)
     {
         if ($url === "") {
             throw new InvalidArgumentException("URL can't be empty.");
@@ -36,9 +33,13 @@ class RedirectResponse extends Response
     </body>
 </html>', htmlspecialchars($url, \ENT_QUOTES, "UTF-8"));
 
-        $headers[] = new Header("Content-Type", "text/html");
+        $headers->add(
+            new Header("Content-Type", "text/html")
+        );
 
-        $headers[] = new Header("Location", $url);
+        $headers->add(
+            new Header("Location", $url)
+        );
 
         if ($status < 300 || $status >= 400) {
             throw new InvalidArgumentException(

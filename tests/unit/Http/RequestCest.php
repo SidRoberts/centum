@@ -4,7 +4,9 @@ namespace Tests\Http;
 
 use Centum\Forms\Factory;
 use Centum\Http\Cookie;
+use Centum\Http\Cookies;
 use Centum\Http\Header;
+use Centum\Http\Headers;
 use Centum\Http\Request;
 use Tests\Forms\LoginTemplate;
 use Tests\UnitTester;
@@ -13,6 +15,22 @@ class RequestCest
 {
     public function getters(UnitTester $I): void
     {
+        $headers = new Headers();
+
+        $headers->add(
+            new Header("cache-control", "no-cache")
+        );
+
+
+
+        $cookies = new Cookies();
+
+        $cookies->add(
+            new Cookie("timezone", "Asia/Seoul")
+        );
+
+
+
         $request = new Request(
             "/login",
             "POST",
@@ -20,12 +38,8 @@ class RequestCest
                 "username" => "sidroberts",
                 "password" => "hunter2",
             ],
-            [
-                new Header("cache-control", "no-cache"),
-            ],
-            [
-                new Cookie("timezone", "Asia/Seoul"),
-            ],
+            $headers,
+            $cookies,
             "Hello world"
         );
 

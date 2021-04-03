@@ -35,25 +35,8 @@ class RequestFactory
             $parameters = [];
         }
 
-        $headers = [];
-
-        /**
-         * @var string $name
-         * @var string $value
-         */
-        foreach (getallheaders() as $name => $value) {
-            $headers[] = new Header($name, $value);
-        }
-
-        $cookies = [];
-
-        /**
-         * @var string $name
-         * @var string $value
-         */
-        foreach ($_COOKIE as $name => $value) {
-            $cookies[] = new Cookie($name, $value);
-        }
+        $headers = HeadersFactory::createFromGlobal();
+        $cookies = CookiesFactory::createFromGlobal();
 
         $request = new Request($uri, $method, $parameters, $headers, $cookies, $content);
 
