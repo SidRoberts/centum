@@ -238,7 +238,11 @@ class Router
 
 
 
-        // Remove integer keys from params.
+        /**
+         * Remove integer keys from params.
+         *
+         * @var array<string, mixed>
+         */
         $params = array_filter(
             $params,
             function (mixed $value, mixed $key): bool {

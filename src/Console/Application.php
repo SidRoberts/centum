@@ -66,6 +66,9 @@ class Application
 
         $filters = $command->getFilters($this->container);
 
+        /**
+         * @var string $key
+         */
         foreach ($filters as $key => $filter) {
             if (!($filter instanceof FilterInterface)) {
                 throw new InvalidFilterException();
@@ -75,6 +78,9 @@ class Application
                 throw new ParamNotFoundException();
             }
 
+            /**
+             * @var mixed
+             */
             $value = $parameters->get($key);
 
             /**

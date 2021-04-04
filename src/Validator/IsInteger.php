@@ -6,7 +6,7 @@ class IsInteger implements ValidatorInterface
 {
     public function validate(mixed $value): bool | array
     {
-        $success = preg_match("/^\d+$/", $value) !== false;
+        $success = (is_scalar($value) && preg_match("/^\d+$/", strval($value)) !== false);
 
         if (!$success) {
             return [

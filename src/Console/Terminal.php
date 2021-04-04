@@ -62,7 +62,7 @@ class Terminal
     }
 
     /**
-     * @param string[] $list
+     * @param list<string> $list
      */
     public function writeList(array $list): void
     {

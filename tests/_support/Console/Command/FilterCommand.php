@@ -24,8 +24,13 @@ class FilterCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
+        /**
+         * @var mixed
+         */
+        $i = $parameters->get("i");
+
         $terminal->write(
-            $parameters->get("i")
+            (string) $i
         );
 
         return 0;

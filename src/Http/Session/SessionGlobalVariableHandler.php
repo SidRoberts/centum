@@ -28,6 +28,9 @@ class SessionGlobalVariableHandler implements HandlerInterface
 
     public function set(string $name, mixed $value): void
     {
+        /**
+         * @var mixed
+         */
         $_SESSION[$name] = $value;
     }
 
