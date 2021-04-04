@@ -39,6 +39,8 @@ src/
         Filters/
         Middlewares/
 tests/
+    _data/
+    _output/
     _support/
         UnitTester.php
     unit/
