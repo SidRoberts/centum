@@ -3,6 +3,7 @@
 namespace Centum\Http\Response;
 
 use Centum\Http\Header;
+use Centum\Http\Headers;
 use Centum\Http\Response;
 use InvalidArgumentException;
 
@@ -32,6 +33,10 @@ class RedirectResponse extends Response
         Redirecting to <a href="%1$s">%1$s</a>.
     </body>
 </html>', htmlspecialchars($url, \ENT_QUOTES, "UTF-8"));
+
+        if ($headers === null) {
+            $headers = new Headers();
+        }
 
         $headers->add(
             new Header("Content-Type", "text/html")
