@@ -38,6 +38,11 @@ src/
         Controllers/
         Filters/
         Middlewares/
+tests/
+    _support/
+        UnitTester.php
+    unit/
+codeception.yml
 composer.json
 ```
 
