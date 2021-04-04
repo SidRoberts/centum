@@ -8,8 +8,42 @@ nav_order: 2
 
 # Installation
 
+A skeleton project can be created using Composer's `create-project` command:
+
 ```bash
-composer require sidroberts/centum
+composer create-project sidroberts/centum-project
 ```
 
-For more information on the available releases, check out the [Changelog](https://github.com/SidRoberts/centum/blob/development/CHANGELOG.md).
+This skeleton project is available on GitHub as [SidRoberts/centum-project](https://github.com/SidRoberts/centum-project).
+
+By default, the `App` namespace is used and has this folder structure:
+
+```
+config/
+public/
+    index.php
+src/
+    Api/
+        Controllers/
+        Filters/
+        Middlewares/
+    Console/
+        Commands/
+        Filters/
+        Middlewares/
+    Forms/
+    Models/
+    Observers/
+    Web/
+        Controllers/
+        Filters/
+        Middlewares/
+tests/
+    _support/
+        UnitTester.php
+    unit/
+codeception.yml
+composer.json
+```
+
+...
