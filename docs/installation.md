@@ -22,6 +22,10 @@ By default, the `App` namespace is used and has this folder structure:
 config/
 public/
     index.php
+resources/
+    docker/
+        nginx.conf
+        php.ini
 src/
     Api/
         Controllers/
@@ -46,6 +50,7 @@ tests/
     unit/
 codeception.yml
 composer.json
+docker-compose.yml
 ```
 
 ...
