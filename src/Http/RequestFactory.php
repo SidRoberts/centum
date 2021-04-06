@@ -27,12 +27,19 @@ class RequestFactory
             $parameters = $_GET;
         } elseif ($method === "POST") {
             $parameters = $_POST;
-        } elseif ($contentType === "application/x-www-form-urlencoded") {
-            parse_str($content, $parameters);
-        } elseif ($contentType === "application/json") {
-            $parameters = json_decode($content, true);
         } else {
-            $parameters = [];
+            /**
+             * @var mixed
+             */
+            $parameters = match ($contentType) {
+                "application/x-www-form-urlencoded" => parse_str($content, $parameters),
+                "application/json"                  => json_decode($content, true),
+                default                             => [],
+            };
+
+            if (!is_array($parameters)) {
+                $parameters = [];
+            }
         }
 
         $headers = HeadersFactory::createFromGlobal();
