@@ -2,7 +2,6 @@
 
 namespace Tests\Container;
 
-use Centum\Config\Config;
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Url\Url;
@@ -104,39 +103,6 @@ class ContainerCest
             function () use ($container) {
                 $unresolvableClass = $container->typehintClass(UnresolvableClass::class);
             }
-        );
-    }
-
-    public function testSetDynamic(UnitTester $I): void
-    {
-        $container = new Container();
-
-        $config = new Config(
-            [
-                "url" => [
-                    "baseUri" => "/api/",
-                ],
-            ]
-        );
-
-        $container->set(Config::class, $config);
-
-        $container->setDynamic(
-            Url::class,
-            function (Config $config) {
-                $url = new Url(
-                    $config->url->baseUri
-                );
-
-                return $url;
-            }
-        );
-
-        $url = $container->typehintClass(Url::class);
-
-        $I->assertEquals(
-            "/api/",
-            $url->getBaseUri()
         );
     }
 
