@@ -105,9 +105,6 @@ class Application
          */
         $name = $terminal->getArgv()[1] ?? "";
 
-        /**
-         * @var Command
-         */
         $command = $this->commands[$name] ?? throw new CommandNotFoundException();
 
 

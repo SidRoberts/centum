@@ -161,9 +161,6 @@ class Status
 
         $this->code = $code;
 
-        /**
-         * @var string
-         */
         $this->text = self::$texts[$code] ?? "Unknown";
     }
 

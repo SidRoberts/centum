@@ -19,6 +19,12 @@ class RegularExpression implements ValidatorInterface
 
     public function validate(mixed $value): bool | array
     {
+        if (!is_string($value)) {
+            return [
+                "Value is not a string.",
+            ];
+        }
+
         $success = preg_match($this->pattern, $value) !== false;
 
         if (!$success) {

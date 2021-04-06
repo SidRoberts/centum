@@ -245,10 +245,10 @@ class Router
          */
         $params = array_filter(
             $params,
-            function (mixed $value, mixed $key): bool {
+            function (string $key): bool {
                 return !is_int($key);
             },
-            ARRAY_FILTER_USE_BOTH
+            ARRAY_FILTER_USE_KEY
         );
 
 

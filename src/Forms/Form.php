@@ -24,9 +24,6 @@ class Form
     {
         $messages = [];
 
-        /**
-         * @var Field $field
-         */
         foreach ($this->fields as $name => $field) {
             /**
              * @var mixed

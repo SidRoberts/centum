@@ -36,9 +36,6 @@ class Parameters
                 continue;
             }
 
-            /**
-             * @var string
-             */
             $name = $match[1];
 
             /**
