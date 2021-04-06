@@ -14,8 +14,14 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 ## Installation
 
 ```bash
-composer require sidroberts/centum
+composer create-project sidroberts/centum-project YOUR-PROJECT-NAME -s dev
+
+cd YOUR-PROJECT-NAME
+
+docker-compose up
 ```
+
+[Read more in the documentation](https://sidroberts.co.uk/centum/installation).
 
 
 
