@@ -41,6 +41,11 @@ class ToArrayCest
             ],
 
             [
+                "value"    => false,
+                "expected" => [false],
+            ],
+
+            [
                 "value"    => 123.456,
                 "expected" => [123.456],
             ],
