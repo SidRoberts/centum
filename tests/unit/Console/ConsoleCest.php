@@ -9,6 +9,7 @@ use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 use Codeception\Example;
+use Tests\Console\Command\ErrorCommand;
 use Tests\Console\Command\FilterCommand;
 use Tests\Console\Command\InvalidFiltersCommand;
 use Tests\Console\Command\InvalidMiddlewaresCommand;
@@ -18,6 +19,7 @@ use Tests\Console\Command\Middleware\FalseCommand;
 use Tests\Console\Command\Middleware\Multiple1Command;
 use Tests\Console\Command\Middleware\Multiple2Command;
 use Tests\Console\Command\Middleware\TrueCommand;
+use Tests\Console\Command\ProblematicCommand;
 use Tests\UnitTester;
 
 class ApplicationCest
@@ -307,6 +309,51 @@ class ApplicationCest
         $I->assertArrayHasKey(
             "filter:double",
             $commands
+        );
+    }
+
+    public function exceptionalHandlers(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(
+            new ProblematicCommand()
+        );
+
+        $application->addExceptionHandler(
+            \Throwable::class,
+            new ErrorCommand()
+        );
+
+
+
+        $argv = [
+            "cli.php",
+            "problematic",
+        ];
+
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $exitCode = $application->handle($terminal);
+
+
+
+        rewind($stdout);
+
+        $I->assertEquals(
+            "Something went wrong.",
+            stream_get_contents($stdout)
+        );
+
+        $I->assertEquals(
+            1,
+            $exitCode
         );
     }
 }

@@ -11,6 +11,7 @@ use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
 use OutOfRangeException;
+use Throwable;
 
 class Application
 {
@@ -20,6 +21,11 @@ class Application
      * @var array<string, Command>
      */
     protected array $commands = [];
+
+    /**
+     * @var array<class-string, Command>
+     */
+    protected array $exceptionHandlers = [];
 
 
 
@@ -54,6 +60,16 @@ class Application
 
 
 
+    /**
+     * @param class-string $exceptionClass
+     */
+    public function addExceptionHandler(string $exceptionClass, Command $command): void
+    {
+        $this->exceptionHandlers[$exceptionClass] = $command;
+    }
+
+
+
     public function handle(Terminal $terminal): int
     {
         $argv = $terminal->getArgv();
@@ -64,36 +80,46 @@ class Application
 
 
 
-        $filters = $command->getFilters($this->container);
-
-        /**
-         * @var string $key
-         */
-        foreach ($filters as $key => $filter) {
-            if (!($filter instanceof FilterInterface)) {
-                throw new InvalidFilterException();
-            }
-
-            if (!$parameters->has($key)) {
-                throw new ParamNotFoundException();
-            }
+        try {
+            $filters = $command->getFilters($this->container);
 
             /**
-             * @var mixed
+             * @var string $key
              */
-            $value = $parameters->get($key);
+            foreach ($filters as $key => $filter) {
+                if (!($filter instanceof FilterInterface)) {
+                    throw new InvalidFilterException();
+                }
 
-            /**
-             * @var mixed
-             */
-            $value = $filter->filter($value);
+                if (!$parameters->has($key)) {
+                    throw new ParamNotFoundException();
+                }
 
-            $parameters->set($key, $value);
+                /**
+                 * @var mixed
+                 */
+                $value = $parameters->get($key);
+
+                /**
+                 * @var mixed
+                 */
+                $value = $filter->filter($value);
+
+                $parameters->set($key, $value);
+            }
+
+
+
+            return $command->execute($terminal, $this->container, $parameters);
+        } catch (Throwable $exception) {
+            foreach ($this->exceptionHandlers as $exceptionClass => $command) {
+                if (is_a($exception, $exceptionClass)) {
+                    return $command->execute($terminal, $this->container, $parameters);
+                }
+            }
+
+            throw $exception;
         }
-
-
-
-        return $command->execute($terminal, $this->container, $parameters);
     }
 
 
