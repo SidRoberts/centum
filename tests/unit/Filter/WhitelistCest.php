@@ -19,7 +19,7 @@ class WhitelistCest
                 "Yeosu",
                 1,
                 false,
-                [1,2,3]
+                [1,2,3],
             ],
             $example["strict"]
         );

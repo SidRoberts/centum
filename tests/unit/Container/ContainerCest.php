@@ -4,7 +4,6 @@ namespace Tests\Container;
 
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
-use Centum\Url\Url;
 use stdClass;
 use Tests\Container\Alias\ACommand;
 use Tests\Container\Alias\CommandInterface;
