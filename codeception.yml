@@ -17,6 +17,8 @@ suites:
     modules:
       enabled:
         - Asserts
+        - Centum\Codeception\Module:
+            container: tests/_data/container.php
         - Mockery
     coverage:
       enabled: true

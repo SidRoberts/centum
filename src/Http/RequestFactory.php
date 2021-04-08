@@ -2,6 +2,8 @@
 
 namespace Centum\Http;
 
+use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
+
 class RequestFactory
 {
     public static function createFromGlobals(): Request
@@ -48,5 +50,32 @@ class RequestFactory
         $request = new Request($uri, $method, $parameters, $headers, $cookies, $content);
 
         return $request;
+    }
+
+    public static function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
+    {
+        $uri         = $browserKitRequest->getUri();
+        $queryString = \parse_url($uri, PHP_URL_QUERY);
+        $method      = \strtoupper($browserKitRequest->getMethod());
+        $content     = $browserKitRequest->getContent();
+
+        if ($method === "GET") {
+            \parse_str($queryString, $parameters);
+        } else {
+            $parameters = $browserKitRequest->getParameters();
+        }
+
+
+
+        $requestUri = \parse_url($uri, PHP_URL_PATH);
+
+        return new Request(
+            $requestUri,
+            $method,
+            $parameters,
+            HeadersFactory::createFromBrowserKitRequest($browserKitRequest),
+            CookiesFactory::createFromBrowserKitRequest($browserKitRequest),
+            $content
+        );
     }
 }
