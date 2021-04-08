@@ -13,7 +13,7 @@ use Centum\Twig\WhitelistedFunctionsExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-$loader = new FilesystemLoader("views/");
+$loader = new FilesystemLoader("resources/twig/");
 
 $twig = new Environment($loader);
 

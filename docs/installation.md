@@ -52,6 +52,7 @@ resources/
     docker/
         nginx.conf
         php.ini
+    twig/
 src/
     Api/
         Controllers/
