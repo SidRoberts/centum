@@ -17,20 +17,14 @@ $loader = new FilesystemLoader("resources/twig/");
 
 $twig = new Environment($loader);
 
-
-
-$whitelistedFunctions = [
-    "ucfirst",
-    "lcfirst",
-    "number_format",
-    // ...
-];
-
-
-
 $twig->addExtension(
     new WhitelistedFunctionsExtension(
-        $whitelistedFunctions
+        [
+            "ucfirst",
+            "lcfirst",
+            "number_format",
+            // ...
+        ]
     )
 );
 ```
