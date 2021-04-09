@@ -1,8 +1,9 @@
 ---
 layout: default
 title: Console
+parent: Apps
 has_children: true
-permalink: console
+permalink: apps/console
 ---
 
 

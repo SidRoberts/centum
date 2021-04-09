@@ -2,6 +2,7 @@
 layout: default
 title: Interacting With the Terminal
 parent: Console
+grand_parent: Apps
 nav_order: 2
 ---
 

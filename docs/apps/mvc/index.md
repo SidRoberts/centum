@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Mvc
+parent: Apps
 has_children: true
-permalink: mvc
 ---
 
 
