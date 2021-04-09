@@ -4,7 +4,7 @@ namespace Tests\Forms;
 
 use Centum\Forms\Field;
 use Centum\Forms\Form;
-use Laminas\Validator\NotEmpty;
+use Centum\Validator\NotEmpty;
 use Tests\UnitTester;
 
 class FormCest
@@ -89,7 +89,7 @@ class FormCest
         $I->assertEquals(
             [
                 "exampleField" => [
-                    "isEmpty" => "Value is required and can't be empty",
+                    "Value is required and can't be empty.",
                 ],
             ],
             $status->getMessages()
@@ -110,7 +110,7 @@ class FormCest
         $I->assertEquals(
             [
                 "exampleField" => [
-                    "isEmpty" => "Value is required and can't be empty",
+                    "Value is required and can't be empty.",
                 ],
             ],
             $status->getMessages()

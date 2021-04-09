@@ -24,8 +24,8 @@ Obviously, neither of these fields should be empty and the email field should co
 
 ```php
 use Centum\Filter\String\Trim;
-use Laminas\Validator\NotEmpty;
-use Laminas\Validator\EmailAddress;
+use Centum\Validator\EmailAddress;
+use Centum\Validator\NotEmpty;
 
 
 

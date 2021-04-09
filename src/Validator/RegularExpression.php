@@ -10,8 +10,6 @@ class RegularExpression implements ValidatorInterface
 
     public function __construct(string $pattern)
     {
-        //TODO Check pattern
-
         $this->pattern = $pattern;
     }
 
@@ -25,11 +23,14 @@ class RegularExpression implements ValidatorInterface
             ];
         }
 
-        $success = preg_match($this->pattern, $value) !== false;
+        $success = (preg_match($this->pattern, $value) === 1);
 
         if (!$success) {
             return [
-                "Value does not match the regular expression.",
+                sprintf(
+                    "Value does not match '%s'.",
+                    $this->pattern
+                ),
             ];
         }
 

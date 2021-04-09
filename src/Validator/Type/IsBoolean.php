@@ -1,6 +1,8 @@
 <?php
 
-namespace Centum\Validator;
+namespace Centum\Validator\Type;
+
+use Centum\Validator\ValidatorInterface;
 
 class IsBoolean implements ValidatorInterface
 {
@@ -10,7 +12,7 @@ class IsBoolean implements ValidatorInterface
 
         if (!$success) {
             return [
-                "Value is not a boolean.",
+                "Value is not boolean.",
             ];
         }
 

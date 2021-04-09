@@ -3,7 +3,7 @@
 namespace Centum\Forms;
 
 use Centum\Filter\FilterInterface;
-use Laminas\Validator\ValidatorInterface;
+use Centum\Validator\ValidatorInterface;
 
 class Field
 {
@@ -90,15 +90,17 @@ class Field
          */
         $filteredValue = $this->getFilteredValue($value);
 
+        $allMessages = [];
+
         // Validate filtered value.
         foreach ($this->validators as $validator) {
-            $success = $validator->isValid($filteredValue);
+            $messages = $validator->validate($filteredValue);
 
-            if (!$success) {
-                return $validator->getMessages();
+            if (is_array($messages)) {
+                array_push($allMessages, ...$messages);
             }
         }
 
-        return [];
+        return $allMessages;
     }
 }

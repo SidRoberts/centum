@@ -26,7 +26,6 @@
         "codeception/lib-innerbrowser": "~1.0",
 
         "dragonmantank/cron-expression": "~3.0",
-        "laminas/laminas-validator": "~2.0",
         "pda/pheanstalk": "~4.0",
 
         "twig/twig": "~3.0"

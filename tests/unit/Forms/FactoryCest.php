@@ -27,8 +27,19 @@ class FactoryCest
         $I->assertArrayHasKey("username", $messages);
         $I->assertArrayHasKey("password", $messages);
 
-        $I->assertArrayHasKey("isEmpty", $messages["username"]);
-        $I->assertArrayHasKey("isEmpty", $messages["password"]);
+        $I->assertEquals(
+            [
+                "Value is required and can't be empty.",
+            ],
+            $messages["username"]
+        );
+
+        $I->assertEquals(
+            [
+                "Value is required and can't be empty.",
+            ],
+            $messages["password"]
+        );
 
 
 

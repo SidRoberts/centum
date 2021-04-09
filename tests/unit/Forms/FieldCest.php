@@ -4,8 +4,8 @@ namespace Tests\Forms;
 
 use Centum\Filter\String\ToUpper;
 use Centum\Forms\Field;
-use Laminas\Validator\NotEmpty;
-use Laminas\Validator\Regex;
+use Centum\Validator\NotEmpty;
+use Centum\Validator\RegularExpression;
 use Tests\UnitTester;
 
 class FieldCest
@@ -50,7 +50,7 @@ class FieldCest
 
 
 
-        $regularExpressionValidator = new Regex(
+        $regularExpressionValidator = new RegularExpression(
             "/^[A-Z]+$/"
         );
 
@@ -93,7 +93,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "regexNotMatch" => "The input does not match against pattern '/^[A-Z]+$/'",
+                "Value does not match '/^[A-Z]+$/'.",
             ],
             $field->getMessages("This is not valid.")
         );
@@ -106,7 +106,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "regexNotMatch" => "The input does not match against pattern '/^[A-Z]+$/'",
+                "Value does not match '/^[A-Z]+$/'.",
             ],
             $field->getMessages("")
         );
@@ -150,7 +150,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "isEmpty" => "Value is required and can't be empty",
+                "Value is required and can't be empty.",
             ],
             $field->getMessages("")
         );

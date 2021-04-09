@@ -1,12 +1,14 @@
 <?php
 
-namespace Centum\Validator;
+namespace Centum\Validator\Type;
+
+use Centum\Validator\ValidatorInterface;
 
 class IsInteger implements ValidatorInterface
 {
     public function validate(mixed $value): bool | array
     {
-        $success = (is_scalar($value) && preg_match("/^\d+$/", strval($value)) !== false);
+        $success = (is_scalar($value) && !is_bool($value) && preg_match("/^\d+$/", strval($value)) === 1);
 
         if (!$success) {
             return [

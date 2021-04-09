@@ -109,7 +109,7 @@ class RequestCest
         $I->assertEquals(
             [
                 "password" => [
-                    "isEmpty" => "Value is required and can't be empty",
+                    "Value is required and can't be empty.",
                 ],
             ],
             $status->getMessages()
