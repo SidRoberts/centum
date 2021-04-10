@@ -46,6 +46,7 @@ By default, the `App` namespace is used and has this folder structure:
 
 ```
 config/
+    container.php
 public/
     index.php
 resources/
