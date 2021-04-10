@@ -3,11 +3,14 @@
 namespace Tests\Mvc;
 
 use Centum\Container\Container;
+use Centum\Forms\Factory as FormFactory;
 use Centum\Http\Request;
+use Centum\Mvc\Exception\FormRequestException;
 use Centum\Mvc\Exception\RouteNotFoundException;
 use Centum\Mvc\Router;
 use Codeception\Example;
 use Exception;
+use Tests\Forms\LoginTemplate;
 use Tests\Mvc\Controllers\ExceptionController;
 use Tests\Mvc\Controllers\FilterController;
 use Tests\Mvc\Controllers\HttpMethodController;
@@ -303,6 +306,52 @@ class RouterCest
         $I->assertEquals(
             "login successful",
             $postResponse->getContent()
+        );
+    }
+
+    public function formRequests(UnitTester $I): void
+    {
+        $template = new LoginTemplate();
+
+        $form = FormFactory::build($template);
+
+
+
+        $container = new Container();
+
+        $router = new Router($container);
+
+        $router->get("/login", LoginController::class, "form");
+
+        $router->post("/login", LoginController::class, "submit", $form);
+
+
+
+        $request = new Request("/login", "POST");
+
+        $I->expectThrowable(
+            FormRequestException::class,
+            function () use ($router, $request) {
+                $response = $router->handle($request);
+            }
+        );
+
+
+
+        $request = new Request(
+            "/login",
+            "POST",
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ]
+        );
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "login successful",
+            $response->getContent()
         );
     }
 

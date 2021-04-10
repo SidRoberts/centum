@@ -3,8 +3,10 @@
 namespace Centum\Mvc;
 
 use Centum\Container\Container;
+use Centum\Forms\Form;
 use Centum\Http\Request;
 use Centum\Http\Response;
+use Centum\Mvc\Exception\FormRequestException;
 use Centum\Mvc\Exception\ParamNotFoundException;
 use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\RouteNotFoundException;
@@ -35,9 +37,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function get(string $uri, string $class, string $method): Route
+    public function get(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("GET", $uri, $class, $method);
+        $route = new Route("GET", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -47,9 +49,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function post(string $uri, string $class, string $method): Route
+    public function post(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("POST", $uri, $class, $method);
+        $route = new Route("POST", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -59,9 +61,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function head(string $uri, string $class, string $method): Route
+    public function head(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("HEAD", $uri, $class, $method);
+        $route = new Route("HEAD", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -71,9 +73,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function put(string $uri, string $class, string $method): Route
+    public function put(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("PUT", $uri, $class, $method);
+        $route = new Route("PUT", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -83,9 +85,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function delete(string $uri, string $class, string $method): Route
+    public function delete(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("DELETE", $uri, $class, $method);
+        $route = new Route("DELETE", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -95,9 +97,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function trace(string $uri, string $class, string $method): Route
+    public function trace(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("TRACE", $uri, $class, $method);
+        $route = new Route("TRACE", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -107,9 +109,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function options(string $uri, string $class, string $method): Route
+    public function options(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("OPTIONS", $uri, $class, $method);
+        $route = new Route("OPTIONS", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -119,9 +121,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function connect(string $uri, string $class, string $method): Route
+    public function connect(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("CONNECT", $uri, $class, $method);
+        $route = new Route("CONNECT", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -131,9 +133,9 @@ class Router
     /**
      * @param class-string $class
      */
-    public function patch(string $uri, string $class, string $method): Route
+    public function patch(string $uri, string $class, string $method, Form $form = null): Route
     {
-        $route = new Route("PATCH", $uri, $class, $method);
+        $route = new Route("PATCH", $uri, $class, $method, $form);
 
         $this->routes[] = $route;
 
@@ -145,11 +147,11 @@ class Router
     /**
      * @param class-string $class
      */
-    public function submission(string $uri, string $class): void
+    public function submission(string $uri, string $class, Form $form = null): void
     {
         $this->get($uri, $class, "form");
 
-        $this->post($uri, $class, "submit");
+        $this->post($uri, $class, "submit", $form);
     }
 
 
@@ -265,6 +267,20 @@ class Router
              * @var mixed
              */
             $params[$key] = $filter->filter($value);
+        }
+
+
+
+        $form = $route->getForm();
+
+        if ($form) {
+            $status = $request->validate($form);
+
+            if (!$status->isValid()) {
+                throw new FormRequestException($status);
+            }
+
+            $this->container->set(Form::class, $form);
         }
 
 

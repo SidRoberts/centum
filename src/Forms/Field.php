@@ -83,6 +83,9 @@ class Field
 
 
 
+    /**
+     * @return string[]
+     */
     public function getMessages(mixed $value): array
     {
         /**
