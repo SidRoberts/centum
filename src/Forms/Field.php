@@ -88,20 +88,26 @@ class Field
      */
     public function getMessages(mixed $value): array
     {
-        /**
-         * @var mixed
-         */
-        $filteredValue = $this->getFilteredValue($value);
+        try {
+            /**
+             * @var mixed
+             */
+            $filteredValue = $this->getFilteredValue($value);
 
-        $allMessages = [];
+            $allMessages = [];
 
-        // Validate filtered value.
-        foreach ($this->validators as $validator) {
-            $messages = $validator->validate($filteredValue);
+            // Validate filtered value.
+            foreach ($this->validators as $validator) {
+                $messages = $validator->validate($filteredValue);
 
-            if (is_array($messages)) {
-                array_push($allMessages, ...$messages);
+                if (is_array($messages)) {
+                    array_push($allMessages, ...$messages);
+                }
             }
+        } catch (\Throwable $exception) {
+            return [
+                $exception->getMessage(),
+            ];
         }
 
         return $allMessages;
