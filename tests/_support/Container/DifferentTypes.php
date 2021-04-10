@@ -29,6 +29,14 @@ class DifferentTypes
         return $name;
     }
 
+    /**
+     * @param mixed $name
+     */
+    public function resolvable6($name = "Sid"): mixed
+    {
+        return $name;
+    }
+
     public function unresolvable(string $name): string
     {
         return $name;
