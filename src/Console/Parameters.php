@@ -11,10 +11,11 @@ class Parameters
 
 
 
+    /**
+     * @param list<string> $argv
+     */
     public function __construct(array $argv)
     {
-        $parameters = [];
-
         // Remove script filename.
         array_shift($argv);
 
@@ -22,15 +23,7 @@ class Parameters
         array_shift($argv);
 
         while ($argv) {
-            /**
-             * @var string
-             */
             $token = array_shift($argv);
-
-            /**
-             * @var string
-             */
-            $nextToken = $argv[0] ?? "";
 
             if (!preg_match("/^\-\-([A-Za-z0-9\-]+)(\=(.*)|$)/", $token, $match)) {
                 continue;
@@ -38,22 +31,14 @@ class Parameters
 
             $name = $match[1];
 
-            /**
-             * @var string|boolean
-             */
             $value = $match[3] ?? true;
 
-            if ($match[2] === "" && !str_starts_with($nextToken, "--")) {
-                /**
-                 * @var string
-                 */
+            if ($match[2] === "" && isset($argv[0]) && !str_starts_with($argv[0], "--")) {
                 $value = array_shift($argv);
             }
 
-            $parameters[$name] = $value;
+            $this->parameters[$name] = $value;
         }
-
-        $this->parameters = $parameters;
     }
 
 
@@ -76,7 +61,7 @@ class Parameters
 
 
     /**
-     * @var array<string, mixed>
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

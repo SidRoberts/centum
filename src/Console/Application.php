@@ -126,9 +126,6 @@ class Application
 
     protected function getCommandFromTerminal(Terminal $terminal): Command
     {
-        /**
-         * @var string
-         */
         $name = $terminal->getArgv()[1] ?? "";
 
         $command = $this->commands[$name] ?? throw new CommandNotFoundException();

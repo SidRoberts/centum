@@ -4,6 +4,9 @@ namespace Centum\Console;
 
 class Terminal
 {
+    /**
+     * @var list<string>
+     */
     protected array $argv;
 
     /**
@@ -24,6 +27,7 @@ class Terminal
 
 
     /**
+     * @param list<string> $argv
      * @param resource $stdin
      * @param resource $stdout
      * @param resource $stderr
@@ -31,7 +35,7 @@ class Terminal
     public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT, $stderr = STDERR)
     {
         /**
-         * @var array
+         * @var list<string>
          */
         $this->argv = $argv ?? $_SERVER["argv"];
 
@@ -42,6 +46,9 @@ class Terminal
 
 
 
+    /**
+     * @return list<string>
+     */
     public function getArgv(): array
     {
         return $this->argv;
