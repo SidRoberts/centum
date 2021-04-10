@@ -16,8 +16,14 @@ class Request
 
 
 
-    public function __construct(string $uri, string $method = "GET", array $parameters = [], Headers $headers = null, Cookies $cookies = null, string $content = null)
-    {
+    public function __construct(
+        string $uri,
+        string $method = "GET",
+        array $parameters = [],
+        Headers $headers = null,
+        Cookies $cookies = null,
+        string $content = null
+    ) {
         $this->uri        = $uri;
         $this->method     = strtoupper($method);
         $this->parameters = $parameters;

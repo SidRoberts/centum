@@ -11,8 +11,12 @@ class Response
 
 
 
-    public function __construct(string $content = "", int $statusCode = 200, Headers $headers = null, Cookies $cookies = null)
-    {
+    public function __construct(
+        string $content = "",
+        int $statusCode = 200,
+        Headers $headers = null,
+        Cookies $cookies = null
+    ) {
         $this->content = $content;
 
         $this->status  = new Status($statusCode);

@@ -19,8 +19,12 @@ class Connector extends Client
 
 
 
-    public function __construct(Container $container, array $server = [], History $history = null, CookieJar $cookieJar = null)
-    {
+    public function __construct(
+        Container $container,
+        array $server = [],
+        History $history = null,
+        CookieJar $cookieJar = null
+    ) {
         $container->setDynamic(
             HandlerInterface::class,
             function () {
