@@ -5,7 +5,6 @@ namespace Tests\Http\Response;
 use Centum\Http\Response\JsonResponse;
 use Codeception\Example;
 use stdClass;
-use Tests\Mvc\Filter\Doubler;
 use Tests\UnitTester;
 
 class JsonResponseCest
