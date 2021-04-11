@@ -2,16 +2,16 @@
 
 namespace Tests\Forms;
 
-use Centum\Forms\Factory;
+use Centum\Forms\FormFactory;
 use Tests\UnitTester;
 
-class FactoryCest
+class FormFactoryCest
 {
     public function test(UnitTester $I): void
     {
         $template = new LoginTemplate();
 
-        $form = Factory::build($template);
+        $form = FormFactory::createFromTemplate($template);
 
 
 

@@ -2,7 +2,7 @@
 
 namespace Tests\Http;
 
-use Centum\Forms\Factory;
+use Centum\Forms\FormFactory;
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
 use Centum\Http\Header;
@@ -87,7 +87,7 @@ class RequestCest
     {
         $template = new LoginTemplate();
 
-        $form = Factory::build($template);
+        $form = FormFactory::createFromTemplate($template);
 
 
 

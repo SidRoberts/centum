@@ -3,7 +3,7 @@
 namespace Tests\Mvc;
 
 use Centum\Container\Container;
-use Centum\Forms\Factory as FormFactory;
+use Centum\Forms\FormFactory;
 use Centum\Http\Request;
 use Centum\Mvc\Exception\FormRequestException;
 use Centum\Mvc\Exception\RouteNotFoundException;
@@ -403,7 +403,7 @@ class RouterCest
     {
         $template = new LoginTemplate();
 
-        $form = FormFactory::build($template);
+        $form = FormFactory::createFromTemplate($template);
 
 
 

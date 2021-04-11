@@ -46,13 +46,13 @@ class LoginTemplate extends FormTemplate
 }
 ```
 
-You can then use the Factory class to build the actual Form:
+You can then use the [`FormFactory`](https://github.com/SidRoberts/centum/tree/development/src/Forms/FormFactory.php) class to create the actual Form:
 
 ```php
 use App\Forms\LoginTemplate;
-use Centum\Forms\Factory;
+use Centum\Forms\FormFactory;
 
 $loginTemplate = new LoginTemplate();
 
-$loginForm = Factory::build($template);
+$loginForm = FormFactory::createFromTemplate($template);
 ```
