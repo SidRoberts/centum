@@ -49,6 +49,38 @@ class ParametersCest
         );
     }
 
+    public function has(UnitTester $I): void
+    {
+        $parameters = new Parameters(
+            [
+                "a" => "hello",
+                "b" => false,
+                "c" => 0,
+                "d" => null,
+            ]
+        );
+
+        $I->assertTrue(
+            $parameters->has("a")
+        );
+
+        $I->assertTrue(
+            $parameters->has("b")
+        );
+
+        $I->assertTrue(
+            $parameters->has("c")
+        );
+
+        $I->assertTrue(
+            $parameters->has("d")
+        );
+
+        $I->assertFalse(
+            $parameters->has("e")
+        );
+    }
+
     public function testToArray(UnitTester $I): void
     {
         $data = [

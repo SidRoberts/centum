@@ -26,6 +26,11 @@ class Parameters
         return $this->parameters[$name] ?? $defaultValue;
     }
 
+    public function has(string $name): bool
+    {
+        return array_key_exists($name, $this->parameters);
+    }
+
 
 
     /**
