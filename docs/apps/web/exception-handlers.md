@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Exception Handlers
-parent: Mvc
+parent: Web
 grand_parent: Apps
 ---
 

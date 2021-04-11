@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Dynamic URLs
-parent: Mvc
+parent: Web
 grand_parent: Apps
 nav_order: 3
 ---

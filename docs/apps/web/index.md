@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Mvc
+title: Web
 parent: Apps
 has_children: true
 ---

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: HTTP Methods
-parent: Mvc
+parent: Web
 grand_parent: Apps
 nav_order: 1
 ---
