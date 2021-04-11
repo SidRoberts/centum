@@ -2,14 +2,14 @@
 
 namespace Tests\Cron;
 
-use Centum\Cron\Factory;
+use Centum\Cron\CronFactory;
 use Tests\UnitTester;
 
-class FactoryCest
+class CronFactoryCest
 {
     public function addJobsFromArray(UnitTester $I): void
     {
-        $cron = Factory::buildFromArray(
+        $cron = CronFactory::createFromArray(
             [
                 [
                     "* * * * *",

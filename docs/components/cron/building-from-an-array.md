@@ -12,9 +12,9 @@ grand_parent: Components
 It is possible to build a Cron manager from an array using the [Factory class](https://github.com/SidRoberts/centum/blob/development/src/Cron/Factory.php):
 
 ```php
-use Centum\Cron\Factory;
+use Centum\Cron\CronFactory;
 
-$cron = Factory::buildFromArray(
+$cron = CronFactory::createFromArray(
     [
         [
             "* * * * *",

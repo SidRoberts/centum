@@ -2,9 +2,9 @@
 
 namespace Centum\Cron;
 
-class Factory
+class CronFactory
 {
-    public static function buildFromArray(array $array): Cron
+    public static function createFromArray(array $array): Cron
     {
         $cron = new Cron();
 
