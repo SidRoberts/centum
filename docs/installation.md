@@ -55,21 +55,15 @@ resources/
         php.ini
     twig/
 src/
-    Api/
-        Controllers/
-        Filters/
-        Middlewares/
-    Console/
-        Commands/
-        Filters/
-        Middlewares/
+    Commands/
+    Controllers/
+    Filters/
     Forms/
+    Middlewares/
+        Console/
+        Web/
     Models/
     Observers/
-    Web/
-        Controllers/
-        Filters/
-        Middlewares/
 tests/
     _data/
     _output/

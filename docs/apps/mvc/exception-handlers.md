@@ -16,7 +16,7 @@ Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundE
 ```php
 $router->addExceptionHandler(
     \Centum\Mvc\Exception\RouteNotFoundException::class,
-    \App\Web\Controllers\ErrorController::class,
+    \App\Controllers\ErrorController::class,
     "error404"
 );
 ```
@@ -26,7 +26,7 @@ Other Exception Handlers could be added to handle specific Exception classes:
 ```php
 $router->addExceptionHandler(
     \Twig\Error\Error::class,
-    \App\Web\Controllers\ErrorController::class,
+    \App\Controllers\ErrorController::class,
     "errorTwig"
 );
 ```
@@ -37,7 +37,7 @@ Take note that exception handlers are processed in the order that they are added
 ```php
 $router->addExceptionHandler(
     \Throwable::class,
-    \App\Web\Controllers\ErrorController::class,
+    \App\Controllers\ErrorController::class,
     "error500"
 );
 ```

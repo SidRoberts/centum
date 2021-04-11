@@ -60,9 +60,9 @@ The Container will handle all of the parameters.
 Objects can be set using the `set()` method:
 
 ```php
-use App\Console\Application;
-use App\Mvc\Router;
+use Centum\Console\Application;
 use Centum\Container\Container;
+use Centum\Mvc\Router;
 
 $container = new Container();
 
@@ -73,7 +73,7 @@ $container->set(Router::class, $router);
 You can then retrieve them with the `typehint*()` methods:
 
 ```php
-use App\Console\Application;
+use Centum\Console\Application;
 
 /**
  * @var Application
