@@ -57,4 +57,16 @@ class VariableResponseCest
             ],
         ];
     }
+
+    public function contentType(UnitTester $I)
+    {
+        $response = new VariableResponse(
+            []
+        );
+
+        $I->assertEquals(
+            "text/plain",
+            $response->getHeaders()->toArray()["Content-Type"]
+        );
+    }
 }
