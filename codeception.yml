@@ -11,6 +11,15 @@ settings:
   shuffle: true
 
 suites:
+  functional:
+    path: functional
+    actor: FunctionalTester
+    modules:
+      enabled:
+        - Asserts
+        - Centum\Codeception\Module:
+            container: tests/_data/container.php
+        - Mockery
   unit:
     path: unit
     actor: UnitTester
@@ -20,8 +29,9 @@ suites:
         - Centum\Codeception\Module:
             container: tests/_data/container.php
         - Mockery
-    coverage:
-      enabled: true
-      whitelist:
-        include:
-          - src/*
+
+coverage:
+  enabled: true
+  whitelist:
+      include:
+        - src/*
