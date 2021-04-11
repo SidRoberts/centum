@@ -55,7 +55,7 @@ class Parameters
 
     public function has(string $name): bool
     {
-        return isset($this->parameters[$name]);
+        return array_key_exists($name, $this->parameters);
     }
 
 
