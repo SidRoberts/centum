@@ -55,19 +55,12 @@ class RequestFactory
     public static function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
     {
         $uri         = $browserKitRequest->getUri();
-        $queryString = \parse_url($uri, PHP_URL_QUERY);
+        $requestUri  = \parse_url($uri, PHP_URL_PATH);
         $method      = \strtoupper($browserKitRequest->getMethod());
+        $parameters  = $browserKitRequest->getParameters();
         $content     = $browserKitRequest->getContent();
 
-        if ($method === "GET") {
-            \parse_str($queryString, $parameters);
-        } else {
-            $parameters = $browserKitRequest->getParameters();
-        }
 
-
-
-        $requestUri = \parse_url($uri, PHP_URL_PATH);
 
         return new Request(
             $requestUri,

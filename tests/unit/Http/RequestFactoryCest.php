@@ -42,7 +42,9 @@ class RequestFactoryCest
                 "username" => "SidRoberts",
                 "password" => "hunter2",
             ],
-            $files = [],
+            [
+                // $files
+            ],
             [
                 "language" => "en",
             ],
@@ -55,17 +57,27 @@ class RequestFactoryCest
         $request = RequestFactory::createFromBrowserKitRequest($browserKitRequest);
 
         $I->assertEquals(
-            $browserKitRequest->getUri(),
+            "/path/to/something",
             $request->getUri()
         );
 
         $I->assertEquals(
-            $browserKitRequest->getMethod(),
+            "GET",
             $request->getMethod()
         );
 
         $I->assertEquals(
-            $browserKitRequest->getCookies(),
+            [
+                "username" => "SidRoberts",
+                "password" => "hunter2",
+            ],
+            $request->getParameters()
+        );
+
+        $I->assertEquals(
+            [
+                "language" => "en",
+            ],
             $request->getCookies()->toArray()
         );
 
@@ -77,7 +89,7 @@ class RequestFactoryCest
         );
 
         $I->assertEquals(
-            $browserKitRequest->getContent(),
+            "some content",
             $request->getContent()
         );
     }
