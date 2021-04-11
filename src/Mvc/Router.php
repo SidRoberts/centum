@@ -147,6 +147,35 @@ class Router
     /**
      * @param class-string $class
      */
+    public function crud(string $uri, string $class, Form $form = null): void
+    {
+        $this->get($uri, $class, "index");
+
+
+
+        $this->get($uri . "/create", $class, "create");
+
+        $this->post($uri, $class, "store", $form);
+
+
+
+        $this->get($uri . "/{id}", $class, "show");
+
+
+
+        $this->get($uri . "/{id}/edit", $class, "edit");
+
+        $this->put($uri . "/{id}", $class, "update", $form);
+        $this->patch($uri . "/{id}", $class, "update", $form);
+
+
+
+        $this->delete($uri . "/{id}", $class, "destroy");
+    }
+
+    /**
+     * @param class-string $class
+     */
     public function submission(string $uri, string $class, Form $form = null): void
     {
         $this->get($uri, $class, "form");

@@ -17,6 +17,7 @@ use Tests\Mvc\Controllers\HttpMethodController;
 use Tests\Mvc\Controllers\IndexController;
 use Tests\Mvc\Controllers\LoginController;
 use Tests\Mvc\Controllers\MiddlewareController;
+use Tests\Mvc\Controllers\PostController;
 use Tests\Mvc\Controllers\RequirementsController;
 use Tests\Mvc\Filter\Doubler;
 use Tests\Mvc\Middleware\ExampleFalse;
@@ -275,6 +276,95 @@ class RouterCest
             function () use ($request, $router) {
                 $response = $router->handle($request);
             }
+        );
+    }
+
+    public function crud(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $router = new Router($container);
+
+        $router->crud("/posts", PostController::class);
+
+
+
+        $request  = new Request("/posts", "GET");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "index",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts/create", "GET");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "create",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts", "POST");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "store",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts/123", "GET");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "show",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts/123/edit", "GET");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "edit",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts/123", "PUT");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "update",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts/123", "PATCH");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "update",
+            $response->getContent()
+        );
+
+
+
+        $request  = new Request("/posts/123", "DELETE");
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "destroy",
+            $response->getContent()
         );
     }
 
