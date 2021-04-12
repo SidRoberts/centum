@@ -35,6 +35,11 @@ class AlphanumericCest
             ],
 
             [
+                "value"    => "SidRoberts92",
+                "expected" => "SidRoberts92",
+            ],
+
+            [
                 "value"    => "This is a sentence.",
                 "expected" => "Thisisasentence",
             ],
