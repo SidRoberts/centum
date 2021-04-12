@@ -52,7 +52,9 @@ tests/
     _data/
     _output/
     _support/
+        FunctionalTester.php
         UnitTester.php
+    functional/
     unit/
 codeception.yml
 composer.json
