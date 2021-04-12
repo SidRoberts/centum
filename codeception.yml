@@ -14,24 +14,19 @@ suites:
   functional:
     path: functional
     actor: FunctionalTester
-    modules:
-      enabled:
-        - Asserts
-        - Centum\Codeception\Module:
-            container: tests/_data/container.php
-        - Mockery
   unit:
     path: unit
     actor: UnitTester
-    modules:
-      enabled:
-        - Asserts
-        - Centum\Codeception\Module:
-            container: tests/_data/container.php
-        - Mockery
+
+modules:
+  enabled:
+    - Asserts
+    - Centum\Codeception\Module:
+        container: tests/_data/container.php
+    - Mockery
 
 coverage:
   enabled: true
   whitelist:
-      include:
-        - src/*
+    include:
+      - src/*
