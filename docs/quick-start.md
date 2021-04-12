@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Installation
+title: Quick Start
 nav_order: 2
 ---
 
 
 
-# Installation
+# Quick Start
 
 ## Skeleton Project
 
