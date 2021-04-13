@@ -47,9 +47,7 @@ class RequestFactory
         $headers = HeadersFactory::createFromGlobal();
         $cookies = CookiesFactory::createFromGlobal();
 
-        $request = new Request($uri, $method, $parameters, $headers, $cookies, $content);
-
-        return $request;
+        return new Request($uri, $method, $parameters, $headers, $cookies, $content);
     }
 
     public static function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
@@ -58,16 +56,16 @@ class RequestFactory
         $requestUri  = \parse_url($uri, PHP_URL_PATH);
         $method      = \strtoupper($browserKitRequest->getMethod());
         $parameters  = $browserKitRequest->getParameters();
+        $headers     = HeadersFactory::createFromBrowserKitRequest($browserKitRequest);
+        $cookies     = CookiesFactory::createFromBrowserKitRequest($browserKitRequest);
         $content     = $browserKitRequest->getContent();
-
-
 
         return new Request(
             $requestUri,
             $method,
             $parameters,
-            HeadersFactory::createFromBrowserKitRequest($browserKitRequest),
-            CookiesFactory::createFromBrowserKitRequest($browserKitRequest),
+            $headers,
+            $cookies,
             $content
         );
     }
