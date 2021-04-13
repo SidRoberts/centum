@@ -21,6 +21,16 @@ $router->addExceptionHandler(
 );
 ```
 
+Form Request exceptions can also be caught:
+
+```php
+$router->addExceptionHandler(
+    \Centum\Mvc\Exception\FormRequestException::class,
+    \App\Controllers\ErrorController::class,
+    "errorFormRequest"
+);
+```
+
 Other Exception Handlers could be added to handle specific Exception classes:
 
 ```php
