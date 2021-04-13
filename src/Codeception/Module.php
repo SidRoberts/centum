@@ -7,6 +7,7 @@ use Codeception\Configuration;
 use Codeception\Lib\Framework;
 use Codeception\TestInterface;
 use Symfony\Component\DomCrawler\Crawler;
+use TypeError;
 
 class Module extends Framework
 {
@@ -57,6 +58,16 @@ class Module extends Framework
          * @var Container
          */
         $container = require $containerFile;
+
+        if (!($container instanceof Container)) {
+            throw new TypeError(
+                sprintf(
+                    "%s does not return a %s instance.",
+                    $containerFile,
+                    Container::class
+                )
+            );
+        }
 
         $this->client = new Connector($container);
     }
