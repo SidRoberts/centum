@@ -11,7 +11,7 @@ class HtmlFormatter implements FormatterInterface
     {
         return sprintf(
             "<div class=\"alert alert-%s\">%s</div>",
-            $message->getLevel(),
+            htmlspecialchars($message->getLevel(), \ENT_QUOTES, "UTF-8"),
             $message->getText()
         );
     }
