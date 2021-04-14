@@ -12,6 +12,7 @@ permalink: validator
 
 ## Available Validators
 
+- [`Centum\Validator\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Alpha.php)
 - [`Centum\Validator\Alphanumeric`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Alphanumeric.php)
 - [`Centum\Validator\EmailAddress`](https://github.com/SidRoberts/centum/tree/development/src/Validator/EmailAddress.php)
 - [`Centum\Validator\IsInstanceOf`](https://github.com/SidRoberts/centum/tree/development/src/Validator/IsInstanceOf.php)

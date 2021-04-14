@@ -21,6 +21,7 @@ permalink: filter
   - [`Centum\Filter\Cast\ToNull`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToNull.php)
   - [`Centum\Filter\Cast\ToString`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToString.php)
 - `Centum\Filter\String`
+  - [`Centum\Filter\String\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alpha.php)
   - [`Centum\Filter\String\Alphanumeric`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alphanumeric.php)
   - [`Centum\Filter\String\ToLower`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToLower.php)
   - [`Centum\Filter\String\ToUpper`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToUpper.php)
