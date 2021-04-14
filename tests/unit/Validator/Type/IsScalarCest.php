@@ -21,16 +21,10 @@ class IsScalarCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not a scalar.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -38,72 +32,86 @@ class IsScalarCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => true,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => false,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => 123,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => 0,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => null,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => new HtmlFormatter(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => (object) [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => $this,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not a scalar.",
+                ],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "",
-                "expected" => true,
+                "expected" => [],
             ],
         ];
     }

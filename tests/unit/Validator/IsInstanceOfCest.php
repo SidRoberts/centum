@@ -25,16 +25,10 @@ class IsInstanceOfCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -42,32 +36,42 @@ class IsInstanceOfCest
         return [
             [
                 "value"    => new Trim(),
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => new HtmlFormatter(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
+                ],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
+                ],
             ],
 
             [
                 "value"    => $this,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
+                ],
             ],
 
             [
                 "value"    => "just a string",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
+                ],
             ],
         ];
     }

@@ -21,7 +21,7 @@ class IsInstanceOf implements ValidatorInterface
 
 
 
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         $success = is_object($value) && ($value instanceof $this->className);
 
@@ -34,6 +34,6 @@ class IsInstanceOf implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

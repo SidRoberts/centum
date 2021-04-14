@@ -19,16 +19,10 @@ class EmailAddressCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not an email address.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -36,17 +30,21 @@ class EmailAddressCest
         return [
             [
                 "value"    => "sid@sidroberts.co.uk",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "not.an.email.address",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an email address.",
+                ],
             ],
 
             [
                 "value"    => "not.an@@email.address",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an email address.",
+                ],
             ],
         ];
     }

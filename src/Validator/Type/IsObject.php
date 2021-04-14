@@ -6,7 +6,7 @@ use Centum\Validator\ValidatorInterface;
 
 class IsObject implements ValidatorInterface
 {
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         $success = is_object($value);
 
@@ -16,6 +16,6 @@ class IsObject implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

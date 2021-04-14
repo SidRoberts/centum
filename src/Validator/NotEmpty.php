@@ -4,7 +4,7 @@ namespace Centum\Validator;
 
 class NotEmpty implements ValidatorInterface
 {
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         $success = !empty($value);
 
@@ -14,6 +14,6 @@ class NotEmpty implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

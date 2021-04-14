@@ -20,16 +20,10 @@ class IsStringCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not a string.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -37,57 +31,75 @@ class IsStringCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => true,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => false,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => 0,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => null,
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not a string.",
+                ],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "",
-                "expected" => true,
+                "expected" => [],
             ],
         ];
     }

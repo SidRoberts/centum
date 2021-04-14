@@ -19,16 +19,10 @@ class AlphaCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value must only contain letters.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -36,27 +30,35 @@ class AlphaCest
         return [
             [
                 "value"    => "SidRoberts",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "SidRoberts92",
-                "expected" => false,
+                "expected" => [
+                    "Value must only contain letters.",
+                ],
             ],
 
             [
                 "value"    => "##not.alphanumeric##",
-                "expected" => false,
+                "expected" => [
+                    "Value must only contain letters.",
+                ],
             ],
 
             [
                 "value"    => "This is a sentence.",
-                "expected" => false,
+                "expected" => [
+                    "Value must only contain letters.",
+                ],
             ],
 
             [
                 "value"    => "이것은 영숫자가 아닙니다.",
-                "expected" => false,
+                "expected" => [
+                    "Value must only contain letters.",
+                ],
             ],
         ];
     }

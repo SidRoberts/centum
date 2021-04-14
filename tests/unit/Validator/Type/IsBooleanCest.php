@@ -20,16 +20,10 @@ class IsBooleanCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not boolean.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -37,57 +31,75 @@ class IsBooleanCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => true,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => false,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => 0,
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => null,
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
 
             [
                 "value"    => "",
-                "expected" => false,
+                "expected" => [
+                    "Value is not boolean.",
+                ],
             ],
         ];
     }

@@ -6,7 +6,7 @@ use Centum\Validator\ValidatorInterface;
 
 class IsNull implements ValidatorInterface
 {
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         $success = is_null($value);
 
@@ -16,6 +16,6 @@ class IsNull implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

@@ -6,7 +6,7 @@ use Centum\Validator\ValidatorInterface;
 
 class IsInteger implements ValidatorInterface
 {
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         $success = (is_scalar($value) && !is_bool($value) && preg_match("/^\d+$/", strval($value)) === 1);
 
@@ -16,6 +16,6 @@ class IsInteger implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

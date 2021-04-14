@@ -20,16 +20,10 @@ class IsNullCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not null.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -37,57 +31,77 @@ class IsNullCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => true,
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => false,
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => 0,
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => null,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
 
             [
                 "value"    => "",
-                "expected" => false,
+                "expected" => [
+                    "Value is not null.",
+                ],
             ],
         ];
     }

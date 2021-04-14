@@ -21,16 +21,10 @@ class IsObjectCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not an object.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -38,72 +32,92 @@ class IsObjectCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => true,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => false,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => 0,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => null,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => new HtmlFormatter(),
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => (object) [],
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => $this,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
 
             [
                 "value"    => "",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an object.",
+                ],
             ],
         ];
     }

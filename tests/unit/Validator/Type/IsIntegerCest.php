@@ -20,16 +20,10 @@ class IsIntegerCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not an integer.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -37,62 +31,80 @@ class IsIntegerCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => true,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => false,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => 0,
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => null,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => "1",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
 
             [
                 "value"    => "",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an integer.",
+                ],
             ],
         ];
     }

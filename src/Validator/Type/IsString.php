@@ -6,7 +6,7 @@ use Centum\Validator\ValidatorInterface;
 
 class IsString implements ValidatorInterface
 {
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         $success = is_string($value);
 
@@ -16,6 +16,6 @@ class IsString implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

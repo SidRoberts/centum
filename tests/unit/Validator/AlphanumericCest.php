@@ -19,16 +19,10 @@ class AlphanumericCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not alphanumeric.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -36,27 +30,33 @@ class AlphanumericCest
         return [
             [
                 "value"    => "SidRoberts",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "SidRoberts92",
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => "##not.alphanumeric##",
-                "expected" => false,
+                "expected" => [
+                    "Value is not alphanumeric.",
+                ],
             ],
 
             [
                 "value"    => "This is a sentence.",
-                "expected" => false,
+                "expected" => [
+                    "Value is not alphanumeric.",
+                ],
             ],
 
             [
                 "value"    => "이것은 영숫자가 아닙니다.",
-                "expected" => false,
+                "expected" => [
+                    "Value is not alphanumeric.",
+                ],
             ],
         ];
     }

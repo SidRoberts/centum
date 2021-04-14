@@ -4,7 +4,7 @@ namespace Centum\Validator;
 
 class Alphanumeric implements ValidatorInterface
 {
-    public function validate(mixed $value): bool | array
+    public function validate(mixed $value): array
     {
         if (!is_string($value)) {
             return [
@@ -20,6 +20,6 @@ class Alphanumeric implements ValidatorInterface
             ];
         }
 
-        return true;
+        return [];
     }
 }

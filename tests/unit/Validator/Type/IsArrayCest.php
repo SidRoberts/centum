@@ -21,16 +21,10 @@ class IsArrayCest
             $example["value"]
         );
 
-        if ($example["expected"]) {
-            $I->assertTrue($actual);
-        } else {
-            $I->assertEquals(
-                [
-                    "Value is not an array.",
-                ],
-                $actual
-            );
-        }
+        $I->assertEquals(
+            $example["expected"],
+            $actual
+        );
     }
 
     public function provider(): array
@@ -38,72 +32,96 @@ class IsArrayCest
         return [
             [
                 "value"    => [1,2,3],
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => [],
-                "expected" => true,
+                "expected" => [],
             ],
 
             [
                 "value"    => true,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => false,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => 123.456,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => 123,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => 0,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => null,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => new HtmlFormatter(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => (object) [],
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => $this,
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => new stdClass(),
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => "Sid Roberts",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
 
             [
                 "value"    => "",
-                "expected" => false,
+                "expected" => [
+                    "Value is not an array.",
+                ],
             ],
         ];
     }

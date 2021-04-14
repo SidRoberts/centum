@@ -100,9 +100,7 @@ class Field
             foreach ($this->validators as $validator) {
                 $messages = $validator->validate($filteredValue);
 
-                if (is_array($messages)) {
-                    array_push($allMessages, ...$messages);
-                }
+                array_push($allMessages, ...$messages);
             }
         } catch (\Throwable $exception) {
             return [
