@@ -13,9 +13,9 @@ Filters are particularly useful at preprocessing URL parameters - for example, c
 Any Filters you create must implement [`Centum\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Filter/FilterInterface.php).
 
 ```php
-namespace App\Filter;
+namespace App\Filters;
 
-use App\Model\Post;
+use App\Models\Post;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
 use Centum\Mvc\Exception\RouteMismatchException;
@@ -52,11 +52,13 @@ class IdToPostFilter implements FilterInterface
 }
 ```
 
-In the above example, if the `App\Model\Post` object cannot be found in the database, [`Centum\Mvc\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Route's `execute()` method.
+In the above example, if the `App\Models\Post` object cannot be found in the database, [`Centum\Mvc\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Route's `execute()` method.
 When this exception is thrown, the Router understands that to mean that this Route isn't suitable and will continue iterating through the remaining Routes to find another match.
 
 ```php
-use App\Model\Post;
+namespace App\Controllers;
+
+use App\Models\Post;
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;
 
@@ -78,7 +80,8 @@ class PostController
 ```
 
 ```php
-use App\Filter\IdToPostFilter;
+use App\Controllers\PostController;
+use App\Filters\IdToPostFilter;
 
 $router->get("/post/{post:int}", PostController::class, "view")
     ->addFilter(

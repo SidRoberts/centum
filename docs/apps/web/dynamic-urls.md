@@ -14,6 +14,8 @@ URLs can be defined with dynamic values by enclosing their identifier in curly b
 This value is then available from the `$parameters` property:
 
 ```php
+namespace App\Controllers;
+
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;
 
@@ -31,12 +33,16 @@ class PostController
 ```
 
 ```php
+use App\Controllers\PostController;
+
 $router->get("/post/{id}", PostController::class, "view");
 ```
 
 Multiple parameters can also be defined:
 
 ```php
+namespace App\Controllers;
+
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;
 
@@ -56,6 +62,8 @@ class SomethingController
 ```
 
 ```php
+use App\Controllers\SomethingController;
+
 $router->get("/something-crazy/{a}/{b}/{c}", SomethingController::class, "index");
 ```
 
@@ -77,6 +85,8 @@ If no type is specified, the Router will default to `any`.
 This example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
 ```php
+namespace App\Controllers\PostController;
+
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;
 
@@ -94,5 +104,7 @@ class PostController
 ```
 
 ```php
+use App\Controllers\PostController;
+
 $router->get("/post/{id:int}", PostController::class, "view");
 ```

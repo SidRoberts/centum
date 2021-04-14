@@ -16,6 +16,8 @@ It's return value is the exit code.
 By default, a Command has no middlewares or parameter filters and can be as simple as this:
 
 ```php
+namespace App\Commands;
+
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;

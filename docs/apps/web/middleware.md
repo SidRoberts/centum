@@ -17,7 +17,7 @@ Alternatively, by throwing [`Centum\Mvc\Exception\RouteMismatchException`](https
 Any Middlewares you create must implement [`Centum\Mvc\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/MiddlewareInterface.php).
 
 ```php
-namespace App\Middleware;
+namespace App\Middlewares\Web;
 
 use App\Auth;
 use Centum\Container\Container;
@@ -44,10 +44,8 @@ This is useful for when you want to separate the Routes into two or more distinc
 For example, you may want to separate guests and logged in users:
 
 ```php
-use App\Middleware\IsLoggedOutMiddleware;
-use App\Middleware\IsLoggedInMiddleware;
-use Centum\Container\Container;
-use Centum\Http\Request;
+namespace App\Controllers;
+
 use Centum\Http\Response;
 
 class AccountController
@@ -56,6 +54,7 @@ class AccountController
     {
         return new Response("this user is logged out");
     }
+
     public function user(): Response
     {
         return new Response("this user is logged in");
@@ -64,6 +63,10 @@ class AccountController
 ```
 
 ```php
+use App\Controllers\AccountController;
+use App\Middlewares\Web\IsLoggedOutMiddleware;
+use App\Middlewares\Web\IsLoggedInMiddleware;
+
 $router->get("/something", AccountController::class, "guest")
     ->addMiddleware(new IsLoggedOutMiddleware());
 
@@ -71,12 +74,14 @@ $router->get("/something", AccountController::class, "user")
     ->addMiddleware(new IsLoggedInMiddleware());
 ```
 
-(`App\Middleware\IsLoggedOutMiddleware` is not shown but performs as you'd expect.)
+(`App\Middlewares\Web\IsLoggedOutMiddleware` is not shown but performs as you'd expect.)
 
 You can even create Routes with multiple middlewares.
 If any of them of fail, the Route will fail to match:
 
 ```php
+namespace App\Controllers;
+
 use Centum\Http\Response;
 
 class SomethingController
@@ -89,9 +94,10 @@ class SomethingController
 ```
 
 ```php
-use App\Middleware\OneMiddleware;
-use App\Middleware\AnotherMiddleware;
-use App\Middleware\AndAnotherMiddleware;
+use App\Controllers\SomethingController;
+use App\Middlewares\Web\OneMiddleware;
+use App\Middlewares\Web\AnotherMiddleware;
+use App\Middlewares\Web\AndAnotherMiddleware;
 
 $router->get("/something", SomethingController::class, "get")
     ->addMiddleware(new OneMiddleware())

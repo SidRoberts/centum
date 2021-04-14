@@ -13,9 +13,9 @@ Filters are particularly useful at preprocessing command parameters - for exampl
 Any Filters you create must implement [`Centum\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Filter/FilterInterface.php).
 
 ```php
-namespace App\Filter;
+namespace App\Filters;
 
-use App\Model\Post;
+use App\Models\Post;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
@@ -57,8 +57,10 @@ In the above example, if the `App\Model\Post` object cannot be found in the data
 When this exception is thrown, the Application understands that to mean that this Command isn't suitable and will fail.
 
 ```php
-use App\Filter\PostFilter;
-use App\Model\Post;
+namespace App\Commands;
+
+use App\Filters\PostFilter;
+use App\Models\Post;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;

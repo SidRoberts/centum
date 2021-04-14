@@ -16,7 +16,7 @@ By returning `false` or throwing [`Centum\Console\Exception\CommandNotFoundExcep
 Any Middlewares you create must implement [`Centum\Console\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Console/MiddlewareInterface.php).
 
 ```php
-namespace App\Middleware;
+namespace App\Middlewares\Console;
 
 use App\Auth;
 use Centum\Console\Command;
@@ -39,7 +39,9 @@ This is useful for when you want to separate the Commands from reusable applicat
 For example, you may want to check that a user is running Linux:
 
 ```php
-use App\Middleware\IsLinuxMiddleware;
+namespace App\Commands;
+
+use App\Middlewares\Console\IsLinuxMiddleware;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
@@ -72,9 +74,11 @@ You can even create Commands with multiple middlewares.
 If any of them of fail, the Command will fail to match:
 
 ```php
-use App\Middleware\OneMiddleware;
-use App\Middleware\AnotherMiddleware;
-use App\Middleware\AndAnotherMiddleware;
+namespace App\Commands;
+
+use App\Middlewares\Console\OneMiddleware;
+use App\Middlewares\Console\AnotherMiddleware;
+use App\Middlewares\Console\AndAnotherMiddleware;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;

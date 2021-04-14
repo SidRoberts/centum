@@ -31,6 +31,8 @@ It does so by extracting the Request's URI and method, it iterates through the R
 A controller can be as simple as this but it can also take advantage of things like filters, middlewares, form validation:
 
 ```php
+namespace App\Controllers;
+
 use Centum\Http\Response;
 
 class IndexController

@@ -28,6 +28,8 @@ You can also specify which HTTP method a route matches.
 In this example, the login form and the login submission share the same URL but utilise different HTTP methods:
 
 ```php
+namespace App\Controllers;
+
 use Centum\Http\Response;
 
 class LoginController
@@ -45,6 +47,8 @@ class LoginController
 ```
 
 ```php
+use App\Controllers\LoginController;
+
 $router->get("/login", LoginController::class, "form");
 $router->post("/login", LoginController::class, "submit");
 ```
