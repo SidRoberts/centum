@@ -21,7 +21,7 @@ $router->addExceptionHandler(
 );
 ```
 
-Form Request exceptions can also be caught:
+[Form Request](form-requests.md) exceptions can also be caught:
 
 ```php
 $router->addExceptionHandler(
