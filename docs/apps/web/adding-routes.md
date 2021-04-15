@@ -1,6 +1,6 @@
 ---
 layout: default
-title: HTTP Methods
+title: Adding Routes
 parent: Web
 grand_parent: Apps
 nav_order: 1
@@ -8,9 +8,11 @@ nav_order: 1
 
 
 
-# HTTP Methods
+# Adding Routes
 
-You can also specify which HTTP method a route matches.
+## HTTP Methods
+
+You can specify which HTTP method a route matches.
 [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2) specify the following HTTP methods which correlate with a Router method:
 
 | HTTP Method | Router Method                                    |
@@ -25,7 +27,14 @@ You can also specify which HTTP method a route matches.
 | `CONNECT`   | `$router->connect($uri, $class, $method, $form)` |
 | `PATCH`     | `$router->patch($uri, $class, $method, $form)`   |
 
-In this example, the login form and the login submission share the same URL but utilise different HTTP methods:
+The `$form` variable is optional and will be explained later in [Form Requests](form-requests.md). As such, it will be ignored on this page.
+
+
+
+### Same URL, Different Methods
+
+It's likely that at some point you'll want to use the same URL for different things.
+For example, you might want to show users a login form at `/login` but also allow the form to submit the login data to `/login`:
 
 ```php
 namespace App\Controllers;
@@ -46,6 +55,8 @@ class LoginController
 }
 ```
 
+When adding these routes to the Router, you can use the different Router methods to denote which HTTP method they will apply to:
+
 ```php
 use App\Controllers\LoginController;
 
@@ -54,3 +65,23 @@ $router->post("/login", LoginController::class, "submit");
 ```
 
 `GET /login` would match `form()` and `POST /login` would match `submit()`.
+
+A shorthand exists for this kind of use case which uses the naming convention of `form()` and `submit()`:
+
+```php
+use App\Controllers\LoginController;
+
+$router->submission("/login", LoginController::class);
+```
+
+
+
+## Precedence
+
+The Router processes Routes in the order they are added.
+In this example, `GET /` would match `AController`:
+
+```php
+$router->get("/", AController::class, "index");
+$router->get("/", BController::class, "index");
+```
