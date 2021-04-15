@@ -28,93 +28,47 @@ class IsCallableCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => [1,2,3],
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => [],
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => true,
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => false,
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => 123.456,
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => 123,
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => 0,
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => null,
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => new stdClass(),
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => "Sid Roberts",
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => "",
-                "expected" => [
-                    "Value is not a callable.",
-                ],
-            ],
-
-            [
-                "value"    => function () { },
-                "expected" => [],
-            ],
-
-            [
-                "value"    => "is_callable",
-                "expected" => [],
-            ],
+        $good = [
+            function () { },
+            "is_callable",
         ];
+
+        $bad = [
+            [1,2,3],
+            [],
+            true,
+            false,
+            123.456,
+            123,
+            0,
+            null,
+            new stdClass(),
+            "Sid Roberts",
+            "",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not a callable.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

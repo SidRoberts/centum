@@ -28,79 +28,45 @@ class IsBooleanCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => [1,2,3],
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => [],
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => true,
-                "expected" => [],
-            ],
-
-            [
-                "value"    => false,
-                "expected" => [],
-            ],
-
-            [
-                "value"    => 123.456,
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => 123,
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => 0,
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => null,
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => new stdClass(),
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => "Sid Roberts",
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
-
-            [
-                "value"    => "",
-                "expected" => [
-                    "Value is not boolean.",
-                ],
-            ],
+        $good = [
+            true,
+            false,
         ];
+
+        $bad = [
+            [1,2,3],
+            [],
+            123.456,
+            123,
+            0,
+            null,
+            new stdClass(),
+            "Sid Roberts",
+            "",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not boolean.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

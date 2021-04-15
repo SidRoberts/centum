@@ -27,39 +27,39 @@ class AlphaCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => "SidRoberts",
-                "expected" => [],
-            ],
-
-            [
-                "value"    => "SidRoberts92",
-                "expected" => [
-                    "Value must only contain letters.",
-                ],
-            ],
-
-            [
-                "value"    => "##not.alphanumeric##",
-                "expected" => [
-                    "Value must only contain letters.",
-                ],
-            ],
-
-            [
-                "value"    => "This is a sentence.",
-                "expected" => [
-                    "Value must only contain letters.",
-                ],
-            ],
-
-            [
-                "value"    => "이것은 영숫자가 아닙니다.",
-                "expected" => [
-                    "Value must only contain letters.",
-                ],
-            ],
+        $good = [
+            "SidRoberts",
         ];
+
+        $bad = [
+            "SidRoberts92",
+            "##not.alphanumeric##",
+            "This is a sentence.",
+            "이것은 영숫자가 아닙니다.",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value must only contain letters.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

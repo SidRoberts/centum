@@ -27,25 +27,37 @@ class EmailAddressCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => "sid@sidroberts.co.uk",
-                "expected" => [],
-            ],
-
-            [
-                "value"    => "not.an.email.address",
-                "expected" => [
-                    "Value is not an email address.",
-                ],
-            ],
-
-            [
-                "value"    => "not.an@@email.address",
-                "expected" => [
-                    "Value is not an email address.",
-                ],
-            ],
+        $good = [
+            "sid@sidroberts.co.uk",
         ];
+
+        $bad = [
+            "not.an.email.address",
+            "not.an@@email.address",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not an email address.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

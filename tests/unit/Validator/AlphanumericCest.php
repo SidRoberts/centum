@@ -27,37 +27,39 @@ class AlphanumericCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => "SidRoberts",
-                "expected" => [],
-            ],
-
-            [
-                "value"    => "SidRoberts92",
-                "expected" => [],
-            ],
-
-            [
-                "value"    => "##not.alphanumeric##",
-                "expected" => [
-                    "Value is not alphanumeric.",
-                ],
-            ],
-
-            [
-                "value"    => "This is a sentence.",
-                "expected" => [
-                    "Value is not alphanumeric.",
-                ],
-            ],
-
-            [
-                "value"    => "이것은 영숫자가 아닙니다.",
-                "expected" => [
-                    "Value is not alphanumeric.",
-                ],
-            ],
+        $good = [
+            "SidRoberts",
+            "SidRoberts92",
         ];
+
+        $bad = [
+            "##not.alphanumeric##",
+            "This is a sentence.",
+            "이것은 영숫자가 아닙니다.",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not alphanumeric.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

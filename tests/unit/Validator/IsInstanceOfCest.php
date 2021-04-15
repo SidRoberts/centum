@@ -33,46 +33,40 @@ class IsInstanceOfCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => new Trim(),
-                "expected" => [],
-            ],
-
-            [
-                "value"    => new HtmlFormatter(),
-                "expected" => [
-                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                ],
-            ],
-
-            [
-                "value"    => new stdClass(),
-                "expected" => [
-                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                ],
-            ],
-
-            [
-                "value"    => $this,
-                "expected" => [
-                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                ],
-            ],
-
-            [
-                "value"    => "just a string",
-                "expected" => [
-                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                ],
-            ],
-
-            [
-                "value"    => 123,
-                "expected" => [
-                    "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                ],
-            ],
+        $good = [
+            new Trim(),
         ];
+
+        $bad = [
+            new HtmlFormatter(),
+            new stdClass(),
+            $this,
+            "just a string",
+            123,
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not an instance of Centum\\Filter\\FilterInterface.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

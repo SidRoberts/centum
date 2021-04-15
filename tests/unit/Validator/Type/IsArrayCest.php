@@ -29,100 +29,48 @@ class IsArrayCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => [1,2,3],
-                "expected" => [],
-            ],
-
-            [
-                "value"    => [],
-                "expected" => [],
-            ],
-
-            [
-                "value"    => true,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => false,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => 123.456,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => 123,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => 0,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => null,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => new HtmlFormatter(),
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => (object) [],
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => $this,
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => new stdClass(),
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => "Sid Roberts",
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
-
-            [
-                "value"    => "",
-                "expected" => [
-                    "Value is not an array.",
-                ],
-            ],
+        $good = [
+            [1,2,3],
+            [],
         ];
+
+        $bad = [
+            true,
+            false,
+            123.456,
+            123,
+            0,
+            null,
+            new HtmlFormatter(),
+            (object) [],
+            $this,
+            new stdClass(),
+            "Sid Roberts",
+            "",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not an array.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }

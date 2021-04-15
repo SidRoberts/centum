@@ -28,84 +28,46 @@ class IsIntegerCest
 
     public function provider(): array
     {
-        return [
-            [
-                "value"    => [1,2,3],
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => [],
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => true,
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => false,
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => 123.456,
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => 123,
-                "expected" => [],
-            ],
-
-            [
-                "value"    => 0,
-                "expected" => [],
-            ],
-
-            [
-                "value"    => null,
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => new stdClass(),
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => "1",
-                "expected" => [],
-            ],
-
-            [
-                "value"    => "Sid Roberts",
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
-
-            [
-                "value"    => "",
-                "expected" => [
-                    "Value is not an integer.",
-                ],
-            ],
+        $good = [
+            123,
+            0,
+            "1",
         ];
+
+        $bad = [
+            [1,2,3],
+            [],
+            true,
+            false,
+            123.456,
+            null,
+            new stdClass(),
+            "Sid Roberts",
+            "",
+        ];
+
+        $good = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [],
+                ];
+            },
+            $good
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not an integer.",
+                    ],
+                ];
+            },
+            $bad
+        );
+
+        return array_merge($good, $bad);
     }
 }
