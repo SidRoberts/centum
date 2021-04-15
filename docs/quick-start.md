@@ -30,7 +30,9 @@ By default, the `App` namespace is used and has this folder structure:
 
 ```
 config/
+    console.php
     container.php
+    router.php
 public/
     index.php
 resources/
