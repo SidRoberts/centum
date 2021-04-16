@@ -49,17 +49,20 @@ class RequestFactory
 
         $headersFactory = new HeadersFactory();
         $cookiesFactory = new CookiesFactory();
+        $filesFactory   = new FilesFactory();
 
         $headers = $headersFactory->createFromGlobal();
         $cookies = $cookiesFactory->createFromGlobal();
+        $files   = $filesFactory->createFromGlobal();
 
-        return new Request($uri, $method, $data, $headers, $cookies, $content);
+        return new Request($uri, $method, $data, $headers, $cookies, $files, $content);
     }
 
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
     {
         $headersFactory = new HeadersFactory();
         $cookiesFactory = new CookiesFactory();
+        $filesFactory   = new FilesFactory();
 
         $uri        = $browserKitRequest->getUri();
         $requestUri = \parse_url($uri, PHP_URL_PATH);
@@ -67,6 +70,7 @@ class RequestFactory
         $data       = $browserKitRequest->getParameters();
         $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
         $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
+        $files      = $filesFactory->createFromBrowserKitRequest($browserKitRequest);
         $content    = $browserKitRequest->getContent();
 
         return new Request(
@@ -75,6 +79,7 @@ class RequestFactory
             $data,
             $headers,
             $cookies,
+            $files,
             $content
         );
     }

@@ -9,6 +9,7 @@ class Request
     protected array $data;
     protected Headers $headers;
     protected Cookies $cookies;
+    protected Files $files;
     protected ?string $content;
 
 
@@ -19,6 +20,7 @@ class Request
         array $data = [],
         Headers $headers = null,
         Cookies $cookies = null,
+        Files $files = null,
         string $content = null
     ) {
         $this->uri     = $uri;
@@ -26,6 +28,7 @@ class Request
         $this->data    = $data;
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();
+        $this->files   = $files ?? new Files();
         $this->content = $content;
     }
 
@@ -54,6 +57,11 @@ class Request
     public function getCookies(): Cookies
     {
         return $this->cookies;
+    }
+
+    public function getFiles(): Files
+    {
+        return $this->files;
     }
 
     public function getContent(): ?string

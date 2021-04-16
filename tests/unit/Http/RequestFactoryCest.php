@@ -81,6 +81,11 @@ class RequestFactoryCest
         );
 
         $I->assertEquals(
+            $browserKitRequest->getFiles(),
+            $request->getFiles()->toArray()
+        );
+
+        $I->assertEquals(
             [
                 "language" => "en",
             ],

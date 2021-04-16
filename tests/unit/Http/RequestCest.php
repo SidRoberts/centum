@@ -4,6 +4,9 @@ namespace Tests\Unit\Http;
 
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
+use Centum\Http\File;
+use Centum\Http\FileGroup;
+use Centum\Http\Files;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Request;
@@ -29,6 +32,18 @@ class RequestCest
 
 
 
+        $file = new File("certificate.key", "application/octet-stream", 1024, "/dev/null", 0);
+
+        $fileGroup = new FileGroup("certificate");
+
+        $fileGroup->add($file);
+
+        $files = new Files();
+
+        $files->add($fileGroup);
+
+
+
         $request = new Request(
             "/login",
             "POST",
@@ -38,6 +53,7 @@ class RequestCest
             ],
             $headers,
             $cookies,
+            $files,
             "Hello world"
         );
 
