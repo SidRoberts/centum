@@ -20,6 +20,11 @@ class Callback implements FilterInterface
 
     public function filter(mixed $value): mixed
     {
-        return ($this->callable)($value);
+        return call_user_func_array(
+            $this->callable,
+            [
+                $value,
+            ]
+        );
     }
 }

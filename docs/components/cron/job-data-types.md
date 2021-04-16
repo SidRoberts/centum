@@ -29,9 +29,7 @@ $dueJobs = $cron->getDueJobs();
 foreach ($dueJobs as $job) {
     $data = $job->getData();
 
-    shell_exec(
-        $data
-    );
+    shell_exec($data);
 }
 ```
 
@@ -54,6 +52,6 @@ $dueJobs = $cron->getDueJobs();
 foreach ($dueJobs as $job) {
     $data = $job->getData();
 
-    $data();
+    call_user_func($data);
 }
 ```

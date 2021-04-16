@@ -10,6 +10,7 @@ use Centum\Mvc\Exception\FormRequestException;
 use Centum\Mvc\Exception\ParamNotFoundException;
 use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\RouteNotFoundException;
+use Throwable;
 
 class Router
 {
@@ -211,7 +212,7 @@ class Router
             }
 
             throw new RouteNotFoundException($request);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $path) {
                 if (is_a($exception, $exceptionClass)) {
                     $this->container->set(Request::class, $request);

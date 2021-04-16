@@ -29,7 +29,8 @@ class IsCallableCest
     public function provider(): array
     {
         $good = [
-            function () { },
+            function () {
+            },
             "is_callable",
         ];
 
