@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Middleware
+title: Middlewares
 parent: Console
 grand_parent: Apps
 ---

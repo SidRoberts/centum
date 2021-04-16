@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Middleware
+title: Middlewares
 parent: Web
 grand_parent: Apps
 ---
