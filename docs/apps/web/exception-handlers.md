@@ -63,3 +63,12 @@ $router->addExceptionHandler(
     "error500"
 );
 ```
+
+
+
+## Good Practices
+
+It is **strongly recommended** to have exception handlers for:
+
+- [`Centum\Mvc\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteNotFoundException.php)
+- `Throwable`
