@@ -243,9 +243,7 @@ class Router
 
 
 
-        $uri = $request->getUri();
-        $uri = explode("?", $uri)[0];
-
+        $uri     = $request->getUri();
         $pattern = $route->getUriPattern();
 
         if (preg_match($pattern, $uri, $params) !== 1) {
