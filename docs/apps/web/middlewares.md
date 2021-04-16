@@ -11,6 +11,7 @@ grand_parent: Apps
 
 Middlewares are run by the Router when it is trying to find a matching Route.
 If the Route matches the URL pattern, the Router will run the Middlewares which are able to perform additional checks to determine whether the Route should match or not.
+
 By returning `false` in a Middleware, the Router will ignore the Route and assume that it is not suitable for the particular URL.
 Alternatively, by throwing [`Centum\Mvc\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteMismatchException.php), the Router will also ignore the Route and continue iterating through the other Routes.
 
@@ -23,6 +24,7 @@ use App\Auth;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Mvc\MiddlewareInterface;
+use Centum\Mvc\Route;
 
 class IsLoggedInMiddleware implements MiddlewareInterface
 {
@@ -40,7 +42,7 @@ class IsLoggedInMiddleware implements MiddlewareInterface
 
 (The `App\Auth` class is not shown and is just used as an example.)
 
-This is useful for when you want to separate the Routes into two or more distinct use cases.
+Middlewares are useful for when you want to separate the Routes into two or more distinct use cases.
 For example, you may want to separate guests and logged in users:
 
 ```php
@@ -64,8 +66,8 @@ class AccountController
 
 ```php
 use App\Controllers\AccountController;
-use App\Middlewares\Web\IsLoggedOutMiddleware;
 use App\Middlewares\Web\IsLoggedInMiddleware;
+use App\Middlewares\Web\IsLoggedOutMiddleware;
 
 $router->get("/something", AccountController::class, "guest")
     ->addMiddleware(new IsLoggedOutMiddleware());
@@ -76,7 +78,11 @@ $router->get("/something", AccountController::class, "user")
 
 (`App\Middlewares\Web\IsLoggedOutMiddleware` is not shown but performs as you'd expect.)
 
-You can even create Routes with multiple middlewares.
+
+
+## Multiple Middlewares
+
+Routes can be created with multiple middlewares.
 If any of them of fail, the Route will fail to match:
 
 ```php
@@ -95,14 +101,14 @@ class SomethingController
 
 ```php
 use App\Controllers\SomethingController;
-use App\Middlewares\Web\OneMiddleware;
-use App\Middlewares\Web\AnotherMiddleware;
-use App\Middlewares\Web\AndAnotherMiddleware;
+use App\Middlewares\Web\Middleware1;
+use App\Middlewares\Web\Middleware2;
+use App\Middlewares\Web\Middleware3;
 
 $router->get("/something", SomethingController::class, "get")
-    ->addMiddleware(new OneMiddleware())
-    ->addMiddleware(new AnotherMiddleware())
-    ->addMiddleware(new AndAnotherMiddleware());
+    ->addMiddleware(new Middleware1())
+    ->addMiddleware(new Middleware2())
+    ->addMiddleware(new Middleware3());
 ```
 
 The example above will only execute if all 3 middlewares return `true`.

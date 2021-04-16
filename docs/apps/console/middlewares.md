@@ -11,6 +11,7 @@ grand_parent: Apps
 
 Middlewares are run by the Application when it is trying to find a matching Command.
 If the Command is found, the Application will run the Middlewares which are able to perform additional checks to determine whether the Command should match or not.
+
 By returning `false` or throwing [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php) in a Middleware, the Application will ignore the Command and assume that it is not suitable for the particular command.
 
 Any Middlewares you create must implement [`Centum\Console\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Console/MiddlewareInterface.php).
@@ -35,7 +36,7 @@ class IsLinuxMiddleware implements MiddlewareInterface
 }
 ```
 
-This is useful for when you want to separate the Commands from reusable application logic.
+Middlewares are useful for when you want to separate the Commands from reusable application logic.
 For example, you may want to check that a user is running Linux:
 
 ```php
@@ -70,15 +71,19 @@ class AdministrationCommand extends Command
 }
 ```
 
-You can even create Commands with multiple middlewares.
+
+
+## Multiple Middlewares
+
+Commands can be created with multiple middlewares.
 If any of them of fail, the Command will fail to match:
 
 ```php
 namespace App\Commands;
 
-use App\Middlewares\Console\OneMiddleware;
-use App\Middlewares\Console\AnotherMiddleware;
-use App\Middlewares\Console\AndAnotherMiddleware;
+use App\Middlewares\Console\Middleware1;
+use App\Middlewares\Console\Middleware2;
+use App\Middlewares\Console\Middleware3;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
@@ -94,9 +99,9 @@ class SomethingCommand extends Command
     public function getMiddlewares(): array
     {
         return [
-            new OneMiddleware(),
-            new AnotherMiddleware(),
-            new AndAnotherMiddleware(),
+            new Middleware1(),
+            new Middleware2(),
+            new Middleware3(),
         ];
     }
 
