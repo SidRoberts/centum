@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Adding Routes
+title: Routes
 parent: Web
 grand_parent: Apps
 nav_order: 1
@@ -8,7 +8,7 @@ nav_order: 1
 
 
 
-# Adding Routes
+# Routes
 
 ## HTTP Methods
 
