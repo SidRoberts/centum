@@ -12,9 +12,7 @@ class Alpha implements ValidatorInterface
             ];
         }
 
-        $success = preg_match("/^[A-Za-z]+$/", $value);
-
-        if (!$success) {
+        if (preg_match("/^[A-Za-z]+$/", $value) !== 1) {
             return [
                 "Value must only contain letters.",
             ];

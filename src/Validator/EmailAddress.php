@@ -12,9 +12,7 @@ class EmailAddress implements ValidatorInterface
             ];
         }
 
-        $success = (filter_var($value, FILTER_VALIDATE_EMAIL) === $value);
-
-        if (!$success) {
+        if (filter_var($value, FILTER_VALIDATE_EMAIL) !== $value) {
             return [
                 "Value is not an email address.",
             ];

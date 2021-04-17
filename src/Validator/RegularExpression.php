@@ -23,9 +23,7 @@ class RegularExpression implements ValidatorInterface
             ];
         }
 
-        $success = (preg_match($this->pattern, $value) === 1);
-
-        if (!$success) {
+        if (preg_match($this->pattern, $value) !== 1) {
             return [
                 sprintf(
                     "Value does not match '%s'.",

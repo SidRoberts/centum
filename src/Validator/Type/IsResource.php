@@ -8,9 +8,7 @@ class IsResource implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_resource($value);
-
-        if (!$success) {
+        if (!is_resource($value)) {
             return [
                 "Value is not a resource.",
             ];

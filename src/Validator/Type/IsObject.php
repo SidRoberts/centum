@@ -8,9 +8,7 @@ class IsObject implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_object($value);
-
-        if (!$success) {
+        if (!is_object($value)) {
             return [
                 "Value is not an object.",
             ];

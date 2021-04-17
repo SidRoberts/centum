@@ -12,9 +12,7 @@ class Alphanumeric implements ValidatorInterface
             ];
         }
 
-        $success = preg_match("/^[A-Za-z0-9]+$/", $value);
-
-        if (!$success) {
+        if (preg_match("/^[A-Za-z0-9]+$/", $value) !== 1) {
             return [
                 "Value is not alphanumeric.",
             ];

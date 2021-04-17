@@ -8,9 +8,7 @@ class IsString implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_string($value);
-
-        if (!$success) {
+        if (!is_string($value)) {
             return [
                 "Value is not a string.",
             ];

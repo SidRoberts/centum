@@ -8,9 +8,7 @@ class IsCountable implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_countable($value);
-
-        if (!$success) {
+        if (!is_countable($value)) {
             return [
                 "Value is not countable.",
             ];

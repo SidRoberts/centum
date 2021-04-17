@@ -16,9 +16,7 @@ class ZipCode implements ValidatorInterface
             ];
         }
 
-        $success = preg_match("/^\d{5}(-?\d{4})?$/", $value);
-
-        if (!$success) {
+        if (preg_match("/^\d{5}(-?\d{4})?$/", $value) !== 1) {
             return [
                 "Value is not a valid zip code.",
             ];

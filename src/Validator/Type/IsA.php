@@ -25,9 +25,7 @@ class IsA implements ValidatorInterface
 
     public function validate(mixed $value): array
     {
-        $success = is_a($value, $this->className);
-
-        if (!$success) {
+        if (!is_a($value, $this->className)) {
             return [
                 sprintf(
                     "Value is not %s or a descendent of it.",

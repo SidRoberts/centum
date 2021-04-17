@@ -8,9 +8,7 @@ class IsArray implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_array($value);
-
-        if (!$success) {
+        if (!is_array($value)) {
             return [
                 "Value is not an array.",
             ];

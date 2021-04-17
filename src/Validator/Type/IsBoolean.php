@@ -8,9 +8,7 @@ class IsBoolean implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_bool($value);
-
-        if (!$success) {
+        if (!is_bool($value)) {
             return [
                 "Value is not boolean.",
             ];

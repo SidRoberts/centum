@@ -8,9 +8,7 @@ class IsIterable implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_iterable($value);
-
-        if (!$success) {
+        if (!is_iterable($value)) {
             return [
                 "Value is not iterable.",
             ];

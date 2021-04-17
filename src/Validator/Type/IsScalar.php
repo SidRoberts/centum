@@ -8,9 +8,7 @@ class IsScalar implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        $success = is_scalar($value);
-
-        if (!$success) {
+        if (!is_scalar($value)) {
             return [
                 "Value is not a scalar.",
             ];
