@@ -1,6 +1,8 @@
 <?php
 
-namespace Centum\Validator;
+namespace Centum\Validator\Type;
+
+use Centum\Validator\ValidatorInterface;
 
 class IsInstanceOf implements ValidatorInterface
 {
@@ -23,9 +25,13 @@ class IsInstanceOf implements ValidatorInterface
 
     public function validate(mixed $value): array
     {
-        $success = is_object($value) && ($value instanceof $this->className);
+        if (!is_object($value)) {
+            return [
+                "Value is not an object.",
+            ];
+        }
 
-        if (!$success) {
+        if (!($value instanceof $this->className)) {
             return [
                 sprintf(
                     "Value is not an instance of %s.",

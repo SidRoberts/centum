@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Validator;
+namespace Tests\Validator\Type;
 
 use Centum\Filter\FilterInterface;
 use Centum\Filter\String\Trim;
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Validator\IsInstanceOf;
+use Centum\Validator\Type\IsInstanceOf;
 use Codeception\Example;
 use stdClass;
 use Tests\UnitTester;
@@ -37,10 +37,13 @@ class IsInstanceOfCest
             new Trim(),
         ];
 
-        $bad = [
+        $badObjects = [
             new HtmlFormatter(),
             new stdClass(),
             $this,
+        ];
+
+        $bad = [
             "just a string",
             123,
         ];
@@ -55,7 +58,7 @@ class IsInstanceOfCest
             $good
         );
 
-        $bad = array_map(
+        $badObjects = array_map(
             function (mixed $value): array {
                 return [
                     "value"    => $value,
@@ -64,9 +67,21 @@ class IsInstanceOfCest
                     ],
                 ];
             },
+            $badObjects
+        );
+
+        $bad = array_map(
+            function (mixed $value): array {
+                return [
+                    "value"    => $value,
+                    "expected" => [
+                        "Value is not an object.",
+                    ],
+                ];
+            },
             $bad
         );
 
-        return array_merge($good, $bad);
+        return array_merge($good, $badObjects, $bad);
     }
 }
