@@ -6,7 +6,6 @@ use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
-use Centum\Console\Terminal;
 use Centum\Container\Container;
 use Codeception\Example;
 use Tests\Console\Command\ErrorCommand;
@@ -41,19 +40,13 @@ class ApplicationCest
             "",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 
-        rewind($stdout);
-
         $I->assertEquals(
             "main page",
-            stream_get_contents($stdout)
+            $I->getStdoutContent()
         );
     }
 
@@ -76,19 +69,13 @@ class ApplicationCest
             "123",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 
-        rewind($stdout);
-
         $I->assertEquals(
             246,
-            stream_get_contents($stdout)
+            $I->getStdoutContent()
         );
     }
 
@@ -121,11 +108,7 @@ class ApplicationCest
 
         $argv = $example["argv"];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         try {
             $exitCode = $application->handle($terminal);
@@ -175,19 +158,13 @@ class ApplicationCest
             "cli.php",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $application->handle($terminal);
 
-        rewind($stdout);
-
         $I->assertEquals(
             "main page",
-            stream_get_contents($stdout)
+            $I->getStdoutContent()
         );
     }
 
@@ -202,11 +179,7 @@ class ApplicationCest
             "this:command:does:not:exist",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $I->expectThrowable(
             CommandNotFoundException::class,
@@ -229,11 +202,7 @@ class ApplicationCest
             "invalid-filters",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $I->expectThrowable(
             InvalidFilterException::class,
@@ -256,11 +225,7 @@ class ApplicationCest
             "invalid-middlewares",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $I->expectThrowable(
             InvalidMiddlewareException::class,
@@ -334,21 +299,15 @@ class ApplicationCest
             "problematic",
         ];
 
-        $stdin  = fopen("php://memory", "r");
-        $stdout = fopen("php://memory", "w");
-        $stderr = fopen("php://memory", "w");
-
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = $I->getTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 
 
 
-        rewind($stdout);
-
         $I->assertEquals(
             "Something went wrong.",
-            stream_get_contents($stdout)
+            $I->getStdoutContent()
         );
 
         $I->assertEquals(

@@ -2,6 +2,7 @@
 
 namespace Centum\Codeception;
 
+use Centum\Console\Terminal;
 use Centum\Container\Container;
 use Codeception\Configuration;
 use Codeception\Lib\Framework;
@@ -33,6 +34,23 @@ class Module extends Framework
     protected $config = [
         "container" => "config/container.php",
     ];
+
+    protected ?Terminal $terminal = null;
+
+    /**
+     * @var ?resource
+     */
+    protected $stdin = null;
+
+    /**
+     * @var ?resource
+     */
+    protected $stdout = null;
+
+    /**
+     * @var ?resource
+     */
+    protected $stderr = null;
 
 
 
@@ -79,8 +97,52 @@ class Module extends Framework
      */
     public function _after(TestInterface $test)
     {
-        $this->client = null;
+        $this->client   = null;
+        $this->terminal = null;
+        $this->stdin    = null;
+        $this->stdout   = null;
+        $this->stderr   = null;
 
         parent::_after($test);
+    }
+
+
+
+    /**
+     * @param list<string> $argv
+     */
+    public function getTerminal(array $argv): Terminal
+    {
+        if (!$this->terminal) {
+            $this->stdin  = fopen("php://memory", "r");
+            $this->stdout = fopen("php://memory", "w");
+            $this->stderr = fopen("php://memory", "w");
+
+            $this->terminal = new Terminal($argv, $this->stdin, $this->stdout, $this->stderr);
+        }
+
+        return $this->terminal;
+    }
+
+    public function getStdoutContent(): string
+    {
+        if (!$this->stdout) {
+            return "";
+        }
+
+        rewind($this->stdout);
+
+        return stream_get_contents($this->stdout);
+    }
+
+    public function getStderrContent(): string
+    {
+        if (!$this->stderr) {
+            return "";
+        }
+
+        rewind($this->stderr);
+
+        return stream_get_contents($this->stderr);
     }
 }
