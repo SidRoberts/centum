@@ -11,7 +11,7 @@ use Tests\UnitTester;
 
 class QueueCest
 {
-    public function put(UnitTester $I): void
+    public function publish(UnitTester $I): void
     {
         $task = new DoNothingTask();
 
@@ -40,10 +40,10 @@ class QueueCest
 
         $queue = new Queue($container, $pheanstalk);
 
-        $queue->put($task);
+        $queue->publish($task);
     }
 
-    public function processRegularTask(UnitTester $I): void
+    public function consumeRegularTask(UnitTester $I): void
     {
         $task = new DoNothingTask();
 
@@ -76,7 +76,7 @@ class QueueCest
 
         $queue = new Queue($container, $pheanstalk);
 
-        $queue->processNextTask();
+        $queue->consume();
     }
 
     public function buryJobWhenExceptionIsThrown(UnitTester $I): void
@@ -112,6 +112,6 @@ class QueueCest
 
         $queue = new Queue($container, $pheanstalk);
 
-        $queue->processNextTask();
+        $queue->consume();
     }
 }

@@ -8,11 +8,11 @@ use Centum\Console\Terminal;
 use Centum\Container\Container;
 use Centum\Queue\Queue;
 
-class ProcessTaskCommand extends Command
+class QueueConsumeCommand extends Command
 {
     public function getName(): string
     {
-        return "process-task";
+        return "queue-consume";
     }
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
@@ -22,7 +22,7 @@ class ProcessTaskCommand extends Command
          */
         $queue = $container->typehintClass(Queue::class);
 
-        $queue->processNextTask();
+        $queue->consume();
 
         return 0;
     }

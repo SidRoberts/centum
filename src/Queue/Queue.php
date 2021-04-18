@@ -23,7 +23,7 @@ class Queue
 
 
 
-    public function put(Task $task): void
+    public function publish(Task $task): void
     {
         $this->pheanstalk->useTube(self::TUBE);
 
@@ -32,7 +32,7 @@ class Queue
         );
     }
 
-    public function processNextTask(): Task
+    public function consume(): Task
     {
         $this->pheanstalk->useTube(self::TUBE);
 
