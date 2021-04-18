@@ -50,6 +50,7 @@ src/
         Web/
     Models/
     Observers/
+    Tasks/
 tests/
     _data/
     _output/
