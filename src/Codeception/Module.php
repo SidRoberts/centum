@@ -35,6 +35,8 @@ class Module extends Framework
         "container" => "config/container.php",
     ];
 
+    protected ?Container $container = null;
+
     protected ?Terminal $terminal = null;
 
     /**
@@ -75,9 +77,9 @@ class Module extends Framework
         /**
          * @var Container
          */
-        $container = require $containerFile;
+        $this->container = require $containerFile;
 
-        if (!($container instanceof Container)) {
+        if (!($this->container instanceof Container)) {
             throw new TypeError(
                 sprintf(
                     "%s does not return a %s instance.",
@@ -87,7 +89,7 @@ class Module extends Framework
             );
         }
 
-        $this->client = new Connector($container);
+        $this->client = new Connector($this->container);
     }
 
     /**
@@ -105,6 +107,13 @@ class Module extends Framework
 
         parent::_after($test);
     }
+
+
+    public function getContainer(): ?Container
+    {
+        return $this->container;
+    }
+
 
 
 
