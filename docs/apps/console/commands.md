@@ -38,3 +38,24 @@ class IndexCommand extends Command
     }
 }
 ```
+
+
+
+## Adding Commands to the Application
+
+Commands can be added to the Application, using the `addCommand()` method:
+
+```php
+use App\Commands\IndexCommand;
+use Centum\Console\Application;
+use Centum\Container\Container;
+
+$console = new Container();
+
+$console = new Application($container);
+
+$console->addCommand(new IndexCommand());
+```
+
+The Application will be able to determine Command's name from the Command's `getName()` method.
+Commands are processed in the order that they are added to the Application but a later added Command can overwrite an older Command with the same name.
