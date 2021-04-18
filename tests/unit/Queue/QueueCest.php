@@ -8,6 +8,7 @@ use Mockery;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
 use Tests\UnitTester;
+use Throwable;
 
 class QueueCest
 {
@@ -112,6 +113,11 @@ class QueueCest
 
         $queue = new Queue($container, $pheanstalk);
 
-        $queue->consume();
+        $I->expectThrowable(
+            Throwable::class,
+            function () use ($queue) {
+                $queue->consume();
+            }
+        );
     }
 }

@@ -51,6 +51,8 @@ class Queue
             $this->pheanstalk->delete($job);
         } catch (Throwable $e) {
             $this->pheanstalk->bury($job);
+
+            throw $e;
         }
 
         return $task;
