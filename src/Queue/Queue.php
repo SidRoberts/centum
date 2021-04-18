@@ -34,7 +34,7 @@ class Queue
 
     public function consume(): Task
     {
-        $this->pheanstalk->useTube(self::TUBE);
+        $this->pheanstalk->watch(self::TUBE);
 
         $job = $this->pheanstalk->reserve();
 

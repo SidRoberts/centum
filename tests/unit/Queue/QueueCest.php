@@ -59,7 +59,7 @@ class QueueCest
         $pheanstalk = Mockery::mock(Pheanstalk::class);
 
         $pheanstalk->expects()
-            ->useTube()
+            ->watch()
             ->with(Queue::TUBE);
 
         $pheanstalk->expects()
@@ -95,7 +95,7 @@ class QueueCest
         $pheanstalk = Mockery::mock(Pheanstalk::class);
 
         $pheanstalk->expects()
-            ->useTube()
+            ->watch()
             ->with(Queue::TUBE);
 
         $pheanstalk->expects()
