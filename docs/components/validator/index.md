@@ -18,6 +18,7 @@ permalink: validator
 - [`Centum\Validator\EmailAddress`](https://github.com/SidRoberts/centum/tree/development/src/Validator/EmailAddress.php)
 - [`Centum\Validator\NotEmpty`](https://github.com/SidRoberts/centum/tree/development/src/Validator/NotEmpty.php)
 - [`Centum\Validator\RegularExpression`](https://github.com/SidRoberts/centum/tree/development/src/Validator/RegularExpression.php)
+- [`Centum\Validator\Slug`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Slug.php)
 - [`Centum\Validator\ZipCode`](https://github.com/SidRoberts/centum/tree/development/src/Validator/ZipCode.php)
 - `Centum\Validator\Type`
   - [`Centum\Validator\Type\IsA`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsA.php)
@@ -30,6 +31,7 @@ permalink: validator
   - [`Centum\Validator\Type\IsIterable`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsIterable.php)
   - [`Centum\Validator\Type\IsNull`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsNull.php)
   - [`Centum\Validator\Type\IsObject`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsObject.php)
+  - [`Centum\Validator\Type\IsRegularExpression`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsRegularExpression.php)
   - [`Centum\Validator\Type\IsResource`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsResource.php)
   - [`Centum\Validator\Type\IsScalar`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsScalar.php)
   - [`Centum\Validator\Type\IsString`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsString.php)
