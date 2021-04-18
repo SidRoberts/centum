@@ -6,5 +6,5 @@ use Centum\Container\Container;
 
 abstract class Task
 {
-    abstract public function execute(Container $container): bool;
+    abstract public function execute(Container $container): void;
 }
