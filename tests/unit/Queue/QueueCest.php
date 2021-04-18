@@ -26,6 +26,10 @@ class QueueCest
         $pheanstalk = Mockery::mock(Pheanstalk::class);
 
         $pheanstalk->expects()
+            ->useTube()
+            ->with(Queue::TUBE);
+
+        $pheanstalk->expects()
             ->put()
             ->with($serializedTask)
             ->andReturn($job);
@@ -52,6 +56,10 @@ class QueueCest
 
 
         $pheanstalk = Mockery::mock(Pheanstalk::class);
+
+        $pheanstalk->expects()
+            ->useTube()
+            ->with(Queue::TUBE);
 
         $pheanstalk->expects()
             ->reserve()
@@ -84,6 +92,10 @@ class QueueCest
 
 
         $pheanstalk = Mockery::mock(Pheanstalk::class);
+
+        $pheanstalk->expects()
+            ->useTube()
+            ->with(Queue::TUBE);
 
         $pheanstalk->expects()
             ->reserve()

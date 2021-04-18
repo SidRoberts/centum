@@ -11,6 +11,8 @@ class Queue
     protected Container $container;
     protected Pheanstalk $pheanstalk;
 
+    public const TUBE = "centum-tasks";
+
 
 
     public function __construct(Container $container, Pheanstalk $pheanstalk)
@@ -23,6 +25,8 @@ class Queue
 
     public function put(Task $task): void
     {
+        $this->pheanstalk->useTube(self::TUBE);
+
         $this->pheanstalk->put(
             serialize($task)
         );
@@ -30,6 +34,8 @@ class Queue
 
     public function processNextTask(): Task
     {
+        $this->pheanstalk->useTube(self::TUBE);
+
         $job = $this->pheanstalk->reserve();
 
         /**
