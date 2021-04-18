@@ -30,11 +30,11 @@ You can also specify URL arguments.
 They are automatically sanitised and encoded by [`http_build_query()`](http://php.net/http_build_query):
 
 ```php
-// https://example.com/path/to/something?title=hello+world&page=123
+// https://example.com/search?query=hello+world&page=123
 echo $url->get(
-    "/path/to/something",
+    "/search",
     [
-        "title" => "hello world",
+        "query" => "hello world",
         "page"  => 123,
     ]
 );
