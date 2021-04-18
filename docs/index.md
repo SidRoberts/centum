@@ -27,5 +27,6 @@ Centum uses the following technologies:
 - [Codeception](https://codeception.com/)
 - [Psalm](https://psalm.dev/)
 - [Twig](https://twig.symfony.com/)
+- [Beanstalkd](https://beanstalkd.github.io/)
 
 It is assumed that a developer using Centum has at least some familiarity with all of these items.
