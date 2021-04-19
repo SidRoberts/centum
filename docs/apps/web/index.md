@@ -27,19 +27,3 @@ $response = $router->handle($request);
 ```
 
 It does so by extracting the Request's URI and method, it iterates through the Routes until it finds one that matches, and then executes the Controller's code which returns a Response.
-
-A controller can be as simple as this but it can also take advantage of things like filters, middlewares, form validation:
-
-```php
-namespace App\Controllers;
-
-use Centum\Http\Response;
-
-class IndexController
-{
-    public function index(): Response
-    {
-        return new Response("hello");
-    }
-}
-```

@@ -10,9 +10,32 @@ nav_order: 1
 
 # Routes
 
+## Controllers
+
+Controllers are responsible for returning [Response](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) objects.
+Controllers don't have to extend or implement anything and can be as simple as this:
+
+```php
+namespace App\Controllers;
+
+use Centum\Http\Response;
+
+class LoginController
+{
+    public function form(): Response
+    {
+        return new Response("this is the login page");
+    }
+}
+```
+
+Controllers can also take advantage of things like dependency injection, filters, middlewares, and form validation which we'll learn more about later.
+
+
+
 ## HTTP Methods
 
-You can specify which HTTP method a route matches.
+When adding a route to the Router, you must specify which HTTP method it matches.
 [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2) specify the following HTTP methods which correlate with a Router method:
 
 | HTTP Method | Router Method                                    |
@@ -28,6 +51,14 @@ You can specify which HTTP method a route matches.
 | `PATCH`     | `$router->patch($uri, $class, $method, $form)`   |
 
 The `$form` variable is optional and will be explained later in [Form Requests](form-requests.md). As such, it will be ignored on this page.
+
+If we wanted to add the login form from the `LoginController` in the earlier example, we might decide that it should be a `GET` request and match the `/login` URL:
+
+```php
+use App\Controllers\LoginController;
+
+$router->get("/login", LoginController::class, "form");
+```
 
 
 
@@ -66,7 +97,7 @@ $router->post("/login", LoginController::class, "submit");
 
 `GET /login` would match `form()` and `POST /login` would match `submit()`.
 
-A shorthand exists for this kind of use case which uses the naming convention of `form()` and `submit()`:
+A shorthand exists for this kind of use case which uses the naming convention of `form()` and `submit()` inside the Controller:
 
 ```php
 use App\Controllers\LoginController;
@@ -90,8 +121,15 @@ $router->get("/", BController::class, "index");
 
 ## Dynamic URLs
 
-URLs can be defined with dynamic values by enclosing their identifier in curly brackets (eg. `{id}`).
-This value is then available from the `$parameters` property:
+URLs can be defined with dynamic values by enclosing their identifier in curly brackets (eg. `{id}`):
+
+```php
+use App\Controllers\PostController;
+
+$router->get("/post/{id}", PostController::class, "view");
+```
+
+This value is then available from the `$parameters` property within the Controller:
 
 ```php
 namespace App\Controllers;
@@ -112,13 +150,13 @@ class PostController
 }
 ```
 
-```php
-use App\Controllers\PostController;
-
-$router->get("/post/{id}", PostController::class, "view");
-```
-
 Multiple parameters can also be defined:
+
+```php
+use App\Controllers\CalendarController;
+
+$router->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
+```
 
 ```php
 namespace App\Controllers;
@@ -126,25 +164,19 @@ namespace App\Controllers;
 use Centum\Http\Response;
 use Centum\Mvc\Parameters;
 
-class SomethingController
+class CalendarController
 {
-    public function index(Parameters $parameters): Response
+    public function day(Parameters $parameters): Response
     {
-        $a = $parameters->get("a");
-        $b = $parameters->get("b");
-        $c = $parameters->get("c");
+        $year  = $parameters->get("year");
+        $month = $parameters->get("month");
+        $day   = $parameters->get("day");
 
-        //TODO Do something with $a, $b and $c.
+        //TODO Do something with $year, $month, and $day.
 
-        return new Response("hello $a, $b, $c");
+        return new Response("hello $year, $month, $day");
     }
 }
-```
-
-```php
-use App\Controllers\SomethingController;
-
-$router->get("/something-crazy/{a}/{b}/{c}", SomethingController::class, "index");
 ```
 
 
@@ -162,26 +194,7 @@ If no type is specified, the Router will default to `any`.
 | `char` | `[^/]`             |
 | `any`  | `[^/]+`            |
 
-This example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
-
-```php
-namespace App\Controllers\PostController;
-
-use Centum\Http\Response;
-use Centum\Mvc\Parameters;
-
-class PostController
-{
-    public function view(Parameters $parameters): Response
-    {
-        $id = $parameters->get("id");
-
-        //TODO Do something with $id.
-
-        return new Response("hello $id");
-    }
-}
-```
+Reusing the `PostController` from earlier, this example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
 ```php
 use App\Controllers\PostController;
