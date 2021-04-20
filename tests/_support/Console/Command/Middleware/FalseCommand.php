@@ -6,7 +6,7 @@ use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Tests\Console\Middleware\ExampleFalse;
+use Tests\Console\Middleware\FalseMiddleware;
 
 class FalseCommand extends Command
 {
@@ -18,7 +18,7 @@ class FalseCommand extends Command
     public function getMiddlewares(): array
     {
         return [
-            new ExampleFalse(),
+            new FalseMiddleware(),
         ];
     }
 

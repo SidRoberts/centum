@@ -7,7 +7,7 @@ use Centum\Http\Request;
 use Centum\Mvc\MiddlewareInterface;
 use Centum\Mvc\Route;
 
-class ExampleFalse implements MiddlewareInterface
+class FalseMiddleware implements MiddlewareInterface
 {
     public function middleware(Request $request, Route $route, Container $container): bool
     {

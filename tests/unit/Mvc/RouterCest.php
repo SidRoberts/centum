@@ -20,8 +20,8 @@ use Tests\Mvc\Controllers\MiddlewareController;
 use Tests\Mvc\Controllers\PostController;
 use Tests\Mvc\Controllers\RequirementsController;
 use Tests\Mvc\Filter\Doubler;
-use Tests\Mvc\Middleware\ExampleFalse;
-use Tests\Mvc\Middleware\ExampleTrue;
+use Tests\Mvc\Middleware\FalseMiddleware;
+use Tests\Mvc\Middleware\TrueMiddleware;
 use Tests\UnitTester;
 
 class RouterCest
@@ -80,18 +80,18 @@ class RouterCest
         $router = new Router($container);
 
         $router->get("/middleware/true", MiddlewareController::class, "index")
-            ->addMiddleware(new ExampleTrue());
+            ->addMiddleware(new TrueMiddleware());
 
         $router->get("/middleware/false", MiddlewareController::class, "index")
-            ->addMiddleware(new ExampleFalse());
+            ->addMiddleware(new FalseMiddleware());
 
         $router->get("/middleware/true-false", MiddlewareController::class, "index")
-            ->addMiddleware(new ExampleTrue())
-            ->addMiddleware(new ExampleFalse());
+            ->addMiddleware(new TrueMiddleware())
+            ->addMiddleware(new FalseMiddleware());
 
         $router->get("/middleware/false-true", MiddlewareController::class, "index")
-            ->addMiddleware(new ExampleFalse())
-            ->addMiddleware(new ExampleTrue());
+            ->addMiddleware(new FalseMiddleware())
+            ->addMiddleware(new TrueMiddleware());
 
 
 

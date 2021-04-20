@@ -7,7 +7,7 @@ use Centum\Console\MiddlewareInterface;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 
-class ExampleTrue implements MiddlewareInterface
+class TrueMiddleware implements MiddlewareInterface
 {
     public function middleware(Terminal $terminal, Command $command, Container $container): bool
     {

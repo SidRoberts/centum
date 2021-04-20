@@ -6,8 +6,8 @@ use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Tests\Console\Middleware\ExampleFalse;
-use Tests\Console\Middleware\ExampleTrue;
+use Tests\Console\Middleware\FalseMiddleware;
+use Tests\Console\Middleware\TrueMiddleware;
 
 class Multiple2Command extends Command
 {
@@ -19,8 +19,8 @@ class Multiple2Command extends Command
     public function getMiddlewares(): array
     {
         return [
-            new ExampleFalse(),
-            new ExampleTrue(),
+            new FalseMiddleware(),
+            new TrueMiddleware(),
         ];
     }
 

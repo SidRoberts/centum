@@ -6,7 +6,7 @@ use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
-use Tests\Console\Middleware\ExampleTrue;
+use Tests\Console\Middleware\TrueMiddleware;
 
 class TrueCommand extends Command
 {
@@ -18,7 +18,7 @@ class TrueCommand extends Command
     public function getMiddlewares(): array
     {
         return [
-            new ExampleTrue(),
+            new TrueMiddleware(),
         ];
     }
 
