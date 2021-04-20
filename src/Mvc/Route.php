@@ -75,7 +75,7 @@ class Route
     {
         $replacements = [
             "int"  => "[\d]+",
-            "slug" => "[a-z0-9\-]+",
+            "slug" => "[a-z0-9]+(?:\-[a-z0-9]+)*",
             "char" => "[^/]",
             "any"  => "[^/]+",
         ];

@@ -187,12 +187,12 @@ You can require that the parameters adhere to a certain format by appending the 
 Currently, 4 types exist.
 If no type is specified, the Router will default to `any`.
 
-| Type   | Regular expression |
-| ------ | ------------------ |
-| `int`  | `[\d]+`            |
-| `slug` | `[a-z0-9\-]+`      |
-| `char` | `[^/]`             |
-| `any`  | `[^/]+`            |
+| Type   | Regular expression          |
+| ------ | --------------------------- |
+| `int`  | `[\d]+`                     |
+| `slug` | `[a-z0-9]+(?:\-[a-z0-9]+)*` |
+| `char` | `[^/]`                      |
+| `any`  | `[^/]+`                     |
 
 Reusing the `PostController` from earlier, this example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
