@@ -25,6 +25,7 @@ permalink: validator
   - [`Centum\Validator\Type\IsArray`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsArray.php)
   - [`Centum\Validator\Type\IsBoolean`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsBoolean.php)
   - [`Centum\Validator\Type\IsCallable`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsCallable.php)
+  - [`Centum\Validator\Type\IsCharacter`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsCharacter.php)
   - [`Centum\Validator\Type\IsCountable`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsCountable.php)
   - [`Centum\Validator\IsInstanceOf`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsInstanceOf.php)
   - [`Centum\Validator\Type\IsInteger`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsInteger.php)
