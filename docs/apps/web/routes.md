@@ -33,31 +33,62 @@ Controllers can also take advantage of things like dependency injection, filters
 
 
 
+## Route Groups
+
+In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Group.php) objects.
+A group can store as many routes as you wish and can be used to organise and group similar routes.
+A new group can be created with the `group()` method:
+
+```php
+use Centum\Container\Container;
+use Centum\Mvc\Router;
+
+$container = new Container();
+
+$router = new Router($container);
+
+$group = $router->group();
+```
+
+We'll learn more about Route Groups and how they can be useful in the [Middlewares](middlewares.md) section.
+
+
+
 ## HTTP Methods
 
 When adding a route to the Router, you must specify which HTTP method it matches.
-[RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2) specify the following HTTP methods which correlate with a Router method:
+[RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2) specify the following HTTP methods which correlate with a Group method:
 
-| HTTP Method | Router Method                                    |
-| ----------- | ------------------------------------------------ |
-| `GET`       | `$router->get($uri, $class, $method, $form)`     |
-| `POST`      | `$router->post($uri, $class, $method, $form)`    |
-| `HEAD`      | `$router->head($uri, $class, $method, $form)`    |
-| `PUT`       | `$router->put($uri, $class, $method, $form)`     |
-| `DELETE`    | `$router->delete($uri, $class, $method, $form)`  |
-| `TRACE`     | `$router->trace($uri, $class, $method, $form)`   |
-| `OPTIONS`   | `$router->options($uri, $class, $method, $form)` |
-| `CONNECT`   | `$router->connect($uri, $class, $method, $form)` |
-| `PATCH`     | `$router->patch($uri, $class, $method, $form)`   |
+| HTTP Method | Group Method                                    |
+| ----------- | ----------------------------------------------- |
+| `GET`       | `$group->get($uri, $class, $method, $form)`     |
+| `POST`      | `$group->post($uri, $class, $method, $form)`    |
+| `HEAD`      | `$group->head($uri, $class, $method, $form)`    |
+| `PUT`       | `$group->put($uri, $class, $method, $form)`     |
+| `DELETE`    | `$group->delete($uri, $class, $method, $form)`  |
+| `TRACE`     | `$group->trace($uri, $class, $method, $form)`   |
+| `OPTIONS`   | `$group->options($uri, $class, $method, $form)` |
+| `CONNECT`   | `$group->connect($uri, $class, $method, $form)` |
+| `PATCH`     | `$group->patch($uri, $class, $method, $form)`   |
 
-The `$form` variable is optional and will be explained later in [Form Requests](form-requests.md). As such, it will be ignored on this page.
+The `$form` variable is optional and will be explained later in [Form Requests](form-requests.md).
+As such, it will be ignored on this page.
 
 If we wanted to add the login form from the `LoginController` in the earlier example, we might decide that it should be a `GET` request and match the `/login` URL:
 
 ```php
 use App\Controllers\LoginController;
 
-$router->get("/login", LoginController::class, "form");
+use Centum\Container\Container;
+use Centum\Mvc\Router;
+
+$container = new Container();
+
+$router = new Router($container);
+
+$group = $router->group();
+
+$group->get("/login", LoginController::class, "form");
 ```
 
 
@@ -86,13 +117,15 @@ class LoginController
 }
 ```
 
-When adding these routes to the Router, you can use the different Router methods to denote which HTTP method they will apply to:
+When adding these routes to the Router, you can use the different Group methods to denote which HTTP method they will apply to:
 
 ```php
 use App\Controllers\LoginController;
 
-$router->get("/login", LoginController::class, "form");
-$router->post("/login", LoginController::class, "submit");
+$group = $router->group();
+
+$group->get("/login", LoginController::class, "form");
+$group->post("/login", LoginController::class, "submit");
 ```
 
 `GET /login` would match `form()` and `POST /login` would match `submit()`.
@@ -102,7 +135,9 @@ A shorthand exists for this kind of use case which uses the naming convention of
 ```php
 use App\Controllers\LoginController;
 
-$router->submission("/login", LoginController::class);
+$group = $router->group();
+
+$group->submission("/login", LoginController::class);
 ```
 
 
@@ -113,8 +148,10 @@ The Router processes Routes in the order they are added.
 In this example, `GET /` would match `AController`:
 
 ```php
-$router->get("/", AController::class, "index");
-$router->get("/", BController::class, "index");
+$group = $router->group();
+
+$group->get("/", AController::class, "index");
+$group->get("/", BController::class, "index");
 ```
 
 
@@ -126,7 +163,9 @@ URLs can be defined with dynamic values by enclosing their identifier in curly b
 ```php
 use App\Controllers\PostController;
 
-$router->get("/post/{id}", PostController::class, "view");
+$group = $router->group();
+
+$group->get("/post/{id}", PostController::class, "view");
 ```
 
 This value is then available from the `$parameters` property within the Controller:
@@ -155,7 +194,9 @@ Multiple parameters can also be defined:
 ```php
 use App\Controllers\CalendarController;
 
-$router->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
+$group = $router->group();
+
+$group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 ```
 
 ```php
@@ -194,10 +235,13 @@ If no type is specified, the Router will default to `any`.
 | `char` | `[^/]`                      |
 | `any`  | `[^/]+`                     |
 
+
 Reusing the `PostController` from earlier, this example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
 ```php
 use App\Controllers\PostController;
 
-$router->get("/post/{id:int}", PostController::class, "view");
+$group = $router->group();
+
+$group->get("/post/{id:int}", PostController::class, "view");
 ```

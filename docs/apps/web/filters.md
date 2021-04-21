@@ -83,7 +83,7 @@ class PostController
 use App\Controllers\PostController;
 use App\Filters\IdToPostFilter;
 
-$router->get("/post/{post:int}", PostController::class, "view")
+$group->get("/post/{post:int}", PostController::class, "view")
     ->addFilter(
         "post",
         new IdToPostFilter($container)

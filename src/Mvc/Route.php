@@ -19,11 +19,6 @@ class Route
     protected string $method;
 
     /**
-     * @var MiddlewareInterface[]
-     */
-    protected array $middlewares = [];
-
-    /**
      * @var array<string, FilterInterface>
      */
     protected array $filters = [];
@@ -103,20 +98,6 @@ class Route
         $pattern = "#^" . $pattern . "$#u";
 
         return $pattern;
-    }
-
-
-
-    public function getMiddlewares(): array
-    {
-        return $this->middlewares;
-    }
-
-    public function addMiddleware(MiddlewareInterface $middleware): Route
-    {
-        $this->middlewares[] = $middleware;
-
-        return $this;
     }
 
 

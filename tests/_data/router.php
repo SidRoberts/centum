@@ -16,7 +16,9 @@ $router = new Router($container);
 //                                   ROUTES                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
-$router->get("/", IndexController::class, "index");
+$group = $router->group();
+
+$group->get("/", IndexController::class, "index");
 
 
 

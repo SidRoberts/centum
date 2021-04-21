@@ -7,6 +7,7 @@ use Centum\Forms\FormFactory;
 use Centum\Http\Request;
 use Centum\Mvc\Exception\FormRequestException;
 use Centum\Mvc\Exception\RouteNotFoundException;
+use Centum\Mvc\Group;
 use Centum\Mvc\Router;
 use Codeception\Example;
 use Exception;
@@ -32,7 +33,11 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get("/", IndexController::class, "index");
+
+
+        $group = $router->group();
+
+        $group->get("/", IndexController::class, "index");
 
 
 
@@ -52,7 +57,11 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get("/filter/double/{i:int}", FilterController::class, "get")
+
+
+        $group = $router->group();
+
+        $group->get("/filter/double/{i:int}", FilterController::class, "get")
             ->addFilter("i", new Doubler());
 
 
@@ -79,19 +88,21 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get("/middleware/true", MiddlewareController::class, "index")
-            ->addMiddleware(new TrueMiddleware());
 
-        $router->get("/middleware/false", MiddlewareController::class, "index")
-            ->addMiddleware(new FalseMiddleware());
 
-        $router->get("/middleware/true-false", MiddlewareController::class, "index")
-            ->addMiddleware(new TrueMiddleware())
-            ->addMiddleware(new FalseMiddleware());
+        $trueGroup = $router->group(
+            new TrueMiddleware()
+        );
 
-        $router->get("/middleware/false-true", MiddlewareController::class, "index")
-            ->addMiddleware(new FalseMiddleware())
-            ->addMiddleware(new TrueMiddleware());
+        $trueGroup->get("/middleware/true", MiddlewareController::class, "index");
+
+
+
+        $falseGroup = $router->group(
+            new FalseMiddleware()
+        );
+
+        $falseGroup->get("/middleware/false", MiddlewareController::class, "index");
 
 
 
@@ -143,7 +154,11 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get(
+
+
+        $group = $router->group();
+
+        $group->get(
             "/requirements/{id:int}",
             RequirementsController::class,
             "required"
@@ -194,15 +209,17 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get("/", HttpMethodController::class, "get");
-        $router->post("/", HttpMethodController::class, "post");
-        $router->head("/", HttpMethodController::class, "head");
-        $router->put("/", HttpMethodController::class, "put");
-        $router->delete("/", HttpMethodController::class, "delete");
-        $router->trace("/", HttpMethodController::class, "trace");
-        $router->options("/", HttpMethodController::class, "options");
-        $router->connect("/", HttpMethodController::class, "connect");
-        $router->patch("/", HttpMethodController::class, "patch");
+        $group = $router->group();
+
+        $group->get("/", HttpMethodController::class, "get");
+        $group->post("/", HttpMethodController::class, "post");
+        $group->head("/", HttpMethodController::class, "head");
+        $group->put("/", HttpMethodController::class, "put");
+        $group->delete("/", HttpMethodController::class, "delete");
+        $group->trace("/", HttpMethodController::class, "trace");
+        $group->options("/", HttpMethodController::class, "options");
+        $group->connect("/", HttpMethodController::class, "connect");
+        $group->patch("/", HttpMethodController::class, "patch");
 
 
 
@@ -285,7 +302,11 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->crud("/posts", PostController::class);
+
+
+        $group = $router->group();
+
+        $group->crud("/posts", PostController::class);
 
 
 
@@ -374,7 +395,11 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->submission("/login", LoginController::class);
+
+
+        $group = $router->group();
+
+        $group->submission("/login", LoginController::class);
 
 
 
@@ -411,9 +436,13 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get("/login", LoginController::class, "form");
 
-        $router->post("/login", LoginController::class, "submit", $form);
+
+        $group = $router->group();
+
+        $group->get("/login", LoginController::class, "form");
+
+        $group->post("/login", LoginController::class, "submit", $form);
 
 
 
@@ -451,8 +480,6 @@ class RouterCest
 
         $router = new Router($container);
 
-        $router->get("/", ExceptionController::class, "index");
-
         $router->addExceptionHandler(
             RouteNotFoundException::class,
             ExceptionController::class,
@@ -464,6 +491,12 @@ class RouterCest
             ExceptionController::class,
             "internalServerError"
         );
+
+
+
+        $group = $router->group();
+
+        $group->get("/", ExceptionController::class, "index");
 
 
 

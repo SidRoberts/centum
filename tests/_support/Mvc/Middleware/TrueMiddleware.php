@@ -9,7 +9,7 @@ use Centum\Mvc\Route;
 
 class TrueMiddleware implements MiddlewareInterface
 {
-    public function middleware(Request $request, Route $route, Container $container): bool
+    public function middleware(Request $request, Container $container): bool
     {
         return true;
     }
