@@ -1,16 +1,15 @@
 <?php
 
-namespace Tests\Mvc\Middleware;
+namespace Centum\Mvc\Middleware;
 
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Mvc\MiddlewareInterface;
-use Centum\Mvc\Route;
 
-class TrueMiddleware implements MiddlewareInterface
+class FalseMiddleware implements MiddlewareInterface
 {
     public function middleware(Request $request, Container $container): bool
     {
-        return true;
+        return false;
     }
 }

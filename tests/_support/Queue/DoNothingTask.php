@@ -9,6 +9,6 @@ class DoNothingTask extends Task
 {
     public function execute(Container $container): void
     {
-        return;
+
     }
 }

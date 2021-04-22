@@ -10,6 +10,7 @@ use Centum\Mvc\Exception\FormRequestException;
 use Centum\Mvc\Exception\ParamNotFoundException;
 use Centum\Mvc\Exception\RouteMismatchException;
 use Centum\Mvc\Exception\RouteNotFoundException;
+use Centum\Mvc\Middleware\TrueMiddleware;
 use Throwable;
 
 class Router
@@ -38,13 +39,9 @@ class Router
     public function group(MiddlewareInterface $middleware = null): Group
     {
         if (!$middleware) {
-            $middleware = new class implements MiddlewareInterface {
-                public function middleware(Request $request, Container $container): bool
-                {
-                    return true;
-                }
-            };
+            $middleware = new TrueMiddleware();
         }
+
         $group = new Group($middleware);
 
         $this->groups[] = $group;
