@@ -41,4 +41,56 @@ class ModuleCest
             $module->client
         );
     }
+
+    public function getStdoutContent(UnitTester $I)
+    {
+        $I->assertEquals(
+            "",
+            $I->getStdoutContent()
+        );
+
+        $terminal = $I->getTerminal(
+            []
+        );
+
+        $terminal->write("Hello.");
+
+        $I->assertEquals(
+            "Hello.",
+            $I->getStdoutContent()
+        );
+
+        $terminal->write("Goodbye.");
+
+        $I->assertEquals(
+            "Hello.Goodbye.",
+            $I->getStdoutContent()
+        );
+    }
+
+    public function getStderrContent(UnitTester $I)
+    {
+        $I->assertEquals(
+            "",
+            $I->getStderrContent()
+        );
+
+        $terminal = $I->getTerminal(
+            []
+        );
+
+        $terminal->writeError("Hello.");
+
+        $I->assertEquals(
+            "Hello.",
+            $I->getStderrContent()
+        );
+
+        $terminal->writeError("Goodbye.");
+
+        $I->assertEquals(
+            "Hello.Goodbye.",
+            $I->getStderrContent()
+        );
+    }
 }

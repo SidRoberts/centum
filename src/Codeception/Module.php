@@ -2,6 +2,8 @@
 
 namespace Centum\Codeception;
 
+use Centum\Console\Application;
+use Centum\Console\Command;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
 use Codeception\Configuration;
@@ -109,9 +111,23 @@ class Module extends Framework
     }
 
 
-    public function getContainer(): ?Container
+    public function getContainer(): Container
     {
+        if (!$this->container) {
+            throw new \Exception("Couldn't find the Container.");
+        }
+
         return $this->container;
+    }
+
+    /**
+     * @param class-string $class
+     */
+    public function addToContainer(string $class, object $object): void
+    {
+        $container = $this->getContainer();
+
+        $container->set($class, $object);
     }
 
 
@@ -153,5 +169,35 @@ class Module extends Framework
         rewind($this->stderr);
 
         return stream_get_contents($this->stderr);
+    }
+
+    public function getConsoleApplication(): Application
+    {
+        $container = $this->getContainer();
+
+        /**
+         * @var Application
+         */
+        return $container->typehintClass(Application::class);
+    }
+
+    public function addCommand(Command $command): void
+    {
+        $application = $this->getConsoleApplication();
+
+        $application->addCommand($command);
+    }
+
+    /**
+     * @param list<string> $argv
+     */
+    public function runCommand(array $argv): int
+    {
+        $application = $this->getConsoleApplication();
+        $terminal    = $this->getTerminal($argv);
+
+        $exitCode = $application->handle($terminal);
+
+        return $exitCode;
     }
 }
