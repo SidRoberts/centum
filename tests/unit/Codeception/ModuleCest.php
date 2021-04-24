@@ -42,6 +42,27 @@ class ModuleCest
         );
     }
 
+    public function exceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => ".php_cs.dist",
+            ]
+        );
+
+        $test = Mockery::mock(TestInterface::class);
+
+        $I->expectThrowable(
+            \TypeError::class,
+            function () use ($module, $test) {
+                $module->_before($test);
+            }
+        );
+    }
+
     public function getStdoutContent(UnitTester $I)
     {
         $I->assertEquals(
