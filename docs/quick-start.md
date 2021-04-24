@@ -51,6 +51,7 @@ src/
     Models/
     Observers/
     Tasks/
+    Validators/
 tests/
     _data/
     _output/
