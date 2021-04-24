@@ -99,14 +99,14 @@ class Module extends Framework
      */
     public function _after(TestInterface $test)
     {
-        $this->client   = null;
-        $this->terminal = null;
-        $this->stdin    = null;
-        $this->stdout   = null;
-        $this->stderr   = null;
+        $this->client = null;
+        $this->stdin  = null;
+        $this->stdout = null;
+        $this->stderr = null;
 
         parent::_after($test);
     }
+
 
 
     public function getContainer(): Container
