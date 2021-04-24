@@ -23,6 +23,8 @@ permalink: filter
 - `Centum\Filter\String`
   - [`Centum\Filter\String\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alpha.php)
   - [`Centum\Filter\String\Alphanumeric`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alphanumeric.php)
+  - [`Centum\Filter\String\Prefix`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Prefix.php)
+  - [`Centum\Filter\String\Suffix`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Suffix.php)
   - [`Centum\Filter\String\ToLower`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToLower.php)
   - [`Centum\Filter\String\ToUpper`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToUpper.php)
   - [`Centum\Filter\String\Trim`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Trim.php)
