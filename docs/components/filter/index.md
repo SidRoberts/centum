@@ -14,6 +14,7 @@ permalink: filter
 
 - [`Centum\Filter\Blacklist`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Blacklist.php)
 - [`Centum\Filter\Callback`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Callback.php)
+- [`Centum\Filter\Group`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Group.php)
 - [`Centum\Filter\Whitelist`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Whitelist.php)
 - `Centum\Filter\Cast`
   - [`Centum\Filter\Cast\ToArray`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToArray.php)
