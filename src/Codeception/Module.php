@@ -39,8 +39,6 @@ class Module extends Framework
 
     protected ?Container $container = null;
 
-    protected ?Terminal $terminal = null;
-
     /**
      * @var ?resource
      */
@@ -136,17 +134,13 @@ class Module extends Framework
     /**
      * @param list<string> $argv
      */
-    public function getTerminal(array $argv): Terminal
+    public function createTerminal(array $argv): Terminal
     {
-        if (!$this->terminal) {
-            $this->stdin  = fopen("php://memory", "r");
-            $this->stdout = fopen("php://memory", "w");
-            $this->stderr = fopen("php://memory", "w");
+        $this->stdin  = fopen("php://memory", "r");
+        $this->stdout = fopen("php://memory", "w");
+        $this->stderr = fopen("php://memory", "w");
 
-            $this->terminal = new Terminal($argv, $this->stdin, $this->stdout, $this->stderr);
-        }
-
-        return $this->terminal;
+        return new Terminal($argv, $this->stdin, $this->stdout, $this->stderr);
     }
 
     public function getStdoutContent(): string
@@ -194,7 +188,7 @@ class Module extends Framework
     public function runCommand(array $argv): int
     {
         $application = $this->getConsoleApplication();
-        $terminal    = $this->getTerminal($argv);
+        $terminal    = $this->createTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 

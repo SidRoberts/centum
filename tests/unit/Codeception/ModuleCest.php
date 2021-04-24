@@ -49,7 +49,7 @@ class ModuleCest
             $I->getStdoutContent()
         );
 
-        $terminal = $I->getTerminal(
+        $terminal = $I->createTerminal(
             []
         );
 
@@ -75,7 +75,7 @@ class ModuleCest
             $I->getStderrContent()
         );
 
-        $terminal = $I->getTerminal(
+        $terminal = $I->createTerminal(
             []
         );
 

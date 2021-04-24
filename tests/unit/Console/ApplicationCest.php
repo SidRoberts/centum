@@ -40,7 +40,7 @@ class ApplicationCest
             "",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 
@@ -69,7 +69,7 @@ class ApplicationCest
             "123",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 
@@ -108,7 +108,7 @@ class ApplicationCest
 
         $argv = $example["argv"];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         try {
             $exitCode = $application->handle($terminal);
@@ -158,7 +158,7 @@ class ApplicationCest
             "cli.php",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $application->handle($terminal);
 
@@ -179,7 +179,7 @@ class ApplicationCest
             "this:command:does:not:exist",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $I->expectThrowable(
             CommandNotFoundException::class,
@@ -202,7 +202,7 @@ class ApplicationCest
             "invalid-filters",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $I->expectThrowable(
             InvalidFilterException::class,
@@ -225,7 +225,7 @@ class ApplicationCest
             "invalid-middlewares",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $I->expectThrowable(
             InvalidMiddlewareException::class,
@@ -299,7 +299,7 @@ class ApplicationCest
             "problematic",
         ];
 
-        $terminal = $I->getTerminal($argv);
+        $terminal = $I->createTerminal($argv);
 
         $exitCode = $application->handle($terminal);
 
