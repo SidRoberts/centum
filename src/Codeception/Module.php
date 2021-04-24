@@ -194,4 +194,80 @@ class Module extends Framework
 
         return $exitCode;
     }
+
+
+
+    public function assertStdoutEquals(string $expected, string $message = ""): void
+    {
+        $this->assertEquals(
+            $expected,
+            $this->getStdoutContent(),
+            $message
+        );
+    }
+
+    public function assertStdoutNotEquals(string $expected, string $message = ""): void
+    {
+        $this->assertNotEquals(
+            $expected,
+            $this->getStdoutContent(),
+            $message
+        );
+    }
+
+    public function assertStdoutContains(string $expected, string $message = ""): void
+    {
+        $this->assertStringContainsString(
+            $expected,
+            $this->getStdoutContent(),
+            $message
+        );
+    }
+
+    public function assertStdoutNotContains(string $expected, string $message = ""): void
+    {
+        $this->assertStringNotContainsString(
+            $expected,
+            $this->getStdoutContent(),
+            $message
+        );
+    }
+
+
+
+    public function assertStderrEquals(string $expected, string $message = ""): void
+    {
+        $this->assertEquals(
+            $expected,
+            $this->getStderrContent(),
+            $message
+        );
+    }
+
+    public function assertStderrNotEquals(string $expected, string $message = ""): void
+    {
+        $this->assertNotEquals(
+            $expected,
+            $this->getStderrContent(),
+            $message
+        );
+    }
+
+    public function assertStderrContains(string $expected, string $message = ""): void
+    {
+        $this->assertStringContainsString(
+            $expected,
+            $this->getStderrContent(),
+            $message
+        );
+    }
+
+    public function assertStderrNotContains(string $expected, string $message = ""): void
+    {
+        $this->assertStringNotContainsString(
+            $expected,
+            $this->getStderrContent(),
+            $message
+        );
+    }
 }

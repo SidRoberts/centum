@@ -93,4 +93,96 @@ class ModuleCest
             $I->getStderrContent()
         );
     }
+
+
+
+    public function assertStdoutEquals(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->write("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStdoutEquals("The quick brown fox jumps over the lazy dog.");
+    }
+
+    public function assertStdoutNotEquals(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->write("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStdoutNotEquals("The slow brown fox jumps over the energetic dog.");
+    }
+
+    public function assertStdoutContains(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->write("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStdoutContains("quick");
+    }
+
+    public function assertStdoutNotContains(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->write("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStdoutNotContains("slow");
+    }
+
+
+
+    public function assertStderrEquals(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->writeError("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStderrEquals("The quick brown fox jumps over the lazy dog.");
+    }
+
+    public function assertStderrNotEquals(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->writeError("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStderrNotEquals("The slow brown fox jumps over the energetic dog.");
+    }
+
+    public function assertStderrContains(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->writeError("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStderrContains("quick");
+    }
+
+    public function assertStderrNotContains(UnitTester $I): void
+    {
+        $terminal = $I->createTerminal(
+            []
+        );
+
+        $terminal->writeError("The quick brown fox jumps over the lazy dog.");
+
+        $I->assertStderrNotContains("slow");
+    }
 }

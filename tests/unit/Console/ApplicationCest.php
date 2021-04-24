@@ -44,9 +44,8 @@ class ApplicationCest
 
         $exitCode = $application->handle($terminal);
 
-        $I->assertEquals(
-            "main page",
-            $I->getStdoutContent()
+        $I->assertStdoutEquals(
+            "main page"
         );
     }
 
@@ -73,9 +72,8 @@ class ApplicationCest
 
         $exitCode = $application->handle($terminal);
 
-        $I->assertEquals(
-            246,
-            $I->getStdoutContent()
+        $I->assertStdoutEquals(
+            246
         );
     }
 
@@ -162,9 +160,8 @@ class ApplicationCest
 
         $application->handle($terminal);
 
-        $I->assertEquals(
-            "main page",
-            $I->getStdoutContent()
+        $I->assertStdoutEquals(
+            "main page"
         );
     }
 
@@ -305,9 +302,8 @@ class ApplicationCest
 
 
 
-        $I->assertEquals(
-            "Something went wrong.",
-            $I->getStdoutContent()
+        $I->assertStdoutEquals(
+            "Something went wrong."
         );
 
         $I->assertEquals(
