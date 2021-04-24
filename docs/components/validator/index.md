@@ -20,6 +20,7 @@ permalink: validator
 - [`Centum\Validator\NotEmpty`](https://github.com/SidRoberts/centum/tree/development/src/Validator/NotEmpty.php)
 - [`Centum\Validator\RegularExpression`](https://github.com/SidRoberts/centum/tree/development/src/Validator/RegularExpression.php)
 - [`Centum\Validator\Slug`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Slug.php)
+- [`Centum\Validator\TimeZone`](https://github.com/SidRoberts/centum/tree/development/src/Validator/TimeZone.php)
 - [`Centum\Validator\ZipCode`](https://github.com/SidRoberts/centum/tree/development/src/Validator/ZipCode.php)
 - `Centum\Validator\Type`
   - [`Centum\Validator\Type\IsA`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Type/IsA.php)
