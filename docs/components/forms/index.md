@@ -10,4 +10,4 @@ permalink: forms
 
 # `Centum\Forms`
 
-...
+Forms are used for validating and processing data by taking advantage of the [Filter](../filter/index.md) and [Validator](../validator/index.md) components.

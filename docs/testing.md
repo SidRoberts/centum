@@ -43,10 +43,14 @@ If this isn't specified, it will default to `config/container.php`.
 
 ### Assertions
 
+#### STDOUT
+
 - `assertStdoutEquals(string $expected, string $message = ""): void`
 - `assertStdoutNotEquals(string $expected, string $message = ""): void`
 - `assertStdoutContains(string $expected, string $message = ""): void`
 - `assertStdoutNotContains(string $expected, string $message = ""): void`
+
+#### STDERR
 
 - `assertStderrEquals(string $expected, string $message = ""): void`
 - `assertStderrNotEquals(string $expected, string $message = ""): void`

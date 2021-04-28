@@ -225,8 +225,7 @@ class CalendarController
 ### Parameter Requirements
 
 You can require that the parameters adhere to a certain format by appending the type onto the end of the parameter identifier.
-Currently, 4 types exist.
-If no type is specified, the Router will default to `any`.
+Currently, 4 types exist:
 
 | Type   | Regular expression          |
 | ------ | --------------------------- |
@@ -235,6 +234,7 @@ If no type is specified, the Router will default to `any`.
 | `char` | `[^/]`                      |
 | `any`  | `[^/]+`                     |
 
+If no type is specified, the Router will default to `any`.
 
 Reusing the `PostController` from earlier, this example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
