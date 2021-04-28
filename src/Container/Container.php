@@ -162,7 +162,7 @@ class Container
         }
 
         /**
-         * @var class-string $class
+         * @var class-string
          */
         $class = $type->getName();
 

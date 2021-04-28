@@ -4,6 +4,7 @@ namespace Centum\Forms;
 
 use Centum\Filter\FilterInterface;
 use Centum\Validator\ValidatorInterface;
+use Throwable;
 
 class Field
 {
@@ -102,7 +103,7 @@ class Field
 
                 array_push($allMessages, ...$messages);
             }
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return [
                 $exception->getMessage(),
             ];
