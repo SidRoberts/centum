@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Filter\String;
+namespace Tests\Unit\Filter\String;
 
 use Centum\Filter\String\Replace;
 use Codeception\Example;

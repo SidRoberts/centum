@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Http;
+namespace Tests\Unit\Http;
 
 use Centum\Http\Session;
 use Centum\Http\Session\HandlerInterface;

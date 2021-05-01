@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Mvc;
+namespace Tests\Unit\Mvc;
 
 use Centum\Container\Container;
 use Centum\Forms\FormFactory;

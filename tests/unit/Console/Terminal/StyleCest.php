@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Console\Terminal;
+namespace Tests\Unit\Console\Terminal;
 
 use Centum\Console\Terminal\Style;
 use Codeception\Example;

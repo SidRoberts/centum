@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Forms;
+namespace Tests\Unit\Forms;
 
 use Centum\Forms\FormFactory;
+use Tests\Forms\LoginTemplate;
 use Tests\UnitTester;
 
 class FormFactoryCest

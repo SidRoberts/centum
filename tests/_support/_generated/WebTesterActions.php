@@ -5,7 +5,7 @@ namespace Tests\_generated;
 // You should not change it manually as it will be overwritten on next build
 // @codingStandardsIgnoreFile
 
-trait FunctionalTesterActions
+trait WebTesterActions
 {
     /**
      * @return \Codeception\Scenario
@@ -2055,7 +2055,7 @@ trait FunctionalTesterActions
      *
      * @see \Centum\Codeception\Module::getContainer()
      */
-    public function getContainer(): ?\Centum\Container\Container {
+    public function getContainer(): \Centum\Container\Container {
         return $this->getScenario()->runStep(new \Codeception\Step\Action('getContainer', func_get_args()));
     }
 
@@ -2063,7 +2063,7 @@ trait FunctionalTesterActions
     /**
      * [!] Method is generated. Documentation taken from corresponding module.
      *
-     *
+     * @param class-string $class
      * @see \Centum\Codeception\Module::addToContainer()
      */
     public function addToContainer(string $class, object $object): void {
@@ -2230,8 +2230,8 @@ trait FunctionalTesterActions
      *
      * Authenticates user for HTTP_AUTH
      *
-     * @param $username
-     * @param $password
+     * @param string $username
+     * @param string $password
      * @see \Codeception\Lib\InnerBrowser::amHttpAuthenticated()
      */
     public function amHttpAuthenticated($username, $password) {
@@ -2250,7 +2250,6 @@ trait FunctionalTesterActions
      * <?php
      * $I->haveHttpHeader('X-Requested-With', 'Codeception');
      * $I->amOnPage('test-headers.php');
-     * ?>
      * ```
      *
      * To use special chars in Header Key use HTML Character Entities:
@@ -2261,7 +2260,6 @@ trait FunctionalTesterActions
      * ```php
      * <?php
      * $I->haveHttpHeader('Client&#95;Id', 'Codeception');
-     * ?>
      * ```
      *
      * @param string $name the name of the request header
@@ -2288,7 +2286,6 @@ trait FunctionalTesterActions
      * // ...
      * $I->deleteHeader('X-Requested-With');
      * $I->amOnPage('some-other-page.php');
-     * ?>
      * ```
      *
      * @param string $name the name of the header to delete.
@@ -3681,7 +3678,7 @@ trait FunctionalTesterActions
      *     'task' => 'lorem ipsum',
      *     'category' => 'miscellaneous',
      * ]]);
-     * ```    
+     * ```
      *
      * @param string $uri
      * @param array $params
@@ -3705,7 +3702,7 @@ trait FunctionalTesterActions
      *
      * @param $method
      * @param $uri
-     * @param $params
+     * @param array $params
      * @see \Codeception\Lib\InnerBrowser::sendAjaxRequest()
      */
     public function sendAjaxRequest($method, $uri, $params = []) {
@@ -3876,7 +3873,6 @@ trait FunctionalTesterActions
      * Grabs current page source code.
      *
      * @throws ModuleException if no page was opened.
-     *
      * @return string Current page source code.
      * @see \Codeception\Lib\InnerBrowser::grabPageSource()
      */
@@ -3973,7 +3969,7 @@ trait FunctionalTesterActions
      * @return mixed
      * @see \Codeception\Lib\InnerBrowser::resetCookie()
      */
-    public function resetCookie($name, array $params = []) {
+    public function resetCookie($cookie, array $params = []) {
         return $this->getScenario()->runStep(new \Codeception\Step\Action('resetCookie', func_get_args()));
     }
 
@@ -4239,7 +4235,7 @@ trait FunctionalTesterActions
      * $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
      * ```
      *
-     * @param $code
+     * @param int $code
      * @see \Codeception\Lib\InnerBrowser::seeResponseCodeIs()
      */
     public function seeResponseCodeIs($code) {
@@ -4259,7 +4255,7 @@ trait FunctionalTesterActions
      * $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
      * ```
      *
-     * @param $code
+     * @param int $code
      * @see \Codeception\Lib\InnerBrowser::seeResponseCodeIs()
      */
     public function canSeeResponseCodeIs($code) {
@@ -4272,8 +4268,8 @@ trait FunctionalTesterActions
      *
      * Checks that response code is between a certain range. Between actually means [from <= CODE <= to]
      *
-     * @param $from
-     * @param $to
+     * @param int $from
+     * @param int $to
      * @see \Codeception\Lib\InnerBrowser::seeResponseCodeIsBetween()
      */
     public function seeResponseCodeIsBetween($from, $to) {
@@ -4285,8 +4281,8 @@ trait FunctionalTesterActions
      * [!] Conditional Assertion: Test won't be stopped on fail
      * Checks that response code is between a certain range. Between actually means [from <= CODE <= to]
      *
-     * @param $from
-     * @param $to
+     * @param int $from
+     * @param int $to
      * @see \Codeception\Lib\InnerBrowser::seeResponseCodeIsBetween()
      */
     public function canSeeResponseCodeIsBetween($from, $to) {
@@ -4306,7 +4302,7 @@ trait FunctionalTesterActions
      * // recommended \Codeception\Util\HttpCode
      * $I->dontSeeResponseCodeIs(\Codeception\Util\HttpCode::OK);
      * ```
-     * @param $code
+     * @param int $code
      * @see \Codeception\Lib\InnerBrowser::dontSeeResponseCodeIs()
      */
     public function dontSeeResponseCodeIs($code) {
@@ -4325,7 +4321,7 @@ trait FunctionalTesterActions
      * // recommended \Codeception\Util\HttpCode
      * $I->dontSeeResponseCodeIs(\Codeception\Util\HttpCode::OK);
      * ```
-     * @param $code
+     * @param int $code
      * @see \Codeception\Lib\InnerBrowser::dontSeeResponseCodeIs()
      */
     public function cantSeeResponseCodeIs($code) {
@@ -4533,7 +4529,6 @@ trait FunctionalTesterActions
      * ```php
      * $I->setServerParameters([]);
      * ```
-     * @param array $params
      * @see \Codeception\Lib\InnerBrowser::setServerParameters()
      */
     public function setServerParameters(array $params) {
@@ -4549,8 +4544,8 @@ trait FunctionalTesterActions
      * ```php
      * $I->haveServerParameter('name', 'value');
      * ```
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param string $value
      * @see \Codeception\Lib\InnerBrowser::haveServerParameter()
      */
     public function haveServerParameter($name, $value) {

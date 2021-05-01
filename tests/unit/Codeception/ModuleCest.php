@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Codeception;
+namespace Tests\Unit\Codeception;
 
 use Centum\Codeception\Connector;
 use Centum\Codeception\Module;

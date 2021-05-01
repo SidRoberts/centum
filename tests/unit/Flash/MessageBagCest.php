@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Flash;
+namespace Tests\Unit\Flash;
 
 use Centum\Flash\Message;
 use Centum\Flash\MessageBag;

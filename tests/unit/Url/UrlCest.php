@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Url;
+namespace Tests\Unit\Url;
 
 use Centum\Url\Url;
 use Codeception\Example;

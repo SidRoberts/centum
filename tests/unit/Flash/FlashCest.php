@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Flash;
+namespace Tests\Unit\Flash;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\TextFormatter;

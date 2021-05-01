@@ -1,12 +1,14 @@
 <?php
 
-namespace Tests\Queue;
+namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
 use Centum\Queue\Queue;
 use Mockery;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
+use Tests\Queue\DoNothingTask;
+use Tests\Queue\ProblematicTask;
 use Tests\UnitTester;
 use Throwable;
 

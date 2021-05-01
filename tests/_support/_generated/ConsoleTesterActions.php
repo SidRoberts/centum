@@ -5,7 +5,7 @@ namespace Tests\_generated;
 // You should not change it manually as it will be overwritten on next build
 // @codingStandardsIgnoreFile
 
-trait UnitTesterActions
+trait ConsoleTesterActions
 {
     /**
      * @return \Codeception\Scenario

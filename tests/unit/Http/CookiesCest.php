@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Http;
+namespace Tests\Unit\Http;
 
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;

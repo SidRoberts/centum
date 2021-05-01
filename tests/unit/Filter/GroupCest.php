@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Filter;
+namespace Tests\Unit\Filter;
 
 use Centum\Filter\Group;
 use Centum\Filter\String\Prefix;

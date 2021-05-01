@@ -1,12 +1,17 @@
 <?php
 
-namespace Tests\Container;
+namespace Tests\Unit\Container;
 
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
 use stdClass;
 use Tests\Container\Alias\ACommand;
 use Tests\Container\Alias\CommandInterface;
+use Tests\Container\DifferentTypes;
+use Tests\Container\Incrementer;
+use Tests\Container\ResolvableClass;
+use Tests\Container\ResolvableClassNoConstructor;
+use Tests\Container\UnresolvableClass;
 use Tests\UnitTester;
 
 class ContainerCest

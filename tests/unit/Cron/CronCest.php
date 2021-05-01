@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Cron;
+namespace Tests\Unit\Cron;
 
 use Centum\Cron\Cron;
 use Centum\Cron\Job;

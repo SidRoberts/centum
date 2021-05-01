@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Mvc;
+namespace Tests\Unit\Mvc;
 
 use Centum\Mvc\Route;
 use Tests\Mvc\Controllers\IndexController;

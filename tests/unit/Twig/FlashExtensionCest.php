@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Twig;
+namespace Tests\Unit\Twig;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\HtmlFormatter;

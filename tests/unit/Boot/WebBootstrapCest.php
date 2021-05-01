@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Boot;
+namespace Tests\Unit\Boot;
 
 use Centum\Boot\WebBootstrap;
 use Centum\Container\Container;

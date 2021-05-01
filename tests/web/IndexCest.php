@@ -1,10 +1,12 @@
 <?php
 
-namespace Tests;
+namespace Tests\Web;
+
+use Tests\WebTester;
 
 class IndexCest
 {
-    public function tryToTest(FunctionalTester $I)
+    public function tryToTest(WebTester $I)
     {
         $I->amOnPage("/");
 

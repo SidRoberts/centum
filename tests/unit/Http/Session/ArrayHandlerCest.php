@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Http\Session;
+namespace Tests\Unit\Http\Session;
 
 use Centum\Http\Session\ArrayHandler;
 use Tests\UnitTester;

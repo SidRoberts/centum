@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Validator\Type;
+namespace Tests\Unit\Validator\Type;
 
 use Centum\Flash\Formatter\HtmlFormatter;
 use Centum\Validator\Type\IsObject;

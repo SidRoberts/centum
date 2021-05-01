@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Http\Response;
+namespace Tests\Unit\Http\Response;
 
 use Centum\Http\Response\VariableResponse;
 use Codeception\Example;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Console;
+namespace Tests\Unit\Console;
 
 use Centum\Container\Container;
 use Tests\Console\Command\BoringCommand;

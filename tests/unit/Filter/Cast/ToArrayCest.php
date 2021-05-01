@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Filter\Cast;
+namespace Tests\Unit\Filter\Cast;
 
 use Centum\Filter\Cast\ToArray;
 use Codeception\Example;

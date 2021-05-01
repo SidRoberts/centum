@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Flash\Formatter;
+namespace Tests\Unit\Flash\Formatter;
 
 use Centum\Flash\Formatter\HtmlFormatter;
 use Centum\Flash\Message;

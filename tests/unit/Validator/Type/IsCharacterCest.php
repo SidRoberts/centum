@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Validator\Type;
+namespace Tests\Unit\Validator\Type;
 
 use Centum\Validator\Type\IsCharacter;
 use Codeception\Example;

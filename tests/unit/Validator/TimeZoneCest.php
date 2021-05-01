@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Validator;
+namespace Tests\Unit\Validator;
 
 use Centum\Validator\TimeZone;
 use Codeception\Example;

@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Console\Command;
+namespace Tests\Console;
 
 use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Queue\Queue;
 use Mockery;
-use Tests\UnitTester;
+use Tests\ConsoleTester;
 
 class QueueConsumeCommandCest
 {
-    public function basicHandle(UnitTester $I): void
+    public function basicHandle(ConsoleTester $I): void
     {
         $queue = Mockery::mock(Queue::class);
 

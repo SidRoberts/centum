@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Cron;
+namespace Tests\Unit\Cron;
 
 use Centum\Cron\CronFactory;
 use Tests\UnitTester;

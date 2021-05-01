@@ -11,12 +11,15 @@ settings:
   shuffle: true
 
 suites:
-  functional:
-    path: functional
-    actor: FunctionalTester
+  console:
+    path: console
+    actor: ConsoleTester
   unit:
     path: unit
     actor: UnitTester
+  web:
+    path: web
+    actor: WebTester
 
 modules:
   enabled:

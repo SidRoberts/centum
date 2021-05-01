@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Access;
+namespace Tests\Unit\Access;
 
 use Centum\Access\Access;
 use Tests\UnitTester;
