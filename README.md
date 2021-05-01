@@ -11,6 +11,33 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 
 
 
+## Features
+
+- [Console apps](https://sidroberts.co.uk/centum/apps/console)
+- [MVC apps](https://sidroberts.co.uk/centum/apps/web)
+- [Access](https://sidroberts.co.uk/centum/components/access)
+- [Container](https://sidroberts.co.uk/centum/components/container)
+- [Cron](https://sidroberts.co.uk/centum/components/cron)
+- [Filter](https://sidroberts.co.uk/centum/components/filter)
+- [Flash](https://sidroberts.co.uk/centum/components/flash)
+- [Forms](https://sidroberts.co.uk/centum/components/forms)
+- [HTTP](https://sidroberts.co.uk/centum/components/http)
+- [Queue](https://sidroberts.co.uk/centum/components/queue)
+- [Twig](https://sidroberts.co.uk/centum/components/twig)
+- [Url](https://sidroberts.co.uk/centum/components/url)
+- [Validator](https://sidroberts.co.uk/centum/components/validator)
+- [Codeception module](https://sidroberts.co.uk/centum/components/codeception)
+
+
+
+## Documentation
+
+[![Docs Build Status](https://img.shields.io/github/deployments/SidRoberts/centum/github-pages?style=for-the-badge)](https://sidroberts.co.uk/centum)
+
+Documentation is available at [https://sidroberts.co.uk/centum](https://sidroberts.co.uk/centum) and in the [docs/](docs/) folder.
+
+
+
 ## Quick Start
 
 ```bash
@@ -25,11 +52,27 @@ docker-compose up
 
 
 
-## Documentation
+## Testing
 
-[![Docs Build Status](https://img.shields.io/github/deployments/SidRoberts/centum/github-pages?style=for-the-badge)](https://sidroberts.co.uk/centum)
+```bash
+vendor/bin/codecept run
+```
 
-Documentation is available at [https://sidroberts.co.uk/centum](https://sidroberts.co.uk/centum) and in the [docs/](docs/) folder.
+
+
+## Technologies
+
+Centum uses the following technologies:
+
+- [PHP 8](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+- [Twig](https://twig.symfony.com/)
+- [Beanstalkd](https://beanstalkd.github.io/)
+
+### Testing
+
+- [Codeception](https://codeception.com/)
+- [Psalm](https://psalm.dev/)
 
 
 
