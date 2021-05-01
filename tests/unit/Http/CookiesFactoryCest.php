@@ -31,4 +31,20 @@ class CookiesFactoryCest
             $cookies->toArray()
         );
     }
+
+    public function createFromArray(UnitTester $I)
+    {
+        $array = [
+            "language" => "en",
+            "colour"   => "orange",
+            "currency" => "KRW",
+        ];
+
+        $cookies = CookiesFactory::createFromArray($array);
+
+        $I->assertEquals(
+            $array,
+            $cookies->toArray()
+        );
+    }
 }

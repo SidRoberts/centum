@@ -54,4 +54,20 @@ class HeadersFactory
 
         return $headers;
     }
+
+    /**
+     * @param array<string, string> $array
+     */
+    public static function createFromArray(array $array): Headers
+    {
+        $headers = new Headers();
+
+        foreach ($array as $key => $value) {
+            $header = new Header($key, $value);
+
+            $headers->add($header);
+        }
+
+        return $headers;
+    }
 }

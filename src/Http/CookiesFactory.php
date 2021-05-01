@@ -40,4 +40,20 @@ class CookiesFactory
 
         return $cookies;
     }
+
+    /**
+     * @param array<string, string> $array
+     */
+    public static function createFromArray(array $array): Cookies
+    {
+        $cookies = new Cookies();
+
+        foreach ($array as $key => $value) {
+            $cookie = new Cookie($key, $value);
+
+            $cookies->add($cookie);
+        }
+
+        return $cookies;
+    }
 }

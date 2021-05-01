@@ -31,4 +31,19 @@ class HeadersFactoryCest
             $headers->toArray()
         );
     }
+
+    public function createFromArray(UnitTester $I)
+    {
+        $array = [
+            "Content-Type" => "text/html",
+            "User-Agent"   => "Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586)",
+        ];
+
+        $headers = HeadersFactory::createFromArray($array);
+
+        $I->assertEquals(
+            $array,
+            $headers->toArray()
+        );
+    }
 }
