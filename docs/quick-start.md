@@ -56,10 +56,12 @@ tests/
     _data/
     _output/
     _support/
-        FunctionalTester.php
+        ConsoleTester.php
         UnitTester.php
-    functional/
+        WebTester.php
+    console/
     unit/
+    web/
 codeception.yml
 composer.json
 docker-compose.yml
