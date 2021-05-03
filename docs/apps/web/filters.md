@@ -18,7 +18,7 @@ namespace App\Filters;
 use App\Models\Post;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
-use Centum\Mvc\Exception\RouteMismatchException;
+use Centum\Router\Exception\RouteMismatchException;
 use Doctrine\ORM\EntityManager;
 
 class IdToPostFilter implements FilterInterface
@@ -52,7 +52,7 @@ class IdToPostFilter implements FilterInterface
 }
 ```
 
-In the above example, if the `App\Models\Post` object cannot be found in the database, [`Centum\Mvc\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Route's `execute()` method.
+In the above example, if the `App\Models\Post` object cannot be found in the database, [`Centum\Router\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Route's `execute()` method.
 When this exception is thrown, the Router understands that to mean that this Route isn't suitable and will continue iterating through the remaining Routes to find another match.
 
 ```php
@@ -60,7 +60,7 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use Centum\Http\Response;
-use Centum\Mvc\Parameters;
+use Centum\Router\Parameters;
 
 class PostController
 {

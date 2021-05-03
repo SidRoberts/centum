@@ -6,7 +6,7 @@ use Centum\Container\Container;
 use Centum\Http\RequestFactory;
 use Centum\Http\Session\ArrayHandler;
 use Centum\Http\Session\HandlerInterface;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 use Symfony\Component\BrowserKit\AbstractBrowser as Client;
 use Symfony\Component\BrowserKit\CookieJar;
 use Symfony\Component\BrowserKit\History;

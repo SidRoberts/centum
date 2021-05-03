@@ -22,7 +22,7 @@ namespace App\Middlewares\Web;
 use App\Auth;
 use Centum\Container\Container;
 use Centum\Http\Request;
-use Centum\Mvc\MiddlewareInterface;
+use Centum\Router\MiddlewareInterface;
 
 class IsUserMiddleware implements MiddlewareInterface
 {

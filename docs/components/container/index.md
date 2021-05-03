@@ -17,7 +17,7 @@ Classes can be created using the `typehintClass()` method:
 
 ```php
 use Centum\Container\Container;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 $container = new Container();
 
@@ -62,7 +62,7 @@ Objects can be set using the `set()` method:
 ```php
 use Centum\Console\Application;
 use Centum\Container\Container;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 $container = new Container();
 

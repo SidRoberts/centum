@@ -1,7 +1,7 @@
 <?php
 
 use Centum\Container\Container;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 CONTAINER                                  //

@@ -4,7 +4,7 @@ namespace Centum\Boot;
 
 use Centum\Container\Container;
 use Centum\Http\Request;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 class WebBootstrap extends Bootstrap
 {

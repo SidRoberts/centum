@@ -9,11 +9,11 @@ has_children: true
 
 # Web Apps
 
-MVC web apps can be created using [`Centum\Mvc\Router`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Router.php).
+MVC web apps can be created using [`Centum\Router\Router`](https://github.com/SidRoberts/centum/blob/development/src/Router/Router.php).
 
 ```php
 use Centum\Container\Container;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 $container = new Container();
 

@@ -11,11 +11,11 @@ grand_parent: Apps
 
 Exception Handlers are used to catch and handle Exceptions in Controllers.
 
-Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteNotFoundException.php):
+Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteNotFoundException.php):
 
 ```php
 use App\Controllers\ErrorController;
-use Centum\Mvc\Exception\RouteNotFoundException;
+use Centum\Router\Exception\RouteNotFoundException;
 
 $router->addExceptionHandler(
     RouteNotFoundException::class,
@@ -28,7 +28,7 @@ $router->addExceptionHandler(
 
 ```php
 use App\Controllers\ErrorController;
-use Centum\Mvc\Exception\FormRequestException;
+use Centum\Router\Exception\FormRequestException;
 
 $router->addExceptionHandler(
     FormRequestException::class,
@@ -70,5 +70,5 @@ $router->addExceptionHandler(
 
 It is **strongly recommended** to have exception handlers for:
 
-- [`Centum\Mvc\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Exception/RouteNotFoundException.php)
+- [`Centum\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteNotFoundException.php)
 - `Throwable`

@@ -35,13 +35,13 @@ Controllers can also take advantage of things like dependency injection, filters
 
 ## Route Groups
 
-In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/development/src/Mvc/Group.php) objects.
+In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/development/src/Router/Group.php) objects.
 A group can store as many routes as you wish and can be used to organise and group similar routes.
 A new group can be created with the `group()` method:
 
 ```php
 use Centum\Container\Container;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 $container = new Container();
 
@@ -78,9 +78,8 @@ If we wanted to add the login form from the `LoginController` in the earlier exa
 
 ```php
 use App\Controllers\LoginController;
-
 use Centum\Container\Container;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 $container = new Container();
 
@@ -174,7 +173,7 @@ This value is then available from the `$parameters` property within the Controll
 namespace App\Controllers;
 
 use Centum\Http\Response;
-use Centum\Mvc\Parameters;
+use Centum\Router\Parameters;
 
 class PostController
 {
@@ -203,7 +202,7 @@ $group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 namespace App\Controllers;
 
 use Centum\Http\Response;
-use Centum\Mvc\Parameters;
+use Centum\Router\Parameters;
 
 class CalendarController
 {

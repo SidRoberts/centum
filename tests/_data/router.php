@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Mvc\Controllers;
+namespace Tests\Router\Controllers;
 
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ROUTER                                   //

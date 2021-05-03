@@ -6,7 +6,7 @@ use Centum\Boot\WebBootstrap;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Mvc\Router;
+use Centum\Router\Router;
 use Mockery;
 use Tests\UnitTester;
 
