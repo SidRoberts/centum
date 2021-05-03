@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Router\Controllers;
+namespace Tests\Controllers;
 
 use Centum\Router\Router;
 

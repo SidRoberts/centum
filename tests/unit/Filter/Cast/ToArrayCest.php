@@ -5,7 +5,7 @@ namespace Tests\Unit\Filter\Cast;
 use Centum\Filter\Cast\ToArray;
 use Codeception\Example;
 use stdClass;
-use Tests\Filter\FancyString;
+use Tests\Filters\FancyString;
 use Tests\UnitTester;
 
 class ToArrayCest

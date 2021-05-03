@@ -3,7 +3,7 @@
 namespace Tests\Unit\Router;
 
 use Centum\Router\Route;
-use Tests\Router\Controllers\IndexController;
+use Tests\Controllers\IndexController;
 use Tests\UnitTester;
 
 class RouteCest

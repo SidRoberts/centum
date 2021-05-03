@@ -12,16 +12,16 @@ use Centum\Router\Middleware\TrueMiddleware;
 use Centum\Router\Router;
 use Codeception\Example;
 use Exception;
+use Tests\Controllers\ExceptionController;
+use Tests\Controllers\FilterController;
+use Tests\Controllers\HttpMethodController;
+use Tests\Controllers\IndexController;
+use Tests\Controllers\LoginController;
+use Tests\Controllers\MiddlewareController;
+use Tests\Controllers\PostController;
+use Tests\Controllers\RequirementsController;
+use Tests\Filters\Doubler;
 use Tests\Forms\LoginTemplate;
-use Tests\Router\Controllers\ExceptionController;
-use Tests\Router\Controllers\FilterController;
-use Tests\Router\Controllers\HttpMethodController;
-use Tests\Router\Controllers\IndexController;
-use Tests\Router\Controllers\LoginController;
-use Tests\Router\Controllers\MiddlewareController;
-use Tests\Router\Controllers\PostController;
-use Tests\Router\Controllers\RequirementsController;
-use Tests\Router\Filter\Doubler;
 use Tests\UnitTester;
 
 class RouterCest

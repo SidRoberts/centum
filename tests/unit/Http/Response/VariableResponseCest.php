@@ -5,7 +5,7 @@ namespace Tests\Unit\Http\Response;
 use Centum\Http\Response\VariableResponse;
 use Codeception\Example;
 use stdClass;
-use Tests\Router\Filter\Doubler;
+use Tests\Filters\Doubler;
 use Tests\UnitTester;
 
 class VariableResponseCest

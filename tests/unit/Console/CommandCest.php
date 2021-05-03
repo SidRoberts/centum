@@ -3,7 +3,7 @@
 namespace Tests\Unit\Console;
 
 use Centum\Container\Container;
-use Tests\Console\Command\BoringCommand;
+use Tests\Commands\BoringCommand;
 use Tests\UnitTester;
 
 class CommandCest
