@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Filters
-parent: Web
-grand_parent: Apps
+parent: Router
+grand_parent: Components
 ---
 
 

@@ -1,15 +1,15 @@
 ---
 layout: default
 title: Form Requests
-parent: Web
-grand_parent: Apps
+parent: Router
+grand_parent: Components
 ---
 
 
 
 # Form Requests
 
-Within web apps, [forms](../../components/forms/index.md) can be utilised to process and validate Request data (GET, POST, ...).
+Within web apps, [forms](../forms/index.md) can be utilised to process and validate Request data (GET, POST, ...).
 
 As an example, you may wish to allow users to submit their email address to be added to a newsletter.
 A simple Form that validates email addresses can be created:

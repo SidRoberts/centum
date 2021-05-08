@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Routes
-parent: Web
-grand_parent: Apps
+parent: Router
+grand_parent: Components
 nav_order: 1
 ---
 

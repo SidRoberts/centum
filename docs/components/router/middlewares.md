@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Middlewares
-parent: Web
-grand_parent: Apps
+parent: Router
+grand_parent: Components
 nav_order: 2
 ---
 

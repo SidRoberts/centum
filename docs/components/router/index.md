@@ -1,13 +1,14 @@
 ---
 layout: default
-title: Web
-parent: Apps
+title: Router
+parent: Components
 has_children: true
+permalink: router
 ---
 
 
 
-# Web Apps
+# `Centum\Router`
 
 MVC web apps can be created using [`Centum\Router\Router`](https://github.com/SidRoberts/centum/blob/development/src/Router/Router.php).
 
