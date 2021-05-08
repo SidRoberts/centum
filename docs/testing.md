@@ -30,6 +30,10 @@ If this isn't specified, it will default to `config/container.php`.
 - `getContainer(): Centum\Container\Container`
 - `addToContainer(string $class, object $object): void`
 
+### Expectations
+
+- `expectEcho(string $expected, callable $callable): void`
+
 
 
 ## Console Testing
