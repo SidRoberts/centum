@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Boot;
+namespace Tests\Unit\App;
 
-use Centum\Boot\WebBootstrap;
+use Centum\App\WebBootstrap;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;

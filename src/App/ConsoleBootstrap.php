@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Boot;
+namespace Centum\App;
 
 use Centum\Console\Application;
 use Centum\Console\Terminal;
