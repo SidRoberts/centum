@@ -2,7 +2,7 @@
 layout: default
 title: Filters
 parent: Console
-grand_parent: Apps
+grand_parent: Components
 ---
 
 

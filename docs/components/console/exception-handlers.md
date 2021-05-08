@@ -2,7 +2,7 @@
 layout: default
 title: Exception Handlers
 parent: Console
-grand_parent: Apps
+grand_parent: Components
 ---
 
 

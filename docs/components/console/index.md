@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Console
-parent: Apps
+parent: Components
 has_children: true
-permalink: apps/console
+permalink: console
 ---
 
 
 
-# Console Apps
+# `Centum\Console`
 
 Application endpoints are treated as [Command](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
 These Commands contain all of the code and metadata relating to that endpoint.

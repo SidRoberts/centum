@@ -2,7 +2,7 @@
 layout: default
 title: Commands
 parent: Console
-grand_parent: Apps
+grand_parent: Components
 nav_order: 1
 ---
 
