@@ -13,9 +13,8 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 
 ## Features
 
-- [Console apps](https://sidroberts.co.uk/centum/apps/console)
-- [MVC apps](https://sidroberts.co.uk/centum/apps/web)
 - [Access](https://sidroberts.co.uk/centum/components/access)
+- [Console](https://sidroberts.co.uk/centum/components/console)
 - [Container](https://sidroberts.co.uk/centum/components/container)
 - [Cron](https://sidroberts.co.uk/centum/components/cron)
 - [Filter](https://sidroberts.co.uk/centum/components/filter)
@@ -23,6 +22,7 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 - [Forms](https://sidroberts.co.uk/centum/components/forms)
 - [HTTP](https://sidroberts.co.uk/centum/components/http)
 - [Queue](https://sidroberts.co.uk/centum/components/queue)
+- [Router](https://sidroberts.co.uk/centum/components/router)
 - [Twig](https://sidroberts.co.uk/centum/components/twig)
 - [Url](https://sidroberts.co.uk/centum/components/url)
 - [Validator](https://sidroberts.co.uk/centum/components/validator)
