@@ -1,6 +1,26 @@
-# MacOS
+# OS files
 .DS_Store
+Thumbs.db
 
+# Generic always-ignore extensions
+*.diff
+*.err
+*.log
+*.orig
+*.zip
+*~
+
+# Editor folders
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+nbproject
+/.vscode/
+
+# Composer
 /vendor/
 /.php-cs-fixer.cache
 /composer.lock
