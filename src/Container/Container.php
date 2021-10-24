@@ -161,9 +161,6 @@ class Container
             throw new UnresolvableParameterException($name);
         }
 
-        /**
-         * @var class-string
-         */
         $class = $type->getName();
 
         return $this->typehintClass($class);
