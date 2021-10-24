@@ -72,6 +72,7 @@ class PostController
         $post = $parameters->get("post");
 
         //TODO Do something with the $post object.
+
         return new Response(
             $post->getTitle()
         );
