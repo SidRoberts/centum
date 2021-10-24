@@ -49,7 +49,7 @@ class ModuleCest
         $module = new Module(
             $moduleContainer,
             [
-                "container" => ".php_cs.dist",
+                "container" => ".php-cs-fixer.dist.php",
             ]
         );
 

@@ -12,7 +12,7 @@ $config->setRules(
     [
         "@PSR12" => true,
         "array_syntax" => ["syntax" => "short"],
-        "binary_operator_spaces" => ["align_equals" => true, "align_double_arrow" => true],
+        "binary_operator_spaces" => ["default" => "align"],
         "blank_line_before_statement" => true,
         "cast_spaces" => true,
         "combine_consecutive_unsets" => true,
@@ -26,7 +26,7 @@ $config->setRules(
         "no_whitespace_before_comma_in_array" => true,
         "ordered_imports" => true,
         "ternary_to_null_coalescing" => true,
-        "trailing_comma_in_multiline_array" => true,
+        "trailing_comma_in_multiline" => ["elements" => ["arrays"]],
         "trim_array_spaces" => true,
     ]
 );
