@@ -17,7 +17,7 @@ $container = new Container();
 
 $container->setDynamic(
     Router::class,
-    function (Container $container) {
+    function (Container $container): Router {
         return require __DIR__ . "/router.php";
     }
 );
