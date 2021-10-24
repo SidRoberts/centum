@@ -52,7 +52,7 @@ You can then use the [`FormFactory`](https://github.com/SidRoberts/centum/tree/d
 use App\Forms\LoginTemplate;
 use Centum\Forms\FormFactory;
 
-$loginTemplate = new LoginTemplate();
+$template = new LoginTemplate();
 
-$loginForm = FormFactory::createFromTemplate($template);
+$form = FormFactory::createFromTemplate($template);
 ```
