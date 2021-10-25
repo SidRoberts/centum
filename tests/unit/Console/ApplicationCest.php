@@ -8,6 +8,8 @@ use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Container\Container;
 use Codeception\Example;
+use Exception;
+use Tests\Commands\BadNameCommand;
 use Tests\Commands\ErrorCommand;
 use Tests\Commands\FilterCommand;
 use Tests\Commands\InvalidFiltersCommand;
@@ -309,6 +311,22 @@ class ApplicationCest
         $I->assertEquals(
             1,
             $exitCode
+        );
+    }
+
+    public function validCommandName(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $I->expectThrowable(
+            new Exception("Command name ('https://github.com/') is not valid."),
+            function () use ($application) {
+                $application->addCommand(
+                    new BadNameCommand()
+                );
+            }
         );
     }
 }

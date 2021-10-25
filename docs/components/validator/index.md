@@ -15,6 +15,7 @@ permalink: validator
 - [`Centum\Validator\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Alpha.php)
 - [`Centum\Validator\Alphanumeric`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Alphanumeric.php)
 - [`Centum\Validator\Callback`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Callback.php)
+- [`Centum\Validator\CommandSlug`](https://github.com/SidRoberts/centum/tree/development/src/Validator/CommandSlug.php)
 - [`Centum\Validator\EmailAddress`](https://github.com/SidRoberts/centum/tree/development/src/Validator/EmailAddress.php)
 - [`Centum\Validator\LanguageCode`](https://github.com/SidRoberts/centum/tree/development/src/Validator/LanguageCode.php)
 - [`Centum\Validator\NotEmpty`](https://github.com/SidRoberts/centum/tree/development/src/Validator/NotEmpty.php)

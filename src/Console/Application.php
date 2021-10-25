@@ -10,6 +10,8 @@ use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
+use Centum\Validator\CommandSlug;
+use Exception;
 use OutOfRangeException;
 use Throwable;
 
@@ -44,6 +46,15 @@ class Application
     public function addCommand(Command $command): void
     {
         $name = $command->getName();
+
+        if (!$this->validateName($name)) {
+            throw new Exception(
+                sprintf(
+                    "Command name ('%s') is not valid.",
+                    $name
+                )
+            );
+        }
 
         $this->commands[$name] = $command;
     }
@@ -152,5 +163,14 @@ class Application
 
 
         return $command;
+    }
+
+    protected function validateName(string $name): bool
+    {
+        $validator = new CommandSlug();
+
+        $messages = $validator->validate($name);
+
+        return count($messages) === 0;
     }
 }

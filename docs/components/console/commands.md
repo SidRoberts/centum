@@ -39,6 +39,9 @@ class IndexCommand extends Command
 }
 ```
 
+When added to the Application, the Command's name will be validated to ensure that is a slug (see [Command Slug Validator](https://github.com/SidRoberts/centum/blob/development/src/Validator/CommandSlug.php)).
+To allow commands like `php cli.php`, empty names are allowed.
+
 
 
 ## Adding Commands to the Application
