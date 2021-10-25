@@ -89,6 +89,9 @@ class Router
             throw new RouteNotFoundException($request);
         } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $path) {
+                /**
+                 * @psalm-suppress DocblockTypeContradiction
+                 */
                 if (is_a($exception, $exceptionClass)) {
                     $this->container->set(get_class($exception), $exception);
                     $this->container->set($exceptionClass, $exception);

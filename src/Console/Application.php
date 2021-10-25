@@ -113,6 +113,9 @@ class Application
             return $command->execute($terminal, $this->container, $parameters);
         } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $command) {
+                /**
+                 * @psalm-suppress DocblockTypeContradiction
+                 */
                 if (is_a($exception, $exceptionClass)) {
                     return $command->execute($terminal, $this->container, $parameters);
                 }
