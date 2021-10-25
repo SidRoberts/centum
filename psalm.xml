@@ -12,7 +12,9 @@
         <ignoreFiles>
             <directory name="tests/_support/_generated"/>
             <directory name="vendor"/>
+            <file name="tests/_support/ConsoleTester.php"/>
             <file name="tests/_support/UnitTester.php"/>
+            <file name="tests/_support/WebTester.php"/>
         </ignoreFiles>
     </projectFiles>
     <plugins>
