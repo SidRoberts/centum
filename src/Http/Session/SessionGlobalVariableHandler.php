@@ -70,6 +70,9 @@ class SessionGlobalVariableHandler implements HandlerInterface
             $this->start();
         }
 
+        /**
+         * @var array<array-key, mixed>
+         */
         return $_SESSION;
     }
 }
