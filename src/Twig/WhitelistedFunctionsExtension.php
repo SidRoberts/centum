@@ -8,14 +8,14 @@ use Twig\TwigFunction;
 class WhitelistedFunctionsExtension extends AbstractExtension
 {
     /**
-     * @var callable-string[]
+     * @var string[]
      */
     protected array $functionNames;
 
 
 
     /**
-     * @param callable-string[] $functionNames
+     * @param string[] $functionNames
      */
     public function __construct(array $functionNames)
     {
