@@ -33,7 +33,7 @@
 
     "require-dev": {
         "codeception/codeception": "~4.0",
-        "codeception/module-asserts": "~1.0",
+        "codeception/module-asserts": "~2.0",
         "codeception/mockery-module": "~0.4",
 
         "friendsofphp/php-cs-fixer": "~3.0",
