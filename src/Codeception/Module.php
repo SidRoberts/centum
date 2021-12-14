@@ -9,25 +9,16 @@ use Centum\Container\Container;
 use Codeception\Configuration;
 use Codeception\Lib\Framework;
 use Codeception\TestInterface;
+use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Throwable;
 use TypeError;
 
 class Module extends Framework
 {
-    /**
-     * @var ?Connector
-     *
-     * @psalm-suppress all
-     */
-    public $client = null;
+    public ?AbstractBrowser $client = null;
 
-    /**
-     * @var ?Crawler
-     *
-     * @psalm-suppress all
-     */
-    protected $crawler = null;
+    protected ?Crawler $crawler = null;
 
     /**
      * @var array<string, string>
