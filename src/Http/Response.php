@@ -13,13 +13,13 @@ class Response
 
     public function __construct(
         string $content = "",
-        int $statusCode = 200,
+        Status $status = Status::OK,
         Headers $headers = null,
         Cookies $cookies = null
     ) {
         $this->content = $content;
 
-        $this->status  = new Status($statusCode);
+        $this->status  = $status;
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();
     }

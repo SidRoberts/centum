@@ -5,6 +5,7 @@ namespace Centum\Http\Response;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
+use Centum\Http\Status;
 
 class JsonResponse extends Response
 {
@@ -21,6 +22,6 @@ class JsonResponse extends Response
             new Header("Content-Type", "application/json")
         );
 
-        parent::__construct($content, 200, $headers);
+        parent::__construct($content, Status::OK, $headers);
     }
 }

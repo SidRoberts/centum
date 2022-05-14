@@ -5,6 +5,7 @@ namespace Centum\Http\Response;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
+use Centum\Http\Status;
 use InvalidArgumentException;
 
 class RedirectResponse extends Response
@@ -13,7 +14,7 @@ class RedirectResponse extends Response
 
 
 
-    public function __construct(string $url, int $status = 302, Headers $headers = null)
+    public function __construct(string $url, Status $status = Status::FOUND, Headers $headers = null)
     {
         if ($url === "") {
             throw new InvalidArgumentException("URL can't be empty.");
@@ -46,11 +47,11 @@ class RedirectResponse extends Response
             new Header("Location", $url)
         );
 
-        if ($status < 300 || $status >= 400) {
+        if (!$status->isRedirect()) {
             throw new InvalidArgumentException(
                 sprintf(
-                    "The HTTP status code must be a 3xx redirect code ('%s' given).",
-                    $status
+                    "The HTTP status code must be a 3xx redirect code ('%d' given).",
+                    $status->getCode()
                 )
             );
         }

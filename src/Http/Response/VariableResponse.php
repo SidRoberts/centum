@@ -5,6 +5,7 @@ namespace Centum\Http\Response;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
+use Centum\Http\Status;
 
 class VariableResponse extends Response
 {
@@ -18,6 +19,6 @@ class VariableResponse extends Response
             new Header("Content-Type", "text/plain")
         );
 
-        parent::__construct($content, 200, $headers);
+        parent::__construct($content, Status::OK, $headers);
     }
 }

@@ -16,7 +16,7 @@ grand_parent: Components
 ```php
 Centum\Http\Response(
     string $content = "",
-    int $statusCode = 200,
+    Status $status = Status::OK,
     Headers $headers = null,
     Cookies $cookies = null
 );
@@ -44,7 +44,7 @@ If for some reason, the HTTP client doesn't obey the redirect, a HTML response i
 ```php
 Centum\Http\Response\RedirectResponse(
     string $url,
-    int $status = 302,
+    Status $status = Status::FOUND,
     Headers $headers = null
 );
 ```

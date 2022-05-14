@@ -7,6 +7,7 @@ use Centum\Http\Cookies;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
+use Centum\Http\Status;
 use Tests\UnitTester;
 
 class ResponseCest
@@ -31,7 +32,7 @@ class ResponseCest
 
         $response = new Response(
             "Page cannot be found",
-            404,
+            Status::NOT_FOUND,
             $headers,
             $cookies
         );
@@ -42,8 +43,8 @@ class ResponseCest
         );
 
         $I->assertEquals(
-            404,
-            $response->getStatus()->getCode()
+            Status::NOT_FOUND,
+            $response->getStatus()
         );
 
         $I->assertEquals(
