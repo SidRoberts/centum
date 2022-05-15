@@ -13,20 +13,20 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 
 ## Features
 
-- [Access](https://sidroberts.co.uk/centum/components/access)
-- [Console](https://sidroberts.co.uk/centum/components/console)
-- [Container](https://sidroberts.co.uk/centum/components/container)
-- [Cron](https://sidroberts.co.uk/centum/components/cron)
-- [Filter](https://sidroberts.co.uk/centum/components/filter)
-- [Flash](https://sidroberts.co.uk/centum/components/flash)
-- [Forms](https://sidroberts.co.uk/centum/components/forms)
-- [HTTP](https://sidroberts.co.uk/centum/components/http)
-- [Queue](https://sidroberts.co.uk/centum/components/queue)
-- [Router](https://sidroberts.co.uk/centum/components/router)
-- [Twig](https://sidroberts.co.uk/centum/components/twig)
-- [Url](https://sidroberts.co.uk/centum/components/url)
-- [Validator](https://sidroberts.co.uk/centum/components/validator)
-- [Codeception module](https://sidroberts.co.uk/centum/components/codeception)
+- [Access](https://sidroberts.co.uk/centum/access)
+- [Console](https://sidroberts.co.uk/centum/console)
+- [Container](https://sidroberts.co.uk/centum/container)
+- [Cron](https://sidroberts.co.uk/centum/cron)
+- [Filter](https://sidroberts.co.uk/centum/filter)
+- [Flash](https://sidroberts.co.uk/centum/flash)
+- [Forms](https://sidroberts.co.uk/centum/forms)
+- [HTTP](https://sidroberts.co.uk/centum/http)
+- [Queue](https://sidroberts.co.uk/centum/queue)
+- [Router](https://sidroberts.co.uk/centum/router)
+- [Twig](https://sidroberts.co.uk/centum/twig)
+- [Url](https://sidroberts.co.uk/centum/url)
+- [Validator](https://sidroberts.co.uk/centum/validator)
+- [Codeception module](https://sidroberts.co.uk/centum/testing)
 
 
 
