@@ -9,7 +9,7 @@ class IsA implements ValidatorInterface
     /**
      * @var class-string
      */
-    protected $className;
+    protected string $className;
 
 
 
