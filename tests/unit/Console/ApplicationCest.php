@@ -6,6 +6,7 @@ use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
+use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Codeception\Example;
 use Exception;
@@ -76,6 +77,33 @@ class ApplicationCest
 
         $I->assertStdoutEquals(
             246
+        );
+    }
+
+    public function filtersException(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $application = new Application($container);
+
+        $application->addCommand(
+            new FilterCommand()
+        );
+
+
+
+        $argv = [
+            "cli.php",
+            "filter:double",
+        ];
+
+        $terminal = $I->createTerminal($argv);
+
+        $I->expectThrowable(
+            new ParamNotFoundException(),
+            function () use ($I, $application, $terminal) {
+                $application->handle($terminal);
+            }
         );
     }
 
