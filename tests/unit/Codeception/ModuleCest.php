@@ -6,6 +6,7 @@ use Centum\Codeception\Connector;
 use Centum\Codeception\Module;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
+use Exception;
 use Mockery;
 use Tests\UnitTester;
 
@@ -205,5 +206,39 @@ class ModuleCest
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
         $I->assertStderrNotContains("slow");
+    }
+
+    public function expectEcho(UnitTester $I): void
+    {
+        $I->expectEcho(
+            "The quick brown fox jumps over the lazy dog.",
+            function () {
+                echo "The quick brown fox jumps over the lazy dog.";
+            }
+        );
+    }
+
+    public function expectEchoWithAnException(UnitTester $I): void
+    {
+        $I->expectThrowable(
+            new Exception("this is an exception"),
+            function () use ($I) {
+                $I->expectEcho(
+                    "The quick brown fox jumps over the lazy dog.",
+                    function () {
+                        echo "this should be cleared.";
+
+                        throw new Exception("this is an exception");
+                    }
+                );
+            }
+        );
+
+        $I->expectEcho(
+            "The quick brown fox jumps over the lazy dog.",
+            function () {
+                echo "The quick brown fox jumps over the lazy dog.";
+            }
+        );
     }
 }
