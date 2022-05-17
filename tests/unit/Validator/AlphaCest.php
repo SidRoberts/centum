@@ -62,4 +62,20 @@ class AlphaCest
 
         return array_merge($good, $bad);
     }
+
+
+
+    public function testNonString(UnitTester $I): void
+    {
+        $validator = new Alpha();
+
+        $actual = $validator->validate(123);
+
+        $I->assertEquals(
+            [
+                "Value is not a string.",
+            ],
+            $actual
+        );
+    }
 }

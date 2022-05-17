@@ -64,4 +64,20 @@ class TimeZoneCest
 
         return array_merge($good, $bad);
     }
+
+
+
+    public function testNonString(UnitTester $I): void
+    {
+        $validator = new TimeZone();
+
+        $actual = $validator->validate(123);
+
+        $I->assertEquals(
+            [
+                "Value is not a string.",
+            ],
+            $actual
+        );
+    }
 }
