@@ -11,56 +11,51 @@ use Tests\UnitTester;
 class IsCountableCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new IsCountable();
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            [[1, 2, 3]],
+            [new ArrayIterator(['foo', 'bar', 'baz'])],
+            [new ArrayIterator()],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new IsCountable();
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not countable."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            [1, 2, 3],
-            new ArrayIterator(['foo', 'bar', 'baz']),
-            new ArrayIterator(),
+        return [
+            [new stdClass()],
         ];
-
-        $bad = [
-            new stdClass(),
-        ];
-
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
-        );
-
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not countable.",
-                    ],
-                ];
-            },
-            $bad
-        );
-
-        return array_merge($good, $bad);
     }
 }

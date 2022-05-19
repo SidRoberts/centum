@@ -13,75 +13,84 @@ use Tests\UnitTester;
 class IsInstanceOfCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new IsInstanceOf(
             FilterInterface::class
         );
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            [new Trim()],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new IsInstanceOf(
+            FilterInterface::class
+        );
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not an instance of Centum\\Filter\\FilterInterface."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            new Trim(),
+        return [
+            [new HtmlFormatter()],
+            [new stdClass()],
+            [$this],
         ];
+    }
 
-        $badObjects = [
-            new HtmlFormatter(),
-            new stdClass(),
-            $this,
-        ];
 
-        $bad = [
-            "just a string",
-            123,
-        ];
 
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
+    /**
+     * @dataProvider providerNonObject
+     */
+    public function testNonObject(UnitTester $I, Example $example): void
+    {
+        $validator = new IsInstanceOf(
+            FilterInterface::class
         );
 
-        $badObjects = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not an instance of Centum\\Filter\\FilterInterface.",
-                    ],
-                ];
-            },
-            $badObjects
+        $violations = $validator->validate(
+            $example[0]
         );
 
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not an object.",
-                    ],
-                ];
-            },
-            $bad
+        $I->assertEquals(
+            ["Value is not an object."],
+            $violations
         );
+    }
 
-        return array_merge($good, $badObjects, $bad);
+    protected function providerNonObject(): array
+    {
+        return [
+            ["just a string"],
+            [123],
+        ];
     }
 }

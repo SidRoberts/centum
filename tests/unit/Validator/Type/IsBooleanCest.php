@@ -10,63 +10,58 @@ use Tests\UnitTester;
 class IsBooleanCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new IsBoolean();
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            [true],
+            [false],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new IsBoolean();
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not boolean."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            true,
-            false,
+        return [
+            [[1,2,3]],
+            [[]],
+            [123.456],
+            [123],
+            [0],
+            [null],
+            [new stdClass()],
+            ["Sid Roberts"],
+            [""],
         ];
-
-        $bad = [
-            [1,2,3],
-            [],
-            123.456,
-            123,
-            0,
-            null,
-            new stdClass(),
-            "Sid Roberts",
-            "",
-        ];
-
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
-        );
-
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not boolean.",
-                    ],
-                ];
-            },
-            $bad
-        );
-
-        return array_merge($good, $bad);
     }
 }

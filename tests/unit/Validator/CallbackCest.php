@@ -10,9 +10,9 @@ use Tests\UnitTester;
 class CallbackCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new Callback(
             function (mixed $value): array {
@@ -26,54 +26,59 @@ class CallbackCest
             }
         );
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            ["SidRoberts"],
+            ["안녕"],
+            ["123"],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new Callback(
+            function (mixed $value): array {
+                if (!is_string($value)) {
+                    return [
+                        "Value is not a string.",
+                    ];
+                }
+
+                return [];
+            }
+        );
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not a string."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            "SidRoberts",
-            "안녕",
-            "123",
+        return [
+            [true],
+            [null],
+            [123],
+            [[]],
+            [new stdClass()],
         ];
-
-        $bad = [
-            true,
-            null,
-            123,
-            [],
-            new stdClass(),
-        ];
-
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
-        );
-
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not a string.",
-                    ],
-                ];
-            },
-            $bad
-        );
-
-        return array_merge($good, $bad);
     }
 }

@@ -9,23 +9,20 @@ use Tests\UnitTester;
 class SlugCest
 {
     /**
-     * @dataProvider validSlugsProvider
+     * @dataProvider providerGood
      */
-    public function testValidSlugs(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new Slug();
 
-        $actual = $validator->validate(
+        $violations = $validator->validate(
             $example[0]
         );
 
-        $I->assertEquals(
-            [],
-            $actual,
-        );
+        $I->assertCount(0, $violations);
     }
 
-    protected function validSlugsProvider(): array
+    protected function providerGood(): array
     {
         return [
             ["valid"],
@@ -36,25 +33,23 @@ class SlugCest
 
 
     /**
-     * @dataProvider invalidSlugsProvider
+     * @dataProvider providerBad
      */
-    public function testInvalidSlugs(UnitTester $I, Example $example): void
+    public function testBad(UnitTester $I, Example $example): void
     {
         $validator = new Slug();
 
-        $actual = $validator->validate(
+        $violations = $validator->validate(
             $example[0]
         );
 
         $I->assertEquals(
-            [
-                "Value is not a valid slug.",
-            ],
-            $actual
+            ["Value is not a valid slug."],
+            $violations
         );
     }
 
-    protected function invalidSlugsProvider(): array
+    protected function providerBad(): array
     {
         return [
             ["NOT-VALID"],
@@ -68,17 +63,27 @@ class SlugCest
 
 
 
-    public function testNonString(UnitTester $I): void
+    /**
+     * @dataProvider providerNonString
+     */
+    public function testNonString(UnitTester $I, Example $example): void
     {
         $validator = new Slug();
 
-        $actual = $validator->validate(123);
+        $violations = $validator->validate(
+            $example[0]
+        );
 
         $I->assertEquals(
-            [
-                "Value is not a string.",
-            ],
-            $actual
+            ["Value is not a string."],
+            $violations
         );
+    }
+
+    protected function providerNonString(): array
+    {
+        return [
+            [123],
+        ];
     }
 }

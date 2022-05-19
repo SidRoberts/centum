@@ -9,75 +9,80 @@ use Tests\UnitTester;
 class TimeZoneCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
-        $validator = new TimeZone();
+        $validator = new Timezone();
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
         );
 
-        $I->assertEquals(
-            $example["expected"],
-            $actual
-        );
+        $I->assertCount(0, $violations);
     }
 
-    protected function provider(): array
+    protected function providerGood(): array
     {
-        $good = [
-            "Asia/Seoul",
-            "UTC",
-            "Europe/London",
+        return [
+            ["Asia/Seoul"],
+            ["UTC"],
+            ["Europe/London"],
         ];
-
-        $bad = [
-            "SidRoberts92",
-            "NotReal/TimeZone",
-            "This is a sentence.",
-            "이것은 영숫자가 아닙니다.",
-        ];
-
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
-        );
-
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not a valid time zone.",
-                    ],
-                ];
-            },
-            $bad
-        );
-
-        return array_merge($good, $bad);
     }
 
 
 
-    public function testNonString(UnitTester $I): void
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
     {
-        $validator = new TimeZone();
+        $validator = new Timezone();
 
-        $actual = $validator->validate(123);
+        $violations = $validator->validate(
+            $example[0]
+        );
 
         $I->assertEquals(
-            [
-                "Value is not a string.",
-            ],
-            $actual
+            ["Value is not a valid time zone."],
+            $violations
         );
+    }
+
+    protected function providerBad(): array
+    {
+        return [
+            ["SidRoberts92"],
+            ["NotReal/TimeZone"],
+            ["This is a sentence."],
+            ["이것은 영숫자가 아닙니다."],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerNonString
+     */
+    public function testNonString(UnitTester $I, Example $example): void
+    {
+        $validator = new Timezone();
+
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertEquals(
+            ["Value is not a string."],
+            $violations
+        );
+    }
+
+    protected function providerNonString(): array
+    {
+        return [
+            [123],
+        ];
     }
 }

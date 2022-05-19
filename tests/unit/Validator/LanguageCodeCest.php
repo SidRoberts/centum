@@ -9,23 +9,20 @@ use Tests\UnitTester;
 class LanguageCodeCest
 {
     /**
-     * @dataProvider validLanguageCodesProvider
+     * @dataProvider providerGood
      */
-    public function testValidLanguageCodes(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new LanguageCode();
 
-        $actual = $validator->validate(
+        $violations = $validator->validate(
             $example[0]
         );
 
-        $I->assertEquals(
-            [],
-            $actual,
-        );
+        $I->assertCount(0, $violations);
     }
 
-    protected function validLanguageCodesProvider(): array
+    protected function providerGood(): array
     {
         return [
             ["en-GB"],
@@ -36,25 +33,23 @@ class LanguageCodeCest
 
 
     /**
-     * @dataProvider invalidLanguageCodesProvider
+     * @dataProvider providerBad
      */
-    public function testInvalidLanguageCodes(UnitTester $I, Example $example): void
+    public function testBad(UnitTester $I, Example $example): void
     {
         $validator = new LanguageCode();
 
-        $actual = $validator->validate(
+        $violations = $validator->validate(
             $example[0]
         );
 
         $I->assertEquals(
-            [
-                "Value is not an ISO language code.",
-            ],
-            $actual
+            ["Value is not an ISO language code."],
+            $violations
         );
     }
 
-    protected function invalidLanguageCodesProvider(): array
+    protected function providerBad(): array
     {
         return [
             ["english"],
@@ -63,17 +58,27 @@ class LanguageCodeCest
 
 
 
-    public function testNonString(UnitTester $I): void
+    /**
+     * @dataProvider providerNonString
+     */
+    public function testNonString(UnitTester $I, Example $example): void
     {
         $validator = new LanguageCode();
 
-        $actual = $validator->validate([]);
+        $violations = $validator->validate(
+            $example[0]
+        );
 
         $I->assertEquals(
-            [
-                "Value is not a string.",
-            ],
-            $actual
+            ["Value is not a string."],
+            $violations
         );
+    }
+
+    protected function providerNonString(): array
+    {
+        return [
+            [[]],
+        ];
     }
 }

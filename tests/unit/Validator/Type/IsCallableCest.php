@@ -10,66 +10,61 @@ use Tests\UnitTester;
 class IsCallableCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new IsCallable();
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            [function () {
+            }],
+            ["is_callable"],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new IsCallable();
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not a callable."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            function () {
-            },
-            "is_callable",
+        return [
+            [[1,2,3]],
+            [[]],
+            [true],
+            [false],
+            [123.456],
+            [123],
+            [0],
+            [null],
+            [new stdClass()],
+            ["Sid Roberts"],
+            [""],
         ];
-
-        $bad = [
-            [1,2,3],
-            [],
-            true,
-            false,
-            123.456,
-            123,
-            0,
-            null,
-            new stdClass(),
-            "Sid Roberts",
-            "",
-        ];
-
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
-        );
-
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not a callable.",
-                    ],
-                ];
-            },
-            $bad
-        );
-
-        return array_merge($good, $bad);
     }
 }

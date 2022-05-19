@@ -11,66 +11,61 @@ use Tests\UnitTester;
 class IsScalarCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new IsScalar();
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            [true],
+            [false],
+            [123.456],
+            [123],
+            [0],
+            ["Sid Roberts"],
+            [""],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new IsScalar();
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not a scalar."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            true,
-            false,
-            123.456,
-            123,
-            0,
-            "Sid Roberts",
-            "",
+        return [
+            [[1,2,3]],
+            [[]],
+            [null],
+            [new HtmlFormatter()],
+            [(object) []],
+            [$this],
+            [new stdClass()],
         ];
-
-        $bad = [
-            [1,2,3],
-            [],
-            null,
-            new HtmlFormatter(),
-            (object) [],
-            $this,
-            new stdClass(),
-        ];
-
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
-        );
-
-        $bad = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not a scalar.",
-                    ],
-                ];
-            },
-            $bad
-        );
-
-        return array_merge($good, $bad);
     }
 }

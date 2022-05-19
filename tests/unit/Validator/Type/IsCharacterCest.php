@@ -10,82 +10,86 @@ use Tests\UnitTester;
 class IsCharacterCest
 {
     /**
-     * @dataProvider provider
+     * @dataProvider providerGood
      */
-    public function test(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new IsCharacter();
 
-        $actual = $validator->validate(
-            $example["value"]
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            ["S"],
+            ["0"],
+            ["/"],
+        ];
+    }
+
+
+
+    /**
+     * @dataProvider providerBad
+     */
+    public function testBad(UnitTester $I, Example $example): void
+    {
+        $validator = new IsCharacter();
+
+        $violations = $validator->validate(
+            $example[0]
         );
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            ["Value is not a character."],
+            $violations
         );
     }
 
-    protected function provider(): array
+    protected function providerBad(): array
     {
-        $good = [
-            "S",
-            "0",
-            "/",
+        return [
+            ["Sid"],
+            [""],
+            ["123"],
         ];
+    }
 
-        $bad1 = [
-            "Sid",
-            "",
-            "123",
-        ];
 
-        $bad2 = [
-            [1,2,3],
-            [],
-            true,
-            false,
-            123.456,
-            123,
-            0,
-            null,
-            new stdClass(),
-        ];
+    /**
+     * @dataProvider providerNonString
+     */
+    public function testNonString(UnitTester $I, Example $example): void
+    {
+        $validator = new IsCharacter();
 
-        $good = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [],
-                ];
-            },
-            $good
+        $violations = $validator->validate(
+            $example[0]
         );
 
-        $bad1 = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not a character.",
-                    ],
-                ];
-            },
-            $bad1
+        $I->assertEquals(
+            ["Value is not a string."],
+            $violations
         );
+    }
 
-        $bad2 = array_map(
-            function (mixed $value): array {
-                return [
-                    "value"    => $value,
-                    "expected" => [
-                        "Value is not a string.",
-                    ],
-                ];
-            },
-            $bad2
-        );
-
-        return array_merge($good, $bad1, $bad2);
+    protected function providerNonString(): array
+    {
+        return [
+            [[1,2,3]],
+            [[]],
+            [true],
+            [false],
+            [123.456],
+            [123],
+            [0],
+            [null],
+            [new stdClass()],
+        ];
     }
 }

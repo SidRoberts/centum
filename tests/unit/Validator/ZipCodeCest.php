@@ -9,23 +9,20 @@ use Tests\UnitTester;
 class ZipCodeCest
 {
     /**
-     * @dataProvider validZipCodesProvider
+     * @dataProvider providerGood
      */
-    public function testValidZipCodes(UnitTester $I, Example $example): void
+    public function testGood(UnitTester $I, Example $example): void
     {
         $validator = new ZipCode();
 
-        $actual = $validator->validate(
+        $violations = $validator->validate(
             $example[0]
         );
 
-        $I->assertEquals(
-            [],
-            $actual,
-        );
+        $I->assertCount(0, $violations);
     }
 
-    protected function validZipCodesProvider(): array
+    protected function providerGood(): array
     {
         return [
             [90210],
@@ -37,25 +34,23 @@ class ZipCodeCest
 
 
     /**
-     * @dataProvider invalidZipCodesProvider
+     * @dataProvider providerBad
      */
-    public function testInvalidZipCodes(UnitTester $I, Example $example): void
+    public function testBad(UnitTester $I, Example $example): void
     {
         $validator = new ZipCode();
 
-        $actual = $validator->validate(
+        $violations = $validator->validate(
             $example[0]
         );
 
         $I->assertEquals(
-            [
-                "Value is not a valid zip code.",
-            ],
-            $actual
+            ["Value is not a valid zip code."],
+            $violations
         );
     }
 
-    protected function invalidZipCodesProvider(): array
+    protected function providerBad(): array
     {
         return [
             ["not a valid zip code"],
@@ -64,17 +59,27 @@ class ZipCodeCest
 
 
 
-    public function testNonString(UnitTester $I): void
+    /**
+     * @dataProvider providerNonString
+     */
+    public function testNonString(UnitTester $I, Example $example): void
     {
         $validator = new ZipCode();
 
-        $actual = $validator->validate([]);
+        $violations = $validator->validate(
+            $example[0]
+        );
 
         $I->assertEquals(
-            [
-                "Value is not a string.",
-            ],
-            $actual
+            ["Value is not a string."],
+            $violations
         );
+    }
+
+    protected function providerNonString(): array
+    {
+        return [
+            [[]],
+        ];
     }
 }
