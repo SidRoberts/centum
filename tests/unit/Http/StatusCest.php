@@ -47,7 +47,7 @@ class StatusCest
         );
     }
 
-    public function providerStatusTexts(): array
+    protected function providerStatusTexts(): array
     {
         return [
             [100, "Continue"],

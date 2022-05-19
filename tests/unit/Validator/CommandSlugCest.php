@@ -25,7 +25,7 @@ class CommandSlugCest
         );
     }
 
-    public function validCommandSlugsProvider(): array
+    protected function validCommandSlugsProvider(): array
     {
         return [
             ["slug"],
@@ -57,7 +57,7 @@ class CommandSlugCest
         );
     }
 
-    public function invalidCommandSlugsProvider(): array
+    protected function invalidCommandSlugsProvider(): array
     {
         return [
             ["NOT-VALID"],

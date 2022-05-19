@@ -31,7 +31,7 @@ class IsInstanceOfCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             new Trim(),

@@ -26,7 +26,7 @@ class TrimCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         return [
             [
@@ -70,7 +70,7 @@ class TrimCest
         );
     }
 
-    public function providerException(): array
+    protected function providerException(): array
     {
         return [
             [

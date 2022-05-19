@@ -26,7 +26,7 @@ class AlphanumericCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         return [
             [
@@ -75,7 +75,7 @@ class AlphanumericCest
         );
     }
 
-    public function providerException(): array
+    protected function providerException(): array
     {
         return [
             [

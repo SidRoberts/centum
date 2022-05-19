@@ -25,7 +25,7 @@ class SlugCest
         );
     }
 
-    public function validSlugsProvider(): array
+    protected function validSlugsProvider(): array
     {
         return [
             ["valid"],
@@ -54,7 +54,7 @@ class SlugCest
         );
     }
 
-    public function invalidSlugsProvider(): array
+    protected function invalidSlugsProvider(): array
     {
         return [
             ["NOT-VALID"],

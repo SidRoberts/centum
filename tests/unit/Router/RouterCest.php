@@ -119,7 +119,7 @@ class RouterCest
         }
     }
 
-    public function middlewaresProvider(): array
+    protected function middlewaresProvider(): array
     {
         return [
             [
@@ -179,7 +179,7 @@ class RouterCest
         }
     }
 
-    public function requirementsProvider(): array
+    protected function requirementsProvider(): array
     {
         return [
             [
@@ -235,7 +235,7 @@ class RouterCest
         );
     }
 
-    public function httpMethodsProvider(): array
+    protected function httpMethodsProvider(): array
     {
         return [
             [

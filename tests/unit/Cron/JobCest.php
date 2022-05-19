@@ -33,7 +33,7 @@ class JobCest
 
 
 
-    public function providerGetters(): array
+    protected function providerGetters(): array
     {
         return [
             [

@@ -25,7 +25,7 @@ class TimeZoneCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             "Asia/Seoul",

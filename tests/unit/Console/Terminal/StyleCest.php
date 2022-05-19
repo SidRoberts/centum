@@ -21,7 +21,7 @@ class StyleCest
         );
     }
 
-    public function decorationProvider(): array
+    protected function decorationProvider(): array
     {
         return [
             [
@@ -72,7 +72,7 @@ class StyleCest
         );
     }
 
-    public function colorProvider(): array
+    protected function colorProvider(): array
     {
         return [
             [

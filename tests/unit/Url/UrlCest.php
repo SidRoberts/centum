@@ -43,7 +43,7 @@ class UrlCest
         );
     }
 
-    public function providerUrl(): array
+    protected function providerUrl(): array
     {
         return [
             [
@@ -106,7 +106,7 @@ class UrlCest
         );
     }
 
-    public function providerArguments(): array
+    protected function providerArguments(): array
     {
         return [
             [

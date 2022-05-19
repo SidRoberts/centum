@@ -26,7 +26,7 @@ class IsNullCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             null,

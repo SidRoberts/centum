@@ -26,7 +26,7 @@ class IsBooleanCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             true,

@@ -27,7 +27,7 @@ class IsCountableCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             [1, 2, 3],

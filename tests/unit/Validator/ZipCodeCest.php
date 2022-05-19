@@ -25,7 +25,7 @@ class ZipCodeCest
         );
     }
 
-    public function validZipCodesProvider(): array
+    protected function validZipCodesProvider(): array
     {
         return [
             [90210],
@@ -55,7 +55,7 @@ class ZipCodeCest
         );
     }
 
-    public function invalidZipCodesProvider(): array
+    protected function invalidZipCodesProvider(): array
     {
         return [
             ["not a valid zip code"],

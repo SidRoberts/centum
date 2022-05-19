@@ -26,7 +26,7 @@ class SuffixCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         return [
             [
@@ -60,7 +60,7 @@ class SuffixCest
         );
     }
 
-    public function providerException(): array
+    protected function providerException(): array
     {
         return [
             [

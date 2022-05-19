@@ -25,7 +25,7 @@ class EmailAddressCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             "sid@sidroberts.co.uk",

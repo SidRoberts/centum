@@ -25,7 +25,7 @@ class AlphaCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             "SidRoberts",

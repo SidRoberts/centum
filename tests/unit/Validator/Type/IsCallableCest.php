@@ -26,7 +26,7 @@ class IsCallableCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             function () {

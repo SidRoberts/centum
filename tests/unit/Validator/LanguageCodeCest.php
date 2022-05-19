@@ -25,7 +25,7 @@ class LanguageCodeCest
         );
     }
 
-    public function validLanguageCodesProvider(): array
+    protected function validLanguageCodesProvider(): array
     {
         return [
             ["en-GB"],
@@ -54,7 +54,7 @@ class LanguageCodeCest
         );
     }
 
-    public function invalidLanguageCodesProvider(): array
+    protected function invalidLanguageCodesProvider(): array
     {
         return [
             ["english"],

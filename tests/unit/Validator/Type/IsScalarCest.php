@@ -27,7 +27,7 @@ class IsScalarCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             true,

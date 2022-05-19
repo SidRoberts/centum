@@ -22,7 +22,7 @@ class JsonResponseCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $object = new stdClass();
 

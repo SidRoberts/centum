@@ -147,7 +147,7 @@ class ApplicationCest
         }
     }
 
-    public function middlewaresProvider(): array
+    protected function middlewaresProvider(): array
     {
         return [
             [

@@ -26,7 +26,7 @@ class IsIntegerCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             123,

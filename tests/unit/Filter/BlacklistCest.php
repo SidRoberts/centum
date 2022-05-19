@@ -38,7 +38,7 @@ class BlacklistCest
         }
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         return [
             [

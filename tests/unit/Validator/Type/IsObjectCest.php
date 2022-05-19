@@ -27,7 +27,7 @@ class IsObjectCest
         );
     }
 
-    public function provider(): array
+    protected function provider(): array
     {
         $good = [
             new HtmlFormatter(),
