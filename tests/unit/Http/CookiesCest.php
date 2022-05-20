@@ -9,7 +9,7 @@ use Tests\UnitTester;
 
 class CookiesCest
 {
-    public function send(UnitTester $I): void
+    public function testSend(UnitTester $I): void
     {
         $cookie1 = Mockery::mock(Cookie::class);
 
@@ -56,7 +56,7 @@ class CookiesCest
         $cookies->send();
     }
 
-    public function all(UnitTester $I): void
+    public function testAll(UnitTester $I): void
     {
         $cookie1 = new Cookie("username", "SidRoberts");
         $cookie2 = new Cookie("language", "en");

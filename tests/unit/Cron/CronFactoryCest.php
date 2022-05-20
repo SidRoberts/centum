@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class CronFactoryCest
 {
-    public function addJobsFromArray(UnitTester $I): void
+    public function testAddJobsFromArray(UnitTester $I): void
     {
         $cron = CronFactory::createFromArray(
             [

@@ -12,7 +12,7 @@ use Twig\Loader\ArrayLoader;
 
 class FlashExtensionCest
 {
-    public function extension(UnitTester $I): void
+    public function test(UnitTester $I): void
     {
         $arrayHandler = new ArrayHandler();
 

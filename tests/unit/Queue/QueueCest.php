@@ -14,7 +14,7 @@ use Throwable;
 
 class QueueCest
 {
-    public function publish(UnitTester $I): void
+    public function testPublish(UnitTester $I): void
     {
         $task = new DoNothingTask();
 
@@ -46,7 +46,7 @@ class QueueCest
         $queue->publish($task);
     }
 
-    public function consumeRegularTask(UnitTester $I): void
+    public function testConsumeRegularTask(UnitTester $I): void
     {
         $task = new DoNothingTask();
 
@@ -82,7 +82,7 @@ class QueueCest
         $queue->consume();
     }
 
-    public function buryJobWhenExceptionIsThrown(UnitTester $I): void
+    public function testBuryJobWhenExceptionIsThrown(UnitTester $I): void
     {
         $task = new ProblematicTask();
 

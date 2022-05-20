@@ -6,7 +6,6 @@ use Centum\Twig\FormExtension;
 use Codeception\Example;
 use Tests\UnitTester;
 use Twig\Environment;
-use Twig\Extension;
 use Twig\Loader\ArrayLoader;
 
 class FormExtensionCest
@@ -14,7 +13,7 @@ class FormExtensionCest
     /**
      * @dataProvider provider
      */
-    public function extension(UnitTester $I, Example $example): void
+    public function test(UnitTester $I, Example $example): void
     {
         $loader = new ArrayLoader(
             [

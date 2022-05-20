@@ -52,7 +52,7 @@ class ReplaceCest
     /**
      * @dataProvider providerException
      */
-    public function exception(UnitTester $I, Example $example): void
+    public function testException(UnitTester $I, Example $example): void
     {
         $filter = new Replace(
             [

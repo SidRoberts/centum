@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class UrlCest
 {
-    public function getBaseUrl(UnitTester $I): void
+    public function testGetBaseUrl(UnitTester $I): void
     {
         $baseUri = "http://www.example.com";
 
@@ -25,7 +25,7 @@ class UrlCest
     /**
      * @dataProvider providerUrl
      */
-    public function url(UnitTester $I, Example $example): void
+    public function testUrl(UnitTester $I, Example $example): void
     {
         $url = new Url(
             $example["baseUri"]
@@ -89,7 +89,7 @@ class UrlCest
     /**
      * @dataProvider providerArguments
      */
-    public function arguments(UnitTester $I, Example $example): void
+    public function testArguments(UnitTester $I, Example $example): void
     {
         $url = new Url();
 

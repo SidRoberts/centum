@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class CommandCest
 {
-    public function getters(UnitTester $I): void
+    public function testGetters(UnitTester $I): void
     {
         $container = new Container();
 

@@ -49,7 +49,7 @@ class ParametersCest
         );
     }
 
-    public function has(UnitTester $I): void
+    public function testHas(UnitTester $I): void
     {
         $parameters = new Parameters(
             [

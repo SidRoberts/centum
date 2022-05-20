@@ -9,9 +9,9 @@ use Tests\UnitTester;
 class StyleCest
 {
     /**
-     * @dataProvider decorationProvider
+     * @dataProvider providerDecorations
      */
-    public function decorations(UnitTester $I, Example $example): void
+    public function testDecorations(UnitTester $I, Example $example): void
     {
         $style = new Style();
 
@@ -21,7 +21,7 @@ class StyleCest
         );
     }
 
-    protected function decorationProvider(): array
+    protected function providerDecorations(): array
     {
         return [
             [
@@ -60,9 +60,9 @@ class StyleCest
 
 
     /**
-     * @dataProvider colorProvider
+     * @dataProvider providerColors
      */
-    public function colors(UnitTester $I, Example $example): void
+    public function testColors(UnitTester $I, Example $example): void
     {
         $style = new Style();
 
@@ -72,7 +72,7 @@ class StyleCest
         );
     }
 
-    protected function colorProvider(): array
+    protected function providerColors(): array
     {
         return [
             [
@@ -145,7 +145,7 @@ class StyleCest
 
 
 
-    public function combinedColors(UnitTester $I): void
+    public function testCombinedColors(UnitTester $I): void
     {
         $style = new Style();
 
@@ -159,7 +159,7 @@ class StyleCest
 
 
 
-    public function colorTextAndBackground(UnitTester $I): void
+    public function testColorTextAndBackground(UnitTester $I): void
     {
         $style = new Style();
 
@@ -175,7 +175,7 @@ class StyleCest
 
 
 
-    public function reset(UnitTester $I): void
+    public function testReset(UnitTester $I): void
     {
         $style = new Style();
 

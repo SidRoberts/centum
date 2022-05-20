@@ -12,7 +12,7 @@ use Tests\UnitTester;
 
 class ResponseCest
 {
-    public function getters(UnitTester $I)
+    public function testGetters(UnitTester $I)
     {
         $headers = new Headers();
 
@@ -62,7 +62,7 @@ class ResponseCest
         );
     }
 
-    public function sendContent(UnitTester $I): void
+    public function testSendContent(UnitTester $I): void
     {
         $I->expectEcho(
             "Hello world",

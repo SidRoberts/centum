@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class ParametersCest
 {
-    public function has(UnitTester $I): void
+    public function testHas(UnitTester $I): void
     {
         $argv = [
             "cli.php",
@@ -45,7 +45,7 @@ class ParametersCest
         );
     }
 
-    public function toArray(UnitTester $I): void
+    public function testToArray(UnitTester $I): void
     {
         $argv = [
             "cli.php",

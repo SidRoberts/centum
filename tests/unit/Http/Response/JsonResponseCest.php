@@ -62,7 +62,7 @@ class JsonResponseCest
         ];
     }
 
-    public function contentType(UnitTester $I)
+    public function testContentType(UnitTester $I)
     {
         $response = new JsonResponse(
             []

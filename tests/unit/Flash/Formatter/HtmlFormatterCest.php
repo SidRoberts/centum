@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class HtmlFormatterCest
 {
-    public function output(UnitTester $I): void
+    public function testOutput(UnitTester $I): void
     {
         $formatter = new HtmlFormatter();
 

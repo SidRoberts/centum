@@ -11,7 +11,7 @@ use Tests\UnitTester;
 
 class RedirectResponseCest
 {
-    public function emptyUrl(UnitTester $I)
+    public function testEmptyUrl(UnitTester $I)
     {
         $I->expectThrowable(
             new InvalidArgumentException("URL can't be empty."),
@@ -21,7 +21,7 @@ class RedirectResponseCest
         );
     }
 
-    public function mustBeARedirect(UnitTester $I)
+    public function testMustBeARedirect(UnitTester $I)
     {
         $I->expectThrowable(
             new InvalidArgumentException("The HTTP status code must be a 3xx redirect code ('200' given)."),
@@ -31,7 +31,7 @@ class RedirectResponseCest
         );
     }
 
-    public function getter(UnitTester $I)
+    public function testGetter(UnitTester $I)
     {
         $response = new RedirectResponse("https://github.com/sidroberts");
 
@@ -41,7 +41,7 @@ class RedirectResponseCest
         );
     }
 
-    public function locationHeaderIsSetWhenNoHeadersGiven(UnitTester $I)
+    public function testLocationHeaderIsSetWhenNoHeadersGiven(UnitTester $I)
     {
         $response = new RedirectResponse("https://github.com/sidroberts");
 
@@ -55,7 +55,7 @@ class RedirectResponseCest
         );
     }
 
-    public function locationHeaderIsSetWhenHeadersGiven(UnitTester $I)
+    public function testLocationHeaderIsSetWhenHeadersGiven(UnitTester $I)
     {
         $headers = new Headers();
 

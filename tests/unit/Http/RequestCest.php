@@ -13,7 +13,7 @@ use Tests\UnitTester;
 
 class RequestCest
 {
-    public function getters(UnitTester $I): void
+    public function testGetters(UnitTester $I): void
     {
         $headers = new Headers();
 
@@ -83,7 +83,7 @@ class RequestCest
         );
     }
 
-    public function validate(UnitTester $I): void
+    public function testValidate(UnitTester $I): void
     {
         $template = new LoginTemplate();
 

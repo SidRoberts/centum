@@ -13,7 +13,7 @@ class UrlExtensionCest
     /**
      * @dataProvider provider
      */
-    public function extension(UnitTester $I, Example $example): void
+    public function test(UnitTester $I, Example $example): void
     {
         $url = new Url(
             $example["baseUri"]

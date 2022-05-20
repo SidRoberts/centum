@@ -110,7 +110,7 @@ class ContainerCest
         );
     }
 
-    public function resolveDifferentTypes(UnitTester $I): void
+    public function testResolveDifferentTypes(UnitTester $I): void
     {
         $container = new Container();
 
@@ -186,7 +186,7 @@ class ContainerCest
         );
     }
 
-    public function aliases(UnitTester $I): void
+    public function testAliases(UnitTester $I): void
     {
         $container = new Container();
 

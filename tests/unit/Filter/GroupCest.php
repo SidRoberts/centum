@@ -50,7 +50,7 @@ class GroupCest
         ];
     }
 
-    public function getFilters(UnitTester $I): void
+    public function testGetFilters(UnitTester $I): void
     {
         $filter1 = new ToLower();
         $filter2 = new Trim();

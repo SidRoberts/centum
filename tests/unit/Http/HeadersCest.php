@@ -9,7 +9,7 @@ use Tests\UnitTester;
 
 class HeadersCest
 {
-    public function send(UnitTester $I): void
+    public function testSend(UnitTester $I): void
     {
         $header1 = Mockery::mock(Header::class);
 
@@ -56,7 +56,7 @@ class HeadersCest
         $headers->send();
     }
 
-    public function all(UnitTester $I): void
+    public function testAll(UnitTester $I): void
     {
         $header1 = new Header("Content-Type", "text/plain");
         $header2 = new Header("Last-Modified", "Sun, 04 Apr 2021 17:04:00 GMT");

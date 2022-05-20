@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class AccessCest
 {
-    public function noDefault(UnitTester $I): void
+    public function testNoDefault(UnitTester $I): void
     {
         $access = new Access();
 
@@ -28,7 +28,7 @@ class AccessCest
         );
     }
 
-    public function noDefaultRemove(UnitTester $I): void
+    public function testNoDefaultRemove(UnitTester $I): void
     {
         $access = new Access();
 
@@ -45,7 +45,7 @@ class AccessCest
         );
     }
 
-    public function defaultAllow(UnitTester $I): void
+    public function testDefaultAllow(UnitTester $I): void
     {
         $access = new Access(
             Access::ALLOW
@@ -68,7 +68,7 @@ class AccessCest
         );
     }
 
-    public function defaultAllowRemove(UnitTester $I): void
+    public function testDefaultAllowRemove(UnitTester $I): void
     {
         $access = new Access(
             Access::ALLOW
@@ -87,7 +87,7 @@ class AccessCest
         );
     }
 
-    public function defaultDeny(UnitTester $I): void
+    public function testDefaultDeny(UnitTester $I): void
     {
         $access = new Access(
             Access::DENY
@@ -110,7 +110,7 @@ class AccessCest
         );
     }
 
-    public function defaultDenyRemove(UnitTester $I): void
+    public function testDefaultDenyRemove(UnitTester $I): void
     {
         $access = new Access(
             Access::DENY

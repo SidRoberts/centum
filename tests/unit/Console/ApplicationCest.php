@@ -26,7 +26,7 @@ use Tests\UnitTester;
 
 class ApplicationCest
 {
-    public function basicHandle(UnitTester $I): void
+    public function testBasicHandle(UnitTester $I): void
     {
         $container = new Container();
 
@@ -52,7 +52,7 @@ class ApplicationCest
         );
     }
 
-    public function filters(UnitTester $I): void
+    public function testFilters(UnitTester $I): void
     {
         $container = new Container();
 
@@ -80,7 +80,7 @@ class ApplicationCest
         );
     }
 
-    public function filtersException(UnitTester $I): void
+    public function testFiltersException(UnitTester $I): void
     {
         $container = new Container();
 
@@ -108,9 +108,9 @@ class ApplicationCest
     }
 
     /**
-     * @dataProvider middlewaresProvider
+     * @dataProvider providerMiddlewares
      */
-    public function middlewares(UnitTester $I, Example $example): void
+    public function testMiddlewares(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -147,7 +147,7 @@ class ApplicationCest
         }
     }
 
-    protected function middlewaresProvider(): array
+    protected function providerMiddlewares(): array
     {
         return [
             [
@@ -172,7 +172,7 @@ class ApplicationCest
         ];
     }
 
-    public function commandNotSpecified(UnitTester $I): void
+    public function testCommandNotSpecified(UnitTester $I): void
     {
         $container = new Container();
 
@@ -195,7 +195,7 @@ class ApplicationCest
         );
     }
 
-    public function commandNotFoundException(UnitTester $I): void
+    public function testCommandNotFoundException(UnitTester $I): void
     {
         $container = new Container();
 
@@ -216,7 +216,7 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidFilters(UnitTester $I): void
+    public function testCommandWithInvalidFilters(UnitTester $I): void
     {
         $container = new Container();
 
@@ -239,7 +239,7 @@ class ApplicationCest
         );
     }
 
-    public function commandWithInvalidMiddlewares(UnitTester $I): void
+    public function testCommandWithInvalidMiddlewares(UnitTester $I): void
     {
         $container = new Container();
 
@@ -262,7 +262,7 @@ class ApplicationCest
         );
     }
 
-    public function getCommand(UnitTester $I): void
+    public function testGetCommand(UnitTester $I): void
     {
         $container = new Container();
 
@@ -282,7 +282,7 @@ class ApplicationCest
         );
     }
 
-    public function getCommands(UnitTester $I): void
+    public function testGetCommands(UnitTester $I): void
     {
         $container = new Container();
 
@@ -304,7 +304,7 @@ class ApplicationCest
         );
     }
 
-    public function exceptionalHandlers(UnitTester $I): void
+    public function testExceptionalHandlers(UnitTester $I): void
     {
         $container = new Container();
 
@@ -342,7 +342,7 @@ class ApplicationCest
         );
     }
 
-    public function validCommandName(UnitTester $I): void
+    public function testValidCommandName(UnitTester $I): void
     {
         $container = new Container();
 

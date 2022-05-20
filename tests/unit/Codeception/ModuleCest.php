@@ -12,7 +12,7 @@ use Tests\UnitTester;
 
 class ModuleCest
 {
-    public function beforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
+    public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
     {
         $moduleContainer = Mockery::mock(ModuleContainer::class);
 
@@ -43,7 +43,7 @@ class ModuleCest
         );
     }
 
-    public function exceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
+    public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
     {
         $moduleContainer = Mockery::mock(ModuleContainer::class);
 
@@ -64,7 +64,7 @@ class ModuleCest
         );
     }
 
-    public function getStdoutContent(UnitTester $I)
+    public function testGetStdoutContent(UnitTester $I)
     {
         $I->assertEquals(
             "",
@@ -90,7 +90,7 @@ class ModuleCest
         );
     }
 
-    public function getStderrContent(UnitTester $I)
+    public function testGetStderrContent(UnitTester $I)
     {
         $I->assertEquals(
             "",
@@ -118,7 +118,7 @@ class ModuleCest
 
 
 
-    public function assertStdoutEquals(UnitTester $I): void
+    public function testAssertStdoutEquals(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -129,7 +129,7 @@ class ModuleCest
         $I->assertStdoutEquals("The quick brown fox jumps over the lazy dog.");
     }
 
-    public function assertStdoutNotEquals(UnitTester $I): void
+    public function testAssertStdoutNotEquals(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -140,7 +140,7 @@ class ModuleCest
         $I->assertStdoutNotEquals("The slow brown fox jumps over the energetic dog.");
     }
 
-    public function assertStdoutContains(UnitTester $I): void
+    public function testAssertStdoutContains(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -151,7 +151,7 @@ class ModuleCest
         $I->assertStdoutContains("quick");
     }
 
-    public function assertStdoutNotContains(UnitTester $I): void
+    public function testAssertStdoutNotContains(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -164,7 +164,7 @@ class ModuleCest
 
 
 
-    public function assertStderrEquals(UnitTester $I): void
+    public function testAssertStderrEquals(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -175,7 +175,7 @@ class ModuleCest
         $I->assertStderrEquals("The quick brown fox jumps over the lazy dog.");
     }
 
-    public function assertStderrNotEquals(UnitTester $I): void
+    public function testAssertStderrNotEquals(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -186,7 +186,7 @@ class ModuleCest
         $I->assertStderrNotEquals("The slow brown fox jumps over the energetic dog.");
     }
 
-    public function assertStderrContains(UnitTester $I): void
+    public function testAssertStderrContains(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -197,7 +197,7 @@ class ModuleCest
         $I->assertStderrContains("quick");
     }
 
-    public function assertStderrNotContains(UnitTester $I): void
+    public function testAssertStderrNotContains(UnitTester $I): void
     {
         $terminal = $I->createTerminal(
             []
@@ -208,7 +208,7 @@ class ModuleCest
         $I->assertStderrNotContains("slow");
     }
 
-    public function expectEcho(UnitTester $I): void
+    public function testExpectEcho(UnitTester $I): void
     {
         $I->expectEcho(
             "The quick brown fox jumps over the lazy dog.",
@@ -218,7 +218,7 @@ class ModuleCest
         );
     }
 
-    public function expectEchoWithAnException(UnitTester $I): void
+    public function testExpectEchoWithAnException(UnitTester $I): void
     {
         $I->expectThrowable(
             new Exception("this is an exception"),

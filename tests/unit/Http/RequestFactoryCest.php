@@ -33,7 +33,7 @@ class RequestFactoryCest
         unset($_POST["foo1"]);
     }
 
-    public function createFromBrowserKitRequest(UnitTester $I)
+    public function testCreateFromBrowserKitRequest(UnitTester $I)
     {
         $browserKitRequest = new BrowserKitRequest(
             "/path/to/something",

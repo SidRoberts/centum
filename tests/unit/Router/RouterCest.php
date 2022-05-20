@@ -26,7 +26,7 @@ use Tests\UnitTester;
 
 class RouterCest
 {
-    public function basicHandle(UnitTester $I): void
+    public function testBasicHandle(UnitTester $I): void
     {
         $container = new Container();
 
@@ -50,7 +50,7 @@ class RouterCest
         );
     }
 
-    public function filters(UnitTester $I): void
+    public function testFilters(UnitTester $I): void
     {
         $container = new Container();
 
@@ -79,9 +79,9 @@ class RouterCest
     }
 
     /**
-     * @dataProvider middlewaresProvider
+     * @dataProvider providerMiddlewares
      */
-    public function middlewares(UnitTester $I, Example $example): void
+    public function testMiddlewares(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -119,7 +119,7 @@ class RouterCest
         }
     }
 
-    protected function middlewaresProvider(): array
+    protected function providerMiddlewares(): array
     {
         return [
             [
@@ -145,9 +145,9 @@ class RouterCest
     }
 
     /**
-     * @dataProvider requirementsProvider
+     * @dataProvider providerRequirements
      */
-    public function requirements(UnitTester $I, Example $example): void
+    public function testRequirements(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -179,7 +179,7 @@ class RouterCest
         }
     }
 
-    protected function requirementsProvider(): array
+    protected function providerRequirements(): array
     {
         return [
             [
@@ -200,9 +200,9 @@ class RouterCest
     }
 
     /**
-     * @dataProvider httpMethodsProvider
+     * @dataProvider providerHttpMethods
      */
-    public function httpMethods(UnitTester $I, Example $example): void
+    public function testHttpMethods(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -235,7 +235,7 @@ class RouterCest
         );
     }
 
-    protected function httpMethodsProvider(): array
+    protected function providerHttpMethods(): array
     {
         return [
             [
@@ -276,7 +276,7 @@ class RouterCest
         ];
     }
 
-    public function routeNotFoundException(UnitTester $I): void
+    public function testRouteNotFoundException(UnitTester $I): void
     {
         $container = new Container();
 
@@ -295,7 +295,7 @@ class RouterCest
         );
     }
 
-    public function crud(UnitTester $I): void
+    public function testCrud(UnitTester $I): void
     {
         $container = new Container();
 
@@ -388,7 +388,7 @@ class RouterCest
         );
     }
 
-    public function submission(UnitTester $I): void
+    public function testSubmission(UnitTester $I): void
     {
         $container = new Container();
 
@@ -423,7 +423,7 @@ class RouterCest
         );
     }
 
-    public function formRequests(UnitTester $I): void
+    public function testFormRequests(UnitTester $I): void
     {
         $template = new LoginTemplate();
 
@@ -473,7 +473,7 @@ class RouterCest
         );
     }
 
-    public function exceptionHandlers(UnitTester $I): void
+    public function testExceptionHandlers(UnitTester $I): void
     {
         $container = new Container();
 

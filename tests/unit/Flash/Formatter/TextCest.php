@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class TextCest
 {
-    public function output(UnitTester $I): void
+    public function testOutput(UnitTester $I): void
     {
         $formatter = new TextFormatter();
 

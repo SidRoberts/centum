@@ -9,7 +9,7 @@ use Tests\UnitTester;
 
 class FormCest
 {
-    public function getters(UnitTester $I): void
+    public function testGetters(UnitTester $I): void
     {
         $form = new Form();
 
@@ -25,7 +25,7 @@ class FormCest
         );
     }
 
-    public function emptyForm(UnitTester $I): void
+    public function testEmptyForm(UnitTester $I): void
     {
         $form = new Form();
 
@@ -43,7 +43,7 @@ class FormCest
         );
     }
 
-    public function actualForm(UnitTester $I): void
+    public function testActualForm(UnitTester $I): void
     {
         $form = new Form();
 

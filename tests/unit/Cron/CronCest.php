@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class CronCest
 {
-    public function addJobsToCron(UnitTester $I): void
+    public function testAddJobsToCron(UnitTester $I): void
     {
         $cron = new Cron();
 

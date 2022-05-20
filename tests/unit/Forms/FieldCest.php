@@ -10,7 +10,7 @@ use Tests\UnitTester;
 
 class FieldCest
 {
-    public function getters(UnitTester $I): void
+    public function testGetters(UnitTester $I): void
     {
         $field = new Field("thisIsTheName");
 

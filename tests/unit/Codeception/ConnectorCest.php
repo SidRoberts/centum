@@ -10,7 +10,7 @@ use Tests\UnitTester;
 
 class ConnectorCest
 {
-    public function containerSessionIsModified(UnitTester $I): void
+    public function testContainerSessionIsModified(UnitTester $I): void
     {
         $container = new Container();
 
