@@ -87,7 +87,9 @@ class RequestCest
     {
         $template = new LoginTemplate();
 
-        $form = FormFactory::createFromTemplate($template);
+        $formFactory = new FormFactory();
+
+        $form = $formFactory->createFromTemplate($template);
 
 
 

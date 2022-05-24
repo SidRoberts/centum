@@ -6,7 +6,7 @@ use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class RequestFactory
 {
-    public static function createFromGlobals(): Request
+    public function createFromGlobals(): Request
     {
         /**
          * @var string
@@ -44,20 +44,26 @@ class RequestFactory
             }
         }
 
-        $headers = HeadersFactory::createFromGlobal();
-        $cookies = CookiesFactory::createFromGlobal();
+        $headersFactory = new HeadersFactory();
+        $cookiesFactory = new CookiesFactory();
+
+        $headers = $headersFactory->createFromGlobal();
+        $cookies = $cookiesFactory->createFromGlobal();
 
         return new Request($uri, $method, $parameters, $headers, $cookies, $content);
     }
 
-    public static function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
     {
+        $headersFactory = new HeadersFactory();
+        $cookiesFactory = new CookiesFactory();
+
         $uri         = $browserKitRequest->getUri();
         $requestUri  = \parse_url($uri, PHP_URL_PATH);
         $method      = \strtoupper($browserKitRequest->getMethod());
         $parameters  = $browserKitRequest->getParameters();
-        $headers     = HeadersFactory::createFromBrowserKitRequest($browserKitRequest);
-        $cookies     = CookiesFactory::createFromBrowserKitRequest($browserKitRequest);
+        $headers     = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
+        $cookies     = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
         $content     = $browserKitRequest->getContent();
 
         return new Request(

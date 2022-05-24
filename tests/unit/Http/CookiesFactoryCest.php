@@ -22,7 +22,9 @@ class CookiesFactoryCest
             null
         );
 
-        $cookies = CookiesFactory::createFromBrowserKitRequest($browserKitRequest);
+        $cookiesFactory = new CookiesFactory();
+
+        $cookies = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
 
         $I->assertEquals(
             [
@@ -40,7 +42,9 @@ class CookiesFactoryCest
             "currency" => "KRW",
         ];
 
-        $cookies = CookiesFactory::createFromArray($array);
+        $cookiesFactory = new CookiesFactory();
+
+        $cookies = $cookiesFactory->createFromArray($array);
 
         $I->assertEquals(
             $array,

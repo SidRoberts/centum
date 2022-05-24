@@ -10,11 +10,15 @@ class RequestFactoryCest
 {
     public function testCreateFromGlobals(UnitTester $I)
     {
+        $requestFactory = new RequestFactory();
+
+
+
         $_GET["foo"] = "bar";
 
         $_SERVER["REQUEST_METHOD"] = "GET";
 
-        $request = RequestFactory::createFromGlobals();
+        $request = $requestFactory->createFromGlobals();
 
         $I->assertEquals("bar", $request->getParameters()["foo"], "::fromGlobals() uses values from GET");
 
@@ -26,7 +30,7 @@ class RequestFactoryCest
 
         $_SERVER["REQUEST_METHOD"] = "POST";
 
-        $request = RequestFactory::createFromGlobals();
+        $request = $requestFactory->createFromGlobals();
 
         $I->assertEquals("bar", $request->getParameters()["foo"], "::fromGlobals() uses values from POST");
 
@@ -54,7 +58,9 @@ class RequestFactoryCest
             "some content"
         );
 
-        $request = RequestFactory::createFromBrowserKitRequest($browserKitRequest);
+        $requestFactory = new RequestFactory();
+
+        $request = $requestFactory->createFromBrowserKitRequest($browserKitRequest);
 
         $I->assertEquals(
             "/path/to/something",

@@ -22,7 +22,9 @@ class HeadersFactoryCest
             null
         );
 
-        $headers = HeadersFactory::createFromBrowserKitRequest($browserKitRequest);
+        $headersFactory = new HeadersFactory();
+
+        $headers = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
 
         $I->assertEquals(
             [
@@ -39,7 +41,9 @@ class HeadersFactoryCest
             "User-Agent"   => "Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586)",
         ];
 
-        $headers = HeadersFactory::createFromArray($array);
+        $headersFactory = new HeadersFactory();
+
+        $headers = $headersFactory->createFromArray($array);
 
         $I->assertEquals(
             $array,

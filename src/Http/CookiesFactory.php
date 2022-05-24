@@ -6,7 +6,7 @@ use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class CookiesFactory
 {
-    public static function createFromGlobal(): Cookies
+    public function createFromGlobal(): Cookies
     {
         $cookies = new Cookies();
 
@@ -23,7 +23,7 @@ class CookiesFactory
         return $cookies;
     }
 
-    public static function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Cookies
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Cookies
     {
         $cookies = new Cookies();
 
@@ -44,7 +44,7 @@ class CookiesFactory
     /**
      * @param array<string, string> $array
      */
-    public static function createFromArray(array $array): Cookies
+    public function createFromArray(array $array): Cookies
     {
         $cookies = new Cookies();
 

@@ -9,7 +9,9 @@ class CronFactoryCest
 {
     public function testAddJobsFromArray(UnitTester $I): void
     {
-        $cron = CronFactory::createFromArray(
+        $cronFactory = new CronFactory();
+
+        $cron = $cronFactory->createFromArray(
             [
                 [
                     "* * * * *",

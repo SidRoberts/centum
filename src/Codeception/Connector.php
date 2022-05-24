@@ -53,7 +53,9 @@ class Connector extends Client
          */
         $router = $this->container->typehintClass(Router::class);
 
-        $centumRequest = RequestFactory::createFromBrowserKitRequest($request);
+        $centumRequestFactory = new RequestFactory();
+
+        $centumRequest = $centumRequestFactory->createFromBrowserKitRequest($request);
 
         $centumResponse = $router->handle($centumRequest);
 

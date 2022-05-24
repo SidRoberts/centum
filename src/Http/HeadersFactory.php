@@ -6,7 +6,7 @@ use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class HeadersFactory
 {
-    public static function createFromGlobal(): Headers
+    public function createFromGlobal(): Headers
     {
         $headers = new Headers();
 
@@ -23,7 +23,7 @@ class HeadersFactory
         return $headers;
     }
 
-    public static function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Headers
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Headers
     {
         $headers = new Headers();
 
@@ -58,7 +58,7 @@ class HeadersFactory
     /**
      * @param array<string, string> $array
      */
-    public static function createFromArray(array $array): Headers
+    public function createFromArray(array $array): Headers
     {
         $headers = new Headers();
 
