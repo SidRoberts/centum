@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use Centum\Boot\ConsoleBootstrap;
+use Centum\App\ConsoleBootstrap;
 use Centum\Container\Container;
 
 // Standardise folder location.
