@@ -9,6 +9,7 @@ use Centum\Container\Container;
 use Codeception\Configuration;
 use Codeception\Lib\Framework;
 use Codeception\TestInterface;
+use Exception;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Throwable;
@@ -58,7 +59,7 @@ class Module extends Framework
         $containerFile = Configuration::projectDir() . $this->config["container"];
 
         if (!file_exists($containerFile)) {
-            throw new \Exception(
+            throw new Exception(
                 sprintf(
                     "%s container file does not exist.",
                     $containerFile
@@ -104,7 +105,7 @@ class Module extends Framework
     public function getContainer(): Container
     {
         if (!$this->container) {
-            throw new \Exception("Couldn't find the Container.");
+            throw new Exception("Couldn't find the Container.");
         }
 
         return $this->container;
