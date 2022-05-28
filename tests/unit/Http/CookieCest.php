@@ -22,6 +22,16 @@ class CookieCest
         );
     }
 
+    public function testGetHeaderString(UnitTester $I)
+    {
+        $cookie = new Cookie("logged_in", "yes");
+
+        $I->assertEquals(
+            "Set-Cookie: logged_in: yes",
+            $cookie->getHeaderString()
+        );
+    }
+
     public function testToString(UnitTester $I)
     {
         $cookie = new Cookie("logged_in", "yes");

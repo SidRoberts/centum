@@ -29,14 +29,21 @@ class Cookie
 
 
 
+    public function getHeaderString(): string
+    {
+        return sprintf(
+            "Set-Cookie: %s: %s",
+            $this->name,
+            $this->value
+        );
+    }
+
+
+
     public function send(): void
     {
         header(
-            sprintf(
-                "Set-Cookie: %s: %s",
-                $this->name,
-                $this->value
-            ),
+            $this->getHeaderString(),
             false
         );
     }
