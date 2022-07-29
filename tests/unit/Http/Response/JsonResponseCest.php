@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\Response;
 
 use Centum\Http\Response\JsonResponse;
+use Centum\Http\Status;
 use Codeception\Example;
 use stdClass;
 use Tests\UnitTester;
@@ -71,6 +72,31 @@ class JsonResponseCest
         $I->assertEquals(
             "application/json",
             $response->getHeaders()->toArray()["Content-Type"]
+        );
+    }
+
+    public function testStatus(UnitTester $I)
+    {
+        $response = new JsonResponse(
+            []
+        );
+
+        $I->assertSame(
+            Status::OK,
+            $response->getStatus()
+        );
+    }
+
+    public function testCustomStatus(UnitTester $I)
+    {
+        $response = new JsonResponse(
+            [],
+            Status::INTERNAL_SERVER_ERROR
+        );
+
+        $I->assertSame(
+            Status::INTERNAL_SERVER_ERROR,
+            $response->getStatus()
         );
     }
 }

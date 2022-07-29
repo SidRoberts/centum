@@ -9,7 +9,7 @@ use Centum\Http\Status;
 
 class JsonResponse extends Response
 {
-    public function __construct(mixed $variable)
+    public function __construct(mixed $variable, Status $status = Status::OK)
     {
         $content = json_encode(
             $variable,
@@ -22,6 +22,6 @@ class JsonResponse extends Response
             new Header("Content-Type", "application/json")
         );
 
-        parent::__construct($content, Status::OK, $headers);
+        parent::__construct($content, $status, $headers);
     }
 }
