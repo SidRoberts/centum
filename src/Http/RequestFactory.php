@@ -13,6 +13,9 @@ class RequestFactory
          */
         $uri = $_SERVER["REQUEST_URI"] ?? "";
 
+        // Remove parameter string
+        $uri = parse_url($uri, PHP_URL_PATH);
+
         /**
          * @var string
          */
