@@ -36,9 +36,7 @@ class PostFilter implements FilterInterface
 
     public function filter(mixed $value): Post
     {
-        /**
-         * @var EntityManager
-         */
+        /** @var EntityManager */
         $doctrine = $this->container->typehintClass(EntityManager::class);
 
         $postRepository = $doctrine->getRepository(
@@ -82,9 +80,7 @@ class PostDetailsCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
-        /**
-         * @var Post
-         */
+        /** @var Post */
         $post = $parameters->get("post");
 
         $terminal->writeLine(

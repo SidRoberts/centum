@@ -75,9 +75,7 @@ You can then retrieve them with the `typehint*()` methods:
 ```php
 use Centum\Console\Application;
 
-/**
- * @var Application
- */
+/** @var Application */
 $application = $container->typehintClass(Application::class);
 ```
 
