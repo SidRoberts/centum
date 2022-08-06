@@ -14,7 +14,9 @@ It is possible to build a Cron manager from an array using the [Factory class](h
 ```php
 use Centum\Cron\CronFactory;
 
-$cron = CronFactory::createFromArray(
+$cronFactory = new CronFactory();
+
+$cron = $cronFactory->createFromArray(
     [
         [
             "* * * * *",

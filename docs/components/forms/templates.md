@@ -54,5 +54,7 @@ use Centum\Forms\FormFactory;
 
 $template = new LoginTemplate();
 
-$form = FormFactory::createFromTemplate($template);
+$formFactory = new FormFactory();
+
+$form = $formFactory->createFromTemplate($template);
 ```

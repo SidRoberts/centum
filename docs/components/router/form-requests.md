@@ -38,7 +38,9 @@ use Centum\Forms\FormFactory;
 
 $subscriptionTemplate = new SubscriptionTemplate();
 
-$subscriptionForm = FormFactory::createFromTemplate($subscriptionTemplate);
+$formFactory = new FormFactory();
+
+$subscriptionForm = $formFactory->createFromTemplate($subscriptionTemplate);
 ```
 
 Routes can be assigned a form, as briefly mentioned in [Routes](routes.md):
