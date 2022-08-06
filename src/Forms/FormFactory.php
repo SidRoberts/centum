@@ -11,6 +11,10 @@ class FormFactory
         $methods = get_class_methods($template);
 
         foreach ($methods as $method) {
+            if ($method === "__construct") {
+                continue;
+            }
+
             $field = new Field($method);
 
             call_user_func_array(

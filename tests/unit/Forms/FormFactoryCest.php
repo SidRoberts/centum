@@ -2,8 +2,10 @@
 
 namespace Tests\Unit\Forms;
 
+use Centum\Container\Container;
 use Centum\Forms\FormFactory;
 use Tests\Forms\LoginTemplate;
+use Tests\Forms\LoginWithConstructorTemplate;
 use Tests\UnitTester;
 
 class FormFactoryCest
@@ -43,6 +45,30 @@ class FormFactoryCest
             ],
             $messages["password"]
         );
+
+
+
+        $status = $form->validate(
+            [
+                "username" => "username",
+                "password" => "password",
+            ]
+        );
+
+        $I->assertTrue(
+            $status->isValid()
+        );
+    }
+
+    public function testWithConstructor(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $template = new LoginWithConstructorTemplate($container);
+
+        $formFactory = new FormFactory();
+
+        $form = $formFactory->createFromTemplate($template);
 
 
 
