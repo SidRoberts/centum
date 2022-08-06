@@ -2,9 +2,6 @@
 
 namespace Centum\Http;
 
-use Centum\Forms\Form;
-use Centum\Forms\Status;
-
 class Request
 {
     protected string $uri;
@@ -62,12 +59,5 @@ class Request
     public function getContent(): ?string
     {
         return $this->content;
-    }
-
-
-
-    public function validate(Form $form): Status
-    {
-        return $form->validate($this->parameters);
     }
 }

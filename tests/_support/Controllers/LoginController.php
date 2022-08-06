@@ -3,6 +3,7 @@
 namespace Tests\Controllers;
 
 use Centum\Http\Response;
+use Centum\Http\FormRequest;
 
 class LoginController
 {
@@ -11,8 +12,12 @@ class LoginController
         return new Response("login form");
     }
 
-    public function submit(): Response
+    public function submit(FormRequest $formRequest): Response
     {
+        if (!$formRequest->isValid()) {
+            return new Response("login failed");
+        }
+
         return new Response("login successful");
     }
 }

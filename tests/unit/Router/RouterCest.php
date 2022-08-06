@@ -5,7 +5,6 @@ namespace Tests\Unit\Router;
 use Centum\Container\Container;
 use Centum\Forms\FormFactory;
 use Centum\Http\Request;
-use Centum\Router\Exception\FormRequestException;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\FalseMiddleware;
 use Centum\Router\Middleware\TrueMiddleware;
@@ -441,19 +440,17 @@ class RouterCest
 
         $group = $router->group();
 
-        $group->get("/login", LoginController::class, "form");
-
         $group->post("/login", LoginController::class, "submit", $form);
 
 
 
         $request = new Request("/login", "POST");
 
-        $I->expectThrowable(
-            FormRequestException::class,
-            function () use ($router, $request) {
-                $response = $router->handle($request);
-            }
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "login failed",
+            $response->getContent()
         );
 
 

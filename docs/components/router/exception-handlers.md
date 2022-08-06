@@ -24,19 +24,6 @@ $router->addExceptionHandler(
 );
 ```
 
-[Form Request](form-requests.md) exceptions can also be caught:
-
-```php
-use App\Controllers\ErrorController;
-use Centum\Router\Exception\FormRequestException;
-
-$router->addExceptionHandler(
-    FormRequestException::class,
-    ErrorController::class,
-    "errorFormRequest"
-);
-```
-
 Other Exception Handlers could be added to handle specific Exception classes:
 
 ```php

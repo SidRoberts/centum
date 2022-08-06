@@ -19,6 +19,24 @@ class Form
     }
 
 
+    public function getFilteredValues(array $data): array
+    {
+        $filteredValues = [];
+
+        foreach ($this->fields as $name => $field) {
+            /**
+             * @var mixed
+             */
+            $value = $data[$name] ?? null;
+
+            /**
+             * @var mixed
+             */
+            $filteredValues[$name] = $field->getFilteredValue($value);
+        }
+
+        return $filteredValues;
+    }
 
     public function validate(array $data): Status
     {

@@ -4,9 +4,9 @@ namespace Centum\Router;
 
 use Centum\Container\Container;
 use Centum\Forms\Form;
+use Centum\Http\FormRequest;
 use Centum\Http\Request;
 use Centum\Http\Response;
-use Centum\Router\Exception\FormRequestException;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
@@ -170,12 +170,6 @@ class Router
         $form = $route->getForm();
 
         if ($form) {
-            $status = $request->validate($form);
-
-            if (!$status->isValid()) {
-                throw new FormRequestException($status);
-            }
-
             $this->container->set(Form::class, $form);
         }
 
@@ -189,7 +183,12 @@ class Router
         $class  = $route->getClass();
         $method = $route->getMethod();
 
-        return $this->executeMethod($class, $method);
+        $response = $this->executeMethod($class, $method);
+
+        $this->container->remove(Form::class);
+        $this->container->remove(FormRequest::class);
+
+        return $response;
     }
 
     /**
