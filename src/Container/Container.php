@@ -112,6 +112,14 @@ class Container
         $this->objects[$class] = $this->typehintFunction($function);
     }
 
+    /**
+     * @param class-string $class
+     */
+    public function remove(string $class): void
+    {
+        unset($this->objects[$class]);
+    }
+
 
 
     /**

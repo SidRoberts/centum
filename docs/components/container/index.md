@@ -80,3 +80,11 @@ $application = $container->typehintClass(Application::class);
 ```
 
 If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParamterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParamterException.php).
+
+You can remove objects from the Container using the `remove()` method:
+
+```php
+use Centum\Console\Application;
+
+$container->remove(Application::class);
+```

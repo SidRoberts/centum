@@ -199,4 +199,17 @@ class ContainerCest
             $object
         );
     }
+
+    public function testRemove(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $incrementer1 = $container->typehintClass(Incrementer::class);
+
+        $container->remove(Incrementer::class);
+
+        $incrementer2 = $container->typehintClass(Incrementer::class);
+
+        $I->assertNotSame($incrementer1, $incrementer2);
+    }
 }
