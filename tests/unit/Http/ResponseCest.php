@@ -12,7 +12,7 @@ use Tests\UnitTester;
 
 class ResponseCest
 {
-    public function testGetters(UnitTester $I)
+    public function testGetters(UnitTester $I): void
     {
         $headers = new Headers();
 

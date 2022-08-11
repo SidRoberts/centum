@@ -64,7 +64,7 @@ class ModuleCest
         );
     }
 
-    public function testGetStdoutContent(UnitTester $I)
+    public function testGetStdoutContent(UnitTester $I): void
     {
         $I->assertEquals(
             "",
@@ -90,7 +90,7 @@ class ModuleCest
         );
     }
 
-    public function testGetStderrContent(UnitTester $I)
+    public function testGetStderrContent(UnitTester $I): void
     {
         $I->assertEquals(
             "",

@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class CookieCest
 {
-    public function testGetters(UnitTester $I)
+    public function testGetters(UnitTester $I): void
     {
         $cookie = new Cookie("logged_in", "yes");
 
@@ -22,7 +22,7 @@ class CookieCest
         );
     }
 
-    public function testGetHeaderString(UnitTester $I)
+    public function testGetHeaderString(UnitTester $I): void
     {
         $cookie = new Cookie("logged_in", "yes");
 
@@ -32,7 +32,7 @@ class CookieCest
         );
     }
 
-    public function testToString(UnitTester $I)
+    public function testToString(UnitTester $I): void
     {
         $cookie = new Cookie("logged_in", "yes");
 

@@ -13,7 +13,7 @@ class JsonResponseCest
     /**
      * @dataProvider provider
      */
-    public function test(UnitTester $I, Example $example)
+    public function test(UnitTester $I, Example $example): void
     {
         $response = new JsonResponse($example["variable"]);
 
@@ -63,7 +63,7 @@ class JsonResponseCest
         ];
     }
 
-    public function testContentType(UnitTester $I)
+    public function testContentType(UnitTester $I): void
     {
         $response = new JsonResponse(
             []
@@ -75,7 +75,7 @@ class JsonResponseCest
         );
     }
 
-    public function testStatus(UnitTester $I)
+    public function testStatus(UnitTester $I): void
     {
         $response = new JsonResponse(
             []
@@ -87,7 +87,7 @@ class JsonResponseCest
         );
     }
 
-    public function testCustomStatus(UnitTester $I)
+    public function testCustomStatus(UnitTester $I): void
     {
         $response = new JsonResponse(
             [],

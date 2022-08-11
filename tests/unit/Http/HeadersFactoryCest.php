@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class HeadersFactoryCest
 {
-    public function testCreateFromBrowserKitRequest(UnitTester $I)
+    public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {
         $browserKitRequest = new BrowserKitRequest(
             "/login",
@@ -34,7 +34,7 @@ class HeadersFactoryCest
         );
     }
 
-    public function testCreateFromArray(UnitTester $I)
+    public function testCreateFromArray(UnitTester $I): void
     {
         $array = [
             "Content-Type" => "text/html",

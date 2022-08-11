@@ -9,7 +9,7 @@ use ValueError;
 
 class StatusCest
 {
-    public function test(UnitTester $I)
+    public function test(UnitTester $I): void
     {
         $status = Status::NOT_FOUND;
 
@@ -24,7 +24,7 @@ class StatusCest
         );
     }
 
-    public function testInvalidCode(UnitTester $I)
+    public function testInvalidCode(UnitTester $I): void
     {
         $I->expectThrowable(
             ValueError::class,
@@ -37,7 +37,7 @@ class StatusCest
     /**
      * @dataProvider providerStatusTexts
      */
-    public function testGetString(UnitTester $I, Example $example)
+    public function testGetString(UnitTester $I, Example $example): void
     {
         $status = Status::from($example[0]);
 
@@ -114,7 +114,7 @@ class StatusCest
         ];
     }
 
-    public function testIsRedirect(UnitTester $I)
+    public function testIsRedirect(UnitTester $I): void
     {
         $I->assertFalse(
             Status::OK->isRedirect()
@@ -125,7 +125,7 @@ class StatusCest
         );
     }
 
-    public function testGetHeaderString(UnitTester $I)
+    public function testGetHeaderString(UnitTester $I): void
     {
         $I->assertEquals(
             "HTTP/1.0 200 OK",

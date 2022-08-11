@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class RequestFactoryCest
 {
-    public function testCreateFromGlobals(UnitTester $I)
+    public function testCreateFromGlobals(UnitTester $I): void
     {
         $requestFactory = new RequestFactory();
 
@@ -37,7 +37,7 @@ class RequestFactoryCest
         unset($_POST["foo1"]);
     }
 
-    public function testCreateFromBrowserKitRequest(UnitTester $I)
+    public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {
         $browserKitRequest = new BrowserKitRequest(
             "/path/to/something",

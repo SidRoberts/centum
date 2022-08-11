@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class ArrayHandlerCest
 {
-    public function testStart(UnitTester $I)
+    public function testStart(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 
@@ -16,7 +16,7 @@ class ArrayHandlerCest
         );
     }
 
-    public function testIsActive(UnitTester $I)
+    public function testIsActive(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 
@@ -25,7 +25,7 @@ class ArrayHandlerCest
         );
     }
 
-    public function testGetAndSet(UnitTester $I)
+    public function testGetAndSet(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 
@@ -39,7 +39,7 @@ class ArrayHandlerCest
         );
     }
 
-    public function testHas(UnitTester $I)
+    public function testHas(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 
@@ -54,7 +54,7 @@ class ArrayHandlerCest
         );
     }
 
-    public function testAll(UnitTester $I)
+    public function testAll(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 
@@ -75,7 +75,7 @@ class ArrayHandlerCest
         );
     }
 
-    public function testRemove(UnitTester $I)
+    public function testRemove(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 
@@ -88,7 +88,7 @@ class ArrayHandlerCest
         );
     }
 
-    public function testClear(UnitTester $I)
+    public function testClear(UnitTester $I): void
     {
         $handler = new ArrayHandler();
 

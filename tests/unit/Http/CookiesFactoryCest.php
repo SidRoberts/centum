@@ -8,7 +8,7 @@ use Tests\UnitTester;
 
 class CookiesFactoryCest
 {
-    public function testCreateFromBrowserKitRequest(UnitTester $I)
+    public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {
         $browserKitRequest = new BrowserKitRequest(
             "/path/to/something",
@@ -34,7 +34,7 @@ class CookiesFactoryCest
         );
     }
 
-    public function testCreateFromArray(UnitTester $I)
+    public function testCreateFromArray(UnitTester $I): void
     {
         $array = [
             "language" => "en",

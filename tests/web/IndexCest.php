@@ -6,7 +6,7 @@ use Tests\WebTester;
 
 class IndexCest
 {
-    public function tryToTest(WebTester $I)
+    public function tryToTest(WebTester $I): void
     {
         $I->amOnPage("/");
 

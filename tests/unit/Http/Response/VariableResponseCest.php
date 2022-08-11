@@ -13,7 +13,7 @@ class VariableResponseCest
     /**
      * @dataProvider provider
      */
-    public function test(UnitTester $I, Example $example)
+    public function test(UnitTester $I, Example $example): void
     {
         $response = new VariableResponse($example["variable"]);
 
@@ -58,7 +58,7 @@ class VariableResponseCest
         ];
     }
 
-    public function testContentType(UnitTester $I)
+    public function testContentType(UnitTester $I): void
     {
         $response = new VariableResponse(
             []

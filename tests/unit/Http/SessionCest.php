@@ -9,7 +9,7 @@ use Tests\UnitTester;
 
 class SessionCest
 {
-    public function testStart(UnitTester $I)
+    public function testStart(UnitTester $I): void
     {
         $handler = Mockery::mock(HandlerInterface::class);
 
@@ -24,7 +24,7 @@ class SessionCest
         );
     }
 
-    public function testIsActive(UnitTester $I)
+    public function testIsActive(UnitTester $I): void
     {
         $handler = Mockery::mock(HandlerInterface::class);
 
@@ -41,7 +41,7 @@ class SessionCest
 
 
 
-    public function testHas(UnitTester $I)
+    public function testHas(UnitTester $I): void
     {
         $name = "language";
 
@@ -59,7 +59,7 @@ class SessionCest
         );
     }
 
-    public function testGet(UnitTester $I)
+    public function testGet(UnitTester $I): void
     {
         $name         = "language";
         $defaultValue = "en";
@@ -79,7 +79,7 @@ class SessionCest
         );
     }
 
-    public function testSet(UnitTester $I)
+    public function testSet(UnitTester $I): void
     {
         $name  = "language";
         $value = "ko";
@@ -95,7 +95,7 @@ class SessionCest
         $session->set($name, $value);
     }
 
-    public function testRemove(UnitTester $I)
+    public function testRemove(UnitTester $I): void
     {
         $name = "language";
 
@@ -110,7 +110,7 @@ class SessionCest
         $session->remove($name);
     }
 
-    public function testClear(UnitTester $I)
+    public function testClear(UnitTester $I): void
     {
         $handler = Mockery::mock(HandlerInterface::class);
 
@@ -122,7 +122,7 @@ class SessionCest
         $session->clear();
     }
 
-    public function testAll(UnitTester $I)
+    public function testAll(UnitTester $I): void
     {
         $handler = Mockery::mock(HandlerInterface::class);
 

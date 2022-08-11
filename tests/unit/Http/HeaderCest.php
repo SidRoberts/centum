@@ -7,7 +7,7 @@ use Tests\UnitTester;
 
 class HeaderCest
 {
-    public function testGetters(UnitTester $I)
+    public function testGetters(UnitTester $I): void
     {
         $header = new Header("cache-control", "max-age=600");
 
@@ -22,7 +22,7 @@ class HeaderCest
         );
     }
 
-    public function testToString(UnitTester $I)
+    public function testToString(UnitTester $I): void
     {
         $header = new Header("cache-control", "max-age=600");
 
