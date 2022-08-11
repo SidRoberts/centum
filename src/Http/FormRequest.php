@@ -11,6 +11,10 @@ class FormRequest
 
     protected Form $form;
 
+    protected Status $status;
+
+    protected array $parameters;
+
 
 
     public function __construct(Request $request, Form $form)
