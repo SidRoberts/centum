@@ -59,11 +59,13 @@ $group->post("/subscribe", SubscribeController::class, "submit", $subscriptionFo
 ```
 
 By getting the [`FormRequest`](https://github.com/SidRoberts/centum/tree/development/src/Http/FormRequest.php) object in the controller, you can check to see if the form is valid and you can also get the filtered values.
-In this case, `$emailAddress` will always be lower case as described in the Form Template:
+In this case, `$emailAddress` will always be lower case as described in the Form Template.
+You can also bind all of the fields to an entity, such as a model:
 
 ```php
 namespace App\Controllers;
 
+use App\Models\User;
 use Centum\Http\FormRequest;
 use Centum\Http\Response;
 
@@ -77,12 +79,16 @@ class SubscribeController
 
         $emailAddress = $formRequest->get("emailAddress");
 
+        $user = new User();
+
+        $formRequest->bind($user);
+
         // subscribe($emailAddress)
 
         return new Response(
             sprintf(
                 "%s has been subscribed",
-                $emailAddress
+                $user->getEmailAddress()
             )
         );
     }

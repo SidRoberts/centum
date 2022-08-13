@@ -4,6 +4,8 @@ namespace Centum\Http;
 
 use Centum\Forms\Form;
 use Centum\Forms\Status;
+use Exception;
+use ReflectionClass;
 
 class FormRequest
 {
@@ -51,5 +53,37 @@ class FormRequest
     public function isValid(): bool
     {
         return $this->status->isValid();
+    }
+
+
+
+    public function bind(object $object): void
+    {
+        $reflectionClass = new ReflectionClass($object);
+
+        /**
+         * @var string $key
+         * @var mixed $value
+         */
+        foreach ($this->parameters as $key => $value) {
+            $setter = "set" . ucfirst($key);
+
+            if ($reflectionClass->hasMethod($setter)) {
+                /** @psalm-suppress MixedMethodCall */
+                $object->{$setter}($value);
+            } elseif ($reflectionClass->hasProperty($key)) {
+                $property = $reflectionClass->getProperty($key);
+
+                $property->setValue($object, $value);
+            } else {
+                throw new Exception(
+                    sprintf(
+                        "'%s' property does not exist on %s.",
+                        $key,
+                        get_class($object)
+                    )
+                );
+            }
+        }
     }
 }

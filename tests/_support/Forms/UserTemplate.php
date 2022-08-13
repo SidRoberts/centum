@@ -8,7 +8,7 @@ use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
 use Centum\Validator\NotEmpty;
 
-class LoginTemplate extends FormTemplate
+class UserTemplate extends FormTemplate
 {
     public function username(Field $field): void
     {

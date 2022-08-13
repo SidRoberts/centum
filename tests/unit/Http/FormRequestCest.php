@@ -3,20 +3,17 @@
 namespace Tests\Unit\Http;
 
 use Centum\Forms\FormFactory;
-use Centum\Http\Cookie;
-use Centum\Http\Cookies;
-use Centum\Http\Header;
-use Centum\Http\Headers;
 use Centum\Http\FormRequest;
 use Centum\Http\Request;
-use Tests\Forms\LoginTemplate;
+use Tests\Forms\UserTemplate;
 use Tests\UnitTester;
+use Tests\User;
 
 class FormRequestCest
 {
     public function test(UnitTester $I): void
     {
-        $template = new LoginTemplate();
+        $template = new UserTemplate();
 
         $formFactory = new FormFactory();
 
@@ -25,7 +22,7 @@ class FormRequestCest
 
 
         $request = new Request(
-            "/login",
+            "/register",
             "POST",
             [
                 "username" => "sidroberts",
@@ -53,7 +50,7 @@ class FormRequestCest
 
 
         $request = new Request(
-            "/login",
+            "/register",
             "POST",
             [
                 "username" => "sidroberts",
@@ -76,7 +73,7 @@ class FormRequestCest
 
     public function testGetters(UnitTester $I): void
     {
-        $template = new LoginTemplate();
+        $template = new UserTemplate();
 
         $formFactory = new FormFactory();
 
@@ -85,7 +82,7 @@ class FormRequestCest
 
 
         $request = new Request(
-            "/login",
+            "/register",
             "POST",
             [
                 "username" => "sidroberts",
@@ -111,6 +108,42 @@ class FormRequestCest
                 "password" => "hunter2",
             ],
             $formRequest->getParameters()
+        );
+    }
+
+    public function testBind(UnitTester $I): void
+    {
+        $template = new UserTemplate();
+
+        $formFactory = new FormFactory();
+
+        $form = $formFactory->createFromTemplate($template);
+
+
+
+        $request = new Request(
+            "/register",
+            "POST",
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ]
+        );
+
+        $formRequest = new FormRequest($request, $form);
+
+        $user = new User();
+
+        $formRequest->bind($user);
+
+        $I->assertEquals(
+            "sidroberts",
+            $user->getUsername()
+        );
+
+        $I->assertEquals(
+            "hunter2",
+            $user->getPassword()
         );
     }
 }

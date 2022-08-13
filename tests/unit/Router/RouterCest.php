@@ -20,7 +20,7 @@ use Tests\Controllers\MiddlewareController;
 use Tests\Controllers\PostController;
 use Tests\Controllers\RequirementsController;
 use Tests\Filters\Doubler;
-use Tests\Forms\LoginTemplate;
+use Tests\Forms\UserTemplate;
 use Tests\UnitTester;
 
 class RouterCest
@@ -424,7 +424,7 @@ class RouterCest
 
     public function testFormRequests(UnitTester $I): void
     {
-        $template = new LoginTemplate();
+        $template = new UserTemplate();
 
         $formFactory = new FormFactory();
 

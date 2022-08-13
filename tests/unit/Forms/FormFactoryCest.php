@@ -4,15 +4,15 @@ namespace Tests\Unit\Forms;
 
 use Centum\Container\Container;
 use Centum\Forms\FormFactory;
-use Tests\Forms\LoginTemplate;
-use Tests\Forms\LoginWithConstructorTemplate;
+use Tests\Forms\UserTemplate;
+use Tests\Forms\UserWithConstructorTemplate;
 use Tests\UnitTester;
 
 class FormFactoryCest
 {
     public function test(UnitTester $I): void
     {
-        $template = new LoginTemplate();
+        $template = new UserTemplate();
 
         $formFactory = new FormFactory();
 
@@ -64,7 +64,7 @@ class FormFactoryCest
     {
         $container = new Container();
 
-        $template = new LoginWithConstructorTemplate($container);
+        $template = new UserWithConstructorTemplate($container);
 
         $formFactory = new FormFactory();
 

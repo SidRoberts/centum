@@ -9,7 +9,7 @@ use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
 use Centum\Validator\NotEmpty;
 
-class LoginWithConstructorTemplate extends FormTemplate
+class UserWithConstructorTemplate extends FormTemplate
 {
     protected Container $container;
 
