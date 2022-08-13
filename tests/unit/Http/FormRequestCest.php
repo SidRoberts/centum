@@ -6,8 +6,8 @@ use Centum\Forms\FormFactory;
 use Centum\Http\FormRequest;
 use Centum\Http\Request;
 use Tests\Forms\UserTemplate;
+use Tests\Models\User;
 use Tests\UnitTester;
-use Tests\User;
 
 class FormRequestCest
 {

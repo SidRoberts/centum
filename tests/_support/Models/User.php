@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Models;
 
 class User
 {
