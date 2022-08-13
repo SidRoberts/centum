@@ -73,4 +73,44 @@ class FormRequestCest
             $status->getMessages()
         );
     }
+
+    public function testGetters(UnitTester $I): void
+    {
+        $template = new LoginTemplate();
+
+        $formFactory = new FormFactory();
+
+        $form = $formFactory->createFromTemplate($template);
+
+
+
+        $request = new Request(
+            "/login",
+            "POST",
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ]
+        );
+
+        $formRequest = new FormRequest($request, $form);
+
+        $I->assertEquals(
+            "sidroberts",
+            $formRequest->get("username")
+        );
+
+        $I->assertEquals(
+            "hunter2",
+            $formRequest->get("password")
+        );
+
+        $I->assertEquals(
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ],
+            $formRequest->getParameters()
+        );
+    }
 }
