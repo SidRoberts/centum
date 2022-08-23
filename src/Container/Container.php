@@ -33,7 +33,9 @@ class Container
 
 
     /**
-     * @param class-string $class
+     * @template T
+     * @psalm-param class-string<T> $class
+     * @psalm-return T
      */
     public function typehintClass(string $class): object
     {
@@ -53,6 +55,7 @@ class Container
             }
         }
 
+        /** @psalm-var T */
         return $this->objects[$class];
     }
 

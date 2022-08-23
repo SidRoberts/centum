@@ -10,9 +10,6 @@ class ConsoleBootstrap extends Bootstrap
 {
     public function boot(Container $container): void
     {
-        /**
-         * @var Application
-         */
         $console = $container->typehintClass(Application::class);
 
         $terminal = new Terminal();

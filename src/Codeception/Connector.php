@@ -48,9 +48,6 @@ class Connector extends Client
      */
     public function doRequest($request)
     {
-        /**
-         * @var Router
-         */
         $router = $this->container->typehintClass(Router::class);
 
         $centumRequestFactory = new RequestFactory();
