@@ -54,8 +54,10 @@ class Module extends Framework
      *
      * @psalm-suppress all
      */
-    public function _before(TestInterface $test)
+    public function _beforeSuite($settings = [])
     {
+        parent::_beforeSuite($settings);
+
         $containerFile = Configuration::projectDir() . $this->config["container"];
 
         if (!file_exists($containerFile)) {
@@ -81,6 +83,16 @@ class Module extends Framework
                 )
             );
         }
+    }
+
+    /**
+     * @return void
+     *
+     * @psalm-suppress all
+     */
+    public function _before(TestInterface $test)
+    {
+        parent::_before($test);
 
         $this->client = new Connector($this->container);
     }
@@ -92,12 +104,19 @@ class Module extends Framework
      */
     public function _after(TestInterface $test)
     {
-        $this->client = null;
+        parent::_after($test);
+
         $this->stdin  = null;
         $this->stdout = null;
         $this->stderr = null;
+    }
 
-        parent::_after($test);
+    /**
+     * @return void
+     */
+    public function _afterSuite()
+    {
+        $this->container = null;
     }
 
 

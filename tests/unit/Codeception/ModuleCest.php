@@ -25,6 +25,8 @@ class ModuleCest
 
         $test = Mockery::mock(TestInterface::class);
 
+        $module->_beforeSuite();
+
         $I->assertNull(
             $module->client
         );
@@ -41,6 +43,8 @@ class ModuleCest
         $I->assertNull(
             $module->client
         );
+
+        $module->_afterSuite();
     }
 
     public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
