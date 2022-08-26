@@ -130,6 +130,8 @@ class Router
         $uri     = $request->getUri();
         $pattern = $route->getUriPattern();
 
+        $uri = "/" . trim($uri, "/");
+
         if (preg_match($pattern, $uri, $params) !== 1) {
             throw new RouteMismatchException();
         }

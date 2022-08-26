@@ -49,6 +49,30 @@ class RouterCest
         );
     }
 
+    public function testBasicHandleWithTrailingSlash(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $router = new Router($container);
+
+
+
+        $group = $router->group();
+
+        $group->get("/login", LoginController::class, "form");
+
+
+
+        $request = new Request("/login/", "GET");
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "login form",
+            $response->getContent()
+        );
+    }
+
     public function testFilters(UnitTester $I): void
     {
         $container = new Container();
