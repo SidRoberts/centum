@@ -36,7 +36,6 @@ class IdToPostFilter implements FilterInterface
 
     public function filter(mixed $value): Post
     {
-        /** @var EntityManager */
         $doctrine = $this->container->typehintClass(EntityManager::class);
 
         $postRepository = $doctrine->getRepository(

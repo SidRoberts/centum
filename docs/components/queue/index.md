@@ -88,7 +88,6 @@ class QueueConsumeCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
-        /** @var Queue */
         $queue = $container->typehintClass(Queue::class);
 
         $queue->consume();
