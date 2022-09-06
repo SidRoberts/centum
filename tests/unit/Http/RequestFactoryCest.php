@@ -20,7 +20,7 @@ class RequestFactoryCest
 
         $request = $requestFactory->createFromGlobals();
 
-        $I->assertEquals("bar", $request->getParameters()["foo"], "::fromGlobals() uses values from GET");
+        $I->assertEquals("bar", $request->getData()["foo"], "::fromGlobals() uses values from GET");
 
         unset($_GET["foo1"]);
 
@@ -32,7 +32,7 @@ class RequestFactoryCest
 
         $request = $requestFactory->createFromGlobals();
 
-        $I->assertEquals("bar", $request->getParameters()["foo"], "::fromGlobals() uses values from POST");
+        $I->assertEquals("bar", $request->getData()["foo"], "::fromGlobals() uses values from POST");
 
         unset($_POST["foo1"]);
     }
@@ -77,7 +77,7 @@ class RequestFactoryCest
                 "username" => "SidRoberts",
                 "password" => "hunter2",
             ],
-            $request->getParameters()
+            $request->getData()
         );
 
         $I->assertEquals(

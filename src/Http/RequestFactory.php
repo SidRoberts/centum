@@ -29,21 +29,21 @@ class RequestFactory
         $contentType = $_SERVER["CONTENT_TYPE"] ?? "text/plain";
 
         if ($method === "GET") {
-            $parameters = $_GET;
+            $data = $_GET;
         } elseif ($method === "POST") {
-            $parameters = $_POST;
+            $data = $_POST;
         } else {
             /**
              * @var mixed
              */
-            $parameters = match ($contentType) {
-                "application/x-www-form-urlencoded" => parse_str($content, $parameters),
+            $data = match ($contentType) {
+                "application/x-www-form-urlencoded" => parse_str($content, $data),
                 "application/json"                  => json_decode($content, true),
                 default                             => [],
             };
 
-            if (!is_array($parameters)) {
-                $parameters = [];
+            if (!is_array($data)) {
+                $data = [];
             }
         }
 
@@ -53,7 +53,7 @@ class RequestFactory
         $headers = $headersFactory->createFromGlobal();
         $cookies = $cookiesFactory->createFromGlobal();
 
-        return new Request($uri, $method, $parameters, $headers, $cookies, $content);
+        return new Request($uri, $method, $data, $headers, $cookies, $content);
     }
 
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
@@ -61,18 +61,18 @@ class RequestFactory
         $headersFactory = new HeadersFactory();
         $cookiesFactory = new CookiesFactory();
 
-        $uri         = $browserKitRequest->getUri();
-        $requestUri  = \parse_url($uri, PHP_URL_PATH);
-        $method      = \strtoupper($browserKitRequest->getMethod());
-        $parameters  = $browserKitRequest->getParameters();
-        $headers     = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
-        $cookies     = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
-        $content     = $browserKitRequest->getContent();
+        $uri        = $browserKitRequest->getUri();
+        $requestUri = \parse_url($uri, PHP_URL_PATH);
+        $method     = \strtoupper($browserKitRequest->getMethod());
+        $data       = $browserKitRequest->getParameters();
+        $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
+        $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
+        $content    = $browserKitRequest->getContent();
 
         return new Request(
             $requestUri,
             $method,
-            $parameters,
+            $data,
             $headers,
             $cookies,
             $content

@@ -15,7 +15,7 @@ class FormRequest
 
     protected Status $status;
 
-    protected array $parameters;
+    protected array $data;
 
 
 
@@ -25,11 +25,11 @@ class FormRequest
         $this->form    = $form;
 
         $this->status = $form->validate(
-            $request->getParameters()
+            $request->getData()
         );
 
-        $this->parameters = $form->getFilteredValues(
-            $request->getParameters()
+        $this->data = $form->getFilteredValues(
+            $request->getData()
         );
     }
 
@@ -37,12 +37,12 @@ class FormRequest
 
     public function get(string $key): mixed
     {
-        return $this->parameters[$key] ?? null;
+        return $this->data[$key] ?? null;
     }
 
-    public function getParameters(): array
+    public function getData(): array
     {
-        return $this->parameters;
+        return $this->data;
     }
 
     public function getStatus(): Status
@@ -65,7 +65,7 @@ class FormRequest
          * @var string $key
          * @var mixed $value
          */
-        foreach ($this->parameters as $key => $value) {
+        foreach ($this->data as $key => $value) {
             $setter = "set" . ucfirst($key);
 
             if ($reflectionClass->hasMethod($setter)) {

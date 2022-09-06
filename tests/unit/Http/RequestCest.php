@@ -58,7 +58,7 @@ class RequestCest
                 "username" => "sidroberts",
                 "password" => "hunter2",
             ],
-            $request->getParameters()
+            $request->getData()
         );
 
         $I->assertEquals(

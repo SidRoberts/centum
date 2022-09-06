@@ -107,7 +107,7 @@ class FormRequestCest
                 "username" => "sidroberts",
                 "password" => "hunter2",
             ],
-            $formRequest->getParameters()
+            $formRequest->getData()
         );
     }
 

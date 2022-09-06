@@ -132,7 +132,7 @@ class Router
 
         $uri = "/" . trim($uri, "/");
 
-        if (preg_match($pattern, $uri, $params) !== 1) {
+        if (preg_match($pattern, $uri, $parameters) !== 1) {
             throw new RouteMismatchException();
         }
 
@@ -143,8 +143,8 @@ class Router
          *
          * @var array<string, mixed>
          */
-        $params = array_filter(
-            $params,
+        $parameters = array_filter(
+            $parameters,
             function (string $key): bool {
                 return !is_int($key);
             },
@@ -159,12 +159,12 @@ class Router
             /**
              * @var string
              */
-            $value = $params[$key] ?? throw new ParamNotFoundException();
+            $value = $parameters[$key] ?? throw new ParamNotFoundException();
 
             /**
              * @var mixed
              */
-            $params[$key] = $filter->filter($value);
+            $parameters[$key] = $filter->filter($value);
         }
 
 
@@ -177,9 +177,9 @@ class Router
 
 
 
-        $params = new Parameters($params);
+        $parameters = new Parameters($parameters);
 
-        $this->container->set(Parameters::class, $params);
+        $this->container->set(Parameters::class, $parameters);
         $this->container->set(Request::class, $request);
 
         $class  = $route->getClass();
