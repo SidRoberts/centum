@@ -58,6 +58,52 @@ class Module extends Framework
     {
         parent::_beforeSuite($settings);
 
+        $this->makeNewContainer();
+    }
+
+    /**
+     * @return void
+     *
+     * @psalm-suppress all
+     */
+    public function _before(TestInterface $test)
+    {
+        parent::_before($test);
+
+        $this->makeNewContainer();
+
+        $this->client = new Connector($this->container);
+    }
+
+    /**
+     * @return void
+     *
+     * @psalm-suppress all
+     */
+    public function _after(TestInterface $test)
+    {
+        parent::_after($test);
+
+        $this->container = null;
+        $this->stdin     = null;
+        $this->stdout    = null;
+        $this->stderr    = null;
+    }
+
+    /**
+     * @return void
+     */
+    public function _afterSuite()
+    {
+        $this->container = null;
+    }
+
+
+
+
+
+    protected function makeNewContainer(): void
+    {
         $containerFile = Configuration::projectDir() . $this->config["container"];
 
         if (!file_exists($containerFile)) {
@@ -83,40 +129,6 @@ class Module extends Framework
                 )
             );
         }
-    }
-
-    /**
-     * @return void
-     *
-     * @psalm-suppress all
-     */
-    public function _before(TestInterface $test)
-    {
-        parent::_before($test);
-
-        $this->client = new Connector($this->container);
-    }
-
-    /**
-     * @return void
-     *
-     * @psalm-suppress all
-     */
-    public function _after(TestInterface $test)
-    {
-        parent::_after($test);
-
-        $this->stdin  = null;
-        $this->stdout = null;
-        $this->stderr = null;
-    }
-
-    /**
-     * @return void
-     */
-    public function _afterSuite()
-    {
-        $this->container = null;
     }
 
 
