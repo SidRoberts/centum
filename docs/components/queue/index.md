@@ -63,7 +63,9 @@ class IndexController
 {
     public function index(Queue $queue): Response
     {
-        $queue->publish(new LogTask("Queue works OK."));
+        $logTask = new LogTask("Queue works OK.");
+
+        $queue->publish($logTask);
 
         return new Response("hello");
     }
