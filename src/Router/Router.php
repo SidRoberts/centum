@@ -3,8 +3,6 @@
 namespace Centum\Router;
 
 use Centum\Container\Container;
-use Centum\Forms\Form;
-use Centum\Http\FormRequest;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Router\Exception\ParamNotFoundException;
@@ -169,14 +167,6 @@ class Router
 
 
 
-        $form = $route->getForm();
-
-        if ($form) {
-            $this->container->set(Form::class, $form);
-        }
-
-
-
         $parameters = new Parameters($parameters);
 
         $this->container->set(Parameters::class, $parameters);
@@ -186,9 +176,6 @@ class Router
         $method = $route->getMethod();
 
         $response = $this->executeMethod($class, $method);
-
-        $this->container->remove(Form::class);
-        $this->container->remove(FormRequest::class);
 
         return $response;
     }

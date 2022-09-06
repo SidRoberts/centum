@@ -2,8 +2,6 @@
 
 namespace Centum\Router;
 
-use Centum\Forms\Form;
-
 class Group
 {
     protected MiddlewareInterface $middleware;
@@ -40,9 +38,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function get(string $uri, string $class, string $method, Form $form = null): Route
+    public function get(string $uri, string $class, string $method): Route
     {
-        $route = new Route("GET", $uri, $class, $method, $form);
+        $route = new Route("GET", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -52,9 +50,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function post(string $uri, string $class, string $method, Form $form = null): Route
+    public function post(string $uri, string $class, string $method): Route
     {
-        $route = new Route("POST", $uri, $class, $method, $form);
+        $route = new Route("POST", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -64,9 +62,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function head(string $uri, string $class, string $method, Form $form = null): Route
+    public function head(string $uri, string $class, string $method): Route
     {
-        $route = new Route("HEAD", $uri, $class, $method, $form);
+        $route = new Route("HEAD", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -76,9 +74,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function put(string $uri, string $class, string $method, Form $form = null): Route
+    public function put(string $uri, string $class, string $method): Route
     {
-        $route = new Route("PUT", $uri, $class, $method, $form);
+        $route = new Route("PUT", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -88,9 +86,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function delete(string $uri, string $class, string $method, Form $form = null): Route
+    public function delete(string $uri, string $class, string $method): Route
     {
-        $route = new Route("DELETE", $uri, $class, $method, $form);
+        $route = new Route("DELETE", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -100,9 +98,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function trace(string $uri, string $class, string $method, Form $form = null): Route
+    public function trace(string $uri, string $class, string $method): Route
     {
-        $route = new Route("TRACE", $uri, $class, $method, $form);
+        $route = new Route("TRACE", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -112,9 +110,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function options(string $uri, string $class, string $method, Form $form = null): Route
+    public function options(string $uri, string $class, string $method): Route
     {
-        $route = new Route("OPTIONS", $uri, $class, $method, $form);
+        $route = new Route("OPTIONS", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -124,9 +122,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function connect(string $uri, string $class, string $method, Form $form = null): Route
+    public function connect(string $uri, string $class, string $method): Route
     {
-        $route = new Route("CONNECT", $uri, $class, $method, $form);
+        $route = new Route("CONNECT", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -136,9 +134,9 @@ class Group
     /**
      * @param class-string $class
      */
-    public function patch(string $uri, string $class, string $method, Form $form = null): Route
+    public function patch(string $uri, string $class, string $method): Route
     {
-        $route = new Route("PATCH", $uri, $class, $method, $form);
+        $route = new Route("PATCH", $uri, $class, $method);
 
         $this->routes[] = $route;
 
@@ -150,7 +148,7 @@ class Group
     /**
      * @param class-string $class
      */
-    public function crud(string $uri, string $class, Form $form = null): void
+    public function crud(string $uri, string $class): void
     {
         $this->get($uri, $class, "index");
 
@@ -158,7 +156,7 @@ class Group
 
         $this->get($uri . "/create", $class, "create");
 
-        $this->post($uri, $class, "store", $form);
+        $this->post($uri, $class, "store");
 
 
 
@@ -168,8 +166,8 @@ class Group
 
         $this->get($uri . "/{id}/edit", $class, "edit");
 
-        $this->put($uri . "/{id}", $class, "update", $form);
-        $this->patch($uri . "/{id}", $class, "update", $form);
+        $this->put($uri . "/{id}", $class, "update");
+        $this->patch($uri . "/{id}", $class, "update");
 
 
 
@@ -179,10 +177,10 @@ class Group
     /**
      * @param class-string $class
      */
-    public function submission(string $uri, string $class, Form $form = null): void
+    public function submission(string $uri, string $class): void
     {
         $this->get($uri, $class, "form");
 
-        $this->post($uri, $class, "submit", $form);
+        $this->post($uri, $class, "submit");
     }
 }

@@ -3,7 +3,6 @@
 namespace Tests\Unit\Router;
 
 use Centum\Container\Container;
-use Centum\Forms\FormFactory;
 use Centum\Http\Request;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\FalseMiddleware;
@@ -20,7 +19,6 @@ use Tests\Controllers\MiddlewareController;
 use Tests\Controllers\PostController;
 use Tests\Controllers\RequirementsController;
 use Tests\Filters\Doubler;
-use Tests\Forms\UserTemplate;
 use Tests\UnitTester;
 
 class RouterCest
@@ -443,56 +441,6 @@ class RouterCest
         $I->assertEquals(
             "login successful",
             $postResponse->getContent()
-        );
-    }
-
-    public function testFormRequests(UnitTester $I): void
-    {
-        $template = new UserTemplate();
-
-        $formFactory = new FormFactory();
-
-        $form = $formFactory->createFromTemplate($template);
-
-
-
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $group = $router->group();
-
-        $group->post("/login", LoginController::class, "submit", $form);
-
-
-
-        $request = new Request("/login", "POST");
-
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "login failed",
-            $response->getContent()
-        );
-
-
-
-        $request = new Request(
-            "/login",
-            "POST",
-            [
-                "username" => "sidroberts",
-                "password" => "hunter2",
-            ]
-        );
-
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "login successful",
-            $response->getContent()
         );
     }
 

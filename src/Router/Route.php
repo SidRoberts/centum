@@ -3,7 +3,6 @@
 namespace Centum\Router;
 
 use Centum\Filter\FilterInterface;
-use Centum\Forms\Form;
 
 class Route
 {
@@ -23,20 +22,17 @@ class Route
      */
     protected array $filters = [];
 
-    protected ?Form $form;
-
 
 
     /**
      * @param class-string $class
      */
-    public function __construct(string $httpMethod, string $uri, string $class, string $method, Form $form = null)
+    public function __construct(string $httpMethod, string $uri, string $class, string $method)
     {
         $this->httpMethod = $httpMethod;
         $this->uri        = $uri;
         $this->class      = $class;
         $this->method     = $method;
-        $this->form       = $form;
     }
 
 
@@ -109,12 +105,5 @@ class Route
         $this->filters[$key] = $filter;
 
         return $this;
-    }
-
-
-
-    public function getForm(): ?Form
-    {
-        return $this->form;
     }
 }

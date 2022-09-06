@@ -59,20 +59,17 @@ We'll learn more about Route Groups and how they can be useful in the [Middlewar
 When adding a route to the Router, you must specify which HTTP method it matches.
 [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2) specify the following HTTP methods which correlate with a Group method:
 
-| HTTP Method | Group Method                                    |
-| ----------- | ----------------------------------------------- |
-| `GET`       | `$group->get($uri, $class, $method, $form)`     |
-| `POST`      | `$group->post($uri, $class, $method, $form)`    |
-| `HEAD`      | `$group->head($uri, $class, $method, $form)`    |
-| `PUT`       | `$group->put($uri, $class, $method, $form)`     |
-| `DELETE`    | `$group->delete($uri, $class, $method, $form)`  |
-| `TRACE`     | `$group->trace($uri, $class, $method, $form)`   |
-| `OPTIONS`   | `$group->options($uri, $class, $method, $form)` |
-| `CONNECT`   | `$group->connect($uri, $class, $method, $form)` |
-| `PATCH`     | `$group->patch($uri, $class, $method, $form)`   |
-
-The `$form` variable is optional and will be explained later in [Form Requests](form-requests.md).
-As such, it will be ignored on this page.
+| HTTP Method | Group Method                             |
+| ----------- | ---------------------------------------- |
+| `GET`       | `$group->get($uri, $class, $method)`     |
+| `POST`      | `$group->post($uri, $class, $method)`    |
+| `HEAD`      | `$group->head($uri, $class, $method)`    |
+| `PUT`       | `$group->put($uri, $class, $method)`     |
+| `DELETE`    | `$group->delete($uri, $class, $method)`  |
+| `TRACE`     | `$group->trace($uri, $class, $method)`   |
+| `OPTIONS`   | `$group->options($uri, $class, $method)` |
+| `CONNECT`   | `$group->connect($uri, $class, $method)` |
+| `PATCH`     | `$group->patch($uri, $class, $method)`   |
 
 If we wanted to add the login form from the `LoginController` in the earlier example, we might decide that it should be a `GET` request and match the `/login` URL:
 
