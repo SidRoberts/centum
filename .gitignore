@@ -24,3 +24,6 @@ nbproject
 /vendor/
 /.php-cs-fixer.cache
 /composer.lock
+
+# Codeception
+/tests/_support/_generated/
