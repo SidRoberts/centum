@@ -9,6 +9,7 @@ abstract class Form
     protected Request $request;
 
     protected array $data;
+    protected Files $files;
 
 
 
@@ -16,6 +17,7 @@ abstract class Form
     {
         $this->request = $request;
         $this->data    = $request->getData();
+        $this->files   = $request->getFiles();
 
         $this->set($container);
     }

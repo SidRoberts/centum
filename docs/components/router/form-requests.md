@@ -89,6 +89,8 @@ class LoginForm extends Form
 
 All of the setting logic can be kept within the `set()` method but can also be split up into multiple methods, as shown above.
 
+The Request object is available at `$this->request`, Request data at `$this->data` and the Request Files at `$this->files`.
+
 Now we can create a Route:
 
 ```php
