@@ -33,11 +33,11 @@ class LoginForm extends Form
 
     protected function setUsername(Container $container): void
     {
-        if (!isset($this->data["username"])) {
+        $username = $this->data->get("username");
+
+        if (!$username) {
             throw new Exception("Username is required.");
         }
-
-        $username = $this->data["username"];
 
         $username = trim($username);
 
@@ -60,11 +60,11 @@ class LoginForm extends Form
 
     protected function setPassword(Container $container): void
     {
-        if (!isset($this->data["password"])) {
+        $password = $this->data->get("password");
+
+        if (!$password) {
             throw new Exception("Password is required.");
         }
-
-        $password = $this->data["password"];
 
         if (strlen($password) < 6) {
             throw new Exception("Password too short.");
