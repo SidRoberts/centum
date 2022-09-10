@@ -9,13 +9,19 @@ class FilesFactory
 {
     public function createFromGlobal(): Files
     {
+        /** @var array<string, array> $_FILES */
+
+        return $this->createFromArray($_FILES);
+    }
+
+    /**
+     * @param array<string, array> $array
+     */
+    public function createFromArray(array $array): Files
+    {
         $files = new Files();
 
-        /**
-         * @var string $id
-         * @var array $abc
-         */
-        foreach ($_FILES as $id => $abc) {
+        foreach ($array as $id => $abc) {
             if (!is_array($abc["name"])) {
                 $abc = [
                     "name"      => [$abc["name"]],

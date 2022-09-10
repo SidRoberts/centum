@@ -8,14 +8,21 @@ class HeadersFactory
 {
     public function createFromGlobal(): Headers
     {
+        /** @var array<string, string> */
+        $array = getallheaders();
+
+        return $this->createFromArray($array);
+    }
+
+    /**
+     * @param array<string, string> $array
+     */
+    public function createFromArray(array $array): Headers
+    {
         $headers = new Headers();
 
-        /**
-         * @var string $name
-         * @var string $value
-         */
-        foreach (getallheaders() as $name => $value) {
-            $header = new Header($name, $value);
+        foreach ($array as $key => $value) {
+            $header = new Header($key, $value);
 
             $headers->add($header);
         }
@@ -47,22 +54,6 @@ class HeadersFactory
                 $key = substr($key, 5);
             }
 
-            $header = new Header($key, $value);
-
-            $headers->add($header);
-        }
-
-        return $headers;
-    }
-
-    /**
-     * @param array<string, string> $array
-     */
-    public function createFromArray(array $array): Headers
-    {
-        $headers = new Headers();
-
-        foreach ($array as $key => $value) {
             $header = new Header($key, $value);
 
             $headers->add($header);

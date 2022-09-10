@@ -8,14 +8,22 @@ class CookiesFactory
 {
     public function createFromGlobal(): Cookies
     {
+        /**
+         * @var array<string, string> $_COOKIE
+         */
+
+        return $this->createFromArray($_COOKIE);
+    }
+
+    /**
+     * @param array<string, string> $array
+     */
+    public function createFromArray(array $array): Cookies
+    {
         $cookies = new Cookies();
 
-        /**
-         * @var string $name
-         * @var string $value
-         */
-        foreach ($_COOKIE as $name => $value) {
-            $cookie = new Cookie($name, $value);
+        foreach ($array as $key => $value) {
+            $cookie = new Cookie($key, $value);
 
             $cookies->add($cookie);
         }
@@ -33,22 +41,6 @@ class CookiesFactory
         $browserKitCookies = $browserKitRequest->getCookies();
 
         foreach ($browserKitCookies as $key => $value) {
-            $cookie = new Cookie($key, $value);
-
-            $cookies->add($cookie);
-        }
-
-        return $cookies;
-    }
-
-    /**
-     * @param array<string, string> $array
-     */
-    public function createFromArray(array $array): Cookies
-    {
-        $cookies = new Cookies();
-
-        foreach ($array as $key => $value) {
             $cookie = new Cookie($key, $value);
 
             $cookies->add($cookie);
