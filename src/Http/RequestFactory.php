@@ -29,25 +29,27 @@ class RequestFactory
         $contentType = $_SERVER["CONTENT_TYPE"] ?? "text/plain";
 
         if ($method === "GET") {
-            $data = $_GET;
+            $parameters = $_GET;
         } elseif ($method === "POST") {
-            $data = $_POST;
+            $parameters = $_POST;
         } else {
             /**
              * @var mixed
              */
-            $data = match ($contentType) {
-                "application/x-www-form-urlencoded" => parse_str($content, $data),
+            $parameters = match ($contentType) {
+                "application/x-www-form-urlencoded" => parse_str($content, $parameters),
                 "application/json"                  => json_decode($content, true),
                 default                             => [],
             };
 
-            if (!is_array($data)) {
-                $data = [];
+            if (!is_array($parameters)) {
+                $parameters = [];
             }
         }
 
-        $data = new Data($data);
+        /** @var array<string, mixed> $parameters */
+
+        $data = new Data($parameters);
 
         $headersFactory = new HeadersFactory();
         $cookiesFactory = new CookiesFactory();
@@ -66,10 +68,14 @@ class RequestFactory
         $cookiesFactory = new CookiesFactory();
         $filesFactory   = new FilesFactory();
 
-        $uri        = $browserKitRequest->getUri();
+        $uri = $browserKitRequest->getUri();
+
+        /** @var array<string, mixed> */
+        $parameters = $browserKitRequest->getParameters();
+
         $requestUri = \parse_url($uri, PHP_URL_PATH);
         $method     = \strtoupper($browserKitRequest->getMethod());
-        $data       = new Data($browserKitRequest->getParameters());
+        $data       = new Data($parameters);
         $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
         $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
         $files      = $filesFactory->createFromBrowserKitRequest($browserKitRequest);
