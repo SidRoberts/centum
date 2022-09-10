@@ -20,7 +20,11 @@ class RequestFactoryCest
 
         $request = $requestFactory->createFromGlobals();
 
-        $I->assertEquals("bar", $request->getData()->get("foo"), "::fromGlobals() uses values from GET");
+        $I->assertEquals(
+            "bar",
+            $request->getData()->get("foo"),
+            "::fromGlobals() uses values from GET"
+        );
 
         unset($_GET["foo1"]);
 
@@ -32,30 +36,47 @@ class RequestFactoryCest
 
         $request = $requestFactory->createFromGlobals();
 
-        $I->assertEquals("bar", $request->getData()->get("foo"), "::fromGlobals() uses values from POST");
+        $I->assertEquals(
+            "bar",
+            $request->getData()->get("foo"),
+            "::fromGlobals() uses values from POST"
+        );
 
         unset($_POST["foo1"]);
     }
 
     public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {
+        $uri = "/path/to/something";
+
+        $method = "GET";
+
+        $data = [
+            "username" => "SidRoberts",
+            "password" => "hunter2",
+        ];
+
+        //TODO
+        $files = [];
+
+        $cookies = [
+            "language" => "en",
+        ];
+
+        $headers = [
+            "HTTP_USER_AGENT" => "Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586)",
+        ];
+
+        $content = "some content";
+
         $browserKitRequest = new BrowserKitRequest(
-            "/path/to/something",
-            "GET",
-            [
-                "username" => "SidRoberts",
-                "password" => "hunter2",
-            ],
-            [
-                // $files
-            ],
-            [
-                "language" => "en",
-            ],
-            [
-                "HTTP_USER_AGENT" => "Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586)",
-            ],
-            "some content"
+            $uri,
+            $method,
+            $data,
+            $files,
+            $cookies,
+            $headers,
+            $content
         );
 
         $requestFactory = new RequestFactory();
@@ -63,20 +84,17 @@ class RequestFactoryCest
         $request = $requestFactory->createFromBrowserKitRequest($browserKitRequest);
 
         $I->assertEquals(
-            "/path/to/something",
+            $uri,
             $request->getUri()
         );
 
         $I->assertEquals(
-            "GET",
+            $method,
             $request->getMethod()
         );
 
         $I->assertEquals(
-            [
-                "username" => "SidRoberts",
-                "password" => "hunter2",
-            ],
+            $data,
             $request->getData()->toArray()
         );
 
@@ -86,9 +104,7 @@ class RequestFactoryCest
         );
 
         $I->assertEquals(
-            [
-                "language" => "en",
-            ],
+            $cookies,
             $request->getCookies()->toArray()
         );
 
@@ -100,7 +116,7 @@ class RequestFactoryCest
         );
 
         $I->assertEquals(
-            "some content",
+            $content,
             $request->getContent()
         );
     }
