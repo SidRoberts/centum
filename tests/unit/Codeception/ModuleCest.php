@@ -4,6 +4,7 @@ namespace Tests\Unit\Codeception;
 
 use Centum\Codeception\Connector;
 use Centum\Codeception\Module;
+use Centum\Container\Container;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
@@ -12,6 +13,48 @@ use Tests\UnitTester;
 
 class ModuleCest
 {
+    public function testGetContainer(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/_data/container.php",
+            ]
+        );
+
+        $module->_beforeSuite();
+
+        $container = $module->getContainer();
+
+        $I->assertInstanceOf(
+            Container::class,
+            $container
+        );
+    }
+
+    public function testGetContainerBeforeSettingIt(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/_data/container.php",
+            ]
+        );
+
+        $I->expectThrowable(
+            new Exception("Couldn't find the Container."),
+            function () use ($module) {
+                $module->getContainer();
+            }
+        );
+    }
+
+
+
     public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
     {
         $moduleContainer = Mockery::mock(ModuleContainer::class);
