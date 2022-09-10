@@ -21,22 +21,24 @@ class LoginForm extends Form
 
     protected function setUsername(Container $container): void
     {
-        if (empty($this->data["username"])) {
+        if (!$this->data->get("username")) {
             throw new Exception("Username is required.");
         }
 
         /** @var string */
-        $this->username = $this->data["username"];
+        $username = $this->data->get("username");
+
+        $this->username = $username;
     }
 
     protected function setPassword(Container $container): void
     {
-        if (empty($this->data["password"])) {
+        if (!$this->data->get("password")) {
             throw new Exception("Password is required.");
         }
 
         /** @var string */
-        $password = $this->data["password"];
+        $password = $this->data->get("password");
 
         if (strlen($password) < 6) {
             throw new Exception("Password is too short.");

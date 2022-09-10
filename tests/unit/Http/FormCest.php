@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Http;
 
+use Centum\Http\Data;
 use Centum\Http\Request;
 use Tests\Forms\LoginForm;
 use Codeception\Example;
@@ -13,7 +14,7 @@ class FormCest
     /** @dataProvider provider */
     public function test(UnitTester $I, Example $example): void
     {
-        /** @var array */
+        /** @var Data */
         $data = $example["data"];
 
         $request = new Request(
@@ -44,10 +45,12 @@ class FormCest
     {
         return [
             [
-                "data" => [
-                    "username" => "sidroberts",
-                    "password" => "hunter2",
-                ],
+                "data" => new Data(
+                    [
+                        "username" => "sidroberts",
+                        "password" => "hunter2",
+                    ]
+                ),
                 "expected" => [
                     "username" => "sidroberts",
                     "password" => "hunter2",
@@ -63,7 +66,7 @@ class FormCest
     /** @dataProvider providerBad */
     public function testBad(UnitTester $I, Example $example): void
     {
-        /** @var array */
+        /** @var Data */
         $data = $example["data"];
 
         $request = new Request(
@@ -86,52 +89,66 @@ class FormCest
     {
         return [
             [
-                "data" => [
-                    "username" => "sidroberts",
-                    "password" => "",
-                ],
+                "data" => new Data(
+                    [
+                        "username" => "sidroberts",
+                        "password" => "",
+                    ]
+                ),
             ],
 
             [
-                "data" => [
-                    "username" => "sidroberts",
-                ],
+                "data" => new Data(
+                    [
+                        "username" => "sidroberts",
+                    ]
+                ),
             ],
 
             [
-                "data" => [
-                    "username" => "",
-                    "password" => "hunter2",
-                ],
+                "data" => new Data(
+                    [
+                        "username" => "",
+                        "password" => "hunter2",
+                    ]
+                ),
             ],
 
             [
-                "data" => [
-                    "password" => "hunter2",
-                ],
+                "data" => new Data(
+                    [
+                        "password" => "hunter2",
+                    ]
+                ),
             ],
 
             [
-                "data" => [
-                    "username" => "",
-                    "password" => "",
-                ],
+                "data" => new Data(
+                    [
+                        "username" => "",
+                        "password" => "",
+                    ]
+                ),
             ],
 
             [
-                "data" => [
-                    "username" => "",
-                ],
+                "data" => new Data(
+                    [
+                        "username" => "",
+                    ]
+                ),
             ],
 
             [
-                "data" => [
-                    "password" => "",
-                ],
+                "data" => new Data(
+                    [
+                        "password" => "",
+                    ]
+                ),
             ],
 
             [
-                "data" => [],
+                "data" => new Data([]),
             ],
         ];
     }

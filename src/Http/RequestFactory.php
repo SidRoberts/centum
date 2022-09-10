@@ -47,6 +47,8 @@ class RequestFactory
             }
         }
 
+        $data = new Data($data);
+
         $headersFactory = new HeadersFactory();
         $cookiesFactory = new CookiesFactory();
         $filesFactory   = new FilesFactory();
@@ -67,7 +69,7 @@ class RequestFactory
         $uri        = $browserKitRequest->getUri();
         $requestUri = \parse_url($uri, PHP_URL_PATH);
         $method     = \strtoupper($browserKitRequest->getMethod());
-        $data       = $browserKitRequest->getParameters();
+        $data       = new Data($browserKitRequest->getParameters());
         $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
         $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
         $files      = $filesFactory->createFromBrowserKitRequest($browserKitRequest);

@@ -4,6 +4,7 @@ namespace Tests\Unit\Http;
 
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
+use Centum\Http\Data;
 use Centum\Http\File;
 use Centum\Http\FileGroup;
 use Centum\Http\Files;
@@ -16,6 +17,15 @@ class RequestCest
 {
     public function testGetters(UnitTester $I): void
     {
+        $data = new Data(
+            [
+                "username" => "sidroberts",
+                "password" => "hunter2",
+            ]
+        );
+
+
+
         $headers = new Headers();
 
         $headers->add(
@@ -47,10 +57,7 @@ class RequestCest
         $request = new Request(
             "/login",
             "POST",
-            [
-                "username" => "sidroberts",
-                "password" => "hunter2",
-            ],
+            $data,
             $headers,
             $cookies,
             $files,
@@ -69,11 +76,8 @@ class RequestCest
             $request->getMethod()
         );
 
-        $I->assertEquals(
-            [
-                "username" => "sidroberts",
-                "password" => "hunter2",
-            ],
+        $I->assertSame(
+            $data,
             $request->getData()
         );
 

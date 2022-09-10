@@ -8,7 +8,7 @@ abstract class Form
 {
     protected Request $request;
 
-    protected array $data;
+    protected Data $data;
     protected Files $files;
 
 

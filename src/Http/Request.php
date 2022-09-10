@@ -6,7 +6,7 @@ class Request
 {
     protected string $uri;
     protected string $method;
-    protected array $data;
+    protected Data $data;
     protected Headers $headers;
     protected Cookies $cookies;
     protected Files $files;
@@ -17,7 +17,7 @@ class Request
     public function __construct(
         string $uri,
         string $method = "GET",
-        array $data = [],
+        Data $data = null,
         Headers $headers = null,
         Cookies $cookies = null,
         Files $files = null,
@@ -25,7 +25,7 @@ class Request
     ) {
         $this->uri     = $uri;
         $this->method  = strtoupper($method);
-        $this->data    = $data;
+        $this->data    = $data ?? new Data([]);
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();
         $this->files   = $files ?? new Files();
@@ -44,7 +44,7 @@ class Request
         return $this->method;
     }
 
-    public function getData(): array
+    public function getData(): Data
     {
         return $this->data;
     }
