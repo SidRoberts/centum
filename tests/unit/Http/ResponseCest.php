@@ -2,9 +2,7 @@
 
 namespace Tests\Unit\Http;
 
-use Centum\Http\Cookie;
 use Centum\Http\Cookies;
-use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
 use Centum\Http\Status;
@@ -14,51 +12,41 @@ class ResponseCest
 {
     public function testGetters(UnitTester $I): void
     {
+        $content = "Page cannot be found.";
+
+        $status = Status::NOT_FOUND;
+
         $headers = new Headers();
 
-        $headers->add(
-            new Header("cache-control", "no-cache")
-        );
-
-
-
         $cookies = new Cookies();
-
-        $cookies->add(
-            new Cookie("timezone", "Asia/Seoul")
-        );
 
 
 
         $response = new Response(
-            "Page cannot be found",
-            Status::NOT_FOUND,
+            $content,
+            $status,
             $headers,
             $cookies
         );
 
         $I->assertEquals(
-            "Page cannot be found",
+            $content,
             $response->getContent()
         );
 
-        $I->assertEquals(
-            Status::NOT_FOUND,
+        $I->assertSame(
+            $status,
             $response->getStatus()
         );
 
-        $I->assertEquals(
-            [
-                "cache-control" => "no-cache",
-            ],
-            $response->getHeaders()->toArray()
+        $I->assertSame(
+            $headers,
+            $response->getHeaders()
         );
 
-        $I->assertEquals(
-            [
-                "timezone" => "Asia/Seoul",
-            ],
-            $response->getCookies()->toArray()
+        $I->assertSame(
+            $cookies,
+            $response->getCookies()
         );
     }
 
