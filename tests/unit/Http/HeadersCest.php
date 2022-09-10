@@ -5,6 +5,7 @@ namespace Tests\Unit\Http;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Mockery;
+use Mockery\MockInterface;
 use Tests\UnitTester;
 
 class HeadersCest
@@ -70,39 +71,38 @@ class HeadersCest
 
     public function testSend(UnitTester $I): void
     {
-        $header1 = Mockery::mock(Header::class);
+        $header1 = Mockery::mock(
+            Header::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("getName")
+                    ->andReturn("Content-Type");
 
-        $header1->expects()
-            ->getName()
-            ->andReturn("Content-Type");
+                $mock->shouldReceive("send")
+                    ->once();
+            }
+        );
 
-        $header1->expects()
-            ->send()
-            ->once();
+        $header2 = Mockery::mock(
+            Header::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("getName")
+                    ->andReturn("Last-Modified");
 
+                $mock->shouldReceive("send")
+                    ->once();
+            }
+        );
 
+        $header3 = Mockery::mock(
+            Header::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("getName")
+                    ->andReturn("Content-Encoding");
 
-        $header2 = Mockery::mock(Header::class);
-
-        $header2->expects()
-            ->getName()
-            ->andReturn("Last-Modified");
-
-        $header2->expects()
-            ->send()
-            ->once();
-
-
-
-        $header3 = Mockery::mock(Header::class);
-
-        $header3->expects()
-            ->getName()
-            ->andReturn("Content-Encoding");
-
-        $header3->expects()
-            ->send()
-            ->once();
+                $mock->shouldReceive("send")
+                    ->once();
+            }
+        );
 
 
 

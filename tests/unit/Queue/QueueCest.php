@@ -5,6 +5,7 @@ namespace Tests\Unit\Queue;
 use Centum\Container\Container;
 use Centum\Queue\Queue;
 use Mockery;
+use Mockery\MockInterface;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
 use Tests\Queue\DoNothingTask;
@@ -26,16 +27,17 @@ class QueueCest
 
 
 
-        $pheanstalk = Mockery::mock(Pheanstalk::class);
+        $pheanstalk = Mockery::mock(
+            Pheanstalk::class,
+            function (MockInterface $mock) use ($serializedTask, $job): void {
+                $mock->shouldReceive("useTube")
+                    ->with(Queue::TUBE);
 
-        $pheanstalk->expects()
-            ->useTube()
-            ->with(Queue::TUBE);
-
-        $pheanstalk->expects()
-            ->put()
-            ->with($serializedTask)
-            ->andReturn($job);
+                $mock->shouldReceive("put")
+                    ->with($serializedTask)
+                    ->andReturn($job);
+            }
+        );
 
 
 
@@ -50,28 +52,28 @@ class QueueCest
     {
         $task = new DoNothingTask();
 
-        $job = Mockery::mock(Job::class);
+        $job = Mockery::mock(
+            Job::class,
+            function (MockInterface $mock) use ($task): void {
+                $mock->shouldReceive("getData")
+                    ->andReturn(serialize($task));
+            }
+        );
 
-        $job->expects()
-            ->getData()
-            ->andReturn(serialize($task));
+        $pheanstalk = Mockery::mock(
+            Pheanstalk::class,
+            function (MockInterface $mock) use ($job): void {
+                $mock->shouldReceive("watch")
+                    ->with(Queue::TUBE);
 
+                $mock->shouldReceive("reserve")
+                    ->andReturn($job);
 
-
-        $pheanstalk = Mockery::mock(Pheanstalk::class);
-
-        $pheanstalk->expects()
-            ->watch()
-            ->with(Queue::TUBE);
-
-        $pheanstalk->expects()
-            ->reserve()
-            ->andReturn($job);
-
-        $pheanstalk->expects()
-            ->delete()
-            ->with($job)
-            ->andReturn(true);
+                $mock->shouldReceive("delete")
+                    ->with($job)
+                    ->andReturn(true);
+            }
+        );
 
 
 
@@ -86,28 +88,28 @@ class QueueCest
     {
         $task = new ProblematicTask();
 
-        $job = Mockery::mock(Job::class);
+        $job = Mockery::mock(
+            Job::class,
+            function (MockInterface $mock) use ($task): void {
+                $mock->shouldReceive("getData")
+                    ->andReturn(serialize($task));
+            }
+        );
 
-        $job->expects()
-            ->getData()
-            ->andReturn(serialize($task));
+        $pheanstalk = Mockery::mock(
+            Pheanstalk::class,
+            function (MockInterface $mock) use ($job): void {
+                $mock->shouldReceive("watch")
+                    ->with(Queue::TUBE);
 
+                $mock->shouldReceive("reserve")
+                    ->andReturn($job);
 
-
-        $pheanstalk = Mockery::mock(Pheanstalk::class);
-
-        $pheanstalk->expects()
-            ->watch()
-            ->with(Queue::TUBE);
-
-        $pheanstalk->expects()
-            ->reserve()
-            ->andReturn($job);
-
-        $pheanstalk->expects()
-            ->bury()
-            ->with($job)
-            ->andReturn(true);
+                $mock->shouldReceive("bury")
+                    ->with($job)
+                    ->andReturn(true);
+            }
+        );
 
 
 

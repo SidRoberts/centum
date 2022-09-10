@@ -5,6 +5,7 @@ namespace Tests\Unit\Http;
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
 use Mockery;
+use Mockery\MockInterface;
 use Tests\UnitTester;
 
 class CookiesCest
@@ -69,39 +70,38 @@ class CookiesCest
 
     public function testSend(UnitTester $I): void
     {
-        $cookie1 = Mockery::mock(Cookie::class);
+        $cookie1 = Mockery::mock(
+            Cookie::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("getName")
+                    ->andReturn("username");
 
-        $cookie1->expects()
-            ->getName()
-            ->andReturn("username");
+                $mock->shouldReceive("send")
+                    ->once();
+            }
+        );
 
-        $cookie1->expects()
-            ->send()
-            ->once();
+        $cookie2 = Mockery::mock(
+            Cookie::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("getName")
+                    ->andReturn("language");
 
+                $mock->shouldReceive("send")
+                    ->once();
+            }
+        );
 
+        $cookie3 = Mockery::mock(
+            Cookie::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("getName")
+                    ->andReturn("timezone");
 
-        $cookie2 = Mockery::mock(Cookie::class);
-
-        $cookie2->expects()
-            ->getName()
-            ->andReturn("language");
-
-        $cookie2->expects()
-            ->send()
-            ->once();
-
-
-
-        $cookie3 = Mockery::mock(Cookie::class);
-
-        $cookie3->expects()
-            ->getName()
-            ->andReturn("timezone");
-
-        $cookie3->expects()
-            ->send()
-            ->once();
+                $mock->shouldReceive("send")
+                    ->once();
+            }
+        );
 
 
 

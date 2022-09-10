@@ -5,17 +5,20 @@ namespace Tests\Unit\Http;
 use Centum\Http\Session;
 use Centum\Http\Session\HandlerInterface;
 use Mockery;
+use Mockery\MockInterface;
 use Tests\UnitTester;
 
 class SessionCest
 {
     public function testStart(UnitTester $I): void
     {
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->start()
-            ->andReturn(true);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("start")
+                    ->andReturn(true);
+            }
+        );
 
         $session = new Session($handler);
 
@@ -26,11 +29,13 @@ class SessionCest
 
     public function testIsActive(UnitTester $I): void
     {
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->isActive()
-            ->andReturn(true);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("isActive")
+                    ->andReturn(true);
+            }
+        );
 
         $session = new Session($handler);
 
@@ -45,12 +50,14 @@ class SessionCest
     {
         $name = "language";
 
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->has()
-            ->with($name)
-            ->andReturn(false);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock) use ($name): void {
+                $mock->shouldReceive("has")
+                    ->with($name)
+                    ->andReturn(false);
+            }
+        );
 
         $session = new Session($handler);
 
@@ -64,12 +71,14 @@ class SessionCest
         $name         = "language";
         $defaultValue = "en";
 
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->get()
-            ->with($name, $defaultValue)
-            ->andReturn($defaultValue);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock) use ($name, $defaultValue): void {
+                $mock->shouldReceive("get")
+                    ->with($name, $defaultValue)
+                    ->andReturn($defaultValue);
+            }
+        );
 
         $session = new Session($handler);
 
@@ -84,11 +93,13 @@ class SessionCest
         $name  = "language";
         $value = "ko";
 
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->set()
-            ->with($name, $value);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock) use ($name, $value): void {
+                $mock->shouldReceive("set")
+                    ->with($name, $value);
+            }
+        );
 
         $session = new Session($handler);
 
@@ -99,11 +110,13 @@ class SessionCest
     {
         $name = "language";
 
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->remove()
-            ->with($name);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock) use ($name): void {
+                $mock->shouldReceive("remove")
+                    ->with($name);
+            }
+        );
 
         $session = new Session($handler);
 
@@ -112,10 +125,12 @@ class SessionCest
 
     public function testClear(UnitTester $I): void
     {
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->clear();
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("clear");
+            }
+        );
 
         $session = new Session($handler);
 
@@ -124,11 +139,13 @@ class SessionCest
 
     public function testAll(UnitTester $I): void
     {
-        $handler = Mockery::mock(HandlerInterface::class);
-
-        $handler->expects()
-            ->all()
-            ->andReturn([]);
+        $handler = Mockery::mock(
+            HandlerInterface::class,
+            function (MockInterface $mock): void {
+                $mock->shouldReceive("all")
+                    ->andReturn([]);
+            }
+        );
 
         $session = new Session($handler);
 
