@@ -10,6 +10,18 @@ nav_order: 1
 
 # Requests
 
+```php
+Centum\Http\Request(
+    string $uri,
+    string $method = "GET",
+    Centum\Http\Data $data = null,
+    Centum\Http\Headers $headers = null,
+    Centum\Http\Cookies $cookies = null,
+    Centum\Http\Files $files = null,
+    string $content = null
+);
+```
+
 ...
 
 

@@ -11,6 +11,13 @@ grand_parent: Components
 
 ...
 
+```php
+Centum\Http\Cookie(
+    string $name,
+    string $value
+);
+```
+
 
 
 ## Cookies Factory

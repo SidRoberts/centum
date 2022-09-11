@@ -11,6 +11,13 @@ grand_parent: Components
 
 ...
 
+```php
+Centum\Http\Header(
+    string $name,
+    string $value
+);
+```
+
 
 
 ## Headers Factory
