@@ -2,7 +2,7 @@
 layout: default
 title: Queue
 parent: Components
-has_children: true
+has_children: false
 permalink: queue
 ---
 
@@ -11,15 +11,24 @@ permalink: queue
 # `Centum\Queue`
 
 The Queue component acts as a very simple and focussed frontend for [Beanstalkd](https://beanstalkd.github.io/).
-It is solely designed for offloading work so that it can be processed elsewhere.
+Internally it uses [Pheanstalk](https://github.com/pheanstalk/pheanstalk) to interact with a Beanstalkd server.
+It is solely designed for offloading work so that it can be processed elsewhere or at a later time.
 This is especially useful for tasks that could take a long time, be hardware intensive, or otherwise negatively affect the application's performance.
+
+```php
+Centum\Queue\Queue(
+    Centum\Container\Container $container,
+    Pheanstalk\Pheanstalk $pheanstalk
+);
+```
 
 [`Centum\Queue\Queue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Queue.php) features two public methods:
 
-* `publish()`
-* `consume()`
+* `publish(Centum\Queue\Task $task): void`
+* `consume(): Centum\Queue\Task`
 
-Both methods work with the abstract [`Centum\Queue\Task`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Task.php) class which represents a piece of work that a background worker can execute:
+Both methods work with the abstract [`Centum\Queue\Task`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Task.php) class which represents a piece of work that a background worker can execute.
+Tasks are serialised and unserialised as they are transported through Beanstalkd so any complicated objects should be called through the Container in the `execute()` method:
 
 ```php
 namespace App\Tasks;
@@ -98,3 +107,7 @@ class QueueConsumeCommand extends Command
     }
 }
 ```
+
+If a Task throws an Exception whilst it is being consumed, the Queue component will automatically bury it on Pheanstalk so that it can be dealt with later.
+
+Queue used the `centum-tasks` tube to store Tasks (available from `Centum\Queue\Queue::TUBE`).
