@@ -5,6 +5,7 @@ namespace Centum\Queue;
 use Centum\Container\Container;
 use Pheanstalk\Pheanstalk;
 use Throwable;
+use UnexpectedValueException;
 
 class Queue
 {
@@ -38,12 +39,19 @@ class Queue
 
         $job = $this->pheanstalk->reserve();
 
-        /**
-         * @var Task
-         */
         $task = unserialize(
             $job->getData()
         );
+
+        if (!($task instanceof Task)) {
+            throw new UnexpectedValueException(
+                sprintf(
+                    "Object from %s tube is not a %s object.",
+                    self::TUBE,
+                    Task::class
+                )
+            );
+        }
 
         try {
             $task->execute($this->container);

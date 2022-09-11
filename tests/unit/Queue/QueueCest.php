@@ -8,10 +8,12 @@ use Mockery;
 use Mockery\MockInterface;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
+use stdClass;
 use Tests\Queue\DoNothingTask;
 use Tests\Queue\ProblematicTask;
 use Tests\UnitTester;
 use Throwable;
+use UnexpectedValueException;
 
 class QueueCest
 {
@@ -48,6 +50,8 @@ class QueueCest
         $queue->publish($task);
     }
 
+
+
     public function testConsumeRegularTask(UnitTester $I): void
     {
         $task = new DoNothingTask();
@@ -83,6 +87,51 @@ class QueueCest
 
         $queue->consume();
     }
+
+    public function testConsumeMalformedTask(UnitTester $I): void
+    {
+        $task = new stdClass();
+
+        $job = Mockery::mock(
+            Job::class,
+            function (MockInterface $mock) use ($task): void {
+                $mock->shouldReceive("getData")
+                    ->andReturn(serialize($task));
+            }
+        );
+
+        $pheanstalk = Mockery::mock(
+            Pheanstalk::class,
+            function (MockInterface $mock) use ($job): void {
+                $mock->shouldReceive("watch")
+                    ->with(Queue::TUBE);
+
+                $mock->shouldReceive("reserve")
+                    ->andReturn($job);
+
+                $mock->shouldReceive("delete")
+                    ->with($job)
+                    ->andReturn(true);
+            }
+        );
+
+
+
+        $container = new Container();
+
+        $queue = new Queue($container, $pheanstalk);
+
+
+
+        $I->expectThrowable(
+            new UnexpectedValueException("Object from centum-tasks tube is not a Centum\\Queue\\Task object."),
+            function () use ($queue): void {
+                $queue->consume();
+            }
+        );
+    }
+
+
 
     public function testBuryJobWhenExceptionIsThrown(UnitTester $I): void
     {
