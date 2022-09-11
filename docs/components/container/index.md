@@ -2,7 +2,7 @@
 layout: default
 title: Container
 parent: Components
-has_children: true
+has_children: false
 permalink: container
 ---
 

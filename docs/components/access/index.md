@@ -2,7 +2,7 @@
 layout: default
 title: Access
 parent: Components
-has_children: true
+has_children: false
 permalink: access
 ---
 
