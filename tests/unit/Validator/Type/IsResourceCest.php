@@ -10,9 +10,25 @@ use Tests\UnitTester;
 
 class IsResourceCest
 {
-    public function testGood(UnitTester $I): void
+    /**
+     * @dataProvider providerGood
+     */
+    public function testGood(UnitTester $I, Example $example): void
     {
-        $I->markTestIncomplete();
+        $validator = new IsResource();
+
+        $violations = $validator->validate(
+            $example[0]
+        );
+
+        $I->assertCount(0, $violations);
+    }
+
+    protected function providerGood(): array
+    {
+        return [
+            [fopen("/dev/null", "w")],
+        ];
     }
 
 
