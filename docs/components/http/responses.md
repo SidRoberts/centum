@@ -17,9 +17,9 @@ nav_order: 2
 ```php
 Centum\Http\Response(
     string $content = "",
-    Status $status = Status::OK,
-    Headers $headers = null,
-    Cookies $cookies = null
+    Centum\Http\Status $status = Centum\Http\Status::OK,
+    Centum\Http\Headers $headers = null,
+    Centum\Http\Cookies $cookies = null
 );
 ```
 
@@ -45,8 +45,8 @@ If for some reason, the HTTP client doesn't obey the redirect, a HTML response i
 ```php
 Centum\Http\Response\RedirectResponse(
     string $url,
-    Status $status = Status::FOUND,
-    Headers $headers = null
+    Centum\Http\Status $status = Centum\Http\Status::FOUND,
+    Centum\Http\Headers $headers = null
 );
 ```
 
