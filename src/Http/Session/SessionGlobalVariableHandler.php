@@ -9,6 +9,15 @@ class SessionGlobalVariableHandler implements HandlerInterface
         return session_start();
     }
 
+    public function startIfNotActive(): bool
+    {
+        if ($this->isActive()) {
+            return true;
+        }
+
+        return $this->start();
+    }
+
     public function isActive(): bool
     {
         return session_status() === \PHP_SESSION_ACTIVE;
@@ -18,27 +27,21 @@ class SessionGlobalVariableHandler implements HandlerInterface
 
     public function has(string $name): bool
     {
-        if (!$this->isActive()) {
-            $this->start();
-        }
+        $this->startIfNotActive();
 
         return isset($_SESSION[$name]);
     }
 
     public function get(string $name, mixed $defaultValue = null): mixed
     {
-        if (!$this->isActive()) {
-            $this->start();
-        }
+        $this->startIfNotActive();
 
         return $_SESSION[$name] ?? $defaultValue;
     }
 
     public function set(string $name, mixed $value): void
     {
-        if (!$this->isActive()) {
-            $this->start();
-        }
+        $this->startIfNotActive();
 
         /**
          * @var mixed
@@ -48,27 +51,21 @@ class SessionGlobalVariableHandler implements HandlerInterface
 
     public function remove(string $name): void
     {
-        if (!$this->isActive()) {
-            $this->start();
-        }
+        $this->startIfNotActive();
 
         unset($_SESSION[$name]);
     }
 
     public function clear(): void
     {
-        if (!$this->isActive()) {
-            $this->start();
-        }
+        $this->startIfNotActive();
 
         $_SESSION = [];
     }
 
     public function all(): array
     {
-        if (!$this->isActive()) {
-            $this->start();
-        }
+        $this->startIfNotActive();
 
         /**
          * @var array<array-key, mixed>
