@@ -25,7 +25,7 @@ class Parameters
         while ($argv) {
             $token = array_shift($argv);
 
-            if (!preg_match("/^\-\-([A-Za-z0-9\-]+)(\=(.*)|$)/", $token, $match)) {
+            if (preg_match("/^\-\-([A-Za-z0-9\-]+)(\=(.*)|$)/", $token, $match) !== 1) {
                 continue;
             }
 
