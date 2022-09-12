@@ -8,10 +8,19 @@ class RequestFactory
 {
     public function createFromGlobals(): Request
     {
+        $inputStream = fopen("php://input", "r");
+
+        $content = stream_get_contents($inputStream);
+
+        return $this->createFromArrays($_SERVER, $_GET, $_POST, $content);
+    }
+
+    public function createFromArrays(array $server, array $get, array $post, string $content): Request
+    {
         /**
          * @var string
          */
-        $uri = $_SERVER["REQUEST_URI"] ?? "";
+        $uri = $server["REQUEST_URI"] ?? "";
 
         // Remove parameter string
         $uri = parse_url($uri, PHP_URL_PATH);
@@ -19,32 +28,35 @@ class RequestFactory
         /**
          * @var string
          */
-        $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"] ?? "GET";
-
-        $content = stream_get_contents(fopen("php://input", "r"));
+        $method = $server["REQUEST_METHOD"] ?? "GET";
 
         /**
          * @var string
          */
-        $contentType = $_SERVER["CONTENT_TYPE"] ?? "text/plain";
+        $contentType = $server["CONTENT_TYPE"] ?? "text/plain";
+
+        $parameters = null;
 
         if ($method === "GET") {
-            $parameters = $_GET;
+            $parameters = $get;
         } elseif ($method === "POST") {
-            $parameters = $_POST;
-        } else {
-            /**
-             * @var mixed
-             */
-            $parameters = match ($contentType) {
-                "application/x-www-form-urlencoded" => parse_str($content, $parameters),
-                "application/json"                  => json_decode($content, true),
-                default                             => [],
-            };
+            $parameters = $post;
+        } elseif ($contentType === "application/x-www-form-urlencoded") {
+            parse_str($content, $parameters);
+        } elseif ($contentType === "application/json") {
+            /** @var mixed */
+            $parameters = json_decode($content, true);
+        }
 
-            if (!is_array($parameters)) {
-                $parameters = [];
-            }
+        if (!is_array($parameters)) {
+            $parameters = [];
+        }
+
+        if (isset($post["_method"])) {
+            /** @var string */
+            $method = $post["_method"];
+
+            unset($parameters["_method"]);
         }
 
         /** @var array<string, mixed> $parameters */

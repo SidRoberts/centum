@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http;
 
 use Centum\Http\RequestFactory;
+use Codeception\Example;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 use Tests\UnitTester;
 
@@ -44,6 +45,203 @@ class RequestFactoryCest
 
         unset($_POST["foo1"]);
     }
+
+
+
+    /** @dataProvider providerCreateFromArrays */
+    public function testCreateFromArrays(UnitTester $I, Example $example): void
+    {
+        /** @var string */
+        $method = $example["method"];
+
+
+
+        $server = [
+            "REQUEST_METHOD" => $method,
+        ];
+
+        $get = [
+            "origin" => "GET",
+        ];
+
+        $post = [
+            "origin" => "POST",
+        ];
+
+        $content = "";
+
+
+
+        $requestFactory = new RequestFactory();
+
+        $request = $requestFactory->createFromArrays($server, $get, $post, $content);
+
+        $I->assertEquals(
+            $method,
+            $request->getMethod()
+        );
+
+        $I->assertEquals(
+            $method,
+            $request->getData()->get("origin")
+        );
+    }
+
+    protected function providerCreateFromArrays(): array
+    {
+        return [
+            [
+                "method" => "GET",
+            ],
+
+            [
+                "method" => "POST",
+            ],
+        ];
+    }
+
+
+
+    public function testCreateFromArraysOverwriteMethod(UnitTester $I): void
+    {
+        $server = [
+            "REQUEST_METHOD" => "POST",
+        ];
+
+        $get = [];
+
+        $post = [
+            "_method" => "PATCH",
+            "key1"    => "value1",
+            "key2"    => "value2",
+        ];
+
+        $content = "";
+
+
+
+        $requestFactory = new RequestFactory();
+
+        $request = $requestFactory->createFromArrays($server, $get, $post, $content);
+
+        $I->assertEquals(
+            "PATCH",
+            $request->getMethod()
+        );
+
+        $I->assertEquals(
+            [
+                "key1" => "value1",
+                "key2" => "value2",
+            ],
+            $request->getData()->toArray()
+        );
+    }
+
+
+
+    /** @dataProvider providerCreateFromArraysFormEncoded */
+    public function testCreateFromArraysFormEncoded(UnitTester $I, Example $example): void
+    {
+        $server = [
+            "CONTENT_TYPE"   => "application/x-www-form-urlencoded",
+            "REQUEST_METHOD" => "PATCH",
+        ];
+
+        $get = [];
+
+        $post = [];
+
+        /** @var string */
+        $content = $example["content"];
+
+
+
+        $requestFactory = new RequestFactory();
+
+        $request = $requestFactory->createFromArrays($server, $get, $post, $content);
+
+        /** @var array */
+        $expected = $example["expected"];
+
+        $I->assertEquals(
+            $expected,
+            $request->getData()->toArray()
+        );
+    }
+
+    protected function providerCreateFromArraysFormEncoded(): array
+    {
+        return [
+            [
+                "content"  => "first=value&arr[]=foo+bar&arr[]=baz",
+                "expected" => [
+                    "first" => "value",
+                    "arr"   => [
+                        "foo bar",
+                        "baz",
+                    ],
+                ],
+            ],
+
+            [
+                "content"  => "",
+                "expected" => [],
+            ],
+        ];
+    }
+
+
+
+    /** @dataProvider providerCreateFromArraysJsonContent */
+    public function testCreateFromArraysJsonContent(UnitTester $I, Example $example): void
+    {
+        $server = [
+            "CONTENT_TYPE"   => "application/json",
+            "REQUEST_METHOD" => "PATCH",
+        ];
+
+        $get = [];
+
+        $post = [];
+
+        /** @var string */
+        $content = $example["content"];
+
+
+
+        $requestFactory = new RequestFactory();
+
+        $request = $requestFactory->createFromArrays($server, $get, $post, $content);
+
+        /** @var array */
+        $expected = $example["expected"];
+
+        $I->assertEquals(
+            $expected,
+            $request->getData()->toArray()
+        );
+    }
+
+    protected function providerCreateFromArraysJsonContent(): array
+    {
+        return [
+            [
+                "content"  => "{\"key1\":\"value1\",\"key2\":\"value2\"}",
+                "expected" => [
+                    "key1" => "value1",
+                    "key2" => "value2",
+                ],
+            ],
+
+            [
+                "content"  => "",
+                "expected" => [],
+            ],
+        ];
+    }
+
+
 
     public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {
