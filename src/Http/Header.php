@@ -29,14 +29,21 @@ class Header
 
 
 
+    public function getHeaderString(): string
+    {
+        return sprintf(
+            "%s: %s",
+            $this->name,
+            $this->value
+        );
+    }
+
+
+
     public function send(): void
     {
         header(
-            sprintf(
-                "%s: %s",
-                $this->name,
-                $this->value
-            ),
+            $this->getHeaderString(),
             false
         );
     }

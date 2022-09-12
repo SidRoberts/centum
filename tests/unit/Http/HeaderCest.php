@@ -22,6 +22,16 @@ class HeaderCest
         );
     }
 
+    public function testGetHeaderString(UnitTester $I): void
+    {
+        $header = new Header("cache-control", "max-age=600");
+
+        $I->assertEquals(
+            "cache-control: max-age=600",
+            $header->getHeaderString()
+        );
+    }
+
     public function testToString(UnitTester $I): void
     {
         $header = new Header("cache-control", "max-age=600");
