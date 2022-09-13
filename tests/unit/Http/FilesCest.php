@@ -106,12 +106,12 @@ class FilesCest
     /** @dataProvider providerAll */
     public function testAll(UnitTester $I, Example $example): void
     {
-        /** @var array<FileGroups> */
+        /** @var array<FileGroup> */
         $fileGroups = $example["fileGroups"];
 
         $files = new Files($fileGroups);
 
-        /** @var array<FileGroups> */
+        /** @var array<FileGroup> */
         $expected = $example["expected"];
 
         $I->assertEquals(
@@ -146,12 +146,12 @@ class FilesCest
     /** @dataProvider providerToArray */
     public function testToArray(UnitTester $I, Example $example): void
     {
-        /** @var array<FileGroups> */
+        /** @var array<FileGroup> */
         $fileGroups = $example["fileGroups"];
 
         $files = new Files($fileGroups);
 
-        /** @var array<FileGroups> */
+        /** @var array<FileGroup> */
         $expected = $example["expected"];
 
         $I->assertEquals(
