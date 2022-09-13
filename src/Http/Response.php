@@ -80,7 +80,7 @@ class Response
 
 
 
-    public function __toString(): string
+    public function getRaw(): string
     {
         $output = $this->status->getHeaderString() . "\r\n";
 
@@ -97,5 +97,10 @@ class Response
         $output .= $this->content;
 
         return $output;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getRaw();
     }
 }
