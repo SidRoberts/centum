@@ -9,22 +9,6 @@ use Tests\UnitTester;
 
 class FormCest
 {
-    public function testGetters(UnitTester $I): void
-    {
-        $form = new Form();
-
-        $field = new Field("thisIsTheName");
-
-        $status = $form->validate(
-            []
-        );
-
-        $I->assertEquals(
-            [],
-            $status->getMessages()
-        );
-    }
-
     public function testEmptyForm(UnitTester $I): void
     {
         $form = new Form();

@@ -13,20 +13,23 @@ class JobCest
      */
     public function testGetters(UnitTester $I, Example $example): void
     {
-        $job = new Job(
-            $example["expression"],
-            $example["data"]
-        );
+        /** @var string */
+        $expression = $example["expression"];
+
+        /** @var mixed */
+        $data = $example["data"];
+
+        $job = new Job($expression, $data);
 
 
 
         $I->assertEquals(
-            $example["expression"],
+            $expression,
             $job->getExpression()
         );
 
         $I->assertEquals(
-            $example["data"],
+            $data,
             $job->getData()
         );
     }

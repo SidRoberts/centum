@@ -17,8 +17,11 @@ class VariableResponseCest
     {
         $response = new VariableResponse($example["variable"]);
 
+        /** @var string */
+        $expected = $example["expected"];
+
         $I->assertEquals(
-            $example["expected"],
+            $expected,
             $response->getContent()
         );
     }

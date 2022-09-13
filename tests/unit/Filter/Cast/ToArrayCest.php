@@ -17,13 +17,15 @@ class ToArrayCest
     {
         $filter = new ToArray();
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var array */
+        $expected = $example["expected"];
+
+        /** @var mixed */
+        $value = $example["value"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $filter->filter($value)
         );
     }
 

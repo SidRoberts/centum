@@ -15,8 +15,8 @@ class RedirectResponseCest
     {
         $I->expectThrowable(
             new InvalidArgumentException("URL can't be empty."),
-            function () {
-                $response = new RedirectResponse("");
+            function (): void {
+                new RedirectResponse("");
             }
         );
     }
@@ -25,8 +25,8 @@ class RedirectResponseCest
     {
         $I->expectThrowable(
             new InvalidArgumentException("The HTTP status code must be a 3xx redirect code ('200' given)."),
-            function () {
-                $response = new RedirectResponse("https://github.com/sidroberts", Status::OK);
+            function (): void {
+                new RedirectResponse("https://github.com/sidroberts", Status::OK);
             }
         );
     }

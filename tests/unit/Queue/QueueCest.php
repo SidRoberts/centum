@@ -168,7 +168,7 @@ class QueueCest
 
         $I->expectThrowable(
             Throwable::class,
-            function () use ($queue) {
+            function () use ($queue): void {
                 $queue->consume();
             }
         );

@@ -16,13 +16,15 @@ class ToBoolCest
     {
         $filter = new ToBool();
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var bool */
+        $expected = $example["expected"];
+
+        /** @var mixed */
+        $value = $example["value"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $filter->filter($value)
         );
     }
 

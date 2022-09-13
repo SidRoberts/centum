@@ -56,7 +56,7 @@ class ResponseCest
     {
         $I->expectEcho(
             "Hello world",
-            function () {
+            function (): void {
                 $response = new Response("Hello world");
 
                 $response->sendContent();

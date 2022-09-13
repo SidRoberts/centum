@@ -79,7 +79,7 @@ class FormCest
 
         $I->expectThrowable(
             Exception::class,
-            function () use ($request, $container) {
+            function () use ($request, $container): void {
                 new LoginForm($request, $container);
             }
         );

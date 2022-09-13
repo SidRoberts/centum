@@ -47,7 +47,7 @@ class ModuleCest
 
         $I->expectThrowable(
             new Exception("Couldn't find the Container."),
-            function () use ($module) {
+            function () use ($module): void {
                 $module->getContainer();
             }
         );
@@ -105,7 +105,7 @@ class ModuleCest
 
         $I->expectThrowable(
             \TypeError::class,
-            function () use ($module, $test) {
+            function () use ($module, $test): void {
                 $module->_before($test);
             }
         );
@@ -259,7 +259,7 @@ class ModuleCest
     {
         $I->expectEcho(
             "The quick brown fox jumps over the lazy dog.",
-            function () {
+            function (): void {
                 echo "The quick brown fox jumps over the lazy dog.";
             }
         );
@@ -269,10 +269,10 @@ class ModuleCest
     {
         $I->expectThrowable(
             new Exception("this is an exception"),
-            function () use ($I) {
+            function () use ($I): void {
                 $I->expectEcho(
                     "The quick brown fox jumps over the lazy dog.",
-                    function () {
+                    function (): void {
                         echo "this should be cleared.";
 
                         throw new Exception("this is an exception");
@@ -283,7 +283,7 @@ class ModuleCest
 
         $I->expectEcho(
             "The quick brown fox jumps over the lazy dog.",
-            function () {
+            function (): void {
                 echo "The quick brown fox jumps over the lazy dog.";
             }
         );

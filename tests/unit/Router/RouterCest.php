@@ -125,14 +125,13 @@ class RouterCest
         $falseGroup->get("/middleware/false", MiddlewareController::class, "index");
 
 
+        /** @var string */
+        $url = $example["url"];
 
         try {
-            $request = new Request(
-                $example["url"],
-                "GET"
-            );
+            $request = new Request($url, "GET");
 
-            $response = $router->handle($request);
+            $router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -186,13 +185,13 @@ class RouterCest
 
 
 
-        $request = new Request(
-            $example["url"],
-            "GET"
-        );
+        /** @var string */
+        $url = $example["url"];
+
+        $request = new Request($url, "GET");
 
         try {
-            $response = $router->handle($request);
+            $router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -243,15 +242,17 @@ class RouterCest
 
 
 
-        $request = new Request(
-            "/",
-            $example["method"]
-        );
+        /** @var string */
+        $method = $example["method"];
+
+
+
+        $request = new Request("/", $method);
 
         $response = $router->handle($request);
 
         $I->assertEquals(
-            $example["method"],
+            $method,
             $response->getContent()
         );
     }
@@ -310,8 +311,8 @@ class RouterCest
 
         $I->expectThrowable(
             RouteNotFoundException::class,
-            function () use ($request, $router) {
-                $response = $router->handle($request);
+            function () use ($router, $request): void {
+                $router->handle($request);
             }
         );
     }

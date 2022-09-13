@@ -95,7 +95,7 @@ class FileCest
 
         $I->expectThrowable(
             new Exception("File has an error."),
-            function () use ($file) {
+            function () use ($file): void {
                 $file->getExtension();
             }
         );
@@ -114,7 +114,7 @@ class FileCest
 
         $I->expectThrowable(
             new Exception("File has an error."),
-            function () use ($file) {
+            function () use ($file): void {
                 $file->moveTo("/tmp/abc123");
             }
         );

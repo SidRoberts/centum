@@ -30,13 +30,17 @@ class GroupCest
             new Prefix("ABC-")
         );
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+
+
+        /** @var string */
+        $expected = $example["expected"];
+
+        /** @var string */
+        $value = $example["value"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $filter->filter($value)
         );
     }
 

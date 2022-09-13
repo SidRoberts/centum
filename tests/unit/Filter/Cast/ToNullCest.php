@@ -16,13 +16,11 @@ class ToNullCest
     {
         $filter = new ToNull();
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var mixed */
+        $value = $example["value"];
 
-        $I->assertEquals(
-            $example["expected"],
-            $actual
+        $I->assertNull(
+            $filter->filter($value)
         );
     }
 
@@ -30,38 +28,31 @@ class ToNullCest
     {
         return [
             [
-                "value"    => [1,2,3],
-                "expected" => null,
+                "value" => [1,2,3],
             ],
 
             [
-                "value"    => true,
-                "expected" => null,
+                "value" => true,
             ],
 
             [
-                "value"    => 123.456,
-                "expected" => null,
+                "value" => 123.456,
             ],
 
             [
-                "value"    => 123,
-                "expected" => null,
+                "value" => 123,
             ],
 
             [
-                "value"    => null,
-                "expected" => null,
+                "value" => null,
             ],
 
             [
-                "value"    => new stdClass(),
-                "expected" => null,
+                "value" => new stdClass(),
             ],
 
             [
-                "value"    => "Sid Roberts",
-                "expected" => null,
+                "value" => "Sid Roberts",
             ],
         ];
     }

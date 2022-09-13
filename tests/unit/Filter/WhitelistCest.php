@@ -13,6 +13,9 @@ class WhitelistCest
      */
     public function test(UnitTester $I, Example $example): void
     {
+        /** @var bool */
+        $strict = $example["strict"];
+
         $filter = new Whitelist(
             [
                 "Busan",
@@ -21,12 +24,14 @@ class WhitelistCest
                 false,
                 [1,2,3],
             ],
-            $example["strict"]
+            $strict
         );
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var mixed */
+        $value = $example["value"];
+
+        /** @var mixed */
+        $actual = $filter->filter($value);
 
         if ($example["expected"]) {
             $I->assertEquals(

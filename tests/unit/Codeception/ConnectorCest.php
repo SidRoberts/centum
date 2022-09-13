@@ -14,7 +14,7 @@ class ConnectorCest
     {
         $container = new Container();
 
-        $connector = new Connector($container);
+        new Connector($container);
 
         $sessionHandler = $container->typehintClass(HandlerInterface::class);
 

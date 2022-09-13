@@ -17,13 +17,15 @@ class ToStringCest
     {
         $filter = new ToString();
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var string */
+        $expected = $example["expected"];
+
+        /** @var mixed */
+        $value = $example["value"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $filter->filter($value)
         );
     }
 

@@ -15,9 +15,10 @@ class UrlExtensionCest
      */
     public function test(UnitTester $I, Example $example): void
     {
-        $url = new Url(
-            $example["baseUri"]
-        );
+        /** @var string */
+        $baseUri = $example["baseUri"];
+
+        $url = new Url($baseUri);
 
 
 

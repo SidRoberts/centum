@@ -27,19 +27,20 @@ class UrlCest
      */
     public function testUrl(UnitTester $I, Example $example): void
     {
-        $url = new Url(
-            $example["baseUri"]
-        );
+        /** @var string */
+        $baseUri = $example["baseUri"];
 
-        $actual = $url->get(
-            $example["uri"]
-        );
+        $url = new Url($baseUri);
 
+        /** @var string */
+        $expected = $example["expected"];
 
+        /** @var string */
+        $uri = $example["uri"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $url->get($uri)
         );
     }
 
@@ -93,16 +94,18 @@ class UrlCest
     {
         $url = new Url();
 
-        $actual = $url->get(
-            $example["uri"],
-            $example["arguments"]
-        );
+        /** @var string */
+        $uri = $example["uri"];
 
+        /** @var array */
+        $arguments = $example["arguments"];
 
+        /** @var string */
+        $expected = $example["expected"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $url->get($uri, $arguments)
         );
     }
 

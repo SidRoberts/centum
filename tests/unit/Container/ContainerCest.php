@@ -104,8 +104,8 @@ class ContainerCest
 
         $I->expectThrowable(
             UnresolvableParameterException::class,
-            function () use ($container) {
-                $unresolvableClass = $container->typehintClass(UnresolvableClass::class);
+            function () use ($container): void {
+                $container->typehintClass(UnresolvableClass::class);
             }
         );
     }
@@ -118,6 +118,7 @@ class ContainerCest
 
 
 
+        /** @var string */
         $name = $container->typehintMethod($differentTypes, "resolvable");
 
         $I->assertEquals(
@@ -127,6 +128,7 @@ class ContainerCest
 
 
 
+        /** @var ?string */
         $name = $container->typehintMethod($differentTypes, "resolvable2");
 
         $I->assertNull(
@@ -135,6 +137,7 @@ class ContainerCest
 
 
 
+        /** @var ?string */
         $name = $container->typehintMethod($differentTypes, "resolvable3");
 
         $I->assertNull(
@@ -143,6 +146,7 @@ class ContainerCest
 
 
 
+        /** @var mixed */
         $name = $container->typehintMethod($differentTypes, "resolvable4");
 
         $I->assertEquals(
@@ -152,6 +156,7 @@ class ContainerCest
 
 
 
+        /** @var mixed */
         $name = $container->typehintMethod($differentTypes, "resolvable5");
 
         $I->assertNull(
@@ -160,6 +165,7 @@ class ContainerCest
 
 
 
+        /** @var mixed */
         $name = $container->typehintMethod($differentTypes, "resolvable6");
 
         $I->assertEquals(
@@ -171,7 +177,7 @@ class ContainerCest
 
         $I->expectThrowable(
             UnresolvableParameterException::class,
-            function () use ($container, $differentTypes) {
+            function () use ($container, $differentTypes): void {
                 $container->typehintMethod($differentTypes, "unresolvable");
             }
         );
@@ -180,7 +186,7 @@ class ContainerCest
 
         $I->expectThrowable(
             UnresolvableParameterException::class,
-            function () use ($container, $differentTypes) {
+            function () use ($container, $differentTypes): void {
                 $container->typehintMethod($differentTypes, "unresolvable2");
             }
         );

@@ -45,7 +45,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $exitCode = $application->handle($terminal);
+        $application->handle($terminal);
 
         $I->assertStdoutEquals(
             "main page"
@@ -73,10 +73,10 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $exitCode = $application->handle($terminal);
+        $application->handle($terminal);
 
         $I->assertStdoutEquals(
-            246
+            "246"
         );
     }
 
@@ -101,7 +101,7 @@ class ApplicationCest
 
         $I->expectThrowable(
             new ParamNotFoundException(),
-            function () use ($I, $application, $terminal) {
+            function () use ($application, $terminal): void {
                 $application->handle($terminal);
             }
         );
@@ -134,12 +134,13 @@ class ApplicationCest
 
 
 
+        /** @var list<string> */
         $argv = $example["argv"];
 
         $terminal = $I->createTerminal($argv);
 
         try {
-            $exitCode = $application->handle($terminal);
+            $application->handle($terminal);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (CommandNotFoundException $e) {
@@ -210,8 +211,8 @@ class ApplicationCest
 
         $I->expectThrowable(
             CommandNotFoundException::class,
-            function () use ($terminal, $application) {
-                $exitCode = $application->handle($terminal);
+            function () use ($application, $terminal): void {
+                $application->handle($terminal);
             }
         );
     }
@@ -233,8 +234,8 @@ class ApplicationCest
 
         $I->expectThrowable(
             InvalidFilterException::class,
-            function () use ($terminal, $application) {
-                $exitCode = $application->handle($terminal);
+            function () use ($application, $terminal): void {
+                $application->handle($terminal);
             }
         );
     }
@@ -256,8 +257,8 @@ class ApplicationCest
 
         $I->expectThrowable(
             InvalidMiddlewareException::class,
-            function () use ($terminal, $application) {
-                $exitCode = $application->handle($terminal);
+            function () use ($application, $terminal): void {
+                $application->handle($terminal);
             }
         );
     }
@@ -350,7 +351,7 @@ class ApplicationCest
 
         $I->expectThrowable(
             new Exception("Command name ('https://github.com/') is not valid."),
-            function () use ($application) {
+            function () use ($application): void {
                 $application->addCommand(
                     new BadNameCommand()
                 );

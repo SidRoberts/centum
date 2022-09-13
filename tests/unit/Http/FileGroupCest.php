@@ -26,6 +26,20 @@ class FileGroupCest
     public function testAdd(UnitTester $I): void
     {
         $fileGroup = new FileGroup("images");
+
+        $file1 = new File("image1.png", "image/png", 123, "/tmp/php/php1aaa11", UPLOAD_ERR_OK);
+        $file2 = new File("image2.png", "image/png", 456, "/tmp/php/php2aaa22", UPLOAD_ERR_OK);
+
+        $fileGroup->add($file1);
+        $fileGroup->add($file2);
+
+        $I->assertEquals(
+            [
+                $file1,
+                $file2,
+            ],
+            $fileGroup->all()
+        );
     }
 
 

@@ -27,13 +27,15 @@ class ReplaceCest
             ]
         );
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var string */
+        $expected = $example["expected"];
+
+        /** @var string */
+        $value = $example["value"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $filter->filter($value)
         );
     }
 
@@ -72,12 +74,13 @@ class ReplaceCest
             ]
         );
 
+        /** @var mixed */
+        $value = $example["value"];
+
         $I->expectThrowable(
             new InvalidArgumentException("Value must be a string."),
-            function () use ($filter, $example): void {
-                $actual = $filter->filter(
-                    $example["value"]
-                );
+            function () use ($filter, $value): void {
+                $filter->filter($value);
             }
         );
     }

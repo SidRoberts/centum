@@ -21,7 +21,7 @@ class Router
     protected array $groups = [];
 
     /**
-     * @var array<class-string, array>
+     * @var array<class-string, array{class-string, string}>
      */
     protected array $exceptionHandlers = [];
 
@@ -97,14 +97,7 @@ class Router
 
                     $this->container->set(Request::class, $request);
 
-                    /**
-                     * @var class-string
-                     */
-                    $class = $path[0];
-
-                    /**
-                     * @var string
-                     */
+                    $class  = $path[0];
                     $method = $path[1];
 
                     return $this->executeMethod($class, $method);

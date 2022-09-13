@@ -4,6 +4,7 @@ namespace Tests\Unit\Filter;
 
 use Centum\Filter\Callback;
 use Codeception\Example;
+use InvalidArgumentException;
 use Tests\UnitTester;
 
 class CallbackCest
@@ -14,18 +15,24 @@ class CallbackCest
     public function test(UnitTester $I, Example $example): void
     {
         $filter = new Callback(
-            function (mixed $value): mixed {
+            function (mixed $value): string {
+                if (!is_string($value)) {
+                    throw new InvalidArgumentException("Value is not a string.");
+                }
+
                 return str_replace(" ", "-", strtolower($value));
             }
         );
 
-        $actual = $filter->filter(
-            $example["value"]
-        );
+        /** @var string */
+        $expected = $example["expected"];
+
+        /** @var string */
+        $value = $example["value"];
 
         $I->assertEquals(
-            $example["expected"],
-            $actual
+            $expected,
+            $filter->filter($value)
         );
     }
 

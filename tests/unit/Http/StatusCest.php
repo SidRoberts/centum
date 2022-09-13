@@ -28,8 +28,8 @@ class StatusCest
     {
         $I->expectThrowable(
             ValueError::class,
-            function () {
-                $status = Status::from(999);
+            function (): void {
+                Status::from(999);
             }
         );
     }
@@ -39,10 +39,16 @@ class StatusCest
      */
     public function testGetString(UnitTester $I, Example $example): void
     {
-        $status = Status::from($example[0]);
+        /** @var int */
+        $code = $example[0];
+
+        /** @var string */
+        $text = $example[1];
+
+        $status = Status::from($code);
 
         $I->assertEquals(
-            $example[1],
+            $text,
             $status->getText()
         );
     }

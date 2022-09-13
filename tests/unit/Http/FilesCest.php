@@ -40,7 +40,7 @@ class FilesCest
 
         $I->expectThrowable(
             OverflowException::class,
-            function () use ($files, $fileGroup) {
+            function () use ($files, $fileGroup): void {
                 $files->add($fileGroup);
             }
         );
@@ -93,7 +93,7 @@ class FilesCest
     {
         $I->expectThrowable(
             OutOfBoundsException::class,
-            function () {
+            function (): void {
                 $files = new Files();
 
                 $files->get("doesnt-exist");

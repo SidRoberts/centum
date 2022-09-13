@@ -17,8 +17,11 @@ class JsonResponseCest
     {
         $response = new JsonResponse($example["variable"]);
 
+        /** @var string */
+        $expected = $example["expected"];
+
         $I->assertEquals(
-            $example["expected"],
+            $expected,
             $response->getContent()
         );
     }
@@ -89,13 +92,15 @@ class JsonResponseCest
 
     public function testCustomStatus(UnitTester $I): void
     {
+        $status = Status::INTERNAL_SERVER_ERROR;
+
         $response = new JsonResponse(
             [],
-            Status::INTERNAL_SERVER_ERROR
+            $status
         );
 
         $I->assertSame(
-            Status::INTERNAL_SERVER_ERROR,
+            $status,
             $response->getStatus()
         );
     }
