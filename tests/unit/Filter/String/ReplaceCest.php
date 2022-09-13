@@ -16,9 +16,14 @@ class ReplaceCest
     {
         $filter = new Replace(
             [
-                "2"   => "two",
-                "Sid" => "시드",
-                " "   => "<SPACE>",
+                "2",
+                "Sid",
+                " ",
+            ],
+            [
+                "two",
+                "시드",
+                "<SPACE>",
             ]
         );
 
@@ -56,9 +61,14 @@ class ReplaceCest
     {
         $filter = new Replace(
             [
-                "i" => "1",
-                "o" => "0",
-                " " => "<SPACE>",
+                "i",
+                "o",
+                " ",
+            ],
+            [
+                "1",
+                "0",
+                "<SPACE>",
             ]
         );
 
