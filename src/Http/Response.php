@@ -77,4 +77,25 @@ class Response
 
         return $this;
     }
+
+
+
+    public function __toString(): string
+    {
+        $output = $this->status->getHeaderString() . "\r\n";
+
+        foreach ($this->headers->all() as $header) {
+            $output .= $header->getHeaderString() . "\r\n";
+        }
+
+        foreach ($this->cookies->all() as $cookie) {
+            $output .= $cookie->getHeaderString() . "\r\n";
+        }
+
+        $output .= "\r\n";
+
+        $output .= $this->content;
+
+        return $output;
+    }
 }
