@@ -2,9 +2,9 @@
 
 namespace Centum\Cron;
 
-use DateTime;
+use DateTimeInterface;
 
 interface JobInterface
 {
-    public function isDue(DateTime $datetime = null): bool;
+    public function isDue(DateTimeInterface $datetime = null): bool;
 }

@@ -2,7 +2,7 @@
 
 namespace Centum\Cron;
 
-use DateTime;
+use DateTimeInterface;
 
 class Cron
 {
@@ -18,12 +18,12 @@ class Cron
         $this->jobs[] = $job;
     }
 
-    public function getDueJobs(DateTime $now = null): array
+    public function getDueJobs(DateTimeInterface $datetime = null): array
     {
         $jobs = array_filter(
             $this->jobs,
-            function (JobInterface $job) use ($now): bool {
-                return $job->isDue($now);
+            function (JobInterface $job) use ($datetime): bool {
+                return $job->isDue($datetime);
             }
         );
 

@@ -3,7 +3,8 @@
 namespace Centum\Cron;
 
 use Cron\CronExpression;
-use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 class Job implements JobInterface
 {
@@ -33,14 +34,14 @@ class Job implements JobInterface
 
 
 
-    public function isDue(DateTime $datetime = null): bool
+    public function isDue(DateTimeInterface $datetime = null): bool
     {
         $cronExpression = new CronExpression(
             $this->getExpression()
         );
 
         if ($datetime === null) {
-            $datetime = new DateTime();
+            $datetime = new DateTimeImmutable();
         }
 
         return $cronExpression->isDue($datetime);

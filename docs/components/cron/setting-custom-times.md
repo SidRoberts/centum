@@ -10,7 +10,7 @@ grand_parent: Components
 # Setting custom times
 
 Running `getDueJobs()` without a parameter assumes the current time.
-By specifying a `DateTime` object, you can see the due jobs at a given point in time:
+By specifying a `DateTimeInterface` object, you can see the due jobs at a given point in time:
 
 ```php
 use DateTime;
