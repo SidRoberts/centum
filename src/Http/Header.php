@@ -52,10 +52,6 @@ class Header
 
     public function __toString(): string
     {
-        return sprintf(
-            "%s: %s\r\n",
-            $this->name,
-            $this->value
-        );
+        return $this->getHeaderString() . "\r\n";
     }
 }
