@@ -4,8 +4,10 @@ namespace Tests\Unit\Forms;
 
 use Centum\Filter\String\ToUpper;
 use Centum\Forms\Field;
+use Centum\Validator\Callback;
 use Centum\Validator\NotEmpty;
 use Centum\Validator\RegularExpression;
+use Exception;
 use Tests\UnitTester;
 
 class FieldCest
@@ -164,6 +166,34 @@ class FieldCest
         $I->assertEquals(
             [],
             $field->getMessages("This is not empty.")
+        );
+    }
+
+    public function testValidatorThrowsException(UnitTester $I): void
+    {
+        $field = new Field("thisIsTheName");
+
+
+
+        $notStringValidator = new Callback(
+            function (mixed $value): array {
+                if (is_string($value)) {
+                    throw new Exception("Value cannot be a string.");
+                }
+
+                return [];
+            }
+        );
+
+        $field->addValidator($notStringValidator);
+
+
+
+        $I->assertEquals(
+            [
+                "Value cannot be a string.",
+            ],
+            $field->getMessages("Just a random string.")
         );
     }
 }

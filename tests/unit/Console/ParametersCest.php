@@ -45,6 +45,62 @@ class ParametersCest
         );
     }
 
+
+
+    public function testGet(UnitTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "filter:double",
+            "--i",
+            "123",
+            "--verbose",
+            "--dry-run",
+        ];
+
+        $parameters = new Parameters($argv);
+
+        $I->assertEquals(
+            "123",
+            $parameters->get("i")
+        );
+
+        $I->assertEquals(
+            true,
+            $parameters->get("verbose")
+        );
+
+        $I->assertEquals(
+            true,
+            $parameters->get("dry-run")
+        );
+    }
+
+
+
+    public function testSet(UnitTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "filter:double",
+            "--i",
+            "123",
+            "--verbose",
+            "--dry-run",
+        ];
+
+        $parameters = new Parameters($argv);
+
+        $parameters->set("i", "456");
+
+        $I->assertEquals(
+            "456",
+            $parameters->get("i")
+        );
+    }
+
+
+
     public function testToArray(UnitTester $I): void
     {
         $argv = [

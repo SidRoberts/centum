@@ -50,6 +50,58 @@ class ContainerCest
         $I->assertEquals("Busan", $a->city);
     }
 
+
+
+    public function testTypehintFunction(UnitTester $I): void
+    {
+        $container = new Container();
+
+        /** @var Incrementer */
+        $incrementer = $container->typehintFunction(
+            function (Incrementer $incrementer) {
+                return $incrementer;
+            }
+        );
+
+        $I->assertInstanceOf(
+            Incrementer::class,
+            $incrementer
+        );
+    }
+
+
+
+    public function testSetDynamic(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $container->setDynamic(
+            Incrementer::class,
+            function (): Incrementer {
+                $incrementer = new Incrementer();
+
+                $incrementer->increment();
+                $incrementer->increment();
+
+                return $incrementer;
+            }
+        );
+
+        $incrementer = $container->typehintClass(Incrementer::class);
+
+        $I->assertInstanceOf(
+            Incrementer::class,
+            $incrementer
+        );
+
+        $I->assertEquals(
+            2,
+            $incrementer->getI()
+        );
+    }
+
+
+
     public function testIncrementer(UnitTester $I): void
     {
         $container = new Container();

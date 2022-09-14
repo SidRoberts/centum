@@ -93,4 +93,18 @@ class CommandSlugCest
             [123],
         ];
     }
+
+
+
+    public function testEmptyValue(UnitTester $I): void
+    {
+        $validator = new CommandSlug();
+
+        $violations = $validator->validate("");
+
+        $I->assertCount(
+            0,
+            $violations
+        );
+    }
 }

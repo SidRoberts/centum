@@ -4,11 +4,15 @@ namespace Tests\Unit\Codeception;
 
 use Centum\Codeception\Connector;
 use Centum\Codeception\Module;
+use Centum\Console\Application;
 use Centum\Container\Container;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
 use Mockery;
+use Tests\Commands\BoringCommand;
+use Tests\Commands\FilterCommand;
+use Tests\Container\Incrementer;
 use Tests\UnitTester;
 
 class ModuleCest
@@ -50,6 +54,33 @@ class ModuleCest
             function () use ($module): void {
                 $module->getContainer();
             }
+        );
+    }
+
+
+
+    public function testAddToContainer(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/_data/container.php",
+            ]
+        );
+
+        $module->_beforeSuite();
+
+        $incrementer = new Incrementer();
+
+        $module->addToContainer(Incrementer::class, $incrementer);
+
+        $container = $module->getContainer();
+
+        $I->assertSame(
+            $incrementer,
+            $container->typehintClass(Incrementer::class)
         );
     }
 
@@ -160,6 +191,99 @@ class ModuleCest
         $I->assertEquals(
             "Hello.Goodbye.",
             $I->getStderrContent()
+        );
+    }
+
+
+
+    public function testGetConsoleApplication(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/_data/container.php",
+            ]
+        );
+
+        $module->_beforeSuite();
+
+        $container = $module->getContainer();
+
+        $application = new Application($container);
+
+        $module->addToContainer(Application::class, $application);
+
+        $I->assertSame(
+            $application,
+            $module->getConsoleApplication()
+        );
+    }
+
+
+
+    public function testAddCommand(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/_data/container.php",
+            ]
+        );
+
+        $module->_beforeSuite();
+
+        $command = new BoringCommand();
+
+        $module->addCommand($command);
+
+        $application = $module->getConsoleApplication();
+
+        $I->assertSame(
+            $command,
+            $application->getCommand("boring")
+        );
+    }
+
+
+
+    public function testRunCommand(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/_data/container.php",
+            ]
+        );
+
+        $module->_beforeSuite();
+
+        $command = new FilterCommand();
+
+        $module->addCommand($command);
+
+        $exitCode = $module->runCommand(
+            [
+                "cli.php",
+                "filter:double",
+                "--i",
+                "123"
+            ]
+        );
+
+        $I->assertEquals(
+            0,
+            $exitCode
+        );
+
+        $I->assertSame(
+            "246",
+            $module->getStdoutContent()
         );
     }
 
