@@ -7,6 +7,7 @@ use Centum\Forms\Field;
 use Centum\Validator\Callback;
 use Centum\Validator\NotEmpty;
 use Centum\Validator\RegularExpression;
+use Codeception\Example;
 use Exception;
 use Tests\UnitTester;
 
@@ -114,7 +115,10 @@ class FieldCest
         );
     }
 
-    public function testValidator(UnitTester $I): void
+
+
+    /** @dataProvider providerValidator */
+    public function testValidator(UnitTester $I, Example $example): void
     {
         $field = new Field("thisIsTheName");
 
@@ -135,39 +139,52 @@ class FieldCest
 
 
 
-        $I->assertTrue(
-            $field->isValid("This is not empty.")
-        );
+        /** @var string */
+        $value = $example["value"];
+
+        /** @var bool */
+        $isValid = $example["isValid"];
 
         $I->assertEquals(
-            [],
-            $field->getMessages("This is not empty.")
+            $isValid,
+            $field->isValid($value)
         );
 
-
-
-        $I->assertFalse(
-            $field->isValid("")
-        );
+        /** @var array */
+        $messages = $example["messages"];
 
         $I->assertEquals(
-            [
-                "Value is required and can't be empty.",
-            ],
-            $field->getMessages("")
-        );
-
-
-
-        $I->assertTrue(
-            $field->isValid("This is not empty.")
-        );
-
-        $I->assertEquals(
-            [],
-            $field->getMessages("This is not empty.")
+            $messages,
+            $field->getMessages($value)
         );
     }
+
+    protected function providerValidator(): array
+    {
+        return [
+            [
+                "value"    => "This is not empty.",
+                "isValid"  => true,
+                "messages" => [],
+            ],
+
+            [
+                "value"    => "",
+                "isValid"  => false,
+                "messages" => [
+                    "Value is required and can't be empty."
+                ],
+            ],
+
+            [
+                "value"    => "This is not empty.",
+                "isValid"  => true,
+                "messages" => [],
+            ],
+        ];
+    }
+
+
 
     public function testValidatorThrowsException(UnitTester $I): void
     {

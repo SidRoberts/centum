@@ -3,6 +3,7 @@
 namespace Tests\Unit\Router;
 
 use Centum\Router\Parameters;
+use Codeception\Example;
 use Tests\UnitTester;
 
 class ParametersCest
@@ -49,37 +50,63 @@ class ParametersCest
         );
     }
 
-    public function testHas(UnitTester $I): void
+
+
+    /** @dataProvider providerHas */
+    public function testHas(UnitTester $I, Example $example): void
     {
         $parameters = new Parameters(
             [
-                "a" => "hello",
+                "a" => "",
                 "b" => false,
                 "c" => 0,
                 "d" => null,
             ]
         );
 
-        $I->assertTrue(
-            $parameters->has("a")
-        );
+        /** @var bool */
+        $expected = $example["expected"];
 
-        $I->assertTrue(
-            $parameters->has("b")
-        );
+        /** @var string */
+        $key = $example["key"];
 
-        $I->assertTrue(
-            $parameters->has("c")
-        );
-
-        $I->assertTrue(
-            $parameters->has("d")
-        );
-
-        $I->assertFalse(
-            $parameters->has("e")
+        $I->assertEquals(
+            $expected,
+            $parameters->has($key)
         );
     }
+
+    protected function providerHas(): array
+    {
+        return [
+            [
+                "key"      => "a",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "b",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "c",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "d",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "e",
+                "expected" => false,
+            ],
+        ];
+    }
+
+
 
     public function testToArray(UnitTester $I): void
     {

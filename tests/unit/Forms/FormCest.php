@@ -5,6 +5,7 @@ namespace Tests\Unit\Forms;
 use Centum\Forms\Field;
 use Centum\Forms\Form;
 use Centum\Validator\NotEmpty;
+use Codeception\Example;
 use Tests\UnitTester;
 
 class FormCest
@@ -27,94 +28,82 @@ class FormCest
         );
     }
 
-    public function testActualForm(UnitTester $I): void
+
+
+    /** @dataProvider providerActualForm */
+    public function testActualForm(UnitTester $I, Example $example): void
     {
-        $form = new Form();
-
         $field = new Field("exampleField");
-
-
 
         $notEmptyValidator = new NotEmpty();
 
         $field->addValidator($notEmptyValidator);
 
 
+        $form = new Form();
 
         $form->add($field);
 
 
 
-        $status = $form->validate(
-            [
-                "exampleField" => "This is not empty.",
-            ]
-        );
+        /** @var array */
+        $data = $example["data"];
 
-        $I->assertTrue(
+        $status = $form->validate($data);
+
+
+
+        /** @var bool */
+        $isValid = $example["isValid"];
+
+        $I->assertEquals(
+            $isValid,
             $status->isValid()
         );
 
+
+
+        /** @var array */
+        $messages = $example["messages"];
+
         $I->assertEquals(
-            [],
+            $messages,
             $status->getMessages()
         );
+    }
 
-
-
-        $status = $form->validate(
-            []
-        );
-
-        $I->assertFalse(
-            $status->isValid()
-        );
-
-        $I->assertEquals(
+    protected function providerActualForm(): array
+    {
+        return [
             [
-                "exampleField" => [
-                    "Value is required and can't be empty.",
+                "data"     => [],
+                "isValid"  => false,
+                "messages" => [
+                    "exampleField" => [
+                        "Value is required and can't be empty.",
+                    ],
                 ],
             ],
-            $status->getMessages()
-        );
 
-
-
-        $status = $form->validate(
             [
-                "exampleField" => "",
-            ]
-        );
-
-        $I->assertFalse(
-            $status->isValid()
-        );
-
-        $I->assertEquals(
-            [
-                "exampleField" => [
-                    "Value is required and can't be empty.",
+                "data" => [
+                    "exampleField" => "",
+                ],
+                "isValid"  => false,
+                "messages" => [
+                    "exampleField" => [
+                        "Value is required and can't be empty.",
+                    ],
                 ],
             ],
-            $status->getMessages()
-        );
 
-
-
-        $status = $form->validate(
             [
-                "exampleField" => "This is not empty.",
-            ]
-        );
-
-        $I->assertTrue(
-            $status->isValid()
-        );
-
-        $I->assertEquals(
-            [],
-            $status->getMessages()
-        );
+                "data" => [
+                    "exampleField" => "This is not empty.",
+                ],
+                "isValid"  => true,
+                "messages" => [],
+            ],
+        ];
     }
 }

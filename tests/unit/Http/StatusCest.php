@@ -34,6 +34,8 @@ class StatusCest
         );
     }
 
+
+
     /**
      * @dataProvider providerStatusTexts
      */
@@ -120,27 +122,67 @@ class StatusCest
         ];
     }
 
-    public function testIsRedirect(UnitTester $I): void
-    {
-        $I->assertFalse(
-            Status::OK->isRedirect()
-        );
 
-        $I->assertTrue(
-            Status::FOUND->isRedirect()
+
+    /** @dataProvider providerIsRedirect */
+    public function testIsRedirect(UnitTester $I, Example $example): void
+    {
+        /** @var bool */
+        $isRedirect = $example["isRedirect"];
+
+        /** @var Status */
+        $status = $example["status"];
+
+        $I->assertEquals(
+            $isRedirect,
+            $status->isRedirect()
         );
     }
 
-    public function testGetHeaderString(UnitTester $I): void
+    protected function providerIsRedirect(): array
     {
-        $I->assertEquals(
-            "HTTP/1.0 200 OK",
-            Status::OK->getHeaderString()
-        );
+        return [
+            [
+                "status"     => Status::OK,
+                "isRedirect" => false,
+            ],
+
+            [
+                "status"     => Status::FOUND,
+                "isRedirect" => true,
+            ],
+        ];
+    }
+
+
+
+    /** @dataProvider providerGetHeaderString */
+    public function testGetHeaderString(UnitTester $I, Example $example): void
+    {
+        /** @var string */
+        $headerString = $example["headerString"];
+
+        /** @var Status */
+        $status = $example["status"];
 
         $I->assertEquals(
-            "HTTP/1.0 404 Not Found",
-            Status::NOT_FOUND->getHeaderString()
+            $headerString,
+            $status->getHeaderString()
         );
+    }
+
+    protected function providerGetHeaderString(): array
+    {
+        return [
+            [
+                "status"       => Status::OK,
+                "headerString" => "HTTP/1.0 200 OK",
+            ],
+
+            [
+                "status"       => Status::NOT_FOUND,
+                "headerString" => "HTTP/1.0 404 Not Found",
+            ],
+        ];
     }
 }

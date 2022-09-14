@@ -3,11 +3,13 @@
 namespace Tests\Unit\Console;
 
 use Centum\Console\Parameters;
+use Codeception\Example;
 use Tests\UnitTester;
 
 class ParametersCest
 {
-    public function testHas(UnitTester $I): void
+    /** @dataProvider providerHas */
+    public function testHas(UnitTester $I, Example $example): void
     {
         $argv = [
             "cli.php",
@@ -20,34 +22,57 @@ class ParametersCest
 
         $parameters = new Parameters($argv);
 
-        $I->assertFalse(
-            $parameters->has("cli.php")
-        );
+        /** @var bool */
+        $expected = $example["expected"];
 
-        $I->assertFalse(
-            $parameters->has("filter:double")
-        );
+        /** @var string */
+        $key = $example["key"];
 
-        $I->assertTrue(
-            $parameters->has("i")
+        $I->assertEquals(
+            $expected,
+            $parameters->has($key)
         );
+    }
 
-        $I->assertFalse(
-            $parameters->has("123")
-        );
+    protected function providerHas(): array
+    {
+        return [
+            [
+                "expected" => false,
+                "key"      => "cli.php",
+            ],
 
-        $I->assertTrue(
-            $parameters->has("verbose")
-        );
+            [
+                "expected" => false,
+                "key"      => "filter:double",
+            ],
 
-        $I->assertTrue(
-            $parameters->has("dry-run")
-        );
+            [
+                "expected" => true,
+                "key"      => "i",
+            ],
+
+            [
+                "expected" => false,
+                "key"      => "123",
+            ],
+
+            [
+                "expected" => true,
+                "key"      => "verbose",
+            ],
+
+            [
+                "expected" => true,
+                "key"      => "dry-run",
+            ],
+        ];
     }
 
 
 
-    public function testGet(UnitTester $I): void
+    /** @dataProvider providerGet */
+    public function testGet(UnitTester $I, Example $example): void
     {
         $argv = [
             "cli.php",
@@ -60,20 +85,36 @@ class ParametersCest
 
         $parameters = new Parameters($argv);
 
-        $I->assertEquals(
-            "123",
-            $parameters->get("i")
-        );
+        /** @var bool */
+        $expected = $example["expected"];
+
+        /** @var string */
+        $key = $example["key"];
 
         $I->assertEquals(
-            true,
-            $parameters->get("verbose")
+            $expected,
+            $parameters->get($key)
         );
+    }
 
-        $I->assertEquals(
-            true,
-            $parameters->get("dry-run")
-        );
+    protected function providerGet(): array
+    {
+        return [
+            [
+                "key"      => "i",
+                "expected" => "123",
+            ],
+
+            [
+                "key"      => "verbose",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "dry-run",
+                "expected" => true,
+            ],
+        ];
     }
 
 

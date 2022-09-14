@@ -48,7 +48,8 @@ class FilesCest
 
 
 
-    public function testHas(UnitTester $I): void
+    /** @dataProvider providerHas */
+    public function testHas(UnitTester $I, Example $example): void
     {
         $files = new Files();
 
@@ -58,17 +59,36 @@ class FilesCest
         $files->add($fileGroupA);
         $files->add($fileGroupB);
 
-        $I->assertTrue(
-            $files->has("a")
-        );
+        /** @var bool */
+        $expected = $example["expected"];
 
-        $I->assertTrue(
-            $files->has("b")
-        );
+        /** @var string */
+        $key = $example["key"];
 
-        $I->assertFalse(
-            $files->has("c")
+        $I->assertEquals(
+            $expected,
+            $files->has($key)
         );
+    }
+
+    protected function providerHas(): array
+    {
+        return [
+            [
+                "key"      => "a",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "b",
+                "expected" => true,
+            ],
+
+            [
+                "key"      => "c",
+                "expected" => false,
+            ],
+        ];
     }
 
 

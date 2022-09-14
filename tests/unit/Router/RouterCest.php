@@ -99,6 +99,8 @@ class RouterCest
         );
     }
 
+
+
     /**
      * @dataProvider providerMiddlewares
      */
@@ -123,6 +125,7 @@ class RouterCest
         );
 
         $falseGroup->get("/middleware/false", MiddlewareController::class, "index");
+
 
 
         /** @var string */
@@ -163,6 +166,8 @@ class RouterCest
             ],
         ];
     }
+
+
 
     /**
      * @dataProvider providerRequirements
@@ -218,6 +223,8 @@ class RouterCest
             ],
         ];
     }
+
+
 
     /**
      * @dataProvider providerHttpMethods
@@ -298,6 +305,8 @@ class RouterCest
         ];
     }
 
+
+
     public function testRouteNotFoundException(UnitTester $I): void
     {
         $container = new Container();
@@ -317,7 +326,10 @@ class RouterCest
         );
     }
 
-    public function testCrud(UnitTester $I): void
+
+
+    /** @dataProvider providerCrud */
+    public function testCrud(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -331,86 +343,84 @@ class RouterCest
 
 
 
-        $request  = new Request("/posts", "GET");
+        /** @var string */
+        $uri = $example["uri"];
+
+        /** @var string */
+        $method = $example["method"];
+
+        $request = new Request($uri, $method);
+
+
+
+        /** @var string */
+        $content = $example["content"];
+
         $response = $router->handle($request);
 
         $I->assertEquals(
-            "index",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts/create", "GET");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "create",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts", "POST");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "store",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts/123", "GET");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "show",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts/123/edit", "GET");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "edit",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts/123", "PUT");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "update",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts/123", "PATCH");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "update",
-            $response->getContent()
-        );
-
-
-
-        $request  = new Request("/posts/123", "DELETE");
-        $response = $router->handle($request);
-
-        $I->assertEquals(
-            "destroy",
+            $content,
             $response->getContent()
         );
     }
 
-    public function testSubmission(UnitTester $I): void
+    protected function providerCrud(): array
+    {
+        return [
+            [
+                "uri"     => "/posts",
+                "method"  => "GET",
+                "content" => "index",
+            ],
+
+            [
+                "uri"     => "/posts/create",
+                "method"  => "GET",
+                "content" => "create",
+            ],
+
+            [
+                "uri"     => "/posts",
+                "method"  => "POST",
+                "content" => "store",
+            ],
+
+            [
+                "uri"     => "/posts/123",
+                "method"  => "GET",
+                "content" => "show",
+            ],
+
+            [
+                "uri"     => "/posts/123/edit",
+                "method"  => "GET",
+                "content" => "edit",
+            ],
+
+            [
+                "uri"     => "/posts/123",
+                "method"  => "PUT",
+                "content" => "update",
+            ],
+
+            [
+                "uri"     => "/posts/123",
+                "method"  => "PATCH",
+                "content" => "update",
+            ],
+
+            [
+                "uri"     => "/posts/123",
+                "method"  => "DELETE",
+                "content" => "destroy",
+            ],
+        ];
+    }
+
+
+
+    /** @dataProvider providerSubmission */
+    public function testSubmission(UnitTester $I, Example $example): void
     {
         $container = new Container();
 
@@ -424,26 +434,43 @@ class RouterCest
 
 
 
-        $getRequest = new Request("/login", "GET");
+        /** @var string */
+        $uri = $example["uri"];
 
-        $getResponse = $router->handle($getRequest);
+        /** @var string */
+        $method = $example["method"];
 
-        $I->assertEquals(
-            "login form",
-            $getResponse->getContent()
-        );
+        $request = new Request($uri, $method);
 
+        $response = $router->handle($request);
 
-
-        $postRequest = new Request("/login", "POST");
-
-        $postResponse = $router->handle($postRequest);
+        /** @var string */
+        $content = $example["content"];
 
         $I->assertEquals(
-            "login successful",
-            $postResponse->getContent()
+            $content,
+            $response->getContent()
         );
     }
+
+    protected function providerSubmission(): array
+    {
+        return [
+            [
+                "uri"     => "/login",
+                "method"  => "GET",
+                "content" => "login form",
+            ],
+
+            [
+                "uri"     => "/login",
+                "method"  => "POST",
+                "content" => "login successful",
+            ],
+        ];
+    }
+
+
 
     public function testExceptionHandlers(UnitTester $I): void
     {
