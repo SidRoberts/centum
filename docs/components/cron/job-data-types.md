@@ -3,6 +3,7 @@ layout: default
 title: Job data types
 parent: Cron
 grand_parent: Components
+nav_order: 1
 ---
 
 
@@ -53,5 +54,26 @@ foreach ($dueJobs as $job) {
     $data = $job->getData();
 
     call_user_func($data);
+}
+```
+
+To enforce a particular type, you can extend `Centum\Cron\Job`.
+For example, you can use this class to enforce that all jobs use a [`Centum\Queue\Task` object](../queue/index.md):
+
+```php
+use Centum\Cron\Job;
+use Centum\Queue\Task;
+
+class TaskJob extends Job
+{
+    public function __construct(string $expression, Task $data)
+    {
+        parent::__construct($expression, $data);
+    }
+
+    public function getData(): Task
+    {
+        return $this->data;
+    }
 }
 ```

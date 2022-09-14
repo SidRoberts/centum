@@ -12,10 +12,10 @@ permalink: cron
 
 This component is designed for development workflows that would benefit from having scheduled tasks defined in PHP or at least in the same codebase as the rest of the code.
 
-Cron Jobs are handled by [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Cron.php) and it determines which jobs are due at any given time.
+Cron Jobs are represented by [`Centum\Cron\Job`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Job.php).
+Jobs take two parameters, the Cron expression and the job data which can take any form:
 
 ```php
-use Centum\Cron\Cron;
 use Centum\Cron\Job;
 
 $job1 = new Job(
@@ -32,14 +32,24 @@ $job2 = new Job(
     "echo 'hello world'"
 );
 
+$job3 = new Job(
+    "0 9 * * 1-5",
+    function (): void {
+        // Do something...
+    }
+);
+```
 
+Cron Jobs can be added to a [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Cron.php) object that determines which jobs are due at any given time.
+
+```php
+use Centum\Cron\Cron;
 
 $cron = new Cron();
 
 $cron->add($job1);
 $cron->add($job2);
-
-
+$cron->add($job3);
 
 $dueJobs = $cron->getDueJobs();
 

@@ -17,7 +17,5 @@ use DateTime;
 
 $midnight = new DateTime("2019-03-21 00:00:00");
 
-$jobsDueAtMidnight = $cron->getDueJobs(
-    $midnight
-);
+$jobsDueAtMidnight = $cron->getDueJobs($midnight);
 ```
