@@ -334,7 +334,7 @@ class ApplicationCest
 
 
         $I->assertStdoutEquals(
-            "Something went wrong."
+            "Something went wrong. Exception was thrown with the message \"I'm being difficult.\"."
         );
 
         $I->assertEquals(

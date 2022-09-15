@@ -128,6 +128,10 @@ class Application
                  * @psalm-suppress DocblockTypeContradiction
                  */
                 if (is_a($exception, $exceptionClass)) {
+                    $this->container->set(get_class($exception), $exception);
+                    $this->container->set($exceptionClass, $exception);
+                    $this->container->set(Throwable::class, $exception);
+
                     return $command->execute($terminal, $this->container, $parameters);
                 }
             }
