@@ -3,6 +3,7 @@ layout: default
 title: Exception Handlers
 parent: Console
 grand_parent: Components
+permalink: console/exception-handlers
 ---
 
 

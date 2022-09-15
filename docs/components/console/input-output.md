@@ -3,6 +3,7 @@ layout: default
 title: Input / Output
 parent: Console
 grand_parent: Components
+permalink: console/input-output
 nav_order: 2
 ---
 

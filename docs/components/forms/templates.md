@@ -3,6 +3,7 @@ layout: default
 title: Templates
 parent: Forms
 grand_parent: Components
+permalink: forms/templates
 ---
 
 

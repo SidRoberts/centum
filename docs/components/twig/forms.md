@@ -3,6 +3,7 @@ layout: default
 title: Forms
 parent: Twig
 grand_parent: Components
+permalink: twig/forms
 ---
 
 

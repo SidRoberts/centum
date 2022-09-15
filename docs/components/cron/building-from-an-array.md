@@ -3,6 +3,7 @@ layout: default
 title: Building from an array
 parent: Cron
 grand_parent: Components
+permalink: cron/building-from-an-array
 ---
 
 

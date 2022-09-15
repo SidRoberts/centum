@@ -3,6 +3,7 @@ layout: default
 title: Middlewares
 parent: Console
 grand_parent: Components
+permalink: console/middlewares
 ---
 
 

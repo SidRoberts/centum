@@ -3,6 +3,7 @@ layout: default
 title: Formatters
 parent: Flash
 grand_parent: Components
+permalink: flash/formatters
 ---
 
 

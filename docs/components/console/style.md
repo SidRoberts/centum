@@ -3,6 +3,7 @@ layout: default
 title: Style
 parent: Console
 grand_parent: Components
+permalink: console/style
 ---
 
 

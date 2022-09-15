@@ -3,6 +3,7 @@ layout: default
 title: Requests
 parent: Http
 grand_parent: Components
+permalink: http/requests
 nav_order: 1
 ---
 

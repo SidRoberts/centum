@@ -3,6 +3,7 @@ layout: default
 title: Exception Handlers
 parent: Router
 grand_parent: Components
+permalink: router/exception-handlers
 ---
 
 

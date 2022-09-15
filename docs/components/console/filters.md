@@ -3,6 +3,7 @@ layout: default
 title: Filters
 parent: Console
 grand_parent: Components
+permalink: console/filters
 ---
 
 

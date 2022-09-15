@@ -3,6 +3,7 @@ layout: default
 title: Filters
 parent: Router
 grand_parent: Components
+permalink: router/filters
 ---
 
 

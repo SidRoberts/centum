@@ -3,6 +3,7 @@ layout: default
 title: Files
 parent: Http
 grand_parent: Components
+permalink: http/files
 ---
 
 

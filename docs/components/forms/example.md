@@ -3,6 +3,7 @@ layout: default
 title: Example
 parent: Forms
 grand_parent: Components
+permalink: forms/example
 ---
 
 

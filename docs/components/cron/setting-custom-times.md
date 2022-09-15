@@ -3,6 +3,7 @@ layout: default
 title: Setting custom times
 parent: Cron
 grand_parent: Components
+permalink: cron/setting-custom-times
 ---
 
 

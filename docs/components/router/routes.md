@@ -3,6 +3,7 @@ layout: default
 title: Routes
 parent: Router
 grand_parent: Components
+permalink: router/routes
 nav_order: 1
 ---
 

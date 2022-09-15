@@ -3,6 +3,7 @@ layout: default
 title: Custom Validators
 parent: Validator
 grand_parent: Components
+permalink: validator/custom-validators
 ---
 
 

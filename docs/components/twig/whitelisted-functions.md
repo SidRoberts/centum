@@ -3,6 +3,7 @@ layout: default
 title: Whitelisted Functions
 parent: Twig
 grand_parent: Components
+permalink: twig/whitelisted-functions
 ---
 
 

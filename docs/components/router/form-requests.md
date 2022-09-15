@@ -3,6 +3,7 @@ layout: default
 title: Form Requests
 parent: Router
 grand_parent: Components
+permalink: router/form-requests
 ---
 
 

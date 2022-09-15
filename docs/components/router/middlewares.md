@@ -3,6 +3,7 @@ layout: default
 title: Middlewares
 parent: Router
 grand_parent: Components
+permalink: router/middlewares
 nav_order: 2
 ---
 

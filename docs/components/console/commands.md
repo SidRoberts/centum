@@ -3,6 +3,7 @@ layout: default
 title: Commands
 parent: Console
 grand_parent: Components
+permalink: console/commands
 nav_order: 1
 ---
 
