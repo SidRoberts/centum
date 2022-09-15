@@ -35,6 +35,8 @@ $terminal->getArgv();
 
 ### Writing to the Terminal
 
+(to `STDOUT`)
+
 ```php
 $terminal->write("hello");
 ```
@@ -44,6 +46,8 @@ $terminal->writeLine("hello");
 ```
 
 ### Error messages
+
+(to `STDERR`)
 
 ```php
 $terminal->writeError("hello");

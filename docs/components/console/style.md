@@ -10,7 +10,7 @@ grand_parent: Components
 # Style
 
 Writing plain text to the terminal can be pretty boring.
-The Style class allows you to jazz up your terminal output with various text decorations.
+[`Centum\Console\Terminal\Style`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal/Style.php) allows you to jazz up your terminal output with various text decorations.
 
 ```php
 use Centum\Console\Terminal;
