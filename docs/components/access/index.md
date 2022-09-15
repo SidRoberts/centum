@@ -69,9 +69,9 @@ use Exception;
 
 $userType = "moderator";
 
-if ($access->isAllowed($userType, "delete-a-user")) {
-    $user->delete();
-} else {
+if (!$access->isAllowed($userType, "delete-a-user")) {
     throw new Exception("Access denied.");
 }
+
+$user->delete();
 ```

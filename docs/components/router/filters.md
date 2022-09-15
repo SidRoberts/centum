@@ -25,14 +25,10 @@ class IdToPostFilter implements FilterInterface
 {
     protected Container $container;
 
-
-
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
-
-
 
     public function filter(mixed $value): Post
     {
