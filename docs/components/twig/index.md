@@ -14,6 +14,7 @@ permalink: twig
 
 ## Available Extensions
 
+- [`Centum\Twig\CsrfExtension`](https://github.com/SidRoberts/centum/tree/development/src/Twig/CsrfExtension.php)
 - [`Centum\Twig\FlashExtension`](https://github.com/SidRoberts/centum/tree/development/src/Twig/FlashExtension.php)
 - [`Centum\Twig\FormExtension`](https://github.com/SidRoberts/centum/tree/development/src/Twig/FormExtension.php)
 - [`Centum\Twig\UrlExtension`](https://github.com/SidRoberts/centum/tree/development/src/Twig/UrlExtension.php)
