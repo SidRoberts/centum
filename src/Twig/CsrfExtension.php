@@ -29,6 +29,14 @@ class CsrfExtension extends AbstractExtension
                     "is_safe" => ["html"],
                 ]
             ),
+            new TwigFunction(
+                "csrfValue",
+                [$this->csrf, "get"],
+                [
+                    //TODO
+                    "is_safe" => ["html"],
+                ]
+            ),
         ];
     }
 

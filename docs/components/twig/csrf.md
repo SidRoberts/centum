@@ -45,3 +45,18 @@ Then within your Twig files, you can call the `csrf()` function within a form wh
     <!-- rest of the form -->
 </form>
 ```
+
+This extension also provides the `csrfValue()` function that returns the raw CSRF value which is useful when dealing with AJAX form submissions:
+
+```js
+$.post(
+    {
+        url: "/update-password",
+        data: {
+            "newPassword":        $("#newPassword").val(),
+            "newPasswordConfirm": $("#newPasswordConfirm").val(),
+            "csrf":               "{% raw %}{{ csrfValue() }}{% endraw %}"
+        }
+    }
+);
+```

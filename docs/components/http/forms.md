@@ -68,6 +68,21 @@ If you're using Twig, you can use the [Centum CSRF Twig extension](../twig/csrf.
 </form>
 ```
 
+The CSRF Twig extension also provides the `csrfValue()` function that returns the raw CSRF value which is useful when dealing with AJAX form submissions:
+
+```js
+$.post(
+    {
+        url: "/update-password",
+        data: {
+            "newPassword":        $("#newPassword").val(),
+            "newPasswordConfirm": $("#newPasswordConfirm").val(),
+            "csrf":               "{% raw %}{{ csrfValue() }}{% endraw %}"
+        }
+    }
+);
+```
+
 Regardless of how the CSRF token is placed, `validateCsrf()` must be called somewhere in your Form's `set()` method in order for Centum to validate it:
 
 ```php
