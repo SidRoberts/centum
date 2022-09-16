@@ -43,7 +43,7 @@ Will list all registered Commands:
 php cli.php list
 ```
 
-### [`Centum\Console\Command\QueueConsumeCommand`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command/QueueConsumeCommand.php) classes are added in the Application constructor.
+### [`Centum\Console\Command\QueueConsumeCommand`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command/QueueConsumeCommand.php)
 
 Will take the next available Task from the Queue and consume it ([see Queue docs](../queue/index.md)):
 

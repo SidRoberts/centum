@@ -43,7 +43,7 @@ Take note that exception handlers are processed in the order that they are added
 use App\Commands\ErrorCommand;
 use Throwable;
 
-$router->addExceptionHandler(
+$application->addExceptionHandler(
     Throwable::class,
     new ErrorCommand()
 );

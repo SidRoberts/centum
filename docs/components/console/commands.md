@@ -61,11 +61,11 @@ use App\Commands\IndexCommand;
 use Centum\Console\Application;
 use Centum\Container\Container;
 
-$console = new Container();
+$container = new Container();
 
-$console = new Application($container);
+$application = new Application($container);
 
-$console->addCommand(new IndexCommand());
+$application->addCommand(new IndexCommand());
 ```
 
 The Application will be able to determine Command's name from the Command's `getName()` method.
