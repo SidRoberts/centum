@@ -1,0 +1,31 @@
+@media (min-width: 50rem) {
+    .side-bar {
+        width: 25% !important;
+    }
+
+    .site-nav, .site-header, .site-footer {
+        width: 100% !important;
+    }
+
+    .search-input-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .search-results {
+        width: 100% !important;
+    }
+
+    .search-result-title {
+        width: 25% !important;
+    }
+
+    .search-result-previews {
+        width: 75% !important;
+    }
+
+    .main {
+        margin-left: 25% !important;
+        max-width: 100% !important;
+    }
+}
