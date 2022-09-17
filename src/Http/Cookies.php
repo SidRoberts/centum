@@ -2,6 +2,8 @@
 
 namespace Centum\Http;
 
+use OutOfRangeException;
+
 class Cookies
 {
     /**
@@ -28,6 +30,18 @@ class Cookies
         $name = $cookie->getName();
 
         $this->cookies[$name] = $cookie;
+    }
+
+
+
+    public function get(string $name): Cookie
+    {
+        return $this->cookies[$name] ?? throw new OutOfRangeException();
+    }
+
+    public function has(string $name): bool
+    {
+        return isset($this->cookies[$name]);
     }
 
 

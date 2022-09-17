@@ -2,6 +2,8 @@
 
 namespace Centum\Http;
 
+use OutOfRangeException;
+
 class Headers
 {
     /**
@@ -28,6 +30,18 @@ class Headers
         $name = $header->getName();
 
         $this->headers[$name] = $header;
+    }
+
+
+
+    public function get(string $name): Header
+    {
+        return $this->headers[$name] ?? throw new OutOfRangeException();
+    }
+
+    public function has(string $name): bool
+    {
+        return isset($this->headers[$name]);
     }
 
 
