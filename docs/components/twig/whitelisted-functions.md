@@ -13,11 +13,8 @@ permalink: twig/whitelisted-functions
 ```php
 use Centum\Twig\WhitelistedFunctionsExtension;
 use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
-$loader = new FilesystemLoader("resources/twig/");
-
-$twig = new Environment($loader);
+/** @var Environment $twig */
 
 $twig->addExtension(
     new WhitelistedFunctionsExtension(

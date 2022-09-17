@@ -16,10 +16,7 @@ Whenever an object is created in the Container, it is saved and reused again whe
 Classes can be created using the `typehintClass()` method:
 
 ```php
-use Centum\Container\Container;
 use Centum\Router\Router;
-
-$container = new Container();
 
 $router = $container->typehintClass(Router::class);
 ```
@@ -27,10 +24,6 @@ $router = $container->typehintClass(Router::class);
 Methods can be called using the `typehintMethod()` method:
 
 ```php
-use Centum\Container\Container;
-
-$container = new Container();
-
 $response = $container->typehintMethod($postController, "index");
 ```
 
@@ -46,8 +39,6 @@ function my_special_function(Container $container, Request $request, Response $r
     /* ... */
 }
 
-$container = new Container();
-
 $result = $container->typehintFunction("my_special_function");
 ```
 
@@ -61,10 +52,7 @@ Objects can be set using the `set()` method:
 
 ```php
 use Centum\Console\Application;
-use Centum\Container\Container;
 use Centum\Router\Router;
-
-$container = new Container();
 
 $container->set(Application::class, $application);
 $container->set(Router::class, $router);

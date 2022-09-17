@@ -59,13 +59,12 @@ Commands can be added to the Application, using the `addCommand()` method:
 ```php
 use App\Commands\IndexCommand;
 use Centum\Console\Application;
-use Centum\Container\Container;
 
-$container = new Container();
+/** @var Application $application */
 
-$application = new Application($container);
-
-$application->addCommand(new IndexCommand());
+$application->addCommand(
+    new IndexCommand()
+);
 ```
 
 The Application will be able to determine Command's name from the Command's `getName()` method.

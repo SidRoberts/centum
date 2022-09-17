@@ -21,15 +21,12 @@ use Centum\Http\Csrf;
 use Centum\Http\Session;
 use Centum\Twig\CsrfExtension;
 use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 /** @var Session $session */
 
 $csrf = new Csrf($session);
 
-$loader = new FilesystemLoader("resources/twig/");
-
-$twig = new Environment($loader);
+/** @var Environment $twig */
 
 $twig->addExtension(
     new CsrfExtension($csrf)

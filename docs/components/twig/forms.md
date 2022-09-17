@@ -13,11 +13,8 @@ permalink: twig/forms
 ```php
 use Centum\Twig\FormExtension;
 use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
-$loader = new FilesystemLoader("views/");
-
-$twig = new Environment($loader);
+/** @var Environment $twig */
 
 $twig->addExtension(
     new FormExtension()
