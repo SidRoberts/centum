@@ -90,7 +90,12 @@ class LoginForm extends Form
 
 All of the setting logic can be kept within the `set()` method but can also be split up into multiple methods, as shown above.
 
-The Request object is available at `$this->request`, Request data at `$this->data` and the Request Files at `$this->files`.
+The following properties exist on a Form:
+
+- `$this->request` (`Centum\Http\Request`)
+- `$this->data` (`Centum\Http\Data`)
+- `$this->files` (`Centum\Http\Files`)
+- `$this->csrf` (`Centum\Http\Csrf`)
 
 Now we can create a Route:
 
