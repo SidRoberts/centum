@@ -8,6 +8,8 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
 use Centum\Http\Status;
+use Mockery;
+use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
 class ResponseCest
@@ -62,6 +64,26 @@ class ResponseCest
                 $response->sendContent();
             }
         );
+    }
+
+    public function testSend(UnitTester $I): void
+    {
+        $response = Mockery::mock(
+            Response::class,
+            function (MockInterface $mock): void {
+                $mock->makePartial();
+
+                $mock->shouldReceive("sendHeaders")
+                    ->andReturnSelf()
+                    ->once();
+
+                $mock->shouldReceive("sendContent")
+                    ->andReturnSelf()
+                    ->once();
+            }
+        );
+
+        $response->send();
     }
 
     public function testGetRaw(UnitTester $I): void
