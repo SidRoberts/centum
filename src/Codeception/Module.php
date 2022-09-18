@@ -26,7 +26,7 @@ class Module extends Framework
      *
      * @psalm-suppress all
      */
-    protected $config = [
+    protected array $config = [
         "container" => "config/container.php",
     ];
 

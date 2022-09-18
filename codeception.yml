@@ -1,10 +1,12 @@
 namespace: Tests
 
+support_namespace: Support
+
 paths:
   tests: tests
-  data: tests/_data
+  support: tests/Support
+  data: tests/Support/Data
   output: tests/_output
-  support: tests/_support
 
 settings:
   lint: true
@@ -12,20 +14,20 @@ settings:
 
 suites:
   console:
-    path: console
+    path: Console
     actor: ConsoleTester
   unit:
-    path: unit
+    path: Unit
     actor: UnitTester
   web:
-    path: web
+    path: Web
     actor: WebTester
 
 modules:
   enabled:
     - Asserts
     - Centum\Codeception\Module:
-        container: tests/_data/container.php
+        container: tests/Support/Data/container.php
     - Mockery
 
 coverage:

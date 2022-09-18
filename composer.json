@@ -23,7 +23,7 @@
 
         "ext-yaml": "~2.0",
 
-        "codeception/lib-innerbrowser": "~2.0",
+        "codeception/lib-innerbrowser": "~3.0",
 
         "dragonmantank/cron-expression": "~3.0",
         "pda/pheanstalk": "~4.0",
@@ -32,9 +32,9 @@
     },
 
     "require-dev": {
-        "codeception/codeception": "~4.0",
-        "codeception/module-asserts": "~2.0",
-        "codeception/mockery-module": "~0.4",
+        "codeception/codeception": "~5.0",
+        "codeception/module-asserts": "~3.0",
+        "codeception/mockery-module": "~0.5",
 
         "friendsofphp/php-cs-fixer": "~3.0",
 
@@ -49,7 +49,7 @@
     "autoload": {
         "psr-4": {
             "Centum\\": "src/",
-            "Tests\\": "tests/_support/"
+            "Tests\\": "tests/"
         }
     },
 

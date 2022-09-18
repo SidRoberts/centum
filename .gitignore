@@ -26,4 +26,4 @@ nbproject
 /composer.lock
 
 # Codeception
-/tests/_support/_generated/
+/tests/Support/_generated/

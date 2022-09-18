@@ -8,22 +8,29 @@
 >
     <projectFiles>
         <directory name="src"/>
-        <directory name="tests/_support"/>
-        <directory name="tests/console"/>
-        <directory name="tests/web"/>
-        <directory name="tests/unit"/>
+        <directory name="tests/Console"/>
+        <directory name="tests/Support"/>
+        <directory name="tests/Unit"/>
+        <directory name="tests/Web"/>
         <ignoreFiles allowMissingFiles="true">
-            <directory name="tests/_support/_generated"/>
+            <directory name="tests/Support/_generated"/>
             <directory name="vendor"/>
-            <file name="tests/_support/ConsoleTester.php"/>
-            <file name="tests/_support/UnitTester.php"/>
-            <file name="tests/_support/WebTester.php"/>
+            <file name="tests/Support/ConsoleTester.php"/>
+            <file name="tests/Support/UnitTester.php"/>
+            <file name="tests/Support/WebTester.php"/>
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
+        <TooManyArguments>
+            <errorLevel type="suppress">
+                <directory name="tests/Console"/>
+                <directory name="tests/Unit"/>
+                <directory name="tests/Web"/>
+            </errorLevel>
+        </TooManyArguments>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
-                <directory name="tests/_support/Models"/>
+                <directory name="tests/Support/Models"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
     </issueHandlers>
