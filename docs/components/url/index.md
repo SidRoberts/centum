@@ -10,7 +10,21 @@ permalink: url
 
 # `Centum\Url`
 
-This component takes care of trailing/leading slashes and enables you to easily change your base URI depending on the environment (for example: development and production).
+This component enables you to easily change your base URI across your codebase.
+This can be useful in cases where the URI might change depending on the environment (for example: development and production).
+
+```php
+Centum\Url\Url(
+    string $baseUri = ""
+);
+```
+
+[`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/development/src/Url/Url.php) has 2 public methods:
+
+- `public function getBaseUri(): string`
+- `public function get(string $uri = "", array $arguments = []): string`
+
+`Centum\Url\Url` takes care of trailing/leading slashes:
 
 ```php
 use Centum\Url\Url;
