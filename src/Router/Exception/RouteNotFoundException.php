@@ -6,6 +6,10 @@ use Centum\Http\Request;
 
 class RouteNotFoundException extends \Exception
 {
+    protected Request $request;
+
+
+
     public function __construct(Request $request)
     {
         $message = sprintf(
@@ -15,5 +19,14 @@ class RouteNotFoundException extends \Exception
         );
 
         parent::__construct($message);
+
+        $this->request = $request;
+    }
+
+
+
+    public function getRequest(): Request
+    {
+        return $this->request;
     }
 }
