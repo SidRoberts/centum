@@ -4,6 +4,7 @@ namespace Tests\Unit\Console;
 
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
+use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
@@ -348,12 +349,12 @@ class ApplicationCest
 
         $application = new Application($container);
 
+        $command = new BadNameCommand();
+
         $I->expectThrowable(
-            new Exception("Command name ('https://github.com/') is not valid."),
-            function () use ($application): void {
-                $application->addCommand(
-                    new BadNameCommand()
-                );
+            new InvalidCommandNameException($command),
+            function () use ($application, $command): void {
+                $application->addCommand($command);
             }
         );
     }

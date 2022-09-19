@@ -5,13 +5,13 @@ namespace Centum\Console;
 use Centum\Console\Command\ListCommand;
 use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandNotFoundException;
+use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
 use Centum\Validator\CommandSlug;
-use Exception;
 use OutOfRangeException;
 use Throwable;
 
@@ -48,12 +48,7 @@ class Application
         $name = $command->getName();
 
         if (!$this->validateName($name)) {
-            throw new Exception(
-                sprintf(
-                    "Command name ('%s') is not valid.",
-                    $name
-                )
-            );
+            throw new InvalidCommandNameException($command);
         }
 
         $this->commands[$name] = $command;
