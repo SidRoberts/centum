@@ -45,6 +45,11 @@ class MiddlewareGroupCest
     {
         return [
             [
+                "middlewares" => [],
+                "expected"    => true,
+            ],
+
+            [
                 "middlewares" => [
                     new TrueMiddleware(),
                     new TrueMiddleware(),
@@ -76,5 +81,25 @@ class MiddlewareGroupCest
                 "expected" => false,
             ],
         ];
+    }
+
+    public function testToArray(UnitTester $I): void
+    {
+        $trueMiddleware  = new TrueMiddleware();
+        $falseMiddleware = new FalseMiddleware();
+
+        $middlewares = [
+            $trueMiddleware,
+            $falseMiddleware,
+        ];
+
+        $group = new MiddlewareGroup(
+            $middlewares
+        );
+
+        $I->assertSame(
+            $middlewares,
+            $group->toArray()
+        );
     }
 }
