@@ -53,15 +53,15 @@ src/
     Tasks/
     Validators/
 tests/
-    _data/
     _output/
-    _support/
+    Console/
+    Support/
+        Data/
         ConsoleTester.php
         UnitTester.php
         WebTester.php
-    console/
-    unit/
-    web/
+    Unit/
+    Web/
 codeception.yml
 composer.json
 docker-compose.yml
