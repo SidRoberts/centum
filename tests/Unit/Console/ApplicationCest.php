@@ -11,7 +11,7 @@ use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
-use Exception;
+use OutOfRangeException;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\ErrorCommand;
 use Tests\Support\Commands\FilterCommand;
@@ -280,6 +280,13 @@ class ApplicationCest
         $I->assertInstanceOf(
             FilterCommand::class,
             $application->getCommand("filter:double")
+        );
+
+        $I->expectThrowable(
+            OutOfRangeException::class,
+            function () use ($application): void {
+                $application->getCommand("doesnt-exist");
+            }
         );
     }
 

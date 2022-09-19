@@ -56,11 +56,13 @@ class ResponseCest
 
     public function testSendContent(UnitTester $I): void
     {
-        $I->expectEcho(
-            "Hello world",
-            function (): void {
-                $response = new Response("Hello world");
+        $content = "Hello world";
 
+        $response = new Response($content);
+
+        $I->expectEcho(
+            $content,
+            function () use ($response): void {
                 $response->sendContent();
             }
         );

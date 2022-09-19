@@ -108,70 +108,49 @@ class FormCest
 
     protected function providerBad(): array
     {
-        return [
+        $data = [
             [
-                "data" => new Data(
-                    [
-                        "username" => "sidroberts",
-                        "password" => "",
-                    ]
-                ),
+                "username" => "sidroberts",
+                "password" => "",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "username" => "sidroberts",
-                    ]
-                ),
+                "username" => "sidroberts",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "username" => "",
-                        "password" => "hunter2",
-                    ]
-                ),
+                "username" => "",
+                "password" => "hunter2",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "password" => "hunter2",
-                    ]
-                ),
+                "password" => "hunter2",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "username" => "",
-                        "password" => "",
-                    ]
-                ),
+                "username" => "",
+                "password" => "",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "username" => "",
-                    ]
-                ),
+                "username" => "",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "password" => "",
-                    ]
-                ),
+                "password" => "",
             ],
 
-            [
-                "data" => new Data([]),
-            ],
+            [],
         ];
+
+        return array_map(
+            function (array $data): array {
+                return [
+                    "data" => new Data($data),
+                ];
+            },
+            $data
+        );
     }
 
 
@@ -271,25 +250,26 @@ class FormCest
 
     protected function providerCsrfBad(): array
     {
-        return [
+        $data = [
             [
-                "data" => new Data(
-                    [
-                        "username" => "sidroberts",
-                        "password" => "hunter2",
-                    ]
-                ),
+                "username" => "sidroberts",
+                "password" => "hunter2",
             ],
 
             [
-                "data" => new Data(
-                    [
-                        "username" => "sidroberts",
-                        "password" => "hunter2",
-                        "csrf"     => "bad-csrf-token",
-                    ]
-                ),
+                "username" => "sidroberts",
+                "password" => "hunter2",
+                "csrf"     => "bad-csrf-token",
             ],
         ];
+
+        return array_map(
+            function (array $data): array {
+                return [
+                    "data" => new Data($data),
+                ];
+            },
+            $data
+        );
     }
 }

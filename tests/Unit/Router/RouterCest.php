@@ -261,43 +261,26 @@ class RouterCest
 
     protected function providerHttpMethods(): array
     {
-        return [
-            [
-                "method" => "GET",
-            ],
-
-            [
-                "method" => "POST",
-            ],
-
-            [
-                "method" => "HEAD",
-            ],
-
-            [
-                "method" => "PUT",
-            ],
-
-            [
-                "method" => "DELETE",
-            ],
-
-            [
-                "method" => "TRACE",
-            ],
-
-            [
-                "method" => "OPTIONS",
-            ],
-
-            [
-                "method" => "CONNECT",
-            ],
-
-            [
-                "method" => "PATCH",
-            ],
+        $methods = [
+            "GET",
+            "POST",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "TRACE",
+            "OPTIONS",
+            "CONNECT",
+            "PATCH",
         ];
+
+        return array_map(
+            function (mixed $value): array {
+                return [
+                    "method" => $value,
+                ];
+            },
+            $methods
+        );
     }
 
 

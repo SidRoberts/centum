@@ -81,18 +81,14 @@ class RequestCest
             $request->getData()
         );
 
-        $I->assertEquals(
-            [
-                "cache-control" => "no-cache",
-            ],
-            $request->getHeaders()->toArray()
+        $I->assertSame(
+            $headers,
+            $request->getHeaders()
         );
 
-        $I->assertEquals(
-            [
-                "timezone" => "Asia/Seoul",
-            ],
-            $request->getCookies()->toArray()
+        $I->assertSame(
+            $cookies,
+            $request->getCookies()
         );
 
         $I->assertEquals(
