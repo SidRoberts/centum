@@ -22,9 +22,9 @@ class ListCommand extends Command
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
     {
-        $console = $container->typehintClass(Application::class);
+        $application = $container->typehintClass(Application::class);
 
-        $commands = $console->getCommands();
+        $commands = $application->getCommands();
 
         /**
          * @var list<string>
