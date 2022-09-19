@@ -3,6 +3,7 @@
 namespace Tests\Support\Commands\Middleware;
 
 use Centum\Console\Command;
+use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
@@ -15,11 +16,9 @@ class TrueCommand extends Command
         return "middleware:true";
     }
 
-    public function getMiddlewares(): array
+    public function getMiddleware(): MiddlewareInterface
     {
-        return [
-            new TrueMiddleware(),
-        ];
+        return new TrueMiddleware();
     }
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int

@@ -3,6 +3,8 @@
 namespace Tests\Support\Commands\Middleware;
 
 use Centum\Console\Command;
+use Centum\Console\MiddlewareGroup;
+use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
@@ -15,11 +17,9 @@ class FalseCommand extends Command
         return "middleware:false";
     }
 
-    public function getMiddlewares(): array
+    public function getMiddleware(): MiddlewareInterface
     {
-        return [
-            new FalseMiddleware(),
-        ];
+        return new FalseMiddleware();
     }
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int

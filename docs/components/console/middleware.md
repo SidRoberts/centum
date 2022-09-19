@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Middlewares
+title: Middleware
 parent: Console
 grand_parent: Components
-permalink: console/middlewares
+permalink: console/middleware
 ---
 
 
 
-# Middlewares
+# Middleware
 
-Middlewares are run by the Application when it is trying to find a matching Command.
-If the Command is found, the Application will run the Middlewares which are able to perform additional checks to determine whether the Command should match or not.
+Middleware is run by the Application when it is trying to find a matching Command.
+If the Command is found, the Application will run the Middleware which is able to perform additional checks to determine whether the Command should match or not.
 
 By returning `false` or throwing [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php) in a Middleware, the Application will ignore the Command and assume that it is not suitable for the particular command.
 
@@ -45,6 +45,7 @@ namespace App\Commands;
 
 use App\Middlewares\Console\IsLinuxMiddleware;
 use Centum\Console\Command;
+use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
@@ -56,11 +57,9 @@ class AdministrationCommand extends Command
         return "something";
     }
 
-    public function getMiddlewares(): array
+    public function getMiddleware(): MiddlewareInterface
     {
-        return [
-            new IsLinuxMiddleware(),
-        ];
+        return new IsLinuxMiddleware();
     }
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
@@ -76,7 +75,7 @@ class AdministrationCommand extends Command
 
 ## Multiple Middlewares
 
-Commands can be created with multiple middlewares.
+Commands can be created with multiple middlewares by grouping them within a [`MiddlewareGroup`](https://github.com/SidRoberts/centum/blob/development/src/Console/MiddlewareGroup.php) object.
 If any of them of fail, the Command will fail to match:
 
 ```php
@@ -86,6 +85,8 @@ use App\Middlewares\Console\Middleware1;
 use App\Middlewares\Console\Middleware2;
 use App\Middlewares\Console\Middleware3;
 use Centum\Console\Command;
+use Centum\Console\MiddlewareGroup;
+use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
@@ -97,13 +98,15 @@ class SomethingCommand extends Command
         return "something";
     }
 
-    public function getMiddlewares(): array
+    public function getMiddleware(): MiddlewareInterface
     {
-        return [
-            new Middleware1(),
-            new Middleware2(),
-            new Middleware3(),
-        ];
+        return new MiddlewareGroup(
+            [
+                new Middleware1(),
+                new Middleware2(),
+                new Middleware3(),
+            ]
+        );
     }
 
     public function execute(Terminal $terminal, Container $container, Parameters $parameters): int

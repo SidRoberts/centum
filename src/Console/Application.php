@@ -7,7 +7,6 @@ use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
-use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
@@ -145,18 +144,12 @@ class Application
 
 
 
-        $middlewares = $command->getMiddlewares();
+        $middleware = $command->getMiddleware();
 
-        foreach ($middlewares as $middleware) {
-            if (!($middleware instanceof MiddlewareInterface)) {
-                throw new InvalidMiddlewareException();
-            }
+        $success = $middleware->middleware($terminal, $command, $this->container);
 
-            $success = $middleware->middleware($terminal, $command, $this->container);
-
-            if (!$success) {
-                throw new CommandNotFoundException();
-            }
+        if (!$success) {
+            throw new CommandNotFoundException();
         }
 
 

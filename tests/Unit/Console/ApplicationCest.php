@@ -6,7 +6,6 @@ use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
-use Centum\Console\Exception\InvalidMiddlewareException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Container\Container;
 use Codeception\Attribute\DataProvider;
@@ -16,12 +15,9 @@ use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\ErrorCommand;
 use Tests\Support\Commands\FilterCommand;
 use Tests\Support\Commands\InvalidFiltersCommand;
-use Tests\Support\Commands\InvalidMiddlewaresCommand;
 use Tests\Support\Commands\MainCommand;
 use Tests\Support\Commands\MathCommand;
 use Tests\Support\Commands\Middleware\FalseCommand;
-use Tests\Support\Commands\Middleware\Multiple1Command;
-use Tests\Support\Commands\Middleware\Multiple2Command;
 use Tests\Support\Commands\Middleware\TrueCommand;
 use Tests\Support\Commands\ProblematicCommand;
 use Tests\Support\UnitTester;
@@ -124,14 +120,6 @@ class ApplicationCest
             new FalseCommand()
         );
 
-        $application->addCommand(
-            new Multiple1Command()
-        );
-
-        $application->addCommand(
-            new Multiple2Command()
-        );
-
 
 
         /** @var list<string> */
@@ -158,16 +146,6 @@ class ApplicationCest
 
             [
                 "argv"       => ["cli.php", "middleware:false"],
-                "shouldPass" => false,
-            ],
-
-            [
-                "argv"       => ["cli.php", "middleware:true-false"],
-                "shouldPass" => false,
-            ],
-
-            [
-                "argv"       => ["cli.php", "middleware:false-true"],
                 "shouldPass" => false,
             ],
         ];
@@ -234,29 +212,6 @@ class ApplicationCest
 
         $I->expectThrowable(
             InvalidFilterException::class,
-            function () use ($application, $terminal): void {
-                $application->handle($terminal);
-            }
-        );
-    }
-
-    public function testCommandWithInvalidMiddlewares(UnitTester $I): void
-    {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(new InvalidMiddlewaresCommand());
-
-        $argv = [
-            "cli.php",
-            "invalid-middlewares",
-        ];
-
-        $terminal = $I->createTerminal($argv);
-
-        $I->expectThrowable(
-            InvalidMiddlewareException::class,
             function () use ($application, $terminal): void {
                 $application->handle($terminal);
             }

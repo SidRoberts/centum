@@ -60,5 +60,4 @@ php cli.php queue-consume
 - [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
 - [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
 - [`InvalidFilterException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidFilterException.php)
-- [`InvalidMiddlewareException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidMiddlewareException.php)
 - [`ParamNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParamNotFoundException.php)

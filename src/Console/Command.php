@@ -2,6 +2,7 @@
 
 namespace Centum\Console;
 
+use Centum\Console\Middleware\TrueMiddleware;
 use Centum\Container\Container;
 
 abstract class Command
@@ -20,9 +21,9 @@ abstract class Command
 
 
 
-    public function getMiddlewares(): array
+    public function getMiddleware(): MiddlewareInterface
     {
-        return [];
+        return new TrueMiddleware();
     }
 
     public function getFilters(Container $container): array

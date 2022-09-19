@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Console;
 
+use Centum\Console\Middleware\TrueMiddleware;
 use Centum\Container\Container;
 use Tests\Support\Commands\BoringCommand;
 use Tests\Support\UnitTester;
@@ -29,9 +30,9 @@ class CommandCest
             $command->getHelp()
         );
 
-        $I->assertEquals(
-            [],
-            $command->getMiddlewares()
+        $I->assertInstanceOf(
+            TrueMiddleware::class,
+            $command->getMiddleware()
         );
 
         $I->assertEquals(

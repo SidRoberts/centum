@@ -11,17 +11,17 @@ nav_order: 1
 
 # Commands
 
-A Command is responsible for providing the command name (`getName()`), any middlewares (`getMiddlewares()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
+A Command is responsible for providing the command name (`getName()`), middleware (`getMiddleware()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
 It's return value is the exit code.
 
 - `public function getName(): string`
 - `public function execute(Centum\Console\Terminal $terminal, Centum\Container\Container $container, Centum\Console\Parameters $parameters): int`
 - `public function getDescription(): string` (optional)
 - `public function getHelp(): string` (optional)
-- `public function getMiddlewares(): array` (optional)
+- `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
 - `public function getFilters(Centum\Container\Container $container): array` (optional)
 
-By default, a Command has no middlewares or parameter filters and can be as simple as this:
+By default, a Command has no middleware or parameter filters and can be as simple as this:
 
 ```php
 namespace App\Commands;
