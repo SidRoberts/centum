@@ -3,6 +3,7 @@
 namespace Tests\Unit\Codeception;
 
 use Centum\Codeception\Connector;
+use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Codeception\Module;
 use Centum\Console\Application;
 use Centum\Container\Container;
@@ -50,7 +51,7 @@ class ModuleCest
         );
 
         $I->expectThrowable(
-            new Exception("Couldn't find the Container."),
+            ContainerNotFoundException::class,
             function () use ($module): void {
                 $module->getContainer();
             }

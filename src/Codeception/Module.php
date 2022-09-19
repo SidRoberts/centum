@@ -2,6 +2,7 @@
 
 namespace Centum\Codeception;
 
+use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Console\Application;
 use Centum\Console\Command;
 use Centum\Console\Terminal;
@@ -136,7 +137,7 @@ class Module extends Framework
     public function getContainer(): Container
     {
         if (!$this->container) {
-            throw new Exception("Couldn't find the Container.");
+            throw new ContainerNotFoundException();
         }
 
         return $this->container;
