@@ -2,7 +2,7 @@
 
 namespace Centum\Filter;
 
-class Group
+class Group implements FilterInterface
 {
     /**
      * @var FilterInterface[]
