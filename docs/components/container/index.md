@@ -75,3 +75,11 @@ use Centum\Console\Application;
 
 $container->remove(Application::class);
 ```
+
+
+
+## Exceptions
+
+(all in the `Centum\Container\Exception` namespace)
+
+- [`UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php)

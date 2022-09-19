@@ -50,3 +50,15 @@ Will take the next available Task from the Queue and consume it ([see Queue docs
 ```bash
 php cli.php queue-consume
 ```
+
+
+
+## Exceptions
+
+(all in the `Centum\Console\Exception` namespace)
+
+- [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
+- [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
+- [`InvalidFilterException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidFilterException.php)
+- [`InvalidMiddlewareException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidMiddlewareException.php)
+- [`ParamNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParamNotFoundException.php)
