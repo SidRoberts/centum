@@ -2,6 +2,10 @@
 
 namespace Tests\Unit\Forms;
 
+use Centum\Filter\Callback;
+use Centum\Filter\String\Replace;
+use Centum\Filter\String\ToLower;
+use Centum\Filter\String\Trim;
 use Centum\Forms\Field;
 use Centum\Forms\Form;
 use Centum\Validator\NotEmpty;
@@ -26,6 +30,58 @@ class FormCest
         $I->assertEquals(
             [],
             $status->getMessages()
+        );
+    }
+
+
+
+    public function testGetFilteredValues(UnitTester $I): void
+    {
+        $data = [
+            "name"     => "  sid  roberts ",
+            "username" => "SidRoberts",
+            "password" => "hunter2",
+        ];
+
+        $nameField = new Field("name");
+
+        $nameField->addFilter(
+            new Callback(
+                function (string $value): string {
+                    $value = trim($value);
+                    $value = preg_replace("/\s+/", " ", $value);
+                    $value = ucwords(strtolower($value));
+
+                    return $value;
+                }
+            )
+        );
+
+        $usernameField = new Field("username");
+
+        $usernameField->addFilter(
+            new ToLower()
+        );
+
+        $passwordField = new Field("password");
+
+        $optionalField = new Field("optional");
+
+        $form = new Form();
+
+        $form->add($nameField);
+        $form->add($usernameField);
+        $form->add($passwordField);
+        $form->add($optionalField);
+
+        $I->assertEquals(
+            [
+                "name"     => "Sid Roberts",
+                "username" => "sidroberts",
+                "password" => "hunter2",
+                "optional" => null,
+            ],
+            $form->getFilteredValues($data)
         );
     }
 
