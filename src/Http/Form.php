@@ -3,7 +3,7 @@
 namespace Centum\Http;
 
 use Centum\Container\Container;
-use Exception;
+use Centum\Http\Exception\CsrfException;
 
 abstract class Form
 {
@@ -37,7 +37,7 @@ abstract class Form
         $value = $this->data->get("csrf");
 
         if (!$value || !$this->csrf->validate($value)) {
-            throw new Exception("CSRF does not match.");
+            throw new CsrfException();
         }
     }
 }

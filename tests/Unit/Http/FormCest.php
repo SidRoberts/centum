@@ -4,6 +4,7 @@ namespace Tests\Unit\Http;
 
 use Centum\Http\Csrf;
 use Centum\Http\Data;
+use Centum\Http\Exception\CsrfException;
 use Centum\Http\Request;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -241,7 +242,7 @@ class FormCest
         $container = $I->getContainer();
 
         $I->expectThrowable(
-            new Exception("CSRF does not match."),
+            CsrfException::class,
             function () use ($request, $csrf, $container): void {
                 new LoginWithCsrfForm($request, $csrf, $container);
             }
