@@ -13,6 +13,10 @@ permalink: container
 The Container component handles object dependencies by centralising object creation.
 Whenever an object is created in the Container, it is saved and reused again whenever that class is required.
 
+
+
+## Retrieving objects
+
 Classes can be created using the `typehintClass()` method:
 
 ```php
@@ -58,6 +62,30 @@ $container->set(Application::class, $application);
 $container->set(Router::class, $router);
 ```
 
+Objects can be dynamically set in a closure using `setDynamic()`.
+This closure is typehinted so you can reference other objects in the function signature:
+
+```php
+use App\Controllers\ErrorController;
+use Centum\Router\Router;
+use Throwable;
+
+$container->setDynamic(
+    Router::class,
+    function (Container $container) {
+        $router = new Router($container);
+
+        $router->addExceptionHandler(
+            Throwable::class,
+            ErrorController::class,
+            "throwable"
+        );
+
+        return $router;
+    }
+);
+```
+
 You can then retrieve them with the `typehint*()` methods:
 
 ```php
@@ -67,6 +95,29 @@ $application = $container->typehintClass(Application::class);
 ```
 
 If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php).
+
+
+
+## Aliases
+
+Aliases can be added using the `addAlias()` method.
+This is particularly useful for interfaces that cannot be directly instantiated:
+
+```php
+use Centum\Flash\FormatterInterface;
+use Centum\Flash\Formatter\HtmlFormatter;
+
+$container->addAlias(
+    FormatterInterface::class,
+    HtmlFormatter::class
+);
+```
+
+Now, any call to `FormatterInterface` will return or create a new `HtmlFormatter` object.
+
+
+
+## Removing objects
 
 You can remove objects from the Container using the `remove()` method:
 
