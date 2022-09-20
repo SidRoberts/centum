@@ -29,8 +29,6 @@ use Centum\Filter\String\Trim;
 use Centum\Validator\EmailAddress;
 use Centum\Validator\NotEmpty;
 
-
-
 $emailField->addFilter(
     new Trim()
 );
@@ -42,8 +40,10 @@ $emailField->addValidator(
 $emailField->addValidator(
     new EmailAddress()
 );
+```
 
-
+```php
+use Centum\Validator\NotEmpty;
 
 $passwordField->addValidator(
     new NotEmpty()
@@ -52,7 +52,7 @@ $passwordField->addValidator(
 
 Filters are applied before validating the data.
 
-Now we need to encapsulate them into a Form:
+Now we need to encapsulate them into a [`Centum\Forms\Form`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Form.php):
 
 ```php
 use Centum\Forms\Form;
@@ -63,6 +63,16 @@ $loginForm->add($emailField);
 
 $loginForm->add($passwordField);
 ```
+
+
+
+## Validating
+
+Validating a Form is done using the `validate()` method which returns a [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Status.php) object.
+It has 2 public methods:
+
+- `public function isValid(): bool`
+- `public function getMessages(): array<string, string[]>`
 
 Validating data against these filters and validators is as easy as:
 

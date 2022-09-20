@@ -10,15 +10,14 @@ permalink: flash
 
 # `Centum\Flash`
 
+`Centum\Flash\Flash` is used to display messages to users.
+Messages are stored in the session so they are useful for providing information after a form submission or redirect.
+
 ```php
-use Centum\Flash\Flash;
-use Centum\Flash\Formatter\TextFormatter;
-use Centum\Http\Session;
-
-$session   = new Session();
-$formatter = new TextFormatter();
-
-$flash = new Flash($session, $formatter);
+Centum\Flash\Flash(
+    Centum\Http\Session $session,
+    Centum\Flash\FormatterInterface $formatter
+);
 ```
 
 To add a message to the Flash, use any of the following methods:

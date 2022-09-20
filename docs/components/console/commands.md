@@ -47,8 +47,13 @@ class IndexCommand extends Command
 }
 ```
 
-When added to the Application, the Command's name will be validated to ensure that is a slug (see [Command Slug Validator](https://github.com/SidRoberts/centum/blob/development/src/Validator/CommandSlug.php)).
+A Command's name must follow the pattern set out in the [Command Slug Validator](https://github.com/SidRoberts/centum/blob/development/src/Validator/CommandSlug.php).
 To allow commands like `php cli.php`, empty names are allowed.
+
+When the Application is processing a request, several Exceptions could be thrown:
+
+- [`Centum\Console\Exception\InvalidFilterException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidFilterException.php) if `getFilters()` contains array elements that do not implement `FilterInterface`.
+- [`Centum\Console\Exception\ParamNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParamNotFoundException.php) if `getFilters()` references a parameter that does not exist.
 
 
 
@@ -69,3 +74,6 @@ $application->addCommand(
 
 The Application will be able to determine Command's name from the Command's `getName()` method.
 Commands are processed in the order that they are added to the Application but a later added Command can overwrite an older Command with the same name.
+
+If the Command's name does not fit the standard described in the [Command Slug Validator](https://github.com/SidRoberts/centum/blob/development/src/Validator/CommandSlug.php), [`Centum\Console\Exception\InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php) will be thrown.
+To allow commands like `php cli.php`, empty names are allowed.

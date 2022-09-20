@@ -10,6 +10,11 @@ permalink: filter
 
 # `Centum\Filter`
 
+Filters are used to transform one value into another.
+They are very useful in validation as it allows you to standardise a value before validating it.
+
+
+
 ## Available Filters
 
 - [`Centum\Filter\Blacklist`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Blacklist.php)

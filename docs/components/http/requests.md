@@ -29,7 +29,7 @@ Centum\Http\Request(
 
 ## Request Factory
 
-You can obtain a Request object made with global variables using the [RequestFactory](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php):
+You can obtain a Request object made with global variables using the [`RequestFactory`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php):
 
 ```php
 use Centum\Http\RequestFactory;

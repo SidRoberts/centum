@@ -13,12 +13,9 @@ permalink: router
 MVC web apps can be created using [`Centum\Router\Router`](https://github.com/SidRoberts/centum/blob/development/src/Router/Router.php).
 
 ```php
-use Centum\Container\Container;
-use Centum\Router\Router;
-
-$container = new Container();
-
-$router = new Router($container);
+Centum\Router\Router(
+    Centum\Container\Container $container
+);
 ```
 
 The Router's job is to convert a [`Centum\Http\Request`](https://github.com/SidRoberts/centum/blob/development/src/Http/Request.php) object into a [`Centum\Http\Response`](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) object:
