@@ -10,12 +10,17 @@ class ConsoleBootstrap extends Bootstrap
 {
     public function boot(Container $container): void
     {
-        $console = $container->typehintClass(Application::class);
+        $application = $container->typehintClass(Application::class);
 
-        $terminal = new Terminal();
+        $terminal = $container->typehintClass(Terminal::class);
 
-        $exitCode = $console->handle($terminal);
+        $exitCode = $application->handle($terminal);
 
+        $this->exit($exitCode);
+    }
+
+    protected function exit(int $exitCode): void
+    {
         exit($exitCode);
     }
 }
