@@ -101,3 +101,16 @@ class SubmissionForm extends Form
     }
 }
 ```
+
+Values can be regenerated with the `generate()` method.
+This method will automatically save the new value to the Session:
+
+```php
+$newValue = $csrf->generate();
+```
+
+Values can be removed from the Session with the `reset()` method:
+
+```php
+$csrf->reset();
+```

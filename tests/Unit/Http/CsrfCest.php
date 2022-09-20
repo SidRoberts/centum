@@ -127,6 +127,26 @@ class CsrfCest
 
 
 
+    public function testReset(UnitTester $I): void
+    {
+        $handler = new ArrayHandler();
+
+        $session = new Session($handler);
+
+        $csrf = new Csrf($session);
+
+        $value = $csrf->get();
+
+        $csrf->reset();
+
+        $I->assertNotEquals(
+            $value,
+            $csrf->get()
+        );
+    }
+
+
+
     #[DataProvider("providerValidate")]
     public function testValidate(UnitTester $I, Example $example): void
     {

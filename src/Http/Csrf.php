@@ -38,6 +38,11 @@ class Csrf
         return $csrf;
     }
 
+    public function reset(): void
+    {
+        $this->session->remove(self::TOKEN);
+    }
+
 
 
     public function validate(string $value): bool
