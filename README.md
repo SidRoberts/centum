@@ -21,6 +21,7 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 - [Flash](https://sidroberts.co.uk/centum/flash)
 - [Forms](https://sidroberts.co.uk/centum/forms)
 - [HTTP](https://sidroberts.co.uk/centum/http)
+- [Paginator](https://sidroberts.co.uk/centum/paginator)
 - [Queue](https://sidroberts.co.uk/centum/queue)
 - [Router](https://sidroberts.co.uk/centum/router)
 - [Twig](https://sidroberts.co.uk/centum/twig)
