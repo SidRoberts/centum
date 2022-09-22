@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class InvalidMaxException extends InvalidArgumentException
 {
-    protected int $max;
+    protected readonly int $max;
 
 
 

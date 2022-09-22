@@ -6,7 +6,7 @@ use UnexpectedValueException;
 
 class InvalidFilterException extends UnexpectedValueException
 {
-    protected mixed $invalidFilter;
+    protected readonly mixed $invalidFilter;
 
 
 

@@ -4,9 +4,9 @@ namespace Centum\Access;
 
 class Activity
 {
-    protected string $name;
+    protected readonly string $name;
 
-    protected bool $default;
+    protected readonly bool $default;
 
     /** @var array<string, bool> */
     protected array $users = [];

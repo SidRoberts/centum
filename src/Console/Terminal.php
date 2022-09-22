@@ -5,7 +5,7 @@ namespace Centum\Console;
 class Terminal
 {
     /** @var list<string> */
-    protected array $argv;
+    protected readonly array $argv;
 
     /** @var resource */
     protected $stdin;

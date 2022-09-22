@@ -5,7 +5,7 @@ namespace Centum\Router;
 class Parameters
 {
     /** @var array<string, mixed> */
-    protected array $parameters = [];
+    protected readonly array $parameters;
 
 
 

@@ -8,7 +8,7 @@ use Throwable;
 
 class Field
 {
-    protected string $name;
+    protected readonly string $name;
 
     /** @var FilterInterface[] */
     protected array $filters = [];

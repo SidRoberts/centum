@@ -4,7 +4,7 @@ namespace Centum\Console\Exception;
 
 class CommandNotFoundException extends \Exception
 {
-    protected string $name;
+    protected readonly string $name;
 
 
 

@@ -4,10 +4,10 @@ namespace Centum\Http;
 
 class Response
 {
-    protected string $content;
-    protected Status $status;
-    protected Headers $headers;
-    protected Cookies $cookies;
+    protected readonly string $content;
+    protected readonly Status $status;
+    protected readonly Headers $headers;
+    protected readonly Cookies $cookies;
 
 
 

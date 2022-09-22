@@ -8,7 +8,7 @@ use Twig\TwigFunction;
 class WhitelistedFunctionsExtension extends AbstractExtension
 {
     /** @var callable-string[] */
-    protected array $functionNames;
+    protected readonly array $functionNames;
 
 
 

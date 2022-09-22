@@ -4,7 +4,7 @@ namespace Centum\Http;
 
 class FileGroup
 {
-    protected string $id;
+    protected readonly string $id;
 
     /** @var array<File> */
     protected array $files = [];

@@ -16,7 +16,7 @@ use Throwable;
 
 class Application
 {
-    protected Container $container;
+    protected readonly Container $container;
 
     /** @var array<string, Command> */
     protected array $commands = [];

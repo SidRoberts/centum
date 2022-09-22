@@ -6,7 +6,7 @@ use OutOfRangeException;
 
 class ParamNotFoundException extends OutOfRangeException
 {
-    protected string $key;
+    protected readonly string $key;
 
 
 

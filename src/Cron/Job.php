@@ -8,9 +8,9 @@ use DateTimeInterface;
 
 class Job implements JobInterface
 {
-    protected string $expression;
+    protected readonly string $expression;
 
-    protected mixed $data;
+    protected readonly mixed $data;
 
 
 

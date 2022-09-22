@@ -4,7 +4,7 @@ namespace Tests\Support\Container;
 
 class ResolvableClass
 {
-    protected Incrementer $incrementer;
+    protected readonly Incrementer $incrementer;
 
 
 

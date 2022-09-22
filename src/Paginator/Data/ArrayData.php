@@ -7,8 +7,8 @@ use Centum\Paginator\Exception\InvalidTotalException;
 
 class ArrayData implements DataInterface
 {
-    protected array $data;
-    protected int $total;
+    protected readonly array $data;
+    protected readonly int $total;
 
 
 

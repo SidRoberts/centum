@@ -4,7 +4,7 @@ namespace Centum\Url;
 
 class Url
 {
-    protected string $baseUri;
+    protected readonly string $baseUri;
 
 
 

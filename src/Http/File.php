@@ -7,11 +7,11 @@ use Exception;
 
 class File
 {
-    protected ?string $name;
-    protected ?string $type;
-    protected int $size;
+    protected readonly ?string $name;
+    protected readonly ?string $type;
+    protected readonly int $size;
     protected ?string $location;
-    protected int $error;
+    protected readonly int $error;
 
     protected bool $isMoved = false;
 

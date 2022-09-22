@@ -6,7 +6,7 @@ use Stringable;
 
 class FancyString implements Stringable
 {
-    protected string $value;
+    protected readonly string $value;
 
 
 

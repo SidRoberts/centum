@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 class Prefix implements FilterInterface
 {
-    protected string $prefix;
+    protected readonly string $prefix;
 
 
 

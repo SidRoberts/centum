@@ -13,7 +13,7 @@ use Throwable;
 
 class Router
 {
-    protected Container $container;
+    protected readonly Container $container;
 
     /** @var Group[] */
     protected array $groups = [];

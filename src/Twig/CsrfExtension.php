@@ -8,7 +8,7 @@ use Twig\TwigFunction;
 
 class CsrfExtension extends AbstractExtension
 {
-    protected Csrf $csrf;
+    protected readonly Csrf $csrf;
 
 
 

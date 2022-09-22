@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class InvalidTotalException extends InvalidArgumentException
 {
-    protected int $total;
+    protected readonly int $total;
 
 
 

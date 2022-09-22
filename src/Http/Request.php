@@ -4,13 +4,13 @@ namespace Centum\Http;
 
 class Request
 {
-    protected string $uri;
-    protected string $method;
-    protected Data $data;
-    protected Headers $headers;
-    protected Cookies $cookies;
-    protected Files $files;
-    protected ?string $content;
+    protected readonly string $uri;
+    protected readonly string $method;
+    protected readonly Data $data;
+    protected readonly Headers $headers;
+    protected readonly Cookies $cookies;
+    protected readonly Files $files;
+    protected readonly ?string $content;
 
 
 

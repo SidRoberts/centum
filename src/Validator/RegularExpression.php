@@ -4,7 +4,7 @@ namespace Centum\Validator;
 
 class RegularExpression implements ValidatorInterface
 {
-    protected string $pattern;
+    protected readonly string $pattern;
 
 
 

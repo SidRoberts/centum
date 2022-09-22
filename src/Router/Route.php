@@ -6,14 +6,14 @@ use Centum\Filter\FilterInterface;
 
 class Route
 {
-    protected string $httpMethod;
+    protected readonly string $httpMethod;
 
-    protected string $uri;
+    protected readonly string $uri;
 
     /** @var class-string */
-    protected string $class;
+    protected readonly string $class;
 
-    protected string $method;
+    protected readonly string $method;
 
     /** @var array<string, FilterInterface> */
     protected array $filters = [];

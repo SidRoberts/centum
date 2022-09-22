@@ -4,7 +4,7 @@ namespace Centum\Router;
 
 class Group
 {
-    protected MiddlewareInterface $middleware;
+    protected readonly MiddlewareInterface $middleware;
 
     /** @var Route[] */
     protected array $routes = [];

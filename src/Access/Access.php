@@ -9,7 +9,7 @@ class Access
 
 
 
-    protected bool $default;
+    protected readonly bool $default;
 
     /** @var array<string, Activity> */
     protected array $activities = [];

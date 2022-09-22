@@ -6,7 +6,7 @@ use Centum\Http\Request;
 
 class RouteNotFoundException extends \Exception
 {
-    protected Request $request;
+    protected readonly Request $request;
 
 
 

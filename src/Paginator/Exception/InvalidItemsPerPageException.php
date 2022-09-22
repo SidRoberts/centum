@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class InvalidItemsPerPageException extends InvalidArgumentException
 {
-    protected int $itemsPerPage;
+    protected readonly int $itemsPerPage;
 
 
 

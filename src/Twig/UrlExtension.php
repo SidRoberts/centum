@@ -8,7 +8,7 @@ use Twig\TwigFunction;
 
 class UrlExtension extends AbstractExtension
 {
-    protected Url $url;
+    protected readonly Url $url;
 
 
 

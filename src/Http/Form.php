@@ -7,12 +7,12 @@ use Centum\Http\Exception\CsrfException;
 
 abstract class Form
 {
-    protected Request $request;
+    protected readonly Request $request;
 
-    protected Data $data;
-    protected Files $files;
+    protected readonly Data $data;
+    protected readonly Files $files;
 
-    protected Csrf $csrf;
+    protected readonly Csrf $csrf;
 
 
 

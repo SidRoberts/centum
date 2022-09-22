@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class InvalidPageNumberException extends InvalidArgumentException
 {
-    protected int $pageNumber;
+    protected readonly int $pageNumber;
 
 
 

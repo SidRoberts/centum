@@ -4,8 +4,8 @@ namespace Centum\Flash;
 
 class Message
 {
-    protected string $level;
-    protected string $text;
+    protected readonly string $level;
+    protected readonly string $text;
 
 
 

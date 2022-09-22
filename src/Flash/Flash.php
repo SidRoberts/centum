@@ -6,9 +6,9 @@ use Centum\Http\Session;
 
 class Flash implements FlashInterface
 {
-    protected Session $session;
+    protected readonly Session $session;
 
-    protected FormatterInterface $formatter;
+    protected readonly FormatterInterface $formatter;
 
 
 

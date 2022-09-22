@@ -7,7 +7,7 @@ use Centum\Http\Session\SessionGlobalVariableHandler;
 
 class Session
 {
-    protected HandlerInterface $handler;
+    protected readonly HandlerInterface $handler;
 
 
 

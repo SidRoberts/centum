@@ -9,8 +9,8 @@ use UnexpectedValueException;
 
 class Queue
 {
-    protected Container $container;
-    protected Pheanstalk $pheanstalk;
+    protected readonly Container $container;
+    protected readonly Pheanstalk $pheanstalk;
 
     public const TUBE = "centum-tasks";
 

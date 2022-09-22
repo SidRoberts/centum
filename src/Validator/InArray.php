@@ -4,7 +4,7 @@ namespace Centum\Validator;
 
 class InArray implements ValidatorInterface
 {
-    protected array $values;
+    protected readonly array $values;
 
 
 

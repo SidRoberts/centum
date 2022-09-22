@@ -8,7 +8,7 @@ use Twig\TwigFunction;
 
 class FlashExtension extends AbstractExtension
 {
-    protected Flash $flash;
+    protected readonly Flash $flash;
 
 
 

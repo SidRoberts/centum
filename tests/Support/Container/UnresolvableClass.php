@@ -4,7 +4,7 @@ namespace Tests\Support\Container;
 
 class UnresolvableClass
 {
-    protected string $name;
+    protected readonly string $name;
 
 
 

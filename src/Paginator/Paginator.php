@@ -7,8 +7,8 @@ use Centum\Paginator\Page;
 
 class Paginator
 {
-    protected DataInterface $data;
-    protected int $itemsPerPage;
+    protected readonly DataInterface $data;
+    protected readonly int $itemsPerPage;
 
 
 

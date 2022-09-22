@@ -4,8 +4,8 @@ namespace Centum\Filter;
 
 class Blacklist implements FilterInterface
 {
-    protected array $blacklist;
-    protected bool $strict;
+    protected readonly array $blacklist;
+    protected readonly bool $strict;
 
 
 

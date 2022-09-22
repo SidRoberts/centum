@@ -11,7 +11,7 @@ use Centum\Validator\NotEmpty;
 
 class UserWithConstructorTemplate extends FormTemplate
 {
-    protected Container $container;
+    protected readonly Container $container;
 
 
 

@@ -8,9 +8,9 @@ use Centum\Paginator\Exception\InvalidPageNumberException;
 
 class Page
 {
-    protected DataInterface $data;
-    protected int $pageNumber;
-    protected int $itemsPerPage;
+    protected readonly DataInterface $data;
+    protected readonly int $pageNumber;
+    protected readonly int $itemsPerPage;
 
 
 

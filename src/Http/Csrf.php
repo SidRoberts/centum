@@ -4,7 +4,7 @@ namespace Centum\Http;
 
 class Csrf
 {
-    protected Session $session;
+    protected readonly Session $session;
 
     public const TOKEN = "centum-csrf";
 
@@ -34,7 +34,7 @@ class Csrf
         $csrf = bin2hex($randomBinaryString);
 
         $this->session->set(self::TOKEN, $csrf);
-        
+
         return $csrf;
     }
 

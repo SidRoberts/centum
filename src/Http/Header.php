@@ -4,8 +4,8 @@ namespace Centum\Http;
 
 class Header
 {
-    protected string $name;
-    protected string $value;
+    protected readonly string $name;
+    protected readonly string $value;
 
 
 

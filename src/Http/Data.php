@@ -5,7 +5,7 @@ namespace Centum\Http;
 class Data
 {
     /** @var array<string, mixed> */
-    protected array $data = [];
+    protected readonly array $data;
 
 
 

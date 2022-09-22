@@ -6,7 +6,7 @@ use Centum\Console\Command;
 
 class InvalidCommandNameException extends \Exception
 {
-    protected Command $command;
+    protected readonly Command $command;
 
 
 
