@@ -2,12 +2,12 @@
 
 namespace Tests\Http;
 
+use Centum\Http\Exception\FileGroupNotFoundException;
 use Centum\Http\File;
 use Centum\Http\FileGroup;
 use Centum\Http\Files;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
-use OutOfBoundsException;
 use OverflowException;
 use Tests\Support\UnitTester;
 
@@ -112,12 +112,14 @@ class FilesCest
 
     public function testGetDoesntExist(UnitTester $I): void
     {
-        $I->expectThrowable(
-            OutOfBoundsException::class,
-            function (): void {
-                $files = new Files();
+        $id = "doesnt-exist";
 
-                $files->get("doesnt-exist");
+        $files = new Files();
+
+        $I->expectThrowable(
+            new FileGroupNotFoundException($id),
+            function () use ($files, $id): void {
+                $files->get($id);
             }
         );
     }

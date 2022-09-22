@@ -2,6 +2,7 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\FileAlreadyMovedException;
 use Exception;
 
 class File
@@ -77,7 +78,7 @@ class File
         }
 
         if ($this->isMoved) {
-            throw new Exception("File has already been moved.");
+            throw new FileAlreadyMovedException($this);
         }
 
         $this->isMoved = true;

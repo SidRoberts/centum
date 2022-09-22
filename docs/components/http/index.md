@@ -19,3 +19,5 @@ permalink: http
 (all in the `Centum\Http\Exception` namespace)
 
 - [`CsrfException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CsrfException.php)
+- [`FileAlreadyMovedException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileAlreadyMovedException.php)
+- [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileGroupNotFoundException.php)

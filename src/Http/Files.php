@@ -2,8 +2,8 @@
 
 namespace Centum\Http;
 
-use OutOfBoundsException;
-use OverflowException;
+use Centum\Http\Exception\FileGroupAlreadyExistsException;
+use Centum\Http\Exception\FileGroupNotFoundException;
 
 class Files
 {
@@ -31,7 +31,7 @@ class Files
         $id = $fileGroup->getID();
 
         if (isset($this->fileGroups[$id])) {
-            throw new OverflowException();
+            throw new FileGroupAlreadyExistsException($id);
         }
 
         $this->fileGroups[$id] = $fileGroup;
@@ -46,11 +46,7 @@ class Files
 
     public function get(string $id): FileGroup
     {
-        if (!isset($this->fileGroups[$id])) {
-            throw new OutOfBoundsException();
-        }
-
-        return $this->fileGroups[$id];
+        return $this->fileGroups[$id] ?? throw new FileGroupNotFoundException($id);
     }
 
 
