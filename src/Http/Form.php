@@ -37,7 +37,7 @@ abstract class Form
         $value = $this->data->get("csrf");
 
         if (!$value || !$this->csrf->validate($value)) {
-            throw new CsrfException();
+            throw new CsrfException($value);
         }
     }
 }

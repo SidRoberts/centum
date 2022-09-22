@@ -242,7 +242,7 @@ class FormCest
         $container = $I->getContainer();
 
         $I->expectThrowable(
-            CsrfException::class,
+            new CsrfException(null),
             function () use ($request, $csrf, $container): void {
                 new LoginWithCsrfForm($request, $csrf, $container);
             }
