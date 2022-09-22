@@ -10,16 +10,12 @@ class Route
 
     protected string $uri;
 
-    /**
-     * @var class-string
-     */
+    /** @var class-string */
     protected string $class;
 
     protected string $method;
 
-    /**
-     * @var array<string, FilterInterface>
-     */
+    /** @var array<string, FilterInterface> */
     protected array $filters = [];
 
 

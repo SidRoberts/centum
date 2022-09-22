@@ -6,9 +6,7 @@ use OutOfRangeException;
 
 class Cookies
 {
-    /**
-     * @var array<string, Cookie>
-     */
+    /** @var array<string, Cookie> */
     protected array $cookies = [];
 
 

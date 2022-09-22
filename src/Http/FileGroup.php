@@ -6,9 +6,7 @@ class FileGroup
 {
     protected string $id;
 
-    /**
-     * @var array<File>
-     */
+    /** @var array<File> */
     protected array $files = [];
 
 

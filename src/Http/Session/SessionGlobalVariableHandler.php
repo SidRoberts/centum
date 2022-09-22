@@ -43,9 +43,7 @@ class SessionGlobalVariableHandler implements HandlerInterface
     {
         $this->startIfNotActive();
 
-        /**
-         * @var mixed
-         */
+        /** @var mixed */
         $_SESSION[$name] = $value;
     }
 
@@ -67,9 +65,7 @@ class SessionGlobalVariableHandler implements HandlerInterface
     {
         $this->startIfNotActive();
 
-        /**
-         * @var array<array-key, mixed>
-         */
+        /** @var array<array-key, mixed> */
         return $_SESSION;
     }
 }

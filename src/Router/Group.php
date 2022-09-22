@@ -6,9 +6,7 @@ class Group
 {
     protected MiddlewareInterface $middleware;
 
-    /**
-     * @var Route[]
-     */
+    /** @var Route[] */
     protected array $routes = [];
 
 

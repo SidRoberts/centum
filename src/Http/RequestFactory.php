@@ -17,22 +17,16 @@ class RequestFactory
 
     public function createFromArrays(array $server, array $get, array $post, string $content): Request
     {
-        /**
-         * @var string
-         */
+        /** @var string */
         $uri = $server["REQUEST_URI"] ?? "";
 
         // Remove parameter string
         $uri = parse_url($uri, PHP_URL_PATH);
 
-        /**
-         * @var string
-         */
+        /** @var string */
         $method = $server["REQUEST_METHOD"] ?? "GET";
 
-        /**
-         * @var string
-         */
+        /** @var string */
         $contentType = $server["CONTENT_TYPE"] ?? "text/plain";
 
         $parameters = null;

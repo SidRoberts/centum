@@ -6,9 +6,7 @@ use Centum\Validator\ValidatorInterface;
 
 class IsInstanceOf implements ValidatorInterface
 {
-    /**
-     * @var class-string
-     */
+    /** @var class-string */
     protected string $className;
 
 

@@ -4,9 +4,7 @@ namespace Centum\Validator;
 
 class Callback implements ValidatorInterface
 {
-    /**
-     * @var callable
-     */
+    /** @var callable */
     protected $callable;
 
 
@@ -20,9 +18,7 @@ class Callback implements ValidatorInterface
 
     public function validate(mixed $value): array
     {
-        /**
-         * @var string[]
-         */
+        /** @var string[] */
         return call_user_func_array(
             $this->callable,
             [

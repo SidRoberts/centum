@@ -18,14 +18,10 @@ class Application
 {
     protected Container $container;
 
-    /**
-     * @var array<string, Command>
-     */
+    /** @var array<string, Command> */
     protected array $commands = [];
 
-    /**
-     * @var array<class-string, Command>
-     */
+    /** @var array<class-string, Command> */
     protected array $exceptionHandlers = [];
 
 
@@ -88,9 +84,7 @@ class Application
         try {
             $filters = $command->getFilters($this->container);
 
-            /**
-             * @var string $key
-             */
+            /** @var string $key */
             foreach ($filters as $key => $filter) {
                 if (!($filter instanceof FilterInterface)) {
                     throw new InvalidFilterException($filter);
@@ -100,14 +94,10 @@ class Application
                     throw new ParamNotFoundException($key);
                 }
 
-                /**
-                 * @var mixed
-                 */
+                /** @var mixed */
                 $value = $parameters->get($key);
 
-                /**
-                 * @var mixed
-                 */
+                /** @var mixed */
                 $value = $filter->filter($value);
 
                 $parameters->set($key, $value);
@@ -118,9 +108,7 @@ class Application
             return $command->execute($terminal, $this->container, $parameters);
         } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $command) {
-                /**
-                 * @psalm-suppress DocblockTypeContradiction
-                 */
+                /** @psalm-suppress DocblockTypeContradiction */
                 if (is_a($exception, $exceptionClass)) {
                     $this->container->set(get_class($exception), $exception);
                     $this->container->set($exceptionClass, $exception);

@@ -13,14 +13,10 @@ use ReflectionParameter;
 
 class Container
 {
-    /**
-     * @var array<class-string, object>
-     */
+    /** @var array<class-string, object> */
     protected array $objects = [];
 
-    /**
-     * @var array<class-string, class-string>
-     */
+    /** @var array<class-string, class-string> */
     protected array $aliases = [];
 
 
@@ -109,9 +105,7 @@ class Container
      */
     public function setDynamic(string $class, Closure | string $function): void
     {
-        /**
-         * @var object
-         */
+        /** @var object */
         $this->objects[$class] = $this->typehintFunction($function);
     }
 
@@ -135,9 +129,7 @@ class Container
         $params = [];
 
         foreach ($parameters as $parameter) {
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $params[] = $this->resolveParam($parameter);
         }
 

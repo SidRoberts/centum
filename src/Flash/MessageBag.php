@@ -4,9 +4,7 @@ namespace Centum\Flash;
 
 class MessageBag
 {
-    /**
-     * @var Message[]
-     */
+    /** @var Message[] */
     protected array $messages = [];
 
 

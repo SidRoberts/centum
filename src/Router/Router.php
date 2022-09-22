@@ -15,14 +15,10 @@ class Router
 {
     protected Container $container;
 
-    /**
-     * @var Group[]
-     */
+    /** @var Group[] */
     protected array $groups = [];
 
-    /**
-     * @var array<class-string, array{class-string, string}>
-     */
+    /** @var array<class-string, array{class-string, string}> */
     protected array $exceptionHandlers = [];
 
 
@@ -87,9 +83,7 @@ class Router
             throw new RouteNotFoundException($request);
         } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $path) {
-                /**
-                 * @psalm-suppress DocblockTypeContradiction
-                 */
+                /** @psalm-suppress DocblockTypeContradiction */
                 if (is_a($exception, $exceptionClass)) {
                     $this->container->set(get_class($exception), $exception);
                     $this->container->set($exceptionClass, $exception);
@@ -147,14 +141,10 @@ class Router
         $filters = $route->getFilters();
 
         foreach ($filters as $key => $filter) {
-            /**
-             * @var string
-             */
+            /** @var string */
             $value = $parameters[$key] ?? throw new ParamNotFoundException($key);
 
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $parameters[$key] = $filter->filter($value);
         }
 
@@ -180,9 +170,7 @@ class Router
     {
         $controller = $this->container->typehintClass($class);
 
-        /**
-         * @var Response
-         */
+        /** @var Response */
         return $this->container->typehintMethod($controller, $method);
     }
 }

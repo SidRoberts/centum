@@ -4,9 +4,7 @@ namespace Centum\Forms;
 
 class Form
 {
-    /**
-     * @var array<string, Field>
-     */
+    /** @var array<string, Field> */
     protected array $fields = [];
 
 
@@ -25,14 +23,10 @@ class Form
         $filteredValues = [];
 
         foreach ($this->fields as $name => $field) {
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $value = $data[$name] ?? null;
 
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $filteredValues[$name] = $field->getFilteredValue($value);
         }
 
@@ -46,9 +40,7 @@ class Form
         $messages = [];
 
         foreach ($this->fields as $name => $field) {
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $value = $data[$name] ?? null;
 
             $fieldMessages = $field->getMessages($value);

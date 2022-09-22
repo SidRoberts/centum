@@ -10,14 +10,10 @@ class Field
 {
     protected string $name;
 
-    /**
-     * @var FilterInterface[]
-     */
+    /** @var FilterInterface[] */
     protected array $filters = [];
 
-    /**
-     * @var ValidatorInterface[]
-     */
+    /** @var ValidatorInterface[] */
     protected array $validators = [];
 
 
@@ -64,9 +60,7 @@ class Field
     {
         // Apply filters to value.
         foreach ($this->filters as $filter) {
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $value = $filter->filter($value);
         }
 
@@ -90,9 +84,7 @@ class Field
     public function getMessages(mixed $value): array
     {
         try {
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $filteredValue = $this->getFilteredValue($value);
 
             $allMessages = [];

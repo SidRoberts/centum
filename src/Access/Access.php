@@ -11,9 +11,7 @@ class Access
 
     protected bool $default;
 
-    /**
-     * @var array<string, Activity>
-     */
+    /** @var array<string, Activity> */
     protected array $activities = [];
 
 

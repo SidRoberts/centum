@@ -7,14 +7,10 @@ use InvalidArgumentException;
 
 class Replace implements FilterInterface
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     protected array $search;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     protected array $replace;
 
 

@@ -4,9 +4,7 @@ namespace Centum\Filter;
 
 class Callback implements FilterInterface
 {
-    /**
-     * @var callable
-     */
+    /** @var callable */
     protected $callable;
 
 

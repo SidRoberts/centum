@@ -4,9 +4,7 @@ namespace Centum\Forms;
 
 class Status
 {
-    /**
-     * @var array<string, string[]>
-     */
+    /** @var array<string, string[]> */
     protected array $messages;
 
 

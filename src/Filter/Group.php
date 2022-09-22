@@ -4,9 +4,7 @@ namespace Centum\Filter;
 
 class Group implements FilterInterface
 {
-    /**
-     * @var FilterInterface[]
-     */
+    /** @var FilterInterface[] */
     protected array $filters = [];
 
 
@@ -29,9 +27,7 @@ class Group implements FilterInterface
     {
         // Apply filters to value.
         foreach ($this->filters as $filter) {
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $value = $filter->filter($value);
         }
 

@@ -76,9 +76,7 @@ class Flash implements FlashInterface
 
     protected function getMessageBag(): MessageBag
     {
-        /**
-         * @var MessageBag
-         */
+        /** @var MessageBag */
         $messageBag = $this->session->get(self::SESSION_ID) ?? new MessageBag();
 
         $this->session->remove(self::SESSION_ID);

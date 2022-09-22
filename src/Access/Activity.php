@@ -8,9 +8,7 @@ class Activity
 
     protected bool $default;
 
-    /**
-     * @var array<string, bool>
-     */
+    /** @var array<string, bool> */
     protected array $users = [];
 
 

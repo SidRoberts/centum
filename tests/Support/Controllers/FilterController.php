@@ -9,9 +9,7 @@ class FilterController
 {
     public function get(Parameters $parameters): Response
     {
-        /**
-         * @var mixed
-         */
+        /** @var mixed */
         $i = $parameters->get("i");
 
         return new Response(

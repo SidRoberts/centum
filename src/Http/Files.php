@@ -7,9 +7,7 @@ use Centum\Http\Exception\FileGroupNotFoundException;
 
 class Files
 {
-    /**
-     * @var array<string, FileGroup>
-     */
+    /** @var array<string, FileGroup> */
     protected array $fileGroups = [];
 
 

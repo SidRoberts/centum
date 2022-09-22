@@ -6,9 +6,7 @@ use OutOfRangeException;
 
 class Headers
 {
-    /**
-     * @var array<string, Header>
-     */
+    /** @var array<string, Header> */
     protected array $headers = [];
 
 

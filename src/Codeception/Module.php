@@ -33,19 +33,13 @@ class Module extends Framework
 
     protected ?Container $container = null;
 
-    /**
-     * @var ?resource
-     */
+    /** @var ?resource */
     protected $stdin = null;
 
-    /**
-     * @var ?resource
-     */
+    /** @var ?resource */
     protected $stdout = null;
 
-    /**
-     * @var ?resource
-     */
+    /** @var ?resource */
     protected $stderr = null;
 
 
@@ -116,9 +110,7 @@ class Module extends Framework
             );
         }
 
-        /**
-         * @var Container
-         */
+        /** @var Container */
         $this->container = require $containerFile;
 
         if (!($this->container instanceof Container)) {
@@ -194,9 +186,7 @@ class Module extends Framework
     {
         $container = $this->getContainer();
 
-        /**
-         * @var Application
-         */
+        /** @var Application */
         return $container->typehintClass(Application::class);
     }
 

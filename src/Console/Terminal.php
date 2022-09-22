@@ -4,24 +4,16 @@ namespace Centum\Console;
 
 class Terminal
 {
-    /**
-     * @var list<string>
-     */
+    /** @var list<string> */
     protected array $argv;
 
-    /**
-     * @var resource
-     */
+    /** @var resource */
     protected $stdin;
 
-    /**
-     * @var resource
-     */
+    /** @var resource */
     protected $stdout;
 
-    /**
-     * @var resource
-     */
+    /** @var resource */
     protected $stderr;
 
 
@@ -34,9 +26,7 @@ class Terminal
      */
     public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT, $stderr = STDERR)
     {
-        /**
-         * @var list<string>
-         */
+        /** @var list<string> */
         $this->argv = $argv ?? $_SERVER["argv"];
 
         $this->stdin  = $stdin;

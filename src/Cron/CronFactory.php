@@ -8,18 +8,12 @@ class CronFactory
     {
         $cron = new Cron();
 
-        /**
-         * @var array $jobArray
-         */
+        /** @var array $jobArray */
         foreach ($array as $jobArray) {
-            /**
-             * @var string
-             */
+            /** @var string */
             $expression = $jobArray[0];
 
-            /**
-             * @var mixed
-             */
+            /** @var mixed */
             $data = $jobArray[1];
 
             $job = new Job($expression, $data);

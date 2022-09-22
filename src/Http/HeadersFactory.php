@@ -34,9 +34,7 @@ class HeadersFactory
     {
         $headers = new Headers();
 
-        /**
-         * @var array<string, string>
-         */
+        /** @var array<string, string> */
         $server = $browserKitRequest->getServer();
 
         $contentHeaders = ['Content-Length', 'Content-Md5', 'Content-Type'];
