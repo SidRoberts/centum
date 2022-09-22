@@ -98,7 +98,7 @@ class ApplicationCest
         $terminal = $I->createTerminal($argv);
 
         $I->expectThrowable(
-            new ParamNotFoundException(),
+            new ParamNotFoundException("i"),
             function () use ($application, $terminal): void {
                 $application->handle($terminal);
             }
@@ -176,19 +176,21 @@ class ApplicationCest
 
     public function testCommandNotFoundException(UnitTester $I): void
     {
+        $name = "this:command:does:not:exist";
+
         $container = new Container();
 
         $application = new Application($container);
 
         $argv = [
             "cli.php",
-            "this:command:does:not:exist",
+            $name,
         ];
 
         $terminal = $I->createTerminal($argv);
 
         $I->expectThrowable(
-            CommandNotFoundException::class,
+            new CommandNotFoundException($name),
             function () use ($application, $terminal): void {
                 $application->handle($terminal);
             }
@@ -201,7 +203,9 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(new InvalidFiltersCommand());
+        $application->addCommand(
+            new InvalidFiltersCommand()
+        );
 
         $argv = [
             "cli.php",
@@ -211,7 +215,7 @@ class ApplicationCest
         $terminal = $I->createTerminal($argv);
 
         $I->expectThrowable(
-            InvalidFilterException::class,
+            new InvalidFilterException($terminal),
             function () use ($application, $terminal): void {
                 $application->handle($terminal);
             }

@@ -150,7 +150,7 @@ class Router
             /**
              * @var string
              */
-            $value = $parameters[$key] ?? throw new ParamNotFoundException();
+            $value = $parameters[$key] ?? throw new ParamNotFoundException($key);
 
             /**
              * @var mixed

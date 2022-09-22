@@ -93,11 +93,11 @@ class Application
              */
             foreach ($filters as $key => $filter) {
                 if (!($filter instanceof FilterInterface)) {
-                    throw new InvalidFilterException();
+                    throw new InvalidFilterException($filter);
                 }
 
                 if (!$parameters->has($key)) {
-                    throw new ParamNotFoundException();
+                    throw new ParamNotFoundException($key);
                 }
 
                 /**
@@ -140,7 +140,7 @@ class Application
     {
         $name = $terminal->getArgv()[1] ?? "";
 
-        $command = $this->commands[$name] ?? throw new CommandNotFoundException();
+        $command = $this->commands[$name] ?? throw new CommandNotFoundException($name);
 
 
 
@@ -149,7 +149,7 @@ class Application
         $success = $middleware->middleware($terminal, $command, $this->container);
 
         if (!$success) {
-            throw new CommandNotFoundException();
+            throw new CommandNotFoundException($name);
         }
 
 
