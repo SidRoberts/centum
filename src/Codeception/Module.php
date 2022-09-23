@@ -97,7 +97,7 @@ class Module extends Framework
 
 
 
-    protected function makeNewContainer(): void
+    public function makeNewContainer(): void
     {
         $containerFile = Configuration::projectDir() . $this->config["container"];
 
@@ -111,9 +111,9 @@ class Module extends Framework
         }
 
         /** @var Container */
-        $this->container = require $containerFile;
+        $container = require $containerFile;
 
-        if (!($this->container instanceof Container)) {
+        if (!($container instanceof Container)) {
             throw new TypeError(
                 sprintf(
                     "%s does not return a %s instance.",
@@ -122,6 +122,8 @@ class Module extends Framework
                 )
             );
         }
+
+        $this->container = $container;
     }
 
 

@@ -15,9 +15,79 @@ use Tests\Support\Commands\BoringCommand;
 use Tests\Support\Commands\FilterCommand;
 use Tests\Support\Container\Incrementer;
 use Tests\Support\UnitTester;
+use TypeError;
 
 class ModuleCest
 {
+    public function testMakeNewContainer(UnitTester $I): void
+    {
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => "tests/Support/Data/container.php",
+            ]
+        );
+
+        $module->makeNewContainer();
+
+        $container1 = $module->getContainer();
+
+        $module->makeNewContainer();
+
+        $container2 = $module->getContainer();
+
+        $I->assertNotSame(
+            $container1,
+            $container2
+        );
+    }
+
+    public function testMakeNewContainerNotRealFile(UnitTester $I): void
+    {
+        $fakeFile = "/not/a/real/file";
+
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => $fakeFile,
+            ]
+        );
+
+        $I->expectThrowable(
+            Exception::class,
+            function () use ($module): void {
+                $module->makeNewContainer();
+            }
+        );
+    }
+
+    public function testMakeNewContainerFileDoesntReturnContainerInstance(UnitTester $I): void
+    {
+        $fakeFile = "codeception.yml";
+
+        $moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $module = new Module(
+            $moduleContainer,
+            [
+                "container" => $fakeFile,
+            ]
+        );
+
+        $I->expectThrowable(
+            TypeError::class,
+            function () use ($module): void {
+                $module->makeNewContainer();
+            }
+        );
+    }
+
+
+
     public function testGetContainer(UnitTester $I): void
     {
         $moduleContainer = Mockery::mock(ModuleContainer::class);
