@@ -5,6 +5,7 @@ namespace Tests\Http;
 use Centum\Http\FilesFactory;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
+use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 use Tests\Support\UnitTester;
 
@@ -112,6 +113,37 @@ class FilesFactoryCest
         $I->assertEquals(
             [],
             $files->toArray()
+        );
+    }
+
+
+
+    public function testCreateFromBrowserKitRequestWithFilesThrowsException(UnitTester $I): void
+    {
+        $browserKitRequest = new BrowserKitRequest(
+            "/",
+            "GET",
+            [],
+            [
+                "file" => [
+                    "name"     => "myfile.pdf",
+                    "tmp_name" => "/var/myfile.pdf",
+                ],
+            ],
+            [],
+            [],
+            null
+        );
+
+        $filesFactory = new FilesFactory();
+
+        $I->expectThrowable(
+            new Exception(
+                "Not implemented due to being unable to get the file location of a PSR7 UploadedFile."
+            ),
+            function () use ($filesFactory, $browserKitRequest): void {
+                $filesFactory->createFromBrowserKitRequest($browserKitRequest);
+            }
         );
     }
 }
