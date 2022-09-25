@@ -3,6 +3,7 @@
 namespace Centum\Flash;
 
 use Centum\Http\Session;
+use Centum\Interfaces\Flash\FlashInterface;
 
 class Flash implements FlashInterface
 {

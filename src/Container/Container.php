@@ -3,7 +3,9 @@
 namespace Centum\Container;
 
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Flash\Flash;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Flash\FlashInterface;
 use Closure;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Pheanstalk;
@@ -22,6 +24,7 @@ class Container implements ContainerInterface
     /** @var array<class-string, class-string> */
     protected array $aliases = [
         ContainerInterface::class  => Container::class,
+        FlashInterface::class      => Flash::class,
         PheanstalkInterface::class => Pheanstalk::class,
     ];
 

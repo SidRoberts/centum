@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Flash;
+namespace Centum\Interfaces\Flash;
 
 interface FlashInterface
 {
