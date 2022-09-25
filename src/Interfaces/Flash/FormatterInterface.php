@@ -1,6 +1,8 @@
 <?php
 
-namespace Centum\Flash;
+namespace Centum\Interfaces\Flash;
+
+use Centum\Flash\Message;
 
 interface FormatterInterface
 {

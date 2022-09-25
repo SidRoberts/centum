@@ -4,6 +4,7 @@ namespace Centum\Flash;
 
 use Centum\Http\Session;
 use Centum\Interfaces\Flash\FlashInterface;
+use Centum\Interfaces\Flash\FormatterInterface;
 
 class Flash implements FlashInterface
 {

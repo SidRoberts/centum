@@ -11,7 +11,7 @@ permalink: flash/formatters
 # Formatters
 
 Formatters determine how messages are outputted.
-To create your own you must implement [`Centum\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Flash/FormatterInterface.php).
+To create your own you must implement [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php).
 Currently, there are two formatters:
 
 ## [`Centum\Flash\Formatter\HtmlFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/HtmlFormatter.php)

@@ -14,8 +14,8 @@ Aliases can be added using the `addAlias()` method.
 This is particularly useful for interfaces that cannot be directly instantiated:
 
 ```php
-use Centum\Flash\FormatterInterface;
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Flash\FormatterInterface;
 
 $container->addAlias(
     FormatterInterface::class,
@@ -23,7 +23,7 @@ $container->addAlias(
 );
 ```
 
-Now, any call to [`FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Flash/FormatterInterface.php) will return or create a new [`HtmlFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/HtmlFormatter.php) object.
+Now, any call to [`FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php) will return or create a new [`HtmlFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/HtmlFormatter.php) object.
 
 By default, some aliases have already been set:
 

@@ -2,8 +2,8 @@
 
 namespace Centum\Flash\Formatter;
 
-use Centum\Flash\FormatterInterface;
 use Centum\Flash\Message;
+use Centum\Interfaces\Flash\FormatterInterface;
 
 class TextFormatter implements FormatterInterface
 {
