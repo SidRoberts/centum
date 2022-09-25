@@ -17,7 +17,7 @@ class ErrorCommand extends Command
 
     public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
-        $throwable = $container->typehintClass(Throwable::class);
+        $throwable = $container->get(Throwable::class);
 
         $terminal->write(
             sprintf(

@@ -39,7 +39,7 @@ class Container implements ContainerInterface
      * @psalm-param class-string<T> $class
      * @psalm-return T
      */
-    public function typehintClass(string $class): object
+    public function get(string $class): object
     {
         $class = $this->aliases[$class] ?? $class;
 
@@ -172,6 +172,6 @@ class Container implements ContainerInterface
 
         $class = $type->getName();
 
-        return $this->typehintClass($class);
+        return $this->get($class);
     }
 }

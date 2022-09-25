@@ -29,7 +29,7 @@ class IsUserMiddleware implements MiddlewareInterface
 {
     public function middleware(Request $request, Container $container): bool
     {
-        $auth = $container->typehintClass(Auth::class);
+        $auth = $container->get(Auth::class);
 
         return $auth->isLoggedIn();
     }

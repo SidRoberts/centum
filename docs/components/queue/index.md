@@ -99,7 +99,7 @@ class QueueConsumeCommand extends Command
 
     public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
-        $queue = $container->typehintClass(Queue::class);
+        $queue = $container->get(Queue::class);
 
         $queue->consume();
 

@@ -151,7 +151,7 @@ class ModuleCest
 
         $I->assertSame(
             $incrementer,
-            $container->typehintClass(Incrementer::class)
+            $container->get(Incrementer::class)
         );
     }
 

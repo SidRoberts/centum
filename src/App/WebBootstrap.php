@@ -10,9 +10,9 @@ class WebBootstrap extends Bootstrap
 {
     public function boot(ContainerInterface $container): void
     {
-        $router = $container->typehintClass(Router::class);
+        $router = $container->get(Router::class);
 
-        $request = $container->typehintClass(Request::class);
+        $request = $container->get(Request::class);
 
 
 

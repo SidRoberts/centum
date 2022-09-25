@@ -16,7 +16,7 @@ class ConnectorCest
 
         new Connector($container);
 
-        $sessionHandler = $container->typehintClass(HandlerInterface::class);
+        $sessionHandler = $container->get(HandlerInterface::class);
 
         $I->assertInstanceOf(
             ArrayHandler::class,

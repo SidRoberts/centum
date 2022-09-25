@@ -71,7 +71,7 @@ class ErrorCommand extends Command
     {
         $terminal->writeLine("An error occurred.");
 
-        $throwable = $container->typehintClass(Throwable::class);
+        $throwable = $container->get(Throwable::class);
 
         $terminal->writeLine(
             get_class($throwable)

@@ -10,9 +10,9 @@ class ConsoleBootstrap extends Bootstrap
 {
     public function boot(ContainerInterface $container): void
     {
-        $application = $container->typehintClass(Application::class);
+        $application = $container->get(Application::class);
 
-        $terminal = $container->typehintClass(Terminal::class);
+        $terminal = $container->get(Terminal::class);
 
         $exitCode = $application->handle($terminal);
 

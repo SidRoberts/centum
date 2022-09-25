@@ -188,7 +188,7 @@ class Module extends Framework
         $container = $this->getContainer();
 
         /** @var Application */
-        return $container->typehintClass(Application::class);
+        return $container->get(Application::class);
     }
 
     public function addCommand(Command $command): void

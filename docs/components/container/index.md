@@ -26,12 +26,12 @@ $container = new Container();
 
 ## Retrieving objects
 
-Classes can be created using the `typehintClass()` method:
+Classes can be created using the `get()` method:
 
 ```php
 use Centum\Router\Router;
 
-$router = $container->typehintClass(Router::class);
+$router = $container->get(Router::class);
 ```
 
 Methods can be called using the `typehintMethod()` method:
@@ -100,7 +100,7 @@ You can then retrieve them with the `typehint*()` methods:
 ```php
 use Centum\Console\Application;
 
-$application = $container->typehintClass(Application::class);
+$application = $container->get(Application::class);
 ```
 
 If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php).

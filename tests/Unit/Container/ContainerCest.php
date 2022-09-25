@@ -23,7 +23,7 @@ class ContainerCest
 
         $I->assertSame(
             $container,
-            $container->typehintClass(Container::class)
+            $container->get(Container::class)
         );
     }
 
@@ -33,15 +33,15 @@ class ContainerCest
 
         $I->assertSame(
             $container,
-            $container->typehintClass(ContainerInterface::class)
+            $container->get(ContainerInterface::class)
         );
     }
 
-    public function testTypehintClass(UnitTester $I): void
+    public function testGet(UnitTester $I): void
     {
         $container = new Container();
 
-        $a = $container->typehintClass(stdClass::class);
+        $a = $container->get(stdClass::class);
 
         $I->assertInstanceOf(
             stdClass::class,
@@ -50,7 +50,7 @@ class ContainerCest
 
         $a->name = "Sid";
 
-        $b = $container->typehintClass(stdClass::class);
+        $b = $container->get(stdClass::class);
 
         $b->city = "Busan";
 
@@ -98,7 +98,7 @@ class ContainerCest
             }
         );
 
-        $incrementer = $container->typehintClass(Incrementer::class);
+        $incrementer = $container->get(Incrementer::class);
 
         $I->assertInstanceOf(
             Incrementer::class,
@@ -117,15 +117,15 @@ class ContainerCest
     {
         $container = new Container();
 
-        $incrementer0 = $container->typehintClass(Incrementer::class);
+        $incrementer0 = $container->get(Incrementer::class);
 
         $incrementer0->increment();
 
-        $incrementer1 = $container->typehintClass(Incrementer::class);
+        $incrementer1 = $container->get(Incrementer::class);
 
         $incrementer1->increment();
 
-        $incrementer2 = $container->typehintClass(Incrementer::class);
+        $incrementer2 = $container->get(Incrementer::class);
 
         $I->assertEquals(
             2,
@@ -139,9 +139,9 @@ class ContainerCest
     {
         $container = new Container();
 
-        $resolvableClass = $container->typehintClass(ResolvableClass::class);
+        $resolvableClass = $container->get(ResolvableClass::class);
 
-        $incrementer = $container->typehintClass(Incrementer::class);
+        $incrementer = $container->get(Incrementer::class);
 
         $I->assertSame(
             $incrementer,
@@ -153,7 +153,7 @@ class ContainerCest
     {
         $container = new Container();
 
-        $resolvableClassNoConstructor = $container->typehintClass(ResolvableClassNoConstructor::class);
+        $resolvableClassNoConstructor = $container->get(ResolvableClassNoConstructor::class);
 
         $I->assertInstanceOf(
             ResolvableClassNoConstructor::class,
@@ -168,7 +168,7 @@ class ContainerCest
         $I->expectThrowable(
             UnresolvableParameterException::class,
             function () use ($container): void {
-                $container->typehintClass(UnresolvableClass::class);
+                $container->get(UnresolvableClass::class);
             }
         );
     }
@@ -261,7 +261,7 @@ class ContainerCest
 
         $container->addAlias(CommandInterface::class, ACommand::class);
 
-        $object = $container->typehintClass(CommandInterface::class);
+        $object = $container->get(CommandInterface::class);
 
         $I->assertInstanceOf(
             ACommand::class,
@@ -273,11 +273,11 @@ class ContainerCest
     {
         $container = new Container();
 
-        $incrementer1 = $container->typehintClass(Incrementer::class);
+        $incrementer1 = $container->get(Incrementer::class);
 
         $container->remove(Incrementer::class);
 
-        $incrementer2 = $container->typehintClass(Incrementer::class);
+        $incrementer2 = $container->get(Incrementer::class);
 
         $I->assertNotSame($incrementer1, $incrementer2);
     }

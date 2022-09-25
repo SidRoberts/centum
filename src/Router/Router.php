@@ -169,7 +169,7 @@ class Router
      */
     protected function executeMethod(string $class, string $method): Response
     {
-        $controller = $this->container->typehintClass($class);
+        $controller = $this->container->get($class);
 
         /** @var Response */
         return $this->container->typehintMethod($controller, $method);
