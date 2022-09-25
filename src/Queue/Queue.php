@@ -3,20 +3,21 @@
 namespace Centum\Queue;
 
 use Centum\Container\Container;
-use Pheanstalk\Pheanstalk;
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Job;
 use Throwable;
 use UnexpectedValueException;
 
 class Queue
 {
     protected readonly Container $container;
-    protected readonly Pheanstalk $pheanstalk;
+    protected readonly PheanstalkInterface $pheanstalk;
 
     public const TUBE = "centum-tasks";
 
 
 
-    public function __construct(Container $container, Pheanstalk $pheanstalk)
+    public function __construct(Container $container, PheanstalkInterface $pheanstalk)
     {
         $this->container  = $container;
         $this->pheanstalk = $pheanstalk;
@@ -37,6 +38,12 @@ class Queue
     {
         $this->pheanstalk->watch(self::TUBE);
 
+        /**
+         * PheanstalkInterface::reserve() returns ?Job instead of just Job.
+         * This is fixed in Pheanstalk v5 - not yet released.
+         *
+         * @var Job
+         */
         $job = $this->pheanstalk->reserve();
 
         $task = unserialize(

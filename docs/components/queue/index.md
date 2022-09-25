@@ -18,7 +18,7 @@ This is especially useful for tasks that could take a long time, be hardware int
 ```php
 Centum\Queue\Queue(
     Centum\Container\Container $container,
-    Pheanstalk\Pheanstalk $pheanstalk
+    Pheanstalk\Contract\PheanstalkInterface $pheanstalk
 );
 ```
 

@@ -115,6 +115,11 @@ $container->addAlias(
 
 Now, any call to `FormatterInterface` will return or create a new `HtmlFormatter` object.
 
+By default, some aliases have already been set:
+
+- `Pheanstalk\Contract\PheanstalkInterface`: `Pheanstalk\Pheanstalk`
+
+
 
 
 ## Removing objects

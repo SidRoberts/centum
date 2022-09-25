@@ -6,8 +6,8 @@ use Centum\Container\Container;
 use Centum\Queue\Queue;
 use Mockery;
 use Mockery\MockInterface;
+use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
-use Pheanstalk\Pheanstalk;
 use stdClass;
 use Tests\Support\Queue\DoNothingTask;
 use Tests\Support\Queue\ProblematicTask;
@@ -30,7 +30,7 @@ class QueueCest
 
 
         $pheanstalk = Mockery::mock(
-            Pheanstalk::class,
+            PheanstalkInterface::class,
             function (MockInterface $mock) use ($serializedTask, $job): void {
                 $mock->shouldReceive("useTube")
                     ->with(Queue::TUBE);
@@ -65,7 +65,7 @@ class QueueCest
         );
 
         $pheanstalk = Mockery::mock(
-            Pheanstalk::class,
+            PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
                     ->with(Queue::TUBE);
@@ -101,7 +101,7 @@ class QueueCest
         );
 
         $pheanstalk = Mockery::mock(
-            Pheanstalk::class,
+            PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
                     ->with(Queue::TUBE);
@@ -146,7 +146,7 @@ class QueueCest
         );
 
         $pheanstalk = Mockery::mock(
-            Pheanstalk::class,
+            PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
                     ->with(Queue::TUBE);

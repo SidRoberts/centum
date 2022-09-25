@@ -4,6 +4,8 @@ namespace Centum\Container;
 
 use Centum\Container\Exception\UnresolvableParameterException;
 use Closure;
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Pheanstalk;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
@@ -17,7 +19,9 @@ class Container
     protected array $objects = [];
 
     /** @var array<class-string, class-string> */
-    protected array $aliases = [];
+    protected array $aliases = [
+        PheanstalkInterface::class => Pheanstalk::class,
+    ];
 
 
 
