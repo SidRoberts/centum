@@ -2,7 +2,7 @@
 layout: default
 title: Container
 parent: Components
-has_children: false
+has_children: true
 permalink: container
 ---
 
@@ -104,31 +104,6 @@ $application = $container->get(Application::class);
 ```
 
 If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php).
-
-
-
-## Aliases
-
-Aliases can be added using the `addAlias()` method.
-This is particularly useful for interfaces that cannot be directly instantiated:
-
-```php
-use Centum\Flash\FormatterInterface;
-use Centum\Flash\Formatter\HtmlFormatter;
-
-$container->addAlias(
-    FormatterInterface::class,
-    HtmlFormatter::class
-);
-```
-
-Now, any call to `FormatterInterface` will return or create a new `HtmlFormatter` object.
-
-By default, some aliases have already been set:
-
-- `Centum\Interfaces\Container\ContainerInterface`: `Centum\Container\Container`
-- `Pheanstalk\Contract\PheanstalkInterface`: `Pheanstalk\Pheanstalk`
-
 
 
 
