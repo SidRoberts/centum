@@ -2,7 +2,7 @@
 
 namespace Centum\Filter\String;
 
-use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
 class Alphanumeric implements FilterInterface

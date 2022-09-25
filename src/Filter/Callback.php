@@ -2,6 +2,8 @@
 
 namespace Centum\Filter;
 
+use Centum\Interfaces\Filter\FilterInterface;
+
 class Callback implements FilterInterface
 {
     /** @var callable */

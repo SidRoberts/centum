@@ -2,6 +2,8 @@
 
 namespace Centum\Filter;
 
+use Centum\Interfaces\Filter\FilterInterface;
+
 class Whitelist implements FilterInterface
 {
     protected readonly array $whitelist;

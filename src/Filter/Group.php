@@ -2,6 +2,8 @@
 
 namespace Centum\Filter;
 
+use Centum\Interfaces\Filter\FilterInterface;
+
 class Group implements FilterInterface
 {
     /** @var FilterInterface[] */

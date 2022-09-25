@@ -2,7 +2,7 @@
 
 namespace Centum\Router;
 
-use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 
 class Route
 {

@@ -2,7 +2,7 @@
 
 namespace Centum\Forms;
 
-use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 use Centum\Interfaces\Validator\ValidatorInterface;
 use Throwable;
 

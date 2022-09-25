@@ -2,7 +2,7 @@
 
 namespace Tests\Support\Filters;
 
-use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 
 class Doubler implements FilterInterface
 {

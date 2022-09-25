@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Validator\Type;
 
-use Centum\Filter\FilterInterface;
 use Centum\Filter\String\Trim;
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Filter\FilterInterface;
 use Centum\Validator\Type\IsInstanceOf;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -48,7 +48,7 @@ class IsInstanceOfCest
         );
 
         $I->assertEquals(
-            ["Value is not an instance of Centum\\Filter\\FilterInterface."],
+            ["Value is not an instance of Centum\\Interfaces\\Filter\\FilterInterface."],
             $violations
         );
     }

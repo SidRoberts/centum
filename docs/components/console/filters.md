@@ -11,7 +11,7 @@ permalink: console/filters
 # Filters
 
 Filters are particularly useful at preprocessing command parameters - for example, converting an ID number into an actual object.
-Any Filters you create must implement [`Centum\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Filter/FilterInterface.php).
+Any Filters you create must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php).
 
 ```php
 namespace App\Filters;
@@ -19,7 +19,7 @@ namespace App\Filters;
 use App\Models\Post;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Container\ContainerInterface;
-use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 use Doctrine\ORM\EntityManager;
 
 class PostFilter implements FilterInterface

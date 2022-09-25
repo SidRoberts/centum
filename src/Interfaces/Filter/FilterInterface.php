@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Filter;
+namespace Centum\Interfaces\Filter;
 
 interface FilterInterface
 {

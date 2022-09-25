@@ -2,7 +2,7 @@
 
 namespace Centum\Filter\Cast;
 
-use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 
 class ToBool implements FilterInterface
 {
