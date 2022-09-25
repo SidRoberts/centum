@@ -2,8 +2,8 @@
 
 namespace Tests\Support\Forms;
 
-use Centum\Container\Container;
 use Centum\Http\Form;
+use Centum\Interfaces\Container\ContainerInterface;
 use Exception;
 
 class LoginWithCsrfForm extends Form
@@ -13,7 +13,7 @@ class LoginWithCsrfForm extends Form
 
 
 
-    protected function set(Container $container): void
+    protected function set(ContainerInterface $container): void
     {
         $this->validateCsrf();
 
@@ -21,7 +21,7 @@ class LoginWithCsrfForm extends Form
         $this->setPassword($container);
     }
 
-    protected function setUsername(Container $container): void
+    protected function setUsername(ContainerInterface $container): void
     {
         if (!$this->data->get("username")) {
             throw new Exception("Username is required.");
@@ -33,7 +33,7 @@ class LoginWithCsrfForm extends Form
         $this->username = $username;
     }
 
-    protected function setPassword(Container $container): void
+    protected function setPassword(ContainerInterface $container): void
     {
         if (!$this->data->get("password")) {
             throw new Exception("Password is required.");

@@ -5,7 +5,7 @@ namespace Tests\Support\Commands;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Exception;
 
 class ProblematicCommand extends Command
@@ -15,7 +15,7 @@ class ProblematicCommand extends Command
         return "problematic";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         throw new Exception("I'm being difficult.");
     }

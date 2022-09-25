@@ -24,11 +24,11 @@ use App\Auth;
 use Centum\Console\Command;
 use Centum\Console\MiddlewareInterface;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class IsLinuxMiddleware implements MiddlewareInterface
 {
-    public function middleware(Terminal $terminal, Command $command, Container $container): bool
+    public function middleware(Terminal $terminal, Command $command, ContainerInterface $container): bool
     {
         $uname = posix_uname();
 
@@ -48,7 +48,7 @@ use Centum\Console\Command;
 use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class AdministrationCommand extends Command
 {
@@ -62,7 +62,7 @@ class AdministrationCommand extends Command
         return new IsLinuxMiddleware();
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $terminal->writeLine("this command is running on linux");
 
@@ -89,7 +89,7 @@ use Centum\Console\MiddlewareGroup;
 use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class SomethingCommand extends Command
 {
@@ -109,7 +109,7 @@ class SomethingCommand extends Command
         );
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $terminal->writeLine("hello");
 

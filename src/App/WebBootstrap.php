@@ -2,13 +2,13 @@
 
 namespace Centum\App;
 
-use Centum\Container\Container;
 use Centum\Http\Request;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Router;
 
 class WebBootstrap extends Bootstrap
 {
-    public function boot(Container $container): void
+    public function boot(ContainerInterface $container): void
     {
         $router = $container->typehintClass(Router::class);
 

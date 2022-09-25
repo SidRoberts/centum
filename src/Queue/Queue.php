@@ -2,7 +2,7 @@
 
 namespace Centum\Queue;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
 use Throwable;
@@ -10,14 +10,14 @@ use UnexpectedValueException;
 
 class Queue
 {
-    protected readonly Container $container;
+    protected readonly ContainerInterface $container;
     protected readonly PheanstalkInterface $pheanstalk;
 
     public const TUBE = "centum-tasks";
 
 
 
-    public function __construct(Container $container, PheanstalkInterface $pheanstalk)
+    public function __construct(ContainerInterface $container, PheanstalkInterface $pheanstalk)
     {
         $this->container  = $container;
         $this->pheanstalk = $pheanstalk;

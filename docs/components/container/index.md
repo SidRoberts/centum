@@ -13,6 +13,15 @@ permalink: container
 The Container component handles object dependencies by centralising object creation.
 Whenever an object is created in the Container, it is saved and reused again whenever that class is required.
 
+```php
+use Centum\Container\Container;
+
+$container = new Container();
+```
+
+{: .highlight }
+[`Centum\Container\Container`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php) implements [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php).
+
 
 
 ## Retrieving objects
@@ -34,11 +43,11 @@ $response = $container->typehintMethod($postController, "index");
 Functions can be called using the `typehintFunction()` method.
 
 ```php
-use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
+use Centum\Interfaces\Container\ContainerInterface;
 
-function my_special_function(Container $container, Request $request, Response $response)
+function my_special_function(ContainerInterface $container, Request $request, Response $response)
 {
     /* ... */
 }
@@ -117,6 +126,7 @@ Now, any call to `FormatterInterface` will return or create a new `HtmlFormatter
 
 By default, some aliases have already been set:
 
+- `Centum\Interfaces\Container\ContainerInterface`: `Centum\Container\Container`
 - `Pheanstalk\Contract\PheanstalkInterface`: `Pheanstalk\Pheanstalk`
 
 

@@ -23,3 +23,20 @@ gh_edit_repository: "https://github.com/SidRoberts/centum"
 gh_edit_branch: "development"
 gh_edit_source: "docs"
 gh_edit_view_mode: "edit"
+
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red

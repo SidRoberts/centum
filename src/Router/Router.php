@@ -5,6 +5,7 @@ namespace Centum\Router;
 use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
@@ -13,7 +14,7 @@ use Throwable;
 
 class Router
 {
-    protected readonly Container $container;
+    protected readonly ContainerInterface $container;
 
     /** @var Group[] */
     protected array $groups = [];
@@ -23,7 +24,7 @@ class Router
 
 
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }

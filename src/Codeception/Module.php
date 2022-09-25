@@ -6,7 +6,7 @@ use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Console\Application;
 use Centum\Console\Command;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Configuration;
 use Codeception\Lib\Framework;
 use Codeception\TestInterface;
@@ -31,7 +31,7 @@ class Module extends Framework
         "container" => "config/container.php",
     ];
 
-    protected ?Container $container = null;
+    protected ?ContainerInterface $container = null;
 
     /** @var ?resource */
     protected $stdin = null;
@@ -110,15 +110,15 @@ class Module extends Framework
             );
         }
 
-        /** @var Container */
+        /** @var mixed */
         $container = require $containerFile;
 
-        if (!($container instanceof Container)) {
+        if (!($container instanceof ContainerInterface)) {
             throw new TypeError(
                 sprintf(
                     "%s does not return a %s instance.",
                     $containerFile,
-                    Container::class
+                    ContainerInterface::class
                 )
             );
         }
@@ -128,7 +128,7 @@ class Module extends Framework
 
 
 
-    public function getContainer(): Container
+    public function getContainer(): ContainerInterface
     {
         if (!$this->container) {
             throw new ContainerNotFoundException();
@@ -146,7 +146,6 @@ class Module extends Framework
 
         $container->set($class, $object);
     }
-
 
 
 

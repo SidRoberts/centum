@@ -2,10 +2,10 @@
 
 namespace Centum\Codeception;
 
-use Centum\Container\Container;
 use Centum\Http\RequestFactory;
 use Centum\Http\Session\ArrayHandler;
 use Centum\Http\Session\HandlerInterface;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Router;
 use Symfony\Component\BrowserKit\AbstractBrowser as Client;
 use Symfony\Component\BrowserKit\CookieJar;
@@ -15,12 +15,12 @@ use Symfony\Component\BrowserKit\Response as BrowserKitResponse;
 
 class Connector extends Client
 {
-    protected Container $container;
+    protected ContainerInterface $container;
 
 
 
     public function __construct(
-        Container $container,
+        ContainerInterface $container,
         array $server = [],
         History $history = null,
         CookieJar $cookieJar = null

@@ -4,11 +4,11 @@ namespace Centum\App;
 
 use Centum\Console\Application;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class ConsoleBootstrap extends Bootstrap
 {
-    public function boot(Container $container): void
+    public function boot(ContainerInterface $container): void
     {
         $application = $container->typehintClass(Application::class);
 

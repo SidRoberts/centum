@@ -2,20 +2,20 @@
 
 namespace Tests\Support\Forms;
 
-use Centum\Container\Container;
 use Centum\Filter\Cast\ToString;
 use Centum\Filter\String\Trim;
 use Centum\Forms\Field;
 use Centum\Forms\FormTemplate;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Validator\NotEmpty;
 
 class UserWithConstructorTemplate extends FormTemplate
 {
-    protected readonly Container $container;
+    protected readonly ContainerInterface $container;
 
 
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }

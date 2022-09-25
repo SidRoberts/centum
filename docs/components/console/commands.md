@@ -15,11 +15,11 @@ A Command is responsible for providing the command name (`getName()`), middlewar
 It's return value is the exit code.
 
 - `public function getName(): string`
-- `public function execute(Centum\Console\Terminal $terminal, Centum\Container\Container $container, Centum\Console\Parameters $parameters): int`
+- `public function execute(Centum\Console\Terminal $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Console\Parameters $parameters): int`
 - `public function getDescription(): string` (optional)
 - `public function getHelp(): string` (optional)
 - `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
-- `public function getFilters(Centum\Container\Container $container): array` (optional)
+- `public function getFilters(Centum\Interfaces\Container\ContainerInterface $container): array` (optional)
 
 By default, a Command has no middleware or parameter filters and can be as simple as this:
 
@@ -29,7 +29,7 @@ namespace App\Commands;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class IndexCommand extends Command
 {
@@ -38,7 +38,7 @@ class IndexCommand extends Command
         return "this:is:your:name";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $terminal->writeLine("hello");
 

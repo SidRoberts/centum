@@ -1,6 +1,7 @@
 <?php
 
 use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Router;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +19,7 @@ $container = new Container();
 $container->setDynamic(
     Router::class,
     /** @psalm-suppress UnusedClosureParam */
-    function (Container $container): Router {
+    function (ContainerInterface $container): Router {
         /** @var Router */
         return require __DIR__ . "/router.php";
     }

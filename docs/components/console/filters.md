@@ -18,15 +18,15 @@ namespace App\Filters;
 
 use App\Models\Post;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Container\Container;
+use Centum\Container\ContainerInterface;
 use Centum\Filter\FilterInterface;
 use Doctrine\ORM\EntityManager;
 
 class PostFilter implements FilterInterface
 {
-    protected Container $container;
+    protected ContainerInterface $container;
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -58,7 +58,7 @@ use App\Models\Post;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class PostDetailsCommand extends Command
 {
@@ -67,14 +67,14 @@ class PostDetailsCommand extends Command
         return "post-details";
     }
 
-    public function getFilters(Container $container): array
+    public function getFilters(ContainerInterface $container): array
     {
         return [
             "post" => new PostFilter($container),
         ];
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         /** @var Post */
         $post = $parameters->get("post");

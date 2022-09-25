@@ -3,7 +3,7 @@
 namespace Centum\Console;
 
 use Centum\Console\Middleware\TrueMiddleware;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 abstract class Command
 {
@@ -26,12 +26,12 @@ abstract class Command
         return new TrueMiddleware();
     }
 
-    public function getFilters(Container $container): array
+    public function getFilters(ContainerInterface $container): array
     {
         return [];
     }
 
 
 
-    abstract public function execute(Terminal $terminal, Container $container, Parameters $parameters): int;
+    abstract public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int;
 }

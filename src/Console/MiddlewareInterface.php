@@ -2,9 +2,9 @@
 
 namespace Centum\Console;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 interface MiddlewareInterface
 {
-    public function middleware(Terminal $terminal, Command $command, Container $container): bool;
+    public function middleware(Terminal $terminal, Command $command, ContainerInterface $container): bool;
 }

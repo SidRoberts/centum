@@ -4,6 +4,7 @@ namespace Tests\Unit\Container;
 
 use Centum\Container\Container;
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Interfaces\Container\ContainerInterface;
 use stdClass;
 use Tests\Support\Container\Alias\ACommand;
 use Tests\Support\Container\Alias\CommandInterface;
@@ -23,6 +24,16 @@ class ContainerCest
         $I->assertSame(
             $container,
             $container->typehintClass(Container::class)
+        );
+    }
+
+    public function testGetContainerInterface(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $I->assertSame(
+            $container,
+            $container->typehintClass(ContainerInterface::class)
         );
     }
 

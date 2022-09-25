@@ -14,7 +14,7 @@ MVC web apps can be created using [`Centum\Router\Router`](https://github.com/Si
 
 ```php
 Centum\Router\Router(
-    Centum\Container\Container $container
+    Centum\Interfaces\Container\ContainerInterface $container
 );
 ```
 

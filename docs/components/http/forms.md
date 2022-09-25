@@ -14,7 +14,7 @@ permalink: http/forms
 Centum\Http\Form(
     Centum\Http\Request $request,
     Centum\Http\Csrf $csrf,
-    Centum\Container\Container $container
+    Centum\Interfaces\Container\ContainerInterface $container
 );
 ```
 

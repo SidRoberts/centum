@@ -5,7 +5,7 @@ namespace Tests\Support\Commands;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Throwable;
 
 class ErrorCommand extends Command
@@ -15,7 +15,7 @@ class ErrorCommand extends Command
         return "error";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $throwable = $container->typehintClass(Throwable::class);
 

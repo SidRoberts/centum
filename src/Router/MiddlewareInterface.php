@@ -2,10 +2,10 @@
 
 namespace Centum\Router;
 
-use Centum\Container\Container;
 use Centum\Http\Request;
+use Centum\Interfaces\Container\ContainerInterface;
 
 interface MiddlewareInterface
 {
-    public function middleware(Request $request, Container $container): bool;
+    public function middleware(Request $request, ContainerInterface $container): bool;
 }

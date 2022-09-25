@@ -2,10 +2,10 @@
 
 namespace Tests\Support\Controllers;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Router;
 
-/** @var Container $container */
+/** @var ContainerInterface $container */
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ROUTER                                   //

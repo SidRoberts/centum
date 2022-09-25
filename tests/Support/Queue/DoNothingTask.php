@@ -2,12 +2,12 @@
 
 namespace Tests\Support\Queue;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Queue\Task;
 
 class DoNothingTask extends Task
 {
-    public function execute(Container $container): void
+    public function execute(ContainerInterface $container): void
     {
     }
 }

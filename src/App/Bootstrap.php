@@ -2,9 +2,9 @@
 
 namespace Centum\App;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 abstract class Bootstrap
 {
-    abstract public function boot(Container $container): void;
+    abstract public function boot(ContainerInterface $container): void;
 }

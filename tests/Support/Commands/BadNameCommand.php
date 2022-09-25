@@ -5,7 +5,7 @@ namespace Tests\Support\Commands;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class BadNameCommand extends Command
 {
@@ -14,7 +14,7 @@ class BadNameCommand extends Command
         return "https://github.com/";
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         return 0;
     }

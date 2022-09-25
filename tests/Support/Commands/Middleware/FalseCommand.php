@@ -7,7 +7,7 @@ use Centum\Console\MiddlewareGroup;
 use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Tests\Support\Middlewares\Console\FalseMiddleware;
 
 class FalseCommand extends Command
@@ -22,7 +22,7 @@ class FalseCommand extends Command
         return new FalseMiddleware();
     }
 
-    public function execute(Terminal $terminal, Container $container, Parameters $parameters): int
+    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         return 0;
     }

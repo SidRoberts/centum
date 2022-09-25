@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Testing
-nav_order: 4
+nav_order: 5
 ---
 
 
@@ -27,7 +27,7 @@ If this isn't specified, it will default to `config/container.php`.
 
 ## General Testing
 
-- `getContainer(): Centum\Container\Container`
+- `getContainer(): Centum\Interfaces\Container\ContainerInterface`
 - `addToContainer(string $class, object $object): void`
 
 ### Expectations

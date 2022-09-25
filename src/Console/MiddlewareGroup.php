@@ -2,7 +2,7 @@
 
 namespace Centum\Console;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 class MiddlewareGroup implements MiddlewareInterface
 {
@@ -34,7 +34,7 @@ class MiddlewareGroup implements MiddlewareInterface
     }
 
 
-    public function middleware(Terminal $terminal, Command $command, Container $container): bool
+    public function middleware(Terminal $terminal, Command $command, ContainerInterface $container): bool
     {
         foreach ($this->middlewares as $middleware) {
             $success = $middleware->middleware($terminal, $command, $container);

@@ -12,7 +12,7 @@ permalink: console
 
 ```php
 Centum\Console\Application(
-    Centum\Container\Container $container
+    Centum\Interfaces\Container\ContainerInterface $container
 );
 ```
 

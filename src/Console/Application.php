@@ -8,15 +8,15 @@ use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\ParamNotFoundException;
-use Centum\Container\Container;
 use Centum\Filter\FilterInterface;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Validator\CommandSlug;
 use OutOfRangeException;
 use Throwable;
 
 class Application
 {
-    protected readonly Container $container;
+    protected readonly ContainerInterface $container;
 
     /** @var array<string, Command> */
     protected array $commands = [];
@@ -26,7 +26,7 @@ class Application
 
 
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $container->set(self::class, $this);
 

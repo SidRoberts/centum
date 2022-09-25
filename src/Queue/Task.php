@@ -2,9 +2,9 @@
 
 namespace Centum\Queue;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 
 abstract class Task
 {
-    abstract public function execute(Container $container): void;
+    abstract public function execute(ContainerInterface $container): void;
 }
