@@ -2,6 +2,8 @@
 
 namespace Centum\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
+
 class Callback implements ValidatorInterface
 {
     /** @var callable */

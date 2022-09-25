@@ -2,7 +2,7 @@
 
 namespace Centum\Validator\Type;
 
-use Centum\Validator\ValidatorInterface;
+use Centum\Interfaces\Validator\ValidatorInterface;
 
 class IsNull implements ValidatorInterface
 {

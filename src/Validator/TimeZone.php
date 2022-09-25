@@ -2,6 +2,7 @@
 
 namespace Centum\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
 use DateTimeZone;
 
 class TimeZone implements ValidatorInterface

@@ -2,6 +2,8 @@
 
 namespace Centum\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
+
 class RegularExpression implements ValidatorInterface
 {
     protected readonly string $pattern;

@@ -3,7 +3,7 @@
 namespace Centum\Forms;
 
 use Centum\Filter\FilterInterface;
-use Centum\Validator\ValidatorInterface;
+use Centum\Interfaces\Validator\ValidatorInterface;
 use Throwable;
 
 class Field

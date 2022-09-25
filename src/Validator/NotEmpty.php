@@ -2,6 +2,8 @@
 
 namespace Centum\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
+
 class NotEmpty implements ValidatorInterface
 {
     public function validate(mixed $value): array

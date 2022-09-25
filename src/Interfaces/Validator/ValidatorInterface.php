@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Validator;
+namespace Centum\Interfaces\Validator;
 
 interface ValidatorInterface
 {

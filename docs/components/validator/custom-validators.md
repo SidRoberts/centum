@@ -10,7 +10,7 @@ permalink: validator/custom-validators
 
 # Custom Validators
 
-Validators must implement [`Centum\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Validator/ValidatorInterface.php) and implement the following methods:
+Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Validator/ValidatorInterface.php) and implement the following methods:
 
 - `public function validate(mixed $value): string[]`
 
@@ -20,7 +20,7 @@ An empty array has no violations meaning that the value is valid.
 As an example, a Validator can be made to check the a value is not empty:
 
 ```php
-use Centum\Validator\ValidatorInterface;
+use Centum\Interfaces\Validator\ValidatorInterface;
 
 class NotEmptyValidator implements ValidatorInterface
 {
@@ -42,7 +42,7 @@ class NotEmptyValidator implements ValidatorInterface
 More complex Validators can be made by injecting other objects into the validator:
 
 ```php
-use Centum\Validator\ValidatorInterface;
+use Centum\Interfaces\Validator\ValidatorInterface;
 use DatePeriod;
 use DateTimeInterface;
 

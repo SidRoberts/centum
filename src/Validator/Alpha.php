@@ -2,6 +2,8 @@
 
 namespace Centum\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
+
 class Alpha implements ValidatorInterface
 {
     public function validate(mixed $value): array
