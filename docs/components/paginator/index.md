@@ -16,14 +16,14 @@ The Paginator component is used for paginating large amounts of data practically
 
 ## How data is stored
 
-Data is encapsulated in a class implementing [`Centum\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/DataInterface.php).
+Data is encapsulated in a class implementing [`Centum\Interfaces\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/DataInterface.php).
 It is designed such that the entire dataset can be contained within a `DataInterface` object or can be retreived as and when it is needed.
 
-[`DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/DataInterface.php) has 3 public methods:
+[`DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/DataInterface.php) has 3 public methods:
 
 - `public function getTotal(): int`
 - `public function toArray(): array`
-- `public function slice(int $offset, int $length): Centum\Paginator\DataInterface`
+- `public function slice(int $offset, int $length): Centum\Interfaces\Paginator\DataInterface`
 
 For data contained within a simple array, [`Centum\Paginator\Data\ArrayData`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Data/ArrayData.php) will suffice.
 
@@ -42,7 +42,7 @@ Centum\Paginator\Paginator(
 
 [`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Paginator.php) has 4 public methods:
 
-- `public function getData(): Centum\Paginator\DataInterface`
+- `public function getData(): Centum\Interfaces\Paginator\DataInterface`
 - `public function getTotalItems(): int`
 - `public function getItemsPerPage(): int`
 - `public functino getTotalPages(): int`
@@ -60,7 +60,7 @@ Centum\Paginator\Page(
 
 [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Page.php) has several public methods:
 
-- `public function getData(): Centum\Paginator\DataInterface`
+- `public function getData(): Centum\Interfaces\Paginator\DataInterface`
 - `public function getTotalItems(): int`
 - `public function getTotalPages(): int`
 - `public function getPageNumber(): int`

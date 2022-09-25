@@ -2,7 +2,7 @@
 
 namespace Centum\Paginator\Data;
 
-use Centum\Paginator\DataInterface;
+use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Paginator\Exception\InvalidTotalException;
 
 class ArrayData implements DataInterface

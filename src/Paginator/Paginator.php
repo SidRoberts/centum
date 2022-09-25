@@ -2,6 +2,7 @@
 
 namespace Centum\Paginator;
 
+use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Paginator\Exception\InvalidItemsPerPageException;
 use Centum\Paginator\Page;
 

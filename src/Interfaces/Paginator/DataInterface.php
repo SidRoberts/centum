@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Paginator;
+namespace Centum\Interfaces\Paginator;
 
 interface DataInterface
 {
