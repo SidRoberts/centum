@@ -2,7 +2,9 @@
 
 namespace Centum\Flash;
 
-class Message
+use Centum\Interfaces\Flash\MessageInterface;
+
+class Message implements MessageInterface
 {
     protected readonly string $level;
     protected readonly string $text;

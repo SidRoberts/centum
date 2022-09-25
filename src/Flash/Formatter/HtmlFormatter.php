@@ -2,12 +2,12 @@
 
 namespace Centum\Flash\Formatter;
 
-use Centum\Flash\Message;
 use Centum\Interfaces\Flash\FormatterInterface;
+use Centum\Interfaces\Flash\MessageInterface;
 
 class HtmlFormatter implements FormatterInterface
 {
-    public function output(Message $message): string
+    public function output(MessageInterface $message): string
     {
         return sprintf(
             "<div class=\"alert alert-%s\">%s</div>",
