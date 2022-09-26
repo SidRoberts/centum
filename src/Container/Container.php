@@ -2,10 +2,12 @@
 
 namespace Centum\Container;
 
+use Centum\Access\Access;
 use Centum\Console\Application;
 use Centum\Console\Terminal;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Flash\Flash;
+use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -29,6 +31,7 @@ class Container implements ContainerInterface
 
     /** @var array<class-string, class-string> */
     protected array $aliases = [
+        AccessInterface::class      => Access::class,
         ApplicationInterface::class => Application::class,
         ContainerInterface::class   => Container::class,
         FlashInterface::class       => Flash::class,

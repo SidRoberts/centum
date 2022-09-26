@@ -2,9 +2,10 @@
 
 namespace Centum\Access;
 
+use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Access\ActivityInterface;
 
-class Access
+class Access implements AccessInterface
 {
     public const ALLOW = true;
     public const DENY  = false;

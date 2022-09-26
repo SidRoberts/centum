@@ -23,6 +23,9 @@ Centum\Access\Access(
 );
 ```
 
+{: .highlight }
+[`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php) implements [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/AccessInterface.php).
+
 [`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php) has 2 public constants:
 
 - `Centum\Access\Access::ALLOW`
