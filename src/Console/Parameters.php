@@ -2,7 +2,9 @@
 
 namespace Centum\Console;
 
-class Parameters
+use Centum\Interfaces\Console\ParametersInterface;
+
+class Parameters implements ParametersInterface
 {
     /** @var array<string, mixed> */
     protected array $parameters = [];

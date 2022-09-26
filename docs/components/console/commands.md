@@ -18,7 +18,7 @@ It's return value is the exit code.
 [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
 
 - `public function getName(): string`
-- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Console\Parameters $parameters): int`
+- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Interfaces\Console\ParametersInterface $parameters): int`
 - `public function getDescription(): string` (optional)
 - `public function getHelp(): string` (optional)
 - `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
@@ -30,7 +30,7 @@ By default, a Command has no middleware or parameter filters and can be as simpl
 namespace App\Commands;
 
 use Centum\Console\Command;
-use Centum\Console\Parameters;
+use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
@@ -41,7 +41,7 @@ class IndexCommand extends Command
         return "this:is:your:name";
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
         $terminal->writeLine("hello");
 

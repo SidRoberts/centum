@@ -45,8 +45,8 @@ namespace App\Commands;
 
 use App\Middlewares\Console\IsLinuxMiddleware;
 use Centum\Console\Command;
-use Centum\Console\Parameters;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
@@ -62,7 +62,7 @@ class AdministrationCommand extends Command
         return new IsLinuxMiddleware();
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
         $terminal->writeLine("this command is running on linux");
 
@@ -86,8 +86,8 @@ use App\Middlewares\Console\Middleware2;
 use App\Middlewares\Console\Middleware3;
 use Centum\Console\Command;
 use Centum\Console\MiddlewareGroup;
-use Centum\Console\Parameters;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
@@ -109,7 +109,7 @@ class SomethingCommand extends Command
         );
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
         $terminal->writeLine("hello");
 

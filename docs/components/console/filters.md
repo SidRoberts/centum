@@ -56,7 +56,7 @@ namespace App\Commands;
 use App\Filters\PostFilter;
 use App\Models\Post;
 use Centum\Console\Command;
-use Centum\Console\Parameters;
+use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
@@ -74,7 +74,7 @@ class PostDetailsCommand extends Command
         ];
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
         /** @var Post */
         $post = $parameters->get("post");

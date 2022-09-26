@@ -55,7 +55,7 @@ Error commands can access the Exception through the Container:
 namespace App\Commands;
 
 use Centum\Console\Command;
-use Centum\Console\Parameters;
+use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Throwable;
@@ -67,7 +67,7 @@ class ErrorCommand extends Command
         return "error";
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
         $terminal->writeLine("An error occurred.");
 
