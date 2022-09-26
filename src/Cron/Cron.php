@@ -2,6 +2,7 @@
 
 namespace Centum\Cron;
 
+use Centum\Interfaces\Cron\JobInterface;
 use DateTimeInterface;
 
 class Cron

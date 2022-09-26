@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Cron;
+namespace Centum\Interfaces\Cron;
 
 use DateTimeInterface;
 

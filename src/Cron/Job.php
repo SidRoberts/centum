@@ -2,6 +2,7 @@
 
 namespace Centum\Cron;
 
+use Centum\Interfaces\Cron\JobInterface;
 use Cron\CronExpression;
 use DateTimeImmutable;
 use DateTimeInterface;
