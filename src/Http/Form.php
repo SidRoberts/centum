@@ -4,6 +4,7 @@ namespace Centum\Http;
 
 use Centum\Http\Exception\CsrfException;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Http\CsrfInterface;
 
 abstract class Form
 {
@@ -12,11 +13,11 @@ abstract class Form
     protected readonly Data $data;
     protected readonly Files $files;
 
-    protected readonly Csrf $csrf;
+    protected readonly CsrfInterface $csrf;
 
 
 
-    final public function __construct(Request $request, Csrf $csrf, ContainerInterface $container)
+    final public function __construct(Request $request, CsrfInterface $csrf, ContainerInterface $container)
     {
         $this->request = $request;
         $this->data    = $request->getData();

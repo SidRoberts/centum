@@ -6,6 +6,7 @@ use Centum\Http\Csrf;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
 use Centum\Http\Request;
+use Centum\Interfaces\Http\CsrfInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
@@ -30,7 +31,7 @@ class FormCest
         );
 
         $csrf = Mockery::mock(
-            Csrf::class,
+            CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->andReturn("abcdefghijklmnop");
@@ -90,7 +91,7 @@ class FormCest
         );
 
         $csrf = Mockery::mock(
-            Csrf::class,
+            CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->andReturn("abcdefghijklmnop");
@@ -169,7 +170,7 @@ class FormCest
         );
 
         $csrf = Mockery::mock(
-            Csrf::class,
+            CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("validate")
                     ->with("abcdefghijklmnop")
@@ -231,7 +232,7 @@ class FormCest
         );
 
         $csrf = Mockery::mock(
-            Csrf::class,
+            CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("validate")
                     ->withAnyArgs()

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Twig;
 
-use Centum\Http\Csrf;
+use Centum\Interfaces\Http\CsrfInterface;
 use Centum\Twig\CsrfExtension;
 use Mockery;
 use Mockery\MockInterface;
@@ -15,7 +15,7 @@ class CsrfExtensionCest
     public function test(UnitTester $I): void
     {
         $csrf = Mockery::mock(
-            Csrf::class,
+            CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->andReturn("abcdefghijklmnop");
@@ -51,7 +51,7 @@ class CsrfExtensionCest
     public function testCsrfValue(UnitTester $I): void
     {
         $csrf = Mockery::mock(
-            Csrf::class,
+            CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->andReturn("abcdefghijklmnop");

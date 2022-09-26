@@ -2,7 +2,9 @@
 
 namespace Centum\Http;
 
-class Csrf
+use Centum\Interfaces\Http\CsrfInterface;
+
+class Csrf implements CsrfInterface
 {
     protected readonly Session $session;
 

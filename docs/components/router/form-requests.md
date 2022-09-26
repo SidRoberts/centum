@@ -15,24 +15,24 @@ As with all user data, it may be necessary to filter and/or validate that data f
 
 As a basic example, you may have a login form with a username and password.
 Both of these fields are required and must follow certain rules.
-First, we need to create a Form by implementing the `set(Container $container)` method and accessing the data from `$this->data` array:
+First, we need to create a Form by implementing the `set(ContainerInterface $container)` method and accessing the data from `$this->data` array:
 
 ```php
 namespace App\Forms;
 
-use Centum\Container\Container;
 use Centum\Http\Form;
+use Centum\Interfaces\Container\ContainerInterface;
 use Exception;
 
 class LoginForm extends Form
 {
-    protected function set(Container $container): void
+    protected function set(ContainerInterface $container): void
     {
         $this->setUsername($container);
         $this->setPassword($container);
     }
 
-    protected function setUsername(Container $container): void
+    protected function setUsername(ContainerInterface $container): void
     {
         $username = $this->data->get("username");
 
@@ -59,7 +59,7 @@ class LoginForm extends Form
         $this->username = $username;
     }
 
-    protected function setPassword(Container $container): void
+    protected function setPassword(ContainerInterface $container): void
     {
         $password = $this->data->get("password");
 
@@ -95,7 +95,7 @@ The following properties exist on a Form:
 - `$this->request` (`Centum\Http\Request`)
 - `$this->data` (`Centum\Http\Data`)
 - `$this->files` (`Centum\Http\Files`)
-- `$this->csrf` (`Centum\Http\Csrf`)
+- `$this->csrf` (`Centum\Interfaces\Http\CsrfInterface`)
 
 Now we can create a Route:
 

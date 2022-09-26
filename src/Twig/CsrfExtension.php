@@ -2,17 +2,17 @@
 
 namespace Centum\Twig;
 
-use Centum\Http\Csrf;
+use Centum\Interfaces\Http\CsrfInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class CsrfExtension extends AbstractExtension
 {
-    protected readonly Csrf $csrf;
+    protected readonly CsrfInterface $csrf;
 
 
 
-    public function __construct(Csrf $csrf)
+    public function __construct(CsrfInterface $csrf)
     {
         $this->csrf = $csrf;
     }

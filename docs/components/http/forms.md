@@ -13,7 +13,7 @@ permalink: http/forms
 ```php
 Centum\Http\Form(
     Centum\Http\Request $request,
-    Centum\Http\Csrf $csrf,
+    Centum\Interfaces\Http\CsrfInterface $csrf,
     Centum\Interfaces\Container\ContainerInterface $container
 );
 ```
@@ -25,6 +25,9 @@ Centum\Http\Form(
 ## CSRF Protection
 
 [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf.php) exists to prevent [cross-site request forgery attacks](https://en.wikipedia.org/wiki/Cross-site_request_forgery) that could exist in HTML forms.
+
+{: .highlight }
+[`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf.php) implements [`Centum\Interfaces\Http\CsrfInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CsrfInterface.php).
 
 ```php
 Centum\Http\Csrf(
@@ -86,12 +89,12 @@ $.post(
 Regardless of how the CSRF token is placed, `validateCsrf()` must be called somewhere in your Form's `set()` method in order for Centum to validate it:
 
 ```php
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Http\Form;
 
 class SubmissionForm extends Form
 {
-    public function set(Container $container): void
+    public function set(ContainerInterface $container): void
     {
         // ...
 
