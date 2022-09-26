@@ -54,11 +54,11 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use Centum\Http\Response;
-use Centum\Router\Parameters;
+use Centum\Interfaces\Router\ParametersInterface;
 
 class PostController
 {
-    public function view(Parameters $parameters): Response
+    public function view(ParametersInterface $parameters): Response
     {
         /** @var Post */
         $post = $parameters->get("post");

@@ -2,7 +2,9 @@
 
 namespace Centum\Router;
 
-class Parameters
+use Centum\Interfaces\Router\ParametersInterface;
+
+class Parameters implements ParametersInterface
 {
     /** @var array<string, mixed> */
     protected readonly array $parameters;

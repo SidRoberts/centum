@@ -3,11 +3,11 @@
 namespace Tests\Support\Controllers;
 
 use Centum\Http\Response;
-use Centum\Router\Parameters;
+use Centum\Interfaces\Router\ParametersInterface;
 
 class FilterController
 {
-    public function get(Parameters $parameters): Response
+    public function get(ParametersInterface $parameters): Response
     {
         /** @var mixed */
         $i = $parameters->get("i");

@@ -159,17 +159,17 @@ $group = $router->group();
 $group->get("/post/{id}", PostController::class, "view");
 ```
 
-This value is then available from the `$parameters` property within the Controller:
+This value is then available from the [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ParametersInterface.php) property within the Controller:
 
 ```php
 namespace App\Controllers;
 
 use Centum\Http\Response;
-use Centum\Router\Parameters;
+use Centum\Interfaces\Router\ParametersInterface;
 
 class PostController
 {
-    public function view(Parameters $parameters): Response
+    public function view(ParametersInterface $parameters): Response
     {
         $id = $parameters->get("id");
 
@@ -194,11 +194,11 @@ $group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 namespace App\Controllers;
 
 use Centum\Http\Response;
-use Centum\Router\Parameters;
+use Centum\Interfaces\Router\ParametersInterface;
 
 class CalendarController
 {
-    public function day(Parameters $parameters): Response
+    public function day(ParametersInterface $parameters): Response
     {
         $year  = $parameters->get("year");
         $month = $parameters->get("month");

@@ -7,6 +7,7 @@ use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
+use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
@@ -154,7 +155,7 @@ class Router
 
         $parameters = new Parameters($parameters);
 
-        $this->container->set(Parameters::class, $parameters);
+        $this->container->set(ParametersInterface::class, $parameters);
         $this->container->set(Request::class, $request);
 
         $class  = $route->getClass();
