@@ -6,7 +6,7 @@ use Centum\Interfaces\Cron\CronInterface;
 
 class CronFactory
 {
-    public static function createFromArray(array $array): CronInterface
+    public function createFromArray(array $array): CronInterface
     {
         $cron = new Cron();
 
