@@ -2,9 +2,11 @@
 
 namespace Centum\Cron;
 
+use Centum\Interfaces\Cron\CronInterface;
+
 class CronFactory
 {
-    public static function createFromArray(array $array): Cron
+    public static function createFromArray(array $array): CronInterface
     {
         $cron = new Cron();
 

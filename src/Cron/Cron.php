@@ -2,10 +2,11 @@
 
 namespace Centum\Cron;
 
+use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Cron\JobInterface;
 use DateTimeInterface;
 
-class Cron
+class Cron implements CronInterface
 {
     /** @var JobInterface[] $jobs */
     protected array $jobs = [];
