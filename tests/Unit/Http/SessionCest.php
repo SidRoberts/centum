@@ -3,7 +3,7 @@
 namespace Tests\Unit\Http;
 
 use Centum\Http\Session;
-use Centum\Http\Session\HandlerInterface;
+use Centum\Interfaces\Http\Session\HandlerInterface;
 use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;

@@ -4,8 +4,8 @@ namespace Centum\Codeception;
 
 use Centum\Http\RequestFactory;
 use Centum\Http\Session\ArrayHandler;
-use Centum\Http\Session\HandlerInterface;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Http\Session\HandlerInterface;
 use Centum\Router\Router;
 use Symfony\Component\BrowserKit\AbstractBrowser as Client;
 use Symfony\Component\BrowserKit\CookieJar;

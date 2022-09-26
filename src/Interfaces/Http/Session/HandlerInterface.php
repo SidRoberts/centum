@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Http\Session;
+namespace Centum\Interfaces\Http\Session;
 
 interface HandlerInterface
 {

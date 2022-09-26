@@ -2,8 +2,8 @@
 
 namespace Centum\Http;
 
-use Centum\Http\Session\HandlerInterface;
 use Centum\Http\Session\SessionGlobalVariableHandler;
+use Centum\Interfaces\Http\Session\HandlerInterface;
 
 class Session
 {
