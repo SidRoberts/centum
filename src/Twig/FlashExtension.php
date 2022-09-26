@@ -2,17 +2,17 @@
 
 namespace Centum\Twig;
 
-use Centum\Flash\Flash;
+use Centum\Interfaces\Flash\FlashInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class FlashExtension extends AbstractExtension
 {
-    protected readonly Flash $flash;
+    protected readonly FlashInterface $flash;
 
 
 
-    public function __construct(Flash $flash)
+    public function __construct(FlashInterface $flash)
     {
         $this->flash = $flash;
     }
