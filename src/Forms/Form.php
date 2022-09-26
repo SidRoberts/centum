@@ -2,7 +2,9 @@
 
 namespace Centum\Forms;
 
-class Form
+use Centum\Interfaces\Forms\FormInterface;
+
+class Form implements FormInterface
 {
     /** @var array<string, Field> */
     protected array $fields = [];

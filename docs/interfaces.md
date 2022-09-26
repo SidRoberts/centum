@@ -41,6 +41,10 @@ nav_order: 3
 - [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php)
 - [`Centum\Interfaces\Flash\MessageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageInterface.php)
 
+## Forms
+
+- [`Centum\Interfaces\Forms\FormInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/FormInterface.php)
+
 ## Http
 
 - [`Centum\Interfaces\Http\CsrfInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CsrfInterface.php)

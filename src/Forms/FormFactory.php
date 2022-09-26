@@ -2,9 +2,11 @@
 
 namespace Centum\Forms;
 
+use Centum\Interfaces\Forms\FormInterface;
+
 class FormFactory
 {
-    public function createFromTemplate(FormTemplate $template): Form
+    public function createFromTemplate(FormTemplate $template): FormInterface
     {
         $form = new Form();
 
