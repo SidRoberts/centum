@@ -2,7 +2,9 @@
 
 namespace Centum\Url;
 
-class Url
+use Centum\Interfaces\Url\UrlInterface;
+
+class Url implements UrlInterface
 {
     protected readonly string $baseUri;
 

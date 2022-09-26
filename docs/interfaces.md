@@ -59,6 +59,10 @@ nav_order: 3
 - [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php)
 - [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ParametersInterface.php)
 
+## Url
+
+- [`Centum\Interfaces\Url\UrlInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Url/UrlInterface.php)
+
 ## Validator
 
 - [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php)
