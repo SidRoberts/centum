@@ -15,7 +15,7 @@ class WebBootstrapCest
 {
     public function test(UnitTester $I): void
     {
-        $container = new Container();
+        $container = $I->getContainer();
 
 
 

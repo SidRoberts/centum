@@ -9,8 +9,11 @@ use Tests\Support\UnitTester;
 
 class ParametersCest
 {
-    #[DataProvider("providerHas")]
-    public function testHas(UnitTester $I, Example $example): void
+    protected Parameters $parameters;
+
+
+
+    public function _before(UnitTester $I): void
     {
         $argv = [
             "cli.php",
@@ -21,8 +24,14 @@ class ParametersCest
             "--dry-run",
         ];
 
-        $parameters = new Parameters($argv);
+        $this->parameters = new Parameters($argv);
+    }
 
+
+
+    #[DataProvider("providerHas")]
+    public function testHas(UnitTester $I, Example $example): void
+    {
         /** @var bool */
         $expected = $example["expected"];
 
@@ -31,7 +40,7 @@ class ParametersCest
 
         $I->assertEquals(
             $expected,
-            $parameters->has($key)
+            $this->parameters->has($key)
         );
     }
 
@@ -75,17 +84,6 @@ class ParametersCest
     #[DataProvider("providerGet")]
     public function testGet(UnitTester $I, Example $example): void
     {
-        $argv = [
-            "cli.php",
-            "filter:double",
-            "--i",
-            "123",
-            "--verbose",
-            "--dry-run",
-        ];
-
-        $parameters = new Parameters($argv);
-
         /** @var bool */
         $expected = $example["expected"];
 
@@ -94,7 +92,7 @@ class ParametersCest
 
         $I->assertEquals(
             $expected,
-            $parameters->get($key)
+            $this->parameters->get($key)
         );
     }
 
@@ -122,22 +120,11 @@ class ParametersCest
 
     public function testSet(UnitTester $I): void
     {
-        $argv = [
-            "cli.php",
-            "filter:double",
-            "--i",
-            "123",
-            "--verbose",
-            "--dry-run",
-        ];
-
-        $parameters = new Parameters($argv);
-
-        $parameters->set("i", "456");
+        $this->parameters->set("i", "456");
 
         $I->assertEquals(
             "456",
-            $parameters->get("i")
+            $this->parameters->get("i")
         );
     }
 
@@ -145,24 +132,13 @@ class ParametersCest
 
     public function testToArray(UnitTester $I): void
     {
-        $argv = [
-            "cli.php",
-            "filter:double",
-            "--i",
-            "123",
-            "--verbose",
-            "--dry-run",
-        ];
-
-        $parameters = new Parameters($argv);
-
         $I->assertEquals(
             [
                 "i"       => 123,
                 "verbose" => true,
                 "dry-run" => true,
             ],
-            $parameters->toArray()
+            $this->parameters->toArray()
         );
     }
 }

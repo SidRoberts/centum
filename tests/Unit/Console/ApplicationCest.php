@@ -21,21 +21,53 @@ use Tests\Support\Commands\Middleware\FalseCommand;
 use Tests\Support\Commands\Middleware\TrueCommand;
 use Tests\Support\Commands\ProblematicCommand;
 use Tests\Support\UnitTester;
+use Throwable;
 
 class ApplicationCest
 {
-    public function testBasicHandle(UnitTester $I): void
+    protected Application $application;
+
+
+
+    public function _before(UnitTester $I): void
     {
         $container = new Container();
 
-        $application = new Application($container);
+        $this->application = new Application($container);
 
-        $application->addCommand(
+        $this->application->addCommand(
             new MainCommand()
         );
 
+        $this->application->addCommand(
+            new FilterCommand()
+        );
+
+        $this->application->addCommand(
+            new TrueCommand()
+        );
+
+        $this->application->addCommand(
+            new FalseCommand()
+        );
+
+        $this->application->addCommand(
+            new ProblematicCommand()
+        );
+
+        $this->application->addCommand(
+            new InvalidFiltersCommand()
+        );
+
+        $this->application->addCommand(
+            new MathCommand()
+        );
+    }
 
 
+
+    public function testBasicHandle(UnitTester $I): void
+    {
         $argv = [
             "cli.php",
             "",
@@ -43,7 +75,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $application->handle($terminal);
+        $this->application->handle($terminal);
 
         $I->assertStdoutEquals(
             "main page"
@@ -52,16 +84,6 @@ class ApplicationCest
 
     public function testFilters(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(
-            new FilterCommand()
-        );
-
-
-
         $argv = [
             "cli.php",
             "filter:double",
@@ -71,7 +93,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $application->handle($terminal);
+        $this->application->handle($terminal);
 
         $I->assertStdoutEquals(
             "246"
@@ -80,22 +102,14 @@ class ApplicationCest
 
     public function testFiltersException(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(
-            new FilterCommand()
-        );
-
-
-
         $argv = [
             "cli.php",
             "filter:double",
         ];
 
         $terminal = $I->createTerminal($argv);
+
+        $application = $this->application;
 
         $I->expectThrowable(
             new ParamNotFoundException("i"),
@@ -108,27 +122,13 @@ class ApplicationCest
     #[DataProvider("providerMiddlewares")]
     public function testMiddlewares(UnitTester $I, Example $example): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(
-            new TrueCommand()
-        );
-
-        $application->addCommand(
-            new FalseCommand()
-        );
-
-
-
         /** @var list<string> */
         $argv = $example["argv"];
 
         $terminal = $I->createTerminal($argv);
 
         try {
-            $application->handle($terminal);
+            $this->application->handle($terminal);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (CommandNotFoundException $e) {
@@ -151,23 +151,17 @@ class ApplicationCest
         ];
     }
 
+
+
     public function testCommandNotSpecified(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(
-            new MainCommand()
-        );
-
         $argv = [
             "cli.php",
         ];
 
         $terminal = $I->createTerminal($argv);
 
-        $application->handle($terminal);
+        $this->application->handle($terminal);
 
         $I->assertStdoutEquals(
             "main page"
@@ -178,16 +172,14 @@ class ApplicationCest
     {
         $name = "this:command:does:not:exist";
 
-        $container = new Container();
-
-        $application = new Application($container);
-
         $argv = [
             "cli.php",
             $name,
         ];
 
         $terminal = $I->createTerminal($argv);
+
+        $application = $this->application;
 
         $I->expectThrowable(
             new CommandNotFoundException($name),
@@ -199,20 +191,14 @@ class ApplicationCest
 
     public function testCommandWithInvalidFilters(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(
-            new InvalidFiltersCommand()
-        );
-
         $argv = [
             "cli.php",
             "invalid-filters",
         ];
 
         $terminal = $I->createTerminal($argv);
+
+        $application = $this->application;
 
         $I->expectThrowable(
             new InvalidFilterException($terminal),
@@ -224,22 +210,17 @@ class ApplicationCest
 
     public function testGetCommand(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(new FilterCommand());
-        $application->addCommand(new MathCommand());
-
         $I->assertInstanceOf(
             MathCommand::class,
-            $application->getCommand("math:add")
+            $this->application->getCommand("math:add")
         );
 
         $I->assertInstanceOf(
             FilterCommand::class,
-            $application->getCommand("filter:double")
+            $this->application->getCommand("filter:double")
         );
+
+        $application = $this->application;
 
         $I->expectThrowable(
             OutOfRangeException::class,
@@ -251,14 +232,7 @@ class ApplicationCest
 
     public function testGetCommands(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(new FilterCommand());
-        $application->addCommand(new MathCommand());
-
-        $commands = $application->getCommands();
+        $commands = $this->application->getCommands();
 
         $I->assertArrayHasKey(
             "math:add",
@@ -273,16 +247,8 @@ class ApplicationCest
 
     public function testExceptionalHandlers(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
-
-        $application->addCommand(
-            new ProblematicCommand()
-        );
-
-        $application->addExceptionHandler(
-            \Throwable::class,
+        $this->application->addExceptionHandler(
+            Throwable::class,
             new ErrorCommand()
         );
 
@@ -295,7 +261,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $exitCode = $application->handle($terminal);
+        $exitCode = $this->application->handle($terminal);
 
 
 
@@ -311,9 +277,7 @@ class ApplicationCest
 
     public function testValidCommandName(UnitTester $I): void
     {
-        $container = new Container();
-
-        $application = new Application($container);
+        $application = $this->application;
 
         $command = new BadNameCommand();
 

@@ -19,12 +19,21 @@ use TypeError;
 
 class ModuleCest
 {
+    protected ModuleContainer $moduleContainer;
+
+
+
+    public function _before(UnitTester $I): void
+    {
+        $this->moduleContainer = Mockery::mock(ModuleContainer::class);
+    }
+
+
+
     public function testMakeNewContainer(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -48,10 +57,8 @@ class ModuleCest
     {
         $fakeFile = "/not/a/real/file";
 
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => $fakeFile,
             ]
@@ -69,10 +76,8 @@ class ModuleCest
     {
         $fakeFile = "codeception.yml";
 
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => $fakeFile,
             ]
@@ -90,10 +95,8 @@ class ModuleCest
 
     public function testGetContainer(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -111,10 +114,8 @@ class ModuleCest
 
     public function testGetContainerBeforeSettingIt(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -132,10 +133,8 @@ class ModuleCest
 
     public function testAddToContainer(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -159,10 +158,8 @@ class ModuleCest
 
     public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -194,10 +191,8 @@ class ModuleCest
 
     public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => ".php-cs-fixer.dist.php",
             ]
@@ -269,10 +264,8 @@ class ModuleCest
 
     public function testGetConsoleApplication(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -296,10 +289,8 @@ class ModuleCest
 
     public function testAddCommand(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]
@@ -323,10 +314,8 @@ class ModuleCest
 
     public function testRunCommand(UnitTester $I): void
     {
-        $moduleContainer = Mockery::mock(ModuleContainer::class);
-
         $module = new Module(
-            $moduleContainer,
+            $this->moduleContainer,
             [
                 "container" => "tests/Support/Data/container.php",
             ]

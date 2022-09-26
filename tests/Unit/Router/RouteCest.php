@@ -8,33 +8,51 @@ use Tests\Support\UnitTester;
 
 class RouteCest
 {
-    public function testBasicGetters(UnitTester $I): void
+    protected Route $route;
+
+
+
+    public function _before(UnitTester $I): void
     {
-        $httpMethod = "GET";
-        $uri        = "/";
-        $class      = IndexController::class;
-        $method     = "index";
-
-        $route = new Route($httpMethod, $uri, $class, $method);
-
-        $I->assertEquals(
-            $httpMethod,
-            $route->getHttpMethod()
+        $this->route = new Route(
+            "GET",
+            "/",
+            IndexController::class,
+            "index"
         );
+    }
 
+
+
+    public function testGetHttpMethod(UnitTester $I): void
+    {
         $I->assertEquals(
-            $uri,
-            $route->getUri()
+            "GET",
+            $this->route->getHttpMethod()
         );
+    }
 
+    public function testGetUri(UnitTester $I): void
+    {
         $I->assertEquals(
-            $class,
-            $route->getClass()
+            "/",
+            $this->route->getUri()
         );
+    }
 
+    public function testGetClass(UnitTester $I): void
+    {
         $I->assertEquals(
-            $method,
-            $route->getMethod()
+            IndexController::class,
+            $this->route->getClass()
+        );
+    }
+
+    public function testGetMethod(UnitTester $I): void
+    {
+        $I->assertEquals(
+            "index",
+            $this->route->getMethod()
         );
     }
 }
