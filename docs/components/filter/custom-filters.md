@@ -12,7 +12,7 @@ permalink: filter/custom-filters
 
 Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Filter/FilterInterface.php) and implement the following methods:
 
-- `public function filter(mixed $value): mixed`.
+- `public function filter(mixed $value): mixed`
 
 As an example, a Filter can be made to return a string as lowercase:
 
