@@ -22,6 +22,9 @@ Centum\Queue\Queue(
 );
 ```
 
+{: .highlight }
+[`Centum\Queue\Queue`](https://github.com/SidRoberts/centum/blob/development/src/Queue/Queue.php) implements [`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php).
+
 [`Centum\Queue\Queue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Queue.php) features two public methods:
 
 * `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
@@ -66,11 +69,11 @@ namespace App\Controllers;
 
 use App\Tasks\LogTask;
 use Centum\Http\Response;
-use Centum\Queue\Queue;
+use Centum\Interfaces\Queue\QueueInterface;
 
 class IndexController
 {
-    public function index(Queue $queue): Response
+    public function index(QueueInterface $queue): Response
     {
         $logTask = new LogTask("Queue works OK.");
 
@@ -88,7 +91,7 @@ use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Queue\Queue;
+use Centum\Interfaces\Queue\QueueInterface;
 
 class QueueConsumeCommand extends Command
 {
@@ -99,7 +102,7 @@ class QueueConsumeCommand extends Command
 
     public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
-        $queue = $container->get(Queue::class);
+        $queue = $container->get(QueueInterface::class);
 
         $queue->consume();
 

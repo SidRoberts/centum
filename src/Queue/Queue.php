@@ -3,13 +3,14 @@
 namespace Centum\Queue;
 
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
 use Throwable;
 use UnexpectedValueException;
 
-class Queue
+class Queue implements QueueInterface
 {
     protected readonly ContainerInterface $container;
     protected readonly PheanstalkInterface $pheanstalk;

@@ -8,6 +8,8 @@ use Centum\Flash\Flash;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Flash\FlashInterface;
+use Centum\Interfaces\Queue\QueueInterface;
+use Centum\Queue\Queue;
 use Closure;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Pheanstalk;
@@ -28,6 +30,7 @@ class Container implements ContainerInterface
         ContainerInterface::class  => Container::class,
         FlashInterface::class      => Flash::class,
         PheanstalkInterface::class => Pheanstalk::class,
+        QueueInterface::class      => Queue::class,
         TerminalInterface::class   => Terminal::class,
     ];
 

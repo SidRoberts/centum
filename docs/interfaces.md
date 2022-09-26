@@ -20,6 +20,7 @@ nav_order: 3
 - [`Centum\Interfaces\Flash\MessageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageInterface.php)
 - [`Centum\Interfaces\Http\Session\HandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Session/HandlerInterface.php)
 - [`Centum\Interfaces\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/DataInterface.php)
+- [`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php)
 - [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/TaskInterface.php)
 - [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php)
 - [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php)
