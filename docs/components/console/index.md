@@ -10,6 +10,13 @@ permalink: console
 
 # `Centum\Console`
 
+The Console component can be used to easily develop command line applications.
+
+Application endpoints are treated as [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
+These Commands contain all of the code and metadata relating to that endpoint.
+
+[`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) extracts the command name from `$argv`, finds the appropriate Command, runs the Middlewares, and then executes the Command's code.
+
 {: .highlight }
 [`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) implements [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php).
 
@@ -25,13 +32,6 @@ Centum\Console\Application(
 - `public function addExceptionHandler(class-string $exceptionClass, Centum\Interfaces\Console\CommandInterface $command): void`
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
 
-The Console component can be used to easily develop command line applications.
-
-Application endpoints are treated as [Command](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
-These Commands contain all of the code and metadata relating to that endpoint.
-
-The [Application](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) extracts the command name from `$argv`, finds the appropriate Command, runs the Middlewares, and then executes the Command's code.
-
 
 
 ## Default Commands
@@ -40,7 +40,7 @@ The [Application](https://github.com/SidRoberts/centum/blob/development/src/Cons
 
 ### [`Centum\Console\Command\ListCommand`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command/ListCommand.php)
 
-Will list all registered Commands:
+Will list all registered `Centum\Console\Command` objects:
 
 ```bash
 php cli.php list

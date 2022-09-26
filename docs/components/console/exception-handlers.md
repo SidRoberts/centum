@@ -90,7 +90,7 @@ class ErrorCommand extends Command
 
 ## Good Practices
 
-Depending on your use case, it may not be desired to have exception handlers but for user facing applications, it is **strongly recommended** to have exception handlers for:
+Depending on your use case, it may not be desired to have exception handlers but for user-facing applications, it is **strongly recommended** to have exception handlers for:
 
 - [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
 - `Throwable`

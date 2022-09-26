@@ -66,9 +66,9 @@ Commands can be added to the Application, using the `addCommand()` method:
 
 ```php
 use App\Commands\IndexCommand;
-use Centum\Console\Application;
+use Centum\Interfaces\Console\ApplicationInterface;
 
-/** @var Application $application */
+/** @var ApplicationInterface $application */
 
 $application->addCommand(
     new IndexCommand()

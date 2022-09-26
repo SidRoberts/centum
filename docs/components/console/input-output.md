@@ -15,13 +15,22 @@ The [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/develo
 By default, it uses `$_SERVER["argv"]` and reads and writes to `STDIN`, `STDOUT`, and `STDERR`.
 
 ```php
-use Centum\Console\Terminal;
-
-$terminal = new Terminal();
+Centum\Console\Terminal(
+    array $argv = $_SERVER["argv"],
+    resource $stdin = STDIN,
+    resource $stdout = STDOUT,
+    resource $stderr = STDERR
+);
 ```
 
 {: .highlight }
 [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) implements [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php).
+
+```php
+use Centum\Console\Terminal;
+
+$terminal = new Terminal();
+```
 
 
 
