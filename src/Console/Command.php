@@ -3,10 +3,11 @@
 namespace Centum\Console;
 
 use Centum\Console\Middleware\TrueMiddleware;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
-abstract class Command
+abstract class Command implements CommandInterface
 {
     abstract public function getName(): string;
 

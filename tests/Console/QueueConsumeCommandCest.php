@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Console;
+namespace Tests\Unit\Console;
 
 use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Queue\Queue;

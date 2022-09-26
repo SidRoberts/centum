@@ -8,6 +8,7 @@ use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\ParamNotFoundException;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Filter\FilterInterface;
 use Centum\Validator\CommandSlug;
@@ -18,10 +19,10 @@ class Application
 {
     protected readonly ContainerInterface $container;
 
-    /** @var array<string, Command> */
+    /** @var array<string, CommandInterface> */
     protected array $commands = [];
 
-    /** @var array<class-string, Command> */
+    /** @var array<class-string, CommandInterface> */
     protected array $exceptionHandlers = [];
 
 
@@ -38,7 +39,7 @@ class Application
 
 
 
-    public function addCommand(Command $command): void
+    public function addCommand(CommandInterface $command): void
     {
         $name = $command->getName();
 
@@ -49,7 +50,7 @@ class Application
         $this->commands[$name] = $command;
     }
 
-    public function getCommand(string $name): Command
+    public function getCommand(string $name): CommandInterface
     {
         return $this->commands[$name] ?? throw new OutOfRangeException();
     }
@@ -64,7 +65,7 @@ class Application
     /**
      * @param class-string $exceptionClass
      */
-    public function addExceptionHandler(string $exceptionClass, Command $command): void
+    public function addExceptionHandler(string $exceptionClass, CommandInterface $command): void
     {
         $this->exceptionHandlers[$exceptionClass] = $command;
     }
@@ -124,7 +125,7 @@ class Application
 
 
 
-    protected function getCommandFromTerminal(Terminal $terminal): Command
+    protected function getCommandFromTerminal(Terminal $terminal): CommandInterface
     {
         $name = $terminal->getArgv()[1] ?? "";
 

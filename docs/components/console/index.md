@@ -16,10 +16,10 @@ Centum\Console\Application(
 );
 ```
 
-- `public function addCommand(Command $command): void`
-- `public function getCommand(string $name): Command`
-- `public function getCommands(): array<string, Command>`
-- `public function addExceptionHandler(class-string $exceptionClass, Command $command): void`
+- `public function addCommand(Centum\Interfaces\Console\CommandInterface $command): void`
+- `public function getCommand(string $name): Centum\Interfaces\Console\CommandInterface`
+- `public function getCommands(): array<string, Centum\Interfaces\Console\CommandInterface>`
+- `public function addExceptionHandler(class-string $exceptionClass, Centum\Interfaces\Console\CommandInterface $command): void`
 - `public function handle(Terminal $terminal): int`
 
 The Console component can be used to easily develop command line applications.

@@ -8,6 +8,7 @@ nav_order: 3
 
 # Interfaces
 
+- [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php)
 - [`Centum\Interfaces\Console\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/MiddlewareInterface.php)
 - [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php)
 - [`Centum\Interfaces\Cron\JobInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Cron/JobInterface.php)

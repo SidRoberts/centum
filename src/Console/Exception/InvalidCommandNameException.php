@@ -2,15 +2,15 @@
 
 namespace Centum\Console\Exception;
 
-use Centum\Console\Command;
+use Centum\Interfaces\Console\CommandInterface;
 
 class InvalidCommandNameException extends \Exception
 {
-    protected readonly Command $command;
+    protected readonly CommandInterface $command;
 
 
 
-    public function __construct(Command $command)
+    public function __construct(CommandInterface $command)
     {
         $message = sprintf(
             "Command name ('%s') is not valid.",
@@ -24,7 +24,7 @@ class InvalidCommandNameException extends \Exception
 
 
 
-    public function getCommand(): Command
+    public function getCommand(): CommandInterface
     {
         return $this->command;
     }

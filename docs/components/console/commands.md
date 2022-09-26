@@ -14,6 +14,9 @@ nav_order: 1
 A Command is responsible for providing the command name (`getName()`), middleware (`getMiddleware()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
 It's return value is the exit code.
 
+{: .highlight }
+[`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
+
 - `public function getName(): string`
 - `public function execute(Centum\Console\Terminal $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Console\Parameters $parameters): int`
 - `public function getDescription(): string` (optional)

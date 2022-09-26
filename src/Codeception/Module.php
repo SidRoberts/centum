@@ -4,8 +4,8 @@ namespace Centum\Codeception;
 
 use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Console\Application;
-use Centum\Console\Command;
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Configuration;
 use Codeception\Lib\Framework;
@@ -191,7 +191,7 @@ class Module extends Framework
         return $container->get(Application::class);
     }
 
-    public function addCommand(Command $command): void
+    public function addCommand(CommandInterface $command): void
     {
         $application = $this->getConsoleApplication();
 

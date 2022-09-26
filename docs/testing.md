@@ -42,7 +42,7 @@ If this isn't specified, it will default to `config/container.php`.
 - `getStdoutContent(): string`
 - `getStderrContent(): string`
 - `getConsoleApplication(): Centum\Console\Application`
-- `addCommand(Centum\Console\Command $command): void`
+- `addCommand(Centum\Console\CommandInterface $command): void`
 - `runCommand(array $argv): int`
 
 ### Assertions
