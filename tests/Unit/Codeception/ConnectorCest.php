@@ -4,8 +4,8 @@ namespace Tests\Unit\Codeception;
 
 use Centum\Codeception\Connector;
 use Centum\Container\Container;
-use Centum\Http\Session\ArrayHandler;
-use Centum\Interfaces\Http\Session\HandlerInterface;
+use Centum\Http\Session\ArraySession;
+use Centum\Interfaces\Http\SessionInterface;
 use Tests\Support\UnitTester;
 
 class ConnectorCest
@@ -16,11 +16,11 @@ class ConnectorCest
 
         new Connector($container);
 
-        $sessionHandler = $container->get(HandlerInterface::class);
+        $session = $container->get(SessionInterface::class);
 
         $I->assertInstanceOf(
-            ArrayHandler::class,
-            $sessionHandler
+            ArraySession::class,
+            $session
         );
     }
 }

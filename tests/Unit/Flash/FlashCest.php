@@ -4,8 +4,7 @@ namespace Tests\Unit\Flash;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\TextFormatter;
-use Centum\Http\Session;
-use Centum\Http\Session\ArrayHandler;
+use Centum\Http\Session\ArraySession;
 use Tests\Support\UnitTester;
 
 class FlashCest
@@ -19,9 +18,8 @@ class FlashCest
 
 
 
-        $arrayHandler = new ArrayHandler();
+        $session = new ArraySession();
 
-        $session   = new Session($arrayHandler);
         $formatter = new TextFormatter();
 
         $flash = new Flash($session, $formatter);

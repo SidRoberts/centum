@@ -3,9 +3,9 @@
 namespace Centum\Codeception;
 
 use Centum\Http\RequestFactory;
-use Centum\Http\Session\ArrayHandler;
+use Centum\Http\Session\ArraySession;
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Interfaces\Http\Session\HandlerInterface;
+use Centum\Interfaces\Http\SessionInterface;
 use Centum\Router\Router;
 use Symfony\Component\BrowserKit\AbstractBrowser as Client;
 use Symfony\Component\BrowserKit\CookieJar;
@@ -25,11 +25,9 @@ class Connector extends Client
         History $history = null,
         CookieJar $cookieJar = null
     ) {
-        $container->setDynamic(
-            HandlerInterface::class,
-            function () {
-                return new ArrayHandler();
-            }
+        $container->addAlias(
+            SessionInterface::class,
+            ArraySession::class
         );
 
         $this->container = $container;

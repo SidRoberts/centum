@@ -2,9 +2,9 @@
 
 namespace Centum\Http\Session;
 
-use Centum\Interfaces\Http\Session\HandlerInterface;
+use Centum\Interfaces\Http\SessionInterface;
 
-class SessionGlobalVariableHandler implements HandlerInterface
+class GlobalSession implements SessionInterface
 {
     public function start(): bool
     {

@@ -4,8 +4,7 @@ namespace Tests\Unit\Twig;
 
 use Centum\Flash\Flash;
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Http\Session;
-use Centum\Http\Session\ArrayHandler;
+use Centum\Http\Session\ArraySession;
 use Centum\Twig\FlashExtension;
 use Tests\Support\UnitTester;
 use Twig\Loader\ArrayLoader;
@@ -14,9 +13,8 @@ class FlashExtensionCest
 {
     public function test(UnitTester $I): void
     {
-        $arrayHandler = new ArrayHandler();
+        $session = new ArraySession();
 
-        $session   = new Session($arrayHandler);
         $formatter = new HtmlFormatter();
 
         $flash = new Flash(

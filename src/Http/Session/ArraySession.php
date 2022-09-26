@@ -2,9 +2,9 @@
 
 namespace Centum\Http\Session;
 
-use Centum\Interfaces\Http\Session\HandlerInterface;
+use Centum\Interfaces\Http\SessionInterface;
 
-class ArrayHandler implements HandlerInterface
+class ArraySession implements SessionInterface
 {
     protected array $data = [];
 

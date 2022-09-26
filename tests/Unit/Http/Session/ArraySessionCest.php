@@ -2,103 +2,103 @@
 
 namespace Tests\Unit\Http\Session;
 
-use Centum\Http\Session\ArrayHandler;
+use Centum\Http\Session\ArraySession;
 use Tests\Support\UnitTester;
 
-class ArrayHandlerCest
+class ArraySessionCest
 {
     public function testStart(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
         $I->assertTrue(
-            $handler->start()
+            $session->start()
         );
     }
 
     public function testIsActive(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
         $I->assertTrue(
-            $handler->isActive()
+            $session->isActive()
         );
     }
 
     public function testGetAndSet(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
         $name = "Sid Roberts";
 
-        $handler->set("name", $name);
+        $session->set("name", $name);
 
         $I->assertEquals(
             $name,
-            $handler->get("name")
+            $session->get("name")
         );
     }
 
     public function testHas(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
         $I->assertFalse(
-            $handler->has("name")
+            $session->has("name")
         );
 
-        $handler->set("name", "Sid Roberts");
+        $session->set("name", "Sid Roberts");
 
         $I->assertTrue(
-            $handler->has("name")
+            $session->has("name")
         );
     }
 
     public function testAll(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
         $I->assertEquals(
             [],
-            $handler->all()
+            $session->all()
         );
 
-        $handler->set("name", "Sid Roberts");
-        $handler->set("city", "Busan");
+        $session->set("name", "Sid Roberts");
+        $session->set("city", "Busan");
 
         $I->assertEquals(
             [
                 "name" => "Sid Roberts",
                 "city" => "Busan",
             ],
-            $handler->all()
+            $session->all()
         );
     }
 
     public function testRemove(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
-        $handler->set("name", "Sid Roberts");
+        $session->set("name", "Sid Roberts");
 
-        $handler->remove("name");
+        $session->remove("name");
 
         $I->assertFalse(
-            $handler->has("name")
+            $session->has("name")
         );
     }
 
     public function testClear(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
+        $session = new ArraySession();
 
-        $handler->set("name", "Sid Roberts");
-        $handler->set("city", "Busan");
+        $session->set("name", "Sid Roberts");
+        $session->set("city", "Busan");
 
-        $handler->clear();
+        $session->clear();
 
         $I->assertEmpty(
-            $handler->all()
+            $session->all()
         );
     }
 }

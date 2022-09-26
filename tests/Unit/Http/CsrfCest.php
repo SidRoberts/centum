@@ -3,8 +3,7 @@
 namespace Tests\Unit\Http;
 
 use Centum\Http\Csrf;
-use Centum\Http\Session;
-use Centum\Http\Session\ArrayHandler;
+use Centum\Http\Session\ArraySession;
 use Centum\Interfaces\Http\SessionInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -63,9 +62,7 @@ class CsrfCest
 
     public function testValueIsPersistent(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
-
-        $session = new Session($handler);
+        $session = new ArraySession();
 
         $csrf = new Csrf($session);
 
@@ -79,9 +76,7 @@ class CsrfCest
 
     public function testGenerate(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
-
-        $session = new Session($handler);
+        $session = new ArraySession();
 
         $csrf = new Csrf($session);
 
@@ -105,9 +100,7 @@ class CsrfCest
 
     public function testValueIsOverwrittenWhenGenerated(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
-
-        $session = new Session($handler);
+        $session = new ArraySession();
 
         $csrf = new Csrf($session);
 
@@ -130,9 +123,7 @@ class CsrfCest
 
     public function testReset(UnitTester $I): void
     {
-        $handler = new ArrayHandler();
-
-        $session = new Session($handler);
+        $session = new ArraySession();
 
         $csrf = new Csrf($session);
 
