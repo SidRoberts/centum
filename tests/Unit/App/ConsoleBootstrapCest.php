@@ -6,6 +6,7 @@ use Centum\App\ConsoleBootstrap;
 use Centum\Console\Application;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
+use Centum\Interfaces\Console\TerminalInterface;
 use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;

@@ -20,6 +20,9 @@ use Centum\Console\Terminal;
 $terminal = new Terminal();
 ```
 
+{: .highlight }
+[`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) implements [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php).
+
 
 
 ## Input

@@ -5,7 +5,7 @@ namespace Centum\Console\Command;
 use Centum\Console\Application;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
-use Centum\Console\Terminal;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class ListCommand extends Command
@@ -20,7 +20,7 @@ class ListCommand extends Command
         return "Lists all available commands.";
     }
 
-    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $application = $container->get(Application::class);
 

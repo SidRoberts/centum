@@ -86,7 +86,7 @@ namespace App\Commands;
 
 use Centum\Console\Command;
 use Centum\Console\Parameters;
-use Centum\Console\Terminal;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Queue\Queue;
 
@@ -97,7 +97,7 @@ class QueueConsumeCommand extends Command
         return "queue-consume";
     }
 
-    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $queue = $container->get(Queue::class);
 

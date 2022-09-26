@@ -6,6 +6,7 @@ use Centum\Console\Command;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
 use Centum\Container\Container;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class InvalidFiltersCommand extends Command
@@ -23,7 +24,7 @@ class InvalidFiltersCommand extends Command
         ];
     }
 
-    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         return 0;
     }

@@ -6,6 +6,7 @@ use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Console\Application;
 use Centum\Console\Terminal;
 use Centum\Interfaces\Console\CommandInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Configuration;
 use Codeception\Lib\Framework;
@@ -152,7 +153,7 @@ class Module extends Framework
     /**
      * @param list<string> $argv
      */
-    public function createTerminal(array $argv): Terminal
+    public function createTerminal(array $argv): TerminalInterface
     {
         $this->stdin  = fopen("php://memory", "r");
         $this->stdout = fopen("php://memory", "w");

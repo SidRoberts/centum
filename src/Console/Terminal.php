@@ -2,7 +2,9 @@
 
 namespace Centum\Console;
 
-class Terminal
+use Centum\Interfaces\Console\TerminalInterface;
+
+class Terminal implements TerminalInterface
 {
     /** @var list<string> */
     protected readonly array $argv;

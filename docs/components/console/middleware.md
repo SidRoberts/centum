@@ -21,14 +21,14 @@ Any Middlewares you create must implement [`Centum\Interfaces\Console\Middleware
 namespace App\Middlewares\Console;
 
 use App\Auth;
-use Centum\Console\Terminal;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class IsLinuxMiddleware implements MiddlewareInterface
 {
-    public function middleware(Terminal $terminal, CommandInterface $command, ContainerInterface $container): bool
+    public function middleware(TerminalInterface $terminal, CommandInterface $command, ContainerInterface $container): bool
     {
         $uname = posix_uname();
 
@@ -46,8 +46,8 @@ namespace App\Commands;
 use App\Middlewares\Console\IsLinuxMiddleware;
 use Centum\Console\Command;
 use Centum\Console\Parameters;
-use Centum\Console\Terminal;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class AdministrationCommand extends Command
@@ -62,7 +62,7 @@ class AdministrationCommand extends Command
         return new IsLinuxMiddleware();
     }
 
-    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $terminal->writeLine("this command is running on linux");
 
@@ -87,8 +87,8 @@ use App\Middlewares\Console\Middleware3;
 use Centum\Console\Command;
 use Centum\Console\MiddlewareGroup;
 use Centum\Console\Parameters;
-use Centum\Console\Terminal;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class SomethingCommand extends Command
@@ -109,7 +109,7 @@ class SomethingCommand extends Command
         );
     }
 
-    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $terminal->writeLine("hello");
 

@@ -38,7 +38,7 @@ If this isn't specified, it will default to `config/container.php`.
 
 ## Console Testing
 
-- `createTerminal(array $argv): Centum\Console\Terminal`
+- `createTerminal(array $argv): Centum\Interfaces\Console\TerminalInterface`
 - `getStdoutContent(): string`
 - `getStderrContent(): string`
 - `getConsoleApplication(): Centum\Console\Application`

@@ -2,8 +2,10 @@
 
 namespace Centum\Container;
 
+use Centum\Console\Terminal;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Flash\Flash;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Flash\FlashInterface;
 use Closure;
@@ -26,6 +28,7 @@ class Container implements ContainerInterface
         ContainerInterface::class  => Container::class,
         FlashInterface::class      => Flash::class,
         PheanstalkInterface::class => Pheanstalk::class,
+        TerminalInterface::class   => Terminal::class,
     ];
 
 

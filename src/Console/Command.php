@@ -5,6 +5,7 @@ namespace Centum\Console;
 use Centum\Console\Middleware\TrueMiddleware;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 abstract class Command implements CommandInterface
@@ -35,5 +36,5 @@ abstract class Command implements CommandInterface
 
 
 
-    abstract public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int;
+    abstract public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int;
 }

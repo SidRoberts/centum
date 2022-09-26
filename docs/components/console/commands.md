@@ -18,7 +18,7 @@ It's return value is the exit code.
 [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
 
 - `public function getName(): string`
-- `public function execute(Centum\Console\Terminal $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Console\Parameters $parameters): int`
+- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Console\Parameters $parameters): int`
 - `public function getDescription(): string` (optional)
 - `public function getHelp(): string` (optional)
 - `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
@@ -31,7 +31,7 @@ namespace App\Commands;
 
 use Centum\Console\Command;
 use Centum\Console\Parameters;
-use Centum\Console\Terminal;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class IndexCommand extends Command
@@ -41,7 +41,7 @@ class IndexCommand extends Command
         return "this:is:your:name";
     }
 
-    public function execute(Terminal $terminal, ContainerInterface $container, Parameters $parameters): int
+    public function execute(TerminalInterface $terminal, ContainerInterface $container, Parameters $parameters): int
     {
         $terminal->writeLine("hello");
 

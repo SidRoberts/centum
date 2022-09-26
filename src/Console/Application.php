@@ -9,6 +9,7 @@ use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Interfaces\Console\CommandInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Filter\FilterInterface;
 use Centum\Validator\CommandSlug;
@@ -72,7 +73,7 @@ class Application
 
 
 
-    public function handle(Terminal $terminal): int
+    public function handle(TerminalInterface $terminal): int
     {
         $argv = $terminal->getArgv();
 
@@ -125,7 +126,7 @@ class Application
 
 
 
-    protected function getCommandFromTerminal(Terminal $terminal): CommandInterface
+    protected function getCommandFromTerminal(TerminalInterface $terminal): CommandInterface
     {
         $name = $terminal->getArgv()[1] ?? "";
 
