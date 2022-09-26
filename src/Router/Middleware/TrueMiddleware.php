@@ -4,7 +4,7 @@ namespace Centum\Router\Middleware;
 
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Router\MiddlewareInterface;
+use Centum\Interfaces\Router\MiddlewareInterface;
 
 class TrueMiddleware implements MiddlewareInterface
 {

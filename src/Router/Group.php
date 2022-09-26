@@ -2,6 +2,8 @@
 
 namespace Centum\Router;
 
+use Centum\Interfaces\Router\MiddlewareInterface;
+
 class Group
 {
     protected readonly MiddlewareInterface $middleware;

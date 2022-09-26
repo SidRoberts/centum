@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Router;
+namespace Centum\Interfaces\Router;
 
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;

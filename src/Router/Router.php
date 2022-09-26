@@ -6,6 +6,7 @@ use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
