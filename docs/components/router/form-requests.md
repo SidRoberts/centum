@@ -93,7 +93,7 @@ All of the setting logic can be kept within the `set()` method but can also be s
 The following properties exist on a Form:
 
 - `$this->request` (`Centum\Http\Request`)
-- `$this->data` (`Centum\Http\Data`)
+- `$this->data` (`Centum\Interfaces\Http\DataInterface`)
 - `$this->files` (`Centum\Http\Files`)
 - `$this->csrf` (`Centum\Interfaces\Http\CsrfInterface`)
 

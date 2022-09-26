@@ -2,11 +2,13 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\DataInterface;
+
 class Request
 {
     protected readonly string $uri;
     protected readonly string $method;
-    protected readonly Data $data;
+    protected readonly DataInterface $data;
     protected readonly Headers $headers;
     protected readonly Cookies $cookies;
     protected readonly Files $files;
@@ -17,7 +19,7 @@ class Request
     public function __construct(
         string $uri,
         string $method = "GET",
-        Data $data = null,
+        DataInterface $data = null,
         Headers $headers = null,
         Cookies $cookies = null,
         Files $files = null,
@@ -44,7 +46,7 @@ class Request
         return $this->method;
     }
 
-    public function getData(): Data
+    public function getData(): DataInterface
     {
         return $this->data;
     }

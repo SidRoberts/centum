@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Http;
 
-use Centum\Http\Csrf;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
 use Centum\Http\Request;
 use Centum\Interfaces\Http\CsrfInterface;
+use Centum\Interfaces\Http\DataInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
@@ -21,7 +21,7 @@ class FormCest
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {
-        /** @var Data */
+        /** @var DataInterface */
         $data = $example["data"];
 
         $request = new Request(
@@ -81,7 +81,7 @@ class FormCest
     #[DataProvider("providerBad")]
     public function testBad(UnitTester $I, Example $example): void
     {
-        /** @var Data */
+        /** @var DataInterface */
         $data = $example["data"];
 
         $request = new Request(
@@ -160,7 +160,7 @@ class FormCest
     #[DataProvider("providerCsrf")]
     public function testCsrf(UnitTester $I, Example $example): void
     {
-        /** @var Data */
+        /** @var DataInterface */
         $data = $example["data"];
 
         $request = new Request(
@@ -222,7 +222,7 @@ class FormCest
     #[DataProvider("providerCsrfBad")]
     public function testCsrfBad(UnitTester $I, Example $example): void
     {
-        /** @var Data */
+        /** @var DataInterface */
         $data = $example["data"];
 
         $request = new Request(

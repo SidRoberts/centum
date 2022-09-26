@@ -2,7 +2,9 @@
 
 namespace Centum\Http;
 
-class Data
+use Centum\Interfaces\Http\DataInterface;
+
+class Data implements DataInterface
 {
     /** @var array<string, mixed> */
     protected readonly array $data;
