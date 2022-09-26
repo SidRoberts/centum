@@ -2,6 +2,8 @@
 
 namespace Centum\Access;
 
+use Centum\Interfaces\Access\ActivityInterface;
+
 class Access
 {
     public const ALLOW = true;
@@ -11,7 +13,7 @@ class Access
 
     protected readonly bool $default;
 
-    /** @var array<string, Activity> */
+    /** @var array<string, ActivityInterface> */
     protected array $activities = [];
 
 
@@ -55,7 +57,7 @@ class Access
 
 
 
-    protected function getActivity(string $name): Activity
+    protected function getActivity(string $name): ActivityInterface
     {
         if (!isset($this->activities[$name])) {
             $this->activities[$name] = new Activity($name, $this->default);

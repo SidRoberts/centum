@@ -2,7 +2,9 @@
 
 namespace Centum\Access;
 
-class Activity
+use Centum\Interfaces\Access\ActivityInterface;
+
+class Activity implements ActivityInterface
 {
     protected readonly string $name;
 

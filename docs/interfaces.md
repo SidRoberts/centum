@@ -8,6 +8,10 @@ nav_order: 3
 
 # Interfaces
 
+## Access
+
+- [`Centum\Interfaces\Access\ActivityInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/ActivityInterface.php)
+
 ## Console
 
 - [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php)
