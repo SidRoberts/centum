@@ -37,6 +37,10 @@ Controllers can also take advantage of things like dependency injection, filters
 ## Route Groups
 
 In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/development/src/Router/Group.php) objects.
+
+{: .highlight }
+[`Centum\Router\Group`](https://github.com/SidRoberts/centum/blob/development/src/Router/Group.php) implements [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/GroupInterface.php).
+
 A group can store as many routes as you wish and can be used to organise and group similar routes.
 A new group can be created with the `group()` method:
 

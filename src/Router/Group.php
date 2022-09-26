@@ -2,9 +2,10 @@
 
 namespace Centum\Router;
 
+use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 
-class Group
+class Group implements GroupInterface
 {
     protected readonly MiddlewareInterface $middleware;
 

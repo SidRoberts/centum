@@ -2,10 +2,10 @@
 
 namespace Centum\Router;
 
-use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Router\Exception\ParamNotFoundException;
@@ -18,7 +18,7 @@ class Router
 {
     protected readonly ContainerInterface $container;
 
-    /** @var Group[] */
+    /** @var GroupInterface[] */
     protected array $groups = [];
 
     /** @var array<class-string, array{class-string, string}> */
@@ -33,7 +33,7 @@ class Router
 
 
 
-    public function group(MiddlewareInterface $middleware = null): Group
+    public function group(MiddlewareInterface $middleware = null): GroupInterface
     {
         if (!$middleware) {
             $middleware = new TrueMiddleware();
