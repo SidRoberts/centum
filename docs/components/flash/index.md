@@ -37,3 +37,5 @@ And now you can output the messages in your view:
 ```php
 echo $flash->output();
 ```
+
+If you're using Twig, you can also use the [Flash Twig extension](../twig/flash.md).
