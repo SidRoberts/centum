@@ -1,7 +1,9 @@
 <?php
 
-namespace Centum\Console;
+namespace Centum\Interfaces\Console;
 
+use Centum\Console\Command;
+use Centum\Console\Terminal;
 use Centum\Interfaces\Container\ContainerInterface;
 
 interface MiddlewareInterface

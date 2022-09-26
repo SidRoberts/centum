@@ -15,15 +15,15 @@ If the Command is found, the Application will run the Middleware which is able t
 
 By returning `false` or throwing [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php) in a Middleware, the Application will ignore the Command and assume that it is not suitable for the particular command.
 
-Any Middlewares you create must implement [`Centum\Console\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Console/MiddlewareInterface.php).
+Any Middlewares you create must implement [`Centum\Interfaces\Console\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/MiddlewareInterface.php).
 
 ```php
 namespace App\Middlewares\Console;
 
 use App\Auth;
 use Centum\Console\Command;
-use Centum\Console\MiddlewareInterface;
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class IsLinuxMiddleware implements MiddlewareInterface
@@ -45,9 +45,9 @@ namespace App\Commands;
 
 use App\Middlewares\Console\IsLinuxMiddleware;
 use Centum\Console\Command;
-use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class AdministrationCommand extends Command
@@ -86,9 +86,9 @@ use App\Middlewares\Console\Middleware2;
 use App\Middlewares\Console\Middleware3;
 use Centum\Console\Command;
 use Centum\Console\MiddlewareGroup;
-use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class SomethingCommand extends Command

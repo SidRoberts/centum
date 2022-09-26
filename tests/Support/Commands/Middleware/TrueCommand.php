@@ -3,9 +3,9 @@
 namespace Tests\Support\Commands\Middleware;
 
 use Centum\Console\Command;
-use Centum\Console\MiddlewareInterface;
 use Centum\Console\Parameters;
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Tests\Support\Middlewares\Console\TrueMiddleware;
 

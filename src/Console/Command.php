@@ -3,6 +3,7 @@
 namespace Centum\Console;
 
 use Centum\Console\Middleware\TrueMiddleware;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 abstract class Command

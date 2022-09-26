@@ -2,6 +2,7 @@
 
 namespace Centum\Console;
 
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class MiddlewareGroup implements MiddlewareInterface

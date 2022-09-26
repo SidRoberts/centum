@@ -3,8 +3,8 @@
 namespace Centum\Console\Middleware;
 
 use Centum\Console\Command;
-use Centum\Console\MiddlewareInterface;
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
 class TrueMiddleware implements MiddlewareInterface

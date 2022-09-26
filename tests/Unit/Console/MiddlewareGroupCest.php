@@ -3,7 +3,7 @@
 namespace Tests\Unit\Console;
 
 use Centum\Console\MiddlewareGroup;
-use Centum\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\MiddlewareInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\Commands\BoringCommand;
