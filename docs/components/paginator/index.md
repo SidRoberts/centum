@@ -40,6 +40,9 @@ Centum\Paginator\Paginator(
 );
 ```
 
+{: .highlight }
+[`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Paginator.php) implements [`Centum\Interfaces\Paginator\PaginatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PaginatorInterface.php).
+
 [`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Paginator.php) has 4 public methods:
 
 - `public function getData(): Centum\Interfaces\Paginator\DataInterface`

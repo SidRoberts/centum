@@ -3,10 +3,10 @@
 namespace Centum\Paginator;
 
 use Centum\Interfaces\Paginator\DataInterface;
+use Centum\Interfaces\Paginator\PaginatorInterface;
 use Centum\Paginator\Exception\InvalidItemsPerPageException;
-use Centum\Paginator\Page;
 
-class Paginator
+class Paginator implements PaginatorInterface
 {
     protected readonly DataInterface $data;
     protected readonly int $itemsPerPage;
