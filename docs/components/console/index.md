@@ -10,6 +10,9 @@ permalink: console
 
 # `Centum\Console`
 
+{: .highlight }
+[`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) implements [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php).
+
 ```php
 Centum\Console\Application(
     Centum\Interfaces\Container\ContainerInterface $container

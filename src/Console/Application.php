@@ -8,6 +8,7 @@ use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\ParamNotFoundException;
+use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -16,7 +17,7 @@ use Centum\Validator\CommandSlug;
 use OutOfRangeException;
 use Throwable;
 
-class Application
+class Application implements ApplicationInterface
 {
     protected readonly ContainerInterface $container;
 

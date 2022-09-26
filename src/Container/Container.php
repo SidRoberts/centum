@@ -2,9 +2,11 @@
 
 namespace Centum\Container;
 
+use Centum\Console\Application;
 use Centum\Console\Terminal;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Flash\Flash;
+use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Flash\FlashInterface;
@@ -27,11 +29,12 @@ class Container implements ContainerInterface
 
     /** @var array<class-string, class-string> */
     protected array $aliases = [
-        ContainerInterface::class  => Container::class,
-        FlashInterface::class      => Flash::class,
-        PheanstalkInterface::class => Pheanstalk::class,
-        QueueInterface::class      => Queue::class,
-        TerminalInterface::class   => Terminal::class,
+        ApplicationInterface::class => Application::class,
+        ContainerInterface::class   => Container::class,
+        FlashInterface::class       => Flash::class,
+        PheanstalkInterface::class  => Pheanstalk::class,
+        QueueInterface::class       => Queue::class,
+        TerminalInterface::class    => Terminal::class,
     ];
 
 

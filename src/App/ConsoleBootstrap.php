@@ -2,7 +2,7 @@
 
 namespace Centum\App;
 
-use Centum\Console\Application;
+use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
@@ -10,7 +10,7 @@ class ConsoleBootstrap extends Bootstrap
 {
     public function boot(ContainerInterface $container): void
     {
-        $application = $container->get(Application::class);
+        $application = $container->get(ApplicationInterface::class);
 
         $terminal = $container->get(TerminalInterface::class);
 
