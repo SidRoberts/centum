@@ -5,6 +5,7 @@ namespace Centum\Flash;
 use Centum\Http\Session;
 use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
+use Centum\Interfaces\Flash\MessageBagInterface;
 
 class Flash implements FlashInterface
 {
@@ -76,9 +77,9 @@ class Flash implements FlashInterface
 
 
 
-    protected function getMessageBag(): MessageBag
+    protected function getMessageBag(): MessageBagInterface
     {
-        /** @var MessageBag */
+        /** @var MessageBagInterface */
         $messageBag = $this->session->get(self::SESSION_ID) ?? new MessageBag();
 
         $this->session->remove(self::SESSION_ID);

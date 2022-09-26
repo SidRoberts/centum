@@ -2,14 +2,17 @@
 
 namespace Centum\Flash;
 
-class MessageBag
+use Centum\Interfaces\Flash\MessageBagInterface;
+use Centum\Interfaces\Flash\MessageInterface;
+
+class MessageBag implements MessageBagInterface
 {
-    /** @var Message[] */
+    /** @var MessageInterface[] */
     protected array $messages = [];
 
 
 
-    public function add(Message $message): void
+    public function add(MessageInterface $message): void
     {
         $this->messages[] = $message;
     }
@@ -17,7 +20,7 @@ class MessageBag
 
 
     /**
-     * @return Message[]
+     * @return MessageInterface[]
      */
     public function getMessages(): array
     {
