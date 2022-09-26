@@ -49,6 +49,7 @@ nav_order: 3
 ## Http
 
 - [`Centum\Interfaces\Http\CsrfInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CsrfInterface.php)
+- [`Centum\Interfaces\Http\SessionInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/SessionInterface.php)
 - [`Centum\Interfaces\Http\Session\HandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Session/HandlerInterface.php)
 
 ## Paginator

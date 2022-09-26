@@ -31,11 +31,11 @@ Centum\Http\Form(
 
 ```php
 Centum\Http\Csrf(
-    Centum\Http\Session $session
+    Centum\Interfaces\Http\SessionInterface $session
 );
 ```
 
-`Centum\Http\Csrf` works by generating and storing a random string in a `Centum\Http\Session` object and making this value available for use in a `<form>`.
+`Centum\Http\Csrf` works by generating and storing a random string in a `Centum\Interfaces\Http\SessionInterface` object and making this value available for use in a `<form>`.
 By comparing the value submitted by the user and the known value from the Session, we can validate whether the POST request is genuine or not.
 
 **By default, `Centum\Http\Form` does not check against CSRF attacks.**
@@ -44,9 +44,9 @@ Wherever a POST request requires CSRF protection, the current token value can be
 
 ```php
 use Centum\Http\Csrf;
-use Centum\Http\Session;
+use Centum\Interfaces\Http\SessionInterface;
 
-/** @var Session $session */
+/** @var SessionInterface $session */
 
 $csrf = new Csrf($session);
 

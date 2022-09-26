@@ -18,12 +18,12 @@ First, the extension needs to be added to Twig:
 
 ```php
 use Centum\Flash\Flash;
-use Centum\Flash\FormatterInterface;
-use Centum\Http\Session;
+use Centum\Interfaces\Flash\FormatterInterface;
+use Centum\Interfaces\Http\SessionInterface;
 use Centum\Twig\FlashExtension;
 use Twig\Environment;
 
-/** @var Session $session */
+/** @var SessionInterface $session */
 /** @var FormatterInterface $formatter */
 
 $flash = new Flash($session, $formatter);

@@ -2,14 +2,14 @@
 
 namespace Centum\Flash;
 
-use Centum\Http\Session;
 use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
 use Centum\Interfaces\Flash\MessageBagInterface;
+use Centum\Interfaces\Http\SessionInterface;
 
 class Flash implements FlashInterface
 {
-    protected readonly Session $session;
+    protected readonly SessionInterface $session;
 
     protected readonly FormatterInterface $formatter;
 
@@ -19,7 +19,7 @@ class Flash implements FlashInterface
 
 
 
-    public function __construct(Session $session, FormatterInterface $formatter)
+    public function __construct(SessionInterface $session, FormatterInterface $formatter)
     {
         $this->session   = $session;
         $this->formatter = $formatter;

@@ -3,10 +3,11 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\CsrfInterface;
+use Centum\Interfaces\Http\SessionInterface;
 
 class Csrf implements CsrfInterface
 {
-    protected readonly Session $session;
+    protected readonly SessionInterface $session;
 
     public const TOKEN = "centum-csrf";
 
@@ -14,7 +15,7 @@ class Csrf implements CsrfInterface
 
 
 
-    public function __construct(Session $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }

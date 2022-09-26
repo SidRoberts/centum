@@ -5,6 +5,7 @@ namespace Tests\Unit\Http;
 use Centum\Http\Csrf;
 use Centum\Http\Session;
 use Centum\Http\Session\ArrayHandler;
+use Centum\Interfaces\Http\SessionInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Mockery;
@@ -16,7 +17,7 @@ class CsrfCest
     public function testGet(UnitTester $I): void
     {
         $session = Mockery::mock(
-            Session::class,
+            SessionInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->with(Csrf::TOKEN)
@@ -35,7 +36,7 @@ class CsrfCest
     public function testGetWhenNotAlreadySet(UnitTester $I): void
     {
         $session = Mockery::mock(
-            Session::class,
+            SessionInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->with(Csrf::TOKEN)
@@ -151,7 +152,7 @@ class CsrfCest
     public function testValidate(UnitTester $I, Example $example): void
     {
         $session = Mockery::mock(
-            Session::class,
+            SessionInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->with(Csrf::TOKEN)

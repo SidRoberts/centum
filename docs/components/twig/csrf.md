@@ -18,11 +18,11 @@ First, the extension needs to be added to Twig:
 
 ```php
 use Centum\Http\Csrf;
-use Centum\Http\Session;
+use Centum\Interfaces\Http\SessionInterface;
 use Centum\Twig\CsrfExtension;
 use Twig\Environment;
 
-/** @var Session $session */
+/** @var SessionInterface $session */
 
 $csrf = new Csrf($session);
 

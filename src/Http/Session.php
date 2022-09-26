@@ -4,8 +4,9 @@ namespace Centum\Http;
 
 use Centum\Http\Session\SessionGlobalVariableHandler;
 use Centum\Interfaces\Http\Session\HandlerInterface;
+use Centum\Interfaces\Http\SessionInterface;
 
-class Session
+class Session implements SessionInterface
 {
     protected readonly HandlerInterface $handler;
 
