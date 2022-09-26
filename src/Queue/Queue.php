@@ -3,6 +3,7 @@
 namespace Centum\Queue;
 
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Queue\TaskInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
 use Throwable;
@@ -25,7 +26,7 @@ class Queue
 
 
 
-    public function publish(Task $task): void
+    public function publish(TaskInterface $task): void
     {
         $this->pheanstalk->useTube(self::TUBE);
 
@@ -34,7 +35,7 @@ class Queue
         );
     }
 
-    public function consume(): Task
+    public function consume(): TaskInterface
     {
         $this->pheanstalk->watch(self::TUBE);
 
@@ -50,12 +51,12 @@ class Queue
             $job->getData()
         );
 
-        if (!($task instanceof Task)) {
+        if (!($task instanceof TaskInterface)) {
             throw new UnexpectedValueException(
                 sprintf(
                     "Object from %s tube is not a %s object.",
                     self::TUBE,
-                    Task::class
+                    TaskInterface::class
                 )
             );
         }

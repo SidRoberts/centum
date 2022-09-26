@@ -124,7 +124,7 @@ class QueueCest
 
 
         $I->expectThrowable(
-            new UnexpectedValueException("Object from centum-tasks tube is not a Centum\\Queue\\Task object."),
+            new UnexpectedValueException("Object from centum-tasks tube is not a Centum\\Interfaces\\Queue\\TaskInterface object."),
             function () use ($queue): void {
                 $queue->consume();
             }

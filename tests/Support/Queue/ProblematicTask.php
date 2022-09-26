@@ -3,10 +3,10 @@
 namespace Tests\Support\Queue;
 
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Queue\Task;
+use Centum\Interfaces\Queue\TaskInterface;
 use Exception;
 
-class ProblematicTask extends Task
+class ProblematicTask implements TaskInterface
 {
     public function execute(ContainerInterface $container): void
     {

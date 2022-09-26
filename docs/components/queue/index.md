@@ -24,19 +24,19 @@ Centum\Queue\Queue(
 
 [`Centum\Queue\Queue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Queue.php) features two public methods:
 
-* `publish(Centum\Queue\Task $task): void`
-* `consume(): Centum\Queue\Task`
+* `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
+* `consume(): Centum\Interfaces\Queue\TaskInterface`
 
-Both methods work with the abstract [`Centum\Queue\Task`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Task.php) class which represents a piece of work that a background worker can execute.
+Both methods work with [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Queue/TaskInterface.php) which represents a piece of work that a background worker can execute.
 Tasks are serialised and unserialised as they are transported through Beanstalkd so any complicated objects should be called through the Container in the `execute()` method:
 
 ```php
 namespace App\Tasks;
 
 use Centum\Container\Container;
-use Centum\Queue\Task;
+use Centum\Interfaces\Queue\TaskInterface;
 
-class LogTask extends Task
+class LogTask implements TaskInterface
 {
     protected string $message;
 
