@@ -113,4 +113,4 @@ class QueueConsumeCommand extends Command
 
 If a Task throws an Exception whilst it is being consumed, the Queue component will automatically bury it on Pheanstalk so that it can be dealt with later.
 
-Queue used the `centum-tasks` tube to store Tasks (available from `Centum\Queue\Queue::TUBE`).
+Queue uses the `centum-tasks` tube to store Tasks (available from `Centum\Queue\Queue::TUBE`).
