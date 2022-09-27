@@ -3,40 +3,41 @@
 namespace Tests\Support\Controllers;
 
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 
 class PostController
 {
-    public function index(): Response
+    public function index(): ResponseInterface
     {
         return new Response("index");
     }
 
-    public function create(): Response
+    public function create(): ResponseInterface
     {
         return new Response("create");
     }
 
-    public function store(): Response
+    public function store(): ResponseInterface
     {
         return new Response("store");
     }
 
-    public function show(): Response
+    public function show(): ResponseInterface
     {
         return new Response("show");
     }
 
-    public function edit(): Response
+    public function edit(): ResponseInterface
     {
         return new Response("edit");
     }
 
-    public function update(): Response
+    public function update(): ResponseInterface
     {
         return new Response("update");
     }
 
-    public function destroy(): Response
+    public function destroy(): ResponseInterface
     {
         return new Response("destroy");
     }

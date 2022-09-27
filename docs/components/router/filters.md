@@ -17,16 +17,16 @@ Any Filters you create must implement [`Centum\Interfaces\Filter\FilterInterface
 namespace App\Filters;
 
 use App\Models\Post;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Filter\FilterInterface;
 use Centum\Router\Exception\RouteMismatchException;
 use Doctrine\ORM\EntityManager;
 
 class IdToPostFilter implements FilterInterface
 {
-    protected Container $container;
+    protected ContainerInterface $container;
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -54,11 +54,12 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 
 class PostController
 {
-    public function view(ParametersInterface $parameters): Response
+    public function view(ParametersInterface $parameters): ResponseInterface
     {
         /** @var Post */
         $post = $parameters->get("post");

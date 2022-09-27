@@ -4,18 +4,19 @@ namespace Tests\Support\Controllers;
 
 use Centum\Http\Response;
 use Centum\Http\Status;
+use Centum\Interfaces\Http\ResponseInterface;
 use InvalidArgumentException;
 
 class ExceptionController
 {
-    public function index(): Response
+    public function index(): ResponseInterface
     {
         throw new InvalidArgumentException();
     }
 
 
 
-    public function pageNotFound(): Response
+    public function pageNotFound(): ResponseInterface
     {
         return new Response(
             "Page not found",
@@ -23,7 +24,7 @@ class ExceptionController
         );
     }
 
-    public function internalServerError(): Response
+    public function internalServerError(): ResponseInterface
     {
         return new Response(
             "Internal server error",

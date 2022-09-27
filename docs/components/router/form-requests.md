@@ -122,10 +122,11 @@ namespace App\Controllers;
 use App\Models\User;
 use Centum\Http\FormRequest;
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 
 class LoginController
 {
-    public function submit(LoginForm $loginForm): Response
+    public function submit(LoginForm $loginForm): ResponseInterface
     {
         $username = $loginForm->getUsername();
         $password = $loginForm->getPassword();

@@ -26,12 +26,12 @@ This value is then available from the [`Centum\Interfaces\Router\ParametersInter
 ```php
 namespace App\Controllers;
 
-use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 
 class PostController
 {
-    public function view(ParametersInterface $parameters): Response
+    public function view(ParametersInterface $parameters): ResponseInterface
     {
         $id = $parameters->get("id");
 
@@ -55,12 +55,12 @@ $group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 ```php
 namespace App\Controllers;
 
-use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 
 class CalendarController
 {
-    public function day(ParametersInterface $parameters): Response
+    public function day(ParametersInterface $parameters): ResponseInterface
     {
         $year  = $parameters->get("year");
         $month = $parameters->get("month");

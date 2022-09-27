@@ -6,6 +6,7 @@ use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
+use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\ParametersInterface;
@@ -65,7 +66,7 @@ class Router implements RouterInterface
 
 
 
-    public function handle(RequestInterface $request): Response
+    public function handle(RequestInterface $request): ResponseInterface
     {
         try {
             foreach ($this->groups as $group) {
@@ -110,7 +111,7 @@ class Router implements RouterInterface
 
 
 
-    protected function matchRouteToRequest(RequestInterface $request, RouteInterface $route): Response
+    protected function matchRouteToRequest(RequestInterface $request, RouteInterface $route): ResponseInterface
     {
         if ($request->getMethod() !== $route->getHttpMethod()) {
             throw new RouteMismatchException();
@@ -172,7 +173,7 @@ class Router implements RouterInterface
     /**
      * @param class-string $class
      */
-    protected function executeMethod(string $class, string $method): Response
+    protected function executeMethod(string $class, string $method): ResponseInterface
     {
         $controller = $this->container->get($class);
 

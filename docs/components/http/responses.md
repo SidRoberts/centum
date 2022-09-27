@@ -24,6 +24,9 @@ Centum\Http\Response(
 );
 ```
 
+{: .highlight }
+[`Centum\Http\Response`](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) implements [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/ResponseInterface.php).
+
 
 
 ## [`Centum\Http\Response\JsonResponse`](https://github.com/SidRoberts/centum/tree/development/src/Http/Response/JsonResponse.php)

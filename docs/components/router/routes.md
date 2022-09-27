@@ -13,17 +13,18 @@ nav_order: 1
 
 ## Controllers
 
-Controllers are responsible for returning [Response](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) objects.
+Controllers are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/ResponseInterface.php) objects.
 Controllers don't have to extend or implement anything and can be as simple as this:
 
 ```php
 namespace App\Controllers;
 
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 
 class LoginController
 {
-    public function form(): Response
+    public function form(): ResponseInterface
     {
         return new Response("this is the login page");
     }
@@ -97,15 +98,16 @@ For example, you might want to show users a login form at `/login` but also allo
 namespace App\Controllers;
 
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 
 class LoginController
 {
-    public function form(): Response
+    public function form(): ResponseInterface
     {
         return new Response("hello GET");
     }
 
-    public function submit(): Response
+    public function submit(): ResponseInterface
     {
         return new Response("hello POST");
     }

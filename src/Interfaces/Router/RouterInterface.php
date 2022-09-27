@@ -2,8 +2,8 @@
 
 namespace Centum\Interfaces\Router;
 
-use Centum\Http\Response;
 use Centum\Interfaces\Http\RequestInterface;
+use Centum\Interfaces\Http\ResponseInterface;
 
 interface RouterInterface
 {
@@ -19,5 +19,5 @@ interface RouterInterface
 
 
 
-    public function handle(RequestInterface $request): Response;
+    public function handle(RequestInterface $request): ResponseInterface;
 }

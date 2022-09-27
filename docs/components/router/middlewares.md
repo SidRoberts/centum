@@ -68,15 +68,16 @@ Now, in a Controller, we can use two different methods, `guest()` and `user()`, 
 namespace App\Controllers;
 
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 
 class AccountController
 {
-    public function guest(): Response
+    public function guest(): ResponseInterface
     {
         return new Response("This visitor is logged out.");
     }
 
-    public function user(): Response
+    public function user(): ResponseInterface
     {
         return new Response("This visitor is logged in.");
     }

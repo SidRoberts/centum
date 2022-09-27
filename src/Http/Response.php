@@ -3,12 +3,14 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\CookiesInterface;
+use Centum\Interfaces\Http\HeadersInterface;
+use Centum\Interfaces\Http\ResponseInterface;
 
-class Response
+class Response implements ResponseInterface
 {
     protected readonly string $content;
     protected readonly Status $status;
-    protected readonly Headers $headers;
+    protected readonly HeadersInterface $headers;
     protected readonly CookiesInterface $cookies;
 
 
@@ -16,7 +18,7 @@ class Response
     public function __construct(
         string $content = "",
         Status $status = Status::OK,
-        Headers $headers = null,
+        HeadersInterface $headers = null,
         CookiesInterface $cookies = null
     ) {
         $this->content = $content;
@@ -38,7 +40,7 @@ class Response
         return $this->status;
     }
 
-    public function getHeaders(): Headers
+    public function getHeaders(): HeadersInterface
     {
         return $this->headers;
     }
@@ -50,7 +52,7 @@ class Response
 
 
 
-    public function sendHeaders(): Response
+    public function sendHeaders(): ResponseInterface
     {
         if (headers_sent()) {
             return $this;
@@ -65,14 +67,14 @@ class Response
         return $this;
     }
 
-    public function sendContent(): Response
+    public function sendContent(): ResponseInterface
     {
         echo $this->content;
 
         return $this;
     }
 
-    public function send(): Response
+    public function send(): ResponseInterface
     {
         $this->sendHeaders();
         $this->sendContent();

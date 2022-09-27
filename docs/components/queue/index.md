@@ -69,11 +69,12 @@ namespace App\Controllers;
 
 use App\Tasks\LogTask;
 use Centum\Http\Response;
+use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 
 class IndexController
 {
-    public function index(QueueInterface $queue): Response
+    public function index(QueueInterface $queue): ResponseInterface
     {
         $logTask = new LogTask("Queue works OK.");
 
