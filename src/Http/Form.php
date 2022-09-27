@@ -6,13 +6,14 @@ use Centum\Http\Exception\CsrfException;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\CsrfInterface;
 use Centum\Interfaces\Http\DataInterface;
+use Centum\Interfaces\Http\FilesInterface;
 
 abstract class Form
 {
     protected readonly Request $request;
 
     protected readonly DataInterface $data;
-    protected readonly Files $files;
+    protected readonly FilesInterface $files;
 
     protected readonly CsrfInterface $csrf;
 

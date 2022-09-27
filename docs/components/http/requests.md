@@ -18,7 +18,7 @@ Centum\Http\Request(
     Centum\Interfaces\Http\DataInterface $data = null,
     Centum\Interfaces\Http\HeadersInterface $headers = null,
     Centum\Interfaces\Http\CookiesInterface $cookies = null,
-    Centum\Http\Files $files = null,
+    Centum\Interfaces\Http\FilesInterface $files = null,
     string $content = null
 );
 ```

@@ -4,8 +4,9 @@ namespace Centum\Http;
 
 use Centum\Http\Exception\FileGroupAlreadyExistsException;
 use Centum\Http\Exception\FileGroupNotFoundException;
+use Centum\Interfaces\Http\FilesInterface;
 
-class Files
+class Files implements FilesInterface
 {
     /** @var array<string, FileGroup> */
     protected array $fileGroups = [];

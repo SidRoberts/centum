@@ -2,12 +2,13 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\FilesInterface;
 use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class FilesFactory
 {
-    public function createFromGlobal(): Files
+    public function createFromGlobal(): FilesInterface
     {
         /** @var array<string, array> $_FILES */
 
@@ -17,7 +18,7 @@ class FilesFactory
     /**
      * @param array<string, array> $array
      */
-    public function createFromArray(array $array): Files
+    public function createFromArray(array $array): FilesInterface
     {
         $files = new Files();
 
@@ -66,7 +67,7 @@ class FilesFactory
         return $files;
     }
 
-    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Files
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): FilesInterface
     {
         $browserKitFiles = $browserKitRequest->getFiles();
 

@@ -16,6 +16,9 @@ HTTP Files are encapsulated in 3 classes in Centum:
 - [`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/development/src/Http/FileGroup.php)
 - [`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/development/src/Http/File.php)
 
+{: .highlight }
+[`Centum\Http\Files`](https://github.com/SidRoberts/centum/blob/development/src/Http/Files.php) implements [`Centum\Interfaces\Http\FilesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FilesInterface.php).
+
 In an effort to simplify file uploads, both from the complexity of HTML file inputs in forms and the complexity of the `$_FILES` superglobal, a FileGroup represents all files that share the `name` property.
 In this HTML form, three `name` properties exist - `images`, `documents`, `audio`:
 
