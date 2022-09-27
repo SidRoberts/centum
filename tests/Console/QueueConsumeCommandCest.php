@@ -10,7 +10,19 @@ use Tests\Support\ConsoleTester;
 
 class QueueConsumeCommandCest
 {
-    public function basicHandle(ConsoleTester $I): void
+    public function testGetName(ConsoleTester $I): void
+    {
+        $command = new QueueConsumeCommand();
+
+        $I->assertEquals(
+            "queue-consume",
+            $command->getName()
+        );
+    }
+
+
+
+    public function testExecute(ConsoleTester $I): void
     {
         $queue = Mockery::mock(
             Queue::class,
