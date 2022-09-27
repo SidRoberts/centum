@@ -26,6 +26,13 @@ class Access implements AccessInterface
 
 
 
+    public function getDefault(): bool
+    {
+        return $this->default;
+    }
+
+
+
     public function allow(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);

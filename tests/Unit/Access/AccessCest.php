@@ -3,23 +3,67 @@
 namespace Tests\Unit\Access;
 
 use Centum\Access\Access;
+use Codeception\Attribute\DataProvider;
+use Codeception\Example;
 use Tests\Support\UnitTester;
 
 class AccessCest
 {
-    public function testNoDefault(UnitTester $I): void
+    public function testDefault(UnitTester $I): void
     {
         $access = new Access();
 
         $I->assertTrue(
-            $access->isAllowed("role", "component")
+            $access->getDefault()
+        );
+    }
+
+
+
+    #[DataProvider("providerInitialState")]
+    public function testInitialState(UnitTester $I, Example $example): void
+    {
+        /** @var Access */
+        $access = $example["access"];
+
+        $I->assertEquals(
+            $example["expected"],
+            $access->getDefault()
         );
 
-        $access->deny("role", "component");
-
-        $I->assertFalse(
+        $I->assertEquals(
+            $example["expected"],
             $access->isAllowed("role", "component")
         );
+    }
+
+    protected function providerInitialState(): array
+    {
+        return [
+            [
+                "access"   => new Access(),
+                "expected" => true,
+            ],
+
+            [
+                "access"   => new Access(Access::ALLOW),
+                "expected" => true,
+            ],
+
+            [
+                "access"   => new Access(Access::DENY),
+                "expected" => false,
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerAllow")]
+    public function testAllow(UnitTester $I, Example $example): void
+    {
+        /** @var Access */
+        $access = $example["access"];
 
         $access->allow("role", "component");
 
@@ -28,104 +72,137 @@ class AccessCest
         );
     }
 
-    public function testNoDefaultRemove(UnitTester $I): void
+    protected function providerAllow(): array
     {
-        $access = new Access();
+        return [
+            [
+                "access" => new Access(),
+            ],
+
+            [
+                "access" => new Access(Access::ALLOW),
+            ],
+
+            [
+                "access" => new Access(Access::DENY),
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerDeny")]
+    public function testDeny(UnitTester $I, Example $example): void
+    {
+        /** @var Access */
+        $access = $example["access"];
 
         $access->deny("role", "component");
 
         $I->assertFalse(
             $access->isAllowed("role", "component")
         );
+    }
+
+    protected function providerDeny(): array
+    {
+        return [
+            [
+                "access" => new Access(),
+            ],
+
+            [
+                "access" => new Access(Access::ALLOW),
+            ],
+
+            [
+                "access" => new Access(Access::DENY),
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerAllowDeny")]
+    public function testAllowDeny(UnitTester $I, Example $example): void
+    {
+        /** @var Access */
+        $access = $example["access"];
+
+        $access->allow("role", "component");
+
+        $I->assertTrue(
+            $access->isAllowed("role", "component")
+        );
+
+        $access->deny("role", "component");
+
+        $I->assertFalse(
+            $access->isAllowed("role", "component")
+        );
+    }
+
+    protected function providerAllowDeny(): array
+    {
+        return [
+            [
+                "access" => new Access(),
+            ],
+
+            [
+                "access" => new Access(Access::ALLOW),
+            ],
+
+            [
+                "access" => new Access(Access::DENY),
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerRemove")]
+    public function testRemove(UnitTester $I, Example $example): void
+    {
+        /** @var Access */
+        $access = $example["access"];
+
+        $access->allow("role", "component");
 
         $access->remove("role", "component");
 
-        $I->assertTrue(
-            $access->isAllowed("role", "component")
-        );
-    }
-
-    public function testDefaultAllow(UnitTester $I): void
-    {
-        $access = new Access(
-            Access::ALLOW
-        );
-
-        $I->assertTrue(
+        $I->assertEquals(
+            $example["expected"],
             $access->isAllowed("role", "component")
         );
 
         $access->deny("role", "component");
-
-        $I->assertFalse(
-            $access->isAllowed("role", "component")
-        );
-
-        $access->allow("role", "component");
-
-        $I->assertTrue(
-            $access->isAllowed("role", "component")
-        );
-    }
-
-    public function testDefaultAllowRemove(UnitTester $I): void
-    {
-        $access = new Access(
-            Access::ALLOW
-        );
-
-        $access->deny("role", "component");
-
-        $I->assertFalse(
-            $access->isAllowed("role", "component")
-        );
 
         $access->remove("role", "component");
 
-        $I->assertTrue(
+        $I->assertEquals(
+            $example["expected"],
             $access->isAllowed("role", "component")
         );
     }
 
-    public function testDefaultDeny(UnitTester $I): void
+    protected function providerRemove(): array
     {
-        $access = new Access(
-            Access::DENY
-        );
+        return [
+            [
+                "access"   => new Access(),
+                "expected" => true,
+            ],
 
-        $I->assertFalse(
-            $access->isAllowed("role", "component")
-        );
+            [
+                "access"   => new Access(Access::ALLOW),
+                "expected" => true,
+            ],
 
-        $access->allow("role", "component");
-
-        $I->assertTrue(
-            $access->isAllowed("role", "component")
-        );
-
-        $access->deny("role", "component");
-
-        $I->assertFalse(
-            $access->isAllowed("role", "component")
-        );
-    }
-
-    public function testDefaultDenyRemove(UnitTester $I): void
-    {
-        $access = new Access(
-            Access::DENY
-        );
-
-        $access->allow("role", "component");
-
-        $I->assertTrue(
-            $access->isAllowed("role", "component")
-        );
-
-        $access->remove("role", "component");
-
-        $I->assertFalse(
-            $access->isAllowed("role", "component")
-        );
+            [
+                "access"   => new Access(Access::DENY),
+                "expected" => false,
+            ],
+        ];
     }
 }
