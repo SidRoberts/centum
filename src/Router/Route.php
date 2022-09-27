@@ -3,8 +3,9 @@
 namespace Centum\Router;
 
 use Centum\Interfaces\Filter\FilterInterface;
+use Centum\Interfaces\Router\RouteInterface;
 
-class Route
+class Route implements RouteInterface
 {
     protected readonly string $httpMethod;
 
@@ -96,7 +97,7 @@ class Route
         return $this->filters;
     }
 
-    public function addFilter(string $key, FilterInterface $filter): Route
+    public function addFilter(string $key, FilterInterface $filter): RouteInterface
     {
         $this->filters[$key] = $filter;
 

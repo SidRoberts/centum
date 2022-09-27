@@ -8,6 +8,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\ParametersInterface;
+use Centum\Interfaces\Router\RouteInterface;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
@@ -107,7 +108,7 @@ class Router
 
 
 
-    protected function matchRouteToRequest(Request $request, Route $route): Response
+    protected function matchRouteToRequest(Request $request, RouteInterface $route): Response
     {
         if ($request->getMethod() !== $route->getHttpMethod()) {
             throw new RouteMismatchException();

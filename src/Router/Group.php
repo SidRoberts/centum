@@ -4,12 +4,13 @@ namespace Centum\Router;
 
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
+use Centum\Interfaces\Router\RouteInterface;
 
 class Group implements GroupInterface
 {
     protected readonly MiddlewareInterface $middleware;
 
-    /** @var Route[] */
+    /** @var RouteInterface[] */
     protected array $routes = [];
 
 
@@ -27,7 +28,7 @@ class Group implements GroupInterface
     }
 
     /**
-     * @return Route[]
+     * @return RouteInterface[]
      */
     public function getRoutes(): array
     {
@@ -39,7 +40,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function get(string $uri, string $class, string $method): Route
+    public function get(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("GET", $uri, $class, $method);
 
@@ -51,7 +52,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function post(string $uri, string $class, string $method): Route
+    public function post(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("POST", $uri, $class, $method);
 
@@ -63,7 +64,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function head(string $uri, string $class, string $method): Route
+    public function head(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("HEAD", $uri, $class, $method);
 
@@ -75,7 +76,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function put(string $uri, string $class, string $method): Route
+    public function put(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("PUT", $uri, $class, $method);
 
@@ -87,7 +88,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function delete(string $uri, string $class, string $method): Route
+    public function delete(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("DELETE", $uri, $class, $method);
 
@@ -99,7 +100,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function trace(string $uri, string $class, string $method): Route
+    public function trace(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("TRACE", $uri, $class, $method);
 
@@ -111,7 +112,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function options(string $uri, string $class, string $method): Route
+    public function options(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("OPTIONS", $uri, $class, $method);
 
@@ -123,7 +124,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function connect(string $uri, string $class, string $method): Route
+    public function connect(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("CONNECT", $uri, $class, $method);
 
@@ -135,7 +136,7 @@ class Group implements GroupInterface
     /**
      * @param class-string $class
      */
-    public function patch(string $uri, string $class, string $method): Route
+    public function patch(string $uri, string $class, string $method): RouteInterface
     {
         $route = new Route("PATCH", $uri, $class, $method);
 

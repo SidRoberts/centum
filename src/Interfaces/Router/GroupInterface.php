@@ -2,15 +2,12 @@
 
 namespace Centum\Interfaces\Router;
 
-use Centum\Interfaces\Router\MiddlewareInterface;
-use Centum\Router\Route;
-
 interface GroupInterface
 {
     public function getMiddleware(): MiddlewareInterface;
 
     /**
-     * @return Route[]
+     * @return RouteInterface[]
      */
     public function getRoutes(): array;
 
@@ -19,47 +16,47 @@ interface GroupInterface
     /**
      * @param class-string $class
      */
-    public function get(string $uri, string $class, string $method): Route;
+    public function get(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function post(string $uri, string $class, string $method): Route;
+    public function post(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function head(string $uri, string $class, string $method): Route;
+    public function head(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function put(string $uri, string $class, string $method): Route;
+    public function put(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function delete(string $uri, string $class, string $method): Route;
+    public function delete(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function trace(string $uri, string $class, string $method): Route;
+    public function trace(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function options(string $uri, string $class, string $method): Route;
+    public function options(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function connect(string $uri, string $class, string $method): Route;
+    public function connect(string $uri, string $class, string $method): RouteInterface;
 
     /**
      * @param class-string $class
      */
-    public function patch(string $uri, string $class, string $method): Route;
+    public function patch(string $uri, string $class, string $method): RouteInterface;
 
 
 
