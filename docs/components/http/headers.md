@@ -19,6 +19,9 @@ Centum\Http\Header(
 );
 ```
 
+{: .highlight }
+[`Centum\Http\Headers`](https://github.com/SidRoberts/centum/blob/development/src/Http/Headers.php) implements [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeadersInterface.php).
+
 
 
 ## Headers Factory

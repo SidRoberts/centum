@@ -2,9 +2,10 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\HeadersInterface;
 use OutOfRangeException;
 
-class Headers
+class Headers implements HeadersInterface
 {
     /** @var array<string, Header> */
     protected array $headers = [];

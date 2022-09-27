@@ -2,11 +2,12 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\HeadersInterface;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class HeadersFactory
 {
-    public function createFromGlobal(): Headers
+    public function createFromGlobal(): HeadersInterface
     {
         /** @var array<string, string> */
         $array = getallheaders();
@@ -17,7 +18,7 @@ class HeadersFactory
     /**
      * @param array<string, string> $array
      */
-    public function createFromArray(array $array): Headers
+    public function createFromArray(array $array): HeadersInterface
     {
         $headers = new Headers();
 
@@ -30,7 +31,7 @@ class HeadersFactory
         return $headers;
     }
 
-    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Headers
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): HeadersInterface
     {
         $headers = new Headers();
 
