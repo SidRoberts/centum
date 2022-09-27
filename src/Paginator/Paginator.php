@@ -3,6 +3,7 @@
 namespace Centum\Paginator;
 
 use Centum\Interfaces\Paginator\DataInterface;
+use Centum\Interfaces\Paginator\PageInterface;
 use Centum\Interfaces\Paginator\PaginatorInterface;
 use Centum\Paginator\Exception\InvalidItemsPerPageException;
 
@@ -45,7 +46,7 @@ class Paginator implements PaginatorInterface
         return (int) ceil($this->getTotalItems() / $this->itemsPerPage);
     }
 
-    public function getPage(int $pageNumber): Page
+    public function getPage(int $pageNumber): PageInterface
     {
         return new Page($this->data, $pageNumber, $this->itemsPerPage);
     }

@@ -2,9 +2,6 @@
 
 namespace Centum\Interfaces\Paginator;
 
-use Centum\Interfaces\Paginator\DataInterface;
-use Centum\Paginator\Page;
-
 interface PaginatorInterface
 {
     public function getData(): DataInterface;
@@ -15,5 +12,5 @@ interface PaginatorInterface
 
     public function getTotalPages(): int;
 
-    public function getPage(int $pageNumber): Page;
+    public function getPage(int $pageNumber): PageInterface;
 }

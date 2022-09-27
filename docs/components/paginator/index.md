@@ -49,7 +49,7 @@ Centum\Paginator\Paginator(
 - `public function getTotalItems(): int`
 - `public function getItemsPerPage(): int`
 - `public functino getTotalPages(): int`
-- `public function getPage(int $pageNumber): Centum\Paginator\Page`
+- `public function getPage(int $pageNumber): Centum\Interfaces\Paginator\PageInterface`
 
 `Paginator` is responsible for creating [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Page.php) objects that represent a page of data.
 
@@ -60,6 +60,9 @@ Centum\Paginator\Page(
     int $itemsPerPage = 10
 );
 ```
+
+{: .highlight }
+[`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Page.php) implements [`Centum\Interfaces\Paginator\PageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PageInterface.php).
 
 [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Page.php) has several public methods:
 

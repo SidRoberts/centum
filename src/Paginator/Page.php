@@ -3,11 +3,12 @@
 namespace Centum\Paginator;
 
 use Centum\Interfaces\Paginator\DataInterface;
+use Centum\Interfaces\Paginator\PageInterface;
 use Centum\Paginator\Exception\InvalidItemsPerPageException;
 use Centum\Paginator\Exception\InvalidMaxException;
 use Centum\Paginator\Exception\InvalidPageNumberException;
 
-class Page
+class Page implements PageInterface
 {
     protected readonly DataInterface $data;
     protected readonly int $pageNumber;
