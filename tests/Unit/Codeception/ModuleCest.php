@@ -20,32 +20,33 @@ use TypeError;
 class ModuleCest
 {
     protected ModuleContainer $moduleContainer;
+    protected Module $module;
 
 
 
     public function _before(UnitTester $I): void
     {
         $this->moduleContainer = Mockery::mock(ModuleContainer::class);
+
+        $this->module = new Module(
+            $this->moduleContainer,
+            [
+                "container" => "tests/Support/Data/container.php",
+            ]
+        );
     }
 
 
 
     public function testMakeNewContainer(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
+        $this->module->makeNewContainer();
 
-        $module->makeNewContainer();
+        $container1 = $this->module->getContainer();
 
-        $container1 = $module->getContainer();
+        $this->module->makeNewContainer();
 
-        $module->makeNewContainer();
-
-        $container2 = $module->getContainer();
+        $container2 = $this->module->getContainer();
 
         $I->assertNotSame(
             $container1,
@@ -95,16 +96,9 @@ class ModuleCest
 
     public function testGetContainer(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
+        $this->module->_beforeSuite();
 
-        $module->_beforeSuite();
-
-        $container = $module->getContainer();
+        $container = $this->module->getContainer();
 
         $I->assertInstanceOf(
             Container::class,
@@ -114,12 +108,7 @@ class ModuleCest
 
     public function testGetContainerBeforeSettingIt(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
+        $module = $this->module;
 
         $I->expectThrowable(
             ContainerNotFoundException::class,
@@ -133,20 +122,13 @@ class ModuleCest
 
     public function testAddToContainer(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
-
-        $module->_beforeSuite();
+        $this->module->_beforeSuite();
 
         $incrementer = new Incrementer();
 
-        $module->addToContainer(Incrementer::class, $incrementer);
+        $this->module->addToContainer(Incrementer::class, $incrementer);
 
-        $container = $module->getContainer();
+        $container = $this->module->getContainer();
 
         $I->assertSame(
             $incrementer,
@@ -158,35 +140,28 @@ class ModuleCest
 
     public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
-
         $test = Mockery::mock(TestInterface::class);
 
-        $module->_beforeSuite();
+        $this->module->_beforeSuite();
 
         $I->assertNull(
-            $module->client
+            $this->module->client
         );
 
-        $module->_before($test);
+        $this->module->_before($test);
 
         $I->assertInstanceOf(
             Connector::class,
-            $module->client
+            $this->module->client
         );
 
-        $module->_after($test);
+        $this->module->_after($test);
 
         $I->assertNull(
-            $module->client
+            $this->module->client
         );
 
-        $module->_afterSuite();
+        $this->module->_afterSuite();
     }
 
     public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
@@ -212,10 +187,10 @@ class ModuleCest
     {
         $I->assertEquals(
             "",
-            $I->getStdoutContent()
+            $this->module->getStdoutContent()
         );
 
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
@@ -223,14 +198,14 @@ class ModuleCest
 
         $I->assertEquals(
             "Hello.",
-            $I->getStdoutContent()
+            $this->module->getStdoutContent()
         );
 
         $terminal->write("Goodbye.");
 
         $I->assertEquals(
             "Hello.Goodbye.",
-            $I->getStdoutContent()
+            $this->module->getStdoutContent()
         );
     }
 
@@ -238,10 +213,10 @@ class ModuleCest
     {
         $I->assertEquals(
             "",
-            $I->getStderrContent()
+            $this->module->getStderrContent()
         );
 
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
@@ -249,14 +224,14 @@ class ModuleCest
 
         $I->assertEquals(
             "Hello.",
-            $I->getStderrContent()
+            $this->module->getStderrContent()
         );
 
         $terminal->writeError("Goodbye.");
 
         $I->assertEquals(
             "Hello.Goodbye.",
-            $I->getStderrContent()
+            $this->module->getStderrContent()
         );
     }
 
@@ -264,24 +239,17 @@ class ModuleCest
 
     public function testGetConsoleApplication(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
+        $this->module->_beforeSuite();
 
-        $module->_beforeSuite();
-
-        $container = $module->getContainer();
+        $container = $this->module->getContainer();
 
         $application = new Application($container);
 
-        $module->addToContainer(Application::class, $application);
+        $this->module->addToContainer(Application::class, $application);
 
         $I->assertSame(
             $application,
-            $module->getConsoleApplication()
+            $this->module->getConsoleApplication()
         );
     }
 
@@ -289,20 +257,13 @@ class ModuleCest
 
     public function testAddCommand(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
-
-        $module->_beforeSuite();
+        $this->module->_beforeSuite();
 
         $command = new BoringCommand();
 
-        $module->addCommand($command);
+        $this->module->addCommand($command);
 
-        $application = $module->getConsoleApplication();
+        $application = $this->module->getConsoleApplication();
 
         $I->assertSame(
             $command,
@@ -314,20 +275,13 @@ class ModuleCest
 
     public function testRunCommand(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => "tests/Support/Data/container.php",
-            ]
-        );
-
-        $module->_beforeSuite();
+        $this->module->_beforeSuite();
 
         $command = new FilterCommand();
 
-        $module->addCommand($command);
+        $this->module->addCommand($command);
 
-        $exitCode = $module->runCommand(
+        $exitCode = $this->module->runCommand(
             [
                 "cli.php",
                 "filter:double",
@@ -343,7 +297,7 @@ class ModuleCest
 
         $I->assertSame(
             "246",
-            $module->getStdoutContent()
+            $this->module->getStdoutContent()
         );
     }
 
@@ -351,97 +305,97 @@ class ModuleCest
 
     public function testAssertStdoutEquals(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStdoutEquals("The quick brown fox jumps over the lazy dog.");
+        $this->module->assertStdoutEquals("The quick brown fox jumps over the lazy dog.");
     }
 
     public function testAssertStdoutNotEquals(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStdoutNotEquals("The slow brown fox jumps over the energetic dog.");
+        $this->module->assertStdoutNotEquals("The slow brown fox jumps over the energetic dog.");
     }
 
     public function testAssertStdoutContains(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStdoutContains("quick");
+        $this->module->assertStdoutContains("quick");
     }
 
     public function testAssertStdoutNotContains(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStdoutNotContains("slow");
+        $this->module->assertStdoutNotContains("slow");
     }
 
 
 
     public function testAssertStderrEquals(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStderrEquals("The quick brown fox jumps over the lazy dog.");
+        $this->module->assertStderrEquals("The quick brown fox jumps over the lazy dog.");
     }
 
     public function testAssertStderrNotEquals(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStderrNotEquals("The slow brown fox jumps over the energetic dog.");
+        $this->module->assertStderrNotEquals("The slow brown fox jumps over the energetic dog.");
     }
 
     public function testAssertStderrContains(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStderrContains("quick");
+        $this->module->assertStderrContains("quick");
     }
 
     public function testAssertStderrNotContains(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
+        $terminal = $this->module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $I->assertStderrNotContains("slow");
+        $this->module->assertStderrNotContains("slow");
     }
 
     public function testExpectEcho(UnitTester $I): void
     {
-        $I->expectEcho(
+        $this->module->expectEcho(
             "The quick brown fox jumps over the lazy dog.",
             function (): void {
                 echo "The quick brown fox jumps over the lazy dog.";
@@ -451,10 +405,12 @@ class ModuleCest
 
     public function testExpectEchoWithAnException(UnitTester $I): void
     {
+        $module = $this->module;
+
         $I->expectThrowable(
             new Exception("this is an exception"),
-            function () use ($I): void {
-                $I->expectEcho(
+            function () use ($module): void {
+                $module->expectEcho(
                     "The quick brown fox jumps over the lazy dog.",
                     function (): void {
                         echo "this should be cleared.";
@@ -465,7 +421,7 @@ class ModuleCest
             }
         );
 
-        $I->expectEcho(
+        $module->expectEcho(
             "The quick brown fox jumps over the lazy dog.",
             function (): void {
                 echo "The quick brown fox jumps over the lazy dog.";
