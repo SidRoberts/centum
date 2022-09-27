@@ -24,23 +24,73 @@ use Tests\Support\UnitTester;
 
 class RouterCest
 {
-    public function testBasicHandle(UnitTester $I): void
+    protected Router $router;
+
+
+
+    public function _before(UnitTester $I): void
     {
         $container = new Container();
 
-        $router = new Router($container);
+        $this->router = new Router($container);
 
 
 
-        $group = $router->group();
+        $group = $this->router->group();
 
         $group->get("/", IndexController::class, "index");
 
+        $group->get("/exception", ExceptionController::class, "index");
+
+        $group->get("/login", LoginController::class, "form");
+
+        $group->get("/filter/double/{i:int}", FilterController::class, "get")
+            ->addFilter("i", new Doubler());
+
+        $group->get(
+            "/requirements/{id:int}",
+            RequirementsController::class,
+            "required"
+        );
+
+        $group->crud("/posts", PostController::class);
+
+        $group->get("/http-method", HttpMethodController::class, "get");
+        $group->post("/http-method", HttpMethodController::class, "post");
+        $group->head("/http-method", HttpMethodController::class, "head");
+        $group->put("/http-method", HttpMethodController::class, "put");
+        $group->delete("/http-method", HttpMethodController::class, "delete");
+        $group->trace("/http-method", HttpMethodController::class, "trace");
+        $group->options("/http-method", HttpMethodController::class, "options");
+        $group->connect("/http-method", HttpMethodController::class, "connect");
+        $group->patch("/http-method", HttpMethodController::class, "patch");
+
+        $group->submission("/submission", LoginController::class);
 
 
+
+        $trueGroup = $this->router->group(
+            new TrueMiddleware()
+        );
+
+        $trueGroup->get("/middleware/true", MiddlewareController::class, "index");
+
+
+
+        $falseGroup = $this->router->group(
+            new FalseMiddleware()
+        );
+
+        $falseGroup->get("/middleware/false", MiddlewareController::class, "index");
+    }
+
+
+
+    public function testBasicHandle(UnitTester $I): void
+    {
         $request = new Request("/", "GET");
 
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             "homepage",
@@ -50,21 +100,9 @@ class RouterCest
 
     public function testBasicHandleWithTrailingSlash(UnitTester $I): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $group = $router->group();
-
-        $group->get("/login", LoginController::class, "form");
-
-
-
         $request = new Request("/login/", "GET");
 
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             "login form",
@@ -74,25 +112,12 @@ class RouterCest
 
     public function testFilters(UnitTester $I): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $group = $router->group();
-
-        $group->get("/filter/double/{i:int}", FilterController::class, "get")
-            ->addFilter("i", new Doubler());
-
-
-
         $request = new Request(
             "/filter/double/123",
             "GET"
         );
 
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             246,
@@ -105,35 +130,13 @@ class RouterCest
     #[DataProvider("providerMiddlewares")]
     public function testMiddlewares(UnitTester $I, Example $example): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $trueGroup = $router->group(
-            new TrueMiddleware()
-        );
-
-        $trueGroup->get("/middleware/true", MiddlewareController::class, "index");
-
-
-
-        $falseGroup = $router->group(
-            new FalseMiddleware()
-        );
-
-        $falseGroup->get("/middleware/false", MiddlewareController::class, "index");
-
-
-
         /** @var string */
         $url = $example["url"];
 
         try {
             $request = new Request($url, "GET");
 
-            $router->handle($request);
+            $this->router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -171,29 +174,13 @@ class RouterCest
     #[DataProvider("providerRequirements")]
     public function testRequirements(UnitTester $I, Example $example): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $group = $router->group();
-
-        $group->get(
-            "/requirements/{id:int}",
-            RequirementsController::class,
-            "required"
-        );
-
-
-
         /** @var string */
         $url = $example["url"];
 
         $request = new Request($url, "GET");
 
         try {
-            $router->handle($request);
+            $this->router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -226,32 +213,12 @@ class RouterCest
     #[DataProvider("providerHttpMethods")]
     public function testHttpMethods(UnitTester $I, Example $example): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-        $group = $router->group();
-
-        $group->get("/", HttpMethodController::class, "get");
-        $group->post("/", HttpMethodController::class, "post");
-        $group->head("/", HttpMethodController::class, "head");
-        $group->put("/", HttpMethodController::class, "put");
-        $group->delete("/", HttpMethodController::class, "delete");
-        $group->trace("/", HttpMethodController::class, "trace");
-        $group->options("/", HttpMethodController::class, "options");
-        $group->connect("/", HttpMethodController::class, "connect");
-        $group->patch("/", HttpMethodController::class, "patch");
-
-
-
         /** @var string */
         $method = $example["method"];
 
+        $request = new Request("/http-method", $method);
 
-
-        $request = new Request("/", $method);
-
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             $method,
@@ -287,9 +254,7 @@ class RouterCest
 
     public function testRouteNotFoundException(UnitTester $I): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
+        $router = $this->router;
 
         $request = new Request(
             "/this/route/does/not/exist",
@@ -309,18 +274,6 @@ class RouterCest
     #[DataProvider("providerCrud")]
     public function testCrud(UnitTester $I, Example $example): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $group = $router->group();
-
-        $group->crud("/posts", PostController::class);
-
-
-
         /** @var string */
         $uri = $example["uri"];
 
@@ -334,7 +287,7 @@ class RouterCest
         /** @var string */
         $content = $example["content"];
 
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             $content,
@@ -400,18 +353,6 @@ class RouterCest
     #[DataProvider("providerSubmission")]
     public function testSubmission(UnitTester $I, Example $example): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-
-
-        $group = $router->group();
-
-        $group->submission("/login", LoginController::class);
-
-
-
         /** @var string */
         $uri = $example["uri"];
 
@@ -420,7 +361,7 @@ class RouterCest
 
         $request = new Request($uri, $method);
 
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         /** @var string */
         $content = $example["content"];
@@ -435,13 +376,13 @@ class RouterCest
     {
         return [
             [
-                "uri"     => "/login",
+                "uri"     => "/submission",
                 "method"  => "GET",
                 "content" => "login form",
             ],
 
             [
-                "uri"     => "/login",
+                "uri"     => "/submission",
                 "method"  => "POST",
                 "content" => "login successful",
             ],
@@ -452,17 +393,13 @@ class RouterCest
 
     public function testExceptionHandlers(UnitTester $I): void
     {
-        $container = new Container();
-
-        $router = new Router($container);
-
-        $router->addExceptionHandler(
+        $this->router->addExceptionHandler(
             RouteNotFoundException::class,
             ExceptionController::class,
             "pageNotFound"
         );
 
-        $router->addExceptionHandler(
+        $this->router->addExceptionHandler(
             Exception::class,
             ExceptionController::class,
             "internalServerError"
@@ -470,15 +407,9 @@ class RouterCest
 
 
 
-        $group = $router->group();
+        $request = new Request("/exception", "GET");
 
-        $group->get("/", ExceptionController::class, "index");
-
-
-
-        $request = new Request("/", "GET");
-
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             "Internal server error",
@@ -489,7 +420,7 @@ class RouterCest
 
         $request = new Request("/does-not-exist", "GET");
 
-        $response = $router->handle($request);
+        $response = $this->router->handle($request);
 
         $I->assertEquals(
             "Page not found",
