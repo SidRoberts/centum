@@ -17,8 +17,10 @@ use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Queue\QueueInterface;
+use Centum\Interfaces\Router\RouterInterface;
 use Centum\Interfaces\Url\UrlInterface;
 use Centum\Queue\Queue;
+use Centum\Router\Router;
 use Centum\Url\Url;
 use Closure;
 use Pheanstalk\Contract\PheanstalkInterface;
@@ -44,6 +46,7 @@ class Container implements ContainerInterface
         FlashInterface::class       => Flash::class,
         PheanstalkInterface::class  => Pheanstalk::class,
         QueueInterface::class       => Queue::class,
+        RouterInterface::class      => Router::class,
         SessionInterface::class     => GlobalSession::class,
         UrlInterface::class         => Url::class,
         TerminalInterface::class    => Terminal::class,

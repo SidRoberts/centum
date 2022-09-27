@@ -71,6 +71,7 @@ nav_order: 3
 - [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php)
 - [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ParametersInterface.php)
 - [`Centum\Interfaces\Router\RouteInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/RouteInterface.php)
+- [`Centum\Interfaces\Router\RouterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/RouterInterface.php)
 
 ## Url
 

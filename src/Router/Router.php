@@ -9,13 +9,14 @@ use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Interfaces\Router\RouteInterface;
+use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\TrueMiddleware;
 use Throwable;
 
-class Router
+class Router implements RouterInterface
 {
     protected readonly ContainerInterface $container;
 

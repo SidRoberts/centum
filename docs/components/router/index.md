@@ -18,6 +18,9 @@ Centum\Router\Router(
 );
 ```
 
+{: .highlight }
+[`Centum\Router\Router`](https://github.com/SidRoberts/centum/blob/development/src/Router/Router.php) implements [`Centum\Interfaces\Router\RouterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/RouterInterface.php).
+
 The Router's job is to convert a [`Centum\Http\Request`](https://github.com/SidRoberts/centum/blob/development/src/Http/Request.php) object into a [`Centum\Http\Response`](https://github.com/SidRoberts/centum/blob/development/src/Http/Response.php) object:
 
 ```php
