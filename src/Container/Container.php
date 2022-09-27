@@ -8,6 +8,7 @@ use Centum\Console\Terminal;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Cron\Cron;
 use Centum\Flash\Flash;
+use Centum\Http\Csrf;
 use Centum\Http\Session\GlobalSession;
 use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
@@ -15,6 +16,7 @@ use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
+use Centum\Interfaces\Http\CsrfInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Router\RouterInterface;
@@ -43,6 +45,7 @@ class Container implements ContainerInterface
         ApplicationInterface::class => Application::class,
         ContainerInterface::class   => Container::class,
         CronInterface::class        => Cron::class,
+        CsrfInterface::class        => Csrf::class,
         FlashInterface::class       => Flash::class,
         PheanstalkInterface::class  => Pheanstalk::class,
         QueueInterface::class       => Queue::class,
