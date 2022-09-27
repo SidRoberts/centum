@@ -37,7 +37,6 @@ nav_order: 3
 ## Flash
 
 - [`Centum\Interfaces\Flash\FlashInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FlashInterface.php)
-- [`Centum\Interfaces\Flash\FlashInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FlashInterface.php)
 - [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php)
 - [`Centum\Interfaces\Flash\MessageBagInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageBagInterface.php)
 - [`Centum\Interfaces\Flash\MessageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageInterface.php)
@@ -68,6 +67,7 @@ nav_order: 3
 
 ## Router
 
+- [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/GroupInterface.php)
 - [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php)
 - [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ParametersInterface.php)
 
