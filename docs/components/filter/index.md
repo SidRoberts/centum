@@ -29,6 +29,8 @@ They are very useful in validation as it allows you to standardise a value befor
 - `Centum\Filter\String`
   - [`Centum\Filter\String\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alpha.php)
   - [`Centum\Filter\String\Alphanumeric`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alphanumeric.php)
+  - [`Centum\Filter\String\Base64Decode`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Base64Decode.php)
+  - [`Centum\Filter\String\Base64Encode`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Base64Encode.php)
   - [`Centum\Filter\String\Prefix`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Prefix.php)
   - [`Centum\Filter\String\Replace`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Replace.php)
   - [`Centum\Filter\String\Suffix`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Suffix.php)
