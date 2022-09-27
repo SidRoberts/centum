@@ -19,6 +19,9 @@ Centum\Http\Cookie(
 );
 ```
 
+{: .highlight }
+[`Centum\Http\Cookies`](https://github.com/SidRoberts/centum/blob/development/src/Http/Cookies.php) implements [`Centum\Interfaces\Http\CookiesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookiesInterface.php).
+
 
 
 ## Cookies Factory

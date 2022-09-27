@@ -2,6 +2,7 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\CookiesInterface;
 use Centum\Interfaces\Http\DataInterface;
 
 class Request
@@ -10,7 +11,7 @@ class Request
     protected readonly string $method;
     protected readonly DataInterface $data;
     protected readonly Headers $headers;
-    protected readonly Cookies $cookies;
+    protected readonly CookiesInterface $cookies;
     protected readonly Files $files;
     protected readonly ?string $content;
 
@@ -21,7 +22,7 @@ class Request
         string $method = "GET",
         DataInterface $data = null,
         Headers $headers = null,
-        Cookies $cookies = null,
+        CookiesInterface $cookies = null,
         Files $files = null,
         string $content = null
     ) {
@@ -56,7 +57,7 @@ class Request
         return $this->headers;
     }
 
-    public function getCookies(): Cookies
+    public function getCookies(): CookiesInterface
     {
         return $this->cookies;
     }

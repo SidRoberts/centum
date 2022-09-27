@@ -2,11 +2,12 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\CookiesInterface;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class CookiesFactory
 {
-    public function createFromGlobal(): Cookies
+    public function createFromGlobal(): CookiesInterface
     {
         /** @var array<string, string> $_COOKIE */
 
@@ -16,7 +17,7 @@ class CookiesFactory
     /**
      * @param array<string, string> $array
      */
-    public function createFromArray(array $array): Cookies
+    public function createFromArray(array $array): CookiesInterface
     {
         $cookies = new Cookies();
 
@@ -29,7 +30,7 @@ class CookiesFactory
         return $cookies;
     }
 
-    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Cookies
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): CookiesInterface
     {
         $cookies = new Cookies();
 

@@ -2,12 +2,14 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\CookiesInterface;
+
 class Response
 {
     protected readonly string $content;
     protected readonly Status $status;
     protected readonly Headers $headers;
-    protected readonly Cookies $cookies;
+    protected readonly CookiesInterface $cookies;
 
 
 
@@ -15,7 +17,7 @@ class Response
         string $content = "",
         Status $status = Status::OK,
         Headers $headers = null,
-        Cookies $cookies = null
+        CookiesInterface $cookies = null
     ) {
         $this->content = $content;
 
@@ -41,7 +43,7 @@ class Response
         return $this->headers;
     }
 
-    public function getCookies(): Cookies
+    public function getCookies(): CookiesInterface
     {
         return $this->cookies;
     }

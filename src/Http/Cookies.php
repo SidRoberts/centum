@@ -2,9 +2,10 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\CookiesInterface;
 use OutOfRangeException;
 
-class Cookies
+class Cookies implements CookiesInterface
 {
     /** @var array<string, Cookie> */
     protected array $cookies = [];

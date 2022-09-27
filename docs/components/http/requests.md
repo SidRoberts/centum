@@ -17,7 +17,7 @@ Centum\Http\Request(
     string $method = "GET",
     Centum\Interfaces\Http\DataInterface $data = null,
     Centum\Http\Headers $headers = null,
-    Centum\Http\Cookies $cookies = null,
+    Centum\Interfaces\Http\CookiesInterface $cookies = null,
     Centum\Http\Files $files = null,
     string $content = null
 );

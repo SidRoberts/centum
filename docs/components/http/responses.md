@@ -20,7 +20,7 @@ Centum\Http\Response(
     string $content = "",
     Centum\Http\Status $status = Centum\Http\Status::OK,
     Centum\Http\Headers $headers = null,
-    Centum\Http\Cookies $cookies = null
+    Centum\Interfaces\Http\CookiesInterface $cookies = null
 );
 ```
 
