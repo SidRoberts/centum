@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Paginator;
 
+use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Paginator\Data\ArrayData;
 use Centum\Paginator\Exception\InvalidItemsPerPageException;
 use Centum\Paginator\Exception\InvalidMaxException;
@@ -13,21 +14,27 @@ use Tests\Support\UnitTester;
 
 class PageCest
 {
+    protected DataInterface $data;
+
+
+
+    public function _before(UnitTester $I): void
+    {
+        $this->data = new ArrayData(
+            range(1, 95),
+            95
+        );
+    }
+
+
+
     #[DataProvider("providerGetData")]
     public function testGetData(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(0, 95),
-            96
-        );
-
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        /** @var int */
-        $itemsPerPage = $example["itemsPerPage"];
-
-        $page = new Page($data, $pageNumber, $itemsPerPage);
+        $page = new Page($this->data, $pageNumber, 10);
 
         $I->assertEquals(
             $example["expected"],
@@ -39,21 +46,18 @@ class PageCest
     {
         return [
             [
-                "pageNumber"   => 3,
-                "itemsPerPage" => 10,
-                "expected"     => range(20, 29),
+                "pageNumber" => 3,
+                "expected"   => range(21, 30),
             ],
 
             [
-                "pageNumber"   => 10,
-                "itemsPerPage" => 10,
-                "expected"     => range(90, 95),
+                "pageNumber" => 10,
+                "expected"   => range(91, 95),
             ],
 
             [
-                "pageNumber"   => 11,
-                "itemsPerPage" => 10,
-                "expected"     => [],
+                "pageNumber" => 11,
+                "expected"   => [],
             ],
         ];
     }
@@ -63,18 +67,10 @@ class PageCest
     #[DataProvider("providerOffset")]
     public function testOffset(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(0, 95),
-            96
-        );
-
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        /** @var int */
-        $itemsPerPage = $example["itemsPerPage"];
-
-        $page = new Page($data, $pageNumber, $itemsPerPage);
+        $page = new Page($this->data, $pageNumber, 10);
 
         /** @var int */
         $start = $example["start"];
@@ -97,17 +93,15 @@ class PageCest
     {
         return [
             [
-                "pageNumber"   => 1,
-                "itemsPerPage" => 10,
-                "start"        => 0,
-                "end"          => 9,
+                "pageNumber" => 1,
+                "start"      => 0,
+                "end"        => 9,
             ],
 
             [
-                "pageNumber"   => 10,
-                "itemsPerPage" => 10,
-                "start"        => 90,
-                "end"          => 95,
+                "pageNumber" => 10,
+                "start"      => 90,
+                "end"        => 94,
             ],
         ];
     }
@@ -175,18 +169,10 @@ class PageCest
     #[DataProvider("providerPageNumbersBefore")]
     public function testPageNumbersBefore(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(0, 95),
-            96
-        );
-
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        /** @var int */
-        $itemsPerPage = $example["itemsPerPage"];
-
-        $page = new Page($data, $pageNumber, $itemsPerPage);
+        $page = new Page($this->data, $pageNumber, 10);
 
         /** @var array */
         $expected = $example["expected"];
@@ -204,31 +190,21 @@ class PageCest
     {
         return [
             [
-                "pageNumber"   => 1,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => [],
+                "pageNumber" => 1,
+                "max"        => 2,
+                "expected"   => [],
             ],
 
             [
-                "pageNumber"   => 5,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => range(3, 4),
+                "pageNumber" => 2,
+                "max"        => 2,
+                "expected"   => [1],
             ],
 
             [
-                "pageNumber"   => 9,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => range(7, 8),
-            ],
-
-            [
-                "pageNumber"   => 10,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => range(8, 9),
+                "pageNumber" => 10,
+                "max"        => 2,
+                "expected"   => [8, 9],
             ],
         ];
     }
@@ -238,12 +214,7 @@ class PageCest
     #[DataProvider("providerBadPageNumbersBefore")]
     public function testBadPageNumbersBefore(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(1, 100),
-            100
-        );
-
-        $page = new Page($data, 3, 10);
+        $page = new Page($this->data, 3, 10);
 
         /** @var int */
         $max = $example[0];
@@ -268,18 +239,10 @@ class PageCest
     #[DataProvider("providerPageNumbersAfter")]
     public function testPageNumbersAfter(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(1, 95),
-            95
-        );
-
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        /** @var int */
-        $itemsPerPage = $example["itemsPerPage"];
-
-        $page = new Page($data, $pageNumber, $itemsPerPage);
+        $page = new Page($this->data, $pageNumber, 10);
 
         /** @var array */
         $expected = $example["expected"];
@@ -297,24 +260,21 @@ class PageCest
     {
         return [
             [
-                "pageNumber"   => 5,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => range(6, 7),
+                "pageNumber" => 5,
+                "max"        => 2,
+                "expected"   => [6, 7],
             ],
 
             [
-                "pageNumber"   => 9,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => range(10, 10),
+                "pageNumber" => 9,
+                "max"        => 2,
+                "expected"   => [10],
             ],
 
             [
-                "pageNumber"   => 10,
-                "itemsPerPage" => 10,
-                "max"          => 2,
-                "expected"     => [],
+                "pageNumber" => 10,
+                "max"        => 2,
+                "expected"   => [],
             ],
         ];
     }
@@ -324,12 +284,7 @@ class PageCest
     #[DataProvider("providerBadPageNumbersAfter")]
     public function testBadPageNumbersAfter(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(1, 100),
-            100
-        );
-
-        $page = new Page($data, 3, 10);
+        $page = new Page($this->data, 3, 10);
 
         /** @var int */
         $max = $example[0];
@@ -354,18 +309,10 @@ class PageCest
     #[DataProvider("providerGetPreviousPageNumber")]
     public function testGetPreviousPageNumber(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(0, 95),
-            96
-        );
-
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        /** @var int */
-        $itemsPerPage = $example["itemsPerPage"];
-
-        $page = new Page($data, $pageNumber, $itemsPerPage);
+        $page = new Page($this->data, $pageNumber, 10);
 
         $I->assertEquals(
             $example["previousPageNumber"],
@@ -378,32 +325,12 @@ class PageCest
         return [
             [
                 "pageNumber"         => 1,
-                "itemsPerPage"       => 10,
                 "previousPageNumber" => null,
             ],
 
             [
                 "pageNumber"         => 2,
-                "itemsPerPage"       => 10,
                 "previousPageNumber" => 1,
-            ],
-
-            [
-                "pageNumber"         => 5,
-                "itemsPerPage"       => 10,
-                "previousPageNumber" => 4,
-            ],
-
-            [
-                "pageNumber"         => 9,
-                "itemsPerPage"       => 10,
-                "previousPageNumber" => 8,
-            ],
-
-            [
-                "pageNumber"         => 10,
-                "itemsPerPage"       => 10,
-                "previousPageNumber" => 9,
             ],
         ];
     }
@@ -413,18 +340,10 @@ class PageCest
     #[DataProvider("providerGetNextPageNumber")]
     public function testGetNextPageNumber(UnitTester $I, Example $example): void
     {
-        $data = new ArrayData(
-            range(0, 95),
-            96
-        );
-
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        /** @var int */
-        $itemsPerPage = $example["itemsPerPage"];
-
-        $page = new Page($data, $pageNumber, $itemsPerPage);
+        $page = new Page($this->data, $pageNumber, 10);
 
         $I->assertEquals(
             $example["nextPageNumber"],
@@ -436,32 +355,12 @@ class PageCest
     {
         return [
             [
-                "pageNumber"     => 1,
-                "itemsPerPage"   => 10,
-                "nextPageNumber" => 2,
-            ],
-
-            [
-                "pageNumber"     => 2,
-                "itemsPerPage"   => 10,
-                "nextPageNumber" => 3,
-            ],
-
-            [
-                "pageNumber"     => 5,
-                "itemsPerPage"   => 10,
-                "nextPageNumber" => 6,
-            ],
-
-            [
                 "pageNumber"     => 9,
-                "itemsPerPage"   => 10,
                 "nextPageNumber" => 10,
             ],
 
             [
                 "pageNumber"     => 10,
-                "itemsPerPage"   => 10,
                 "nextPageNumber" => null,
             ],
         ];
