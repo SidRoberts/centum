@@ -6,8 +6,9 @@ use Centum\Interfaces\Http\CookiesInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FilesInterface;
 use Centum\Interfaces\Http\HeadersInterface;
+use Centum\Interfaces\Http\RequestInterface;
 
-class Request
+class Request implements RequestInterface
 {
     protected readonly string $uri;
     protected readonly string $method;

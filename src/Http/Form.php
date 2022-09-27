@@ -7,10 +7,11 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\CsrfInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FilesInterface;
+use Centum\Interfaces\Http\RequestInterface;
 
 abstract class Form
 {
-    protected readonly Request $request;
+    protected readonly RequestInterface $request;
 
     protected readonly DataInterface $data;
     protected readonly FilesInterface $files;
@@ -19,7 +20,7 @@ abstract class Form
 
 
 
-    final public function __construct(Request $request, CsrfInterface $csrf, ContainerInterface $container)
+    final public function __construct(RequestInterface $request, CsrfInterface $csrf, ContainerInterface $container)
     {
         $this->request = $request;
         $this->data    = $request->getData();

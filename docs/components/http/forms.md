@@ -12,7 +12,7 @@ permalink: http/forms
 
 ```php
 Centum\Http\Form(
-    Centum\Http\Request $request,
+    Centum\Interfaces\Http\RequestInterface $request,
     Centum\Interfaces\Http\CsrfInterface $csrf,
     Centum\Interfaces\Container\ContainerInterface $container
 );

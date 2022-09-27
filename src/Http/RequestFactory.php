@@ -2,11 +2,12 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\RequestInterface;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class RequestFactory
 {
-    public function createFromGlobals(): Request
+    public function createFromGlobals(): RequestInterface
     {
         $inputStream = fopen("php://input", "r");
 
@@ -15,7 +16,7 @@ class RequestFactory
         return $this->createFromArrays($_SERVER, $_GET, $_POST, $content);
     }
 
-    public function createFromArrays(array $server, array $get, array $post, string $content): Request
+    public function createFromArrays(array $server, array $get, array $post, string $content): RequestInterface
     {
         /** @var string */
         $uri = $server["REQUEST_URI"] ?? "";
@@ -68,7 +69,7 @@ class RequestFactory
         return new Request($uri, $method, $data, $headers, $cookies, $files, $content);
     }
 
-    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): Request
+    public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): RequestInterface
     {
         $headersFactory = new HeadersFactory();
         $cookiesFactory = new CookiesFactory();

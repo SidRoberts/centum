@@ -21,13 +21,13 @@ A common use case for Middlewares is to use different Routes for visitors that a
 namespace App\Middlewares\Web;
 
 use App\Auth;
-use Centum\Container\Container;
-use Centum\Http\Request;
+use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 
 class IsUserMiddleware implements MiddlewareInterface
 {
-    public function middleware(Request $request, Container $container): bool
+    public function middleware(RequestInterface $request, ContainerInterface $container): bool
     {
         $auth = $container->get(Auth::class);
 

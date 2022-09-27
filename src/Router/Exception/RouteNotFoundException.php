@@ -2,15 +2,15 @@
 
 namespace Centum\Router\Exception;
 
-use Centum\Http\Request;
+use Centum\Interfaces\Http\RequestInterface;
 
 class RouteNotFoundException extends \Exception
 {
-    protected readonly Request $request;
+    protected readonly RequestInterface $request;
 
 
 
-    public function __construct(Request $request)
+    public function __construct(RequestInterface $request)
     {
         $message = sprintf(
             "%s %s",
@@ -25,7 +25,7 @@ class RouteNotFoundException extends \Exception
 
 
 
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }

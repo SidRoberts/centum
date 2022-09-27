@@ -23,6 +23,9 @@ Centum\Http\Request(
 );
 ```
 
+{: .highlight }
+[`Centum\Http\Request`](https://github.com/SidRoberts/centum/blob/development/src/Http/Request.php) implements [`Centum\Interfaces\Http\RequestInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/RequestInterface.php).
+
 ...
 
 
