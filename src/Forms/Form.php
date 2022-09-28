@@ -2,17 +2,18 @@
 
 namespace Centum\Forms;
 
+use Centum\Interfaces\Forms\FieldInterface;
 use Centum\Interfaces\Forms\FormInterface;
 use Centum\Interfaces\Forms\StatusInterface;
 
 class Form implements FormInterface
 {
-    /** @var array<string, Field> */
+    /** @var array<string, FieldInterface> */
     protected array $fields = [];
 
 
 
-    public function add(Field $field): void
+    public function add(FieldInterface $field): void
     {
         $name = $field->getName();
 

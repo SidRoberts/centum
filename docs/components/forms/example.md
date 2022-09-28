@@ -21,6 +21,9 @@ $emailField = new Field("email");
 $passwordField = new Field("password");
 ```
 
+{: .highlight }
+[`Centum\Forms\Field`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Field.php) implements [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/FieldInterface.php).
+
 Now we need to add some filters and validators to these fields.
 Obviously, neither of these fields should be empty and the email field should contain a valid email address:
 

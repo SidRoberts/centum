@@ -3,10 +3,11 @@
 namespace Centum\Forms;
 
 use Centum\Interfaces\Filter\FilterInterface;
+use Centum\Interfaces\Forms\FieldInterface;
 use Centum\Interfaces\Validator\ValidatorInterface;
 use Throwable;
 
-class Field
+class Field implements FieldInterface
 {
     protected readonly string $name;
 

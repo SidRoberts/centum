@@ -2,11 +2,9 @@
 
 namespace Centum\Interfaces\Forms;
 
-use Centum\Forms\Field;
-
 interface FormInterface
 {
-    public function add(Field $field): void;
+    public function add(FieldInterface $field): void;
 
 
 
