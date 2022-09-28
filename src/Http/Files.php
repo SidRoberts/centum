@@ -4,17 +4,18 @@ namespace Centum\Http;
 
 use Centum\Http\Exception\FileGroupAlreadyExistsException;
 use Centum\Http\Exception\FileGroupNotFoundException;
+use Centum\Interfaces\Http\FileGroupInterface;
 use Centum\Interfaces\Http\FilesInterface;
 
 class Files implements FilesInterface
 {
-    /** @var array<string, FileGroup> */
+    /** @var array<string, FileGroupInterface> */
     protected array $fileGroups = [];
 
 
 
     /**
-     * @param FileGroup[] $fileGroups
+     * @param FileGroupInterface[] $fileGroups
      */
     public function __construct(array $fileGroups = [])
     {
@@ -25,7 +26,7 @@ class Files implements FilesInterface
 
 
 
-    public function add(FileGroup $fileGroup): void
+    public function add(FileGroupInterface $fileGroup): void
     {
         $id = $fileGroup->getID();
 
@@ -43,7 +44,7 @@ class Files implements FilesInterface
         return isset($this->fileGroups[$id]);
     }
 
-    public function get(string $id): FileGroup
+    public function get(string $id): FileGroupInterface
     {
         return $this->fileGroups[$id] ?? throw new FileGroupNotFoundException($id);
     }
@@ -51,7 +52,7 @@ class Files implements FilesInterface
 
 
     /**
-     * @return array<string, FileGroup>
+     * @return array<string, FileGroupInterface>
      */
     public function all(): array
     {

@@ -2,22 +2,20 @@
 
 namespace Centum\Interfaces\Http;
 
-use Centum\Http\FileGroup;
-
 interface FilesInterface
 {
-    public function add(FileGroup $fileGroup): void;
+    public function add(FileGroupInterface $fileGroup): void;
 
 
 
     public function has(string $id): bool;
 
-    public function get(string $id): FileGroup;
+    public function get(string $id): FileGroupInterface;
 
 
 
     /**
-     * @return array<string, FileGroup>
+     * @return array<string, FileGroupInterface>
      */
     public function all(): array;
 

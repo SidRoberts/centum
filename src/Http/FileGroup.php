@@ -2,7 +2,9 @@
 
 namespace Centum\Http;
 
-class FileGroup
+use Centum\Interfaces\Http\FileGroupInterface;
+
+class FileGroup implements FileGroupInterface
 {
     protected readonly string $id;
 
