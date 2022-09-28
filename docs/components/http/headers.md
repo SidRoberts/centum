@@ -20,6 +20,9 @@ Centum\Http\Header(
 ```
 
 {: .highlight }
+[`Centum\Http\Header`](https://github.com/SidRoberts/centum/blob/development/src/Http/Header.php) implements [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeaderInterface.php).
+
+{: .highlight }
 [`Centum\Http\Headers`](https://github.com/SidRoberts/centum/blob/development/src/Http/Headers.php) implements [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeadersInterface.php).
 
 

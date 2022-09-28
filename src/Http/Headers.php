@@ -2,18 +2,19 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\HeaderInterface;
 use Centum\Interfaces\Http\HeadersInterface;
 use OutOfRangeException;
 
 class Headers implements HeadersInterface
 {
-    /** @var array<string, Header> */
+    /** @var array<string, HeaderInterface> */
     protected array $headers = [];
 
 
 
     /**
-     * @param Header[] $headers
+     * @param HeaderInterface[] $headers
      */
     public function __construct(array $headers = [])
     {
@@ -24,7 +25,7 @@ class Headers implements HeadersInterface
 
 
 
-    public function add(Header $header): void
+    public function add(HeaderInterface $header): void
     {
         $name = $header->getName();
 
@@ -33,7 +34,7 @@ class Headers implements HeadersInterface
 
 
 
-    public function get(string $name): Header
+    public function get(string $name): HeaderInterface
     {
         return $this->headers[$name] ?? throw new OutOfRangeException();
     }
@@ -55,7 +56,7 @@ class Headers implements HeadersInterface
 
 
     /**
-     * @return array<string, Header>
+     * @return array<string, HeaderInterface>
      */
     public function all(): array
     {

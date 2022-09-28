@@ -2,7 +2,9 @@
 
 namespace Centum\Http;
 
-class Header
+use Centum\Interfaces\Http\HeaderInterface;
+
+class Header implements HeaderInterface
 {
     protected readonly string $name;
     protected readonly string $value;

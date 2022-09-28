@@ -52,6 +52,7 @@ nav_order: 3
 - [`Centum\Interfaces\Http\CsrfInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CsrfInterface.php)
 - [`Centum\Interfaces\Http\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/DataInterface.php)
 - [`Centum\Interfaces\Http\FilesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FilesInterface.php)
+- [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeaderInterface.php)
 - [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeadersInterface.php)
 - [`Centum\Interfaces\Http\RequestInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/RequestInterface.php)
 - [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/ResponseInterface.php)

@@ -2,15 +2,13 @@
 
 namespace Centum\Interfaces\Http;
 
-use Centum\Http\Header;
-
 interface HeadersInterface
 {
-    public function add(Header $header): void;
+    public function add(HeaderInterface $header): void;
 
 
 
-    public function get(string $name): Header;
+    public function get(string $name): HeaderInterface;
 
     public function has(string $name): bool;
 
@@ -21,7 +19,7 @@ interface HeadersInterface
 
 
     /**
-     * @return array<string, Header>
+     * @return array<string, HeaderInterface>
      */
     public function all(): array;
 
