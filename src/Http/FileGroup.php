@@ -3,12 +3,13 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\FileGroupInterface;
+use Centum\Interfaces\Http\FileInterface;
 
 class FileGroup implements FileGroupInterface
 {
     protected readonly string $id;
 
-    /** @var array<File> */
+    /** @var array<FileInterface> */
     protected array $files = [];
 
 
@@ -27,7 +28,7 @@ class FileGroup implements FileGroupInterface
 
 
 
-    public function add(File $file): void
+    public function add(FileInterface $file): void
     {
         $this->files[] = $file;
     }
@@ -35,7 +36,7 @@ class FileGroup implements FileGroupInterface
 
 
     /**
-     * @return array<File>
+     * @return array<FileInterface>
      */
     public function all(): array
     {

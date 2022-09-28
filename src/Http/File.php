@@ -3,9 +3,10 @@
 namespace Centum\Http;
 
 use Centum\Http\Exception\FileAlreadyMovedException;
+use Centum\Interfaces\Http\FileInterface;
 use Exception;
 
-class File
+class File implements FileInterface
 {
     protected readonly ?string $name;
     protected readonly ?string $type;
