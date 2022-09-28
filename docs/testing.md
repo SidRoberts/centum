@@ -29,6 +29,7 @@ If this isn't specified, it will default to `config/container.php`.
 
 - `getContainer(): Centum\Interfaces\Container\ContainerInterface`
 - `addToContainer(string $class, object $object): void`
+- `getEchoContent(callable $callable): string`
 
 ### Expectations
 

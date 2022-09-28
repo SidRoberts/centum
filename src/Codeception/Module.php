@@ -289,7 +289,7 @@ class Module extends Framework
 
 
 
-    public function expectEcho(string $expected, callable $callable): void
+    public function getEchoContent(callable $callable): string
     {
         ob_start();
 
@@ -301,7 +301,14 @@ class Module extends Framework
             throw $throwable;
         }
 
-        $actual = ob_get_clean();
+        return ob_get_clean();
+    }
+
+
+
+    public function expectEcho(string $expected, callable $callable): void
+    {
+        $actual = $this->getEchoContent($callable);
 
         $this->assertEquals(
             $expected,
