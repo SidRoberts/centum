@@ -3,7 +3,6 @@
 namespace Centum\Interfaces\Forms;
 
 use Centum\Forms\Field;
-use Centum\Forms\Status;
 
 interface FormInterface
 {
@@ -15,5 +14,5 @@ interface FormInterface
 
 
 
-    public function validate(array $data): Status;
+    public function validate(array $data): StatusInterface;
 }

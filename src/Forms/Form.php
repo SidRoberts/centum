@@ -3,6 +3,7 @@
 namespace Centum\Forms;
 
 use Centum\Interfaces\Forms\FormInterface;
+use Centum\Interfaces\Forms\StatusInterface;
 
 class Form implements FormInterface
 {
@@ -37,7 +38,7 @@ class Form implements FormInterface
 
 
 
-    public function validate(array $data): Status
+    public function validate(array $data): StatusInterface
     {
         $messages = [];
 

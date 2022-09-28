@@ -2,7 +2,9 @@
 
 namespace Centum\Forms;
 
-class Status
+use Centum\Interfaces\Forms\StatusInterface;
+
+class Status implements StatusInterface
 {
     /** @var array<string, string[]> */
     protected readonly array $messages;

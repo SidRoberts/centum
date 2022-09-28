@@ -74,6 +74,9 @@ It has 2 public methods:
 - `public function isValid(): bool`
 - `public function getMessages(): array<string, string[]>`
 
+{: .highlight }
+[`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Status.php) implements [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/StatusInterface.php).
+
 Validating data against these filters and validators is as easy as:
 
 ```php
