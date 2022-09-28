@@ -3,10 +3,9 @@
 namespace Tests\Unit\App;
 
 use Centum\App\WebBootstrap;
-use Centum\Container\Container;
-use Centum\Http\Request;
-use Centum\Http\Response;
-use Centum\Router\Router;
+use Centum\Interfaces\Http\RequestInterface;
+use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\RouterInterface;
 use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
@@ -19,14 +18,14 @@ class WebBootstrapCest
 
 
 
-        $request = Mockery::mock(Request::class);
+        $request = Mockery::mock(RequestInterface::class);
 
-        $container->set(Request::class, $request);
+        $container->set(RequestInterface::class, $request);
 
 
 
         $response = Mockery::mock(
-            Response::class,
+            ResponseInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("send");
             }
@@ -35,7 +34,7 @@ class WebBootstrapCest
 
 
         $router = Mockery::mock(
-            Router::class,
+            RouterInterface::class,
             function (MockInterface $mock) use ($request, $response): void {
                 $mock->shouldReceive("handle")
                     ->with($request)
@@ -43,7 +42,7 @@ class WebBootstrapCest
             }
         );
 
-        $container->set(Router::class, $router);
+        $container->set(RouterInterface::class, $router);
 
 
 

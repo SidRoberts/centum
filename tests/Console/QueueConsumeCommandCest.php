@@ -3,6 +3,7 @@
 namespace Tests\Unit\Console;
 
 use Centum\Console\Command\QueueConsumeCommand;
+use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Queue\Queue;
 use Mockery;
 use Mockery\MockInterface;
@@ -25,14 +26,14 @@ class QueueConsumeCommandCest
     public function testExecute(ConsoleTester $I): void
     {
         $queue = Mockery::mock(
-            Queue::class,
+            QueueInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("consume")
                     ->once();
             }
         );
 
-        $I->addToContainer(Queue::class, $queue);
+        $I->addToContainer(QueueInterface::class, $queue);
 
         $I->addCommand(
             new QueueConsumeCommand()

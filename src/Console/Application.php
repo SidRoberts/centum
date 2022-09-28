@@ -31,7 +31,7 @@ class Application implements ApplicationInterface
 
     public function __construct(ContainerInterface $container)
     {
-        $container->set(self::class, $this);
+        $container->set(ApplicationInterface::class, $this);
 
         $this->container = $container;
 

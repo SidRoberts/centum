@@ -5,6 +5,7 @@ namespace Centum\Container;
 use Centum\Access\Access;
 use Centum\Console\Application;
 use Centum\Console\Terminal;
+use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Cron\Cron;
 use Centum\Flash\Flash;
@@ -38,14 +39,13 @@ use ReflectionParameter;
 
 class Container implements ContainerInterface
 {
-    /** @var array<class-string, object> */
+    /** @var array<interface-string, object> */
     protected array $objects = [];
 
-    /** @var array<class-string, class-string> */
+    /** @var array<interface-string, class-string> */
     protected array $aliases = [
         AccessInterface::class      => Access::class,
         ApplicationInterface::class => Application::class,
-        ContainerInterface::class   => Container::class,
         CronInterface::class        => Cron::class,
         CsrfInterface::class        => Csrf::class,
         FlashInterface::class       => Flash::class,
@@ -62,21 +62,25 @@ class Container implements ContainerInterface
 
     public function __construct()
     {
-        $this->set(self::class, $this);
+        $this->set(ContainerInterface::class, $this);
     }
 
 
 
     /**
      * @template T
-     * @psalm-param class-string<T> $class
+     * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */
     public function get(string $class): object
     {
-        $class = $this->aliases[$class] ?? $class;
-
         if (!isset($this->objects[$class])) {
+            $class = $this->aliases[$class] ?? $class;
+
+            if (interface_exists($class)) {
+                throw new InstantiateInterfaceException($class);
+            }
+
             $reflectionClass = new ReflectionClass($class);
 
             if ($reflectionClass->hasMethod("__construct")) {
@@ -122,40 +126,40 @@ class Container implements ContainerInterface
 
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      * @param class-string $alias
      */
-    public function addAlias(string $class, string $alias): void
+    public function addAlias(string $interface, string $alias): void
     {
-        $this->aliases[$class] = $alias;
+        $this->aliases[$interface] = $alias;
     }
 
 
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      */
-    public function set(string $class, object $object): void
+    public function set(string $interface, object $object): void
     {
-        $this->objects[$class] = $object;
+        $this->objects[$interface] = $object;
     }
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      * @param Closure|callable-string $function
      */
-    public function setDynamic(string $class, Closure | string $function): void
+    public function setDynamic(string $interface, Closure | string $function): void
     {
         /** @var object */
-        $this->objects[$class] = $this->typehintFunction($function);
+        $this->objects[$interface] = $this->typehintFunction($function);
     }
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      */
-    public function remove(string $class): void
+    public function remove(string $interface): void
     {
-        unset($this->objects[$class]);
+        unset($this->objects[$interface]);
     }
 
 

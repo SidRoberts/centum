@@ -3,8 +3,8 @@
 namespace Tests\Unit\App;
 
 use Centum\App\ConsoleBootstrap;
-use Centum\Console\Application;
-use Centum\Console\Terminal;
+use Centum\Interfaces\Console\ApplicationInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
@@ -27,7 +27,7 @@ class ConsoleBootstrapCest
         $exitCode = 123;
 
         $application = Mockery::mock(
-            Application::class,
+            ApplicationInterface::class,
             function (MockInterface $mock) use ($terminal, $exitCode): void {
                 $mock->shouldReceive("handle")
                     ->with($terminal)
@@ -36,9 +36,9 @@ class ConsoleBootstrapCest
             }
         );
 
-        $container->set(Application::class, $application);
+        $container->set(ApplicationInterface::class, $application);
 
-        $container->set(Terminal::class, $terminal);
+        $container->set(TerminalInterface::class, $terminal);
 
 
 

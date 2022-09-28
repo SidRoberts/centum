@@ -7,6 +7,7 @@ use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Codeception\Module;
 use Centum\Console\Application;
 use Centum\Container\Container;
+use Centum\Interfaces\Console\ApplicationInterface;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
@@ -245,7 +246,7 @@ class ModuleCest
 
         $application = new Application($container);
 
-        $this->module->addToContainer(Application::class, $application);
+        $this->module->addToContainer(ApplicationInterface::class, $application);
 
         $I->assertSame(
             $application,

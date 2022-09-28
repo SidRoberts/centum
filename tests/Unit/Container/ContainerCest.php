@@ -3,6 +3,7 @@
 namespace Tests\Unit\Container;
 
 use Centum\Container\Container;
+use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Interfaces\Container\ContainerInterface;
 use stdClass;
@@ -14,19 +15,10 @@ use Tests\Support\Container\ResolvableClass;
 use Tests\Support\Container\ResolvableClassNoConstructor;
 use Tests\Support\Container\UnresolvableClass;
 use Tests\Support\UnitTester;
+use Throwable;
 
 class ContainerCest
 {
-    public function testGetContainer(UnitTester $I): void
-    {
-        $container = new Container();
-
-        $I->assertSame(
-            $container,
-            $container->get(Container::class)
-        );
-    }
-
     public function testGetContainerInterface(UnitTester $I): void
     {
         $container = new Container();
@@ -280,5 +272,21 @@ class ContainerCest
         $incrementer2 = $container->get(Incrementer::class);
 
         $I->assertNotSame($incrementer1, $incrementer2);
+    }
+
+
+
+    public function testInstantiateInterfaceException(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $interface = Throwable::class;
+
+        $I->expectThrowable(
+            new InstantiateInterfaceException($interface),
+            function () use ($container, $interface): void {
+                $container->get($interface);
+            }
+        );
     }
 }

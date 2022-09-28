@@ -2,7 +2,6 @@
 
 namespace Centum\Router;
 
-use Centum\Http\Request;
 use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
@@ -32,6 +31,8 @@ class Router implements RouterInterface
 
     public function __construct(ContainerInterface $container)
     {
+        $container->set(RouterInterface::class, $this);
+
         $this->container = $container;
     }
 
@@ -96,7 +97,7 @@ class Router implements RouterInterface
                     $this->container->set($exceptionClass, $exception);
                     $this->container->set(Throwable::class, $exception);
 
-                    $this->container->set(Request::class, $request);
+                    $this->container->set(RequestInterface::class, $request);
 
                     $class  = $path[0];
                     $method = $path[1];
@@ -160,7 +161,7 @@ class Router implements RouterInterface
         $parameters = new Parameters($parameters);
 
         $this->container->set(ParametersInterface::class, $parameters);
-        $this->container->set(Request::class, $request);
+        $this->container->set(RequestInterface::class, $request);
 
         $class  = $route->getClass();
         $method = $route->getMethod();

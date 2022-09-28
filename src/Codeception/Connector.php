@@ -6,7 +6,7 @@ use Centum\Http\RequestFactory;
 use Centum\Http\Session\ArraySession;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\SessionInterface;
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 use Symfony\Component\BrowserKit\AbstractBrowser as Client;
 use Symfony\Component\BrowserKit\CookieJar;
 use Symfony\Component\BrowserKit\History;
@@ -46,7 +46,7 @@ class Connector extends Client
      */
     public function doRequest($request)
     {
-        $router = $this->container->get(Router::class);
+        $router = $this->container->get(RouterInterface::class);
 
         $centumRequestFactory = new RequestFactory();
 

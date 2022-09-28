@@ -8,7 +8,7 @@ interface ContainerInterface
 {
     /**
      * @template T
-     * @psalm-param class-string<T> $class
+     * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */
     public function get(string $class): object;
@@ -23,24 +23,24 @@ interface ContainerInterface
 
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      * @param class-string $alias
      */
-    public function addAlias(string $class, string $alias): void;
+    public function addAlias(string $interface, string $alias): void;
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      */
-    public function set(string $class, object $object): void;
+    public function set(string $interface, object $object): void;
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      * @param Closure|callable-string $function
      */
-    public function setDynamic(string $class, Closure | string $function): void;
+    public function setDynamic(string $interface, Closure | string $function): void;
 
     /**
-     * @param class-string $class
+     * @param interface-string $interface
      */
-    public function remove(string $class): void;
+    public function remove(string $interface): void;
 }

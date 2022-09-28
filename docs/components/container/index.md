@@ -31,7 +31,7 @@ Classes can be retreived using the `get()` method:
 ```php
 use Centum\Router\Router;
 
-$router = $container->get(Router::class);
+$router = $container->get(RouterInterface::class);
 ```
 
 If the object does not exist within the Container, then a new instance will be created and returned.
@@ -43,9 +43,9 @@ If the object does not exist within the Container, then a new instance will be c
 Objects can be set using the `set()` method:
 
 ```php
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 
-$container->set(Router::class, $router);
+$container->set(RouterInterface::class, $router);
 ```
 
 Objects can be dynamically set in a closure using `setDynamic()`.
@@ -54,11 +54,12 @@ This closure is typehinted so you can reference other objects in the function si
 ```php
 use App\Controllers\ErrorController;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Router;
 use Throwable;
 
 $container->setDynamic(
-    Router::class,
+    RouterInterface::class,
     function (ContainerInterface $container) {
         $router = new Router($container);
 
@@ -76,9 +77,9 @@ $container->setDynamic(
 It is then possible to retreive that object from the Container:
 
 ```php
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 
-$router = $container->get(Router::class);
+$router = $container->get(RouterInterface::class);
 ```
 
 If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php).
@@ -90,9 +91,9 @@ If the Container is unable to resolve a parameter, it will throw a [`Centum\Cont
 You can remove objects from the Container using the `remove()` method:
 
 ```php
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 
-$container->remove(Router::class);
+$container->remove(RouterInterface::class);
 ```
 
 
@@ -101,4 +102,5 @@ $container->remove(Router::class);
 
 (all in the `Centum\Container\Exception` namespace)
 
+- [`InstantiateInterfaceException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/InstantiateInterfaceException.php)
 - [`UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php)
