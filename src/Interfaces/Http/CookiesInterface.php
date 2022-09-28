@@ -2,15 +2,13 @@
 
 namespace Centum\Interfaces\Http;
 
-use Centum\Http\Cookie;
-
 interface CookiesInterface
 {
-    public function add(Cookie $cookie): void;
+    public function add(CookieInterface $cookie): void;
 
 
 
-    public function get(string $name): Cookie;
+    public function get(string $name): CookieInterface;
 
     public function has(string $name): bool;
 
@@ -21,7 +19,7 @@ interface CookiesInterface
 
 
     /**
-     * @return array<string, Cookie>
+     * @return array<string, CookieInterface>
      */
     public function all(): array;
 

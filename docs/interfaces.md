@@ -47,6 +47,7 @@ nav_order: 3
 
 ## Http
 
+- [`Centum\Interfaces\Http\CookieInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookieInterface.php)
 - [`Centum\Interfaces\Http\CookiesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookiesInterface.php)
 - [`Centum\Interfaces\Http\CsrfInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CsrfInterface.php)
 - [`Centum\Interfaces\Http\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/DataInterface.php)

@@ -20,6 +20,9 @@ Centum\Http\Cookie(
 ```
 
 {: .highlight }
+[`Centum\Http\Cookie`](https://github.com/SidRoberts/centum/blob/development/src/Http/Cookie.php) implements [`Centum\Interfaces\Http\CookieInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookieInterface.php).
+
+{: .highlight }
 [`Centum\Http\Cookies`](https://github.com/SidRoberts/centum/blob/development/src/Http/Cookies.php) implements [`Centum\Interfaces\Http\CookiesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookiesInterface.php).
 
 

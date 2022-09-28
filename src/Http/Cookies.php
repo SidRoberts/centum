@@ -2,18 +2,19 @@
 
 namespace Centum\Http;
 
+use Centum\Interfaces\Http\CookieInterface;
 use Centum\Interfaces\Http\CookiesInterface;
 use OutOfRangeException;
 
 class Cookies implements CookiesInterface
 {
-    /** @var array<string, Cookie> */
+    /** @var array<string, CookieInterface> */
     protected array $cookies = [];
 
 
 
     /**
-     * @param Cookie[] $cookies
+     * @param CookieInterface[] $cookies
      */
     public function __construct(array $cookies = [])
     {
@@ -24,7 +25,7 @@ class Cookies implements CookiesInterface
 
 
 
-    public function add(Cookie $cookie): void
+    public function add(CookieInterface $cookie): void
     {
         $name = $cookie->getName();
 
@@ -33,7 +34,7 @@ class Cookies implements CookiesInterface
 
 
 
-    public function get(string $name): Cookie
+    public function get(string $name): CookieInterface
     {
         return $this->cookies[$name] ?? throw new OutOfRangeException();
     }
@@ -55,7 +56,7 @@ class Cookies implements CookiesInterface
 
 
     /**
-     * @return array<string, Cookie>
+     * @return array<string, CookieInterface>
      */
     public function all(): array
     {

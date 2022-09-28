@@ -2,7 +2,9 @@
 
 namespace Centum\Http;
 
-class Cookie
+use Centum\Interfaces\Http\CookieInterface;
+
+class Cookie implements CookieInterface
 {
     protected readonly string $name;
     protected readonly string $value;
