@@ -13,15 +13,12 @@ use Codeception\Lib\Framework;
 use Codeception\TestInterface;
 use Exception;
 use Symfony\Component\BrowserKit\AbstractBrowser;
-use Symfony\Component\DomCrawler\Crawler;
 use Throwable;
 use TypeError;
 
 class Module extends Framework
 {
     public ?AbstractBrowser $client = null;
-
-    protected ?Crawler $crawler = null;
 
     /**
      * @var array<string, string>
