@@ -7,6 +7,7 @@ use Centum\Url\Url;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
+use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 
 class UrlExtensionCest
@@ -27,7 +28,7 @@ class UrlExtensionCest
             ]
         );
 
-        $twig = new \Twig\Environment($loader);
+        $twig = new Environment($loader);
 
 
 

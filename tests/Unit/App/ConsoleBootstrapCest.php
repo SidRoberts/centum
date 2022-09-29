@@ -5,7 +5,6 @@ namespace Tests\Unit\App;
 use Centum\App\ConsoleBootstrap;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
@@ -13,10 +12,6 @@ class ConsoleBootstrapCest
 {
     public function test(UnitTester $I): void
     {
-        $container = $I->getContainer();
-
-
-
         $terminal = $I->createTerminal(
             [
                 "cli.php",
@@ -26,7 +21,7 @@ class ConsoleBootstrapCest
 
         $exitCode = 123;
 
-        $application = Mockery::mock(
+        $I->mockInContainer(
             ApplicationInterface::class,
             function (MockInterface $mock) use ($terminal, $exitCode): void {
                 $mock->shouldReceive("handle")
@@ -36,13 +31,11 @@ class ConsoleBootstrapCest
             }
         );
 
-        $container->set(ApplicationInterface::class, $application);
-
-        $container->set(TerminalInterface::class, $terminal);
+        $I->addToContainer(TerminalInterface::class, $terminal);
 
 
 
-        $bootstrap = Mockery::mock(
+        $bootstrap = $I->mock(
             ConsoleBootstrap::class,
             function (MockInterface $mock) use ($exitCode): void {
                 $mock->shouldAllowMockingProtectedMethods();
@@ -53,6 +46,8 @@ class ConsoleBootstrapCest
                     ->once();
             }
         );
+
+        $container = $I->getContainer();
 
         $bootstrap->boot($container);
     }

@@ -4,7 +4,7 @@ namespace Tests\Unit\Http;
 
 use Centum\Http\Header;
 use Centum\Http\Headers;
-use Mockery;
+use Centum\Interfaces\Http\HeaderInterface;
 use Mockery\MockInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
@@ -147,8 +147,8 @@ class HeadersCest
 
     public function testSend(UnitTester $I): void
     {
-        $header1 = Mockery::mock(
-            Header::class,
+        $header1 = $I->mock(
+            HeaderInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("getName")
                     ->andReturn("Content-Type");
@@ -158,8 +158,8 @@ class HeadersCest
             }
         );
 
-        $header2 = Mockery::mock(
-            Header::class,
+        $header2 = $I->mock(
+            HeaderInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("getName")
                     ->andReturn("Last-Modified");
@@ -169,8 +169,8 @@ class HeadersCest
             }
         );
 
-        $header3 = Mockery::mock(
-            Header::class,
+        $header3 = $I->mock(
+            HeaderInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("getName")
                     ->andReturn("Content-Encoding");

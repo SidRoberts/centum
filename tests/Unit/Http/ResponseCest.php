@@ -8,7 +8,6 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
 use Centum\Http\Status;
-use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
@@ -70,7 +69,7 @@ class ResponseCest
 
     public function testSend(UnitTester $I): void
     {
-        $response = Mockery::mock(
+        $response = $I->mock(
             Response::class,
             function (MockInterface $mock): void {
                 $mock->makePartial();

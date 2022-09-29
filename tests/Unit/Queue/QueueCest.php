@@ -4,7 +4,6 @@ namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
 use Centum\Queue\Queue;
-use Mockery;
 use Mockery\MockInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
@@ -29,7 +28,7 @@ class QueueCest
 
 
 
-        $pheanstalk = Mockery::mock(
+        $pheanstalk = $I->mock(
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($serializedTask, $job): void {
                 $mock->shouldReceive("useTube")
@@ -56,7 +55,7 @@ class QueueCest
     {
         $task = new DoNothingTask();
 
-        $job = Mockery::mock(
+        $job = $I->mock(
             Job::class,
             function (MockInterface $mock) use ($task): void {
                 $mock->shouldReceive("getData")
@@ -64,7 +63,7 @@ class QueueCest
             }
         );
 
-        $pheanstalk = Mockery::mock(
+        $pheanstalk = $I->mock(
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
@@ -92,7 +91,7 @@ class QueueCest
     {
         $task = new stdClass();
 
-        $job = Mockery::mock(
+        $job = $I->mock(
             Job::class,
             function (MockInterface $mock) use ($task): void {
                 $mock->shouldReceive("getData")
@@ -100,7 +99,7 @@ class QueueCest
             }
         );
 
-        $pheanstalk = Mockery::mock(
+        $pheanstalk = $I->mock(
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
@@ -137,7 +136,7 @@ class QueueCest
     {
         $task = new ProblematicTask();
 
-        $job = Mockery::mock(
+        $job = $I->mock(
             Job::class,
             function (MockInterface $mock) use ($task): void {
                 $mock->shouldReceive("getData")
@@ -145,7 +144,7 @@ class QueueCest
             }
         );
 
-        $pheanstalk = Mockery::mock(
+        $pheanstalk = $I->mock(
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")

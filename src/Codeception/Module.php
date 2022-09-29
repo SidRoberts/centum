@@ -12,6 +12,8 @@ use Codeception\Configuration;
 use Codeception\Lib\Framework;
 use Codeception\TestInterface;
 use Exception;
+use Mockery;
+use Mockery\MockInterface;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use Throwable;
 use TypeError;
@@ -146,6 +148,45 @@ class Module extends Framework
         $container = $this->getContainer();
 
         $container->set($class, $object);
+    }
+
+
+
+    /**
+     * @template T
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    public function mock(string $class, callable $callable = null): object
+    {
+        if (!$callable) {
+            /** @psalm-suppress UnusedClosureParam */
+            $callable = function (MockInterface $mock): void {};
+        }
+
+        /** @psalm-var T */
+        $mock = Mockery::mock(
+            $class,
+            $callable
+        );
+
+        return $mock;
+    }
+
+    /**
+     * @template T
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    public function mockInContainer(string $class, callable $callable = null): object
+    {
+        $container = $this->getContainer();
+
+        $mock = $this->mock($class, $callable);
+
+        $container->set($class, $mock);
+
+        return $mock;
     }
 
 

@@ -37,6 +37,13 @@ If this isn't specified, it will default to `config/container.php`.
 
 
 
+## Mocking
+
+- `mock(class-string $class, callable $callable = null): Mockery\MockInterface`
+- `mockInContainer(class-string $class, callable $callable = null): Mockery\MockInterface`
+
+
+
 ## Console Testing
 
 - `createTerminal(array $argv): Centum\Interfaces\Console\TerminalInterface`

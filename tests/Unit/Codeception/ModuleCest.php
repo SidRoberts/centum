@@ -11,7 +11,6 @@ use Centum\Interfaces\Console\ApplicationInterface;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
-use Mockery;
 use Tests\Support\Commands\BoringCommand;
 use Tests\Support\Commands\ExitCodeCommand;
 use Tests\Support\Commands\FilterCommand;
@@ -28,7 +27,7 @@ class ModuleCest
 
     public function _before(UnitTester $I): void
     {
-        $this->moduleContainer = Mockery::mock(ModuleContainer::class);
+        $this->moduleContainer = $I->mock(ModuleContainer::class);
 
         $this->module = new Module(
             $this->moduleContainer,
@@ -142,7 +141,7 @@ class ModuleCest
 
     public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
     {
-        $test = Mockery::mock(TestInterface::class);
+        $test = $I->mock(TestInterface::class);
 
         $this->module->_beforeSuite();
 
@@ -175,7 +174,7 @@ class ModuleCest
             ]
         );
 
-        $test = Mockery::mock(TestInterface::class);
+        $test = $I->mock(TestInterface::class);
 
         $I->expectThrowable(
             \TypeError::class,

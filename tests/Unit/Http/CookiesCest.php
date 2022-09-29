@@ -4,7 +4,7 @@ namespace Tests\Unit\Http;
 
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
-use Mockery;
+use Centum\Interfaces\Http\CookieInterface;
 use Mockery\MockInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
@@ -147,8 +147,8 @@ class CookiesCest
 
     public function testSend(UnitTester $I): void
     {
-        $cookie1 = Mockery::mock(
-            Cookie::class,
+        $cookie1 = $I->mock(
+            CookieInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("getName")
                     ->andReturn("username");
@@ -158,8 +158,8 @@ class CookiesCest
             }
         );
 
-        $cookie2 = Mockery::mock(
-            Cookie::class,
+        $cookie2 = $I->mock(
+            CookieInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("getName")
                     ->andReturn("language");
@@ -169,8 +169,8 @@ class CookiesCest
             }
         );
 
-        $cookie3 = Mockery::mock(
-            Cookie::class,
+        $cookie3 = $I->mock(
+            CookieInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("getName")
                     ->andReturn("timezone");

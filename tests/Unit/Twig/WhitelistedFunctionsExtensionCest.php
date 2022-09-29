@@ -3,6 +3,7 @@
 namespace Tests\Unit\Twig;
 
 use Centum\Twig\WhitelistedFunctionsExtension;
+use Codeception\Attribute\Depends;
 use Tests\Support\UnitTester;
 use Twig\Environment;
 use Twig\Error\SyntaxError;
@@ -10,27 +11,37 @@ use Twig\Loader\ArrayLoader;
 
 class WhitelistedFunctionsExtensionCest
 {
-    public function testUndefinedFunctionThrowsException(UnitTester $I): void
+    protected ?Environment $twig;
+
+
+
+    public function _before(UnitTester $I): void
     {
         $loader = new ArrayLoader(
             [
-                "template" => "{{ lcfirst(variable) }}",
+                "template" => "{{ ucfirst(variable) }}",
             ]
         );
 
-        $twig = new Environment($loader);
+        $this->twig = new Environment($loader);
+    }
+
+    public function _after(UnitTester $I): void
+    {
+        $this->twig = null;
+    }
 
 
 
-        $twig->addExtension(
+    public function testUndefinedFunctionThrowsException(UnitTester $I): void
+    {
+        $this->twig->addExtension(
             new WhitelistedFunctionsExtension(
-                [
-                    "ucfirst",
-                ]
+                []
             )
         );
 
-
+        $twig = $this->twig;
 
         $I->expectThrowable(
             SyntaxError::class,
@@ -47,19 +58,10 @@ class WhitelistedFunctionsExtensionCest
 
 
 
+    #[Depends("testUndefinedFunctionThrowsException")]
     public function testDefinedFunction(UnitTester $I): void
     {
-        $loader = new ArrayLoader(
-            [
-                "template" => "{{ ucfirst(variable) }}",
-            ]
-        );
-
-        $twig = new Environment($loader);
-
-
-
-        $twig->addExtension(
+        $this->twig->addExtension(
             new WhitelistedFunctionsExtension(
                 [
                     "ucfirst",
@@ -67,16 +69,12 @@ class WhitelistedFunctionsExtensionCest
             )
         );
 
-
-
-        $actual = $twig->render(
+        $actual = $this->twig->render(
             "template",
             [
                 "variable" => "the string",
             ]
         );
-
-
 
         $I->assertEquals(
             "The string",

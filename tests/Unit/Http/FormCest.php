@@ -10,7 +10,6 @@ use Centum\Interfaces\Http\DataInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
-use Mockery;
 use Mockery\MockInterface;
 use Tests\Support\Forms\LoginForm;
 use Tests\Support\Forms\LoginWithCsrfForm;
@@ -30,7 +29,7 @@ class FormCest
             $data
         );
 
-        $csrf = Mockery::mock(
+        $csrf = $I->mock(
             CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
@@ -90,7 +89,7 @@ class FormCest
             $data
         );
 
-        $csrf = Mockery::mock(
+        $csrf = $I->mock(
             CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
@@ -169,7 +168,7 @@ class FormCest
             $data
         );
 
-        $csrf = Mockery::mock(
+        $csrf = $I->mock(
             CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("validate")
@@ -231,7 +230,7 @@ class FormCest
             $data
         );
 
-        $csrf = Mockery::mock(
+        $csrf = $I->mock(
             CsrfInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("validate")
