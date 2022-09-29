@@ -15,9 +15,6 @@
         <ignoreFiles allowMissingFiles="true">
             <directory name="tests/Support/_generated"/>
             <directory name="vendor"/>
-            <file name="tests/Support/ConsoleTester.php"/>
-            <file name="tests/Support/UnitTester.php"/>
-            <file name="tests/Support/WebTester.php"/>
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>

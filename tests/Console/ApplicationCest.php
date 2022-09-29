@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Console;
+namespace Tests\Console;
 
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
@@ -20,7 +20,7 @@ use Tests\Support\Commands\MathCommand;
 use Tests\Support\Commands\Middleware\FalseCommand;
 use Tests\Support\Commands\Middleware\TrueCommand;
 use Tests\Support\Commands\ProblematicCommand;
-use Tests\Support\UnitTester;
+use Tests\Support\ConsoleTester;
 use Throwable;
 
 class ApplicationCest
@@ -62,7 +62,7 @@ class ApplicationCest
 
 
 
-    public function testBasicHandle(UnitTester $I): void
+    public function testBasicHandle(ConsoleTester $I): void
     {
         $argv = [
             "cli.php",
@@ -82,7 +82,7 @@ class ApplicationCest
         );
     }
 
-    public function testFilters(UnitTester $I): void
+    public function testFilters(ConsoleTester $I): void
     {
         $argv = [
             "cli.php",
@@ -104,7 +104,7 @@ class ApplicationCest
         );
     }
 
-    public function testFiltersException(UnitTester $I): void
+    public function testFiltersException(ConsoleTester $I): void
     {
         $argv = [
             "cli.php",
@@ -126,7 +126,7 @@ class ApplicationCest
     }
 
     #[DataProvider("providerMiddlewares")]
-    public function testMiddlewares(UnitTester $I, Example $example): void
+    public function testMiddlewares(ConsoleTester $I, Example $example): void
     {
         /** @var list<string> */
         $argv = $example["argv"];
@@ -163,7 +163,7 @@ class ApplicationCest
 
 
 
-    public function testCommandNotSpecified(UnitTester $I): void
+    public function testCommandNotSpecified(ConsoleTester $I): void
     {
         $argv = [
             "cli.php",
@@ -182,7 +182,7 @@ class ApplicationCest
         );
     }
 
-    public function testCommandNotFoundException(UnitTester $I): void
+    public function testCommandNotFoundException(ConsoleTester $I): void
     {
         $name = "this:command:does:not:exist";
 
@@ -205,7 +205,7 @@ class ApplicationCest
         );
     }
 
-    public function testCommandWithInvalidFilters(UnitTester $I): void
+    public function testCommandWithInvalidFilters(ConsoleTester $I): void
     {
         $argv = [
             "cli.php",
@@ -226,7 +226,7 @@ class ApplicationCest
         );
     }
 
-    public function testGetCommand(UnitTester $I): void
+    public function testGetCommand(ConsoleTester $I): void
     {
         $container = $I->getContainer();
 
@@ -250,7 +250,7 @@ class ApplicationCest
         );
     }
 
-    public function testGetCommands(UnitTester $I): void
+    public function testGetCommands(ConsoleTester $I): void
     {
         $container = $I->getContainer();
 
@@ -269,7 +269,7 @@ class ApplicationCest
         );
     }
 
-    public function testExceptionalHandlers(UnitTester $I): void
+    public function testExceptionalHandlers(ConsoleTester $I): void
     {
         $container = $I->getContainer();
 
@@ -303,7 +303,7 @@ class ApplicationCest
         );
     }
 
-    public function testValidCommandName(UnitTester $I): void
+    public function testValidCommandName(ConsoleTester $I): void
     {
         $container = $I->getContainer();
 

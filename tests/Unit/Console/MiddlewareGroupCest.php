@@ -4,6 +4,7 @@ namespace Tests\Unit\Console;
 
 use Centum\Console\MiddlewareGroup;
 use Centum\Interfaces\Console\MiddlewareInterface;
+use Centum\Interfaces\Console\TerminalInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\Commands\BoringCommand;
@@ -16,12 +17,7 @@ class MiddlewareGroupCest
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {
-        $argv = [
-            "cli.php",
-            "middleware-group",
-        ];
-
-        $terminal = $I->createTerminal($argv);
+        $terminal = $I->mock(TerminalInterface::class);
 
         $command = new BoringCommand();
 

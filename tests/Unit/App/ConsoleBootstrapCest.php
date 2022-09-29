@@ -3,6 +3,7 @@
 namespace Tests\Unit\App;
 
 use Centum\App\ConsoleBootstrap;
+use Centum\Console\Terminal;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Mockery\MockInterface;
@@ -12,12 +13,16 @@ class ConsoleBootstrapCest
 {
     public function test(UnitTester $I): void
     {
-        $terminal = $I->createTerminal(
-            [
-                "cli.php",
-                "list",
-            ]
-        );
+        $argv = [
+            "cli.php",
+            "list",
+        ];
+
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
 
         $exitCode = 123;
 
