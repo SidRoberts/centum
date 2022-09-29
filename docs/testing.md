@@ -48,6 +48,9 @@ If this isn't specified, it will default to `config/container.php`.
 
 ### Assertions
 
+- `assertExitCodeIs(int $exitCode, string $message = ""): void`
+- `assertExitCodeIsNot(int $exitCode, string $message = ""): void`
+
 #### STDOUT
 
 - `assertStdoutEquals(string $expected, string $message = ""): void`

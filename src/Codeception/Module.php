@@ -31,6 +31,8 @@ class Module extends Framework
 
     protected ?ContainerInterface $container = null;
 
+    protected ?int $exitCode = null;
+
     /** @var ?resource */
     protected $stdin = null;
 
@@ -78,6 +80,7 @@ class Module extends Framework
         parent::_after($test);
 
         $this->container = null;
+        $this->exitCode  = null;
         $this->stdin     = null;
         $this->stdout    = null;
         $this->stderr    = null;
@@ -203,9 +206,29 @@ class Module extends Framework
         $application = $this->getConsoleApplication();
         $terminal    = $this->createTerminal($argv);
 
-        $exitCode = $application->handle($terminal);
+        $this->exitCode = $application->handle($terminal);
 
-        return $exitCode;
+        return $this->exitCode;
+    }
+
+
+
+    public function assertExitCodeIs(int $expected, string $message = ""): void
+    {
+        $this->assertSame(
+            $expected,
+            $this->exitCode,
+            $message
+        );
+    }
+
+    public function assertExitCodeIsNot(int $expected, string $message = ""): void
+    {
+        $this->assertNotSame(
+            $expected,
+            $this->exitCode,
+            $message
+        );
     }
 
 

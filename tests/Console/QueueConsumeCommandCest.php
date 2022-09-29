@@ -39,16 +39,13 @@ class QueueConsumeCommandCest
             new QueueConsumeCommand()
         );
 
-        $exitCode = $I->runCommand(
+        $I->runCommand(
             [
                 "cli.php",
                 "queue-consume",
             ]
         );
 
-        $I->assertEquals(
-            0,
-            $exitCode
-        );
+        $I->assertExitCodeIs(0);
     }
 }

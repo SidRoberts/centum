@@ -13,6 +13,7 @@ use Codeception\TestInterface;
 use Exception;
 use Mockery;
 use Tests\Support\Commands\BoringCommand;
+use Tests\Support\Commands\ExitCodeCommand;
 use Tests\Support\Commands\FilterCommand;
 use Tests\Support\Container\Incrementer;
 use Tests\Support\UnitTester;
@@ -300,6 +301,44 @@ class ModuleCest
             "246",
             $this->module->getStdoutContent()
         );
+    }
+
+
+
+    public function testAssertExitCodeIs(UnitTester $I): void
+    {
+        $this->module->_beforeSuite();
+
+        $command = new ExitCodeCommand(0);
+
+        $this->module->addCommand($command);
+
+        $this->module->runCommand(
+            [
+                "cli.php",
+                "exit-code",
+            ]
+        );
+
+        $this->module->assertExitCodeIs(0);
+    }
+
+    public function testAssertExitCodeIsNot(UnitTester $I): void
+    {
+        $this->module->_beforeSuite();
+
+        $command = new ExitCodeCommand(1);
+
+        $this->module->addCommand($command);
+
+        $this->module->runCommand(
+            [
+                "cli.php",
+                "exit-code",
+            ]
+        );
+
+        $this->module->assertExitCodeIsNot(0);
     }
 
 

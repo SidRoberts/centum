@@ -35,17 +35,14 @@ class ListCommandCest
             new ListCommand()
         );
 
-        $exitCode = $I->runCommand(
+        $I->runCommand(
             [
                 "cli.php",
                 "list",
             ]
         );
 
-        $I->assertEquals(
-            0,
-            $exitCode
-        );
+        $I->assertExitCodeIs(0);
 
         $I->assertStdoutContains(
             " * list" . PHP_EOL . " * queue-consume"
