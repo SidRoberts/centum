@@ -7,7 +7,7 @@ use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\ParamNotFoundException;
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use OutOfRangeException;
@@ -25,43 +25,39 @@ use Throwable;
 
 class ApplicationCest
 {
-    protected Application $application;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getApplication(ContainerInterface $container): Application
     {
-        $container = new Container();
+        $application = new Application($container);
 
-        $this->application = new Application($container);
-
-        $this->application->addCommand(
+        $application->addCommand(
             new MainCommand()
         );
 
-        $this->application->addCommand(
+        $application->addCommand(
             new FilterCommand()
         );
 
-        $this->application->addCommand(
+        $application->addCommand(
             new TrueCommand()
         );
 
-        $this->application->addCommand(
+        $application->addCommand(
             new FalseCommand()
         );
 
-        $this->application->addCommand(
+        $application->addCommand(
             new ProblematicCommand()
         );
 
-        $this->application->addCommand(
+        $application->addCommand(
             new InvalidFiltersCommand()
         );
 
-        $this->application->addCommand(
+        $application->addCommand(
             new MathCommand()
         );
+
+        return $application;
     }
 
 
@@ -75,7 +71,11 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $this->application->handle($terminal);
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
+        $application->handle($terminal);
 
         $I->assertStdoutEquals(
             "main page"
@@ -93,7 +93,11 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $this->application->handle($terminal);
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
+        $application->handle($terminal);
 
         $I->assertStdoutEquals(
             "246"
@@ -109,7 +113,9 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $application = $this->application;
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
 
         $I->expectThrowable(
             new ParamNotFoundException("i"),
@@ -127,8 +133,12 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
         try {
-            $this->application->handle($terminal);
+            $application->handle($terminal);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (CommandNotFoundException $e) {
@@ -161,7 +171,11 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $this->application->handle($terminal);
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
+        $application->handle($terminal);
 
         $I->assertStdoutEquals(
             "main page"
@@ -179,7 +193,9 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $application = $this->application;
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
 
         $I->expectThrowable(
             new CommandNotFoundException($name),
@@ -198,7 +214,9 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $application = $this->application;
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
 
         $I->expectThrowable(
             new InvalidFilterException($terminal),
@@ -210,17 +228,19 @@ class ApplicationCest
 
     public function testGetCommand(UnitTester $I): void
     {
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
         $I->assertInstanceOf(
             MathCommand::class,
-            $this->application->getCommand("math:add")
+            $application->getCommand("math:add")
         );
 
         $I->assertInstanceOf(
             FilterCommand::class,
-            $this->application->getCommand("filter:double")
+            $application->getCommand("filter:double")
         );
-
-        $application = $this->application;
 
         $I->expectThrowable(
             OutOfRangeException::class,
@@ -232,7 +252,11 @@ class ApplicationCest
 
     public function testGetCommands(UnitTester $I): void
     {
-        $commands = $this->application->getCommands();
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
+        $commands = $application->getCommands();
 
         $I->assertArrayHasKey(
             "math:add",
@@ -247,7 +271,11 @@ class ApplicationCest
 
     public function testExceptionalHandlers(UnitTester $I): void
     {
-        $this->application->addExceptionHandler(
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
+
+        $application->addExceptionHandler(
             Throwable::class,
             new ErrorCommand()
         );
@@ -261,7 +289,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $exitCode = $this->application->handle($terminal);
+        $exitCode = $application->handle($terminal);
 
 
 
@@ -277,7 +305,9 @@ class ApplicationCest
 
     public function testValidCommandName(UnitTester $I): void
     {
-        $application = $this->application;
+        $container = $I->getContainer();
+
+        $application = $this->getApplication($container);
 
         $command = new BadNameCommand();
 

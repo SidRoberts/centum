@@ -8,13 +8,9 @@ use Tests\Support\UnitTester;
 
 class RouteCest
 {
-    protected Route $route;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getRoute(): Route
     {
-        $this->route = new Route(
+        return new Route(
             "GET",
             "/",
             IndexController::class,
@@ -26,33 +22,41 @@ class RouteCest
 
     public function testGetHttpMethod(UnitTester $I): void
     {
+        $route = $this->getRoute();
+
         $I->assertEquals(
             "GET",
-            $this->route->getHttpMethod()
+            $route->getHttpMethod()
         );
     }
 
     public function testGetUri(UnitTester $I): void
     {
+        $route = $this->getRoute();
+
         $I->assertEquals(
             "/",
-            $this->route->getUri()
+            $route->getUri()
         );
     }
 
     public function testGetClass(UnitTester $I): void
     {
+        $route = $this->getRoute();
+
         $I->assertEquals(
             IndexController::class,
-            $this->route->getClass()
+            $route->getClass()
         );
     }
 
     public function testGetMethod(UnitTester $I): void
     {
+        $route = $this->getRoute();
+
         $I->assertEquals(
             "index",
-            $this->route->getMethod()
+            $route->getMethod()
         );
     }
 }

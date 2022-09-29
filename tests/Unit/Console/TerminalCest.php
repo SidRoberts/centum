@@ -7,54 +7,47 @@ use Tests\Support\UnitTester;
 
 class TerminalCest
 {
-    /** @var resource */
-    protected $stdin;
-
-    /** @var resource */
-    protected $stdout;
-
-    /** @var resource */
-    protected $stderr;
-
-    protected Terminal $terminal;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getTerminal(): Terminal
     {
         $argv = [
             "cli.php",
             "this:command:does:not:exist",
         ];
 
-        $this->stdin  = fopen("php://memory", "r");
-        $this->stdout = fopen("php://memory", "w");
-        $this->stderr = fopen("php://memory", "w");
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
 
-        $this->terminal = new Terminal($argv, $this->stdin, $this->stdout, $this->stderr);
+        return new Terminal($argv, $stdin, $stdout, $stderr);
     }
 
 
 
     public function testMultipleWritesToStdOut(UnitTester $I): void
     {
-        $this->terminal->write("hello world");
+        $terminal = $this->getTerminal();
 
-        $this->terminal->write(PHP_EOL);
+        $terminal->write("hello world");
 
-        $this->terminal->write("goodbye");
+        $terminal->write(PHP_EOL);
 
-        rewind($this->stdout);
+        $terminal->write("goodbye");
+
+        $stdout = $terminal->getStdOut();
+
+        rewind($stdout);
 
         $I->assertEquals(
             "hello world" . PHP_EOL . "goodbye",
-            stream_get_contents($this->stdout)
+            stream_get_contents($stdout)
         );
     }
 
     public function testWriteList(UnitTester $I): void
     {
-        $this->terminal->writeList(
+        $terminal = $this->getTerminal();
+
+        $terminal->writeList(
             [
                 "one",
                 "two",
@@ -62,51 +55,65 @@ class TerminalCest
             ]
         );
 
-        rewind($this->stdout);
+        $stdout = $terminal->getStdOut();
+
+        rewind($stdout);
 
         $I->assertEquals(
             PHP_EOL . " * one" . PHP_EOL . " * two" . PHP_EOL . " * three" . PHP_EOL . PHP_EOL,
-            stream_get_contents($this->stdout)
+            stream_get_contents($stdout)
         );
     }
 
     public function testWriteError(UnitTester $I): void
     {
-        $this->terminal->writeError(
+        $terminal = $this->getTerminal();
+
+        $terminal->writeError(
             "a problem occurred."
         );
 
-        rewind($this->stdout);
+        $stdout = $terminal->getStdOut();
+
+        rewind($stdout);
 
         $I->assertEmpty(
-            stream_get_contents($this->stdout)
+            stream_get_contents($stdout)
         );
 
-        rewind($this->stderr);
+        $stderr = $terminal->getStdErr();
+
+        rewind($stderr);
 
         $I->assertEquals(
             "a problem occurred.",
-            stream_get_contents($this->stderr)
+            stream_get_contents($stderr)
         );
     }
 
     public function testWriteErrorLine(UnitTester $I): void
     {
-        $this->terminal->writeErrorLine(
+        $terminal = $this->getTerminal();
+
+        $terminal->writeErrorLine(
             "a problem occurred."
         );
 
-        rewind($this->stdout);
+        $stdout = $terminal->getStdOut();
+
+        rewind($stdout);
 
         $I->assertEmpty(
-            stream_get_contents($this->stdout)
+            stream_get_contents($stdout)
         );
 
-        rewind($this->stderr);
+        $stderr = $terminal->getStdErr();
+
+        rewind($stderr);
 
         $I->assertEquals(
             "a problem occurred." . PHP_EOL,
-            stream_get_contents($this->stderr)
+            stream_get_contents($stderr)
         );
     }
 }

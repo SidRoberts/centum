@@ -4,6 +4,7 @@ namespace Tests\Unit\Router;
 
 use Centum\Container\Container;
 use Centum\Http\Request;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\FalseMiddleware;
 use Centum\Router\Middleware\TrueMiddleware;
@@ -24,19 +25,15 @@ use Tests\Support\UnitTester;
 
 class RouterCest
 {
-    protected Router $router;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getRouter(ContainerInterface $container): Router
     {
         $container = new Container();
 
-        $this->router = new Router($container);
+        $router = new Router($container);
 
 
 
-        $group = $this->router->group();
+        $group = $router->group();
 
         $group->get("/", IndexController::class, "index");
 
@@ -69,7 +66,7 @@ class RouterCest
 
 
 
-        $trueGroup = $this->router->group(
+        $trueGroup = $router->group(
             new TrueMiddleware()
         );
 
@@ -77,20 +74,30 @@ class RouterCest
 
 
 
-        $falseGroup = $this->router->group(
+        $falseGroup = $router->group(
             new FalseMiddleware()
         );
 
         $falseGroup->get("/middleware/false", MiddlewareController::class, "index");
+
+
+
+        return $router;
     }
 
 
 
     public function testBasicHandle(UnitTester $I): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         $request = new Request("/", "GET");
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             "homepage",
@@ -100,9 +107,15 @@ class RouterCest
 
     public function testBasicHandleWithTrailingSlash(UnitTester $I): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         $request = new Request("/login/", "GET");
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             "login form",
@@ -112,12 +125,18 @@ class RouterCest
 
     public function testFilters(UnitTester $I): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         $request = new Request(
             "/filter/double/123",
             "GET"
         );
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             246,
@@ -130,13 +149,19 @@ class RouterCest
     #[DataProvider("providerMiddlewares")]
     public function testMiddlewares(UnitTester $I, Example $example): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         /** @var string */
         $url = $example["url"];
 
         try {
             $request = new Request($url, "GET");
 
-            $this->router->handle($request);
+            $router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -174,13 +199,19 @@ class RouterCest
     #[DataProvider("providerRequirements")]
     public function testRequirements(UnitTester $I, Example $example): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         /** @var string */
         $url = $example["url"];
 
         $request = new Request($url, "GET");
 
         try {
-            $this->router->handle($request);
+            $router->handle($request);
 
             $I->assertTrue($example["shouldPass"]);
         } catch (RouteNotFoundException $e) {
@@ -213,12 +244,18 @@ class RouterCest
     #[DataProvider("providerHttpMethods")]
     public function testHttpMethods(UnitTester $I, Example $example): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         /** @var string */
         $method = $example["method"];
 
         $request = new Request("/http-method", $method);
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             $method,
@@ -254,7 +291,11 @@ class RouterCest
 
     public function testRouteNotFoundException(UnitTester $I): void
     {
-        $router = $this->router;
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
 
         $request = new Request(
             "/this/route/does/not/exist",
@@ -274,6 +315,12 @@ class RouterCest
     #[DataProvider("providerCrud")]
     public function testCrud(UnitTester $I, Example $example): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         /** @var string */
         $uri = $example["uri"];
 
@@ -287,7 +334,7 @@ class RouterCest
         /** @var string */
         $content = $example["content"];
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             $content,
@@ -353,6 +400,12 @@ class RouterCest
     #[DataProvider("providerSubmission")]
     public function testSubmission(UnitTester $I, Example $example): void
     {
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
         /** @var string */
         $uri = $example["uri"];
 
@@ -361,7 +414,7 @@ class RouterCest
 
         $request = new Request($uri, $method);
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         /** @var string */
         $content = $example["content"];
@@ -393,13 +446,19 @@ class RouterCest
 
     public function testExceptionHandlers(UnitTester $I): void
     {
-        $this->router->addExceptionHandler(
+        $container = $I->getContainer();
+
+        $router = $this->getRouter($container);
+
+
+
+        $router->addExceptionHandler(
             RouteNotFoundException::class,
             ExceptionController::class,
             "pageNotFound"
         );
 
-        $this->router->addExceptionHandler(
+        $router->addExceptionHandler(
             Exception::class,
             ExceptionController::class,
             "internalServerError"
@@ -409,7 +468,7 @@ class RouterCest
 
         $request = new Request("/exception", "GET");
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             "Internal server error",
@@ -420,7 +479,7 @@ class RouterCest
 
         $request = new Request("/does-not-exist", "GET");
 
-        $response = $this->router->handle($request);
+        $response = $router->handle($request);
 
         $I->assertEquals(
             "Page not found",

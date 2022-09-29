@@ -12,11 +12,7 @@ use Twig\Loader\ArrayLoader;
 
 class FlashExtensionCest
 {
-    protected Environment $twig;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getTwig(): Environment
     {
         $loader = new ArrayLoader(
             [
@@ -24,7 +20,7 @@ class FlashExtensionCest
             ]
         );
 
-        $this->twig = new Environment($loader);
+        return new Environment($loader);
     }
 
 
@@ -46,7 +42,9 @@ class FlashExtensionCest
 
 
 
-        $this->twig->addExtension(
+        $twig = $this->getTwig();
+
+        $twig->addExtension(
             new FlashExtension($flash)
         );
 
@@ -54,7 +52,7 @@ class FlashExtensionCest
 
         $expected = "<div class=\"alert alert-danger\">danger message</div>" . PHP_EOL;
 
-        $actual = $this->twig->render("template");
+        $actual = $twig->render("template");
 
         $I->assertEquals(
             $expected,

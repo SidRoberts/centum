@@ -14,13 +14,9 @@ use Tests\Support\UnitTester;
 
 class PageCest
 {
-    protected DataInterface $data;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getData(): DataInterface
     {
-        $this->data = new ArrayData(
+        return new ArrayData(
             range(1, 95),
             95
         );
@@ -31,10 +27,12 @@ class PageCest
     #[DataProvider("providerGetData")]
     public function testGetData(UnitTester $I, Example $example): void
     {
+        $data = $this->getData();
+
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($this->data, $pageNumber, 10);
+        $page = new Page($data, $pageNumber, 10);
 
         $I->assertEquals(
             $example["expected"],
@@ -67,10 +65,12 @@ class PageCest
     #[DataProvider("providerOffset")]
     public function testOffset(UnitTester $I, Example $example): void
     {
+        $data = $this->getData();
+
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($this->data, $pageNumber, 10);
+        $page = new Page($data, $pageNumber, 10);
 
         /** @var int */
         $start = $example["start"];
@@ -169,10 +169,12 @@ class PageCest
     #[DataProvider("providerPageNumbersBefore")]
     public function testPageNumbersBefore(UnitTester $I, Example $example): void
     {
+        $data = $this->getData();
+
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($this->data, $pageNumber, 10);
+        $page = new Page($data, $pageNumber, 10);
 
         /** @var array */
         $expected = $example["expected"];
@@ -214,7 +216,9 @@ class PageCest
     #[DataProvider("providerBadPageNumbersBefore")]
     public function testBadPageNumbersBefore(UnitTester $I, Example $example): void
     {
-        $page = new Page($this->data, 3, 10);
+        $data = $this->getData();
+
+        $page = new Page($data, 3, 10);
 
         /** @var int */
         $max = $example[0];
@@ -239,10 +243,12 @@ class PageCest
     #[DataProvider("providerPageNumbersAfter")]
     public function testPageNumbersAfter(UnitTester $I, Example $example): void
     {
+        $data = $this->getData();
+
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($this->data, $pageNumber, 10);
+        $page = new Page($data, $pageNumber, 10);
 
         /** @var array */
         $expected = $example["expected"];
@@ -284,7 +290,9 @@ class PageCest
     #[DataProvider("providerBadPageNumbersAfter")]
     public function testBadPageNumbersAfter(UnitTester $I, Example $example): void
     {
-        $page = new Page($this->data, 3, 10);
+        $data = $this->getData();
+
+        $page = new Page($data, 3, 10);
 
         /** @var int */
         $max = $example[0];
@@ -309,10 +317,12 @@ class PageCest
     #[DataProvider("providerGetPreviousPageNumber")]
     public function testGetPreviousPageNumber(UnitTester $I, Example $example): void
     {
+        $data = $this->getData();
+
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($this->data, $pageNumber, 10);
+        $page = new Page($data, $pageNumber, 10);
 
         $I->assertEquals(
             $example["previousPageNumber"],
@@ -340,10 +350,12 @@ class PageCest
     #[DataProvider("providerGetNextPageNumber")]
     public function testGetNextPageNumber(UnitTester $I, Example $example): void
     {
+        $data = $this->getData();
+
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($this->data, $pageNumber, 10);
+        $page = new Page($data, $pageNumber, 10);
 
         $I->assertEquals(
             $example["nextPageNumber"],

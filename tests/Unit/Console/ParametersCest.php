@@ -9,11 +9,7 @@ use Tests\Support\UnitTester;
 
 class ParametersCest
 {
-    protected Parameters $parameters;
-
-
-
-    public function _before(UnitTester $I): void
+    public function getParameters(): Parameters
     {
         $argv = [
             "cli.php",
@@ -24,7 +20,7 @@ class ParametersCest
             "--dry-run",
         ];
 
-        $this->parameters = new Parameters($argv);
+        return new Parameters($argv);
     }
 
 
@@ -35,12 +31,14 @@ class ParametersCest
         /** @var bool */
         $expected = $example["expected"];
 
+        $parameters = $this->getParameters();
+
         /** @var string */
         $key = $example["key"];
 
         $I->assertEquals(
             $expected,
-            $this->parameters->has($key)
+            $parameters->has($key)
         );
     }
 
@@ -87,12 +85,14 @@ class ParametersCest
         /** @var bool */
         $expected = $example["expected"];
 
+        $parameters = $this->getParameters();
+
         /** @var string */
         $key = $example["key"];
 
         $I->assertEquals(
             $expected,
-            $this->parameters->get($key)
+            $parameters->get($key)
         );
     }
 
@@ -120,11 +120,13 @@ class ParametersCest
 
     public function testSet(UnitTester $I): void
     {
-        $this->parameters->set("i", "456");
+        $parameters = $this->getParameters();
+
+        $parameters->set("i", "456");
 
         $I->assertEquals(
             "456",
-            $this->parameters->get("i")
+            $parameters->get("i")
         );
     }
 
@@ -132,13 +134,15 @@ class ParametersCest
 
     public function testToArray(UnitTester $I): void
     {
+        $parameters = $this->getParameters();
+
         $I->assertEquals(
             [
                 "i"       => 123,
                 "verbose" => true,
                 "dry-run" => true,
             ],
-            $this->parameters->toArray()
+            $parameters->toArray()
         );
     }
 }

@@ -9,6 +9,21 @@ interface TerminalInterface
      */
     public function getArgv(): array;
 
+    /**
+     * @return resource
+     */
+    public function getStdIn();
+
+    /**
+     * @return resource
+     */
+    public function getStdOut();
+
+    /**
+     * @return resource
+     */
+    public function getStdErr();
+
 
 
     public function write(string $string): void;

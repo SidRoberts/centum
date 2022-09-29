@@ -46,6 +46,30 @@ class Terminal implements TerminalInterface
         return $this->argv;
     }
 
+    /**
+     * @return resource
+     */
+    public function getStdIn()
+    {
+        return $this->stdin;
+    }
+
+    /**
+     * @return resource
+     */
+    public function getStdOut()
+    {
+        return $this->stdout;
+    }
+
+    /**
+     * @return resource
+     */
+    public function getStdErr()
+    {
+        return $this->stderr;
+    }
+
 
 
     public function write(string $string): void

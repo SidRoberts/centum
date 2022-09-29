@@ -11,11 +11,7 @@ use Twig\Loader\ArrayLoader;
 
 class CsrfExtensionCest
 {
-    protected Environment $twig;
-
-
-
-    public function _before(UnitTester $I): void
+    protected function getTwig(): Environment
     {
         $loader = new ArrayLoader(
             [
@@ -24,7 +20,7 @@ class CsrfExtensionCest
             ]
         );
 
-        $this->twig = new Environment($loader);
+        return new Environment($loader);
     }
 
 
@@ -39,13 +35,15 @@ class CsrfExtensionCest
             }
         );
 
-        $this->twig->addExtension(
+        $twig = $this->getTwig();
+
+        $twig->addExtension(
             new CsrfExtension($csrf)
         );
 
         $I->assertEquals(
             "<input type=\"hidden\" name=\"csrf\" value=\"abcdefghijklmnop\">",
-            $this->twig->render("csrf")
+            $twig->render("csrf")
         );
     }
 
@@ -61,13 +59,15 @@ class CsrfExtensionCest
             }
         );
 
-        $this->twig->addExtension(
+        $twig = $this->getTwig();
+
+        $twig->addExtension(
             new CsrfExtension($csrf)
         );
 
         $I->assertEquals(
             "abcdefghijklmnop",
-            $this->twig->render("csrfValue")
+            $twig->render("csrfValue")
         );
     }
 }

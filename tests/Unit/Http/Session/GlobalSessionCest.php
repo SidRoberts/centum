@@ -7,19 +7,25 @@ use Tests\Support\UnitTester;
 
 class GlobalSessionCest
 {
-    protected GlobalSession $session;
-
-
-
     public function _before(UnitTester $I): void
     {
         $_SESSION = [];
+    }
 
+    public function _after(UnitTester $I): void
+    {
+        $_SESSION = [];
+    }
+
+
+
+    protected function getSession(): GlobalSession
+    {
         /*
          * `start()` and `isActive()` rely on native PHP functions that can't be
          * reliably tested so they have to be replaced in the testing process.
          */
-        $this->session = new class extends GlobalSession {
+        return new class extends GlobalSession {
             public function start(): bool
             {
                 return true;
@@ -32,22 +38,19 @@ class GlobalSessionCest
         };
     }
 
-    public function _after(UnitTester $I): void
-    {
-        $_SESSION = [];
-    }
-
 
 
     public function testGetAndSet(UnitTester $I): void
     {
+        $session = $this->getSession();
+
         $name = "Sid Roberts";
 
-        $this->session->set("name", $name);
+        $session->set("name", $name);
 
         $I->assertEquals(
             $name,
-            $this->session->get("name")
+            $session->get("name")
         );
 
         $I->assertEquals(
@@ -60,8 +63,10 @@ class GlobalSessionCest
     {
         /** @var array $_SESSION */
 
+        $session = $this->getSession();
+
         $I->assertFalse(
-            $this->session->has("name")
+            $session->has("name")
         );
 
         $I->assertArrayNotHasKey(
@@ -69,10 +74,10 @@ class GlobalSessionCest
             $_SESSION
         );
 
-        $this->session->set("name", "Sid Roberts");
+        $session->set("name", "Sid Roberts");
 
         $I->assertTrue(
-            $this->session->has("name")
+            $session->has("name")
         );
 
         $I->assertArrayHasKey(
@@ -83,9 +88,11 @@ class GlobalSessionCest
 
     public function testAll(UnitTester $I): void
     {
+        $session = $this->getSession();
+
         $I->assertEquals(
             [],
-            $this->session->all()
+            $session->all()
         );
 
         $I->assertEquals(
@@ -93,15 +100,15 @@ class GlobalSessionCest
             $_SESSION
         );
 
-        $this->session->set("name", "Sid Roberts");
-        $this->session->set("city", "Busan");
+        $session->set("name", "Sid Roberts");
+        $session->set("city", "Busan");
 
         $I->assertEquals(
             [
                 "name" => "Sid Roberts",
                 "city" => "Busan",
             ],
-            $this->session->all()
+            $session->all()
         );
 
         $I->assertEquals(
@@ -117,12 +124,14 @@ class GlobalSessionCest
     {
         /** @var array $_SESSION */
 
-        $this->session->set("name", "Sid Roberts");
+        $session = $this->getSession();
 
-        $this->session->remove("name");
+        $session->set("name", "Sid Roberts");
+
+        $session->remove("name");
 
         $I->assertFalse(
-            $this->session->has("name")
+            $session->has("name")
         );
 
         $I->assertArrayNotHasKey(
@@ -133,13 +142,15 @@ class GlobalSessionCest
 
     public function testClear(UnitTester $I): void
     {
-        $this->session->set("name", "Sid Roberts");
-        $this->session->set("city", "Busan");
+        $session = $this->getSession();
 
-        $this->session->clear();
+        $session->set("name", "Sid Roberts");
+        $session->set("city", "Busan");
+
+        $session->clear();
 
         $I->assertEmpty(
-            $this->session->all()
+            $session->all()
         );
 
         $I->assertEmpty(

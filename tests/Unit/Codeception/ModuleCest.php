@@ -8,6 +8,7 @@ use Centum\Codeception\Module;
 use Centum\Console\Application;
 use Centum\Container\Container;
 use Centum\Interfaces\Console\ApplicationInterface;
+use Codeception\Lib\Di;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
@@ -20,19 +21,16 @@ use TypeError;
 
 class ModuleCest
 {
-    protected ModuleContainer $moduleContainer;
-    protected Module $module;
-
-
-
-    public function _before(UnitTester $I): void
+    public function getModule(string $containerFile = "tests/Support/Data/container.php"): Module
     {
-        $this->moduleContainer = $I->mock(ModuleContainer::class);
+        $di = new Di();
 
-        $this->module = new Module(
-            $this->moduleContainer,
+        $moduleContainer = new ModuleContainer($di, []);
+
+        return new Module(
+            $moduleContainer,
             [
-                "container" => "tests/Support/Data/container.php",
+                "container" => $containerFile,
             ]
         );
     }
@@ -41,13 +39,15 @@ class ModuleCest
 
     public function testMakeNewContainer(UnitTester $I): void
     {
-        $this->module->makeNewContainer();
+        $module = $this->getModule();
 
-        $container1 = $this->module->getContainer();
+        $module->makeNewContainer();
 
-        $this->module->makeNewContainer();
+        $container1 = $module->getContainer();
 
-        $container2 = $this->module->getContainer();
+        $module->makeNewContainer();
+
+        $container2 = $module->getContainer();
 
         $I->assertNotSame(
             $container1,
@@ -57,14 +57,7 @@ class ModuleCest
 
     public function testMakeNewContainerNotRealFile(UnitTester $I): void
     {
-        $fakeFile = "/not/a/real/file";
-
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => $fakeFile,
-            ]
-        );
+        $module = $this->getModule("/not/a/real/file");
 
         $I->expectThrowable(
             Exception::class,
@@ -76,14 +69,7 @@ class ModuleCest
 
     public function testMakeNewContainerFileDoesntReturnContainerInstance(UnitTester $I): void
     {
-        $fakeFile = "codeception.yml";
-
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => $fakeFile,
-            ]
-        );
+        $module = $this->getModule("codeception.yml");
 
         $I->expectThrowable(
             TypeError::class,
@@ -97,9 +83,11 @@ class ModuleCest
 
     public function testGetContainer(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
 
-        $container = $this->module->getContainer();
+        $module->_beforeSuite();
+
+        $container = $module->getContainer();
 
         $I->assertInstanceOf(
             Container::class,
@@ -109,7 +97,7 @@ class ModuleCest
 
     public function testGetContainerBeforeSettingIt(UnitTester $I): void
     {
-        $module = $this->module;
+        $module = $this->getModule();
 
         $I->expectThrowable(
             ContainerNotFoundException::class,
@@ -123,13 +111,15 @@ class ModuleCest
 
     public function testAddToContainer(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
 
         $incrementer = new Incrementer();
 
-        $this->module->addToContainer(Incrementer::class, $incrementer);
+        $module->addToContainer(Incrementer::class, $incrementer);
 
-        $container = $this->module->getContainer();
+        $container = $module->getContainer();
 
         $I->assertSame(
             $incrementer,
@@ -141,43 +131,40 @@ class ModuleCest
 
     public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
     {
+        $module = $this->getModule();
+
         $test = $I->mock(TestInterface::class);
 
-        $this->module->_beforeSuite();
+        $module->_beforeSuite();
 
         $I->assertNull(
-            $this->module->client
+            $module->client
         );
 
-        $this->module->_before($test);
+        $module->_before($test);
 
         $I->assertInstanceOf(
             Connector::class,
-            $this->module->client
+            $module->client
         );
 
-        $this->module->_after($test);
+        $module->_after($test);
 
         $I->assertNull(
-            $this->module->client
+            $module->client
         );
 
-        $this->module->_afterSuite();
+        $module->_afterSuite();
     }
 
     public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
     {
-        $module = new Module(
-            $this->moduleContainer,
-            [
-                "container" => ".php-cs-fixer.dist.php",
-            ]
-        );
+        $module = $this->getModule(".php-cs-fixer.dist.php");
 
         $test = $I->mock(TestInterface::class);
 
         $I->expectThrowable(
-            \TypeError::class,
+            TypeError::class,
             function () use ($module, $test): void {
                 $module->_before($test);
             }
@@ -186,12 +173,14 @@ class ModuleCest
 
     public function testGetStdoutContent(UnitTester $I): void
     {
+        $module = $this->getModule();
+
         $I->assertEquals(
             "",
-            $this->module->getStdoutContent()
+            $module->getStdoutContent()
         );
 
-        $terminal = $this->module->createTerminal(
+        $terminal = $module->createTerminal(
             []
         );
 
@@ -199,25 +188,27 @@ class ModuleCest
 
         $I->assertEquals(
             "Hello.",
-            $this->module->getStdoutContent()
+            $module->getStdoutContent()
         );
 
         $terminal->write("Goodbye.");
 
         $I->assertEquals(
             "Hello.Goodbye.",
-            $this->module->getStdoutContent()
+            $module->getStdoutContent()
         );
     }
 
     public function testGetStderrContent(UnitTester $I): void
     {
+        $module = $this->getModule();
+
         $I->assertEquals(
             "",
-            $this->module->getStderrContent()
+            $module->getStderrContent()
         );
 
-        $terminal = $this->module->createTerminal(
+        $terminal = $module->createTerminal(
             []
         );
 
@@ -225,14 +216,14 @@ class ModuleCest
 
         $I->assertEquals(
             "Hello.",
-            $this->module->getStderrContent()
+            $module->getStderrContent()
         );
 
         $terminal->writeError("Goodbye.");
 
         $I->assertEquals(
             "Hello.Goodbye.",
-            $this->module->getStderrContent()
+            $module->getStderrContent()
         );
     }
 
@@ -240,17 +231,19 @@ class ModuleCest
 
     public function testGetConsoleApplication(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
 
-        $container = $this->module->getContainer();
+        $module->_beforeSuite();
+
+        $container = $module->getContainer();
 
         $application = new Application($container);
 
-        $this->module->addToContainer(ApplicationInterface::class, $application);
+        $module->addToContainer(ApplicationInterface::class, $application);
 
         $I->assertSame(
             $application,
-            $this->module->getConsoleApplication()
+            $module->getConsoleApplication()
         );
     }
 
@@ -258,13 +251,15 @@ class ModuleCest
 
     public function testAddCommand(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
 
         $command = new BoringCommand();
 
-        $this->module->addCommand($command);
+        $module->addCommand($command);
 
-        $application = $this->module->getConsoleApplication();
+        $application = $module->getConsoleApplication();
 
         $I->assertSame(
             $command,
@@ -276,13 +271,15 @@ class ModuleCest
 
     public function testRunCommand(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
 
         $command = new FilterCommand();
 
-        $this->module->addCommand($command);
+        $module->addCommand($command);
 
-        $exitCode = $this->module->runCommand(
+        $exitCode = $module->runCommand(
             [
                 "cli.php",
                 "filter:double",
@@ -298,7 +295,7 @@ class ModuleCest
 
         $I->assertSame(
             "246",
-            $this->module->getStdoutContent()
+            $module->getStdoutContent()
         );
     }
 
@@ -306,135 +303,157 @@ class ModuleCest
 
     public function testAssertExitCodeIs(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
 
         $command = new ExitCodeCommand(0);
 
-        $this->module->addCommand($command);
+        $module->addCommand($command);
 
-        $this->module->runCommand(
+        $module->runCommand(
             [
                 "cli.php",
                 "exit-code",
             ]
         );
 
-        $this->module->assertExitCodeIs(0);
+        $module->assertExitCodeIs(0);
     }
 
     public function testAssertExitCodeIsNot(UnitTester $I): void
     {
-        $this->module->_beforeSuite();
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
 
         $command = new ExitCodeCommand(1);
 
-        $this->module->addCommand($command);
+        $module->addCommand($command);
 
-        $this->module->runCommand(
+        $module->runCommand(
             [
                 "cli.php",
                 "exit-code",
             ]
         );
 
-        $this->module->assertExitCodeIsNot(0);
+        $module->assertExitCodeIsNot(0);
     }
 
 
 
     public function testAssertStdoutEquals(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStdoutEquals("The quick brown fox jumps over the lazy dog.");
+        $module->assertStdoutEquals("The quick brown fox jumps over the lazy dog.");
     }
 
     public function testAssertStdoutNotEquals(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStdoutNotEquals("The slow brown fox jumps over the energetic dog.");
+        $module->assertStdoutNotEquals("The slow brown fox jumps over the energetic dog.");
     }
 
     public function testAssertStdoutContains(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStdoutContains("quick");
+        $module->assertStdoutContains("quick");
     }
 
     public function testAssertStdoutNotContains(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->write("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStdoutNotContains("slow");
+        $module->assertStdoutNotContains("slow");
     }
 
 
 
     public function testAssertStderrEquals(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStderrEquals("The quick brown fox jumps over the lazy dog.");
+        $module->assertStderrEquals("The quick brown fox jumps over the lazy dog.");
     }
 
     public function testAssertStderrNotEquals(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStderrNotEquals("The slow brown fox jumps over the energetic dog.");
+        $module->assertStderrNotEquals("The slow brown fox jumps over the energetic dog.");
     }
 
     public function testAssertStderrContains(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStderrContains("quick");
+        $module->assertStderrContains("quick");
     }
 
     public function testAssertStderrNotContains(UnitTester $I): void
     {
-        $terminal = $this->module->createTerminal(
+        $module = $this->getModule();
+
+        $terminal = $module->createTerminal(
             []
         );
 
         $terminal->writeError("The quick brown fox jumps over the lazy dog.");
 
-        $this->module->assertStderrNotContains("slow");
+        $module->assertStderrNotContains("slow");
     }
 
     public function testExpectEcho(UnitTester $I): void
     {
-        $this->module->expectEcho(
+        $module = $this->getModule();
+
+        $module->expectEcho(
             "The quick brown fox jumps over the lazy dog.",
             function (): void {
                 echo "The quick brown fox jumps over the lazy dog.";
@@ -444,7 +463,7 @@ class ModuleCest
 
     public function testExpectEchoWithAnException(UnitTester $I): void
     {
-        $module = $this->module;
+        $module = $this->getModule();
 
         $I->expectThrowable(
             new Exception("this is an exception"),
