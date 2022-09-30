@@ -128,6 +128,18 @@ class Module extends Framework
         $container->set($class, $object);
     }
 
+    /**
+     * @template T
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    public function getFromContainer(string $class): object
+    {
+        $container = $this->getContainer();
+
+        return $container->get($class);
+    }
+
 
 
     /**

@@ -122,6 +122,22 @@ class ModuleCest
         );
     }
 
+    public function testGetFromContainer(UnitTester $I): void
+    {
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
+
+        $incrementer = new Incrementer();
+
+        $module->addToContainer(Incrementer::class, $incrementer);
+
+        $I->assertSame(
+            $incrementer,
+            $module->getFromContainer(Incrementer::class)
+        );
+    }
+
 
 
     public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void

@@ -36,6 +36,7 @@ To futher improve testing in specific suites, these classes are used:
 
 - `getContainer(): Centum\Interfaces\Container\ContainerInterface`
 - `addToContainer(string $class, object $object): void`
+- `getFromContainer(class-string $class): object`
 
 ### Mocking
 
