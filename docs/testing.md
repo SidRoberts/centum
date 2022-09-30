@@ -48,6 +48,7 @@ To futher improve testing in specific suites, these classes are used:
 ## [`Tests\Support\UnitTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/UnitTester.php)
 
 - `getEchoContent(callable $callable): string`
+- `executeTask(Centum\Interfaces\Queue\TaskInterface $task): void`
 
 ### Expectations
 

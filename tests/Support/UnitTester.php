@@ -2,6 +2,7 @@
 
 namespace Tests\Support;
 
+use Centum\Interfaces\Queue\TaskInterface;
 use Codeception\Actor;
 use Throwable;
 
@@ -38,5 +39,14 @@ class UnitTester extends Actor
             $actual,
             "Failed asserting callable echoes an expected string."
         );
+    }
+
+
+
+    public function executeTask(TaskInterface $task): void
+    {
+        $container = $this->getContainer();
+
+        $task->execute($container);
     }
 }
