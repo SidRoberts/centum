@@ -15,11 +15,10 @@ class NotEmptyCest
     {
         $validator = new NotEmpty();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -41,13 +40,10 @@ class NotEmptyCest
     {
         $validator = new NotEmpty();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is required and can't be empty."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is required and can't be empty."]
         );
     }
 

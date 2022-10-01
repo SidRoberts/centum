@@ -89,7 +89,7 @@ class RouterCest
 
     public function testBasicHandle(UnitTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -107,7 +107,7 @@ class RouterCest
 
     public function testBasicHandleWithTrailingSlash(UnitTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -125,7 +125,7 @@ class RouterCest
 
     public function testFilters(UnitTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -149,7 +149,7 @@ class RouterCest
     #[DataProvider("providerMiddlewares")]
     public function testMiddlewares(UnitTester $I, Example $example): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -199,7 +199,7 @@ class RouterCest
     #[DataProvider("providerRequirements")]
     public function testRequirements(UnitTester $I, Example $example): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -244,7 +244,7 @@ class RouterCest
     #[DataProvider("providerHttpMethods")]
     public function testHttpMethods(UnitTester $I, Example $example): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -291,7 +291,7 @@ class RouterCest
 
     public function testRouteNotFoundException(UnitTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -315,7 +315,7 @@ class RouterCest
     #[DataProvider("providerCrud")]
     public function testCrud(UnitTester $I, Example $example): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -400,7 +400,7 @@ class RouterCest
     #[DataProvider("providerSubmission")]
     public function testSubmission(UnitTester $I, Example $example): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 
@@ -446,7 +446,7 @@ class RouterCest
 
     public function testExceptionHandlers(UnitTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $router = $this->getRouter($container);
 

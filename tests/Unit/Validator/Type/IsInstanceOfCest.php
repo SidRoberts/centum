@@ -20,11 +20,10 @@ class IsInstanceOfCest
             FilterInterface::class
         );
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -43,13 +42,10 @@ class IsInstanceOfCest
             FilterInterface::class
         );
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not an instance of Centum\\Interfaces\\Filter\\FilterInterface."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not an instance of Centum\\Interfaces\\Filter\\FilterInterface."]
         );
     }
 
@@ -71,13 +67,10 @@ class IsInstanceOfCest
             FilterInterface::class
         );
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not an object."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not an object."]
         );
     }
 

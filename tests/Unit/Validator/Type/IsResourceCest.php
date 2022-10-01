@@ -16,11 +16,10 @@ class IsResourceCest
     {
         $validator = new IsResource();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -37,13 +36,10 @@ class IsResourceCest
     {
         $validator = new IsResource();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not a resource."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not a resource."]
         );
     }
 

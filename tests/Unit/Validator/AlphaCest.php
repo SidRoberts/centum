@@ -14,11 +14,10 @@ class AlphaCest
     {
         $validator = new Alpha();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -35,13 +34,10 @@ class AlphaCest
     {
         $validator = new Alpha();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value must only contain letters."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value must only contain letters."]
         );
     }
 
@@ -62,13 +58,10 @@ class AlphaCest
     {
         $validator = new Alpha();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not a string."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not a string."]
         );
     }
 

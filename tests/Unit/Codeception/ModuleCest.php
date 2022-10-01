@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Codeception;
 
-use Centum\Codeception\Connector;
 use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Codeception\Module;
 use Centum\Container\Container;
@@ -38,11 +37,11 @@ class ModuleCest
 
         $module->makeNewContainer();
 
-        $container1 = $module->getContainer();
+        $container1 = $module->grabContainer();
 
         $module->makeNewContainer();
 
-        $container2 = $module->getContainer();
+        $container2 = $module->grabContainer();
 
         $I->assertNotSame(
             $container1,
@@ -76,13 +75,13 @@ class ModuleCest
 
 
 
-    public function testGetContainer(UnitTester $I): void
+    public function testGrabContainer(UnitTester $I): void
     {
         $module = $this->getModule();
 
         $module->_beforeSuite();
 
-        $container = $module->getContainer();
+        $container = $module->grabContainer();
 
         $I->assertInstanceOf(
             Container::class,
@@ -90,14 +89,14 @@ class ModuleCest
         );
     }
 
-    public function testGetContainerBeforeSettingIt(UnitTester $I): void
+    public function testGrabContainerBeforeSettingIt(UnitTester $I): void
     {
         $module = $this->getModule();
 
         $I->expectThrowable(
             ContainerNotFoundException::class,
             function () use ($module): void {
-                $module->getContainer();
+                $module->grabContainer();
             }
         );
     }
@@ -114,7 +113,7 @@ class ModuleCest
 
         $module->addToContainer(Incrementer::class, $incrementer);
 
-        $container = $module->getContainer();
+        $container = $module->grabContainer();
 
         $I->assertSame(
             $incrementer,
@@ -122,7 +121,7 @@ class ModuleCest
         );
     }
 
-    public function testGetFromContainer(UnitTester $I): void
+    public function testGrabFromContainer(UnitTester $I): void
     {
         $module = $this->getModule();
 
@@ -134,39 +133,11 @@ class ModuleCest
 
         $I->assertSame(
             $incrementer,
-            $module->getFromContainer(Incrementer::class)
+            $module->grabFromContainer(Incrementer::class)
         );
     }
 
 
-
-    public function testBeforeSetsAndAfterRemovesTheConnector(UnitTester $I): void
-    {
-        $module = $this->getModule();
-
-        $test = $I->mock(TestInterface::class);
-
-        $module->_beforeSuite();
-
-        $I->assertNull(
-            $module->client
-        );
-
-        $module->_before($test);
-
-        $I->assertInstanceOf(
-            Connector::class,
-            $module->client
-        );
-
-        $module->_after($test);
-
-        $I->assertNull(
-            $module->client
-        );
-
-        $module->_afterSuite();
-    }
 
     public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
     {

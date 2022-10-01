@@ -21,7 +21,7 @@ class MiddlewareGroupCest
 
         $command = new BoringCommand();
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         /** @var array<MiddlewareInterface> */
         $middlewares = $example["middlewares"];

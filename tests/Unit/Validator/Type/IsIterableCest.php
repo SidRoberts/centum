@@ -16,11 +16,10 @@ class IsIterableCest
     {
         $validator = new IsIterable();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -41,13 +40,10 @@ class IsIterableCest
     {
         $validator = new IsIterable();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not iterable."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not iterable."]
         );
     }
 

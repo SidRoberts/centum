@@ -16,11 +16,10 @@ class IsObjectCest
     {
         $validator = new IsObject();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -40,13 +39,10 @@ class IsObjectCest
     {
         $validator = new IsObject();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not an object."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not an object."]
         );
     }
 

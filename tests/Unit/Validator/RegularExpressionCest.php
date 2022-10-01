@@ -15,11 +15,10 @@ class RegularExpressionCest
     {
         $validator = new RegularExpression("/^[a-z]{3}[0-9]$/");
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -38,13 +37,10 @@ class RegularExpressionCest
     {
         $validator = new RegularExpression("/^[a-z]{3}[0-9]$/");
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value does not match '/^[a-z]{3}[0-9]$/'."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value does not match '/^[a-z]{3}[0-9]$/'."]
         );
     }
 
@@ -65,13 +61,10 @@ class RegularExpressionCest
     {
         $validator = new RegularExpression("/^[a-z]{3}[0-9]$/");
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not a string."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not a string."]
         );
     }
 

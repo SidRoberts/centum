@@ -37,7 +37,7 @@ class FormCest
             }
         );
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $form = new LoginForm($request, $csrf, $container);
 
@@ -97,7 +97,7 @@ class FormCest
             }
         );
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $I->expectThrowable(
             Exception::class,
@@ -177,7 +177,7 @@ class FormCest
             }
         );
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $form = new LoginWithCsrfForm($request, $csrf, $container);
 
@@ -239,7 +239,7 @@ class FormCest
             }
         );
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $I->expectThrowable(
             new CsrfException(null),

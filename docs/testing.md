@@ -24,68 +24,129 @@ Currently, the only config setting is `container` which should link to a file th
 If this isn't specified, it will default to `config/container.php`.
 
 This module is kept as simple as possible so that it can work with all kinds of tests.
-To futher improve testing in specific suites, these classes are used:
+To futher enhance testing, these traits are available:
 
-- [`Tests\Support\ConsoleTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/ConsoleTester.php)
-- [`Tests\Support\UnitTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/UnitTester.php)
-- [`Tests\Support\WebTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/WebTester.php)
+- [`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AjaxActions.php)
+- [`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ConsoleActions.php)
+- [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
+- [`Centum\Codeception\Actions\JsonActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/JsonActions.php)
+- [`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterActions.php)
+- [`Centum\Codeception\Actions\SessionActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/SessionActions.php)
+- [`Centum\Codeception\Actions\TaskActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/TaskActions.php)
+- [`Centum\Codeception\Actions\UnitTestActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/UnitTestActions.php)
+- [`Centum\Codeception\Actions\ValidatorActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ValidatorActions.php)
+
+These traits can be used at will in your Tester classes (`tests/Support/UnitTester.php`, for example).
 
 
 
 ## [`Centum\Codeception\Module`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Module.php)
 
-- `getContainer(): Centum\Interfaces\Container\ContainerInterface`
+- `grabContainer(): Centum\Interfaces\Container\ContainerInterface`
 - `addToContainer(string $class, object $object): void`
-- `getFromContainer(class-string $class): object`
-
-### Mocking
-
+- `grabFromContainer(class-string $class): object`
 - `mock(class-string $class, callable $callable = null): Mockery\MockInterface`
 - `mockInContainer(class-string $class, callable $callable = null): Mockery\MockInterface`
 
 
 
-## [`Tests\Support\UnitTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/UnitTester.php)
+## [`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AjaxActions.php)
 
-- `getEchoContent(callable $callable): string`
+- `sendAjaxRequest(string $method, string $uri, array $data = []): void`
+- `sendAjaxGetRequest(string $uri, array $data = []): void`
+- `sendAjaxPostRequest(string $uri, array $data = []): void`
+
+
+
+## [`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ConsoleActions.php)
+
+- `createTerminal(array $argv): Centum\Interfaces\Console\TerminalInterface`
+- `grabStdoutContent(): string`
+- `grabStderrContent(): string`
+- `grabConsoleApplication(): Centum\Interfaces\Console\ApplicationInterface`
+- `addCommand(Centum\Interfaces\Console\CommandInterface $command): void`
+- `runCommand(array $argv): int`
+- `seeExitCodeIs(int $exitCode, string $message = ""): void`
+- `seeExitCodeIsNot(int $exitCode, string $message = ""): void`
+- `seeStdoutEquals(string $expected, string $message = ""): void`
+- `seeStdoutNotEquals(string $expected, string $message = ""): void`
+- `seeStdoutContains(string $expected, string $message = ""): void`
+- `seeStdoutNotContains(string $expected, string $message = ""): void`
+- `seeStderrEquals(string $expected, string $message = ""): void`
+- `seeStderrNotEquals(string $expected, string $message = ""): void`
+- `seeStderrContains(string $expected, string $message = ""): void`
+- `seeStderrNotContains(string $expected, string $message = ""): void`
+
+
+
+## [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
+
+- `grabTextContent(): string`
+- `submitForm(string $id, array $data = []): void`
+- `see(string $needle): void`
+- `dontSee(string $needle): void`
+- `seeInSource(string $needle): void`
+- `dontSeeInSource(string $needle): void`
+- `seeInPageTitle(string $needle): void`
+- `dontSeeInPageTitle(string $needle): void`
+- `grabPageTitle(): string`
+- `seeElement(string $id): void`
+- `dontSeeElement(string $id): void`
+- `grabElement(string $id): DOMElement|null`
+
+
+
+## [`Centum\Codeception\Actions\JsonActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/JsonActions.php)
+
+- `seeResponseIsJson(): void`
+
+
+
+## [`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterActions.php)
+
+- `grabRouter(): Centum\Interfaces\Router\RouterInterface`
+- `makeRouterGroup(Centum\Interfaces\Router\MiddlewareInterface $middleware = null): GroupInterface`
+- `startFollowingRedirects(): void`
+- `stopFollowingRedirects(): void`
+- `seeRouteExists(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
+- `seeRouteNotFound(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
+- `amOnPage(string $uri): void`
+- `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
+- `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
+- `grabResponseContent(): string`
+- `seeResponseContentEquals(string $expected): void`
+- `seeResponseContentContains(string $expected): void`
+- `seeResponseCodeIs(int $expected, string $message = ""): void`
+- `seeResponseCodeIsNot(int $expected, string $message = ""): void`
+- `seeResponseCodeIsSuccessful(string $message = ""): void`
+- `seePageNotFound(string $message = ""): void`
+
+
+
+## [`Centum\Codeception\Actions\SessionActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/SessionActions.php)
+
+- `grabSession(): Centum\Interfaces\Http\SessionInterface`
+- `seeInSession(string $key): void`
+- `dontSeeInSession(string $key): void`
+- `grabFromSession(string $key, mixed $defaultValue = null): mixed`
+- `removeFromSession(string $key): mixed`
+
+
+
+## [`Centum\Codeception\Actions\TaskActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/TaskActions.php)
+
 - `executeTask(Centum\Interfaces\Queue\TaskInterface $task): void`
 
-### Expectations
 
+
+## [`Centum\Codeception\Actions\UnitTestActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/UnitTestActions.php)
+
+- `grabEchoContent(callable $callable): string`
 - `expectEcho(string $expected, callable $callable): void`
 
 
 
-## [`Tests\Support\ConsoleTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/ConsoleTester.php)
+## [`Centum\Codeception\Actions\ValidatorActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ValidatorActions.php)
 
-- `createTerminal(array $argv): Centum\Interfaces\Console\TerminalInterface`
-- `getStdoutContent(): string`
-- `getStderrContent(): string`
-- `getConsoleApplication(): Centum\Interfaces\Console\ApplicationInterface`
-- `addCommand(Centum\Interfaces\Console\CommandInterface $command): void`
-- `runCommand(array $argv): int`
-
-### Assertions
-
-- `assertExitCodeIs(int $exitCode, string $message = ""): void`
-- `assertExitCodeIsNot(int $exitCode, string $message = ""): void`
-
-#### STDOUT
-
-- `assertStdoutEquals(string $expected, string $message = ""): void`
-- `assertStdoutNotEquals(string $expected, string $message = ""): void`
-- `assertStdoutContains(string $expected, string $message = ""): void`
-- `assertStdoutNotContains(string $expected, string $message = ""): void`
-
-#### STDERR
-
-- `assertStderrEquals(string $expected, string $message = ""): void`
-- `assertStderrNotEquals(string $expected, string $message = ""): void`
-- `assertStderrContains(string $expected, string $message = ""): void`
-- `assertStderrNotContains(string $expected, string $message = ""): void`
-
-
-
-## [`Tests\Support\WebTester`](https://github.com/SidRoberts/centum/blob/development/tests/Support/WebTester.php)
-
-...
+- `seeValidatorPasses(Centum\Interfaces\Validator\ValidatorInterface, mixed $value): void`
+- `seeValidatorFails(Centum\Interfaces\Validator\ValidatorInterface, mixed $value, array $expectedViolations = null): void`

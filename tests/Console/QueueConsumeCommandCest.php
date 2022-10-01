@@ -42,6 +42,6 @@ class QueueConsumeCommandCest
             ]
         );
 
-        $I->assertExitCodeIs(0);
+        $I->seeExitCodeIs(0);
     }
 }

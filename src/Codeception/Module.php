@@ -5,7 +5,7 @@ namespace Centum\Codeception;
 use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Configuration;
-use Codeception\Lib\Framework;
+use Codeception\Module as CodeceptionModule;
 use Codeception\TestInterface;
 use Exception;
 use Mockery;
@@ -13,10 +13,8 @@ use Mockery\MockInterface;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use TypeError;
 
-class Module extends Framework
+class Module extends CodeceptionModule
 {
-    public ?AbstractBrowser $client = null;
-
     /**
      * @var array<string, string>
      *
@@ -52,8 +50,6 @@ class Module extends Framework
         parent::_before($test);
 
         $this->makeNewContainer();
-
-        $this->client = new Connector($this->container);
     }
 
     /**
@@ -109,7 +105,7 @@ class Module extends Framework
 
 
 
-    public function getContainer(): ContainerInterface
+    public function grabContainer(): ContainerInterface
     {
         if (!$this->container) {
             throw new ContainerNotFoundException();
@@ -123,7 +119,7 @@ class Module extends Framework
      */
     public function addToContainer(string $class, object $object): void
     {
-        $container = $this->getContainer();
+        $container = $this->grabContainer();
 
         $container->set($class, $object);
     }
@@ -133,9 +129,9 @@ class Module extends Framework
      * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */
-    public function getFromContainer(string $class): object
+    public function grabFromContainer(string $class): object
     {
-        $container = $this->getContainer();
+        $container = $this->grabContainer();
 
         return $container->get($class);
     }
@@ -170,7 +166,7 @@ class Module extends Framework
      */
     public function mockInContainer(string $class, callable $callable = null): object
     {
-        $container = $this->getContainer();
+        $container = $this->grabContainer();
 
         $mock = $this->mock($class, $callable);
 

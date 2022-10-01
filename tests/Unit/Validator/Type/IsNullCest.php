@@ -15,11 +15,10 @@ class IsNullCest
     {
         $validator = new IsNull();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -36,13 +35,10 @@ class IsNullCest
     {
         $validator = new IsNull();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not null."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not null."]
         );
     }
 

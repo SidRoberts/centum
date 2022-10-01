@@ -52,7 +52,7 @@ class ConsoleBootstrapCest
             }
         );
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $bootstrap->boot($container);
     }

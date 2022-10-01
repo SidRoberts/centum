@@ -16,11 +16,10 @@ class IsArrayCest
     {
         $validator = new IsArray();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -38,13 +37,10 @@ class IsArrayCest
     {
         $validator = new IsArray();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not an array."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not an array."]
         );
     }
 

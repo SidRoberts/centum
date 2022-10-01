@@ -42,9 +42,9 @@ class ListCommandCest
             ]
         );
 
-        $I->assertExitCodeIs(0);
+        $I->seeExitCodeIs(0);
 
-        $I->assertStdoutContains(
+        $I->seeStdoutContains(
             " * list" . PHP_EOL . " * queue-consume"
         );
     }

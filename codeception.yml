@@ -13,6 +13,9 @@ settings:
   shuffle: true
 
 suites:
+  codeception:
+    path: Codeception
+    actor: CodeceptionTester
   console:
     path: Console
     actor: ConsoleTester

@@ -14,11 +14,10 @@ class Base64Cest
     {
         $validator = new Base64();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -36,15 +35,10 @@ class Base64Cest
     {
         $validator = new Base64();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            [
-                "Value is not a valid base64 string.",
-            ],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not a valid base64 string."]
         );
     }
 
@@ -62,13 +56,10 @@ class Base64Cest
     {
         $validator = new Base64();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not a string."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not a string."]
         );
     }
 
@@ -85,11 +76,9 @@ class Base64Cest
     {
         $validator = new Base64();
 
-        $violations = $validator->validate("");
-
-        $I->assertCount(
-            0,
-            $violations
+        $I->seeValidatorPasses(
+            $validator,
+            ""
         );
     }
 }

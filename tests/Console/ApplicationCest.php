@@ -71,13 +71,13 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
         $application->handle($terminal);
 
-        $I->assertStdoutEquals(
+        $I->seeStdoutEquals(
             "main page"
         );
     }
@@ -93,13 +93,13 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
         $application->handle($terminal);
 
-        $I->assertStdoutEquals(
+        $I->seeStdoutEquals(
             "246"
         );
     }
@@ -113,7 +113,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -133,7 +133,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -171,13 +171,13 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
         $application->handle($terminal);
 
-        $I->assertStdoutEquals(
+        $I->seeStdoutEquals(
             "main page"
         );
     }
@@ -193,7 +193,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -214,7 +214,7 @@ class ApplicationCest
 
         $terminal = $I->createTerminal($argv);
 
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -228,7 +228,7 @@ class ApplicationCest
 
     public function testGetCommand(ConsoleTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -252,7 +252,7 @@ class ApplicationCest
 
     public function testGetCommands(ConsoleTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -271,7 +271,7 @@ class ApplicationCest
 
     public function testExceptionalHandlers(ConsoleTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 
@@ -293,7 +293,7 @@ class ApplicationCest
 
 
 
-        $I->assertStdoutEquals(
+        $I->seeStdoutEquals(
             "Something went wrong. Exception was thrown with the message \"I'm being difficult.\"."
         );
 
@@ -305,7 +305,7 @@ class ApplicationCest
 
     public function testValidCommandName(ConsoleTester $I): void
     {
-        $container = $I->getContainer();
+        $container = $I->grabContainer();
 
         $application = $this->getApplication($container);
 

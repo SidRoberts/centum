@@ -14,11 +14,10 @@ class AlphanumericCest
     {
         $validator = new Alphanumeric();
 
-        $violations = $validator->validate(
+        $I->seeValidatorPasses(
+            $validator,
             $example[0]
         );
-
-        $I->assertCount(0, $violations);
     }
 
     protected function providerGood(): array
@@ -36,13 +35,10 @@ class AlphanumericCest
     {
         $validator = new Alphanumeric();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not alphanumeric."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not alphanumeric."]
         );
     }
 
@@ -62,13 +58,10 @@ class AlphanumericCest
     {
         $validator = new Alphanumeric();
 
-        $violations = $validator->validate(
-            $example[0]
-        );
-
-        $I->assertEquals(
-            ["Value is not a string."],
-            $violations
+        $I->seeValidatorFails(
+            $validator,
+            $example[0],
+            ["Value is not a string."]
         );
     }
 
