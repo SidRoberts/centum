@@ -5,10 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Http\Data;
 use Centum\Http\Request;
 use Codeception\Exception\ModuleException;
-use DOMDocument;
-use DOMElement;
 use Exception;
 use PHPUnit\Framework\Assert;
+use Symfony\Component\DomCrawler\Crawler;
 
 trait HtmlActions
 {
@@ -18,9 +17,13 @@ trait HtmlActions
 
     public function grabTextContent(): string
     {
-        $domDocument = $this->getDomDocument();
+        $crawler = $this->getCrawler();
 
-        return $domDocument->textContent ?? "";
+        if (!$crawler) {
+            return "";
+        }
+
+        return $crawler->text();
     }
 
 
@@ -28,7 +31,7 @@ trait HtmlActions
     /**
      * @param array<string, mixed> $data
      */
-    public function submitForm(string $id, array $data = []): void
+    public function submitForm(string $selector, array $data = []): void
     {
         if (!$this->currentURI) {
             throw new ModuleException($this, "Page not loaded.");
@@ -36,16 +39,19 @@ trait HtmlActions
 
         $currentURI = $this->currentURI;
 
-        $form = $this->grabElement($id);
+        $form = $this->grabElement($selector);
 
         if (!$form) {
             throw new Exception("no form");
         }
 
-        $uri = $form->getAttribute("action") ?: $currentURI;
+        /** @var array<array-key, array<string>> */
+        $attributes = $form->extract(["action", "method"]);
 
-        $method = $form->getAttribute("method");
-        $method = strtoupper($method) ?: "GET";
+        $uri = $attributes[0][0] ?: $currentURI;
+
+        $method = $attributes[0][1] ?: "GET";
+        $method = strtoupper($method);
 
         $data = new Data($data);
 
@@ -106,51 +112,59 @@ trait HtmlActions
 
     public function grabPageTitle(): string
     {
-        $domDocument = $this->getDomDocument();
+        $crawler = $this->getCrawler();
 
-        if (!$domDocument) {
+        if (!$crawler) {
             return "";
         }
 
-        $titleElement = $domDocument->getElementsByTagName("title")->item(0);
+        $title = $crawler->filter("title");
 
-        if (!$titleElement) {
+        if ($title->count() === 0) {
             return "";
         }
 
-        return trim($titleElement->textContent);
+        $title = $title->first()->html();
+
+        return trim($title);
     }
 
 
 
-    public function seeElement(string $id): void
+    public function seeElement(string $selector): void
     {
         Assert::assertNotNull(
-            $this->grabElement($id)
+            $this->grabElement($selector)
         );
     }
 
-    public function dontSeeElement(string $id): void
+    public function dontSeeElement(string $selector): void
     {
         Assert::assertNull(
-            $this->grabElement($id)
+            $this->grabElement($selector)
         );
     }
 
-    public function grabElement(string $id): DOMElement|null
+    public function grabElement(string $selector): Crawler|null
     {
-        $domDocument = $this->getDomDocument();
+        $crawler = $this->getCrawler();
 
-        if (!$domDocument) {
+        if (!$crawler) {
             return null;
         }
 
-        return $domDocument->getElementById($id);
+        $matches = $crawler->filter($selector);
+
+        if ($matches->count() === 0) {
+            return null;
+        }
+
+        return $matches->first();
     }
 
 
 
-    protected function getDomDocument(): DOMDocument|null
+    protected function getCrawler(): Crawler|null
     {
         $content = $this->grabResponseContent();
 
@@ -158,10 +172,8 @@ trait HtmlActions
             return null;
         }
 
-        $domDocument = new DOMDocument();
+        $crawler = new Crawler($content);
 
-        $domDocument->loadHTML($content);
-
-        return $domDocument;
+        return $crawler;
     }
 }

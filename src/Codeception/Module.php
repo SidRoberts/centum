@@ -10,7 +10,6 @@ use Codeception\TestInterface;
 use Exception;
 use Mockery;
 use Mockery\MockInterface;
-use Symfony\Component\BrowserKit\AbstractBrowser;
 use TypeError;
 
 class Module extends CodeceptionModule

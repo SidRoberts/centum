@@ -158,7 +158,7 @@ class HtmlActionsCest
 
         $I->amOnPage("/html");
 
-        $I->seeElement("logo");
+        $I->seeElement("#logo");
     }
 
     public function testDontSeeElement(CodeceptionTester $I): void
@@ -171,7 +171,7 @@ class HtmlActionsCest
 
         $I->amOnPage("/html");
 
-        $I->dontSeeElement("sidebar");
+        $I->dontSeeElement("#sidebar");
     }
 
 
@@ -186,11 +186,11 @@ class HtmlActionsCest
 
         $I->amOnPage("/html");
 
-        $element = $I->grabElement("logo");
+        $element = $I->grabElement("#logo");
 
         $I->assertEquals(
             "img",
-            $element->tagName
+            $element->nodeName()
         );
     }
 
@@ -204,7 +204,7 @@ class HtmlActionsCest
 
         $I->amOnPage("/html");
 
-        $element = $I->grabElement("logo");
+        $element = $I->grabElement("#logo");
 
         $I->assertNull(
             $element

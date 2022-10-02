@@ -82,7 +82,7 @@ These traits can be used at will in your Tester classes (`tests/Support/UnitTest
 ## [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
 
 - `grabTextContent(): string`
-- `submitForm(string $id, array $data = []): void`
+- `submitForm(string $selector, array $data = []): void`
 - `see(string $needle): void`
 - `dontSee(string $needle): void`
 - `seeInSource(string $needle): void`
@@ -90,9 +90,9 @@ These traits can be used at will in your Tester classes (`tests/Support/UnitTest
 - `seeInPageTitle(string $needle): void`
 - `dontSeeInPageTitle(string $needle): void`
 - `grabPageTitle(): string`
-- `seeElement(string $id): void`
-- `dontSeeElement(string $id): void`
-- `grabElement(string $id): DOMElement|null`
+- `seeElement(string $selector): void`
+- `dontSeeElement(string $selector): void`
+- `grabElement(string $selector): Crawler|null`
 
 
 
