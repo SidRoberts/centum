@@ -75,13 +75,13 @@ class Container implements ContainerInterface
     public function get(string $class): object
     {
         if (!isset($this->objects[$class])) {
-            $class = $this->aliases[$class] ?? $class;
+            $alias = $this->aliases[$class] ?? $class;
 
-            if (interface_exists($class)) {
-                throw new InstantiateInterfaceException($class);
+            if (interface_exists($alias)) {
+                throw new InstantiateInterfaceException($alias);
             }
 
-            $reflectionClass = new ReflectionClass($class);
+            $reflectionClass = new ReflectionClass($alias);
 
             if ($reflectionClass->hasMethod("__construct")) {
                 $reflectionMethod = $reflectionClass->getMethod("__construct");
