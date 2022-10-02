@@ -113,6 +113,7 @@ These traits can be used at will in your Tester classes (`tests/Support/UnitTest
 - `amOnPage(string $uri): void`
 - `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
 - `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
+- `seeCurrentUrlEquals(string $url): void`
 - `grabResponseContent(): string`
 - `seeResponseContentEquals(string $expected): void`
 - `seeResponseContentContains(string $expected): void`

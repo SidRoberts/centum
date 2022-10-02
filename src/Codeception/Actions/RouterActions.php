@@ -118,6 +118,18 @@ trait RouterActions
 
 
 
+    public function seeCurrentUrlEquals(string $url): void
+    {
+        if (!$this->response) {
+            throw new ModuleException($this, "Page not loaded.");
+        }
+
+        Assert::assertEquals(
+            $this->currentURI,
+            $url
+        );
+    }
+
     public function grabResponseContent(): string
     {
         if (!$this->response) {

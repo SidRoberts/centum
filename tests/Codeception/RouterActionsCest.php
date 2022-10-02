@@ -77,6 +77,13 @@ class RouterActionsCest
 
 
 
+    public function testSeeCurrentUrlEquals(CodeceptionTester $I): void
+    {
+        $I->markTestIncomplete();
+    }
+
+
+
     public function testSeeRouteExists(CodeceptionTester $I): void
     {
         $group = $I->makeRouterGroup();
