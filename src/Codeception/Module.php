@@ -135,6 +135,16 @@ class Module extends CodeceptionModule
         return $container->get($class);
     }
 
+    /**
+     * @psalm-param interface-string $class
+     */
+    public function removeFromContainer(string $class): void
+    {
+        $container = $this->grabContainer();
+
+        $container->remove($class);
+    }
+
 
 
     /**

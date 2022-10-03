@@ -49,5 +49,6 @@ These traits can be used at will in your Tester classes (`tests/Support/UnitTest
 - `grabContainer(): Centum\Interfaces\Container\ContainerInterface`
 - `addToContainer(string $class, object $object): void`
 - `grabFromContainer(class-string $class): object`
+- `removeFromContriner(class-string $class): void`
 - `mock(class-string $class, callable $callable = null): Mockery\MockInterface`
 - `mockInContainer(class-string $class, callable $callable = null): Mockery\MockInterface`

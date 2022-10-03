@@ -5,6 +5,7 @@ namespace Tests\Unit\Codeception;
 use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Codeception\Module;
 use Centum\Container\Container;
+use Centum\Router\Router;
 use Codeception\Lib\Di;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
@@ -134,6 +135,24 @@ class ModuleCest
         $I->assertSame(
             $incrementer,
             $module->grabFromContainer(Incrementer::class)
+        );
+    }
+
+    public function testRemoveFromContainer(UnitTester $I): void
+    {
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
+
+        $router1 = $module->grabFromContainer(Router::class);
+
+        $module->removeFromContainer(Router::class);
+
+        $router2 = $module->grabFromContainer(Router::class);
+
+        $I->assertNotSame(
+            $router1,
+            $router2
         );
     }
 
