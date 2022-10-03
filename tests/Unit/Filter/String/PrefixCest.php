@@ -15,15 +15,10 @@ class PrefixCest
     {
         $filter = new Prefix("!! ");
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -31,13 +26,13 @@ class PrefixCest
     {
         return [
             [
-                "value"    => "This is a sentence.",
-                "expected" => "!! This is a sentence.",
+                "input"  => "This is a sentence.",
+                "output" => "!! This is a sentence.",
             ],
 
             [
-                "value"    => "친구야? 어디가?",
-                "expected" => "!! 친구야? 어디가?",
+                "input"  => "친구야? 어디가?",
+                "output" => "!! 친구야? 어디가?",
             ],
         ];
     }
@@ -49,14 +44,10 @@ class PrefixCest
     {
         $filter = new Prefix("!! ");
 
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->expectThrowable(
-            new InvalidArgumentException("Value must be a string."),
-            function () use ($filter, $value): void {
-                $filter->filter($value);
-            }
+        $I->expectFilterException(
+            $filter,
+            $example["input"],
+            new InvalidArgumentException("Value must be a string.")
         );
     }
 
@@ -64,23 +55,23 @@ class PrefixCest
     {
         return [
             [
-                "value" => true,
+                "input" => true,
             ],
 
             [
-                "value" => 0,
+                "input" => 0,
             ],
 
             [
-                "value" => 123.456,
+                "input" => 123.456,
             ],
 
             [
-                "value" => ["1", 2, "three"],
+                "input" => ["1", 2, "three"],
             ],
 
             [
-                "value" => (object) ["1", 2, "three"],
+                "input" => (object) ["1", 2, "three"],
             ],
         ];
     }

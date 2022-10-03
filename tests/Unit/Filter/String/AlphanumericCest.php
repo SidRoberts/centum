@@ -15,15 +15,10 @@ class AlphanumericCest
     {
         $filter = new Alphanumeric();
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -31,28 +26,28 @@ class AlphanumericCest
     {
         return [
             [
-                "value"    => "Sid Roberts",
-                "expected" => "SidRoberts",
+                "input"  => "Sid Roberts",
+                "output" => "SidRoberts",
             ],
 
             [
-                "value"    => "SidRoberts92",
-                "expected" => "SidRoberts92",
+                "input"  => "SidRoberts92",
+                "output" => "SidRoberts92",
             ],
 
             [
-                "value"    => "This is a sentence.",
-                "expected" => "Thisisasentence",
+                "input"  => "This is a sentence.",
+                "output" => "Thisisasentence",
             ],
 
             [
-                "value"    => "https://github.com/SidRoberts/centum",
-                "expected" => "httpsgithubcomSidRobertscentum",
+                "input"  => "https://github.com/SidRoberts/centum",
+                "output" => "httpsgithubcomSidRobertscentum",
             ],
 
             [
-                "value"    => "그게 아니야",
-                "expected" => "",
+                "input"  => "그게 아니야",
+                "output" => "",
             ],
         ];
     }
@@ -64,14 +59,10 @@ class AlphanumericCest
     {
         $filter = new Alphanumeric();
 
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->expectThrowable(
-            new InvalidArgumentException("Value must be a string."),
-            function () use ($filter, $value): void {
-                $filter->filter($value);
-            }
+        $I->expectFilterException(
+            $filter,
+            $example["input"],
+            new InvalidArgumentException("Value must be a string.")
         );
     }
 
@@ -79,23 +70,23 @@ class AlphanumericCest
     {
         return [
             [
-                "value" => true,
+                "input" => true,
             ],
 
             [
-                "value" => 0,
+                "input" => 0,
             ],
 
             [
-                "value" => 123.456,
+                "input" => 123.456,
             ],
 
             [
-                "value" => ["1", 2, "three"],
+                "input" => ["1", 2, "three"],
             ],
 
             [
-                "value" => (object) ["1", 2, "three"],
+                "input" => (object) ["1", 2, "three"],
             ],
         ];
     }

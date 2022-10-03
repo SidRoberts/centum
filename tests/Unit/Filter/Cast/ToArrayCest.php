@@ -16,15 +16,10 @@ class ToArrayCest
     {
         $filter = new ToArray();
 
-        /** @var array */
-        $expected = $example["expected"];
-
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -32,48 +27,48 @@ class ToArrayCest
     {
         return [
             [
-                "value"    => [1,2,3],
-                "expected" => [1,2,3],
+                "input"  => [1,2,3],
+                "output" => [1,2,3],
             ],
 
             [
-                "value"    => true,
-                "expected" => [true],
+                "input"  => true,
+                "output" => [true],
             ],
 
             [
-                "value"    => false,
-                "expected" => [false],
+                "input"  => false,
+                "output" => [false],
             ],
 
             [
-                "value"    => 123.456,
-                "expected" => [123.456],
+                "input"  => 123.456,
+                "output" => [123.456],
             ],
 
             [
-                "value"    => 123,
-                "expected" => [123],
+                "input"  => 123,
+                "output" => [123],
             ],
 
             [
-                "value"    => null,
-                "expected" => [],
+                "input"  => null,
+                "output" => [],
             ],
 
             [
-                "value"    => new stdClass(),
-                "expected" => [],
+                "input"  => new stdClass(),
+                "output" => [],
             ],
 
             [
-                "value"    => new FancyString("Sid Roberts"),
-                "expected" => ["Sid", "Roberts"],
+                "input"  => new FancyString("Sid Roberts"),
+                "output" => ["Sid", "Roberts"],
             ],
 
             [
-                "value"    => "Sid Roberts",
-                "expected" => ["Sid Roberts"],
+                "input"  => "Sid Roberts",
+                "output" => ["Sid Roberts"],
             ],
         ];
     }

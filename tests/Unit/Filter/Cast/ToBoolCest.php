@@ -15,15 +15,10 @@ class ToBoolCest
     {
         $filter = new ToBool();
 
-        /** @var bool */
-        $expected = $example["expected"];
-
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -31,58 +26,58 @@ class ToBoolCest
     {
         return [
             [
-                "value"    => [1,2,3],
-                "expected" => true,
+                "input"  => [1,2,3],
+                "output" => true,
             ],
 
             [
-                "value"    => [],
-                "expected" => false,
+                "input"  => [],
+                "output" => false,
             ],
 
             [
-                "value"    => true,
-                "expected" => true,
+                "input"  => true,
+                "output" => true,
             ],
 
             [
-                "value"    => false,
-                "expected" => false,
+                "input"  => false,
+                "output" => false,
             ],
 
             [
-                "value"    => 123.456,
-                "expected" => true,
+                "input"  => 123.456,
+                "output" => true,
             ],
 
             [
-                "value"    => 123,
-                "expected" => true,
+                "input"  => 123,
+                "output" => true,
             ],
 
             [
-                "value"    => 0,
-                "expected" => false,
+                "input"  => 0,
+                "output" => false,
             ],
 
             [
-                "value"    => null,
-                "expected" => false,
+                "input"  => null,
+                "output" => false,
             ],
 
             [
-                "value"    => new stdClass(),
-                "expected" => true,
+                "input"  => new stdClass(),
+                "output" => true,
             ],
 
             [
-                "value"    => "Sid Roberts",
-                "expected" => true,
+                "input"  => "Sid Roberts",
+                "output" => true,
             ],
 
             [
-                "value"    => "",
-                "expected" => false,
+                "input"  => "",
+                "output" => false,
             ],
         ];
     }

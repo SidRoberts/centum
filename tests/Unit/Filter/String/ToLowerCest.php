@@ -15,15 +15,10 @@ class ToLowerCest
     {
         $filter = new ToLower();
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -31,23 +26,23 @@ class ToLowerCest
     {
         return [
             [
-                "value"    => "Sid Roberts",
-                "expected" => "sid roberts",
+                "input"  => "Sid Roberts",
+                "output" => "sid roberts",
             ],
 
             [
-                "value"    => "SID ROBERTS",
-                "expected" => "sid roberts",
+                "input"  => "SID ROBERTS",
+                "output" => "sid roberts",
             ],
 
             [
-                "value"    => "sid roberts",
-                "expected" => "sid roberts",
+                "input"  => "sid roberts",
+                "output" => "sid roberts",
             ],
 
             [
-                "value"    => "sId RoBeRtS",
-                "expected" => "sid roberts",
+                "input"  => "sId RoBeRtS",
+                "output" => "sid roberts",
             ],
         ];
     }
@@ -59,14 +54,10 @@ class ToLowerCest
     {
         $filter = new ToLower();
 
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->expectThrowable(
-            new InvalidArgumentException("Value must be a string."),
-            function () use ($filter, $value): void {
-                $filter->filter($value);
-            }
+        $I->expectFilterException(
+            $filter,
+            $example["input"],
+            new InvalidArgumentException("Value must be a string.")
         );
     }
 
@@ -74,23 +65,23 @@ class ToLowerCest
     {
         return [
             [
-                "value" => true,
+                "input" => true,
             ],
 
             [
-                "value" => 0,
+                "input" => 0,
             ],
 
             [
-                "value" => 123.456,
+                "input" => 123.456,
             ],
 
             [
-                "value" => ["1", 2, "three"],
+                "input" => ["1", 2, "three"],
             ],
 
             [
-                "value" => (object) ["1", 2, "three"],
+                "input" => (object) ["1", 2, "three"],
             ],
         ];
     }

@@ -15,15 +15,10 @@ class TrimCest
     {
         $filter = new Trim();
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -31,23 +26,23 @@ class TrimCest
     {
         return [
             [
-                "value"    => "Sid",
-                "expected" => "Sid",
+                "input"  => "Sid",
+                "output" => "Sid",
             ],
 
             [
-                "value"    => "  Sid  ",
-                "expected" => "Sid",
+                "input"  => "  Sid  ",
+                "output" => "Sid",
             ],
 
             [
-                "value"    => "   ",
-                "expected" => "",
+                "input"  => "   ",
+                "output" => "",
             ],
 
             [
-                "value"    => "",
-                "expected" => "",
+                "input"  => "",
+                "output" => "",
             ],
         ];
     }
@@ -59,14 +54,10 @@ class TrimCest
     {
         $filter = new Trim();
 
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->expectThrowable(
-            new InvalidArgumentException("Value must be a string."),
-            function () use ($filter, $value): void {
-                $filter->filter($value);
-            }
+        $I->expectFilterException(
+            $filter,
+            $example["input"],
+            new InvalidArgumentException("Value must be a string.")
         );
     }
 
@@ -74,23 +65,23 @@ class TrimCest
     {
         return [
             [
-                "value" => true,
+                "input" => true,
             ],
 
             [
-                "value" => 0,
+                "input" => 0,
             ],
 
             [
-                "value" => 123.456,
+                "input" => 123.456,
             ],
 
             [
-                "value" => ["1", 2, "three"],
+                "input" => ["1", 2, "three"],
             ],
 
             [
-                "value" => (object) ["1", 2, "three"],
+                "input" => (object) ["1", 2, "three"],
             ],
         ];
     }

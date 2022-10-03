@@ -26,65 +26,56 @@ class WhitelistCest
             $strict
         );
 
-        /** @var mixed */
-        $value = $example["value"];
-
-        /** @var mixed */
-        $actual = $filter->filter($value);
-
-        if ($example["expected"]) {
-            $I->assertEquals(
-                $example["value"],
-                $actual
-            );
-        } else {
-            $I->assertNull($actual);
-        }
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
+        );
     }
 
     protected function provider(): array
     {
         return [
             [
-                "value"    => "Busan",
-                "strict"   => true,
-                "expected" => true,
+                "input"  => "Busan",
+                "strict" => true,
+                "output" => "Busan",
             ],
 
             [
-                "value"    => 1,
-                "strict"   => true,
-                "expected" => true,
+                "input"  => 1,
+                "strict" => true,
+                "output" => 1,
             ],
 
             [
-                "value"    => "1",
-                "strict"   => true,
-                "expected" => false,
+                "input"  => "1",
+                "strict" => true,
+                "output" => null,
             ],
 
             [
-                "value"    => "1",
-                "strict"   => false,
-                "expected" => true,
+                "input"  => "1",
+                "strict" => false,
+                "output" => "1",
             ],
 
             [
-                "value"    => true,
-                "strict"   => true,
-                "expected" => false,
+                "input"  => true,
+                "strict" => true,
+                "output" => null,
             ],
 
             [
-                "value"    => [1,2,3],
-                "strict"   => true,
-                "expected" => true,
+                "input"  => [1,2,3],
+                "strict" => true,
+                "output" => [1,2,3],
             ],
 
             [
-                "value"    => [],
-                "strict"   => true,
-                "expected" => false,
+                "input"  => [],
+                "strict" => true,
+                "output" => null,
             ],
         ];
     }

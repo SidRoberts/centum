@@ -31,15 +31,10 @@ class GroupCest
 
 
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -47,11 +42,13 @@ class GroupCest
     {
         return [
             [
-                "value"    => "  SeNtEnCe   ",
-                "expected" => "ABC-sentence",
+                "input"  => "  SeNtEnCe   ",
+                "output" => "ABC-sentence",
             ],
         ];
     }
+
+
 
     public function testGetFilters(UnitTester $I): void
     {

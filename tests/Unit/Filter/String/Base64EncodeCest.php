@@ -15,15 +15,10 @@ class Base64EncodeCest
     {
         $filter = new Base64Encode();
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -31,18 +26,18 @@ class Base64EncodeCest
     {
         return [
             [
-                "value"    => "Hello",
-                "expected" => "SGVsbG8=",
+                "input"  => "Hello",
+                "output" => "SGVsbG8=",
             ],
 
             [
-                "value"    => "그게 아니야",
-                "expected" => "6re46rKMIOyVhOuLiOyVvA==",
+                "input"  => "그게 아니야",
+                "output" => "6re46rKMIOyVhOuLiOyVvA==",
             ],
 
             [
-                "value"    => "",
-                "expected" => "",
+                "input"  => "",
+                "output" => "",
             ],
         ];
     }
@@ -54,14 +49,10 @@ class Base64EncodeCest
     {
         $filter = new Base64Encode();
 
-        /** @var mixed */
-        $value = $example["value"];
-
-        $I->expectThrowable(
-            new InvalidArgumentException("Value must be a string."),
-            function () use ($filter, $value): void {
-                $filter->filter($value);
-            }
+        $I->expectFilterException(
+            $filter,
+            $example["input"],
+            new InvalidArgumentException("Value must be a string.")
         );
     }
 
@@ -69,23 +60,23 @@ class Base64EncodeCest
     {
         return [
             [
-                "value" => true,
+                "input" => true,
             ],
 
             [
-                "value" => 0,
+                "input" => 0,
             ],
 
             [
-                "value" => 123.456,
+                "input" => 123.456,
             ],
 
             [
-                "value" => ["1", 2, "three"],
+                "input" => ["1", 2, "three"],
             ],
 
             [
-                "value" => (object) ["1", 2, "three"],
+                "input" => (object) ["1", 2, "three"],
             ],
         ];
     }

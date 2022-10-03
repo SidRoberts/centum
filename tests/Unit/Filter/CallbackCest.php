@@ -23,15 +23,10 @@ class CallbackCest
             }
         );
 
-        /** @var string */
-        $expected = $example["expected"];
-
-        /** @var string */
-        $value = $example["value"];
-
-        $I->assertEquals(
-            $expected,
-            $filter->filter($value)
+        $I->expectFilterOutput(
+            $filter,
+            $example["input"],
+            $example["output"]
         );
     }
 
@@ -39,13 +34,13 @@ class CallbackCest
     {
         return [
             [
-                "value"    => "Sid Roberts",
-                "expected" => "sid-roberts",
+                "input"  => "Sid Roberts",
+                "output" => "sid-roberts",
             ],
 
             [
-                "value"    => "SID ROBERTS  ",
-                "expected" => "sid-roberts--",
+                "input"  => "SID ROBERTS  ",
+                "output" => "sid-roberts--",
             ],
         ];
     }
