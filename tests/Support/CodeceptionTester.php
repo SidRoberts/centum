@@ -2,6 +2,7 @@
 
 namespace Tests\Support;
 
+use Centum\Codeception\Actions\AccessActions;
 use Centum\Codeception\Actions\AjaxActions;
 use Centum\Codeception\Actions\ConsoleActions;
 use Centum\Codeception\Actions\FilterActions;
@@ -21,6 +22,7 @@ class CodeceptionTester extends Actor
 {
     use _generated\CodeceptionTesterActions;
 
+    use AccessActions;
     use AjaxActions;
     use ConsoleActions;
     use FilterActions;

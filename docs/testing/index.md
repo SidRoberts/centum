@@ -28,6 +28,7 @@ If this isn't specified, it will default to `config/container.php`.
 This module is kept as simple as possible so that it can work with all kinds of tests.
 To futher enhance testing, these traits are available:
 
+- [`Centum\Codeception\Actions\AccessActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AccessActions.php)
 - [`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AjaxActions.php)
 - [`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ConsoleActions.php)
 - [`Centum\Codeception\Actions\FilterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/FilterActions.php)
