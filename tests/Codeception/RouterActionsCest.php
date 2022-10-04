@@ -77,7 +77,41 @@ class RouterActionsCest
 
 
 
-    public function testSeeCurrentUrlEquals(CodeceptionTester $I): void
+    public function testGrabCurrentUri(CodeceptionTester $I): void
+    {
+        $group = $I->makeRouterGroup();
+
+        $group->get("/", IndexController::class, "index");
+
+        $group->get("/redirect/1", RedirectController::class, "redirect1");
+        $group->get("/redirect/2", RedirectController::class, "redirect2");
+        $group->get("/redirect/3", RedirectController::class, "redirect3");
+        $group->get("/redirect/finish", RedirectController::class, "finish");
+
+
+
+        $I->amOnPage("/");
+
+        $currentURI = $I->grabCurrentUri();
+
+        $I->assertEquals(
+            "/",
+            $currentURI
+        );
+
+
+
+        $I->amOnPage("/redirect/1");
+
+        $currentURI = $I->grabCurrentUri();
+
+        $I->assertEquals(
+            "/redirect/finish",
+            $currentURI
+        );
+    }
+
+    public function testSeeCurrentUriEquals(CodeceptionTester $I): void
     {
         $group = $I->makeRouterGroup();
 
@@ -90,11 +124,11 @@ class RouterActionsCest
 
         $I->amOnPage("/");
 
-        $I->seeCurrentUrlEquals("/");
+        $I->seeCurrentUriEquals("/");
 
         $I->amOnPage("/redirect/1");
 
-        $I->seeCurrentUrlEquals("/redirect/finish");
+        $I->seeCurrentUriEquals("/redirect/finish");
     }
 
 

@@ -118,15 +118,22 @@ trait RouterActions
 
 
 
-    public function seeCurrentUrlEquals(string $url): void
+    public function grabCurrentUri(): string
     {
-        if (!$this->response) {
+        if (!$this->currentURI) {
             throw new ModuleException($this, "Page not loaded.");
         }
 
+        return $this->currentURI;
+    }
+
+    public function seeCurrentUriEquals(string $uri): void
+    {
+        $currentUri = $this->grabCurrentUri();
+
         Assert::assertEquals(
-            $this->currentURI,
-            $url
+            $currentUri,
+            $uri
         );
     }
 

@@ -20,7 +20,8 @@ permalink: testing/router
 - `amOnPage(string $uri): void`
 - `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
 - `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
-- `seeCurrentUrlEquals(string $url): void`
+- `grabCurrentUri(): string`
+- `seeCurrentUriEquals(string $uri): void`
 - `grabResponseContent(): string`
 - `seeResponseContentEquals(string $expected): void`
 - `seeResponseContentContains(string $expected): void`
