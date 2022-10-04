@@ -163,39 +163,57 @@ trait RouterActions
 
 
 
-    public function seeResponseCodeIs(int $expected, string $message = ""): void
+    public function grabResponseCode(): int
     {
         if (!$this->response) {
             throw new ModuleException($this, "Page not loaded.");
         }
 
-        $status = $this->response->getStatus();
+        return $this->response->getStatus()->getCode();
+    }
+
+    public function seeResponseCodeIs(int $expected, string $message = ""): void
+    {
+        $responseCode = $this->grabResponseCode();
 
         Assert::assertSame(
             $expected,
-            $status->getCode(),
+            $responseCode,
             $message
         );
     }
 
     public function seeResponseCodeIsNot(int $expected, string $message = ""): void
     {
-        if (!$this->response) {
-            throw new ModuleException($this, "Page not loaded.");
-        }
-
-        $status = $this->response->getStatus();
+        $responseCode = $this->grabResponseCode();
 
         Assert::assertNotSame(
             $expected,
-            $status->getCode(),
+            $responseCode,
             $message
         );
     }
 
     public function seeResponseCodeIsSuccessful(string $message = ""): void
     {
-        $this->seeResponseCodeIs(200, $message);
+        $responseCode = $this->grabResponseCode();
+
+        Assert::assertMatchesRegularExpression(
+            "/^2\d{2}$/",
+            $responseCode,
+            $message
+        );
+    }
+
+    public function seeResponseCodeIsServerError(string $message = ""): void
+    {
+        $responseCode = $this->grabResponseCode();
+
+        Assert::assertMatchesRegularExpression(
+            "/^5\d{2}$/",
+            $responseCode,
+            $message
+        );
     }
 
     public function seePageNotFound(string $message = ""): void

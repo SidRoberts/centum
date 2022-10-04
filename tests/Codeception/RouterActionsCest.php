@@ -79,7 +79,22 @@ class RouterActionsCest
 
     public function testSeeCurrentUrlEquals(CodeceptionTester $I): void
     {
-        $I->markTestIncomplete();
+        $group = $I->makeRouterGroup();
+
+        $group->get("/", IndexController::class, "index");
+
+        $group->get("/redirect/1", RedirectController::class, "redirect1");
+        $group->get("/redirect/2", RedirectController::class, "redirect2");
+        $group->get("/redirect/3", RedirectController::class, "redirect3");
+        $group->get("/redirect/finish", RedirectController::class, "finish");
+
+        $I->amOnPage("/");
+
+        $I->seeCurrentUrlEquals("/");
+
+        $I->amOnPage("/redirect/1");
+
+        $I->seeCurrentUrlEquals("/redirect/finish");
     }
 
 
@@ -173,6 +188,24 @@ class RouterActionsCest
 
 
 
+    public function testGrabResponseCode(CodeceptionTester $I): void
+    {
+        $group = $I->makeRouterGroup();
+
+        $group->get("/", IndexController::class, "index");
+
+
+
+        $I->amOnPage("/");
+
+        $responseCode = $I->grabResponseCode();
+
+        $I->assertEquals(
+            200,
+            $responseCode
+        );
+    }
+
     public function testSeeResponseCodeIs(CodeceptionTester $I): void
     {
         $router = $I->grabRouter();
@@ -214,6 +247,19 @@ class RouterActionsCest
         $I->amOnPage("/");
 
         $I->seeResponseCodeIsSuccessful();
+    }
+
+    public function testSeeResponseCodeIsServerError(CodeceptionTester $I): void
+    {
+        $group = $I->makeRouterGroup();
+
+        $group->get("/internal-server-error", ExceptionController::class, "internalServerError");
+
+
+
+        $I->amOnPage("/internal-server-error");
+
+        $I->seeResponseCodeIsServerError();
     }
 
     public function testSeePageNotFound(CodeceptionTester $I): void

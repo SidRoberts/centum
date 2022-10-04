@@ -24,7 +24,9 @@ permalink: testing/router
 - `grabResponseContent(): string`
 - `seeResponseContentEquals(string $expected): void`
 - `seeResponseContentContains(string $expected): void`
+- `grabResponseCode(): int`
 - `seeResponseCodeIs(int $expected, string $message = ""): void`
 - `seeResponseCodeIsNot(int $expected, string $message = ""): void`
 - `seeResponseCodeIsSuccessful(string $message = ""): void`
+- `seeResponseCodeIsServerError(string $message = ""): void`
 - `seePageNotFound(string $message = ""): void`
