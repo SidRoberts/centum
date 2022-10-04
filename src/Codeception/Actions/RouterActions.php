@@ -82,6 +82,9 @@ trait RouterActions
 
 
 
+    /**
+     * @param array<string, mixed> $params
+     */
     public function amOnPage(string $uri, array $params = []): void
     {
         $data = new Data($params);
@@ -210,7 +213,7 @@ trait RouterActions
 
         Assert::assertMatchesRegularExpression(
             "/^2\d{2}$/",
-            $responseCode,
+            (string) $responseCode,
             $message
         );
     }
@@ -221,7 +224,7 @@ trait RouterActions
 
         Assert::assertMatchesRegularExpression(
             "/^5\d{2}$/",
-            $responseCode,
+            (string) $responseCode,
             $message
         );
     }

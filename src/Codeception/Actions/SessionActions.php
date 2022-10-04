@@ -54,6 +54,7 @@ trait SessionActions
 
     public function seeValueInSessionIs(string $key, string $expectedValue): void
     {
+        /** @var mixed */
         $actualValue = $this->grabFromSession($key);
 
         Assert::assertEquals(
@@ -64,6 +65,7 @@ trait SessionActions
 
     public function seeValueInSessionIsNot(string $key, string $expectedValue): void
     {
+        /** @var mixed */
         $actualValue = $this->grabFromSession($key);
 
         Assert::assertNotEquals(
