@@ -17,7 +17,7 @@ permalink: testing/router
 - `stopFollowingRedirects(): void`
 - `seeRouteExists(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
 - `seeRouteNotFound(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
-- `amOnPage(string $uri): void`
+- `amOnPage(string $uri, array $params): void`
 - `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
 - `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
 - `grabCurrentUri(): string`

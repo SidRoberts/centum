@@ -2,6 +2,7 @@
 
 namespace Centum\Codeception\Actions;
 
+use Centum\Http\Data;
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
@@ -81,9 +82,11 @@ trait RouterActions
 
 
 
-    public function amOnPage(string $uri): void
+    public function amOnPage(string $uri, array $params = []): void
     {
-        $request = new Request($uri);
+        $data = new Data($params);
+
+        $request = new Request($uri, "GET", $data);
 
         $this->handleRequest($request);
     }
