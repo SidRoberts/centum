@@ -7,6 +7,7 @@ use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
+use Codeception\Exception\ModuleException;
 use PHPUnit\Framework\Assert;
 
 trait ConsoleActions
@@ -96,6 +97,11 @@ trait ConsoleActions
     }
 
 
+
+    public function grabExitCode(): int
+    {
+        return $this->exitCode ?? throw new ModuleException($this, "Command hasn't been executed yet.");
+    }
 
     public function seeExitCodeIs(int $expected, string $message = ""): void
     {
