@@ -50,6 +50,30 @@ trait SessionActions
         return $session->get($key, $defaultValue);
     }
 
+
+
+    public function seeValueInSessionIs(string $key, string $expectedValue): void
+    {
+        $actualValue = $this->grabFromSession($key);
+
+        Assert::assertEquals(
+            $expectedValue,
+            $actualValue
+        );
+    }
+
+    public function seeValueInSessionIsNot(string $key, string $expectedValue): void
+    {
+        $actualValue = $this->grabFromSession($key);
+
+        Assert::assertNotEquals(
+            $expectedValue,
+            $actualValue
+        );
+    }
+
+
+
     public function removeFromSession(string $key): mixed
     {
         $session = $this->grabSession();

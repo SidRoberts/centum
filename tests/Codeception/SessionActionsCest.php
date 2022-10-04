@@ -65,6 +65,28 @@ class SessionActionsCest
         );
     }
 
+    public function testSeeValueInSessionIs(CodeceptionTester $I): void
+    {
+        $session = new ArraySession();
+
+        $session->set("number", 123);
+
+        $I->addToContainer(SessionInterface::class, $session);
+
+        $I->seeValueInSessionIs("number", 123);
+    }
+
+    public function testSeeValueInSessionIsNot(CodeceptionTester $I): void
+    {
+        $session = new ArraySession();
+
+        $session->set("number", 123);
+
+        $I->addToContainer(SessionInterface::class, $session);
+
+        $I->seeValueInSessionIsNot("number", 456);
+    }
+
     public function testRemoveFromSession(CodeceptionTester $I): void
     {
         $session = new ArraySession();
