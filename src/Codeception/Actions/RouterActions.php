@@ -133,13 +133,13 @@ trait RouterActions
         return $this->currentURI;
     }
 
-    public function seeCurrentUriEquals(string $uri): void
+    public function seeCurrentUriEquals(string $expectedUri): void
     {
         $currentUri = $this->grabCurrentUri();
 
         Assert::assertEquals(
-            $currentUri,
-            $uri
+            $expectedUri,
+            $currentUri
         );
     }
 

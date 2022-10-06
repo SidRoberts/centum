@@ -21,7 +21,7 @@ permalink: testing/router
 - `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
 - `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
 - `grabCurrentUri(): string`
-- `seeCurrentUriEquals(string $uri): void`
+- `seeCurrentUriEquals(string $expectedUri): void`
 - `grabResponseContent(): string`
 - `seeResponseContentEquals(string $expected): void`
 - `seeResponseContentContains(string $expected): void`
