@@ -3,10 +3,11 @@
 namespace Centum\Console;
 
 use Centum\Interfaces\Console\TerminalInterface;
+use InvalidArgumentException;
 
 class Terminal implements TerminalInterface
 {
-    /** @var list<string> */
+    /** @var array<string> */
     protected readonly array $argv;
 
     /** @var resource */
@@ -21,15 +22,14 @@ class Terminal implements TerminalInterface
 
 
     /**
-     * @param list<string> $argv
+     * @param array<string> $argv
      * @param resource $stdin
      * @param resource $stdout
      * @param resource $stderr
      */
     public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT, $stderr = STDERR)
     {
-        /** @var list<string> */
-        $this->argv = $argv ?? $_SERVER["argv"];
+        $this->argv = $argv ?? $_SERVER["argv"] ?? throw new InvalidArgumentException("Unable to find \`argv\`.");
 
         $this->stdin  = $stdin;
         $this->stdout = $stdout;
@@ -39,7 +39,7 @@ class Terminal implements TerminalInterface
 
 
     /**
-     * @return list<string>
+     * @return array<string>
      */
     public function getArgv(): array
     {
@@ -85,7 +85,7 @@ class Terminal implements TerminalInterface
     }
 
     /**
-     * @param list<string> $list
+     * @param array<string> $list
      */
     public function writeList(array $list): void
     {

@@ -134,11 +134,11 @@ class Router implements RouterInterface
         /**
          * Remove integer keys from params.
          *
-         * @var array<string, mixed>
+         * @var array<string, string>
          */
         $parameters = array_filter(
             $parameters,
-            function (string $key): bool {
+            function (string|int $key): bool {
                 return !is_int($key);
             },
             ARRAY_FILTER_USE_KEY

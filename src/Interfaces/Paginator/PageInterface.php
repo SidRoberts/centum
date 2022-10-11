@@ -22,8 +22,14 @@ interface PageInterface
 
 
 
+    /**
+     * @return array<int>
+     */
     public function getPageNumbersBefore(int $max): array;
 
+    /**
+     * @return array<int>
+     */
     public function getPageNumbersAfter(int $max): array;
 
 

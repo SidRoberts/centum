@@ -26,7 +26,6 @@ class ListCommand extends Command
 
         $commands = $application->getCommands();
 
-        /** @var list<string> */
         $commandNames = array_keys($commands);
 
         sort($commandNames);

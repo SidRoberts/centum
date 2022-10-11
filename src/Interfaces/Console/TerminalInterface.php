@@ -5,7 +5,7 @@ namespace Centum\Interfaces\Console;
 interface TerminalInterface
 {
     /**
-     * @return list<string>
+     * @return array<string>
      */
     public function getArgv(): array;
 
@@ -31,7 +31,7 @@ interface TerminalInterface
     public function writeLine(string $string = ""): void;
 
     /**
-     * @param list<string> $list
+     * @param array<string> $list
      */
     public function writeList(array $list): void;
 

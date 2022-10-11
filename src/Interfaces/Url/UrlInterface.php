@@ -8,5 +8,8 @@ interface UrlInterface
 
 
 
+    /**
+     * @param array<mixed> $arguments
+     */
     public function get(string $uri = "", array $arguments = []): string;
 }

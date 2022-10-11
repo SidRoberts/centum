@@ -20,5 +20,8 @@ interface SessionInterface
 
     public function clear(): void;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function all(): array;
 }

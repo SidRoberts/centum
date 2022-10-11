@@ -57,6 +57,9 @@ class Application implements ApplicationInterface
         return $this->commands[$name] ?? throw new OutOfRangeException();
     }
 
+    /**
+     * @return array<string, CommandInterface>
+     */
     public function getCommands(): array
     {
         return $this->commands;
@@ -87,7 +90,6 @@ class Application implements ApplicationInterface
         try {
             $filters = $command->getFilters($this->container);
 
-            /** @var string $key */
             foreach ($filters as $key => $filter) {
                 if (!($filter instanceof FilterInterface)) {
                     throw new InvalidFilterException($filter);

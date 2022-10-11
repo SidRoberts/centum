@@ -3,6 +3,7 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\RequestInterface;
+use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class RequestFactory
@@ -10,6 +11,12 @@ class RequestFactory
     public function createFromGlobals(): RequestInterface
     {
         $inputStream = fopen("php://input", "r");
+
+        if ($inputStream === false) {
+            throw new Exception(
+                "Failed to open input stream."
+            );
+        }
 
         $content = stream_get_contents($inputStream);
 
@@ -23,6 +30,12 @@ class RequestFactory
 
         // Remove parameter string
         $uri = parse_url($uri, PHP_URL_PATH);
+
+        if (!is_string($uri)) {
+            throw new Exception(
+                "Failed to parse URI."
+            );
+        }
 
         /** @var string */
         $method = $server["REQUEST_METHOD"] ?? "GET";
@@ -80,8 +93,8 @@ class RequestFactory
         /** @var array<string, mixed> */
         $parameters = $browserKitRequest->getParameters();
 
-        $requestUri = \parse_url($uri, PHP_URL_PATH);
-        $method     = \strtoupper($browserKitRequest->getMethod());
+        $requestUri = parse_url($uri, PHP_URL_PATH);
+        $method     = strtoupper($browserKitRequest->getMethod());
         $data       = new Data($parameters);
         $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
         $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);

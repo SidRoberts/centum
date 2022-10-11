@@ -104,7 +104,7 @@ class FormCest
 
 
 
-        /** @var array */
+        /** @var array<string, mixed> */
         $data = $example["data"];
 
         $status = $form->validate($data);

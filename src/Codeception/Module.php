@@ -32,7 +32,7 @@ class Module extends CodeceptionModule
      *
      * @psalm-suppress all
      */
-    public function _beforeSuite($settings = [])
+    public function _beforeSuite(array $settings = [])
     {
         parent::_beforeSuite($settings);
 
@@ -124,7 +124,7 @@ class Module extends CodeceptionModule
     }
 
     /**
-     * @template T
+     * @template T of object
      * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */
@@ -148,7 +148,7 @@ class Module extends CodeceptionModule
 
 
     /**
-     * @template T
+     * @template T of object
      * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */
@@ -169,7 +169,7 @@ class Module extends CodeceptionModule
     }
 
     /**
-     * @template T
+     * @template T of object
      * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */

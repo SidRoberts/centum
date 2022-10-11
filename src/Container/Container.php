@@ -68,7 +68,7 @@ class Container implements ContainerInterface
 
 
     /**
-     * @template T
+     * @template T of object
      * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */
@@ -151,7 +151,9 @@ class Container implements ContainerInterface
     public function setDynamic(string $interface, Closure | string $function): void
     {
         /** @var object */
-        $this->objects[$interface] = $this->typehintFunction($function);
+        $object = $this->typehintFunction($function);
+
+        $this->objects[$interface] = $object;
     }
 
     /**

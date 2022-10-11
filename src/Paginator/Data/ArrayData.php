@@ -7,11 +7,18 @@ use Centum\Paginator\Exception\InvalidTotalException;
 
 class ArrayData implements DataInterface
 {
+    /**
+     * @var array<mixed> $data
+     */
     protected readonly array $data;
+
     protected readonly int $total;
 
 
 
+    /**
+     * @param array<mixed> $data
+     */
     public function __construct(array $data, int $total)
     {
         if ($total < 0) {
@@ -29,6 +36,9 @@ class ArrayData implements DataInterface
         return $this->total;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function toArray(): array
     {
         return $this->data;

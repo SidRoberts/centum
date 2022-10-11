@@ -78,6 +78,9 @@ class Page implements PageInterface
 
 
 
+    /**
+     * @return array<int>
+     */
     public function getPageNumbersBefore(int $max): array
     {
         if ($max < 0) {
@@ -99,6 +102,9 @@ class Page implements PageInterface
         return range($startPageNumber, $previousPageNumber);
     }
 
+    /**
+     * @return array<int>
+     */
     public function getPageNumbersAfter(int $max): array
     {
         if ($max < 0) {

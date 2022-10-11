@@ -6,13 +6,14 @@ use Centum\Interfaces\Cron\CronInterface;
 
 class CronFactory
 {
+    /**
+     * @param array<array{0: string, 1: mixed}> $array
+     */
     public function createFromArray(array $array): CronInterface
     {
         $cron = new Cron();
 
-        /** @var array $jobArray */
         foreach ($array as $jobArray) {
-            /** @var string */
             $expression = $jobArray[0];
 
             /** @var mixed */

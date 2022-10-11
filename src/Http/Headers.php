@@ -63,6 +63,9 @@ class Headers implements HeadersInterface
         return $this->headers;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function toArray(): array
     {
         $headers = [];

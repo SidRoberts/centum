@@ -63,6 +63,9 @@ class Cookies implements CookiesInterface
         return $this->cookies;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function toArray(): array
     {
         $cookies = [];

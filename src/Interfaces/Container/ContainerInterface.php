@@ -7,7 +7,7 @@ use Closure;
 interface ContainerInterface
 {
     /**
-     * @template T
+     * @template T of object
      * @psalm-param interface-string<T>|class-string<T> $class
      * @psalm-return T
      */

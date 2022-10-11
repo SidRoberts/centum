@@ -22,8 +22,14 @@ class Form implements FormInterface
 
 
 
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<string, mixed>
+     */
     public function getFilteredValues(array $data): array
     {
+        /** @var array<string, mixed> */
         $filteredValues = [];
 
         foreach ($this->fields as $name => $field) {
@@ -39,6 +45,9 @@ class Form implements FormInterface
 
 
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function validate(array $data): StatusInterface
     {
         $messages = [];

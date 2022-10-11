@@ -23,5 +23,8 @@ interface CookiesInterface
      */
     public function all(): array;
 
+    /**
+     * @return array<string, string>
+     */
     public function toArray(): array;
 }

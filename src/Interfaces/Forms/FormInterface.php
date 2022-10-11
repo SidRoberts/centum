@@ -8,9 +8,17 @@ interface FormInterface
 
 
 
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<string, mixed>
+     */
     public function getFilteredValues(array $data): array;
 
 
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function validate(array $data): StatusInterface;
 }

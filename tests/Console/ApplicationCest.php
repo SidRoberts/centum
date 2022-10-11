@@ -5,7 +5,6 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
-use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Attribute\DataProvider;
@@ -14,7 +13,6 @@ use OutOfRangeException;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\ErrorCommand;
 use Tests\Support\Commands\FilterCommand;
-use Tests\Support\Commands\InvalidFiltersCommand;
 use Tests\Support\Commands\MainCommand;
 use Tests\Support\Commands\MathCommand;
 use Tests\Support\Commands\Middleware\FalseCommand;
@@ -47,10 +45,6 @@ class ApplicationCest
 
         $application->addCommand(
             new ProblematicCommand()
-        );
-
-        $application->addCommand(
-            new InvalidFiltersCommand()
         );
 
         $application->addCommand(
@@ -199,27 +193,6 @@ class ApplicationCest
 
         $I->expectThrowable(
             new CommandNotFoundException($name),
-            function () use ($application, $terminal): void {
-                $application->handle($terminal);
-            }
-        );
-    }
-
-    public function testCommandWithInvalidFilters(ConsoleTester $I): void
-    {
-        $argv = [
-            "cli.php",
-            "invalid-filters",
-        ];
-
-        $terminal = $I->createTerminal($argv);
-
-        $container = $I->grabContainer();
-
-        $application = $this->getApplication($container);
-
-        $I->expectThrowable(
-            new InvalidFilterException($terminal),
             function () use ($application, $terminal): void {
                 $application->handle($terminal);
             }

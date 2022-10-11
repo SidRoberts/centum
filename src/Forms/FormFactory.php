@@ -17,13 +17,16 @@ class FormFactory
                 continue;
             }
 
+            /** @var callable */
+            $callable = [
+                $template,
+                $method,
+            ];
+
             $field = new Field($method);
 
             call_user_func_array(
-                [
-                    $template,
-                    $method,
-                ],
+                $callable,
                 [
                     $field,
                 ]

@@ -31,6 +31,9 @@ class MiddlewareGroup implements MiddlewareInterface
 
 
 
+    /**
+     * @return array<MiddlewareInterface>
+     */
     public function toArray(): array
     {
         return $this->middlewares;

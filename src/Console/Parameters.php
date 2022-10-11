@@ -12,7 +12,7 @@ class Parameters implements ParametersInterface
 
 
     /**
-     * @param list<string> $argv
+     * @param array<string> $argv
      */
     public function __construct(array $argv)
     {
@@ -37,7 +37,7 @@ class Parameters implements ParametersInterface
                 $value = array_shift($argv);
             }
 
-            $this->parameters[$name] = $value;
+            $this->set($name, $value);
         }
     }
 

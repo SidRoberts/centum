@@ -11,8 +11,14 @@ interface FieldInterface
 
 
 
+    /**
+     * @return array<FilterInterface>
+     */
     public function getFilters(): array;
 
+    /**
+     * @return array<ValidatorInterface>
+     */
     public function getValidators(): array;
 
 

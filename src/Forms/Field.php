@@ -33,11 +33,17 @@ class Field implements FieldInterface
 
 
 
+    /**
+     * @return array<FilterInterface>
+     */
     public function getFilters(): array
     {
         return $this->filters;
     }
 
+    /**
+     * @return array<ValidatorInterface>
+     */
     public function getValidators(): array
     {
         return $this->validators;

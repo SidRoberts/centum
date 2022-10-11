@@ -6,11 +6,18 @@ use Centum\Interfaces\Filter\FilterInterface;
 
 class Whitelist implements FilterInterface
 {
+    /**
+     * @var array<mixed>
+     */
     protected readonly array $whitelist;
+
     protected readonly bool $strict;
 
 
 
+    /**
+     * @param array<mixed> $whitelist
+     */
     public function __construct(array $whitelist, bool $strict = true)
     {
         $this->whitelist = $whitelist;

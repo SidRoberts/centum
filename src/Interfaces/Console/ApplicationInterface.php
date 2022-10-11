@@ -11,6 +11,9 @@ interface ApplicationInterface
 
     public function getCommand(string $name): CommandInterface;
 
+    /**
+     * @return array<string, CommandInterface>
+     */
     public function getCommands(): array;
 
 

@@ -3,6 +3,7 @@
 namespace Centum\Interfaces\Console;
 
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Filter\FilterInterface;
 
 interface CommandInterface
 {
@@ -16,6 +17,9 @@ interface CommandInterface
 
     public function getMiddleware(): MiddlewareInterface;
 
+    /**
+     * @return array<string, FilterInterface>
+     */
     public function getFilters(ContainerInterface $container): array;
 
 

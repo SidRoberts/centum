@@ -3,6 +3,7 @@
 namespace Centum\Filter\Cast;
 
 use Centum\Interfaces\Filter\FilterInterface;
+use InvalidArgumentException;
 
 class ToString implements FilterInterface
 {
@@ -16,6 +17,10 @@ class ToString implements FilterInterface
             return json_encode($value);
         }
 
-        return (string) $value;
+        if (!is_null($value) && !is_object($value) && !is_scalar($value)) {
+            throw new InvalidArgumentException();
+        }
+
+        return strval($value);
     }
 }
