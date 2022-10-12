@@ -10,9 +10,9 @@ use Centum\Codeception\Actions\FilterActions;
 use Centum\Codeception\Actions\HeaderActions;
 use Centum\Codeception\Actions\HtmlActions;
 use Centum\Codeception\Actions\JsonActions;
+use Centum\Codeception\Actions\QueueActions;
 use Centum\Codeception\Actions\RouterActions;
 use Centum\Codeception\Actions\SessionActions;
-use Centum\Codeception\Actions\TaskActions;
 use Centum\Codeception\Actions\UnitTestActions;
 use Centum\Codeception\Actions\ValidatorActions;
 use Codeception\Actor;
@@ -32,9 +32,9 @@ class CodeceptionTester extends Actor
     use HeaderActions;
     use HtmlActions;
     use JsonActions;
+    use QueueActions;
     use RouterActions;
     use SessionActions;
-    use TaskActions;
     use UnitTestActions;
     use ValidatorActions;
 }
