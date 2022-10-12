@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 class ToLower implements FilterInterface
 {
-    public function filter(mixed $value): mixed
+    public function filter(mixed $value): string
     {
         if (!is_string($value)) {
             throw new InvalidArgumentException("Value must be a string.");

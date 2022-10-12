@@ -3,13 +3,24 @@
 namespace Centum\Filter\Cast;
 
 use Centum\Interfaces\Filter\FilterInterface;
+use Exception;
 
 class ToArray implements FilterInterface
 {
-    public function filter(mixed $value): mixed
+    /**
+     * @return array<mixed>
+     */
+    public function filter(mixed $value): array
     {
         if (is_object($value) && method_exists($value, "toArray")) {
-            return $value->toArray();
+            /** @var mixed */
+            $value = $value->toArray();
+
+            if (!is_array($value)) {
+                throw new Exception(
+                    "toArray() did not return an array."
+                );
+            }
         }
 
         return (array) $value;

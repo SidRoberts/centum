@@ -6,7 +6,7 @@ use Centum\Interfaces\Filter\FilterInterface;
 
 class ToBool implements FilterInterface
 {
-    public function filter(mixed $value): mixed
+    public function filter(mixed $value): bool
     {
         return (bool) $value;
     }

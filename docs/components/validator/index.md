@@ -10,6 +10,20 @@ permalink: validator
 
 # `Centum\Validator`
 
+Validators are used to validate data and provide useful error messages explaining why a piece of data failed.
+
+{: .highlight }
+All validators implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php).
+
+Validators must implement one public method:
+
+- `validate(mixed $value): array<string>`
+
+The `validate()` method must return an array of string messages explaining why the data is not valid.
+If a piece of data is valid, then `validate()` would return an empty array.
+
+
+
 ## Available Validators
 
 - [`Centum\Validator\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Validator/Alpha.php)
