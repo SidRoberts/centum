@@ -143,13 +143,20 @@ trait RouterActions
         );
     }
 
-    public function grabResponseContent(): string
+    public function grabResponse(): ResponseInterface
     {
         if (!$this->response) {
             throw new ModuleException($this, "Page not loaded.");
         }
 
-        return $this->response->getContent();
+        return $this->response;
+    }
+
+    public function grabResponseContent(): string
+    {
+        $response = $this->grabResponse();
+
+        return $response->getContent();
     }
 
 
@@ -178,11 +185,11 @@ trait RouterActions
 
     public function grabResponseCode(): int
     {
-        if (!$this->response) {
-            throw new ModuleException($this, "Page not loaded.");
-        }
+        $response = $this->grabResponse();
 
-        return $this->response->getStatus()->getCode();
+        $status = $response->getStatus();
+
+        return $status->getCode();
     }
 
     public function seeResponseCodeIs(int $expected, string $message = ""): void
