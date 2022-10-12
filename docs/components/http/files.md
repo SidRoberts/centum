@@ -104,3 +104,17 @@ $filesFactory = new FilesFactory();
 
 $files = $filesFactory->createFromGlobals();
 ```
+
+
+
+## File Factory
+
+You can obtain a [`File`](https://github.com/SidRoberts/centum/blob/development/src/Http/File.php) object from a real file using the [`FileFactory`](https://github.com/SidRoberts/centum/blob/development/src/Http/FileFactory.php):
+
+```php
+use Centum\Http\FileFactory;
+
+$fileFactory = new FileFactory();
+
+$file = $fileFactory->createFromRealFile("/path/to/a/file.txt");
+```
