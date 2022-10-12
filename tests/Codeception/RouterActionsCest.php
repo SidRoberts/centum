@@ -7,6 +7,7 @@ use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Exception\RouteNotFoundException;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Controllers\ExceptionController;
+use Tests\Support\Controllers\HeadersController;
 use Tests\Support\Controllers\HtmlController;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\Controllers\RedirectController;
