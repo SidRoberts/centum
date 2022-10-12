@@ -10,7 +10,7 @@ use Pheanstalk\Job;
 use Throwable;
 use UnexpectedValueException;
 
-class Queue implements QueueInterface
+class BeanstalkdQueue implements QueueInterface
 {
     protected readonly ContainerInterface $container;
     protected readonly PheanstalkInterface $pheanstalk;

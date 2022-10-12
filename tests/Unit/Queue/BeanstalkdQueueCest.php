@@ -3,7 +3,7 @@
 namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
-use Centum\Queue\Queue;
+use Centum\Queue\BeanstalkdQueue;
 use Mockery\MockInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
@@ -14,7 +14,7 @@ use Tests\Support\UnitTester;
 use Throwable;
 use UnexpectedValueException;
 
-class QueueCest
+class BeanstalkdQueueCest
 {
     public function testPublish(UnitTester $I): void
     {
@@ -32,7 +32,7 @@ class QueueCest
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($serializedTask, $job): void {
                 $mock->shouldReceive("useTube")
-                    ->with(Queue::TUBE);
+                    ->with(BeanstalkdQueue::TUBE);
 
                 $mock->shouldReceive("put")
                     ->with($serializedTask)
@@ -44,7 +44,7 @@ class QueueCest
 
         $container = new Container();
 
-        $queue = new Queue($container, $pheanstalk);
+        $queue = new BeanstalkdQueue($container, $pheanstalk);
 
         $queue->publish($task);
     }
@@ -67,7 +67,7 @@ class QueueCest
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
-                    ->with(Queue::TUBE);
+                    ->with(BeanstalkdQueue::TUBE);
 
                 $mock->shouldReceive("reserve")
                     ->andReturn($job);
@@ -82,7 +82,7 @@ class QueueCest
 
         $container = new Container();
 
-        $queue = new Queue($container, $pheanstalk);
+        $queue = new BeanstalkdQueue($container, $pheanstalk);
 
         $queue->consume();
     }
@@ -103,7 +103,7 @@ class QueueCest
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
-                    ->with(Queue::TUBE);
+                    ->with(BeanstalkdQueue::TUBE);
 
                 $mock->shouldReceive("reserve")
                     ->andReturn($job);
@@ -118,7 +118,7 @@ class QueueCest
 
         $container = new Container();
 
-        $queue = new Queue($container, $pheanstalk);
+        $queue = new BeanstalkdQueue($container, $pheanstalk);
 
 
 
@@ -148,7 +148,7 @@ class QueueCest
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
-                    ->with(Queue::TUBE);
+                    ->with(BeanstalkdQueue::TUBE);
 
                 $mock->shouldReceive("reserve")
                     ->andReturn($job);
@@ -163,7 +163,7 @@ class QueueCest
 
         $container = new Container();
 
-        $queue = new Queue($container, $pheanstalk);
+        $queue = new BeanstalkdQueue($container, $pheanstalk);
 
         $I->expectThrowable(
             Throwable::class,

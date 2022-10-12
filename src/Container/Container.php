@@ -21,15 +21,11 @@ use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Http\CsrfInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
-use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Interfaces\Url\UrlInterface;
-use Centum\Queue\Queue;
 use Centum\Router\Router;
 use Centum\Url\Url;
 use Closure;
-use Pheanstalk\Contract\PheanstalkInterface;
-use Pheanstalk\Pheanstalk;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
@@ -49,8 +45,6 @@ class Container implements ContainerInterface
         CronInterface::class        => Cron::class,
         CsrfInterface::class        => Csrf::class,
         FlashInterface::class       => Flash::class,
-        PheanstalkInterface::class  => Pheanstalk::class,
-        QueueInterface::class       => Queue::class,
         RequestInterface::class     => Request::class,
         RouterInterface::class      => Router::class,
         SessionInterface::class     => GlobalSession::class,

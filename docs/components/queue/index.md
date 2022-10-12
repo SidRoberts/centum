@@ -10,33 +10,24 @@ permalink: queue
 
 # `Centum\Queue`
 
-The Queue component acts as a very simple and focussed frontend for [Beanstalkd](https://beanstalkd.github.io/).
-Internally it uses [Pheanstalk](https://github.com/pheanstalk/pheanstalk) to interact with a Beanstalkd server.
-It is solely designed for offloading work so that it can be processed elsewhere or at a later time.
+The Queue component is designed for offloading work so that it can be processed elsewhere or at a later time.
 This is especially useful for tasks that could take a long time, be hardware intensive, or otherwise negatively affect the application's performance.
 
-```php
-Centum\Queue\Queue(
-    Centum\Interfaces\Container\ContainerInterface $container,
-    Pheanstalk\Contract\PheanstalkInterface $pheanstalk
-);
-```
-
-{: .highlight }
-[`Centum\Queue\Queue`](https://github.com/SidRoberts/centum/blob/development/src/Queue/Queue.php) implements [`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php).
-
-[`Centum\Queue\Queue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/Queue.php) features two public methods:
+[`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php) features two public methods:
 
 * `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
 * `consume(): Centum\Interfaces\Queue\TaskInterface`
 
+The `consume()` method will retreive the next available Task and also execute it.
+If a Task throws an Exception whilst it is being consumed, the Queue component **may** bury it or mark it as failed so that it can be dealt with later.
+
 Both methods work with [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Queue/TaskInterface.php) which represents a piece of work that a background worker can execute.
-Tasks are serialised and unserialised as they are transported through Beanstalkd so any complicated objects should be called through the Container in the `execute()` method:
+Tasks may be serialised/unserialised internally so any complicated objects should be called through the Container in the `execute()` method:
 
 ```php
 namespace App\Tasks;
 
-use Centum\Container\Container;
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 
 class LogTask implements TaskInterface
@@ -48,7 +39,7 @@ class LogTask implements TaskInterface
         $this->message = $message;
     }
 
-    public function execute(Container $container): void
+    public function execute(ContainerInterface $container): void
     {
         $line = sprintf(
             "[%s] %s" . PHP_EOL,
@@ -61,7 +52,7 @@ class LogTask implements TaskInterface
 }
 ```
 
-This Task can be published from anywhere and consumed from anywhere else in your code.
+This Task can then be published from anywhere and consumed from anywhere else in your code.
 One typical use case is publishing a Task from within a Controller and then consuming it in a Command:
 
 ```php
@@ -112,15 +103,32 @@ class QueueConsumeCommand extends Command
 }
 ```
 
-If a Task throws an Exception whilst it is being consumed, the Queue component will automatically bury it on Pheanstalk so that it can be dealt with later.
 
-Queue uses the `centum-tasks` tube to store Tasks (available from `Centum\Queue\Queue::TUBE`).
+
+## Beanstalk Queue
+
+[`Centum\Queue\BeanstalkdQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/BeanstalkdQueue.php) acts as a very simple and focussed frontend for [Beanstalkd](https://beanstalkd.github.io/).
+Internally it uses [Pheanstalk](https://github.com/pheanstalk/pheanstalk) to interact with a Beanstalkd server.
+
+```php
+Centum\Queue\BeanstalkdQueue(
+    Centum\Interfaces\Container\ContainerInterface $container,
+    Pheanstalk\Contract\PheanstalkInterface $pheanstalk
+);
+```
+
+It uses the `centum-tasks` tube to store Tasks (available from `Centum\Queue\BeanstalkdQueue::TUBE`).
 
 
 
 ## Array Queue
 
-The [`Centum\Queue\ArrayQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ArrayQueue.php) class provides the same functionality as `Centum\Queue\Queue` but without using Pheanstalk.
+The [`Centum\Queue\ArrayQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ArrayQueue.php) class stores Tasks in an array and are not persistent.
 
-Tasks are stored in an array with the object and are not persistent.
+```php
+Centum\Queue\ArrayQueue(
+    Centum\Interfaces\Container\ContainerInterface $container
+);
+```
+
 As this is designed for testing and development, it also providers the getters `getTasks()` and `getBuriedTasks()` so that you can inspect the contents of the queue.

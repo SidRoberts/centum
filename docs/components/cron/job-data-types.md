@@ -59,20 +59,20 @@ foreach ($dueJobs as $job) {
 ```
 
 To enforce a particular type, you can extend `Centum\Cron\Job`.
-For example, you can use this class to enforce that all jobs use a [`Centum\Queue\Task` object](../queue/index.md):
+For example, you can use this class to enforce that all jobs use a [`Centum\Interfaces\Queue\TaskInterface` object](../queue/index.md):
 
 ```php
 use Centum\Cron\Job;
-use Centum\Queue\Task;
+use Centum\Interfaces\Queue\TaskInterface;
 
 class TaskJob extends Job
 {
-    public function __construct(string $expression, Task $data)
+    public function __construct(string $expression, TaskInterface $data)
     {
         parent::__construct($expression, $data);
     }
 
-    public function getData(): Task
+    public function getData(): TaskInterface
     {
         return $this->data;
     }
