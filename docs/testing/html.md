@@ -12,7 +12,7 @@ permalink: testing/html
 [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
 
 - `grabTextContent(): string`
-- `submitForm(string $selector, array $data = []): void`
+- `submitForm(string $selector, array $data = [], Files $files = null): void`
 - `see(string $needle): void`
 - `dontSee(string $needle): void`
 - `seeInSource(string $needle): void`

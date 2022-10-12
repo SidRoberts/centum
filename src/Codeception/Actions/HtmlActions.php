@@ -3,6 +3,7 @@
 namespace Centum\Codeception\Actions;
 
 use Centum\Http\Data;
+use Centum\Http\Files;
 use Centum\Http\Request;
 use Codeception\Exception\ModuleException;
 use Exception;
@@ -31,7 +32,7 @@ trait HtmlActions
     /**
      * @param array<string, mixed> $data
      */
-    public function submitForm(string $selector, array $data = []): void
+    public function submitForm(string $selector, array $data = [], Files $files = null): void
     {
         if (!$this->currentURI) {
             throw new ModuleException($this, "Page not loaded.");
@@ -55,7 +56,7 @@ trait HtmlActions
 
         $data = new Data($data);
 
-        $request = new Request($uri, $method, $data);
+        $request = new Request($uri, $method, $data, null, null, $files);
 
         $this->handleRequest($request);
     }
