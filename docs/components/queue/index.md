@@ -115,3 +115,12 @@ class QueueConsumeCommand extends Command
 If a Task throws an Exception whilst it is being consumed, the Queue component will automatically bury it on Pheanstalk so that it can be dealt with later.
 
 Queue uses the `centum-tasks` tube to store Tasks (available from `Centum\Queue\Queue::TUBE`).
+
+
+
+## Array Queue
+
+The [`Centum\Queue\ArrayQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ArrayQueue.php) class provides the same functionality as `Centum\Queue\Queue` but without using Pheanstalk.
+
+Tasks are stored in an array with the object and are not persistent.
+As this is designed for testing and development, it also providers the getters `getTasks()` and `getBuriedTasks()` so that you can inspect the contents of the queue.
