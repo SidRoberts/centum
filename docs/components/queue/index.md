@@ -2,7 +2,7 @@
 layout: default
 title: Queue
 parent: Components
-has_children: false
+has_children: true
 permalink: queue
 ---
 
@@ -102,33 +102,3 @@ class QueueConsumeCommand extends Command
     }
 }
 ```
-
-
-
-## Beanstalk Queue
-
-[`Centum\Queue\BeanstalkdQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/BeanstalkdQueue.php) acts as a very simple and focussed frontend for [Beanstalkd](https://beanstalkd.github.io/).
-Internally it uses [Pheanstalk](https://github.com/pheanstalk/pheanstalk) to interact with a Beanstalkd server.
-
-```php
-Centum\Queue\BeanstalkdQueue(
-    Centum\Interfaces\Container\ContainerInterface $container,
-    Pheanstalk\Contract\PheanstalkInterface $pheanstalk
-);
-```
-
-It uses the `centum-tasks` tube to store Tasks (available from `Centum\Queue\BeanstalkdQueue::TUBE`).
-
-
-
-## Array Queue
-
-The [`Centum\Queue\ArrayQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ArrayQueue.php) class stores Tasks in an array and are not persistent.
-
-```php
-Centum\Queue\ArrayQueue(
-    Centum\Interfaces\Container\ContainerInterface $container
-);
-```
-
-As this is designed for testing and development, it also providers the getters `getTasks()` and `getBuriedTasks()` so that you can inspect the contents of the queue.
