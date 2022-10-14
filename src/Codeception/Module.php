@@ -17,7 +17,7 @@ class Module extends CodeceptionModule
     /**
      * @var array<string, string>
      *
-     * @psalm-suppress all
+     * @psalm-suppress NonInvariantDocblockPropertyType
      */
     protected array $config = [
         "container" => "config/container.php",
@@ -28,9 +28,9 @@ class Module extends CodeceptionModule
 
 
     /**
-     * @return void
+     * @param array<mixed> $settings
      *
-     * @psalm-suppress all
+     * @return void
      */
     public function _beforeSuite(array $settings = [])
     {
@@ -41,8 +41,6 @@ class Module extends CodeceptionModule
 
     /**
      * @return void
-     *
-     * @psalm-suppress all
      */
     public function _before(TestInterface $test)
     {
@@ -53,8 +51,6 @@ class Module extends CodeceptionModule
 
     /**
      * @return void
-     *
-     * @psalm-suppress all
      */
     public function _after(TestInterface $test)
     {
