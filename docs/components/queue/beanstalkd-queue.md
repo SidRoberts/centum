@@ -8,7 +8,7 @@ permalink: queue/beanstalkd-queue
 
 
 
-# Beanstalk Queue
+# Beanstalkd Queue
 
 [`Centum\Queue\BeanstalkdQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/BeanstalkdQueue.php) acts as a very simple and focussed frontend for [Beanstalkd](https://beanstalkd.github.io/).
 Internally it uses [Pheanstalk](https://github.com/pheanstalk/pheanstalk) to interact with a Beanstalkd server.
