@@ -9,7 +9,7 @@ use Centum\Interfaces\Console\ParametersInterface;
 
 class ExitCodeCommand extends Command
 {
-    protected $exitCode;
+    protected int $exitCode;
 
 
 
