@@ -3,7 +3,7 @@
 namespace Centum\Filter\Cast;
 
 use Centum\Interfaces\Filter\FilterInterface;
-use Exception;
+use UnexpectedValueException;
 
 class ToArray implements FilterInterface
 {
@@ -17,7 +17,7 @@ class ToArray implements FilterInterface
             $value = $value->toArray();
 
             if (!is_array($value)) {
-                throw new Exception(
+                throw new UnexpectedValueException(
                     "toArray() did not return an array."
                 );
             }
