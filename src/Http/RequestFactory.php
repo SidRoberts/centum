@@ -2,6 +2,7 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\UriParseException;
 use Centum\Interfaces\Http\RequestInterface;
 use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
@@ -32,9 +33,7 @@ class RequestFactory
         $uri = parse_url($uri, PHP_URL_PATH);
 
         if (!is_string($uri)) {
-            throw new Exception(
-                "Failed to parse URI."
-            );
+            throw new UriParseException();
         }
 
         /** @var string */

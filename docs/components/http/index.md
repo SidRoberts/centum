@@ -21,3 +21,4 @@ permalink: http
 - [`CsrfException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CsrfException.php)
 - [`FileAlreadyMovedException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileAlreadyMovedException.php)
 - [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileGroupNotFoundException.php)
+- [`UriParseException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/UriParseException.php)
