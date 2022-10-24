@@ -5,6 +5,7 @@ namespace Centum\Queue;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
+use Centum\Queue\Exception\NoTasksInQueueException;
 use Exception;
 use Throwable;
 
@@ -34,7 +35,7 @@ class ArrayQueue implements QueueInterface
 
     public function consume(): TaskInterface
     {
-        $task = array_shift($this->tasks) ?? throw new Exception("No tasks in Queue.");
+        $task = array_shift($this->tasks) ?? throw new NoTasksInQueueException();
 
         try {
             $task->execute($this->container);

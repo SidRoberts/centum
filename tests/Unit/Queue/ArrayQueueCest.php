@@ -4,6 +4,7 @@ namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
 use Centum\Queue\ArrayQueue;
+use Centum\Queue\Exception\NoTasksInQueueException;
 use Exception;
 use Tests\Support\Queue\DoNothingTask;
 use Tests\Support\Queue\ProblematicTask;
@@ -45,6 +46,23 @@ class ArrayQueueCest
 
         $queue->consume();
     }
+
+    public function testConsumeTaskWhenQueueIsEmptyThrowsException(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $queue = new ArrayQueue($container);
+
+
+
+        $I->expectThrowable(
+            NoTasksInQueueException::class,
+            function () use ($queue) {
+                $queue->consume();
+            }
+        );
+    }
+
 
 
     public function testBuryJobWhenExceptionIsThrown(UnitTester $I): void

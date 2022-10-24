@@ -19,3 +19,6 @@ Centum\Queue\ArrayQueue(
 ```
 
 As this is designed for testing and development, it also providers the getters `getTasks()` and `getBuriedTasks()` so that you can inspect the contents of the queue.
+
+If you call the `consume()` method when the Queue is empty, [`NoTasksInQueueException`](https://github.com/SidRoberts/centum/blob/development/src/Queue/Exception/NoTasksInQueueException.php) will be thrown.
+This differs from [`BeanstalkdQueue`](beanstalkd-queue.md) which will wait until a Beanstalkd job is created.
