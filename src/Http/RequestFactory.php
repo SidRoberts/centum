@@ -2,9 +2,9 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\FailedToOpenInputStreamException;
 use Centum\Http\Exception\UriParseException;
 use Centum\Interfaces\Http\RequestInterface;
-use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class RequestFactory
@@ -14,9 +14,7 @@ class RequestFactory
         $inputStream = fopen("php://input", "r");
 
         if ($inputStream === false) {
-            throw new Exception(
-                "Failed to open input stream."
-            );
+            throw new FailedToOpenInputStreamException();
         }
 
         $content = stream_get_contents($inputStream);
