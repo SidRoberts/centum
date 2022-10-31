@@ -65,6 +65,7 @@ tests/
 codeception.yml
 composer.json
 docker-compose.yml
+phpstan.neon
 psalm.xml
 ```
 
