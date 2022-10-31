@@ -86,7 +86,7 @@ $.post(
 );
 ```
 
-Regardless of how the CSRF token is placed, `validateCsrf()` must be called somewhere in your Form's `set()` method in order for Centum to validate it:
+Regardless of how the CSRF token is placed, `validateCsrf()` must be called at the top of your Form's `set()` method to validate it:
 
 ```php
 use Centum\Interfaces\Container\ContainerInterface;
@@ -96,8 +96,6 @@ class SubmissionForm extends Form
 {
     public function set(ContainerInterface $container): void
     {
-        // ...
-
         $this->validateCsrf();
 
         // ...
