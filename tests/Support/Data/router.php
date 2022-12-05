@@ -5,6 +5,7 @@ namespace Tests\Support\Controllers;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Router;
 
+/** @psalm-suppress UnnecessaryVarAnnotation */
 /** @var ContainerInterface $container */
 
 ////////////////////////////////////////////////////////////////////////////////
