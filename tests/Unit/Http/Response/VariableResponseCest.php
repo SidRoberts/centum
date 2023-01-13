@@ -5,6 +5,7 @@ namespace Tests\Unit\Http\Response;
 use Centum\Http\Response\VariableResponse;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
+use Composer\Semver\Semver;
 use stdClass;
 use Tests\Support\Filters\Doubler;
 use Tests\Support\UnitTester;
@@ -14,6 +15,15 @@ class VariableResponseCest
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {
+        if (isset($example["version"])) {
+            /** @var string */
+            $version = $example["version"];
+
+            if (!Semver::satisfies(PHP_VERSION, $version)) {
+                $I->markTestSkipped();
+            }
+        }
+
         $response = new VariableResponse($example["variable"]);
 
         /** @var string */
@@ -56,6 +66,13 @@ class VariableResponseCest
             [
                 "variable" => new Doubler(),
                 "expected" => Doubler::class . "::__set_state(array(" . PHP_EOL . "))",
+                "version"  => "< 8.2",
+            ],
+
+            [
+                "variable" => new Doubler(),
+                "expected" => "\\" . Doubler::class . "::__set_state(array(" . PHP_EOL . "))",
+                "version"  => ">= 8.2",
             ],
         ];
     }

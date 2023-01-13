@@ -44,7 +44,9 @@
         "mockery/mockery": "~1.0",
 
         "vimeo/psalm": "~5.0",
-        "psalm/plugin-mockery": "~1.1"
+        "psalm/plugin-mockery": "~1.1",
+
+        "composer/semver": "~3.0"
     },
 
 
