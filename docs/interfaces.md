@@ -13,6 +13,10 @@ nav_order: 3
 - [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/AccessInterface.php)
 - [`Centum\Interfaces\Access\ActivityInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/ActivityInterface.php)
 
+## Clock
+
+- [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Clock/ClockInterface.php)
+
 ## Console
 
 - [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php)

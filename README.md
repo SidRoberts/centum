@@ -14,6 +14,7 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 ## Features
 
 - [Access](https://sidroberts.co.uk/centum/access)
+- [Clock](https://sidroberts.co.uk/centum/clock)
 - [Console](https://sidroberts.co.uk/centum/console)
 - [Container](https://sidroberts.co.uk/centum/container)
 - [Cron](https://sidroberts.co.uk/centum/cron)
