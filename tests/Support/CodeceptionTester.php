@@ -6,6 +6,7 @@ use Centum\Codeception\Actions\AccessActions;
 use Centum\Codeception\Actions\AjaxActions;
 use Centum\Codeception\Actions\ConsoleActions;
 use Centum\Codeception\Actions\CookieActions;
+use Centum\Codeception\Actions\CsrfActions;
 use Centum\Codeception\Actions\FilterActions;
 use Centum\Codeception\Actions\HeaderActions;
 use Centum\Codeception\Actions\HtmlActions;
@@ -28,6 +29,7 @@ class CodeceptionTester extends Actor
     use AjaxActions;
     use ConsoleActions;
     use CookieActions;
+    use CsrfActions;
     use FilterActions;
     use HeaderActions;
     use HtmlActions;
