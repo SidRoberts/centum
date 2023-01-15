@@ -29,6 +29,20 @@ Centum\Http\Response(
 
 
 
+## [`Centum\Http\Response\FileResponse`](https://github.com/SidRoberts/centum/tree/development/src/Http/Response/FileResponse.php)
+
+`FileResponse` prompts a browser to download a file.
+A custom filename can be set with the `$fileName` argument.
+
+```php
+Centum\Http\Response\FileResponse(
+    string $filePath,
+    string $fileName
+);
+```
+
+
+
 ## [`Centum\Http\Response\JsonResponse`](https://github.com/SidRoberts/centum/tree/development/src/Http/Response/JsonResponse.php)
 
 `JsonResponse` encodes a variable into a JSON object and pretty prints it.
