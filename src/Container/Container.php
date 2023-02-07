@@ -161,7 +161,7 @@ class Container implements ContainerInterface
 
 
     /**
-     * @return array<int, mixed>
+     * @return array<int<0, max>, mixed>
      */
     protected function resolveParams(ReflectionFunctionAbstract $method): array
     {
