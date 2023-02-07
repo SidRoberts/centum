@@ -23,7 +23,7 @@
 
         "ext-yaml": "~2.0",
 
-        "codeception/lib-innerbrowser": "~3.0",
+        "codeception/lib-innerbrowser": "~4.0",
 
         "dragonmantank/cron-expression": "~3.0",
         "pda/pheanstalk": "~4.0",
