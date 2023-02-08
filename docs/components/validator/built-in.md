@@ -78,6 +78,10 @@ Checks if a value is not in an array of values.
 
 
 
+## [`Centum\Validator\Opposite`](https://github.com/SidRoberts/centum/blob/development/src/Validator/Opposite.php)
+
+
+
 ## [`Centum\Validator\RegularExpression`](https://github.com/SidRoberts/centum/blob/development/src/Validator/RegularExpression.php)
 
 Checks if a value is matches a regular expression.
