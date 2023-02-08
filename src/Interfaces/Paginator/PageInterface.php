@@ -4,37 +4,19 @@ namespace Centum\Interfaces\Paginator;
 
 interface PageInterface
 {
-    public function getData(): DataInterface;
-
-    public function getTotalItems(): int;
-
-    public function getTotalPages(): int;
+    public function getPaginator(): PaginatorInterface;
 
     public function getPageNumber(): int;
 
-    public function getItemsPerPage(): int;
+    public function getData(): array;
 
 
 
-    public function getStartOffset(): int;
+    public function getPreviousPageNumber(): int|null;
 
-    public function getEndOffset(): int;
-
-
-
-    /**
-     * @return array<int>
-     */
-    public function getPageNumbersBefore(int $max): array;
-
-    /**
-     * @return array<int>
-     */
-    public function getPageNumbersAfter(int $max): array;
+    public function getNextPageNumber(): int|null;
 
 
 
-    public function getPreviousPageNumber(): ?int;
-
-    public function getNextPageNumber(): ?int;
+    public function getPageRange(int $max): array;
 }

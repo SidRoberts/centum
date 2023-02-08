@@ -11,5 +11,5 @@ interface DataInterface
      */
     public function toArray(): array;
 
-    public function slice(int $offset, int $length): DataInterface;
+    public function slice(int $offset, int $length): array;
 }

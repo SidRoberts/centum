@@ -3,86 +3,35 @@
 namespace Tests\Unit\Paginator;
 
 use Centum\Paginator\Data\ArrayData;
+use Centum\Paginator\Exception\InvalidItemsPerPageException;
 use Centum\Paginator\Page;
 use Centum\Paginator\Paginator;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
+use InvalidArgumentException;
 use Tests\Support\UnitTester;
-use Throwable;
 
 class PaginatorCest
 {
-    public function testGetData(UnitTester $I): void
+    #[DataProvider("providerConstructorItemsPerPageException")]
+    public function testConstructorItemsPerPageException(UnitTester $I, Example $example): void
     {
         $data = new ArrayData(
-            range(1, 10),
-            10
-        );
-
-        $paginator = new Paginator($data, 10);
-
-        $I->assertSame(
-            $data,
-            $paginator->getData()
-        );
-    }
-
-
-
-    public function testGetTotalItems(UnitTester $I): void
-    {
-        $data = new ArrayData(
-            range(1, 100),
-            100
-        );
-
-        $paginator = new Paginator($data, 10);
-
-        $I->assertEquals(
-            100,
-            $paginator->getTotalItems()
-        );
-    }
-
-
-
-    public function testGetItemsPerPageDefault(UnitTester $I): void
-    {
-        $data = new ArrayData(
-            range(1, 100),
-            100
-        );
-
-        $paginator = new Paginator($data);
-
-        $I->assertEquals(
-            10,
-            $paginator->getItemsPerPage()
-        );
-    }
-
-
-
-    #[DataProvider("providerGetItemsPerPageExceptions")]
-    public function testGetItemsPerPageExceptions(UnitTester $I, Example $example): void
-    {
-        $data = new ArrayData(
-            range(1, 100),
-            100
+            range(1, 100)
         );
 
         /** @var int */
         $itemsPerPage = $example[0];
 
         $I->expectThrowable(
-            Throwable::class,
+            new InvalidItemsPerPageException($itemsPerPage),
             function () use ($data, $itemsPerPage) {
-                new Paginator($data, $itemsPerPage);
+                new Paginator($data, $itemsPerPage, "/items/");
             }
         );
     }
 
-    protected function providerGetItemsPerPageExceptions(): array
+    protected function providerConstructorItemsPerPageException(): array
     {
         return [
             [-1],
@@ -92,46 +41,79 @@ class PaginatorCest
 
 
 
-    #[DataProvider("providerGetItemsPerPage")]
-    public function testGetItemsPerPage(UnitTester $I, Example $example): void
+    public function testGetData(UnitTester $I): void
     {
         $data = new ArrayData(
-            range(1, 100),
-            100
+            range(1, 10)
         );
 
-        /** @var int */
-        $itemsPerPage = $example[0];
+        $paginator = new Paginator($data, 10, "/items/");
 
-        $paginator = new Paginator($data, $itemsPerPage);
+        $I->assertSame(
+            $data,
+            $paginator->getData()
+        );
+    }
 
-        $I->assertEquals(
+    public function testGetItemsPerPage(UnitTester $I): void
+    {
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $itemsPerPage = 10;
+
+        $paginator = new Paginator($data, $itemsPerPage, "/items/");
+
+        $I->assertSame(
             $itemsPerPage,
             $paginator->getItemsPerPage()
         );
     }
 
-    protected function providerGetItemsPerPage(): array
+    public function testGetUrlPrefix(UnitTester $I): void
     {
-        return [
-            [10],
-            [20],
-        ];
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $urlPrefix = "/items/";
+
+        $paginator = new Paginator($data, 10, $urlPrefix);
+
+        $I->assertSame(
+            $urlPrefix,
+            $paginator->getUrlPrefix()
+        );
+    }
+
+
+
+    public function testGetTotalItems(UnitTester $I): void
+    {
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
+
+        $I->assertEquals(
+            100,
+            $paginator->getTotalItems()
+        );
     }
 
 
 
     public function getTotalPages(UnitTester $I): void
     {
-        $totalItems = 95;
         $itemsPerPage = 10;
 
         $data = new ArrayData(
-            range(1, 95),
-            $totalItems
+            range(1, 95)
         );
 
-        $paginator = new Paginator($data, $itemsPerPage);
+        $paginator = new Paginator($data, $itemsPerPage, "/items/");
 
         $I->assertEquals(
             10,
@@ -139,45 +121,46 @@ class PaginatorCest
         );
     }
 
+    public function getTotalPagesEmpty(UnitTester $I): void
+    {
+        $itemsPerPage = 10;
+
+        $data = new ArrayData(
+            []
+        );
+
+        $paginator = new Paginator($data, $itemsPerPage, "/items/");
+
+        $I->assertEquals(
+            1,
+            $paginator->getTotalPages()
+        );
+    }
+
+
+    ///TODO down...
 
 
     public function testGetPage(UnitTester $I): void
     {
-        $totalItems = 100;
-        $itemsPerPage = 10;
-
         $data = new ArrayData(
-            range(1, 100),
-            $totalItems
+            range(1, 100)
         );
 
-        $paginator = new Paginator($data, $itemsPerPage);
+        $itemsPerPage = 10;
+
+        $paginator = new Paginator($data, $itemsPerPage, "/items/");
 
         $page = $paginator->getPage(3);
 
-        $I->assertInstanceOf(
-            Page::class,
-            $page
-        );
-
         $I->assertEquals(
             range(21, 30),
-            $page->getData()->toArray()
+            $page->getData()
         );
 
         $I->assertEquals(
             3,
             $page->getPageNumber()
-        );
-
-        $I->assertEquals(
-            $totalItems,
-            $page->getTotalItems()
-        );
-
-        $I->assertEquals(
-            $itemsPerPage,
-            $page->getItemsPerPage()
         );
     }
 
@@ -185,41 +168,24 @@ class PaginatorCest
 
     public function testEmptyData(UnitTester $I): void
     {
-        $totalItems = 0;
-        $itemsPerPage = 10;
-
         $data = new ArrayData(
-            [],
-            0
+            []
         );
 
-        $paginator = new Paginator($data, $itemsPerPage);
+        $itemsPerPage = 10;
+
+        $paginator = new Paginator($data, $itemsPerPage, "/items/");
 
         $page = $paginator->getPage(1);
 
-        $I->assertInstanceOf(
-            Page::class,
-            $page
-        );
-
         $I->assertEquals(
             [],
-            $page->getData()->toArray()
+            $page->getData()
         );
 
         $I->assertEquals(
             1,
             $page->getPageNumber()
-        );
-
-        $I->assertEquals(
-            $totalItems,
-            $page->getTotalItems()
-        );
-
-        $I->assertEquals(
-            $itemsPerPage,
-            $page->getItemsPerPage()
         );
     }
 }

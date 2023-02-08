@@ -10,16 +10,28 @@ use Tests\Support\UnitTester;
 
 class ArrayDataCest
 {
-    public function test(UnitTester $I): void
+    public function testToArray(UnitTester $I): void
     {
+        $array = range(1, 100);
+
         $data = new ArrayData(
-            range(1, 100),
-            100
+            $array
         );
 
         $I->assertEquals(
-            range(1, 100),
+            $array,
             $data->toArray()
+        );
+    }
+
+
+
+    public function testGetTotal(UnitTester $I): void
+    {
+        $array = range(1, 100);
+
+        $data = new ArrayData(
+            $array
         );
 
         $I->assertEquals(
@@ -30,27 +42,42 @@ class ArrayDataCest
 
 
 
-    #[DataProvider("providerImpossibleTotal")]
-    public function testImpossibleTotal(UnitTester $I, Example $example): void
+    #[DataProvider("providerSlice")]
+    public function testSlice(UnitTester $I, Example $example): void
     {
-        /** @var int */
-        $total = $example[0];
+        $data = new ArrayData(
+            range(1, 100)
+        );
 
-        $I->expectThrowable(
-            new InvalidTotalException($total),
-            function () use ($total): void {
-                new ArrayData(
-                    range(1, 100),
-                    $total
-                );
-            }
+        /** @var array */
+        $expected = $example["expected"];
+
+        /** @var int */
+        $offset = $example["offset"];
+
+        /** @var int */
+        $length = $example["length"];
+
+        $I->assertEquals(
+            $expected,
+            $data->slice($offset, $length)
         );
     }
 
-    protected function providerImpossibleTotal(): array
+    protected function providerSlice(): array
     {
         return [
-            [-1],
+            [
+                "offset"   => 34,
+                "length"   => 10,
+                "expected" => range(35, 44),
+            ],
+
+            [
+                "offset"   => 99,
+                "length"   => 10,
+                "expected" => [100],
+            ],
         ];
     }
 }

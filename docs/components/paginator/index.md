@@ -23,7 +23,7 @@ It is designed such that the entire dataset can be contained within a `DataInter
 
 - `public function getTotal(): int`
 - `public function toArray(): array`
-- `public function slice(int $offset, int $length): Centum\Interfaces\Paginator\DataInterface`
+- `public function slice(int $offset, int $length): array`
 
 For data contained within a simple array, [`Centum\Paginator\Data\ArrayData`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Data/ArrayData.php) will suffice.
 
@@ -35,19 +35,21 @@ For data contained within a simple array, [`Centum\Paginator\Data\ArrayData`](ht
 
 ```php
 Centum\Paginator\Paginator(
-    Centum\Paginator\DataInterface $data,
-    int $itemsPerPage = 10
+    Centum\Interfaces\Paginator\DataInterface $data,
+    int $itemsPerPage,
+    string $urlPrefix
 );
 ```
 
 {: .highlight }
 [`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Paginator.php) implements [`Centum\Interfaces\Paginator\PaginatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PaginatorInterface.php).
 
-[`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Paginator.php) has 4 public methods:
+[`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Paginator.php) has 6 public methods:
 
 - `public function getData(): Centum\Interfaces\Paginator\DataInterface`
-- `public function getTotalItems(): int`
 - `public function getItemsPerPage(): int`
+- `public function getUrlPrefix(): string`
+- `public function getTotalItems(): int`
 - `public function getTotalPages(): int`
 - `public function getPage(int $pageNumber): Centum\Interfaces\Paginator\PageInterface`
 
@@ -55,9 +57,8 @@ Centum\Paginator\Paginator(
 
 ```php
 Centum\Paginator\Page(
-    Centum\Paginator\DataInterface $data,
-    int $pageNumber,
-    int $itemsPerPage = 10
+    Centum\Interfaces\Paginator\PaginatorInterface $paginator,
+    int $pageNumber
 );
 ```
 
@@ -66,26 +67,9 @@ Centum\Paginator\Page(
 
 [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Page.php) has several public methods:
 
-- `public function getData(): Centum\Interfaces\Paginator\DataInterface`
-- `public function getTotalItems(): int`
-- `public function getTotalPages(): int`
+- `public function getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface`
 - `public function getPageNumber(): int`
-- `public function getItemsPerPage(): int`
-- `public function getStartOffset(): int`
-- `public function getEndOffset(): int`
-- `public function getPageNumbersBefore(int $max): int`
-- `public function getPageNumbersAfter(int $max): int`
-- `public function getPreviousPageNumber(): ?int`
-- `public function getNextPageNumber(): ?int`
-
-
-
-## Exceptions
-
-(all in the `Centum\Paginator\Exception` namespace)
-
-- [`FileGroupAlreadyExistsException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/FileGroupAlreadyExistsException.php)
-- [`InvalidItemsPerPageException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidItemsPerPageException.php)
-- [`InvalidMaxException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidMaxException.php)
-- [`InvalidPageNumberException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidPageNumberException.php)
-- [`InvalidTotalException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidTotalException.php)
+- `public function getData(): array`
+- `public function getPreviousPageNumber(): int|null`
+- `public function getNextPageNumber(): int|null`
+- `public function getPageRange(int $i): array`

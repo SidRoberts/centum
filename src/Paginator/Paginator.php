@@ -11,10 +11,11 @@ class Paginator implements PaginatorInterface
 {
     protected readonly DataInterface $data;
     protected readonly int $itemsPerPage;
+    protected readonly string $urlPrefix;
 
 
 
-    public function __construct(DataInterface $data, int $itemsPerPage = 10)
+    public function __construct(DataInterface $data, int $itemsPerPage, string $urlPrefix)
     {
         if ($itemsPerPage < 1) {
             throw new InvalidItemsPerPageException($itemsPerPage);
@@ -22,6 +23,7 @@ class Paginator implements PaginatorInterface
 
         $this->data         = $data;
         $this->itemsPerPage = $itemsPerPage;
+        $this->urlPrefix    = $urlPrefix;
     }
 
 
@@ -31,23 +33,36 @@ class Paginator implements PaginatorInterface
         return $this->data;
     }
 
-    public function getTotalItems(): int
-    {
-        return $this->data->getTotal();
-    }
-
     public function getItemsPerPage(): int
     {
         return $this->itemsPerPage;
     }
 
+    public function getUrlPrefix(): string
+    {
+        return $this->urlPrefix;
+    }
+
+
+
+    public function getTotalItems(): int
+    {
+        return $this->data->getTotal();
+    }
+
     public function getTotalPages(): int
     {
+        if ($this->getTotalItems() === 0) {
+            return 1;
+        }
+
         return (int) ceil($this->getTotalItems() / $this->itemsPerPage);
     }
 
+
+
     public function getPage(int $pageNumber): PageInterface
     {
-        return new Page($this->data, $pageNumber, $this->itemsPerPage);
+        return new Page($this, $pageNumber);
     }
 }

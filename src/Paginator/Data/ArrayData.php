@@ -3,7 +3,6 @@
 namespace Centum\Paginator\Data;
 
 use Centum\Interfaces\Paginator\DataInterface;
-use Centum\Paginator\Exception\InvalidTotalException;
 
 class ArrayData implements DataInterface
 {
@@ -12,28 +11,21 @@ class ArrayData implements DataInterface
      */
     protected readonly array $data;
 
-    protected readonly int $total;
-
 
 
     /**
      * @param array<mixed> $data
      */
-    public function __construct(array $data, int $total)
+    public function __construct(array $data)
     {
-        if ($total < 0) {
-            throw new InvalidTotalException($total);
-        }
-
         $this->data = $data;
-        $this->total = $total;
     }
 
 
 
     public function getTotal(): int
     {
-        return $this->total;
+        return count($this->data);
     }
 
     /**
@@ -44,11 +36,8 @@ class ArrayData implements DataInterface
         return $this->data;
     }
 
-    public function slice(int $offset, int $length): DataInterface
+    public function slice(int $offset, int $length): array
     {
-        return new ArrayData(
-            array_slice($this->data, $offset, $length),
-            $this->total
-        );
+        return array_slice($this->data, $offset, $length);
     }
 }

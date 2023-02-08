@@ -2,23 +2,63 @@
 
 namespace Tests\Unit\Paginator;
 
-use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Paginator\Data\ArrayData;
-use Centum\Paginator\Exception\InvalidItemsPerPageException;
 use Centum\Paginator\Exception\InvalidMaxException;
 use Centum\Paginator\Exception\InvalidPageNumberException;
 use Centum\Paginator\Page;
+use Centum\Paginator\Paginator;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
 class PageCest
 {
-    protected function getData(): DataInterface
+    #[DataProvider("providerBadPageNumbers")]
+    public function testBadPageNumbers(UnitTester $I, Example $example): void
     {
-        return new ArrayData(
-            range(1, 95),
-            95
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
+
+        /** @var int */
+        $pageNumber = $example[0];
+
+        $I->expectThrowable(
+            new InvalidPageNumberException($pageNumber),
+            function () use ($paginator, $pageNumber) {
+                new Page($paginator, $pageNumber);
+            }
+        );
+    }
+
+    protected function providerBadPageNumbers(): array
+    {
+        return [
+            [0],
+            [-1],
+            [-123],
+        ];
+    }
+
+
+
+    public function testGetPaginator(UnitTester $I): void
+    {
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
+
+        $pageNumber = 1;
+
+        $page = new Page($paginator, $pageNumber);
+
+        $I->assertSame(
+            $paginator,
+            $page->getPaginator()
         );
     }
 
@@ -27,22 +67,34 @@ class PageCest
     #[DataProvider("providerGetData")]
     public function testGetData(UnitTester $I, Example $example): void
     {
-        $data = $this->getData();
+        $data = new ArrayData(
+            range(1, 95)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
 
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($data, $pageNumber, 10);
+        $page = new Page($paginator, $pageNumber);
+
+        /** @var array */
+        $expected = $example["expected"];
 
         $I->assertEquals(
-            $example["expected"],
-            $page->getData()->toArray()
+            $expected,
+            $page->getData()
         );
     }
 
     protected function providerGetData(): array
     {
         return [
+            [
+                "pageNumber" => 1,
+                "expected"   => range(1, 10),
+            ],
+
             [
                 "pageNumber" => 3,
                 "expected"   => range(21, 30),
@@ -62,270 +114,25 @@ class PageCest
 
 
 
-    #[DataProvider("providerOffset")]
-    public function testOffset(UnitTester $I, Example $example): void
-    {
-        $data = $this->getData();
-
-        /** @var int */
-        $pageNumber = $example["pageNumber"];
-
-        $page = new Page($data, $pageNumber, 10);
-
-        /** @var int */
-        $start = $example["start"];
-
-        $I->assertEquals(
-            $start,
-            $page->getStartOffset()
-        );
-
-        /** @var int */
-        $end = $example["end"];
-
-        $I->assertEquals(
-            $end,
-            $page->getEndOffset()
-        );
-    }
-    
-    protected function providerOffset(): array
-    {
-        return [
-            [
-                "pageNumber" => 1,
-                "start"      => 0,
-                "end"        => 9,
-            ],
-
-            [
-                "pageNumber" => 10,
-                "start"      => 90,
-                "end"        => 94,
-            ],
-        ];
-    }
-
-
-
-    #[DataProvider("providerBadPageNumbers")]
-    public function testBadPageNumbers(UnitTester $I, Example $example): void
-    {
-        $data = new ArrayData(
-            range(1, 10),
-            10
-        );
-
-        /** @var int */
-        $pageNumber = $example[0];
-
-        $I->expectThrowable(
-            new InvalidPageNumberException($pageNumber),
-            function () use ($data, $pageNumber): void {
-                new Page($data, $pageNumber);
-            }
-        );
-    }
-
-    protected function providerBadPageNumbers(): array
-    {
-        return [
-            [-1],
-            [0],
-        ];
-    }
-
-
-
-    #[DataProvider("providerBadItemsPerPage")]
-    public function testBadItemsPerPage(UnitTester $I, Example $example): void
-    {
-        $data = new ArrayData(
-            range(1, 10),
-            10
-        );
-
-        /** @var int */
-        $itemsPerPage = $example[0];
-
-        $I->expectThrowable(
-            new InvalidItemsPerPageException($itemsPerPage),
-            function () use ($data, $itemsPerPage): void {
-                new Page($data, 1, $itemsPerPage);
-            }
-        );
-    }
-
-    protected function providerBadItemsPerPage(): array
-    {
-        return [
-            [-1],
-            [0],
-        ];
-    }
-
-
-
-    #[DataProvider("providerPageNumbersBefore")]
-    public function testPageNumbersBefore(UnitTester $I, Example $example): void
-    {
-        $data = $this->getData();
-
-        /** @var int */
-        $pageNumber = $example["pageNumber"];
-
-        $page = new Page($data, $pageNumber, 10);
-
-        /** @var array */
-        $expected = $example["expected"];
-
-        /** @var int */
-        $max = $example["max"];
-
-        $I->assertEquals(
-            $expected,
-            $page->getPageNumbersBefore($max)
-        );
-    }
-
-    protected function providerPageNumbersBefore(): array
-    {
-        return [
-            [
-                "pageNumber" => 1,
-                "max"        => 2,
-                "expected"   => [],
-            ],
-
-            [
-                "pageNumber" => 2,
-                "max"        => 2,
-                "expected"   => [1],
-            ],
-
-            [
-                "pageNumber" => 10,
-                "max"        => 2,
-                "expected"   => [8, 9],
-            ],
-        ];
-    }
-
-
-
-    #[DataProvider("providerBadPageNumbersBefore")]
-    public function testBadPageNumbersBefore(UnitTester $I, Example $example): void
-    {
-        $data = $this->getData();
-
-        $page = new Page($data, 3, 10);
-
-        /** @var int */
-        $max = $example[0];
-
-        $I->expectThrowable(
-            new InvalidMaxException($max),
-            function () use ($page, $max): void {
-                $page->getPageNumbersBefore($max);
-            }
-        );
-    }
-
-    protected function providerBadPageNumbersBefore(): array
-    {
-        return [
-            [-1],
-        ];
-    }
-
-
-
-    #[DataProvider("providerPageNumbersAfter")]
-    public function testPageNumbersAfter(UnitTester $I, Example $example): void
-    {
-        $data = $this->getData();
-
-        /** @var int */
-        $pageNumber = $example["pageNumber"];
-
-        $page = new Page($data, $pageNumber, 10);
-
-        /** @var array */
-        $expected = $example["expected"];
-
-        /** @var int */
-        $max = $example["max"];
-
-        $I->assertEquals(
-            $expected,
-            $page->getPageNumbersAfter($max)
-        );
-    }
-
-    protected function providerPageNumbersAfter(): array
-    {
-        return [
-            [
-                "pageNumber" => 5,
-                "max"        => 2,
-                "expected"   => [6, 7],
-            ],
-
-            [
-                "pageNumber" => 9,
-                "max"        => 2,
-                "expected"   => [10],
-            ],
-
-            [
-                "pageNumber" => 10,
-                "max"        => 2,
-                "expected"   => [],
-            ],
-        ];
-    }
-
-
-
-    #[DataProvider("providerBadPageNumbersAfter")]
-    public function testBadPageNumbersAfter(UnitTester $I, Example $example): void
-    {
-        $data = $this->getData();
-
-        $page = new Page($data, 3, 10);
-
-        /** @var int */
-        $max = $example[0];
-
-        $I->expectThrowable(
-            new InvalidMaxException($max),
-            function () use ($page, $max): void {
-                $page->getPageNumbersAfter($max);
-            }
-        );
-    }
-
-    protected function providerBadPageNumbersAfter(): array
-    {
-        return [
-            [-1],
-        ];
-    }
-
-
-
     #[DataProvider("providerGetPreviousPageNumber")]
     public function testGetPreviousPageNumber(UnitTester $I, Example $example): void
     {
-        $data = $this->getData();
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
 
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($data, $pageNumber, 10);
+        $page = new Page($paginator, $pageNumber);
 
-        $I->assertEquals(
-            $example["previousPageNumber"],
+        /** @var int|null */
+        $expected = $example["expected"];
+
+        $I->assertSame(
+            $expected,
             $page->getPreviousPageNumber()
         );
     }
@@ -334,13 +141,18 @@ class PageCest
     {
         return [
             [
-                "pageNumber"         => 1,
-                "previousPageNumber" => null,
+                "pageNumber" => 1,
+                "expected"   => null,
             ],
 
             [
-                "pageNumber"         => 2,
-                "previousPageNumber" => 1,
+                "pageNumber" => 2,
+                "expected"   => 1,
+            ],
+
+            [
+                "pageNumber" => 3,
+                "expected"   => 2,
             ],
         ];
     }
@@ -350,15 +162,22 @@ class PageCest
     #[DataProvider("providerGetNextPageNumber")]
     public function testGetNextPageNumber(UnitTester $I, Example $example): void
     {
-        $data = $this->getData();
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
 
         /** @var int */
         $pageNumber = $example["pageNumber"];
 
-        $page = new Page($data, $pageNumber, 10);
+        $page = new Page($paginator, $pageNumber);
 
-        $I->assertEquals(
-            $example["nextPageNumber"],
+        /** @var int|null */
+        $expected = $example["expected"];
+
+        $I->assertSame(
+            $expected,
             $page->getNextPageNumber()
         );
     }
@@ -367,14 +186,114 @@ class PageCest
     {
         return [
             [
-                "pageNumber"     => 9,
-                "nextPageNumber" => 10,
+                "pageNumber" => 1,
+                "expected"   => 2,
             ],
 
             [
-                "pageNumber"     => 10,
-                "nextPageNumber" => null,
+                "pageNumber" => 2,
+                "expected"   => 3,
             ],
+
+            [
+                "pageNumber" => 10,
+                "expected"   => null,
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerGetPageRange")]
+    public function testGetPageRange(UnitTester $I, Example $example): void
+    {
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
+
+        /** @var int */
+        $pageNumber = $example["pageNumber"];
+
+        $page = new Page($paginator, $pageNumber);
+
+        /** @var array */
+        $expected = $example["expected"];
+
+        /** @var int */
+        $i = $example["i"];
+
+        $I->assertSame(
+            $expected,
+            $page->getPageRange($i)
+        );
+    }
+
+    protected function providerGetPageRange(): array
+    {
+        return [
+            [
+                "pageNumber" => 1,
+                "expected"   => range(1, 4),
+                "i"          => 3,
+            ],
+
+            [
+                "pageNumber" => 4,
+                "expected"   => range(1, 7),
+                "i"          => 3,
+            ],
+
+            [
+                "pageNumber" => 9,
+                "expected"   => range(6, 10),
+                "i"          => 3,
+            ],
+
+            [
+                "pageNumber" => 3,
+                "expected"   => range(2, 4),
+                "i"          => 1,
+            ],
+
+            [
+                "pageNumber" => 5,
+                "expected"   => range(1, 10),
+                "i"          => 100,
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerGetPageRangeBad")]
+    public function testGetPageRangeBad(UnitTester $I, Example $example): void
+    {
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
+
+        $page = new Page($paginator, 5);
+
+        /** @var int */
+        $max = $example[0];
+
+        $I->expectThrowable(
+            new InvalidMaxException($max),
+            function () use ($page, $max) {
+                $page->getPageRange($max);
+            }
+        );
+    }
+
+    protected function providerGetPageRangeBad(): array
+    {
+        return [
+            [0],
+            [-1],
         ];
     }
 }

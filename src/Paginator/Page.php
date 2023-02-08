@@ -2,52 +2,33 @@
 
 namespace Centum\Paginator;
 
-use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Interfaces\Paginator\PageInterface;
-use Centum\Paginator\Exception\InvalidItemsPerPageException;
+use Centum\Interfaces\Paginator\PaginatorInterface;
 use Centum\Paginator\Exception\InvalidMaxException;
 use Centum\Paginator\Exception\InvalidPageNumberException;
 
 class Page implements PageInterface
 {
-    protected readonly DataInterface $data;
+    protected readonly PaginatorInterface $paginator;
     protected readonly int $pageNumber;
-    protected readonly int $itemsPerPage;
 
 
 
-    public function __construct(DataInterface $data, int $pageNumber, int $itemsPerPage = 10)
+    public function __construct(PaginatorInterface $paginator, int $pageNumber)
     {
         if ($pageNumber < 1) {
             throw new InvalidPageNumberException($pageNumber);
         }
 
-        if ($itemsPerPage < 1) {
-            throw new InvalidItemsPerPageException($itemsPerPage);
-        }
-
-        $this->data         = $data;
-        $this->pageNumber   = $pageNumber;
-        $this->itemsPerPage = $itemsPerPage;
+        $this->paginator  = $paginator;
+        $this->pageNumber = $pageNumber;
     }
 
 
 
-    public function getData(): DataInterface
+    public function getPaginator(): PaginatorInterface
     {
-        $offset = $this->getStartOffset();
-
-        return $this->data->slice($offset, $this->itemsPerPage);
-    }
-
-    public function getTotalItems(): int
-    {
-        return $this->data->getTotal();
-    }
-
-    public function getTotalPages(): int
-    {
-        return (int) ceil($this->getTotalItems() / $this->itemsPerPage);
+        return $this->paginator;
     }
 
     public function getPageNumber(): int
@@ -55,96 +36,53 @@ class Page implements PageInterface
         return $this->pageNumber;
     }
 
-    public function getItemsPerPage(): int
+
+
+    public function getData(): array
     {
-        return $this->itemsPerPage;
+        $offset = ($this->pageNumber - 1) * $this->paginator->getItemsPerPage();
+
+        return $this->paginator->getData()->slice(
+            $offset,
+            $this->paginator->getItemsPerPage()
+        );
     }
 
 
 
-    public function getStartOffset(): int
+    public function getPreviousPageNumber(): int|null
     {
-        return ($this->pageNumber - 1) * $this->itemsPerPage;
-    }
+        $previousPageNumber = $this->pageNumber - 1;
 
-    public function getEndOffset(): int
-    {
-        $potentialEndOffset = $this->getStartOffset() + $this->itemsPerPage - 1;
-
-        $absoluteEnd = max($this->getTotalItems() - 1, 0);
-
-        return min($potentialEndOffset, $absoluteEnd);
-    }
-
-
-
-    /**
-     * @return array<int>
-     */
-    public function getPageNumbersBefore(int $max): array
-    {
-        if ($max < 0) {
-            throw new InvalidMaxException($max);
-        }
-
-        $previousPageNumber = $this->getPreviousPageNumber();
-
-        if (!$previousPageNumber) {
-            return [];
-        }
-
-        $absoluteFirstPageNumber = 1;
-
-        $assumedFirstPageNumber = $this->pageNumber - $max;
-
-        $startPageNumber = max($absoluteFirstPageNumber, $assumedFirstPageNumber);
-
-        return range($startPageNumber, $previousPageNumber);
-    }
-
-    /**
-     * @return array<int>
-     */
-    public function getPageNumbersAfter(int $max): array
-    {
-        if ($max < 0) {
-            throw new InvalidMaxException($max);
-        }
-
-        $nextPageNumber = $this->getNextPageNumber();
-
-        if (!$nextPageNumber) {
-            return [];
-        }
-
-        $assumedLastPageNumber = $this->pageNumber + $max;
-
-        $absoluteLastPageNumber = $this->getTotalPages();
-
-        $endPageNumber = min($assumedLastPageNumber, $absoluteLastPageNumber);
-
-        return range($nextPageNumber, $endPageNumber);
-    }
-
-
-
-    public function getPreviousPageNumber(): ?int
-    {
-        if ($this->pageNumber === 1) {
+        if ($previousPageNumber < 1) {
             return null;
         }
 
-        return $this->pageNumber - 1;
+        return $previousPageNumber;
     }
 
-    public function getNextPageNumber(): ?int
+    public function getNextPageNumber(): int|null
     {
-        $lastPageNumber = $this->getTotalPages();
+        $nextPageNumber = $this->pageNumber + 1;
 
-        if ($this->pageNumber === $lastPageNumber) {
+        if ($nextPageNumber > $this->paginator->getTotalPages()) {
             return null;
         }
 
-        return $this->pageNumber + 1;
+        return $nextPageNumber;
+    }
+
+
+
+    public function getPageRange(int $max): array
+    {
+        if ($max < 1) {
+            throw new InvalidMaxException($max);
+        }
+
+        $firstPaginationPageNumber = max($this->pageNumber - $max, 1);
+        $lastPaginationPageNumber  = min($this->pageNumber + $max, $this->paginator->getTotalPages());
+
+        return range($firstPaginationPageNumber, $lastPaginationPageNumber);
     }
 }
