@@ -15,6 +15,16 @@ nav_order: 102
 
 
 
+## [`Centum\Interfaces\Http\ClientInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/ClientInterface.php)
+
+```php
+send(
+    Centum\Interfaces\Http\RequestInterface $request
+): Centum\Interfaces\Http\ResponseInterface
+```
+
+
+
 ## [`Centum\Interfaces\Http\CookieInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookieInterface.php)
 
 ```php
