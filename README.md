@@ -4,7 +4,7 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 
 
 
-[![Code Build Status](https://img.shields.io/github/workflow/status/SidRoberts/centum/tests/development.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/actions)
+[![Code Build Status](https://img.shields.io/github/actions/workflow/status/SidRoberts/centum/tests.yml?style=for-the-badge)](https://github.com/SidRoberts/centum/actions)
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/SidRoberts/centum.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/SidRoberts/centum.svg?style=for-the-badge)](https://github.com/SidRoberts/centum/pulls)
