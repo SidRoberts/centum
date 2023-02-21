@@ -6,7 +6,7 @@ use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 
-class FilterController
+class ReplacementController
 {
     public function get(ParametersInterface $parameters): ResponseInterface
     {
@@ -14,7 +14,7 @@ class FilterController
         $i = $parameters->get("i");
 
         return new Response(
-            (string) $i
+            serialize($i)
         );
     }
 }

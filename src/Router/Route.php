@@ -2,7 +2,6 @@
 
 namespace Centum\Router;
 
-use Centum\Interfaces\Filter\FilterInterface;
 use Centum\Interfaces\Router\RouteInterface;
 
 class Route implements RouteInterface
@@ -15,9 +14,6 @@ class Route implements RouteInterface
     protected readonly string $class;
 
     protected readonly string $method;
-
-    /** @var array<string, FilterInterface> */
-    protected array $filters = [];
 
 
 
@@ -59,48 +55,23 @@ class Route implements RouteInterface
 
 
 
-    public function getUriPattern(): string
+    /**
+     * @return array<string, string>
+     */
+    public function getParameters(): array
     {
-        $replacements = [
-            "int"  => "[\d]+",
-            "slug" => "[a-z0-9]+(?:\-[a-z0-9]+)*",
-            "char" => "[^/]",
-            "any"  => "[^/]+",
-        ];
-
-        $pattern = preg_replace_callback(
-            "/\{([A-Za-z]+)(\:([a-z]+))?\}/",
-            function (array $match) use ($replacements): string {
-                $name = $match[1];
-
-                $regExId = $match[3] ?? "any";
-
-                $regEx = $replacements[$regExId] ?? $replacements["any"];
-
-                return "(?P<" . $name . ">" . $regEx . ")";
-            },
-            $this->uri
+        preg_match_all(
+            "/\{([A-Za-z]+)(\:([A-Za-z]+))?\}/",
+            $this->uri,
+            $matches
         );
 
-        $pattern = "#^" . $pattern . "$#u";
+        $parameters = [];
 
-        return $pattern;
-    }
+        foreach ($matches[1] as $i => $key) {
+            $parameters[$key] = $matches[3][$i] ?: "any";
+        }
 
-
-
-    /**
-     * @return array<string, FilterInterface>
-     */
-    public function getFilters(): array
-    {
-        return $this->filters;
-    }
-
-    public function addFilter(string $key, FilterInterface $filter): RouteInterface
-    {
-        $this->filters[$key] = $filter;
-
-        return $this;
+        return $parameters;
     }
 }

@@ -13,14 +13,14 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
 use Tests\Support\Controllers\ExceptionController;
-use Tests\Support\Controllers\FilterController;
 use Tests\Support\Controllers\HttpMethodController;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\Controllers\LoginController;
 use Tests\Support\Controllers\MiddlewareController;
 use Tests\Support\Controllers\PostController;
+use Tests\Support\Controllers\ReplacementController;
 use Tests\Support\Controllers\RequirementsController;
-use Tests\Support\Filters\Doubler;
+use Tests\Support\Router\Replacements\DoublerReplacement;
 use Tests\Support\UnitTester;
 
 class RouterCest
@@ -33,6 +33,12 @@ class RouterCest
 
 
 
+        $router->addReplacement(
+            new DoublerReplacement()
+        );
+
+
+
         $group = $router->group();
 
         $group->get("/", IndexController::class, "index");
@@ -40,9 +46,6 @@ class RouterCest
         $group->get("/exception", ExceptionController::class, "index");
 
         $group->get("/login", LoginController::class, "form");
-
-        $group->get("/filter/double/{i:int}", FilterController::class, "get")
-            ->addFilter("i", new Doubler());
 
         $group->get(
             "/requirements/{id:int}",
@@ -63,6 +66,10 @@ class RouterCest
         $group->patch("/http-method", HttpMethodController::class, "patch");
 
         $group->submission("/submission", LoginController::class);
+
+        $group->get("/replacements/integer/{i:int}", ReplacementController::class, "get");
+        $group->get("/replacements/char/{i:char}", ReplacementController::class, "get");
+        $group->get("/replacements/doubler/{i:doubler}", ReplacementController::class, "get");
 
 
 
@@ -123,7 +130,8 @@ class RouterCest
         );
     }
 
-    public function testFilters(UnitTester $I): void
+    #[DataProvider("providerReplacementsGood")]
+    public function testReplacementsGood(UnitTester $I, Example $example): void
     {
         $container = $I->grabContainer();
 
@@ -131,17 +139,80 @@ class RouterCest
 
 
 
+        /** @var string */
+        $uri = $example["uri"];
+
+        /** @var string */
+        $expected = $example["expected"];
+
         $request = new Request(
-            "/filter/double/123",
+            $uri,
             "GET"
         );
 
         $response = $router->handle($request);
 
         $I->assertEquals(
-            246,
+            $expected,
             $response->getContent()
         );
+    }
+
+    protected function providerReplacementsGood(): array
+    {
+        return [
+            [
+                "uri"      => "/replacements/integer/123",
+                "expected" => "i:123;",
+            ],
+
+            [
+                "uri"      => "/replacements/char/a",
+                "expected" => "s:1:\"a\";",
+            ],
+
+            [
+                "uri"      => "/replacements/doubler/123",
+                "expected" => "i:246;",
+            ],
+        ];
+    }
+
+
+
+    #[DataProvider("providerReplacementsBad")]
+    public function testReplacementsBad(UnitTester $I, Example $example): void
+    {
+        $container = $I->grabContainer();
+
+        $router = $this->getRouter($container);
+
+
+
+        /** @var string */
+        $uri = $example[0];
+
+        $request = new Request(
+            $uri,
+            "GET"
+        );
+
+        $I->expectThrowable(
+            RouteNotFoundException::class,
+            function () use ($router, $request) {
+                $router->handle($request);
+            }
+        );
+    }
+
+    protected function providerReplacementsBad(): array
+    {
+        return [
+            ["/replacements/integer/abc"],
+            ["/replacements/integer/123.456"],
+            ["/replacements/char/abc"],
+            ["/replacements/doubler/abc"],
+        ];
     }
 
 

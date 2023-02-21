@@ -78,11 +78,11 @@ class CalendarController
 ### Parameter Requirements
 
 You can require that the parameters adhere to a certain format by appending the type onto the end of the parameter identifier.
-Currently, 4 types exist:
+By default, the Router can interpret these 4 types but can be extended using [Replacements](replacements.md):
 
 | Type   | Regular expression          |
 | ------ | --------------------------- |
-| `int`  | `[\d]+`                     |
+| `int`  | `\d+`                       |
 | `slug` | `[a-z0-9]+(?:\-[a-z0-9]+)*` |
 | `char` | `[^/]`                      |
 | `any`  | `[^/]+`                     |

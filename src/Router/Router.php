@@ -9,12 +9,18 @@ use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\ParametersInterface;
+use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Interfaces\Router\RouteInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\TrueMiddleware;
+use Centum\Router\Replacements\AnyReplacement;
+use Centum\Router\Replacements\CharacterReplacement;
+use Centum\Router\Replacements\IntegerReplacement;
+use Centum\Router\Replacements\SlugReplacement;
+use Exception;
 use Throwable;
 
 class Router implements RouterInterface
@@ -23,6 +29,9 @@ class Router implements RouterInterface
 
     /** @var GroupInterface[] */
     protected array $groups = [];
+
+    /** @var array<string, ReplacementInterface> */
+    protected array $replacements = [];
 
     /** @var array<class-string, array{class-string, string}> */
     protected array $exceptionHandlers = [];
@@ -34,6 +43,13 @@ class Router implements RouterInterface
         $container->set(RouterInterface::class, $this);
 
         $this->container = $container;
+
+        $this->replacements = [
+            "int"  => new IntegerReplacement(),
+            "slug" => new SlugReplacement(),
+            "char" => new CharacterReplacement(),
+            "any"  => new AnyReplacement(),
+        ];
     }
 
 
@@ -49,6 +65,15 @@ class Router implements RouterInterface
         $this->groups[] = $group;
 
         return $group;
+    }
+
+
+
+    public function addReplacement(ReplacementInterface $replacement): void
+    {
+        $id = $replacement->getIdentifier();
+
+        $this->replacements[$id] = $replacement;
     }
 
 
@@ -120,40 +145,52 @@ class Router implements RouterInterface
 
 
 
-        $uri     = $request->getUri();
-        $pattern = $route->getUriPattern();
-
+        $uri = $request->getUri();
         $uri = "/" . trim($uri, "/");
+
+
+
+        $replacements = $this->replacements;
+
+        $pattern = preg_replace_callback(
+            "/\{([A-Za-z]+)(\:([A-Za-z]+))?\}/",
+            function (array $match) use ($replacements): string {
+                $key = $match[1];
+
+                $replacementID = $match[3] ?? "any";
+
+                $replacement = $replacements[$replacementID] ?? $replacements["any"];
+
+                $regularExpression = $replacement->getRegularExpression();
+
+                return "(?P<" . $key . ">" . $regularExpression . ")";
+            },
+            $route->getUri()
+        );
+
+        $pattern = "#^" . $pattern . "$#u";
+
+
 
         if (preg_match($pattern, $uri, $parameters) !== 1) {
             throw new RouteMismatchException();
         }
 
-
-
-        /**
-         * Remove integer keys from params.
-         *
-         * @var array<string, string>
-         */
-        $parameters = array_filter(
-            $parameters,
-            function (string|int $key): bool {
-                return !is_int($key);
-            },
-            ARRAY_FILTER_USE_KEY
-        );
+        /** @var array<string, string> */
+        $parameters = $this->removeIntegerKeys($parameters);
 
 
 
-        $filters = $route->getFilters();
+        $routeParameters = $route->getParameters();
 
-        foreach ($filters as $key => $filter) {
+        foreach ($routeParameters as $key => $replacementID) {
+            $replacement = $replacements[$replacementID] ?? throw new Exception("Replacement class not found.");
+
             /** @var string */
             $value = $parameters[$key] ?? throw new ParamNotFoundException($key);
 
             /** @var mixed */
-            $parameters[$key] = $filter->filter($value);
+            $parameters[$key] = $replacement->filter($value);
         }
 
 
@@ -180,5 +217,21 @@ class Router implements RouterInterface
 
         /** @var Response */
         return $this->container->typehintMethod($controller, $method);
+    }
+
+
+
+    /**
+     * @return array<array-key, mixed>
+     */
+    protected function removeIntegerKeys(array $array)
+    {
+        return array_filter(
+            $array,
+            function (mixed $key): bool {
+                return !is_int($key);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Centum\Interfaces\Router;
 
-use Centum\Interfaces\Filter\FilterInterface;
-
 interface RouteInterface
 {
     public function getHttpMethod(): string;
@@ -17,16 +15,8 @@ interface RouteInterface
 
     public function getMethod(): string;
 
-
-
-    public function getUriPattern(): string;
-
-
-
     /**
-     * @return array<string, FilterInterface>
+     * @return array<string, string>
      */
-    public function getFilters(): array;
-
-    public function addFilter(string $key, FilterInterface $filter): RouteInterface;
+    public function getParameters(): array;
 }
