@@ -3,7 +3,7 @@ layout: default
 title: Dynamic URLs
 parent: Router
 grand_parent: Components
-permalink: router/middlewares
+permalink: router/dynamic-urls
 nav_order: 3
 ---
 
