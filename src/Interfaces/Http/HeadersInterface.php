@@ -12,6 +12,8 @@ interface HeadersInterface
 
     public function has(string $name): bool;
 
+    public function matches(string $name, string $value): bool;
+
 
 
     public function send(): void;

@@ -145,6 +145,29 @@ class HeadersCest
 
 
 
+    public function testMatches(UnitTester $I): void
+    {
+        $header1 = new Header("Content-Type", "text/plain");
+
+
+
+        $headers = new Headers();
+
+        $headers->add($header1);
+
+
+
+        $I->assertTrue(
+            $headers->matches("Content-Type", "text/plain")
+        );
+
+        $I->assertFalse(
+            $headers->matches("Content-Type", "text/html")
+        );
+    }
+
+
+
     public function testSend(UnitTester $I): void
     {
         $header1 = $I->mock(

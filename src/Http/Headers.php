@@ -44,6 +44,17 @@ class Headers implements HeadersInterface
         return isset($this->headers[$name]);
     }
 
+    public function matches(string $name, string $value): bool
+    {
+        if (!$this->has($name)) {
+            return false;
+        }
+
+        $header = $this->get($name);
+
+        return $header->getValue() === $value;
+    }
+
 
 
     public function send(): void
