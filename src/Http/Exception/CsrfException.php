@@ -11,6 +11,10 @@ class CsrfException extends \Exception
     public function __construct(?string $value)
     {
         $this->value = $value;
+
+        parent::__construct(
+            "CSRF values did not match."
+        );
     }
 
 

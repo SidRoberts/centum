@@ -7,7 +7,7 @@ use Tests\Support\UnitTester;
 
 class CsrfExceptionCest
 {
-    public function test(UnitTester $I): void
+    public function testGetValue(UnitTester $I): void
     {
         $value = "qwertyuiopasdfgh";
 
@@ -16,6 +16,18 @@ class CsrfExceptionCest
         $I->assertEquals(
             $value,
             $exception->getValue()
+        );
+    }
+
+    public function testGetMessage(UnitTester $I): void
+    {
+        $value = "qwertyuiopasdfgh";
+
+        $exception = new CsrfException($value);
+
+        $I->assertEquals(
+            "CSRF values did not match.",
+            $exception->getMessage()
         );
     }
 }
