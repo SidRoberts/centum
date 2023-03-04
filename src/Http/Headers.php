@@ -18,9 +18,7 @@ class Headers implements HeadersInterface
      */
     public function __construct(array $headers = [])
     {
-        foreach ($headers as $header) {
-            $this->add($header);
-        }
+        $this->addMultiple($headers);
     }
 
 
@@ -30,6 +28,16 @@ class Headers implements HeadersInterface
         $name = $header->getName();
 
         $this->headers[$name] = $header;
+    }
+
+    /**
+     * @param HeaderInterface[] $headers
+     */
+    public function addMultiple(array $headers): void
+    {
+        foreach ($headers as $header) {
+            $this->add($header);
+        }
     }
 
 

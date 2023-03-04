@@ -6,6 +6,11 @@ interface HeadersInterface
 {
     public function add(HeaderInterface $header): void;
 
+    /**
+     * @param HeaderInterface[] $headers
+     */
+    public function addMultiple(array $headers): void;
+
 
 
     public function get(string $name): HeaderInterface;
