@@ -61,7 +61,7 @@ class Route implements RouteInterface
     public function getParameters(): array
     {
         preg_match_all(
-            "/\{([A-Za-z]+)(\:([A-Za-z]+))?\}/",
+            "/\{([A-Za-z0-9]+)(\:([A-Za-z]+))?\}/",
             $this->uri,
             $matches
         );
