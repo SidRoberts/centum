@@ -262,6 +262,19 @@ class PageCest
                 "expected"   => range(1, 10),
                 "i"          => 100,
             ],
+
+            [
+                "pageNumber" => 10,
+                "expected"   => range(7, 10),
+                "i"          => 3,
+            ],
+
+            // Page number too high.
+            [
+                "pageNumber" => 11,
+                "expected"   => range(7, 10),
+                "i"          => 3,
+            ],
         ];
     }
 
