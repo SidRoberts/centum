@@ -80,8 +80,14 @@ class Page implements PageInterface
             throw new InvalidMaxException($max);
         }
 
-        $firstPaginationPageNumber = max($this->pageNumber - $max, 1);
-        $lastPaginationPageNumber  = min($this->pageNumber + $max, $this->paginator->getTotalPages());
+        $pageNumber = $this->pageNumber;
+
+        if ($pageNumber > $this->paginator->getTotalPages()) {
+            $pageNumber = $this->paginator->getTotalPages();
+        }
+
+        $firstPaginationPageNumber = max($pageNumber - $max, 1);
+        $lastPaginationPageNumber  = min($pageNumber + $max, $this->paginator->getTotalPages());
 
         return range($firstPaginationPageNumber, $lastPaginationPageNumber);
     }
