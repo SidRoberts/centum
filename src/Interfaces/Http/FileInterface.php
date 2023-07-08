@@ -20,6 +20,10 @@ interface FileInterface
 
 
 
+    public function validate(): void;
+
+
+
     public function getExtension(): ?string;
 
     public function moveTo(string $path): bool;
