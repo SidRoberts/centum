@@ -63,6 +63,36 @@ class File implements FileInterface
 
 
 
+    public function validate(): void
+    {
+        $error = $this->getError();
+
+        if ($error !== UPLOAD_ERR_OK) {
+            $errorMessage = match ($error) {
+                UPLOAD_ERR_NO_FILE    => "No file sent.",
+                UPLOAD_ERR_INI_SIZE   => "Exceeded filesize limit (\`upload_max_filesize\` directive in php.ini).",
+                UPLOAD_ERR_FORM_SIZE  => "Exceeded filesize limit (\`MAX_FILE_SIZE\` directive that was specified in the HTML form).",
+                UPLOAD_ERR_PARTIAL    => "The uploaded file was only partially uploaded.",
+                UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder.",
+                UPLOAD_ERR_CANT_WRITE => "Cannot write to target directory. Please fix CHMOD.",
+                UPLOAD_ERR_EXTENSION  => "A PHP extension stopped the file upload.",
+                default               => "Unknown file upload error.",
+            };
+
+            throw new Exception(
+                $errorMessage
+            );
+        }
+
+        $location = $this->getLocation();
+
+        if (!$location) {
+            throw new Exception("No known location.");
+        }
+    }
+
+
+
     public function getExtension(): ?string
     {
         if ($this->error !== UPLOAD_ERR_OK || $this->name === null) {
