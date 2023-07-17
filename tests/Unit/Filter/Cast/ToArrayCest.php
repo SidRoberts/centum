@@ -8,6 +8,7 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\Filters\FancyString;
 use Tests\Support\UnitTester;
+use UnexpectedValueException;
 
 class ToArrayCest
 {
@@ -71,5 +72,25 @@ class ToArrayCest
                 "output" => ["Sid Roberts"],
             ],
         ];
+    }
+
+
+
+    public function testToArrayReturnsAnUnexpectedValue(UnitTester $I): void
+    {
+        $input = new class {
+            public function toArray(): string
+            {
+                return "you're not expecting this.";
+            }
+        };
+
+        $filter = new ToArray();
+
+        $I->expectFilterException(
+            $filter,
+            $input,
+            new UnexpectedValueException("toArray() did not return an array.")
+        );
     }
 }
