@@ -62,7 +62,7 @@ trait RouterActions
 
         try {
             $router->handle($request);
-        } catch (RouteNotFoundException $e) {
+        } catch (RouteNotFoundException) {
             Assert::fail($message);
         }
     }
@@ -73,7 +73,7 @@ trait RouterActions
 
         try {
             $router->handle($request);
-        } catch (RouteNotFoundException $e) {
+        } catch (RouteNotFoundException) {
             return;
         }
 

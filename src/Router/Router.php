@@ -107,7 +107,7 @@ class Router implements RouterInterface
                 foreach ($routes as $route) {
                     try {
                         return $this->matchRouteToRequest($request, $route);
-                    } catch (RouteMismatchException $exception) {
+                    } catch (RouteMismatchException) {
                         continue;
                     }
                 }
