@@ -2,9 +2,6 @@
 
 namespace Centum\Interfaces\Console;
 
-use Centum\Interfaces\Console\CommandInterface;
-use Centum\Interfaces\Console\TerminalInterface;
-
 interface ApplicationInterface
 {
     public function addCommand(CommandInterface $command): void;

@@ -4,11 +4,9 @@ namespace Tests\Unit\Paginator;
 
 use Centum\Paginator\Data\ArrayData;
 use Centum\Paginator\Exception\InvalidItemsPerPageException;
-use Centum\Paginator\Page;
 use Centum\Paginator\Paginator;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
-use InvalidArgumentException;
 use Tests\Support\UnitTester;
 
 class PaginatorCest

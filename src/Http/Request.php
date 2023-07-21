@@ -28,10 +28,10 @@ class Request implements RequestInterface
         protected readonly ?string $content = null
     ) {
         $this->method  = strtoupper($method);
-        $this->data    = $data ?? new Data([]);
+        $this->data    = $data    ?? new Data([]);
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();
-        $this->files   = $files ?? new Files();
+        $this->files   = $files   ?? new Files();
     }
 
 

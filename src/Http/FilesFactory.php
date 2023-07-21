@@ -44,7 +44,6 @@ class FilesFactory
              *     full_path: string[]
              * } $abc
              */
-
             $numberOfFiles = count($abc["name"]);
 
             $fileGroup = new FileGroup($id);

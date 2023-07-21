@@ -3,7 +3,6 @@
 namespace Tests\Unit\Paginator;
 
 use Centum\Paginator\Data\ArrayData;
-use Centum\Paginator\Exception\InvalidTotalException;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;

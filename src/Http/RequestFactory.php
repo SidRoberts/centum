@@ -65,7 +65,6 @@ class RequestFactory
         }
 
         /** @var array<string, mixed> $parameters */
-
         $data = new Data($parameters);
 
         $headersFactory = new HeadersFactory();

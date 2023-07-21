@@ -25,7 +25,7 @@ class GlobalSessionCest
          * `start()` and `isActive()` rely on native PHP functions that can't be
          * reliably tested so they have to be replaced in the testing process.
          */
-        return new class extends GlobalSession {
+        return new class () extends GlobalSession {
             public function start(): bool
             {
                 return true;
@@ -61,14 +61,13 @@ class GlobalSessionCest
 
     public function testHas(UnitTester $I): void
     {
-        /** @var array $_SESSION */
-
         $session = $this->getSession();
 
         $I->assertFalse(
             $session->has("name")
         );
 
+        /** @var array $_SESSION */
         $I->assertArrayNotHasKey(
             "name",
             $_SESSION
@@ -122,8 +121,6 @@ class GlobalSessionCest
 
     public function testRemove(UnitTester $I): void
     {
-        /** @var array $_SESSION */
-
         $session = $this->getSession();
 
         $session->set("name", "Sid Roberts");
@@ -134,6 +131,7 @@ class GlobalSessionCest
             $session->has("name")
         );
 
+        /** @var array $_SESSION */
         $I->assertArrayNotHasKey(
             "name",
             $_SESSION

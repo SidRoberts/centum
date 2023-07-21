@@ -80,7 +80,7 @@ class ConsoleActionsCest
 
         $argv = [
             "cli.php",
-            "exit-code"
+            "exit-code",
         ];
 
         $I->runCommand($argv);
@@ -101,7 +101,7 @@ class ConsoleActionsCest
 
         $argv = [
             "cli.php",
-            "exit-code"
+            "exit-code",
         ];
 
         $I->runCommand($argv);
@@ -117,7 +117,7 @@ class ConsoleActionsCest
 
         $argv = [
             "cli.php",
-            "exit-code"
+            "exit-code",
         ];
 
         $I->runCommand($argv);

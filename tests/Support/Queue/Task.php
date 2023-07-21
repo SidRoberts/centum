@@ -13,7 +13,7 @@ class Task implements TaskInterface
 
     public function execute(ContainerInterface $container): void
     {
-        $this->wasExecuted = true;                
+        $this->wasExecuted = true;
     }
 
 

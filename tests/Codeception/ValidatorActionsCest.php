@@ -9,7 +9,7 @@ class ValidatorActionsCest
 {
     public function testSeeValidatorPasses(CodeceptionTester $I): void
     {
-        $validator = new class implements ValidatorInterface {
+        $validator = new class () implements ValidatorInterface {
             public function validate(mixed $value): array
             {
                 return [];
@@ -24,11 +24,11 @@ class ValidatorActionsCest
 
     public function testSeeValidatorFails(CodeceptionTester $I): void
     {
-        $validator = new class implements ValidatorInterface {
+        $validator = new class () implements ValidatorInterface {
             public function validate(mixed $value): array
             {
                 return [
-                    "Nothing works."
+                    "Nothing works.",
                 ];
             }
         };

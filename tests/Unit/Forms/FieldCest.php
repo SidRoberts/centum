@@ -173,7 +173,7 @@ class FieldCest
                 "value"    => "",
                 "isValid"  => false,
                 "messages" => [
-                    "Value is required and can't be empty."
+                    "Value is required and can't be empty.",
                 ],
             ],
 

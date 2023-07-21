@@ -203,7 +203,7 @@ class FormCest
                     [
                         "username" => "sidroberts",
                         "password" => "hunter2",
-                        "csrf"     => "abcdefghijklmnop"
+                        "csrf"     => "abcdefghijklmnop",
                     ]
                 ),
                 "expected" => [

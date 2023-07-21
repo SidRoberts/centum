@@ -28,7 +28,7 @@ trait QueueActions
         $container = $this->grabContainer();
 
         $queue = new ArrayQueue($container);
-        
+
         $container->set(QueueInterface::class, $queue);
     }
 

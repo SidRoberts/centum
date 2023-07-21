@@ -3,9 +3,7 @@
 namespace Tests\Unit\Forms;
 
 use Centum\Filter\Callback;
-use Centum\Filter\String\Replace;
 use Centum\Filter\String\ToLower;
-use Centum\Filter\String\Trim;
 use Centum\Forms\Field;
 use Centum\Forms\Form;
 use Centum\Validator\NotEmpty;

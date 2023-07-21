@@ -45,7 +45,7 @@ class QueueActionsCest
         $task = new DoNothingTask();
 
         $I->publishToQueue($task);
-        
+
         $I->assertEquals(
             [
                 $task,

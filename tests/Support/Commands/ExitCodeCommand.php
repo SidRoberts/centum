@@ -3,9 +3,9 @@
 namespace Tests\Support\Commands;
 
 use Centum\Console\Command;
+use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Interfaces\Console\ParametersInterface;
 
 class ExitCodeCommand extends Command
 {
