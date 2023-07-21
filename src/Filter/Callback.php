@@ -6,14 +6,12 @@ use Centum\Interfaces\Filter\FilterInterface;
 
 class Callback implements FilterInterface
 {
-    /** @var callable */
-    protected $callable;
-
-
-
-    public function __construct(callable $callable)
-    {
-        $this->callable = $callable;
+    /**
+     * @param callable $callable
+     */
+    public function __construct(
+        protected $callable
+    ) {
     }
 
 

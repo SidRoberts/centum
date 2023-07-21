@@ -11,17 +11,14 @@ use InvalidArgumentException;
 
 class RedirectResponse extends Response
 {
-    protected string $targetUrl;
-
-
-
-    public function __construct(string $url, Status $status = Status::FOUND, HeadersInterface $headers = null)
-    {
-        if ($url === "") {
+    public function __construct(
+        protected readonly string $targetUrl,
+        Status $status = Status::FOUND,
+        HeadersInterface $headers = null
+    ) {
+        if ($targetUrl === "") {
             throw new InvalidArgumentException("URL can't be empty.");
         }
-
-        $this->targetUrl = $url;
 
         $content = sprintf('<!DOCTYPE html>
 <html lang="en">
@@ -34,7 +31,7 @@ class RedirectResponse extends Response
     <body>
         Redirecting to <a href="%1$s">%1$s</a>.
     </body>
-</html>', htmlspecialchars($url, \ENT_QUOTES, "UTF-8"));
+</html>', htmlspecialchars($targetUrl, \ENT_QUOTES, "UTF-8"));
 
         if ($headers === null) {
             $headers = new Headers();
@@ -45,7 +42,7 @@ class RedirectResponse extends Response
         );
 
         $headers->add(
-            new Header("Location", $url)
+            new Header("Location", $targetUrl)
         );
 
         if (!$status->isRedirect()) {

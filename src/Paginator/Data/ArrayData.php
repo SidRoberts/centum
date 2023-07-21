@@ -7,18 +7,11 @@ use Centum\Interfaces\Paginator\DataInterface;
 class ArrayData implements DataInterface
 {
     /**
-     * @var array<mixed> $data
-     */
-    protected readonly array $data;
-
-
-
-    /**
      * @param array<mixed> $data
      */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
+    public function __construct(
+        protected readonly array $data
+    ) {
     }
 
 

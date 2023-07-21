@@ -19,8 +19,6 @@ use Throwable;
 
 class Application implements ApplicationInterface
 {
-    protected readonly ContainerInterface $container;
-
     /** @var array<string, CommandInterface> */
     protected array $commands = [];
 
@@ -29,11 +27,10 @@ class Application implements ApplicationInterface
 
 
 
-    public function __construct(ContainerInterface $container)
-    {
+    public function __construct(
+        protected readonly ContainerInterface $container
+    ) {
         $container->set(ApplicationInterface::class, $this);
-
-        $this->container = $container;
 
         $this->addCommand(new ListCommand());
         $this->addCommand(new QueueConsumeCommand());

@@ -6,14 +6,9 @@ use InvalidArgumentException;
 
 class InvalidMaxException extends InvalidArgumentException
 {
-    protected readonly int $max;
-
-
-
-    public function __construct(int $max)
-    {
-        $this->max = $max;
-
+    public function __construct(
+        protected readonly int $max
+    ) {
         parent::__construct("Max must be a positive integer.");
     }
 

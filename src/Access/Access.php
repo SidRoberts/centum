@@ -12,16 +12,14 @@ class Access implements AccessInterface
 
 
 
-    protected readonly bool $default;
-
     /** @var array<string, ActivityInterface> */
     protected array $activities = [];
 
 
 
-    public function __construct(bool $default = self::ALLOW)
-    {
-        $this->default = $default;
+    public function __construct(
+        protected readonly bool $default = self::ALLOW
+    ) {
     }
 
 

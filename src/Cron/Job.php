@@ -9,16 +9,10 @@ use DateTimeInterface;
 
 class Job implements JobInterface
 {
-    protected readonly string $expression;
-
-    protected readonly mixed $data;
-
-
-
-    public function __construct(string $expression, mixed $data)
-    {
-        $this->expression = $expression;
-        $this->data       = $data;
+    public function __construct(
+        protected readonly string $expression,
+        protected readonly mixed $data
+    ) {
     }
 
 

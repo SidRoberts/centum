@@ -6,14 +6,9 @@ use InvalidArgumentException;
 
 class InvalidItemsPerPageException extends InvalidArgumentException
 {
-    protected readonly int $itemsPerPage;
-
-
-
-    public function __construct(int $itemsPerPage)
-    {
-        $this->itemsPerPage = $itemsPerPage;
-
+    public function __construct(
+        protected readonly int $itemsPerPage
+    ) {
         parent::__construct("Items Per Page must be a non-zero positive integer.");
     }
 

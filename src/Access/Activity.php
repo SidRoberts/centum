@@ -6,19 +6,15 @@ use Centum\Interfaces\Access\ActivityInterface;
 
 class Activity implements ActivityInterface
 {
-    protected readonly string $name;
-
-    protected readonly bool $default;
-
     /** @var array<string, bool> */
     protected array $users = [];
 
 
 
-    public function __construct(string $name, bool $default = Access::ALLOW)
-    {
-        $this->name    = $name;
-        $this->default = $default;
+    public function __construct(
+        protected readonly string $name,
+        protected readonly bool $default = Access::ALLOW
+    ) {
     }
 
 

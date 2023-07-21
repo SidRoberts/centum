@@ -11,22 +11,18 @@ use Centum\Interfaces\Http\RequestInterface;
 
 abstract class Form
 {
-    protected readonly RequestInterface $request;
-
     protected readonly DataInterface $data;
     protected readonly FilesInterface $files;
 
-    protected readonly CsrfInterface $csrf;
 
 
-
-    final public function __construct(RequestInterface $request, CsrfInterface $csrf, ContainerInterface $container)
-    {
-        $this->request = $request;
-        $this->data    = $request->getData();
-        $this->files   = $request->getFiles();
-
-        $this->csrf = $csrf;
+    final public function __construct(
+        protected readonly RequestInterface $request,
+        protected readonly CsrfInterface $csrf,
+        ContainerInterface $container
+    ) {
+        $this->data  = $request->getData();
+        $this->files = $request->getFiles();
 
         $this->set($container);
     }

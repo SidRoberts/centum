@@ -7,22 +7,14 @@ use InvalidArgumentException;
 
 class Replace implements FilterInterface
 {
-    /** @var string[] */
-    protected array $search;
-
-    /** @var string[] */
-    protected array $replace;
-
-
-
     /**
      * @param string[] $search
      * @param string[] $replace
      */
-    public function __construct(array $search, array $replace)
-    {
-        $this->search  = $search;
-        $this->replace = $replace;
+    public function __construct(
+        protected array $search,
+        protected array $replace
+    ) {
     }
 
 

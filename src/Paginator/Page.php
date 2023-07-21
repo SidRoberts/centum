@@ -9,19 +9,13 @@ use Centum\Paginator\Exception\InvalidPageNumberException;
 
 class Page implements PageInterface
 {
-    protected readonly PaginatorInterface $paginator;
-    protected readonly int $pageNumber;
-
-
-
-    public function __construct(PaginatorInterface $paginator, int $pageNumber)
-    {
+    public function __construct(
+        protected readonly PaginatorInterface $paginator,
+        protected readonly int $pageNumber
+    ) {
         if ($pageNumber < 1) {
             throw new InvalidPageNumberException($pageNumber);
         }
-
-        $this->paginator  = $paginator;
-        $this->pageNumber = $pageNumber;
     }
 
 

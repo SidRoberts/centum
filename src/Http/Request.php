@@ -10,32 +10,28 @@ use Centum\Interfaces\Http\RequestInterface;
 
 class Request implements RequestInterface
 {
-    protected readonly string $uri;
     protected readonly string $method;
     protected readonly DataInterface $data;
     protected readonly HeadersInterface $headers;
     protected readonly CookiesInterface $cookies;
     protected readonly FilesInterface $files;
-    protected readonly ?string $content;
 
 
 
     public function __construct(
-        string $uri,
+        protected readonly string $uri,
         string $method = "GET",
         DataInterface $data = null,
         HeadersInterface $headers = null,
         CookiesInterface $cookies = null,
         FilesInterface $files = null,
-        string $content = null
+        protected readonly ?string $content = null
     ) {
-        $this->uri     = $uri;
         $this->method  = strtoupper($method);
         $this->data    = $data ?? new Data([]);
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();
         $this->files   = $files ?? new Files();
-        $this->content = $content;
     }
 
 

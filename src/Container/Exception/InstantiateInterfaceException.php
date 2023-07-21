@@ -6,18 +6,12 @@ use Exception;
 
 class InstantiateInterfaceException extends Exception
 {
-    /** @var interface-string */
-    protected string $interface;
-
-
-
     /**
      * @param interface-string $interface
      */
-    public function __construct(string $interface)
-    {
-        $this->interface = $interface;
-
+    public function __construct(
+        protected readonly string $interface
+    ) {
         parent::__construct(
             sprintf(
                 "Cannot instantiate an interface (%s).",

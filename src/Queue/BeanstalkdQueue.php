@@ -12,17 +12,14 @@ use UnexpectedValueException;
 
 class BeanstalkdQueue implements QueueInterface
 {
-    protected readonly ContainerInterface $container;
-    protected readonly PheanstalkInterface $pheanstalk;
-
     public const TUBE = "centum-tasks";
 
 
 
-    public function __construct(ContainerInterface $container, PheanstalkInterface $pheanstalk)
-    {
-        $this->container  = $container;
-        $this->pheanstalk = $pheanstalk;
+    public function __construct(
+        protected readonly ContainerInterface $container,
+        protected readonly PheanstalkInterface $pheanstalk
+    ) {
     }
 
 

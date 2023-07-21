@@ -24,11 +24,9 @@ use Doctrine\ORM\EntityManager;
 
 class PostFilter implements FilterInterface
 {
-    protected ContainerInterface $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        protected readonly ContainerInterface $container
+    ) {
     }
 
     public function filter(mixed $value): Post

@@ -6,13 +6,9 @@ use Centum\Http\File;
 
 class FileAlreadyMovedException extends \Exception
 {
-    protected File $centumFile;
-
-
-
-    public function __construct(File $centumFile)
-    {
-        $this->centumFile = $centumFile;
+    public function __construct(
+        protected readonly File $centumFile
+    ) {
     }
 
 

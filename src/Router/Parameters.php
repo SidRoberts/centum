@@ -6,17 +6,12 @@ use Centum\Interfaces\Router\ParametersInterface;
 
 class Parameters implements ParametersInterface
 {
-    /** @var array<string, mixed> */
-    protected readonly array $parameters;
-
-
-
     /**
      * @param array<string, mixed> $parameters
      */
-    public function __construct(array $parameters)
-    {
-        $this->parameters = $parameters;
+    public function __construct(
+        protected readonly array $parameters
+    ) {
     }
 
 

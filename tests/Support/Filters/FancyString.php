@@ -6,13 +6,9 @@ use Stringable;
 
 class FancyString implements Stringable
 {
-    protected readonly string $value;
-
-
-
-    public function __construct(string $value)
-    {
-        $this->value = $value;
+    public function __construct(
+        protected readonly string $value
+    ) {
     }
 
 

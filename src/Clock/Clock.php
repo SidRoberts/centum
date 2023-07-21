@@ -8,15 +8,10 @@ use DateTimeZone;
 
 class Clock implements ClockInterface
 {
-    protected string $datetime;
-    protected DateTimeZone|null $timezone;
-
-
-
-    public function __construct(string $datetime = "now", DateTimeZone|null $timezone = null)
-    {
-        $this->datetime = $datetime;
-        $this->timezone = $timezone;
+    public function __construct(
+        protected string $datetime = "now",
+        protected DateTimeZone|null $timezone = null
+    ) {
     }
 
 

@@ -6,17 +6,12 @@ use Centum\Interfaces\Forms\StatusInterface;
 
 class Status implements StatusInterface
 {
-    /** @var array<string, string[]> */
-    protected readonly array $messages;
-
-
-
     /**
      * @param array<string, string[]> $messages
      */
-    public function __construct(array $messages)
-    {
-        $this->messages = $messages;
+    public function __construct(
+        protected readonly array $messages
+    ) {
     }
 
 

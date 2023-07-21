@@ -38,11 +38,9 @@ use NumberFormatter;
 
 class NumberFormatterFilter implements FilterInterface
 {
-    protected NumberFormatter $numberFormatter;
-
-    public function __construct(NumberFormatter $numberFormatter)
-    {
-        $this->numberFormatter = $numberFormatter;
+    public function __construct(
+        protected readonly NumberFormatter $numberFormatter
+    ) {
     }
 
     public function filter(mixed $value): mixed

@@ -9,20 +9,14 @@ use Centum\Interfaces\Http\SessionInterface;
 
 class Flash implements FlashInterface
 {
-    protected readonly SessionInterface $session;
-
-    protected readonly FormatterInterface $formatter;
-
-
-
     public const SESSION_ID = "_flashMessages";
 
 
 
-    public function __construct(SessionInterface $session, FormatterInterface $formatter)
-    {
-        $this->session   = $session;
-        $this->formatter = $formatter;
+    public function __construct(
+        protected readonly SessionInterface $session,
+        protected readonly FormatterInterface $formatter
+    ) {
     }
 
 

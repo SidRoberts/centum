@@ -48,11 +48,9 @@ use DateTimeInterface;
 
 class WithinDatePeriodValidator implements ValidatorInterface
 {
-    protected DatePeriod $datePeriod;
-
-    public function __construct(DatePeriod $datePeriod)
-    {
-        $this->datePeriod = $datePeriod;
+    public function __construct(
+        protected DatePeriod $datePeriod
+    ) {
     }
 
     public function validate(mixed $value): array

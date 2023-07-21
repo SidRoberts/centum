@@ -9,8 +9,6 @@ use Throwable;
 
 class Field implements FieldInterface
 {
-    protected readonly string $name;
-
     /** @var FilterInterface[] */
     protected array $filters = [];
 
@@ -19,9 +17,9 @@ class Field implements FieldInterface
 
 
 
-    public function __construct(string $name)
-    {
-        $this->name = $name;
+    public function __construct(
+        protected readonly string $name
+    ) {
     }
 
 

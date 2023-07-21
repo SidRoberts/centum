@@ -14,7 +14,9 @@ class MiddlewareGroup implements MiddlewareInterface
 
 
 
-    /** @param array<MiddlewareInterface> $middlewares */
+    /**
+     * @param array<MiddlewareInterface> $middlewares
+     */
     public function __construct(array $middlewares = [])
     {
         foreach ($middlewares as $middleware) {

@@ -24,11 +24,9 @@ use Doctrine\ORM\EntityManager;
 
 class PostReplacement implements ReplacementInterface
 {
-    protected ContainerInterface $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        protected readonly ContainerInterface $container
+    ) {
     }
 
 

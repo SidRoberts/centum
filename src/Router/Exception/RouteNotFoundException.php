@@ -6,12 +6,9 @@ use Centum\Interfaces\Http\RequestInterface;
 
 class RouteNotFoundException extends \Exception
 {
-    protected readonly RequestInterface $request;
-
-
-
-    public function __construct(RequestInterface $request)
-    {
+    public function __construct(
+        protected readonly RequestInterface $request
+    ) {
         $message = sprintf(
             "%s %s",
             $request->getMethod(),
@@ -19,8 +16,6 @@ class RouteNotFoundException extends \Exception
         );
 
         parent::__construct($message);
-
-        $this->request = $request;
     }
 
 

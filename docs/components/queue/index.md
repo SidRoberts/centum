@@ -32,11 +32,9 @@ use Centum\Interfaces\Queue\TaskInterface;
 
 class LogTask implements TaskInterface
 {
-    protected string $message;
-
-    public function __construct(string $message)
-    {
-        $this->message = $message;
+    public function __construct(
+        protected string $message
+    ) {
     }
 
     public function execute(ContainerInterface $container): void

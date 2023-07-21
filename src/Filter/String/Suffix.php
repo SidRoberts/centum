@@ -7,13 +7,9 @@ use InvalidArgumentException;
 
 class Suffix implements FilterInterface
 {
-    protected string $suffix;
-
-
-
-    public function __construct(string $suffix)
-    {
-        $this->suffix = $suffix;
+    public function __construct(
+        protected readonly string $suffix
+    ) {
     }
 
 

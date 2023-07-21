@@ -8,23 +8,17 @@ use Exception;
 
 class File implements FileInterface
 {
-    protected readonly ?string $name;
-    protected readonly ?string $type;
-    protected readonly int $size;
-    protected ?string $location;
-    protected readonly int $error;
-
     protected bool $isMoved = false;
 
 
 
-    public function __construct(?string $name, ?string $type, int $size, ?string $location, int $error)
-    {
-        $this->name     = $name;
-        $this->type     = $type;
-        $this->size     = $size;
-        $this->location = $location;
-        $this->error    = $error;
+    public function __construct(
+        protected readonly ?string $name,
+        protected readonly ?string $type,
+        protected readonly int $size,
+        protected ?string $location,
+        protected readonly int $error
+    ) {
     }
 
 

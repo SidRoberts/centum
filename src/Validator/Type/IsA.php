@@ -6,17 +6,12 @@ use Centum\Interfaces\Validator\ValidatorInterface;
 
 class IsA implements ValidatorInterface
 {
-    /** @var class-string */
-    protected string $className;
-
-
-
     /**
      * @param class-string $className
      */
-    public function __construct(string $className)
-    {
-        $this->className = $className;
+    public function __construct(
+        protected readonly string $className
+    ) {
     }
 
 

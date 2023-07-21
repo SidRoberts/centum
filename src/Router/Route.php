@@ -6,26 +6,15 @@ use Centum\Interfaces\Router\RouteInterface;
 
 class Route implements RouteInterface
 {
-    protected readonly string $httpMethod;
-
-    protected readonly string $uri;
-
-    /** @var class-string */
-    protected readonly string $class;
-
-    protected readonly string $method;
-
-
-
     /**
      * @param class-string $class
      */
-    public function __construct(string $httpMethod, string $uri, string $class, string $method)
-    {
-        $this->httpMethod = $httpMethod;
-        $this->uri        = $uri;
-        $this->class      = $class;
-        $this->method     = $method;
+    public function __construct(
+        protected readonly string $httpMethod,
+        protected readonly string $uri,
+        protected readonly string $class,
+        protected readonly string $method
+    ) {
     }
 
 

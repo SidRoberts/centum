@@ -7,16 +7,14 @@ use Centum\Interfaces\Http\FileInterface;
 
 class FileGroup implements FileGroupInterface
 {
-    protected readonly string $id;
-
     /** @var array<FileInterface> */
     protected array $files = [];
 
 
 
-    public function __construct(string $id)
-    {
-        $this->id = $id;
+    public function __construct(
+        protected readonly string $id
+    ) {
     }
 
 

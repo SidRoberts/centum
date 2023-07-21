@@ -25,8 +25,6 @@ use Throwable;
 
 class Router implements RouterInterface
 {
-    protected readonly ContainerInterface $container;
-
     /** @var GroupInterface[] */
     protected array $groups = [];
 
@@ -38,11 +36,10 @@ class Router implements RouterInterface
 
 
 
-    public function __construct(ContainerInterface $container)
-    {
+    public function __construct(
+        protected readonly ContainerInterface $container
+    ) {
         $container->set(RouterInterface::class, $this);
-
-        $this->container = $container;
 
         $this->replacements = [
             "int"  => new IntegerReplacement(),

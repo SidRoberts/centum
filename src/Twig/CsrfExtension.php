@@ -8,13 +8,9 @@ use Twig\TwigFunction;
 
 class CsrfExtension extends AbstractExtension
 {
-    protected readonly CsrfInterface $csrf;
-
-
-
-    public function __construct(CsrfInterface $csrf)
-    {
-        $this->csrf = $csrf;
+    public function __construct(
+        protected readonly CsrfInterface $csrf
+    ) {
     }
 
 

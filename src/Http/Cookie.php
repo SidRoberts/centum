@@ -6,15 +6,10 @@ use Centum\Interfaces\Http\CookieInterface;
 
 class Cookie implements CookieInterface
 {
-    protected readonly string $name;
-    protected readonly string $value;
-
-
-
-    public function __construct(string $name, string $value)
-    {
-        $this->name  = $name;
-        $this->value = $value;
+    public function __construct(
+        protected readonly string $name,
+        protected readonly string $value
+    ) {
     }
 
 

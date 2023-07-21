@@ -8,16 +8,14 @@ use Centum\Interfaces\Router\RouteInterface;
 
 class Group implements GroupInterface
 {
-    protected readonly MiddlewareInterface $middleware;
-
     /** @var RouteInterface[] */
     protected array $routes = [];
 
 
 
-    public function __construct(MiddlewareInterface $middleware)
-    {
-        $this->middleware = $middleware;
+    public function __construct(
+        protected readonly MiddlewareInterface $middleware
+    ) {
     }
 
 

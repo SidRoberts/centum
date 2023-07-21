@@ -8,13 +8,9 @@ use Twig\TwigFunction;
 
 class UrlExtension extends AbstractExtension
 {
-    protected readonly UrlInterface $url;
-
-
-
-    public function __construct(UrlInterface $url)
-    {
-        $this->url = $url;
+    public function __construct(
+        protected readonly UrlInterface $url
+    ) {
     }
 
 

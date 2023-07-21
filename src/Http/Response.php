@@ -8,22 +8,17 @@ use Centum\Interfaces\Http\ResponseInterface;
 
 class Response implements ResponseInterface
 {
-    protected readonly string $content;
-    protected readonly Status $status;
     protected readonly HeadersInterface $headers;
     protected readonly CookiesInterface $cookies;
 
 
 
     public function __construct(
-        string $content = "",
-        Status $status = Status::OK,
+        protected readonly string $content = "",
+        protected readonly Status $status = Status::OK,
         HeadersInterface $headers = null,
         CookiesInterface $cookies = null
     ) {
-        $this->content = $content;
-
-        $this->status  = $status;
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();
     }

@@ -4,13 +4,9 @@ namespace Tests\Support\Container;
 
 class ResolvableClass
 {
-    protected readonly Incrementer $incrementer;
-
-
-
-    public function __construct(Incrementer $incrementer)
-    {
-        $this->incrementer = $incrementer;
+    public function __construct(
+        protected readonly Incrementer $incrementer
+    ) {
     }
 
 

@@ -6,17 +6,12 @@ use Centum\Interfaces\Http\DataInterface;
 
 class Data implements DataInterface
 {
-    /** @var array<string, mixed> */
-    protected readonly array $data;
-
-
-
     /**
      * @param array<string, mixed> $data
      */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
+    public function __construct(
+        protected readonly array $data
+    ) {
     }
 
 

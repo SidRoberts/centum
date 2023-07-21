@@ -9,21 +9,14 @@ use Centum\Paginator\Exception\InvalidItemsPerPageException;
 
 class Paginator implements PaginatorInterface
 {
-    protected readonly DataInterface $data;
-    protected readonly int $itemsPerPage;
-    protected readonly string $urlPrefix;
-
-
-
-    public function __construct(DataInterface $data, int $itemsPerPage, string $urlPrefix)
-    {
+    public function __construct(
+        protected readonly DataInterface $data,
+        protected readonly int $itemsPerPage,
+        protected readonly string $urlPrefix
+    ) {
         if ($itemsPerPage < 1) {
             throw new InvalidItemsPerPageException($itemsPerPage);
         }
-
-        $this->data         = $data;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->urlPrefix    = $urlPrefix;
     }
 
 

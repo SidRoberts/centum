@@ -7,17 +7,12 @@ use Twig\TwigFunction;
 
 class WhitelistedFunctionsExtension extends AbstractExtension
 {
-    /** @var callable-string[] */
-    protected readonly array $functionNames;
-
-
-
     /**
      * @param callable-string[] $functionNames
      */
-    public function __construct(array $functionNames)
-    {
-        $this->functionNames = $functionNames;
+    public function __construct(
+        protected readonly array $functionNames
+    ) {
     }
 
 

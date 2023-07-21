@@ -6,13 +6,9 @@ use Centum\Interfaces\Url\UrlInterface;
 
 class Url implements UrlInterface
 {
-    protected readonly string $baseUri;
-
-
-
-    public function __construct(string $baseUri = "")
-    {
-        $this->baseUri = $baseUri;
+    public function __construct(
+        protected readonly string $baseUri = ""
+    ) {
     }
 
 

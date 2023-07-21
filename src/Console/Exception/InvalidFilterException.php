@@ -6,13 +6,9 @@ use UnexpectedValueException;
 
 class InvalidFilterException extends UnexpectedValueException
 {
-    protected readonly mixed $invalidFilter;
-
-
-
-    public function __construct(mixed $invalidFilter)
-    {
-        $this->invalidFilter = $invalidFilter;
+    public function __construct(
+        protected readonly mixed $invalidFilter
+    ) {
     }
 
 

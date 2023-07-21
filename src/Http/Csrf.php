@@ -7,17 +7,15 @@ use Centum\Interfaces\Http\SessionInterface;
 
 class Csrf implements CsrfInterface
 {
-    protected readonly SessionInterface $session;
-
     public const TOKEN = "centum-csrf";
 
     public const LENGTH = 32;
 
 
 
-    public function __construct(SessionInterface $session)
-    {
-        $this->session = $session;
+    public function __construct(
+        protected readonly SessionInterface $session
+    ) {
     }
 
 

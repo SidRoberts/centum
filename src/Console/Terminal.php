@@ -10,15 +10,6 @@ class Terminal implements TerminalInterface
     /** @var array<string> */
     protected readonly array $argv;
 
-    /** @var resource */
-    protected $stdin;
-
-    /** @var resource */
-    protected $stdout;
-
-    /** @var resource */
-    protected $stderr;
-
 
 
     /**
@@ -27,13 +18,13 @@ class Terminal implements TerminalInterface
      * @param resource $stdout
      * @param resource $stderr
      */
-    public function __construct(array $argv = null, $stdin = STDIN, $stdout = STDOUT, $stderr = STDERR)
-    {
+    public function __construct(
+        array $argv = null,
+        protected $stdin = STDIN,
+        protected $stdout = STDOUT,
+        protected $stderr = STDERR
+    ) {
         $this->argv = $argv ?? $_SERVER["argv"] ?? throw new InvalidArgumentException("Unable to find \`argv\`.");
-
-        $this->stdin  = $stdin;
-        $this->stdout = $stdout;
-        $this->stderr = $stderr;
     }
 
 

@@ -9,13 +9,9 @@ use Centum\Interfaces\Console\ParametersInterface;
 
 class ExitCodeCommand extends Command
 {
-    protected int $exitCode;
-
-
-
-    public function __construct(int $exitCode)
-    {
-        $this->exitCode = $exitCode;
+    public function __construct(
+        protected int $exitCode
+    ) {
     }
 
 

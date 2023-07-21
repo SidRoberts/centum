@@ -11,13 +11,9 @@ use Centum\Validator\NotEmpty;
 
 class UserWithConstructorTemplate extends FormTemplate
 {
-    protected readonly ContainerInterface $container;
-
-
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        protected readonly ContainerInterface $container
+    ) {
     }
 
 

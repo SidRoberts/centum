@@ -6,14 +6,12 @@ use Centum\Interfaces\Validator\ValidatorInterface;
 
 class Callback implements ValidatorInterface
 {
-    /** @var callable */
-    protected $callable;
-
-
-
-    public function __construct(callable $callable)
-    {
-        $this->callable = $callable;
+    /**
+     * @param callable $callable
+     */
+    public function __construct(
+        protected $callable
+    ) {
     }
 
 

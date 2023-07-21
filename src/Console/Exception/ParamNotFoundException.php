@@ -6,13 +6,9 @@ use OutOfRangeException;
 
 class ParamNotFoundException extends OutOfRangeException
 {
-    protected readonly string $key;
-
-
-
-    public function __construct(string $key)
-    {
-        $this->key = $key;
+    public function __construct(
+        protected readonly string $key
+    ) {
     }
 
 

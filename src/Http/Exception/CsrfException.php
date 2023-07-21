@@ -4,14 +4,9 @@ namespace Centum\Http\Exception;
 
 class CsrfException extends \Exception
 {
-    protected readonly ?string $value;
-
-
-
-    public function __construct(?string $value)
-    {
-        $this->value = $value;
-
+    public function __construct(
+        protected readonly ?string $value
+    ) {
         parent::__construct(
             "CSRF values did not match."
         );

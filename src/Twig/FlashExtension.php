@@ -8,13 +8,9 @@ use Twig\TwigFunction;
 
 class FlashExtension extends AbstractExtension
 {
-    protected readonly FlashInterface $flash;
-
-
-
-    public function __construct(FlashInterface $flash)
-    {
-        $this->flash = $flash;
+    public function __construct(
+        protected readonly FlashInterface $flash
+    ) {
     }
 
 

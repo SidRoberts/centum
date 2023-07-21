@@ -7,13 +7,9 @@ use InvalidArgumentException;
 
 class Prefix implements FilterInterface
 {
-    protected readonly string $prefix;
-
-
-
-    public function __construct(string $prefix)
-    {
-        $this->prefix = $prefix;
+    public function __construct(
+        protected readonly string $prefix
+    ) {
     }
 
 

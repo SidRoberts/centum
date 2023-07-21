@@ -11,8 +11,6 @@ use Throwable;
 
 class ArrayQueue implements QueueInterface
 {
-    protected readonly ContainerInterface $container;
-
     /** @var array<TaskInterface> */
     protected array $tasks = [];
 
@@ -21,9 +19,9 @@ class ArrayQueue implements QueueInterface
 
 
 
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        protected readonly ContainerInterface $container
+    ) {
     }
 
 
