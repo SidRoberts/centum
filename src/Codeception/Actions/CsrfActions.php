@@ -11,11 +11,18 @@ trait CsrfActions
 
 
 
-    public function getCsrfValue(): string
+    public function grabCsrf(): CsrfInterface
     {
         $container = $this->grabContainer();
 
         $csrf = $container->get(CsrfInterface::class);
+
+        return $csrf;
+    }
+
+    public function getCsrfValue(): string
+    {
+        $csrf = $this->grabCsrf();
 
         return $csrf->get();
     }

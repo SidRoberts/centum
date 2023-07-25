@@ -11,4 +11,5 @@ permalink: testing/csrf
 
 [`Centum\Codeception\Actions\CsrfActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CsrfActions.php)
 
+- `grabCsrf(): Centum\Interfaces\Http\CsrfInterface`
 - `getCsrfValue(): string`
