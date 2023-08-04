@@ -23,6 +23,84 @@ class TerminalCest
 
 
 
+    public function testGetArgv(UnitTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "this:command:does:not:exist",
+        ];
+
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $I->assertSame(
+            $argv,
+            $terminal->getArgv()
+        );
+    }
+
+    public function testGetStdIn(UnitTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "this:command:does:not:exist",
+        ];
+
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $I->assertSame(
+            $stdin,
+            $terminal->getStdIn()
+        );
+    }
+
+    public function testGetStdOut(UnitTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "this:command:does:not:exist",
+        ];
+
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $I->assertSame(
+            $stdout,
+            $terminal->getStdOut()
+        );
+    }
+
+    public function testGetStdErr(UnitTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "this:command:does:not:exist",
+        ];
+
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+
+        $I->assertSame(
+            $stderr,
+            $terminal->getStdErr()
+        );
+    }
+
+
+
     public function testMultipleWritesToStdOut(UnitTester $I): void
     {
         $terminal = $this->getTerminal();
