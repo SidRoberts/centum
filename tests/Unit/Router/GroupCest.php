@@ -23,7 +23,20 @@ class GroupCest
 
     public function testGetRoutes(UnitTester $I): void
     {
-        $I->markTestIncomplete();
+        $middleware = new TrueMiddleware();
+
+        $group = new Group($middleware);
+
+        $route1 = $group->get("/uri", IndexController::class, "index");
+        $route2 = $group->post("/uri", IndexController::class, "index");
+
+        $I->assertSame(
+            [
+                $route1,
+                $route2,
+            ],
+            $group->getRoutes()
+        );
     }
 
     public function testGet(UnitTester $I): void
