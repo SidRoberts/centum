@@ -190,7 +190,7 @@ class HtmlActionsCest
 
         $I->assertEquals(
             "img",
-            $element->nodeName()
+            $element?->nodeName()
         );
     }
 
