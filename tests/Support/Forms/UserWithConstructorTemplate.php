@@ -21,26 +21,26 @@ class UserWithConstructorTemplate extends FormTemplate
     public function username(Field $field): void
     {
         $field->addFilter(
-            new ToString()
+            $this->container->get(ToString::class)
         );
 
         $field->addFilter(
-            new Trim()
+            $this->container->get(Trim::class)
         );
 
         $field->addValidator(
-            new NotEmpty()
+            $this->container->get(NotEmpty::class)
         );
     }
 
     public function password(Field $field): void
     {
         $field->addFilter(
-            new ToString()
+            $this->container->get(ToString::class)
         );
 
         $field->addValidator(
-            new NotEmpty()
+            $this->container->get(NotEmpty::class)
         );
     }
 }
