@@ -15,11 +15,11 @@ class LoginForm extends Form
 
     protected function set(ContainerInterface $container): void
     {
-        $this->setUsername($container);
-        $this->setPassword($container);
+        $this->setUsername();
+        $this->setPassword();
     }
 
-    protected function setUsername(ContainerInterface $container): void
+    protected function setUsername(): void
     {
         if (!$this->data->get("username")) {
             throw new Exception("Username is required.");
@@ -31,7 +31,7 @@ class LoginForm extends Form
         $this->username = $username;
     }
 
-    protected function setPassword(ContainerInterface $container): void
+    protected function setPassword(): void
     {
         if (!$this->data->get("password")) {
             throw new Exception("Password is required.");

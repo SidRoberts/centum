@@ -17,11 +17,11 @@ class LoginWithCsrfForm extends Form
     {
         $this->validateCsrf();
 
-        $this->setUsername($container);
-        $this->setPassword($container);
+        $this->setUsername();
+        $this->setPassword();
     }
 
-    protected function setUsername(ContainerInterface $container): void
+    protected function setUsername(): void
     {
         if (!$this->data->get("username")) {
             throw new Exception("Username is required.");
@@ -33,7 +33,7 @@ class LoginWithCsrfForm extends Form
         $this->username = $username;
     }
 
-    protected function setPassword(ContainerInterface $container): void
+    protected function setPassword(): void
     {
         if (!$this->data->get("password")) {
             throw new Exception("Password is required.");
