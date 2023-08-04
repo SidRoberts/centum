@@ -53,9 +53,10 @@ class ArrayQueueCest
 
 
 
-        $queue->consume();
-
-
+        $I->assertSame(
+            $task,
+            $queue->consume()
+        );
 
         $I->assertSame(
             [],
