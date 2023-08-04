@@ -62,5 +62,14 @@
 
     "bin": [
         "bin/centum"
-    ]
+    ],
+
+
+
+    "scripts": {
+        "analyse":       "vendor/bin/psalm --no-cache",
+        "test":          "vendor/bin/codecept run",
+        "test-coverage": "vendor/bin/codecept run --coverage-html",
+        "format":        "vendor/bin/php-cs-fixer fix"
+    }
 }

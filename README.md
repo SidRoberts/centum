@@ -56,8 +56,16 @@ docker-compose up
 
 ## Testing
 
+Centum uses [Codeception](https://codeception.com/) for testing and is available through a Composer script:
+
 ```bash
-vendor/bin/codecept run
+composer test
+```
+
+To run Codeception with code coverage:
+
+```bash
+composer test-coverage
 ```
 
 
