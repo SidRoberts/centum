@@ -52,7 +52,7 @@ trait SessionActions
 
 
 
-    public function seeValueInSessionIs(string $key, string $expectedValue): void
+    public function seeValueInSessionIs(string $key, mixed $expectedValue): void
     {
         /** @var mixed */
         $actualValue = $this->grabFromSession($key);
@@ -63,7 +63,7 @@ trait SessionActions
         );
     }
 
-    public function seeValueInSessionIsNot(string $key, string $expectedValue): void
+    public function seeValueInSessionIsNot(string $key, mixed $expectedValue): void
     {
         /** @var mixed */
         $actualValue = $this->grabFromSession($key);

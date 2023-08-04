@@ -57,6 +57,7 @@ class SessionActionsCest
             $session
         );
 
+        /** @var int */
         $value = $I->grabFromSession("number");
 
         $I->assertEquals(
