@@ -6,6 +6,9 @@ use Centum\Interfaces\Validator\ValidatorInterface;
 
 class RegularExpression implements ValidatorInterface
 {
+    /**
+     * @param non-empty-string $pattern
+     */
     public function __construct(
         protected readonly string $pattern
     ) {
