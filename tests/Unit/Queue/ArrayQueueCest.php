@@ -26,6 +26,15 @@ class ArrayQueueCest
 
 
         $queue->publish($task);
+
+
+
+        $I->assertSame(
+            [
+                $task,
+            ],
+            $queue->getTasks()
+        );
     }
 
 
@@ -45,6 +54,13 @@ class ArrayQueueCest
 
 
         $queue->consume();
+
+
+
+        $I->assertSame(
+            [],
+            $queue->getTasks()
+        );
     }
 
     public function testConsumeTaskWhenQueueIsEmptyThrowsException(UnitTester $I): void
