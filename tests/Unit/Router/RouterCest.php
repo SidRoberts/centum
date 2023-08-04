@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Router;
 
-use Centum\Container\Container;
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Exception\RouteNotFoundException;
@@ -27,8 +26,6 @@ class RouterCest
 {
     protected function getRouter(ContainerInterface $container): Router
     {
-        $container = new Container();
-
         $router = new Router($container);
 
 
