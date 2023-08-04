@@ -8,6 +8,7 @@
 >
     <projectFiles>
         <directory name="src"/>
+        <directory name="tests/Codeception"/>
         <directory name="tests/Console"/>
         <directory name="tests/Support"/>
         <directory name="tests/Unit"/>
@@ -20,6 +21,7 @@
     <issueHandlers>
         <TooManyArguments>
             <errorLevel type="suppress">
+                <directory name="tests/Codeception"/>
                 <directory name="tests/Console"/>
                 <directory name="tests/Unit"/>
                 <directory name="tests/Web"/>
@@ -32,6 +34,7 @@
         </PropertyNotSetInConstructor>
         <MissingConstructor>
             <errorLevel type="suppress">
+                <directory name="tests/Codeception"/>
                 <directory name="tests/Console"/>
                 <directory name="tests/Unit"/>
                 <directory name="tests/Web"/>
