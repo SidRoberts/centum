@@ -10,6 +10,20 @@ use Tests\Support\UnitTester;
 
 class ActivityCest
 {
+    public function testGetName(UnitTester $I): void
+    {
+        $name = "component";
+
+        $activity = new Activity($name);
+
+        $I->assertEquals(
+            $name,
+            $activity->getName()
+        );
+    }
+
+
+
     #[DataProvider("providerInitialState")]
     public function testInitialState(UnitTester $I, Example $example): void
     {

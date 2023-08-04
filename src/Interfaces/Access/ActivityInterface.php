@@ -4,6 +4,10 @@ namespace Centum\Interfaces\Access;
 
 interface ActivityInterface
 {
+    public function getName(): string;
+
+
+
     public function allow(string $user): void;
 
     public function deny(string $user): void;

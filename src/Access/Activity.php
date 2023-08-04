@@ -19,6 +19,13 @@ class Activity implements ActivityInterface
 
 
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+
+
     public function allow(string $user): void
     {
         $this->users[$user] = Access::ALLOW;
