@@ -12,6 +12,7 @@ use Centum\Flash\Flash;
 use Centum\Http\Csrf\Generator;
 use Centum\Http\Csrf\Storage;
 use Centum\Http\Csrf\Validator;
+use Centum\Http\FormBuilder;
 use Centum\Http\Request;
 use Centum\Http\Session\GlobalSession;
 use Centum\Interfaces\Access\AccessInterface;
@@ -23,6 +24,7 @@ use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
+use Centum\Interfaces\Http\FormBuilderInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Router\RouterInterface;
@@ -51,6 +53,7 @@ class Container implements ContainerInterface
         StorageInterface::class     => Storage::class,
         ValidatorInterface::class   => Validator::class,
         FlashInterface::class       => Flash::class,
+        FormBuilderInterface::class => FormBuilder::class,
         RequestInterface::class     => Request::class,
         RouterInterface::class      => Router::class,
         SessionInterface::class     => GlobalSession::class,
