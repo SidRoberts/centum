@@ -15,12 +15,12 @@ class RouterActionsCest
 {
     public function testGrabRouter(CodeceptionTester $I): void
     {
-        $routerFromCotainer = $I->grabFromContainer(RouterInterface::class);
+        $routerFromContainer = $I->grabFromContainer(RouterInterface::class);
 
         $router = $I->grabRouter();
 
         $I->assertSame(
-            $routerFromCotainer,
+            $routerFromContainer,
             $router
         );
     }
