@@ -173,14 +173,14 @@ class Container implements ContainerInterface
     {
         $parameters = $method->getParameters();
 
-        $params = [];
+        $resolvedParameters = [];
 
         foreach ($parameters as $parameter) {
             /** @var mixed */
-            $params[] = $this->resolveParam($parameter);
+            $resolvedParameters[] = $this->resolveParam($parameter);
         }
 
-        return $params;
+        return $resolvedParameters;
     }
 
     protected function resolveParam(ReflectionParameter $parameter): mixed
