@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Twig;
 
-use Centum\Interfaces\Http\CsrfInterface;
+use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Twig\CsrfExtension;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
@@ -27,8 +27,8 @@ class CsrfExtensionCest
 
     public function test(UnitTester $I): void
     {
-        $csrf = $I->mock(
-            CsrfInterface::class,
+        $csrfStorage = $I->mock(
+            StorageInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->andReturn("abcdefghijklmnop");
@@ -38,7 +38,7 @@ class CsrfExtensionCest
         $twig = $this->getTwig();
 
         $twig->addExtension(
-            new CsrfExtension($csrf)
+            new CsrfExtension($csrfStorage)
         );
 
         $I->assertEquals(
@@ -51,8 +51,8 @@ class CsrfExtensionCest
 
     public function testCsrfValue(UnitTester $I): void
     {
-        $csrf = $I->mock(
-            CsrfInterface::class,
+        $csrfStorage = $I->mock(
+            StorageInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("get")
                     ->andReturn("abcdefghijklmnop");
@@ -62,7 +62,7 @@ class CsrfExtensionCest
         $twig = $this->getTwig();
 
         $twig->addExtension(
-            new CsrfExtension($csrf)
+            new CsrfExtension($csrfStorage)
         );
 
         $I->assertEquals(

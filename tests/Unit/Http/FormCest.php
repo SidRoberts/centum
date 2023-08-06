@@ -5,7 +5,7 @@ namespace Tests\Unit\Http;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
 use Centum\Http\Request;
-use Centum\Interfaces\Http\CsrfInterface;
+use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -29,17 +29,11 @@ class FormCest
             $data
         );
 
-        $csrf = $I->mock(
-            CsrfInterface::class,
-            function (MockInterface $mock): void {
-                $mock->shouldReceive("get")
-                    ->andReturn("abcdefghijklmnop");
-            }
-        );
+        $csrfValidator = $I->mock(ValidatorInterface::class);
 
         $container = $I->grabContainer();
 
-        $form = new LoginForm($request, $csrf, $container);
+        $form = new LoginForm($request, $csrfValidator, $container);
 
         /** @var array{username: string, password: string} */
         $expected = $example["expected"];
@@ -89,20 +83,14 @@ class FormCest
             $data
         );
 
-        $csrf = $I->mock(
-            CsrfInterface::class,
-            function (MockInterface $mock): void {
-                $mock->shouldReceive("get")
-                    ->andReturn("abcdefghijklmnop");
-            }
-        );
+        $csrfValidator = $I->mock(ValidatorInterface::class);
 
         $container = $I->grabContainer();
 
         $I->expectThrowable(
             Exception::class,
-            function () use ($request, $csrf, $container): void {
-                new LoginForm($request, $csrf, $container);
+            function () use ($request, $csrfValidator, $container): void {
+                new LoginForm($request, $csrfValidator, $container);
             }
         );
     }
@@ -168,18 +156,17 @@ class FormCest
             $data
         );
 
-        $csrf = $I->mock(
-            CsrfInterface::class,
+        $csrfValidator = $I->mock(
+            ValidatorInterface::class,
             function (MockInterface $mock): void {
                 $mock->shouldReceive("validate")
-                    ->with("abcdefghijklmnop")
-                    ->andReturnTrue();
+                    ->once();
             }
         );
 
         $container = $I->grabContainer();
 
-        $form = new LoginWithCsrfForm($request, $csrf, $container);
+        $form = new LoginWithCsrfForm($request, $csrfValidator, $container);
 
         /** @var array{username: string, password: string} */
         $expected = $example["expected"];
@@ -230,21 +217,23 @@ class FormCest
             $data
         );
 
-        $csrf = $I->mock(
-            CsrfInterface::class,
-            function (MockInterface $mock): void {
+        $throwable = new CsrfException(null);
+
+        $csrfValidator = $I->mock(
+            ValidatorInterface::class,
+            function (MockInterface $mock) use ($throwable): void {
                 $mock->shouldReceive("validate")
-                    ->withAnyArgs()
-                    ->andReturnFalse();
+                    ->andThrow($throwable)
+                    ->once();
             }
         );
 
         $container = $I->grabContainer();
 
         $I->expectThrowable(
-            new CsrfException(null),
-            function () use ($request, $csrf, $container): void {
-                new LoginWithCsrfForm($request, $csrf, $container);
+            $throwable,
+            function () use ($request, $csrfValidator, $container): void {
+                new LoginWithCsrfForm($request, $csrfValidator, $container);
             }
         );
     }

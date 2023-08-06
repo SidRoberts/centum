@@ -2,14 +2,14 @@
 
 namespace Centum\Twig;
 
-use Centum\Interfaces\Http\CsrfInterface;
+use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class CsrfExtension extends AbstractExtension
 {
     public function __construct(
-        protected readonly CsrfInterface $csrf
+        protected readonly StorageInterface $csrfStorage
     ) {
     }
 
@@ -27,7 +27,7 @@ class CsrfExtension extends AbstractExtension
             ),
             new TwigFunction(
                 "csrfValue",
-                [$this->csrf, "get"],
+                [$this->csrfStorage, "get"],
                 [
                     //TODO
                     "is_safe" => ["html"],
@@ -40,11 +40,11 @@ class CsrfExtension extends AbstractExtension
 
     public function csrf(): string
     {
-        $csrf = $this->csrf->get();
+        $value = $this->csrfStorage->get();
 
         return sprintf(
             "<input type=\"hidden\" name=\"csrf\" value=\"%s\">",
-            $csrf
+            $value
         );
     }
 }

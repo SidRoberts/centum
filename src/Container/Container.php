@@ -9,7 +9,9 @@ use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Cron\Cron;
 use Centum\Flash\Flash;
-use Centum\Http\Csrf;
+use Centum\Http\Csrf\Generator;
+use Centum\Http\Csrf\Storage;
+use Centum\Http\Csrf\Validator;
 use Centum\Http\Request;
 use Centum\Http\Session\GlobalSession;
 use Centum\Interfaces\Access\AccessInterface;
@@ -18,7 +20,9 @@ use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
-use Centum\Interfaces\Http\CsrfInterface;
+use Centum\Interfaces\Http\Csrf\GeneratorInterface;
+use Centum\Interfaces\Http\Csrf\StorageInterface;
+use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Router\RouterInterface;
@@ -43,7 +47,9 @@ class Container implements ContainerInterface
         AccessInterface::class      => Access::class,
         ApplicationInterface::class => Application::class,
         CronInterface::class        => Cron::class,
-        CsrfInterface::class        => Csrf::class,
+        GeneratorInterface::class   => Generator::class,
+        StorageInterface::class     => Storage::class,
+        ValidatorInterface::class   => Validator::class,
         FlashInterface::class       => Flash::class,
         RequestInterface::class     => Request::class,
         RouterInterface::class      => Router::class,
