@@ -2,6 +2,7 @@
 
 namespace Tests\Support;
 
+use Centum\Codeception\Actions\CsrfActions;
 use Centum\Codeception\Actions\FilterActions;
 use Centum\Codeception\Actions\QueueActions;
 use Centum\Codeception\Actions\UnitTestActions;
@@ -15,6 +16,7 @@ class UnitTester extends Actor
 {
     use _generated\UnitTesterActions;
 
+    use CsrfActions;
     use FilterActions;
     use QueueActions;
     use UnitTestActions;

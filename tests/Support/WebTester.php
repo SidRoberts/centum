@@ -3,7 +3,6 @@
 namespace Tests\Support;
 
 use Centum\Codeception\Actions\AjaxActions;
-use Centum\Codeception\Actions\CsrfActions;
 use Centum\Codeception\Actions\HtmlActions;
 use Centum\Codeception\Actions\RouterActions;
 use Centum\Codeception\Actions\SessionActions;
@@ -17,7 +16,6 @@ class WebTester extends Actor
     use _generated\WebTesterActions;
 
     use AjaxActions;
-    use CsrfActions;
     use HtmlActions;
     use RouterActions;
     use SessionActions;
