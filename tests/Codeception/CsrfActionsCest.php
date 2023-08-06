@@ -4,7 +4,6 @@ namespace Tests\Codeception;
 
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
-use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Mockery\MockInterface;
 use Tests\Support\CodeceptionTester;
 
