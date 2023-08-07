@@ -2,9 +2,9 @@
 
 namespace Centum\Queue;
 
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\Exception\NoTasksInQueueException;
 use Throwable;
 
@@ -19,7 +19,7 @@ class ArrayQueue implements QueueInterface
 
 
     public function __construct(
-        protected readonly ContainerInterface $container
+        protected readonly TaskRunnerInterface $taskRunner
     ) {
     }
 
@@ -35,7 +35,7 @@ class ArrayQueue implements QueueInterface
         $task = array_shift($this->tasks) ?? throw new NoTasksInQueueException();
 
         try {
-            $task->execute($this->container);
+            $this->taskRunner->execute($task);
         } catch (Throwable $e) {
             $this->buriedTasks[] = $task;
 

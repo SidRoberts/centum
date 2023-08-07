@@ -6,6 +6,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Centum\Queue\ArrayQueue;
+use Centum\Queue\TaskRunner;
 use Exception;
 
 trait QueueActions
@@ -27,7 +28,9 @@ trait QueueActions
     {
         $container = $this->grabContainer();
 
-        $queue = new ArrayQueue($container);
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new ArrayQueue($taskRunner);
 
         $container->set(QueueInterface::class, $queue);
     }
@@ -96,6 +99,8 @@ trait QueueActions
     {
         $container = $this->grabContainer();
 
-        $task->execute($container);
+        $taskRunner = new TaskRunner($container);
+
+        $taskRunner->execute($task);
     }
 }

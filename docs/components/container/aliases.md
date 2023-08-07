@@ -42,4 +42,5 @@ By default, some aliases have already been set:
 | `Centum\Interfaces\Http\RequestInterface`        | `Centum\Http\Request`        |
 | `Centum\Interfaces\Http\SessionInterface`        | `Centum\Http\GlobalSession`  |
 | `Centum\Interfaces\Router\RouterInterface`       | `Centum\Router\Router`       |
+| `Centum\Interfaces\Queue\TaskRunnerInterface`    | `Centum\Queue\TaskRunner`    |
 | `Centum\Interfaces\Url\UrlInterface`             | `Centum\Url\Url`             |

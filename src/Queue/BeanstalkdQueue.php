@@ -2,9 +2,9 @@
 
 namespace Centum\Queue;
 
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
 use Throwable;
@@ -17,7 +17,7 @@ class BeanstalkdQueue implements QueueInterface
 
 
     public function __construct(
-        protected readonly ContainerInterface $container,
+        protected readonly TaskRunnerInterface $taskRunner,
         protected readonly PheanstalkInterface $pheanstalk
     ) {
     }
@@ -60,7 +60,7 @@ class BeanstalkdQueue implements QueueInterface
         }
 
         try {
-            $task->execute($this->container);
+            $this->taskRunner->execute($task);
 
             $this->pheanstalk->delete($job);
         } catch (Throwable $e) {

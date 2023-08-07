@@ -3,6 +3,7 @@
 namespace Tests\Codeception;
 
 use Centum\Interfaces\Queue\QueueInterface;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\ArrayQueue;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Queue\DoNothingTask;
@@ -12,9 +13,9 @@ class QueueActionsCest
 {
     public function testGrabQueue(CodeceptionTester $I): void
     {
-        $container = $I->grabContainer();
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
 
-        $queue = new ArrayQueue($container);
+        $queue = new ArrayQueue($taskRunner);
 
         $I->addToContainer(QueueInterface::class, $queue);
 

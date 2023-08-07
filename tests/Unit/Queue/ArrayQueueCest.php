@@ -3,8 +3,10 @@
 namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\ArrayQueue;
 use Centum\Queue\Exception\NoTasksInQueueException;
+use Centum\Queue\TaskRunner;
 use Exception;
 use Tests\Support\Queue\DoNothingTask;
 use Tests\Support\Queue\ProblematicTask;
@@ -19,9 +21,9 @@ class ArrayQueueCest
 
 
 
-        $container = new Container();
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
 
-        $queue = new ArrayQueue($container);
+        $queue = new ArrayQueue($taskRunner);
 
 
 
@@ -47,7 +49,9 @@ class ArrayQueueCest
 
         $container = new Container();
 
-        $queue = new ArrayQueue($container);
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new ArrayQueue($taskRunner);
 
         $queue->publish($task);
 
@@ -66,9 +70,9 @@ class ArrayQueueCest
 
     public function testConsumeTaskWhenQueueIsEmptyThrowsException(UnitTester $I): void
     {
-        $container = new Container();
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
 
-        $queue = new ArrayQueue($container);
+        $queue = new ArrayQueue($taskRunner);
 
 
 
@@ -90,7 +94,9 @@ class ArrayQueueCest
 
         $container = new Container();
 
-        $queue = new ArrayQueue($container);
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new ArrayQueue($taskRunner);
 
         $queue->publish($task);
 
@@ -124,9 +130,9 @@ class ArrayQueueCest
 
 
 
-        $container = new Container();
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
 
-        $queue = new ArrayQueue($container);
+        $queue = new ArrayQueue($taskRunner);
 
         $queue->publish($task1);
         $queue->publish($task2);
@@ -150,7 +156,9 @@ class ArrayQueueCest
 
         $container = new Container();
 
-        $queue = new ArrayQueue($container);
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new ArrayQueue($taskRunner);
 
         $queue->publish($task);
 

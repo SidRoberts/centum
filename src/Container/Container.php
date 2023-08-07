@@ -27,8 +27,10 @@ use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Centum\Interfaces\Http\FormBuilderInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Interfaces\Url\UrlInterface;
+use Centum\Queue\TaskRunner;
 use Centum\Router\Router;
 use Centum\Url\Url;
 use Closure;
@@ -58,6 +60,7 @@ class Container implements ContainerInterface
         RouterInterface::class      => Router::class,
         SessionInterface::class     => GlobalSession::class,
         UrlInterface::class         => Url::class,
+        TaskRunnerInterface::class  => TaskRunner::class,
         TerminalInterface::class    => Terminal::class,
     ];
 

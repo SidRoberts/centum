@@ -3,7 +3,9 @@
 namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\BeanstalkdQueue;
+use Centum\Queue\TaskRunner;
 use Mockery\MockInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
@@ -28,6 +30,8 @@ class BeanstalkdQueueCest
 
 
 
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
+
         $pheanstalk = $I->mock(
             PheanstalkInterface::class,
             function (MockInterface $mock) use ($serializedTask, $job): void {
@@ -42,9 +46,7 @@ class BeanstalkdQueueCest
 
 
 
-        $container = new Container();
-
-        $queue = new BeanstalkdQueue($container, $pheanstalk);
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
 
         $queue->publish($task);
     }
@@ -82,7 +84,9 @@ class BeanstalkdQueueCest
 
         $container = new Container();
 
-        $queue = new BeanstalkdQueue($container, $pheanstalk);
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
 
         $queue->consume();
     }
@@ -116,11 +120,11 @@ class BeanstalkdQueueCest
 
 
 
-        $container = new Container();
-
-        $queue = new BeanstalkdQueue($container, $pheanstalk);
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
 
 
+
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
 
         $I->expectThrowable(
             new UnexpectedValueException("Object from centum-tasks tube is not a Centum\\Interfaces\\Queue\\TaskInterface object."),
@@ -163,7 +167,9 @@ class BeanstalkdQueueCest
 
         $container = new Container();
 
-        $queue = new BeanstalkdQueue($container, $pheanstalk);
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
 
         $I->expectThrowable(
             Throwable::class,
