@@ -46,6 +46,7 @@ class ArrayFilter implements FilterInterface
 - `Centum\Filter\Cast`
   - [`Centum\Filter\Cast\ToArray`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToArray.php)
   - [`Centum\Filter\Cast\ToBool`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToBool.php)
+  - [`Centum\Filter\Cast\ToInteger`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToInteger.php)
   - [`Centum\Filter\Cast\ToNull`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToNull.php)
   - [`Centum\Filter\Cast\ToString`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToString.php)
 - `Centum\Filter\String`
