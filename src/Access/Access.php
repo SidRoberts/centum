@@ -2,6 +2,7 @@
 
 namespace Centum\Access;
 
+use Centum\Access\Exception\AccessDeniedException;
 use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Access\ActivityInterface;
 
@@ -59,6 +60,13 @@ class Access implements AccessInterface
         $activity = $this->getActivity($activityName);
 
         return $activity->isAllowed($user);
+    }
+
+    public function verify(string $user, string $activityName): void
+    {
+        if (!$this->isAllowed($user, $activityName)) {
+            throw new AccessDeniedException($user, $activityName);
+        }
     }
 
 

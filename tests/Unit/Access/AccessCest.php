@@ -3,6 +3,7 @@
 namespace Tests\Unit\Access;
 
 use Centum\Access\Access;
+use Centum\Access\Exception\AccessDeniedException;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -204,5 +205,31 @@ class AccessCest
                 "expected" => false,
             ],
         ];
+    }
+
+
+
+    public function testVerify(UnitTester $I): void
+    {
+        $user = "sidroberts";
+
+        $allowedActivity    = "add-user";
+        $disallowedActivity = "purge-database";
+
+        $access = new Access();
+
+        $access->allow($user, $allowedActivity);
+        $access->deny($user, $disallowedActivity);
+
+
+
+        $access->verify($user, $allowedActivity);
+
+        $I->expectThrowable(
+            AccessDeniedException::class,
+            function () use ($access, $user, $disallowedActivity): void {
+                $access->verify($user, $disallowedActivity);
+            }
+        );
     }
 }
