@@ -84,8 +84,7 @@ As described in the Form, `$username` will be lowercase and trimmed:
 ```php
 namespace App\Controllers;
 
-use App\Models\User;
-use Centum\Http\FormRequest;
+use App\Forms\LoginForm;
 use Centum\Http\Response;
 use Centum\Interfaces\Http\FormBuilderInterface;
 use Centum\Interfaces\Http\ResponseInterface;

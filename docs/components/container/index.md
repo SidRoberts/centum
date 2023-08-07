@@ -29,7 +29,7 @@ $container = new Container();
 Classes can be retreived using the `get()` method:
 
 ```php
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 
 $router = $container->get(RouterInterface::class);
 ```

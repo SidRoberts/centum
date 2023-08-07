@@ -15,8 +15,8 @@ Messages are stored in the session so they are useful for providing information 
 
 ```php
 Centum\Flash\Flash(
-    Centum\Http\Session $session,
-    Centum\Flash\FormatterInterface $formatter
+    Centum\Interfaces\Http\SessionInterface $session,
+    Centum\Interfaces\Flash\FormatterInterface $formatter
 );
 ```
 
