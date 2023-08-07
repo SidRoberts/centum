@@ -45,7 +45,7 @@ Centum\Http\Csrf\Validator(
 The `Centum\Http\Csrf` namespace works by generating and storing a random string in a `Centum\Interfaces\Http\SessionInterface` object and making this value available for use in a `<form>`.
 By comparing the value submitted by the user and the known value from the Session, we can validate whether the POST request is genuine or not.
 
-**By default, `Centum\Http\Form` does not check against CSRF attacks.**
+**By default, `Centum\Http\FormBuilder` does not check against CSRF attacks.**
 
 Wherever a POST request requires CSRF protection, the current token value can be obtained from a `Storage` object and injected into the view:
 
@@ -94,17 +94,16 @@ $.post(
 );
 ```
 
-Regardless of how the CSRF token is placed, `validateCsrf()` must be called at the top of your Form's `set()` method to validate it:
+Regardless of how the CSRF token is placed, `ValidatorInterface::validate()` must be called at the top of your Form's constructor method to validate it:
 
 ```php
-use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Http\Form;
+use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 
-class SubmissionForm extends Form
+class SubmissionForm
 {
-    public function set(ContainerInterface $container): void
+    public function __construct(ValidatorInterface $csrfValidator)
     {
-        $this->validateCsrf();
+        $csrfValidator->validate();
 
         // ...
     }
