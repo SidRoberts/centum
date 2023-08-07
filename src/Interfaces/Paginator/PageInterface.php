@@ -8,6 +8,9 @@ interface PageInterface
 
     public function getPageNumber(): int;
 
+    /**
+     * @return array<mixed>
+     */
     public function getData(): array;
 
 
@@ -18,5 +21,8 @@ interface PageInterface
 
 
 
+    /**
+     * @return list<int>
+     */
     public function getPageRange(int $max): array;
 }

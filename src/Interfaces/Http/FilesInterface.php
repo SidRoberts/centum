@@ -19,5 +19,8 @@ interface FilesInterface
      */
     public function all(): array;
 
+    /**
+     * @return array<string, array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>>
+     */
     public function toArray(): array;
 }

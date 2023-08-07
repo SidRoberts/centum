@@ -219,9 +219,11 @@ class Router implements RouterInterface
 
 
     /**
+     * @param array<array-key, mixed> $array
+     *
      * @return array<array-key, mixed>
      */
-    protected function removeIntegerKeys(array $array)
+    protected function removeIntegerKeys(array $array): array
     {
         return array_filter(
             $array,

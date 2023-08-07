@@ -41,6 +41,9 @@ class FileGroup implements FileGroupInterface
         return $this->files;
     }
 
+    /**
+     * @return array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>
+     */
     public function toArray(): array
     {
         $files = [];

@@ -17,5 +17,8 @@ interface FileGroupInterface
      */
     public function all(): array;
 
+    /**
+     * @return array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>
+     */
     public function toArray(): array;
 }

@@ -29,6 +29,9 @@ class ArrayData implements DataInterface
         return $this->data;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function slice(int $offset, int $length): array
     {
         return array_slice($this->data, $offset, $length);

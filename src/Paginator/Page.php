@@ -32,6 +32,9 @@ class Page implements PageInterface
 
 
 
+    /**
+     * @return array<mixed>
+     */
     public function getData(): array
     {
         $offset = ($this->pageNumber - 1) * $this->paginator->getItemsPerPage();
@@ -68,6 +71,9 @@ class Page implements PageInterface
 
 
 
+    /**
+     * @return list<int>
+     */
     public function getPageRange(int $max): array
     {
         if ($max < 1) {

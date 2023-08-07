@@ -11,5 +11,8 @@ interface DataInterface
      */
     public function toArray(): array;
 
+    /**
+     * @return array<mixed>
+     */
     public function slice(int $offset, int $length): array;
 }
