@@ -60,6 +60,7 @@ php cli.php queue-consume
 
 (all in the `Centum\Console\Exception` namespace)
 
+- [`ArgvNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ArgvNotFoundException.php)
 - [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
 - [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
 - [`InvalidFilterException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidFilterException.php)

@@ -2,6 +2,7 @@
 
 namespace Centum\Console;
 
+use Centum\Console\Exception\ArgvNotFoundException;
 use Centum\Interfaces\Console\TerminalInterface;
 use InvalidArgumentException;
 
@@ -24,7 +25,7 @@ class Terminal implements TerminalInterface
         protected $stdout = STDOUT,
         protected $stderr = STDERR
     ) {
-        $this->argv = $argv ?? $_SERVER["argv"] ?? throw new InvalidArgumentException("Unable to find \`argv\`.");
+        $this->argv = $argv ?? $_SERVER["argv"] ?? throw new ArgvNotFoundException();
     }
 
 
