@@ -50,8 +50,9 @@ These traits can be used at will in your Tester classes (`tests/Support/UnitTest
 
 ## [`Centum\Codeception\Module`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Module.php)
 
+- `makeNewContainer(): void`
 - `grabContainer(): Centum\Interfaces\Container\ContainerInterface`
-- `addToContainer(string $class, object $object): void`
+- `addToContainer(class-string $class, object $object): void`
 - `grabFromContainer(class-string $class): object`
 - `removeFromContriner(class-string $class): void`
 - `mock(class-string $class, callable $callable = null): Mockery\MockInterface`
