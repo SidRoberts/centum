@@ -13,6 +13,7 @@ use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Interfaces\Router\RouteInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Exception\ParamNotFoundException;
+use Centum\Router\Exception\ReplacementNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\TrueMiddleware;
@@ -20,7 +21,6 @@ use Centum\Router\Replacements\AnyReplacement;
 use Centum\Router\Replacements\CharacterReplacement;
 use Centum\Router\Replacements\IntegerReplacement;
 use Centum\Router\Replacements\SlugReplacement;
-use Exception;
 use Throwable;
 
 class Router implements RouterInterface
@@ -181,7 +181,7 @@ class Router implements RouterInterface
         $routeParameters = $route->getParameters();
 
         foreach ($routeParameters as $key => $replacementID) {
-            $replacement = $replacements[$replacementID] ?? throw new Exception("Replacement class not found.");
+            $replacement = $replacements[$replacementID] ?? throw new ReplacementNotFoundException($replacementID);
 
             /** @var string */
             $value = $parameters[$key] ?? throw new ParamNotFoundException($key);

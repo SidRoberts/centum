@@ -36,5 +36,6 @@ It does so by extracting the Request's URI and method, it iterates through the R
 (all in the `Centum\Router\Exception` namespace)
 
 - [`ParamNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/ParamNotFoundException.php)
+- [`ReplacementNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/ReplacementNotFoundException.php)
 - [`RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteMismatchException.php)
 - [`RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteNotFoundException.php)
