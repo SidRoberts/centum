@@ -79,6 +79,10 @@ Base64 encodes a string.
 
 
 
+## [`Centum\Filter\String\FileName`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/FileName.php)
+
+
+
 ## [`Centum\Filter\String\Prefix`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Prefix.php)
 
 Adds a prefix to a string.
