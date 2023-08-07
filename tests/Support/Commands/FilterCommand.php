@@ -18,7 +18,7 @@ class FilterCommand extends Command
     public function getFilters(ContainerInterface $container): array
     {
         return [
-            "i" => new Doubler(),
+            "i" => $container->get(Doubler::class),
         ];
     }
 
