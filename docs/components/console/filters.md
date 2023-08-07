@@ -18,22 +18,19 @@ namespace App\Filters;
 
 use App\Models\Post;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Container\ContainerInterface;
 use Centum\Interfaces\Filter\FilterInterface;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PostFilter implements FilterInterface
 {
     public function __construct(
-        protected readonly ContainerInterface $container
+        protected readonly EntityMangerInterface $entityManager
     ) {
     }
 
     public function filter(mixed $value): Post
     {
-        $doctrine = $this->container->get(EntityManager::class);
-
-        $postRepository = $doctrine->getRepository(
+        $postRepository = $this->entityManager->getRepository(
             Post::class
         );
 
@@ -68,7 +65,7 @@ class PostDetailsCommand extends Command
     public function getFilters(ContainerInterface $container): array
     {
         return [
-            "post" => new PostFilter($container),
+            "post" => $container->get(PostFilter::class),
         ];
     }
 

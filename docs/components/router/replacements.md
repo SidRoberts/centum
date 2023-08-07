@@ -20,12 +20,12 @@ use App\Models\Post;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Router\Exception\RouteMismatchException;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PostReplacement implements ReplacementInterface
 {
     public function __construct(
-        protected readonly ContainerInterface $container
+        protected readonly EntityManagerInterface $entityManager
     ) {
     }
 
@@ -43,9 +43,7 @@ class PostReplacement implements ReplacementInterface
 
     public function filter(string $value): Post
     {
-        $doctrine = $this->container->get(EntityManager::class);
-
-        $postRepository = $doctrine->getRepository(
+        $postRepository = $this->entityManager->getRepository(
             Post::class
         );
 
@@ -64,9 +62,12 @@ When setting the Routes in the Router a Replacement can be added and Routes can 
 ```php
 use App\Controllers\PostController;
 use App\Replacements\PostReplacement;
+use Doctrine\ORM\EntityManagerInterface;
+
+/** @var EntityManagerInterface $entityManager */
 
 $router->addReplacement(
-    new PostReplacement($container)
+    new PostReplacement($entityManager)
 );
 
 $group = $router->group();
