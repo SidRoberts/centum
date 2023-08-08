@@ -3,8 +3,11 @@
 namespace Tests\Http;
 
 use Centum\Http\File;
+use Codeception\Attribute\DataProvider;
+use Codeception\Example;
 use Exception;
 use Tests\Support\UnitTester;
+use Throwable;
 
 class FileCest
 {
@@ -118,6 +121,128 @@ class FileCest
                 $file->moveTo("/tmp/abc123");
             }
         );
+    }
+
+
+
+    public function testValidateGoodFile(UnitTester $I): void
+    {
+        $name     = "image.png";
+        $type     = "image/png";
+        $size     = 123456;
+        $location = "/tmp/php/php1aaa11";
+        $error    = UPLOAD_ERR_OK;
+
+        $file = new File($name, $type, $size, $location, $error);
+
+        $file->validate();
+    }
+
+    public function testValidateFileWithEmptyLocation(UnitTester $I): void
+    {
+        $name     = "image.png";
+        $type     = "image/png";
+        $size     = 123456;
+        $location = "";
+        $error    = UPLOAD_ERR_OK;
+
+        $file = new File($name, $type, $size, $location, $error);
+
+        $I->expectThrowable(
+            new Exception("No known location."),
+            function () use ($file): void {
+                $file->validate();
+            }
+        );
+    }
+
+    public function testValidateFileWithNullLocation(UnitTester $I): void
+    {
+        $name     = "image.png";
+        $type     = "image/png";
+        $size     = 123456;
+        $location = null;
+        $error    = UPLOAD_ERR_OK;
+
+        $file = new File($name, $type, $size, $location, $error);
+
+        $I->expectThrowable(
+            new Exception("No known location."),
+            function () use ($file): void {
+                $file->validate();
+            }
+        );
+    }
+
+
+
+    #[DataProvider("providerValidateBadFileWithError")]
+    public function testValidateBadFileWithError(UnitTester $I, Example $example): void
+    {
+        $name     = "image.png";
+        $type     = "image/png";
+        $size     = 123456;
+        $location = "/tmp/php/php1aaa11";
+
+        /** @var int */
+        $error = $example["error"];
+
+        $file = new File($name, $type, $size, $location, $error);
+
+        /** @var Throwable */
+        $throwable = $example["throwable"];
+
+        $I->expectThrowable(
+            $throwable,
+            function () use ($file): void {
+                $file->validate();
+            }
+        );
+    }
+
+    protected function providerValidateBadFileWithError(): array
+    {
+        return [
+            [
+                "error"     => UPLOAD_ERR_NO_FILE,
+                "throwable" => new Exception("No file sent."),
+            ],
+
+            [
+                "error"     => UPLOAD_ERR_INI_SIZE,
+                "throwable" => new Exception("Exceeded filesize limit (\`upload_max_filesize\` directive in php.ini)."),
+            ],
+
+            [
+                "error"     => UPLOAD_ERR_FORM_SIZE,
+                "throwable" => new Exception("Exceeded filesize limit (\`MAX_FILE_SIZE\` directive that was specified in the HTML form)."),
+            ],
+
+            [
+                "error"     => UPLOAD_ERR_PARTIAL,
+                "throwable" => new Exception("The uploaded file was only partially uploaded."),
+            ],
+
+            [
+                "error"     => UPLOAD_ERR_NO_TMP_DIR,
+                "throwable" => new Exception("Missing a temporary folder."),
+            ],
+
+            [
+                "error"     => UPLOAD_ERR_CANT_WRITE,
+                "throwable" => new Exception("Cannot write to target directory. Please fix CHMOD."),
+            ],
+
+            [
+                "error"     => UPLOAD_ERR_EXTENSION,
+                "throwable" => new Exception("A PHP extension stopped the file upload."),
+            ],
+
+            [
+                "error"     => 9, // Not any known constant.
+                "throwable" => new Exception("Unknown file upload error."),
+            ],
+        ];
     }
 
 
