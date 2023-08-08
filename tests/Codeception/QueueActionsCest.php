@@ -68,6 +68,8 @@ class QueueActionsCest
         );
     }
 
+
+
     public function testConsumeFromQueue(CodeceptionTester $I): void
     {
         $I->useArrayQueue();
@@ -88,6 +90,22 @@ class QueueActionsCest
 
         $I->assertTrue(
             $task->getWasExecuted()
+        );
+    }
+
+    public function testConsumeFromQueueReturnsTask(CodeceptionTester $I): void
+    {
+        $I->useArrayQueue();
+
+        $task = new Task();
+
+        $I->publishToQueue($task);
+
+        $returnedTask = $I->consumeFromQueue();
+
+        $I->assertSame(
+            $task,
+            $returnedTask
         );
     }
 

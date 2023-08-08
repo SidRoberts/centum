@@ -66,10 +66,34 @@ class ConsoleActionsCest
         $I->markTestIncomplete();
     }
 
+
+
     public function testRunCommand(CodeceptionTester $I): void
     {
         $I->markTestIncomplete();
     }
+
+    public function testRunCommandReturnsExitCode(CodeceptionTester $I): void
+    {
+        $exitCode = 123;
+
+        $I->addCommand(
+            new ExitCodeCommand($exitCode)
+        );
+
+        $argv = [
+            "cli.php",
+            "exit-code",
+        ];
+
+        $returnedExitCode = $I->runCommand($argv);
+
+        $I->assertEquals(
+            $exitCode,
+            $returnedExitCode
+        );
+    }
+
 
 
     public function testGrabExitCode(CodeceptionTester $I): void
