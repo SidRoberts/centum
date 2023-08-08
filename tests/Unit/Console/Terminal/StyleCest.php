@@ -3,141 +3,242 @@
 namespace Tests\Unit\Console\Terminal;
 
 use Centum\Console\Terminal\Style;
-use Codeception\Attribute\DataProvider;
-use Codeception\Example;
 use Tests\Support\UnitTester;
 
 class StyleCest
 {
-    #[DataProvider("providerDecorations")]
-    public function testDecorations(UnitTester $I, Example $example): void
+    public function testBold(UnitTester $I): void
     {
         $style = new Style();
 
         $I->assertEquals(
-            $example["expected"],
-            call_user_func_array([$style, $example["method"]], ["Hello"])
+            "\e[1mHello\e[0m",
+            $style->bold("Hello")
         );
     }
 
-    protected function providerDecorations(): array
-    {
-        return [
-            [
-                "expected" => "\e[1mHello\e[0m",
-                "method"   => "bold",
-            ],
-            [
-                "expected" => "\e[3mHello\e[23m",
-                "method"   => "italics",
-            ],
-            [
-                "expected" => "\e[4mHello\e[24m",
-                "method"   => "underline",
-            ],
-
-            [
-                "expected" => "\e[7mHello\e[0m",
-                "method"   => "highlight",
-            ],
-            [
-                "expected" => "\e[2mHello\e[0m",
-                "method"   => "dim",
-            ],
-
-            [
-                "expected" => "\e[5mHello\e[0m",
-                "method"   => "blink",
-            ],
-            [
-                "expected" => "\e[7mHello\e[0m",
-                "method"   => "reversed",
-            ],
-        ];
-    }
-
-
-
-    #[DataProvider("providerColors")]
-    public function testColors(UnitTester $I, Example $example): void
+    public function testItalics(UnitTester $I): void
     {
         $style = new Style();
 
         $I->assertEquals(
-            $example["expected"],
-            call_user_func_array([$style, $example["method"]], ["Hello"])
+            "\e[3mHello\e[23m",
+            $style->italics("Hello")
         );
     }
 
-    protected function providerColors(): array
+    public function testUnderline(UnitTester $I): void
     {
-        return [
-            [
-                "expected" => "\e[30mHello\e[0m",
-                "method"   => "textBlack",
-            ],
-            [
-                "expected" => "\e[31mHello\e[0m",
-                "method"   => "textRed",
-            ],
-            [
-                "expected" => "\e[32mHello\e[0m",
-                "method"   => "textGreen",
-            ],
-            [
-                "expected" => "\e[33mHello\e[0m",
-                "method"   => "textYellow",
-            ],
-            [
-                "expected" => "\e[34mHello\e[0m",
-                "method"   => "textBlue",
-            ],
-            [
-                "expected" => "\e[35mHello\e[0m",
-                "method"   => "textMagenta",
-            ],
-            [
-                "expected" => "\e[36mHello\e[0m",
-                "method"   => "textCyan",
-            ],
-            [
-                "expected" => "\e[37mHello\e[0m",
-                "method"   => "textWhite",
-            ],
+        $style = new Style();
 
-            [
-                "expected" => "\e[40mHello\e[0m",
-                "method"   => "backgroundBlack",
-            ],
-            [
-                "expected" => "\e[41mHello\e[0m",
-                "method"   => "backgroundRed",
-            ],
-            [
-                "expected" => "\e[42mHello\e[0m",
-                "method"   => "backgroundGreen",
-            ],
-            [
-                "expected" => "\e[43mHello\e[0m",
-                "method"   => "backgroundYellow",
-            ],
-            [
-                "expected" => "\e[44mHello\e[0m",
-                "method"   => "backgroundBlue",
-            ],
-            [
-                "expected" => "\e[45mHello\e[0m",
-                "method"   => "backgroundMagenta",
-            ],
-            [
-                "expected" => "\e[46mHello\e[0m",
-                "method"   => "backgroundCyan",
-            ],
-            [
-                "expected" => "\e[47mHello\e[0m",
-                "method"   => "backgroundWhite",
-            ],
-        ];
+        $I->assertEquals(
+            "\e[4mHello\e[24m",
+            $style->underline("Hello")
+        );
+    }
+
+    public function testHighlight(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[7mHello\e[0m",
+            $style->highlight("Hello")
+        );
+    }
+
+    public function testDim(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[2mHello\e[0m",
+            $style->dim("Hello")
+        );
+    }
+
+    public function testBlink(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[5mHello\e[0m",
+            $style->blink("Hello")
+        );
+    }
+
+    public function testReversed(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[7mHello\e[0m",
+            $style->reversed("Hello")
+        );
+    }
+
+
+
+    public function testTextBlack(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[30mHello\e[0m",
+            $style->textBlack("Hello")
+        );
+    }
+
+    public function testTextRed(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[31mHello\e[0m",
+            $style->textRed("Hello")
+        );
+    }
+
+    public function testTextGreen(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[32mHello\e[0m",
+            $style->textGreen("Hello")
+        );
+    }
+
+    public function testTextYellow(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[33mHello\e[0m",
+            $style->textYellow("Hello")
+        );
+    }
+
+    public function testTextBlue(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[34mHello\e[0m",
+            $style->textBlue("Hello")
+        );
+    }
+
+    public function testTextMagenta(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[35mHello\e[0m",
+            $style->textMagenta("Hello")
+        );
+    }
+
+    public function testTextCyan(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[36mHello\e[0m",
+            $style->textCyan("Hello")
+        );
+    }
+
+    public function testTextWhite(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[37mHello\e[0m",
+            $style->textWhite("Hello")
+        );
+    }
+
+
+
+    public function testBackgroundBlack(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[40mHello\e[0m",
+            $style->backgroundBlack("Hello")
+        );
+    }
+
+    public function testBackgroundRed(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[41mHello\e[0m",
+            $style->backgroundRed("Hello")
+        );
+    }
+
+    public function testBackgroundGreen(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[42mHello\e[0m",
+            $style->backgroundGreen("Hello")
+        );
+    }
+
+    public function testBackgroundYellow(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[43mHello\e[0m",
+            $style->backgroundYellow("Hello")
+        );
+    }
+
+    public function testBackgroundBlue(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[44mHello\e[0m",
+            $style->backgroundBlue("Hello")
+        );
+    }
+
+    public function testBackgroundMagenta(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[45mHello\e[0m",
+            $style->backgroundMagenta("Hello")
+        );
+    }
+
+    public function testBackgroundCyan(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[46mHello\e[0m",
+            $style->backgroundCyan("Hello")
+        );
+    }
+
+    public function testBackgroundWhite(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e[47mHello\e[0m",
+            $style->backgroundWhite("Hello")
+        );
     }
 
 
