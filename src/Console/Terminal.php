@@ -4,7 +4,6 @@ namespace Centum\Console;
 
 use Centum\Console\Exception\ArgvNotFoundException;
 use Centum\Interfaces\Console\TerminalInterface;
-use InvalidArgumentException;
 
 class Terminal implements TerminalInterface
 {
