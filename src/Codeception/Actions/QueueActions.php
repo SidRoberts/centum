@@ -93,11 +93,12 @@ trait QueueActions
     {
         $queue = $this->grabQueue();
 
-        if (!($queue instanceof ArrayQueue)) {
+        if (!($queue instanceof ArrayQueue) && !($queue instanceof ImmediateQueue)) {
             throw new Exception(
                 sprintf(
-                    "Can only retreive tasks buried from an %s instance.",
-                    ArrayQueue::class
+                    "Can only retreive tasks buried from an %s or %s instance.",
+                    ArrayQueue::class,
+                    ImmediateQueue::class
                 )
             );
         }

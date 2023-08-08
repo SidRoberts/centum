@@ -5,10 +5,14 @@ namespace Tests\Codeception;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\ArrayQueue;
+use Centum\Queue\BeanstalkdQueue;
 use Centum\Queue\ImmediateQueue;
+use Exception;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Queue\DoNothingTask;
+use Tests\Support\Queue\ProblematicTask;
 use Tests\Support\Queue\Task;
+use Throwable;
 
 class QueueActionsCest
 {
@@ -111,13 +115,119 @@ class QueueActionsCest
 
 
 
-    public function testGrabQueueTasks(CodeceptionTester $I): void
+    public function testGrabQueueTasksFromArrayQueue(CodeceptionTester $I): void
     {
+        $I->useArrayQueue();
+
+        $task1 = new DoNothingTask();
+        $task2 = new ProblematicTask();
+
+        $I->publishToQueue($task1);
+        $I->publishToQueue($task2);
+
+        $I->assertSame(
+            [
+                $task1,
+                $task2,
+            ],
+            $I->grabQueueTasks()
+        );
+    }
+
+    public function testGrabQueueTasksFromNonArrayQueue(CodeceptionTester $I): void
+    {
+        $I->useImmediateQueue();
+
+        $I->expectThrowable(
+            new Exception(
+                sprintf(
+                    "Can only retreive tasks from an %s instance.",
+                    ArrayQueue::class
+                )
+            ),
+            function () use ($I): void {
+                $I->grabQueueTasks();
+            }
+        );
+    }
+
+
+
+    public function testGrabQueueBuriedTasksFromArrayQueue(CodeceptionTester $I): void
+    {
+        $I->useArrayQueue();
+
+        $task1 = new DoNothingTask();
+        $task2 = new ProblematicTask();
+
+        try {
+            $I->publishToQueue($task1);
+            $I->consumeFromQueue();
+        } catch (Throwable) {
+        }
+
+        try {
+            $I->publishToQueue($task2);
+            $I->consumeFromQueue();
+        } catch (Throwable) {
+        }
+
+        $I->assertSame(
+            [
+                $task2,
+            ],
+            $I->grabQueueBuriedTasks()
+        );
+
         $I->markTestIncomplete();
     }
 
-    public function testGrabQueueBuriedTasks(CodeceptionTester $I): void
+    public function failToGrabQueueBuriedTasksFromBeanstalkdQueue(CodeceptionTester $I): void
     {
+        $beanstalkdQueue = $I->mock(BeanstalkdQueue::class);
+
+        $I->addToContainer(QueueInterface::class, $beanstalkdQueue);
+
+        $I->expectThrowable(
+            new Exception(
+                sprintf(
+                    "Can only retreive tasks buried from an %s or %s instance.",
+                    ArrayQueue::class,
+                    ImmediateQueue::class
+                )
+            ),
+            function () use ($I): void {
+                $I->grabQueueBuriedTasks();
+            }
+        );
+
+        $I->markTestIncomplete();
+    }
+
+    public function testGrabQueueBuriedTasksFromImmediateQueue(CodeceptionTester $I): void
+    {
+        $I->useImmediateQueue();
+
+        $task1 = new DoNothingTask();
+        $task2 = new ProblematicTask();
+
+        try {
+            $I->publishToQueue($task1);
+        } catch (Throwable) {
+        }
+
+        try {
+            $I->publishToQueue($task2);
+        } catch (Throwable) {
+        }
+
+        $I->assertSame(
+            [
+                $task2,
+            ],
+            $I->grabQueueBuriedTasks()
+        );
+
         $I->markTestIncomplete();
     }
 
