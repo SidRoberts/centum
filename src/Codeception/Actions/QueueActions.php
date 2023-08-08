@@ -6,6 +6,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Centum\Queue\ArrayQueue;
+use Centum\Queue\ImmediateQueue;
 use Centum\Queue\TaskRunner;
 use Exception;
 
@@ -31,6 +32,17 @@ trait QueueActions
         $taskRunner = new TaskRunner($container);
 
         $queue = new ArrayQueue($taskRunner);
+
+        $container->set(QueueInterface::class, $queue);
+    }
+
+    public function useImmediateQueue(): void
+    {
+        $container = $this->grabContainer();
+
+        $taskRunner = new TaskRunner($container);
+
+        $queue = new ImmediateQueue($taskRunner);
 
         $container->set(QueueInterface::class, $queue);
     }

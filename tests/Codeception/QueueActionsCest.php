@@ -5,6 +5,7 @@ namespace Tests\Codeception;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\ArrayQueue;
+use Centum\Queue\ImmediateQueue;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Queue\DoNothingTask;
 use Tests\Support\Queue\Task;
@@ -33,6 +34,18 @@ class QueueActionsCest
 
         $I->assertInstanceOf(
             ArrayQueue::class,
+            $queue
+        );
+    }
+
+    public function testUseImmediateQueue(CodeceptionTester $I): void
+    {
+        $I->useImmediateQueue();
+
+        $queue = $I->grabFromContainer(QueueInterface::class);
+
+        $I->assertInstanceOf(
+            ImmediateQueue::class,
             $queue
         );
     }

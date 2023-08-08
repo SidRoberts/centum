@@ -13,6 +13,7 @@ permalink: testing/queue
 
 - `grabQueue(): Centum\Interfaces\Queue\QueueInterface`
 - `useArrayQueue(): void`
+- `useImmediateQueue(): void`
 - `publishToQueue(Centum\Interfaces\Queue\TaskInterface $task): void`
 - `consumeFromQueue(): Centum\Interfaces\Queue\TaskInterface`
 - `grabQueueTasks(): array<Centum\Interfaces\Queue\TaskInterface>`
