@@ -17,4 +17,4 @@ permalink: testing/session
 - `grabFromSession(string $key, mixed $defaultValue = null): mixed`
 - `seeValueInSessionIs(string $key, string $expectedValue): void`
 - `seeValueInSessionIsNot(string $key, string $expectedValue): void`
-- `removeFromSession(string $key): mixed`
+- `removeFromSession(string $key): void`

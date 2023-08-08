@@ -76,10 +76,10 @@ trait SessionActions
 
 
 
-    public function removeFromSession(string $key): mixed
+    public function removeFromSession(string $key): void
     {
         $session = $this->grabSession();
 
-        return $session->remove($key);
+        $session->remove($key);
     }
 }
