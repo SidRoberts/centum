@@ -10,26 +10,23 @@ permalink: twig/csrf
 
 # CSRF Extension
 
-**Before reading this, it may be prudent to first read about [Centum's CSRF Protection](../http/forms.md#csrf-protection).**
+**Before reading this, it may be prudent to first read about [Centum's CSRF component](../http/csrf.md).**
 
-This extension provides a quick shortcut to the [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf.php) class in the form of a function.
+This extension provides a quick shortcut to the [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/StorageInterface.php) interface in the form of a function.
 
 First, the extension needs to be added to Twig:
 
 ```php
-use Centum\Http\Csrf;
-use Centum\Interfaces\Http\SessionInterface;
+use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Twig\CsrfExtension;
 use Twig\Environment;
 
-/** @var SessionInterface $session */
-
-$csrf = new Csrf($session);
-
 /** @var Environment $twig */
 
+/** @var StorageInterface $csrfStorage */
+
 $twig->addExtension(
-    new CsrfExtension($csrf)
+    new CsrfExtension($csrfStorage)
 );
 ```
 
