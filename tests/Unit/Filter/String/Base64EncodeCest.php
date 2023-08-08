@@ -49,10 +49,10 @@ class Base64EncodeCest
     {
         $filter = new Base64Encode();
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            new InvalidArgumentException("Value must be a string."),
             $filter,
-            $example["input"],
-            new InvalidArgumentException("Value must be a string.")
+            $example["input"]
         );
     }
 

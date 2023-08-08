@@ -49,10 +49,10 @@ class Base64DecodeCest
     {
         $filter = new Base64Decode();
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            new InvalidArgumentException("Value must be a string."),
             $filter,
-            $example["input"],
-            new InvalidArgumentException("Value must be a string.")
+            $example["input"]
         );
     }
 
@@ -88,10 +88,10 @@ class Base64DecodeCest
     {
         $filter = new Base64Decode();
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            new InvalidArgumentException("Value must be a valid base64 string."),
             $filter,
-            $example["input"],
-            new InvalidArgumentException("Value must be a valid base64 string.")
+            $example["input"]
         );
     }
 

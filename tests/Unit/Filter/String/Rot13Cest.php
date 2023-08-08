@@ -64,10 +64,10 @@ class Rot13Cest
     {
         $filter = new Rot13();
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            new InvalidArgumentException("Value must be a string."),
             $filter,
-            $example["input"],
-            new InvalidArgumentException("Value must be a string.")
+            $example["input"]
         );
     }
 

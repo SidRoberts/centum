@@ -59,10 +59,10 @@ class ToIntegerCest
             "Value must be an array, a resource, a scalar, or null."
         );
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            $expectedThrowable,
             $filter,
-            $example["input"],
-            $expectedThrowable
+            $example["input"]
         );
     }
 

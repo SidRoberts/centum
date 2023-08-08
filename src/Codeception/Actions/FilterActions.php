@@ -16,7 +16,7 @@ trait FilterActions
         Assert::assertEquals($output, $value);
     }
 
-    public function expectFilterException(FilterInterface $filter, mixed $input, Throwable $expectedThrowable): void
+    public function expectFilterThrowable(Throwable $expectedThrowable, FilterInterface $filter, mixed $input): void
     {
         $expectedThrowableClass = get_class($expectedThrowable);
 

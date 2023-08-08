@@ -87,10 +87,10 @@ class ToArrayCest
 
         $filter = new ToArray();
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            new UnexpectedValueException("toArray() did not return an array."),
             $filter,
-            $input,
-            new UnexpectedValueException("toArray() did not return an array.")
+            $input
         );
     }
 }

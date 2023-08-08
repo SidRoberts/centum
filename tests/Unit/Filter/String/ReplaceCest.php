@@ -66,10 +66,10 @@ class ReplaceCest
             ]
         );
 
-        $I->expectFilterException(
+        $I->expectFilterThrowable(
+            new InvalidArgumentException("Value must be a string."),
             $filter,
-            $example["input"],
-            new InvalidArgumentException("Value must be a string.")
+            $example["input"]
         );
     }
 
