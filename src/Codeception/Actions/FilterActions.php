@@ -8,6 +8,13 @@ use Throwable;
 
 trait FilterActions
 {
+    /**
+     * @param Throwable|string $throwable
+     */
+    abstract public function expectThrowable($throwable, callable $callback): void;
+
+
+
     public function expectFilterOutput(FilterInterface $filter, mixed $input, mixed $output): void
     {
         /** @var mixed */
@@ -18,54 +25,11 @@ trait FilterActions
 
     public function expectFilterThrowable(Throwable $expectedThrowable, FilterInterface $filter, mixed $input): void
     {
-        $expectedThrowableClass = get_class($expectedThrowable);
-
-        try {
-            $filter->filter($input);
-        } catch (Throwable $throwable) {
-            if (!($throwable instanceof $expectedThrowableClass)) {
-                Assert::fail(
-                    sprintf(
-                        "Exception of class '%s' expected to be thrown, but class '%s' was caught",
-                        $expectedThrowableClass,
-                        get_class($throwable)
-                    )
-                );
+        $this->expectThrowable(
+            $expectedThrowable,
+            function () use ($filter, $input): void {
+                $filter->filter($input);
             }
-
-            if ($expectedThrowable->getMessage() !== null && $expectedThrowable->getMessage() !== $throwable->getMessage()) {
-                Assert::fail(
-                    sprintf(
-                        "Exception of class '%s' expected to have message '%s', but actual message was '%s'",
-                        $expectedThrowableClass,
-                        $expectedThrowable->getMessage(),
-                        $throwable->getMessage()
-                    )
-                );
-            }
-
-            if ($expectedThrowable->getCode() !== null && $expectedThrowable->getCode() !== $throwable->getCode()) {
-                Assert::fail(
-                    sprintf(
-                        "Exception of class '%s' expected to have code '%s', but actual code was '%s'",
-                        $expectedThrowableClass,
-                        $expectedThrowable->getCode(),
-                        $throwable->getCode()
-                    )
-                );
-            }
-
-            // increment assertion counter
-            Assert::assertTrue(true);
-
-            return;
-        }
-
-        Assert::fail(
-            sprintf(
-                "Expected throwable of class '%s' to be thrown, but nothing was caught",
-                $expectedThrowableClass
-            )
         );
     }
 }

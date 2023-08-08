@@ -7,12 +7,16 @@ use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FilesInterface;
-use PHPUnit\Framework\Assert;
 use Throwable;
 
 trait HttpFormActions
 {
     abstract public function grabContainer(): ContainerInterface;
+
+    /**
+     * @param Throwable|string $throwable
+     */
+    abstract public function expectThrowable($throwable, callable $callback): void;
 
 
 
@@ -48,54 +52,11 @@ trait HttpFormActions
      */
     public function expectFormThrowable(Throwable $expectedThrowable, string $formClass, DataInterface $data, FilesInterface $files = null): void
     {
-        $expectedThrowableClass = get_class($expectedThrowable);
-
-        try {
-            $this->buildForm($formClass, $data, $files);
-        } catch (Throwable $throwable) {
-            if (!($throwable instanceof $expectedThrowableClass)) {
-                Assert::fail(
-                    sprintf(
-                        "Exception of class '%s' expected to be thrown, but class '%s' was caught",
-                        $expectedThrowableClass,
-                        get_class($throwable)
-                    )
-                );
+        $this->expectThrowable(
+            $expectedThrowable,
+            function () use ($formClass, $data, $files): void {
+                $this->buildForm($formClass, $data, $files);
             }
-
-            if ($expectedThrowable->getMessage() !== null && $expectedThrowable->getMessage() !== $throwable->getMessage()) {
-                Assert::fail(
-                    sprintf(
-                        "Exception of class '%s' expected to have message '%s', but actual message was '%s'",
-                        $expectedThrowableClass,
-                        $expectedThrowable->getMessage(),
-                        $throwable->getMessage()
-                    )
-                );
-            }
-
-            if ($expectedThrowable->getCode() !== null && $expectedThrowable->getCode() !== $throwable->getCode()) {
-                Assert::fail(
-                    sprintf(
-                        "Exception of class '%s' expected to have code '%s', but actual code was '%s'",
-                        $expectedThrowableClass,
-                        $expectedThrowable->getCode(),
-                        $throwable->getCode()
-                    )
-                );
-            }
-
-            // Increment assertion counter.
-            Assert::assertTrue(true);
-
-            return;
-        }
-
-        Assert::fail(
-            sprintf(
-                "Expected throwable of class '%s' to be thrown, but nothing was caught",
-                $expectedThrowableClass
-            )
         );
     }
 }
