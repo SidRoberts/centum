@@ -14,7 +14,7 @@ The [`Centum\Queue\ArrayQueue`](https://github.com/SidRoberts/centum/tree/develo
 
 ```php
 Centum\Queue\ArrayQueue(
-    Centum\Interfaces\Container\ContainerInterface $container
+    Centum\Interfaces\Queue\TaskRunnerInterface $taskRunner
 );
 ```
 
