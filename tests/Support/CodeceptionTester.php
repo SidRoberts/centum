@@ -14,6 +14,7 @@ use Centum\Codeception\Actions\HttpFormActions;
 use Centum\Codeception\Actions\JsonActions;
 use Centum\Codeception\Actions\QueueActions;
 use Centum\Codeception\Actions\RouterActions;
+use Centum\Codeception\Actions\RouterReplacementActions;
 use Centum\Codeception\Actions\SessionActions;
 use Centum\Codeception\Actions\UnitTestActions;
 use Centum\Codeception\Actions\ValidatorActions;
@@ -37,6 +38,7 @@ class CodeceptionTester extends Actor
     use HttpFormActions;
     use JsonActions;
     use QueueActions;
+    use RouterReplacementActions;
     use RouterActions;
     use SessionActions;
     use UnitTestActions;
