@@ -12,6 +12,14 @@ class FileResponse extends Response
 {
     public function __construct(string $filePath, string $fileName)
     {
+        $content = @file_get_contents($filePath);
+
+        if ($content === false) {
+            throw new Exception("Unable to read file.");
+        }
+
+
+
         $fileName = $this->sanitiseFileName($fileName);
 
         $fileSize = filesize($filePath);
@@ -30,8 +38,10 @@ class FileResponse extends Response
             ]
         );
 
+
+
         parent::__construct(
-            file_get_contents($filePath),
+            $content,
             Status::OK,
             $headers
         );
