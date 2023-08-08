@@ -3,6 +3,7 @@
 namespace Tests\Support\Commands;
 
 use Centum\Console\Command;
+use Centum\Filter\Cast\ToInteger;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -14,18 +15,21 @@ class MathCommand extends Command
         return "math:add";
     }
 
-    public function getParams(): array
+    public function getFilters(ContainerInterface $container): array
     {
         return [
-            "a" => "int",
-            "b" => "int",
+            "a" => $container->get(ToInteger::class),
+            "b" => $container->get(ToInteger::class),
         ];
     }
 
     public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
-        $a = (int) $parameters->get("a");
-        $b = (int) $parameters->get("b");
+        /** @var int */
+        $a = $parameters->get("a");
+
+        /** @var int */
+        $b = $parameters->get("b");
 
         $terminal->write(
             sprintf(
