@@ -38,8 +38,6 @@ trait HtmlActions
             throw new ModuleException($this, "Page not loaded.");
         }
 
-        $currentURI = $this->currentURI;
-
         $form = $this->grabElement($selector);
 
         if (!$form) {
@@ -49,7 +47,7 @@ trait HtmlActions
         /** @var array<array-key, array<string>> */
         $attributes = $form->extract(["action", "method"]);
 
-        $uri = $attributes[0][0] ?: $currentURI;
+        $uri = $attributes[0][0] ?: $this->currentURI;
 
         $method = $attributes[0][1] ?: "GET";
         $method = strtoupper($method);
