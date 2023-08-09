@@ -69,15 +69,15 @@ class ErrorCommand extends Command
 
     public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
-        $terminal->writeLine("An error occurred.");
+        $terminal->writeErrorLine("An error occurred.");
 
         $throwable = $container->get(Throwable::class);
 
-        $terminal->writeLine(
+        $terminal->writeErrorLine(
             get_class($throwable)
         );
 
-        $terminal->writeLine(
+        $terminal->writeErrorLine(
             $throwable->getMessage()
         );
 

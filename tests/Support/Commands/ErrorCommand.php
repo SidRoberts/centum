@@ -19,7 +19,7 @@ class ErrorCommand extends Command
     {
         $throwable = $container->get(Throwable::class);
 
-        $terminal->write(
+        $terminal->writeError(
             sprintf(
                 "Something went wrong. %s was thrown with the message \"%s\".",
                 get_class($throwable),

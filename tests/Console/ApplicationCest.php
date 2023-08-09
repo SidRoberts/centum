@@ -242,7 +242,7 @@ class ApplicationCest
         );
     }
 
-    public function testExceptionalHandlers(ConsoleTester $I): void
+    public function testExceptionHandlers(ConsoleTester $I): void
     {
         $container = $I->grabContainer();
 
@@ -266,7 +266,7 @@ class ApplicationCest
 
 
 
-        $I->seeStdoutEquals(
+        $I->seeStderrEquals(
             "Something went wrong. Exception was thrown with the message \"I'm being difficult.\"."
         );
 
