@@ -9,36 +9,6 @@ use Tests\Support\UnitTester;
 
 class CommandCest
 {
-    public function testGetName(UnitTester $I): void
-    {
-        $command = new BoringCommand();
-
-        $I->assertEquals(
-            "boring",
-            $command->getName()
-        );
-    }
-
-    public function testGetDescription(UnitTester $I): void
-    {
-        $command = new BoringCommand();
-
-        $I->assertEquals(
-            "",
-            $command->getDescription()
-        );
-    }
-
-    public function testGetHelp(UnitTester $I): void
-    {
-        $command = new BoringCommand();
-
-        $I->assertEquals(
-            "",
-            $command->getHelp()
-        );
-    }
-
     public function testGetMiddleware(UnitTester $I): void
     {
         $command = new BoringCommand();

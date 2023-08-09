@@ -18,14 +18,6 @@ interface CommandInterface
 
 
 
-    public function getName(): string;
-
-    public function getDescription(): string;
-
-    public function getHelp(): string;
-
-
-
     public function getMiddleware(): MiddlewareInterface;
 
     /**
@@ -35,5 +27,5 @@ interface CommandInterface
 
 
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int;
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int;
 }

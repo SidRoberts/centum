@@ -4,25 +4,25 @@ namespace Centum\Console;
 
 use Centum\Console\Command\ListCommand;
 use Centum\Console\Command\QueueConsumeCommand;
+use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\InvalidFilterException;
+use Centum\Console\Exception\NotACommandException;
 use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Filter\FilterInterface;
-use Centum\Validator\CommandSlug;
-use OutOfRangeException;
+use ReflectionClass;
 use Throwable;
 
 class Application implements ApplicationInterface
 {
-    /** @var array<string, CommandInterface> */
+    /** @var array<string, class-string> */
     protected array $commands = [];
 
-    /** @var array<class-string, CommandInterface> */
+    /** @var array<class-string, class-string> */
     protected array $exceptionHandlers = [];
 
 
@@ -32,30 +32,55 @@ class Application implements ApplicationInterface
     ) {
         $container->set(ApplicationInterface::class, $this);
 
-        $this->addCommand(new ListCommand());
-        $this->addCommand(new QueueConsumeCommand());
+        $this->addCommand(ListCommand::class);
+        $this->addCommand(QueueConsumeCommand::class);
     }
 
 
 
-    public function addCommand(CommandInterface $command): void
+    /**
+     * @param class-string $commandClass
+     */
+    public function getCommandMetadata(string $commandClass): CommandMetadata
     {
-        $name = $command->getName();
+        $reflectionClass = new ReflectionClass($commandClass);
 
-        if (!$this->validateName($name)) {
-            throw new InvalidCommandNameException($command);
+        if (!$reflectionClass->isSubclassOf(CommandInterface::class)) {
+            throw new NotACommandException($commandClass);
         }
 
-        $this->commands[$name] = $command;
+        $attributes = $reflectionClass->getAttributes(CommandMetadata::class);
+
+        $attribute = $attributes[0] ?? throw new CommandMetadataNotFoundException($commandClass);
+
+        return $attribute->newInstance();
+    }
+
+
+
+    /**
+     * @param class-string $commandClass
+     */
+    public function addCommand(string $commandClass): void
+    {
+        $metadata = $this->getCommandMetadata($commandClass);
+
+        $name = $metadata->getName();
+
+        $this->commands[$name] = $commandClass;
     }
 
     public function getCommand(string $name): CommandInterface
     {
-        return $this->commands[$name] ?? throw new OutOfRangeException();
+        $commandClass = $this->commands[$name] ?? throw new CommandNotFoundException($name);
+
+        $command = $this->resolveCommand($commandClass);
+
+        return $command;
     }
 
     /**
-     * @return array<string, CommandInterface>
+     * @return array<string, class-string>
      */
     public function getCommands(): array
     {
@@ -66,10 +91,17 @@ class Application implements ApplicationInterface
 
     /**
      * @param class-string $exceptionClass
+     * @param class-string $commandClass
      */
-    public function addExceptionHandler(string $exceptionClass, CommandInterface $command): void
+    public function addExceptionHandler(string $exceptionClass, string $commandClass): void
     {
-        $this->exceptionHandlers[$exceptionClass] = $command;
+        $reflectionClass = new ReflectionClass($commandClass);
+
+        if (!$reflectionClass->isSubclassOf(CommandInterface::class)) {
+            throw new NotACommandException($exceptionClass);
+        }
+
+        $this->exceptionHandlers[$exceptionClass] = $commandClass;
     }
 
 
@@ -107,16 +139,18 @@ class Application implements ApplicationInterface
 
 
 
-            return $command->execute($terminal, $this->container, $parameters);
+            return $command->execute($terminal, $parameters);
         } catch (Throwable $exception) {
-            foreach ($this->exceptionHandlers as $exceptionClass => $command) {
+            foreach ($this->exceptionHandlers as $exceptionClass => $commandClass) {
                 /** @psalm-suppress DocblockTypeContradiction */
                 if (is_a($exception, $exceptionClass)) {
                     $this->container->set(get_class($exception), $exception);
                     $this->container->set($exceptionClass, $exception);
                     $this->container->set(Throwable::class, $exception);
 
-                    return $command->execute($terminal, $this->container, $parameters);
+                    $command = $this->resolveCommand($commandClass);
+
+                    return $command->execute($terminal, $parameters);
                 }
             }
 
@@ -126,13 +160,25 @@ class Application implements ApplicationInterface
 
 
 
+    /**
+     * @param class-string $commandClass
+     */
+    protected function resolveCommand(string $commandClass): CommandInterface
+    {
+        $command = $this->container->get($commandClass);
+
+        if (!($command instanceof CommandInterface)) {
+            throw new NotACommandException($commandClass);
+        }
+
+        return $command;
+    }
+
     protected function getCommandFromTerminal(TerminalInterface $terminal): CommandInterface
     {
         $name = $terminal->getArgv()[1] ?? "";
 
-        $command = $this->commands[$name] ?? throw new CommandNotFoundException($name);
-
-
+        $command = $this->getCommand($name);
 
         $middleware = $command->getMiddleware();
 
@@ -142,17 +188,6 @@ class Application implements ApplicationInterface
             throw new CommandNotFoundException($name);
         }
 
-
-
         return $command;
-    }
-
-    protected function validateName(string $name): bool
-    {
-        $validator = new CommandSlug();
-
-        $messages = $validator->validate($name);
-
-        return count($messages) === 0;
     }
 }

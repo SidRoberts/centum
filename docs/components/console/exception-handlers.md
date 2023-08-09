@@ -20,7 +20,7 @@ use Centum\Console\Exception\CommandNotFoundException;
 
 $application->addExceptionHandler(
     CommandNotFoundException::class,
-    new ErrorCommand()
+    ErrorCommand::class
 );
 ```
 
@@ -32,7 +32,7 @@ use Twig\Error\Error;
 
 $application->addExceptionHandler(
     Error::class,
-    new ErrorCommand()
+    ErrorCommand::class
 );
 ```
 
@@ -45,7 +45,7 @@ use Throwable;
 
 $application->addExceptionHandler(
     Throwable::class,
-    new ErrorCommand()
+    ErrorCommand::class
 );
 ```
 
@@ -57,28 +57,25 @@ namespace App\Commands;
 use Centum\Console\Command;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 use Throwable;
 
 class ErrorCommand extends Command
 {
-    public function getName(): string
-    {
-        return "error";
+    public function __construct(
+        protected readonly Throwable $throwable
+    ) {
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
         $terminal->writeErrorLine("An error occurred.");
 
-        $throwable = $container->get(Throwable::class);
-
         $terminal->writeErrorLine(
-            get_class($throwable)
+            get_class($this->throwable)
         );
 
         $terminal->writeErrorLine(
-            $throwable->getMessage()
+            $this->throwable->getMessage()
         );
 
         return self::FAILURE;

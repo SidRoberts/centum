@@ -2,9 +2,10 @@
 
 namespace Centum\Codeception\Actions;
 
+use Centum\Console\Application;
+use Centum\Console\CommandMetadata;
 use Centum\Console\Terminal;
 use Centum\Interfaces\Console\ApplicationInterface;
-use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Exception\ModuleException;
@@ -76,11 +77,14 @@ trait ConsoleActions
 
 
 
-    public function addCommand(CommandInterface $command): void
+    /**
+     * @param class-string $commandClass
+     */
+    public function addCommand(string $commandClass): void
     {
         $application = $this->grabConsoleApplication();
 
-        $application->addCommand($command);
+        $application->addCommand($commandClass);
     }
 
     /**
@@ -195,5 +199,19 @@ trait ConsoleActions
             $this->grabStderrContent(),
             $message
         );
+    }
+
+
+
+    /**
+     * @param class-string $commandClass
+     */
+    public function grabCommandMetadata(string $commandClass): CommandMetadata
+    {
+        $container = $this->grabContainer();
+
+        $application = new Application($container);
+
+        return $application->getCommandMetadata($commandClass);
     }
 }

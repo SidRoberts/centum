@@ -3,28 +3,22 @@
 namespace Centum\Console\Command;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 
+#[CommandMetadata("list", "Lists all available commands.")]
 class ListCommand extends Command
 {
-    public function getName(): string
-    {
-        return "list";
+    public function __construct(
+        protected readonly ApplicationInterface $application
+    ) {
     }
 
-    public function getDescription(): string
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
-        return "Lists all available commands.";
-    }
-
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
-    {
-        $application = $container->get(ApplicationInterface::class);
-
-        $commands = $application->getCommands();
+        $commands = $this->application->getCommands();
 
         $commandNames = array_keys($commands);
 

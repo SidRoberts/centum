@@ -3,25 +3,27 @@
 namespace Tests\Unit\Console\Exception;
 
 use Centum\Console\Exception\InvalidCommandNameException;
-use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\UnitTester;
 
 class InvalidCommandNameExceptionCest
 {
     public function test(UnitTester $I): void
     {
-        $command = new BadNameCommand();
+        $badName = "https://github.com/";
 
-        $exception = new InvalidCommandNameException($command);
+        $exception = new InvalidCommandNameException($badName);
 
         $I->assertEquals(
-            "Command name ('https://github.com/') is not valid.",
+            sprintf(
+                "Command name (%s) is not valid.",
+                $badName
+            ),
             $exception->getMessage()
         );
 
         $I->assertSame(
-            $command,
-            $exception->getCommand()
+            $badName,
+            $exception->getName()
         );
     }
 }

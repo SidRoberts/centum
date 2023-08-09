@@ -51,17 +51,14 @@ namespace App\Commands;
 use App\Filters\PostFilter;
 use App\Models\Post;
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 
+#[CommandMetadata("post-details")]
 class PostDetailsCommand extends Command
 {
-    public function getName(): string
-    {
-        return "post-details";
-    }
-
     public function getFilters(ContainerInterface $container): array
     {
         return [
@@ -69,7 +66,7 @@ class PostDetailsCommand extends Command
         ];
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
         /** @var Post */
         $post = $parameters->get("post");

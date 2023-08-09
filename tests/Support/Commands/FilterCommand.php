@@ -3,18 +3,15 @@
 namespace Tests\Support\Commands;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Tests\Support\Filters\Doubler;
 
+#[CommandMetadata("filter:double")]
 class FilterCommand extends Command
 {
-    public function getName(): string
-    {
-        return "filter:double";
-    }
-
     public function getFilters(ContainerInterface $container): array
     {
         return [
@@ -22,7 +19,7 @@ class FilterCommand extends Command
         ];
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
         /** @var mixed */
         $i = $parameters->get("i");

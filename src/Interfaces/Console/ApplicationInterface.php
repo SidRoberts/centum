@@ -4,12 +4,15 @@ namespace Centum\Interfaces\Console;
 
 interface ApplicationInterface
 {
-    public function addCommand(CommandInterface $command): void;
+    /**
+     * @param class-string $commandClass
+     */
+    public function addCommand(string $commandClass): void;
 
     public function getCommand(string $name): CommandInterface;
 
     /**
-     * @return array<string, CommandInterface>
+     * @return array<string, class-string>
      */
     public function getCommands(): array;
 
@@ -17,8 +20,9 @@ interface ApplicationInterface
 
     /**
      * @param class-string $exceptionClass
+     * @param class-string $commandClass
      */
-    public function addExceptionHandler(string $exceptionClass, CommandInterface $command): void;
+    public function addExceptionHandler(string $exceptionClass, string $commandClass): void;
 
 
 

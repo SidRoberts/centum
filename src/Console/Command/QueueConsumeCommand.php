@@ -3,23 +3,22 @@
 namespace Centum\Console\Command;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 
+#[CommandMetadata("queue-consume")]
 class QueueConsumeCommand extends Command
 {
-    public function getName(): string
-    {
-        return "queue-consume";
+    public function __construct(
+        protected readonly QueueInterface $queue
+    ) {
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
-        $queue = $container->get(QueueInterface::class);
-
-        $queue->consume();
+        $this->queue->consume();
 
         return self::SUCCESS;
     }

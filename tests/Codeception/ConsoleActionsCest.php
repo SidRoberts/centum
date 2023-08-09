@@ -4,6 +4,7 @@ namespace Tests\Codeception;
 
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Commands\ExitCodeCommand;
+use Tests\Support\ExitCode;
 
 class ConsoleActionsCest
 {
@@ -77,9 +78,12 @@ class ConsoleActionsCest
     {
         $exitCode = 123;
 
-        $I->addCommand(
-            new ExitCodeCommand($exitCode)
+        $I->addToContainer(
+            ExitCode::class,
+            new ExitCode($exitCode)
         );
+
+        $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
@@ -98,9 +102,14 @@ class ConsoleActionsCest
 
     public function testGrabExitCode(CodeceptionTester $I): void
     {
-        $I->addCommand(
-            new ExitCodeCommand(123)
+        $exitCode = 123;
+
+        $I->addToContainer(
+            ExitCode::class,
+            new ExitCode($exitCode)
         );
+
+        $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
@@ -109,19 +118,22 @@ class ConsoleActionsCest
 
         $I->runCommand($argv);
 
-        $exitCode = $I->grabExitCode();
-
         $I->assertEquals(
-            123,
-            $exitCode
+            $exitCode,
+            $I->grabExitCode()
         );
     }
 
     public function testSeeExitCodeIs(CodeceptionTester $I): void
     {
-        $I->addCommand(
-            new ExitCodeCommand(0)
+        $exitCode = 0;
+
+        $I->addToContainer(
+            ExitCode::class,
+            new ExitCode($exitCode)
         );
+
+        $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
@@ -135,9 +147,14 @@ class ConsoleActionsCest
 
     public function testSeeExitCodeIsNot(CodeceptionTester $I): void
     {
-        $I->addCommand(
-            new ExitCodeCommand(0)
+        $exitCode = 0;
+
+        $I->addToContainer(
+            ExitCode::class,
+            new ExitCode($exitCode)
         );
+
+        $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",

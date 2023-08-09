@@ -11,11 +11,11 @@ class QueueConsumeCommandCest
 {
     public function testGetName(ConsoleTester $I): void
     {
-        $command = new QueueConsumeCommand();
+        $metadata = $I->grabCommandMetadata(QueueConsumeCommand::class);
 
         $I->assertEquals(
             "queue-consume",
-            $command->getName()
+            $metadata->getName()
         );
     }
 
@@ -31,9 +31,7 @@ class QueueConsumeCommandCest
             }
         );
 
-        $I->addCommand(
-            new QueueConsumeCommand()
-        );
+        $I->addCommand(QueueConsumeCommand::class);
 
         $I->runCommand(
             [

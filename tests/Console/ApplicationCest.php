@@ -9,7 +9,6 @@ use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
-use OutOfRangeException;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\ErrorCommand;
 use Tests\Support\Commands\FilterCommand;
@@ -27,29 +26,12 @@ class ApplicationCest
     {
         $application = new Application($container);
 
-        $application->addCommand(
-            new MainCommand()
-        );
-
-        $application->addCommand(
-            new FilterCommand()
-        );
-
-        $application->addCommand(
-            new TrueCommand()
-        );
-
-        $application->addCommand(
-            new FalseCommand()
-        );
-
-        $application->addCommand(
-            new ProblematicCommand()
-        );
-
-        $application->addCommand(
-            new MathCommand()
-        );
+        $application->addCommand(MainCommand::class);
+        $application->addCommand(FilterCommand::class);
+        $application->addCommand(TrueCommand::class);
+        $application->addCommand(FalseCommand::class);
+        $application->addCommand(ProblematicCommand::class);
+        $application->addCommand(MathCommand::class);
 
         return $application;
     }
@@ -215,10 +197,12 @@ class ApplicationCest
             $application->getCommand("filter:double")
         );
 
+        $name = "doesnt-exist";
+
         $I->expectThrowable(
-            OutOfRangeException::class,
-            function () use ($application): void {
-                $application->getCommand("doesnt-exist");
+            new CommandNotFoundException($name),
+            function () use ($application, $name): void {
+                $application->getCommand($name);
             }
         );
     }
@@ -250,7 +234,7 @@ class ApplicationCest
 
         $application->addExceptionHandler(
             Throwable::class,
-            new ErrorCommand()
+            ErrorCommand::class
         );
 
 
@@ -282,12 +266,10 @@ class ApplicationCest
 
         $application = $this->getApplication($container);
 
-        $command = new BadNameCommand();
-
         $I->expectThrowable(
-            new InvalidCommandNameException($command),
-            function () use ($application, $command): void {
-                $application->addCommand($command);
+            new InvalidCommandNameException("https://github.com/"),
+            function () use ($application): void {
+                $application->addCommand(BadNameCommand::class);
             }
         );
     }

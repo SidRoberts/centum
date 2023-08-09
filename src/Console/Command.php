@@ -12,20 +12,6 @@ use Centum\Interfaces\Filter\FilterInterface;
 
 abstract class Command implements CommandInterface
 {
-    abstract public function getName(): string;
-
-    public function getDescription(): string
-    {
-        return "";
-    }
-
-    public function getHelp(): string
-    {
-        return "";
-    }
-
-
-
     public function getMiddleware(): MiddlewareInterface
     {
         return new TrueMiddleware();
@@ -41,5 +27,5 @@ abstract class Command implements CommandInterface
 
 
 
-    abstract public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int;
+    abstract public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int;
 }

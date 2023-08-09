@@ -3,18 +3,16 @@
 namespace Tests\Support\Commands;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Filter\Cast\ToInteger;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
+
 use Centum\Interfaces\Container\ContainerInterface;
 
+#[CommandMetadata("math:add")]
 class MathCommand extends Command
 {
-    public function getName(): string
-    {
-        return "math:add";
-    }
-
     public function getFilters(ContainerInterface $container): array
     {
         return [
@@ -23,7 +21,7 @@ class MathCommand extends Command
         ];
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
         /** @var int */
         $a = $parameters->get("a");

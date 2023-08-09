@@ -28,3 +28,4 @@ permalink: testing/console
 - `seeStderrNotEquals(string $expected, string $message = ""): void`
 - `seeStderrContains(string $expected, string $message = ""): void`
 - `seeStderrNotContains(string $expected, string $message = ""): void`
+- `grabCommandMetadata(string $commandClass): Centum\Console\CommandMetadata`

@@ -3,26 +3,23 @@
 namespace Tests\Support\Commands;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
+use Tests\Support\ExitCode;
 
+#[CommandMetadata("exit-code")]
 class ExitCodeCommand extends Command
 {
     public function __construct(
-        protected readonly int $exitCode
+        protected readonly ExitCode $exitCode
     ) {
     }
 
 
 
-    public function getName(): string
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
-        return "exit-code";
-    }
-
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
-    {
-        return $this->exitCode;
+        return $this->exitCode->getExitCode();
     }
 }

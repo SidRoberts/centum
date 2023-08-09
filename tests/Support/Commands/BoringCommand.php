@@ -3,18 +3,14 @@
 namespace Tests\Support\Commands;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 
+#[CommandMetadata("boring")]
 class BoringCommand extends Command
 {
-    public function getName(): string
-    {
-        return "boring";
-    }
-
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
         return self::SUCCESS;
     }

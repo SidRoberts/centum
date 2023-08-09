@@ -9,21 +9,21 @@ class ListCommandCest
 {
     public function testGetName(ConsoleTester $I): void
     {
-        $command = new ListCommand();
+        $metadata = $I->grabCommandMetadata(ListCommand::class);
 
         $I->assertEquals(
             "list",
-            $command->getName()
+            $metadata->getName()
         );
     }
 
     public function testGetDescription(ConsoleTester $I): void
     {
-        $command = new ListCommand();
+        $metadata = $I->grabCommandMetadata(ListCommand::class);
 
         $I->assertEquals(
             "Lists all available commands.",
-            $command->getDescription()
+            $metadata->getDescription()
         );
     }
 
@@ -31,9 +31,7 @@ class ListCommandCest
 
     public function testExecute(ConsoleTester $I): void
     {
-        $I->addCommand(
-            new ListCommand()
-        );
+        $I->addCommand(ListCommand::class);
 
         $I->runCommand(
             [

@@ -13,7 +13,7 @@ permalink: console
 The Console component can be used to easily develop command line applications.
 
 Application endpoints are treated as [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
-These Commands contain all of the code and metadata relating to that endpoint.
+These Commands contain all of the code and all of the metadata is stored in a [`Centum\Console\CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) object.
 
 [`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) extracts the command name from `$argv`, finds the appropriate Command, runs the Middlewares, and then executes the Command's code.
 
@@ -26,10 +26,11 @@ Centum\Console\Application(
 );
 ```
 
-- `public function addCommand(Centum\Interfaces\Console\CommandInterface $command): void`
+- `public function getCommandMetadata(string $commandClass): Centum\Console\CommandMetadata`
+- `public function addCommand(string $commandClass): void`
 - `public function getCommand(string $name): Centum\Interfaces\Console\CommandInterface`
-- `public function getCommands(): array<string, Centum\Interfaces\Console\CommandInterface>`
-- `public function addExceptionHandler(class-string $exceptionClass, Centum\Interfaces\Console\CommandInterface $command): void`
+- `public function getCommands(): array<string, string>`
+- `public function addExceptionHandler(class-string $exceptionClass, string $commandClass): void`
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
 
 
@@ -61,7 +62,9 @@ php cli.php queue-consume
 (all in the `Centum\Console\Exception` namespace)
 
 - [`ArgvNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ArgvNotFoundException.php)
+- [`CommandMetadataNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandMetadataNotFoundException.php)
 - [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
 - [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
 - [`InvalidFilterException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidFilterException.php)
+- [`NotACommandException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/NotACommandException.php)
 - [`ParamNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParamNotFoundException.php)

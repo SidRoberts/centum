@@ -11,7 +11,7 @@ nav_order: 1
 
 # Commands
 
-A Command is responsible for providing the command name (`getName()`), middleware (`getMiddleware()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
+A Command is responsible for providing middleware (`getMiddleware()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
 It's return value is the exit code.
 
 Three constants exist to clearly describe an exit code:
@@ -20,13 +20,13 @@ Three constants exist to clearly describe an exit code:
 - `Centum\Interfaces\Console\CommandInterface::FAILURE = 1`
 - `Centum\Interfaces\Console\CommandInterface::INVALID = 2`
 
+The [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) attribute class stores the name and description of the Command.
+This is separated so that this information can be validated without instantiating the Command.
+
 {: .highlight }
 [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
 
-- `public function getName(): string`
-- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Container\ContainerInterface $container, Centum\Interfaces\Console\ParametersInterface $parameters): int`
-- `public function getDescription(): string` (optional)
-- `public function getHelp(): string` (optional)
+- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Console\ParametersInterface $parameters): int`
 - `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
 - `public function getFilters(Centum\Interfaces\Container\ContainerInterface $container): array` (optional)
 
@@ -36,18 +36,14 @@ By default, a Command has no middleware or parameter filters and can be as simpl
 namespace App\Commands;
 
 use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 
+#[CommandMetadata("this:is:your:name")]
 class IndexCommand extends Command
 {
-    public function getName(): string
-    {
-        return "this:is:your:name";
-    }
-
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
     {
         $terminal->writeLine("hello");
 
@@ -56,7 +52,7 @@ class IndexCommand extends Command
 }
 ```
 
-A Command's name must follow the pattern set out in the [Command Slug Validator](https://github.com/SidRoberts/centum/blob/development/src/Validator/CommandSlug.php).
+A Command's name must follow a slug pattern - all lowercase, alphanumeric with dashes, and must begin and end with alphanumeric characters.
 To allow commands like `php cli.php`, empty names are allowed.
 
 When the Application is processing a request, several Exceptions could be thrown:
@@ -76,13 +72,10 @@ use Centum\Interfaces\Console\ApplicationInterface;
 
 /** @var ApplicationInterface $application */
 
-$application->addCommand(
-    new IndexCommand()
-);
+$application->addCommand(IndexCommand::class);
 ```
 
-The Application will be able to determine Command's name from the Command's `getName()` method.
+The Application will be able to determine Command's name from the CommandMetadata attribute.
 Commands are processed in the order that they are added to the Application but a later added Command can overwrite an older Command with the same name.
 
-If the Command's name does not fit the standard described in the [Command Slug Validator](https://github.com/SidRoberts/centum/blob/development/src/Validator/CommandSlug.php), [`Centum\Console\Exception\InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php) will be thrown.
-To allow commands like `php cli.php`, empty names are allowed.
+If the Command's name is not valid, then an [`Centum\Console\Exception\InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php) will be thrown.
