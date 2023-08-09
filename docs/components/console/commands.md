@@ -14,6 +14,12 @@ nav_order: 1
 A Command is responsible for providing the command name (`getName()`), middleware (`getMiddleware()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
 It's return value is the exit code.
 
+Three constants exist to clearly describe an exit code:
+
+- `Centum\Interfaces\Console\CommandInterface::SUCCESS = 0`
+- `Centum\Interfaces\Console\CommandInterface::FAILURE = 1`
+- `Centum\Interfaces\Console\CommandInterface::INVALID = 2`
+
 {: .highlight }
 [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
 
@@ -45,7 +51,7 @@ class IndexCommand extends Command
     {
         $terminal->writeLine("hello");
 
-        return 0;
+        return self::SUCCESS;
     }
 }
 ```

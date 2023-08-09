@@ -32,6 +32,6 @@ class ListCommand extends Command
 
         $terminal->writeList($commandNames);
 
-        return 0;
+        return self::SUCCESS;
     }
 }

@@ -66,7 +66,7 @@ class AdministrationCommand extends Command
     {
         $terminal->writeLine("this command is running on linux");
 
-        return 0;
+        return self::SUCCESS;
     }
 }
 ```
@@ -113,7 +113,7 @@ class SomethingCommand extends Command
     {
         $terminal->writeLine("hello");
 
-        return 0;
+        return self::SUCCESS;
     }
 }
 ```

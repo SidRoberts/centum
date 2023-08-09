@@ -27,6 +27,6 @@ class ErrorCommand extends Command
             )
         );
 
-        return 1;
+        return self::FAILURE;
     }
 }

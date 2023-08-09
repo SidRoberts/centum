@@ -82,7 +82,7 @@ class PostDetailsCommand extends Command
             $post->getBody()
         );
 
-        return 0;
+        return self::SUCCESS;
     }
 }
 ```

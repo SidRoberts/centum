@@ -21,6 +21,6 @@ class QueueConsumeCommand extends Command
 
         $queue->consume();
 
-        return 0;
+        return self::SUCCESS;
     }
 }

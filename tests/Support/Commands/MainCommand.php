@@ -20,6 +20,6 @@ class MainCommand extends Command
             "main page"
         );
 
-        return 0;
+        return self::SUCCESS;
     }
 }

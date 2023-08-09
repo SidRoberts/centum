@@ -81,7 +81,7 @@ class ErrorCommand extends Command
             $throwable->getMessage()
         );
 
-        return 0;
+        return self::FAILURE;
     }
 }
 ```

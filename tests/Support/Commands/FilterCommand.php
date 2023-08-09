@@ -31,6 +31,6 @@ class FilterCommand extends Command
             (string) $i
         );
 
-        return 0;
+        return self::SUCCESS;
     }
 }

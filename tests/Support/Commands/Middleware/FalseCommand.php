@@ -23,6 +23,6 @@ class FalseCommand extends Command
 
     public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
     {
-        return 0;
+        return self::SUCCESS;
     }
 }
