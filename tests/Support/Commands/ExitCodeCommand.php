@@ -10,7 +10,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 class ExitCodeCommand extends Command
 {
     public function __construct(
-        protected int $exitCode
+        protected readonly int $exitCode
     ) {
     }
 
