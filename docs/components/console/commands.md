@@ -62,6 +62,41 @@ When the Application is processing a request, several Exceptions could be thrown
 
 
 
+## Injecting Services into the Application
+
+Services can be injected from the Container through the constructor method:
+
+```php
+namespace App\Commands;
+
+use Centum\Console\Command;
+use Centum\Console\CommandMetadata;
+use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Interfaces\Console\TerminalInterface;
+use Centum\Filter\String\ToUpper;
+
+#[CommandMetadata("this:is:your:name")]
+class IndexCommand extends Command
+{
+    public function __construct(
+        protected readonly ToUpper $toUpperFilter
+    ) {
+    }
+
+    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
+    {
+        // Will output "HELLO"
+        $terminal->writeLine(
+            $this->toUpperFilter->filter("hello")
+        );
+
+        return self::SUCCESS;
+    }
+}
+```
+
+
+
 ## Adding Commands to the Application
 
 Commands can be added to the Application, using the `addCommand()` method:
