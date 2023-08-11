@@ -12,6 +12,7 @@ use Exception;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
 use Tests\Support\Commands\ErrorCommand;
+use Tests\Support\Commands\HelloCommand;
 use Tests\Support\Commands\MainCommand;
 use Tests\Support\Commands\MathCommand;
 use Tests\Support\Commands\ProblematicCommand;
@@ -266,6 +267,33 @@ class ApplicationCest
             function () use ($application): void {
                 $application->addCommand(BadNameCommand::class);
             }
+        );
+    }
+
+    public function testStringAndBoolTypes(ConsoleTester $I): void
+    {
+        $container = $I->grabContainer();
+
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
+
+        $application->addCommand(HelloCommand::class);
+
+        $argv = [
+            "cli.php",
+            "hello",
+            "--name",
+            "Sid",
+            "--loud",
+        ];
+
+        $terminal = $I->createTerminal($argv);
+
+        $application->handle($terminal);
+
+        $I->seeStdoutEquals(
+            "HELLO SID!" . PHP_EOL
         );
     }
 }
