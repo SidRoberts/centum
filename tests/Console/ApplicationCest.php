@@ -5,7 +5,10 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
+use Centum\Console\Exception\NotACommandException;
+use Centum\Console\Exception\NotAThrowableException;
 use Centum\Interfaces\Console\CommandBuilderInterface;
+use Exception;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
 use Tests\Support\Commands\ErrorCommand;
@@ -140,6 +143,75 @@ class ApplicationCest
         $I->assertArrayHasKey(
             "math:add",
             $commands
+        );
+    }
+
+    public function testException(ConsoleTester $I): void
+    {
+        $container = $I->grabContainer();
+
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
+
+        $application->addCommand(ProblematicCommand::class);
+
+
+
+        $argv = [
+            "cli.php",
+            "problematic",
+        ];
+
+        $terminal = $I->createTerminal($argv);
+
+        $I->expectThrowable(
+            new Exception("I'm being difficult."),
+            function () use ($application, $terminal): void {
+                $application->handle($terminal);
+            }
+        );
+    }
+
+    public function testAddExceptionHandlerNotAThrowable(ConsoleTester $I): void
+    {
+        $container = $I->grabContainer();
+
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
+
+        $notAThrowableClass = ErrorCommand::class;
+
+        $I->expectThrowable(
+            new NotAThrowableException($notAThrowableClass),
+            function () use ($application, $notAThrowableClass): void {
+                $application->addExceptionHandler(
+                    $notAThrowableClass,
+                    ErrorCommand::class
+                );
+            }
+        );
+    }
+
+    public function testAddExceptionHandlerNotACommand(ConsoleTester $I): void
+    {
+        $container = $I->grabContainer();
+
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
+
+        $notACommandClass = Exception::class;
+
+        $I->expectThrowable(
+            new NotACommandException($notACommandClass),
+            function () use ($application, $notACommandClass): void {
+                $application->addExceptionHandler(
+                    Throwable::class,
+                    $notACommandClass
+                );
+            }
         );
     }
 

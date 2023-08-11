@@ -7,6 +7,7 @@ use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\NotACommandException;
+use Centum\Console\Exception\NotAThrowableException;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\CommandInterface;
@@ -85,10 +86,12 @@ class Application implements ApplicationInterface
      */
     public function addExceptionHandler(string $exceptionClass, string $commandClass): void
     {
-        $reflectionClass = new ReflectionClass($commandClass);
+        if ($exceptionClass !== Throwable::class && !is_subclass_of($exceptionClass, Throwable::class)) {
+            throw new NotAThrowableException($exceptionClass);
+        }
 
-        if (!$reflectionClass->isSubclassOf(CommandInterface::class)) {
-            throw new NotACommandException($exceptionClass);
+        if (!is_subclass_of($commandClass, CommandInterface::class)) {
+            throw new NotACommandException($commandClass);
         }
 
         $this->exceptionHandlers[$exceptionClass] = $commandClass;

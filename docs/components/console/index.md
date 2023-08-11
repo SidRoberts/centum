@@ -65,5 +65,6 @@ php cli.php queue-consume
 - [`CommandParameterRequiredException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandParameterRequiredException.php)
 - [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
 - [`NotACommandException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/NotACommandException.php)
+- [`NotAThrowableException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/NotAThrowableException.php)
 - [`ParameterMustHaveSimpleTypeException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParameterMustHaveSimpleTypeException.php)
 - [`ParameterNotRecognisedException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParameterNotRecognisedException.php)
