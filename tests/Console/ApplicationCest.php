@@ -6,7 +6,6 @@ use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\ParamNotFoundException;
-use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\Commands\BadNameCommand;
@@ -22,22 +21,6 @@ use Throwable;
 
 class ApplicationCest
 {
-    protected function getApplication(ContainerInterface $container): Application
-    {
-        $application = new Application($container);
-
-        $application->addCommand(MainCommand::class);
-        $application->addCommand(FilterCommand::class);
-        $application->addCommand(TrueCommand::class);
-        $application->addCommand(FalseCommand::class);
-        $application->addCommand(ProblematicCommand::class);
-        $application->addCommand(MathCommand::class);
-
-        return $application;
-    }
-
-
-
     public function testBasicHandle(ConsoleTester $I): void
     {
         $argv = [
@@ -49,7 +32,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(MainCommand::class);
 
         $application->handle($terminal);
 
@@ -71,7 +56,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(FilterCommand::class);
 
         $application->handle($terminal);
 
@@ -91,7 +78,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(FilterCommand::class);
 
         $I->expectThrowable(
             new ParamNotFoundException("i"),
@@ -111,7 +100,10 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(TrueCommand::class);
+        $application->addCommand(FalseCommand::class);
 
         try {
             $application->handle($terminal);
@@ -149,7 +141,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(MainCommand::class);
 
         $application->handle($terminal);
 
@@ -171,7 +165,7 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
 
         $I->expectThrowable(
             new CommandNotFoundException($name),
@@ -185,7 +179,10 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(FilterCommand::class);
+        $application->addCommand(MathCommand::class);
 
         $I->assertInstanceOf(
             MathCommand::class,
@@ -211,7 +208,10 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(FilterCommand::class);
+        $application->addCommand(MathCommand::class);
 
         $commands = $application->getCommands();
 
@@ -230,7 +230,9 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
+
+        $application->addCommand(ProblematicCommand::class);
 
         $application->addExceptionHandler(
             Throwable::class,
@@ -264,7 +266,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $application = $this->getApplication($container);
+        $application = new Application($container);
 
         $I->expectThrowable(
             new InvalidCommandNameException("https://github.com/"),
