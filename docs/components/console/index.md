@@ -15,7 +15,7 @@ The Console component can be used to easily develop command line applications.
 Application endpoints are treated as [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
 These Commands contain all of the code and all of the metadata is stored in a [`Centum\Console\CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) object.
 
-[`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) extracts the command name from `$argv`, finds the appropriate Command, runs the Middlewares, and then executes the Command's code.
+[`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) extracts the command name from `$argv`, finds the appropriate Command, and then executes the Command's code.
 
 {: .highlight }
 [`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) implements [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php).

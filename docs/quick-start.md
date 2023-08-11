@@ -46,8 +46,6 @@ src/
     Filters/
     Forms/
     Middlewares/
-        Console/
-        Web/
     Models/
     Observers/
     Tasks/

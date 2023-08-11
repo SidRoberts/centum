@@ -155,14 +155,6 @@ class Application implements ApplicationInterface
 
         $command = $this->getCommand($name);
 
-        $middleware = $command->getMiddleware();
-
-        $success = $middleware->middleware($terminal, $command, $this->container);
-
-        if (!$success) {
-            throw new CommandNotFoundException($name);
-        }
-
         return $command;
     }
 }

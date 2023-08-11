@@ -15,9 +15,5 @@ interface CommandInterface
 
 
 
-    public function getMiddleware(): MiddlewareInterface;
-
-
-
     public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int;
 }

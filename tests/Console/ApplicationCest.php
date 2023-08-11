@@ -5,14 +5,11 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
-use Codeception\Attribute\DataProvider;
-use Codeception\Example;
 use Tests\Support\Commands\BadNameCommand;
+use Tests\Support\Commands\BoringCommand;
 use Tests\Support\Commands\ErrorCommand;
 use Tests\Support\Commands\MainCommand;
 use Tests\Support\Commands\MathCommand;
-use Tests\Support\Commands\Middleware\FalseCommand;
-use Tests\Support\Commands\Middleware\TrueCommand;
 use Tests\Support\Commands\ProblematicCommand;
 use Tests\Support\ConsoleTester;
 use Throwable;
@@ -39,45 +36,6 @@ class ApplicationCest
         $I->seeStdoutEquals(
             "main page"
         );
-    }
-
-    #[DataProvider("providerMiddlewares")]
-    public function testMiddlewares(ConsoleTester $I, Example $example): void
-    {
-        /** @var list<string> */
-        $argv = $example["argv"];
-
-        $terminal = $I->createTerminal($argv);
-
-        $container = $I->grabContainer();
-
-        $application = new Application($container);
-
-        $application->addCommand(TrueCommand::class);
-        $application->addCommand(FalseCommand::class);
-
-        try {
-            $application->handle($terminal);
-
-            $I->assertTrue($example["shouldPass"]);
-        } catch (CommandNotFoundException $e) {
-            $I->assertFalse($example["shouldPass"]);
-        }
-    }
-
-    protected function providerMiddlewares(): array
-    {
-        return [
-            [
-                "argv"       => ["cli.php", "middleware:true"],
-                "shouldPass" => true,
-            ],
-
-            [
-                "argv"       => ["cli.php", "middleware:false"],
-                "shouldPass" => false,
-            ],
-        ];
     }
 
 
@@ -132,17 +90,17 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(TrueCommand::class);
+        $application->addCommand(BoringCommand::class);
         $application->addCommand(MathCommand::class);
+
+        $I->assertInstanceOf(
+            BoringCommand::class,
+            $application->getCommand("boring")
+        );
 
         $I->assertInstanceOf(
             MathCommand::class,
             $application->getCommand("math:add")
-        );
-
-        $I->assertInstanceOf(
-            TrueCommand::class,
-            $application->getCommand("middleware:true")
         );
 
         $name = "doesnt-exist";
@@ -161,18 +119,18 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(TrueCommand::class);
+        $application->addCommand(BoringCommand::class);
         $application->addCommand(MathCommand::class);
 
         $commands = $application->getCommands();
 
         $I->assertArrayHasKey(
-            "math:add",
+            "boring",
             $commands
         );
 
         $I->assertArrayHasKey(
-            "middleware:true",
+            "math:add",
             $commands
         );
     }

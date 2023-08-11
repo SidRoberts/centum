@@ -11,7 +11,7 @@ nav_order: 1
 
 # Commands
 
-A Command is responsible for providing middleware (`getMiddleware()`) and the actual code to run (`execute()`).
+A Command is responsible for providing the actual code to run (`execute()`).
 It's return value is the exit code.
 
 Three constants exist to clearly describe an exit code:
@@ -27,9 +27,8 @@ This is separated so that this information can be validated without instantiatin
 [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
 
 - `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Console\ParametersInterface $parameters): int`
-- `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
 
-By default, a Command has no middleware and can be as simple as this:
+By default, a Command can be as simple as this:
 
 ```php
 namespace App\Commands;
