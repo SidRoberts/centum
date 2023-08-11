@@ -11,7 +11,7 @@ nav_order: 1
 
 # Commands
 
-A Command is responsible for providing middleware (`getMiddleware()`), parameter filters (`getFilters()`), and the actual code to run (`execute()`).
+A Command is responsible for providing middleware (`getMiddleware()`) and the actual code to run (`execute()`).
 It's return value is the exit code.
 
 Three constants exist to clearly describe an exit code:
@@ -28,9 +28,8 @@ This is separated so that this information can be validated without instantiatin
 
 - `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Console\ParametersInterface $parameters): int`
 - `public function getMiddleware(): Centum\Console\MiddlewareInterface` (optional)
-- `public function getFilters(Centum\Interfaces\Container\ContainerInterface $container): array` (optional)
 
-By default, a Command has no middleware or parameter filters and can be as simple as this:
+By default, a Command has no middleware and can be as simple as this:
 
 ```php
 namespace App\Commands;
@@ -54,11 +53,6 @@ class IndexCommand extends Command
 
 A Command's name must follow a slug pattern - all lowercase, alphanumeric with dashes, and must begin and end with alphanumeric characters.
 To allow commands like `php cli.php`, empty names are allowed.
-
-When the Application is processing a request, several Exceptions could be thrown:
-
-- [`Centum\Console\Exception\InvalidFilterException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidFilterException.php) if `getFilters()` contains array elements that do not implement `FilterInterface`.
-- [`Centum\Console\Exception\ParamNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParamNotFoundException.php) if `getFilters()` references a parameter that does not exist.
 
 
 

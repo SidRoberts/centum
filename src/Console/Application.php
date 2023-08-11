@@ -6,14 +6,11 @@ use Centum\Console\Command\ListCommand;
 use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Console\Exception\InvalidFilterException;
 use Centum\Console\Exception\NotACommandException;
-use Centum\Console\Exception\ParamNotFoundException;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Interfaces\Filter\FilterInterface;
 use ReflectionClass;
 use Throwable;
 
@@ -117,28 +114,6 @@ class Application implements ApplicationInterface
 
 
         try {
-            $filters = $command->getFilters($this->container);
-
-            foreach ($filters as $key => $filter) {
-                if (!($filter instanceof FilterInterface)) {
-                    throw new InvalidFilterException($filter);
-                }
-
-                if (!$parameters->has($key)) {
-                    throw new ParamNotFoundException($key);
-                }
-
-                /** @var mixed */
-                $value = $parameters->get($key);
-
-                /** @var mixed */
-                $value = $filter->filter($value);
-
-                $parameters->set($key, $value);
-            }
-
-
-
             return $command->execute($terminal, $parameters);
         } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $commandClass) {

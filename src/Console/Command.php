@@ -7,22 +7,12 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\MiddlewareInterface;
 use Centum\Interfaces\Console\ParametersInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Interfaces\Filter\FilterInterface;
 
 abstract class Command implements CommandInterface
 {
     public function getMiddleware(): MiddlewareInterface
     {
         return new TrueMiddleware();
-    }
-
-    /**
-     * @return array<string, FilterInterface>
-     */
-    public function getFilters(ContainerInterface $container): array
-    {
-        return [];
     }
 
 

@@ -5,12 +5,10 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
-use Centum\Console\Exception\ParamNotFoundException;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\ErrorCommand;
-use Tests\Support\Commands\FilterCommand;
 use Tests\Support\Commands\MainCommand;
 use Tests\Support\Commands\MathCommand;
 use Tests\Support\Commands\Middleware\FalseCommand;
@@ -40,53 +38,6 @@ class ApplicationCest
 
         $I->seeStdoutEquals(
             "main page"
-        );
-    }
-
-    public function testFilters(ConsoleTester $I): void
-    {
-        $argv = [
-            "cli.php",
-            "filter:double",
-            "--i",
-            "123",
-        ];
-
-        $terminal = $I->createTerminal($argv);
-
-        $container = $I->grabContainer();
-
-        $application = new Application($container);
-
-        $application->addCommand(FilterCommand::class);
-
-        $application->handle($terminal);
-
-        $I->seeStdoutEquals(
-            "246"
-        );
-    }
-
-    public function testFiltersException(ConsoleTester $I): void
-    {
-        $argv = [
-            "cli.php",
-            "filter:double",
-        ];
-
-        $terminal = $I->createTerminal($argv);
-
-        $container = $I->grabContainer();
-
-        $application = new Application($container);
-
-        $application->addCommand(FilterCommand::class);
-
-        $I->expectThrowable(
-            new ParamNotFoundException("i"),
-            function () use ($application, $terminal): void {
-                $application->handle($terminal);
-            }
         );
     }
 
@@ -181,7 +132,7 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(FilterCommand::class);
+        $application->addCommand(TrueCommand::class);
         $application->addCommand(MathCommand::class);
 
         $I->assertInstanceOf(
@@ -190,8 +141,8 @@ class ApplicationCest
         );
 
         $I->assertInstanceOf(
-            FilterCommand::class,
-            $application->getCommand("filter:double")
+            TrueCommand::class,
+            $application->getCommand("middleware:true")
         );
 
         $name = "doesnt-exist";
@@ -210,7 +161,7 @@ class ApplicationCest
 
         $application = new Application($container);
 
-        $application->addCommand(FilterCommand::class);
+        $application->addCommand(TrueCommand::class);
         $application->addCommand(MathCommand::class);
 
         $commands = $application->getCommands();
@@ -221,7 +172,7 @@ class ApplicationCest
         );
 
         $I->assertArrayHasKey(
-            "filter:double",
+            "middleware:true",
             $commands
         );
     }

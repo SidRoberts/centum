@@ -13,7 +13,7 @@ class ParametersCest
     {
         $argv = [
             "cli.php",
-            "filter:double",
+            "middleware:true",
             "--i",
             "123",
             "--verbose",
@@ -52,7 +52,7 @@ class ParametersCest
 
             [
                 "expected" => false,
-                "key"      => "filter:double",
+                "key"      => "middleware:true",
             ],
 
             [
