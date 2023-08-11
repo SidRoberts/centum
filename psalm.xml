@@ -3,9 +3,10 @@
     errorLevel="1"
     resolveFromConfigFile="true"
     findUnusedBaselineEntry="true"
-    findUnusedCode="false"
+    findUnusedCode="true"
     findUnusedVariablesAndParams="true"
     checkForThrowsDocblock="true"
+    strictBinaryOperands="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -29,6 +30,33 @@
                 <directory name="tests"/>
             </errorLevel>
         </MissingThrowsDocblock>
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <directory name="tests/Codeception"/>
+                <directory name="tests/Console"/>
+                <!-- <directory name="tests/Support"/> -->
+                <directory name="tests/Unit"/>
+                <directory name="tests/Web"/>
+            </errorLevel>
+        </UnusedClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="src/Console/Command"/>
+                <directory name="tests/Support/Commands"/>
+                <directory name="tests/Support/Container"/>
+                <directory name="tests/Support/Controllers"/>
+                <directory name="tests/Support/Forms"/>
+                <directory name="tests/Support/Http/Forms"/>
+            </errorLevel>
+        </PossiblyUnusedMethod>
+        <MissingConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests/Codeception"/>
+                <directory name="tests/Console"/>
+                <directory name="tests/Unit"/>
+                <directory name="tests/Web"/>
+            </errorLevel>
+        </MissingConstructor>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\MockeryPlugin\Plugin"/>
