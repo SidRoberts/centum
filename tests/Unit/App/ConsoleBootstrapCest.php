@@ -39,15 +39,17 @@ class ConsoleBootstrapCest
             }
         );
 
-        $I->addToContainer(TerminalInterface::class, $terminal);
-
 
 
         $bootstrap = $I->mock(
             ConsoleBootstrap::class,
-            function (MockInterface $mock) use ($exitCode): void {
+            function (MockInterface $mock) use ($terminal, $exitCode): void {
                 $mock->shouldAllowMockingProtectedMethods();
                 $mock->makePartial();
+
+                $mock->shouldReceive("getTerminal")
+                    ->andReturn($terminal)
+                    ->once();
 
                 $mock->shouldReceive("exit")
                     ->with($exitCode)
