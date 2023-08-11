@@ -35,13 +35,13 @@ class CommandBuilder implements CommandBuilderInterface
             throw new NotACommandException($class);
         }
 
-        if (!$reflectionClass->hasMethod("__construct")) {
+        $constructor = $reflectionClass->getConstructor();
+
+        if (!$constructor) {
             return $reflectionClass->newInstance();
         }
 
-        $reflectionMethod = $reflectionClass->getMethod("__construct");
-
-        $params = $this->resolveParameters($reflectionMethod, $arguments);
+        $params = $this->resolveParameters($constructor, $arguments);
 
         /**
          * @psalm-suppress UnnecessaryVarAnnotation

@@ -43,7 +43,9 @@ class FormBuilder implements FormBuilderInterface
     {
         $reflectionClass = new ReflectionClass($class);
 
-        if (!$reflectionClass->hasMethod("__construct")) {
+        $constructor = $reflectionClass->getConstructor();
+
+        if (!$constructor) {
             throw new InvalidArgumentException(
                 sprintf(
                     "%s does not have a constructor.",
@@ -52,9 +54,7 @@ class FormBuilder implements FormBuilderInterface
             );
         }
 
-        $reflectionMethod = $reflectionClass->getMethod("__construct");
-
-        $params = $this->resolveParameters($reflectionMethod);
+        $params = $this->resolveParameters($constructor);
 
         $instance = $reflectionClass->newInstanceArgs($params);
 

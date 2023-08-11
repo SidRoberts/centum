@@ -92,10 +92,10 @@ class Container implements ContainerInterface
 
             $reflectionClass = new ReflectionClass($alias);
 
-            if ($reflectionClass->hasMethod("__construct")) {
-                $reflectionMethod = $reflectionClass->getMethod("__construct");
+            $constructor = $reflectionClass->getConstructor();
 
-                $params = $this->resolveParams($reflectionMethod);
+            if ($constructor) {
+                $params = $this->resolveParams($constructor);
 
                 $this->objects[$class] = $reflectionClass->newInstanceArgs($params);
             } else {
