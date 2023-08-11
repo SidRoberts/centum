@@ -9,8 +9,6 @@ interface ApplicationInterface
      */
     public function addCommand(string $commandClass): void;
 
-    public function getCommand(string $name): CommandInterface;
-
     /**
      * @return array<string, class-string>
      */

@@ -4,7 +4,6 @@ namespace Tests\Codeception;
 
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Commands\ExitCodeCommand;
-use Tests\Support\ExitCode;
 
 class ConsoleActionsCest
 {
@@ -78,16 +77,13 @@ class ConsoleActionsCest
     {
         $exitCode = 123;
 
-        $I->addToContainer(
-            ExitCode::class,
-            new ExitCode($exitCode)
-        );
-
         $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
             "exit-code",
+            "--exit-code",
+            (string) $exitCode,
         ];
 
         $returnedExitCode = $I->runCommand($argv);
@@ -104,16 +100,13 @@ class ConsoleActionsCest
     {
         $exitCode = 123;
 
-        $I->addToContainer(
-            ExitCode::class,
-            new ExitCode($exitCode)
-        );
-
         $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
             "exit-code",
+            "--exit-code",
+            (string) $exitCode,
         ];
 
         $I->runCommand($argv);
@@ -128,16 +121,13 @@ class ConsoleActionsCest
     {
         $exitCode = 0;
 
-        $I->addToContainer(
-            ExitCode::class,
-            new ExitCode($exitCode)
-        );
-
         $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
             "exit-code",
+            "--exit-code",
+            (string) $exitCode,
         ];
 
         $I->runCommand($argv);
@@ -149,16 +139,13 @@ class ConsoleActionsCest
     {
         $exitCode = 0;
 
-        $I->addToContainer(
-            ExitCode::class,
-            new ExitCode($exitCode)
-        );
-
         $I->addCommand(ExitCodeCommand::class);
 
         $argv = [
             "cli.php",
             "exit-code",
+            "--exit-code",
+            (string) $exitCode,
         ];
 
         $I->runCommand($argv);

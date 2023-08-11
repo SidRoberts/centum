@@ -2,40 +2,32 @@
 
 namespace Centum\Console;
 
-use Centum\Console\Exception\ArgvNotFoundException;
+use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 class Terminal implements TerminalInterface
 {
-    /** @var array<string> */
-    protected readonly array $argv;
-
-
-
     /**
-     * @param array<string> $argv
      * @param resource $stdin
      * @param resource $stdout
      * @param resource $stderr
      */
     public function __construct(
-        array $argv = null,
+        protected readonly ArgumentsInterface $arguments,
         protected $stdin = STDIN,
         protected $stdout = STDOUT,
         protected $stderr = STDERR
     ) {
-        $this->argv = $argv ?? $_SERVER["argv"] ?? throw new ArgvNotFoundException();
     }
 
 
 
-    /**
-     * @return array<string>
-     */
-    public function getArgv(): array
+    public function getArguments(): ArgumentsInterface
     {
-        return $this->argv;
+        return $this->arguments;
     }
+
+
 
     /**
      * @return resource

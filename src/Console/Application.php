@@ -8,6 +8,7 @@ use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\NotACommandException;
 use Centum\Interfaces\Console\ApplicationInterface;
+use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -25,7 +26,8 @@ class Application implements ApplicationInterface
 
 
     public function __construct(
-        protected readonly ContainerInterface $container
+        protected readonly ContainerInterface $container,
+        protected readonly CommandBuilderInterface $commandBuilder
     ) {
         $container->set(ApplicationInterface::class, $this);
 
@@ -67,15 +69,6 @@ class Application implements ApplicationInterface
         $this->commands[$name] = $commandClass;
     }
 
-    public function getCommand(string $name): CommandInterface
-    {
-        $commandClass = $this->commands[$name] ?? throw new CommandNotFoundException($name);
-
-        $command = $this->resolveCommand($commandClass);
-
-        return $command;
-    }
-
     /**
      * @return array<string, class-string>
      */
@@ -105,16 +98,16 @@ class Application implements ApplicationInterface
 
     public function handle(TerminalInterface $terminal): int
     {
-        $argv = $terminal->getArgv();
+        $arguments = $terminal->getArguments();
 
-        $command = $this->getCommandFromTerminal($terminal);
+        $name = $arguments->getCommandName();
 
-        $parameters = new Parameters($argv);
+        $commandClass = $this->commands[$name] ?? throw new CommandNotFoundException($name);
 
-
+        $command = $this->commandBuilder->build($commandClass, $arguments);
 
         try {
-            return $command->execute($terminal, $parameters);
+            return $command->execute($terminal);
         } catch (Throwable $exception) {
             foreach ($this->exceptionHandlers as $exceptionClass => $commandClass) {
                 /** @psalm-suppress DocblockTypeContradiction */
@@ -123,38 +116,13 @@ class Application implements ApplicationInterface
                     $this->container->set($exceptionClass, $exception);
                     $this->container->set(Throwable::class, $exception);
 
-                    $command = $this->resolveCommand($commandClass);
+                    $command = $this->commandBuilder->build($commandClass, $arguments);
 
-                    return $command->execute($terminal, $parameters);
+                    return $command->execute($terminal);
                 }
             }
 
             throw $exception;
         }
-    }
-
-
-
-    /**
-     * @param class-string $commandClass
-     */
-    protected function resolveCommand(string $commandClass): CommandInterface
-    {
-        $command = $this->container->get($commandClass);
-
-        if (!($command instanceof CommandInterface)) {
-            throw new NotACommandException($commandClass);
-        }
-
-        return $command;
-    }
-
-    protected function getCommandFromTerminal(TerminalInterface $terminal): CommandInterface
-    {
-        $name = $terminal->getArgv()[1] ?? "";
-
-        $command = $this->getCommand($name);
-
-        return $command;
     }
 }

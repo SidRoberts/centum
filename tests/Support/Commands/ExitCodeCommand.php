@@ -2,24 +2,29 @@
 
 namespace Tests\Support\Commands;
 
-use Centum\Console\Command;
 use Centum\Console\CommandMetadata;
-use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Filter\Cast\ToInteger;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Tests\Support\ExitCode;
 
 #[CommandMetadata("exit-code")]
-class ExitCodeCommand extends Command
+class ExitCodeCommand implements CommandInterface
 {
+    protected readonly int $exitCode;
+
+
+
     public function __construct(
-        protected readonly ExitCode $exitCode
+        string $exitCode,
+        ToInteger $toIntegerFilter
     ) {
+        $this->exitCode = $toIntegerFilter->filter($exitCode);
     }
 
 
 
-    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal): int
     {
-        return $this->exitCode->getExitCode();
+        return $this->exitCode;
     }
 }

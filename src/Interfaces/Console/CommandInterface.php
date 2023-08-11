@@ -15,5 +15,5 @@ interface CommandInterface
 
 
 
-    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int;
+    public function execute(TerminalInterface $terminal): int;
 }

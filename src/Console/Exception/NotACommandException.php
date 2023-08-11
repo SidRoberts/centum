@@ -14,6 +14,9 @@ class NotACommandException extends \Exception
 
 
 
+    /**
+     * @return class-string
+     */
     public function getClass(): string
     {
         return $this->class;

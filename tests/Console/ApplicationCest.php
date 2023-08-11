@@ -5,6 +5,7 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
+use Centum\Interfaces\Console\CommandBuilderInterface;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
 use Tests\Support\Commands\ErrorCommand;
@@ -27,7 +28,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = new Application($container);
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
 
         $application->addCommand(MainCommand::class);
 
@@ -35,6 +38,34 @@ class ApplicationCest
 
         $I->seeStdoutEquals(
             "main page"
+        );
+    }
+
+    public function testParametersAreInjectedIntoCommand(ConsoleTester $I): void
+    {
+        $argv = [
+            "cli.php",
+            "math:add",
+            "--a",
+            "123",
+            "--b",
+            "456",
+        ];
+
+        $terminal = $I->createTerminal($argv);
+
+        $container = $I->grabContainer();
+
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
+
+        $application->addCommand(MathCommand::class);
+
+        $application->handle($terminal);
+
+        $I->seeStdoutEquals(
+            "123+456=579"
         );
     }
 
@@ -50,7 +81,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = new Application($container);
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
 
         $application->addCommand(MainCommand::class);
 
@@ -74,7 +107,9 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $application = new Application($container);
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
 
         $I->expectThrowable(
             new CommandNotFoundException($name),
@@ -84,40 +119,13 @@ class ApplicationCest
         );
     }
 
-    public function testGetCommand(ConsoleTester $I): void
-    {
-        $container = $I->grabContainer();
-
-        $application = new Application($container);
-
-        $application->addCommand(BoringCommand::class);
-        $application->addCommand(MathCommand::class);
-
-        $I->assertInstanceOf(
-            BoringCommand::class,
-            $application->getCommand("boring")
-        );
-
-        $I->assertInstanceOf(
-            MathCommand::class,
-            $application->getCommand("math:add")
-        );
-
-        $name = "doesnt-exist";
-
-        $I->expectThrowable(
-            new CommandNotFoundException($name),
-            function () use ($application, $name): void {
-                $application->getCommand($name);
-            }
-        );
-    }
-
     public function testGetCommands(ConsoleTester $I): void
     {
         $container = $I->grabContainer();
 
-        $application = new Application($container);
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
 
         $application->addCommand(BoringCommand::class);
         $application->addCommand(MathCommand::class);
@@ -139,7 +147,9 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $application = new Application($container);
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
 
         $application->addCommand(ProblematicCommand::class);
 
@@ -175,7 +185,9 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $application = new Application($container);
+        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
+
+        $application = new Application($container, $commandBuilder);
 
         $I->expectThrowable(
             new InvalidCommandNameException("https://github.com/"),

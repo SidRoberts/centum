@@ -5,7 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Console\Application;
 use Centum\Console\CommandMetadata;
 use Centum\Console\Terminal;
+use Centum\Console\Terminal\Arguments;
 use Centum\Interfaces\Console\ApplicationInterface;
+use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Exception\ModuleException;
@@ -35,11 +37,13 @@ trait ConsoleActions
      */
     public function createTerminal(array $argv): TerminalInterface
     {
+        $arguments = new Arguments($argv);
+
         $this->stdin  = fopen("php://memory", "r");
         $this->stdout = fopen("php://memory", "w");
         $this->stderr = fopen("php://memory", "w");
 
-        return new Terminal($argv, $this->stdin, $this->stdout, $this->stderr);
+        return new Terminal($arguments, $this->stdin, $this->stdout, $this->stderr);
     }
 
 
@@ -208,9 +212,10 @@ trait ConsoleActions
      */
     public function grabCommandMetadata(string $commandClass): CommandMetadata
     {
-        $container = $this->grabContainer();
+        $container      = $this->grabContainer();
+        $commandBuilder = $container->get(CommandBuilderInterface::class);
 
-        $application = new Application($container);
+        $application = new Application($container, $commandBuilder);
 
         return $application->getCommandMetadata($commandClass);
     }

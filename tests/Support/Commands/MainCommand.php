@@ -2,15 +2,14 @@
 
 namespace Tests\Support\Commands;
 
-use Centum\Console\Command;
 use Centum\Console\CommandMetadata;
-use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("")]
-class MainCommand extends Command
+class MainCommand implements CommandInterface
 {
-    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal): int
     {
         $terminal->write(
             "main page"

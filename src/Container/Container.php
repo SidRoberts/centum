@@ -4,6 +4,7 @@ namespace Centum\Container;
 
 use Centum\Access\Access;
 use Centum\Console\Application;
+use Centum\Console\CommandBuilder;
 use Centum\Console\Terminal;
 use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
@@ -17,6 +18,7 @@ use Centum\Http\Request;
 use Centum\Http\Session\GlobalSession;
 use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
+use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Cron\CronInterface;
@@ -48,20 +50,21 @@ class Container implements ContainerInterface
 
     /** @var array<interface-string, class-string> */
     protected array $aliases = [
-        AccessInterface::class      => Access::class,
-        ApplicationInterface::class => Application::class,
-        CronInterface::class        => Cron::class,
-        GeneratorInterface::class   => Generator::class,
-        StorageInterface::class     => Storage::class,
-        ValidatorInterface::class   => Validator::class,
-        FlashInterface::class       => Flash::class,
-        FormBuilderInterface::class => FormBuilder::class,
-        RequestInterface::class     => Request::class,
-        RouterInterface::class      => Router::class,
-        SessionInterface::class     => GlobalSession::class,
-        UrlInterface::class         => Url::class,
-        TaskRunnerInterface::class  => TaskRunner::class,
-        TerminalInterface::class    => Terminal::class,
+        AccessInterface::class         => Access::class,
+        ApplicationInterface::class    => Application::class,
+        CronInterface::class           => Cron::class,
+        GeneratorInterface::class      => Generator::class,
+        StorageInterface::class        => Storage::class,
+        ValidatorInterface::class      => Validator::class,
+        FlashInterface::class          => Flash::class,
+        FormBuilderInterface::class    => FormBuilder::class,
+        RequestInterface::class        => Request::class,
+        RouterInterface::class         => Router::class,
+        SessionInterface::class        => GlobalSession::class,
+        UrlInterface::class            => Url::class,
+        TaskRunnerInterface::class     => TaskRunner::class,
+        TerminalInterface::class       => Terminal::class,
+        CommandBuilderInterface::class => CommandBuilder::class,
     ];
 
 

@@ -3,57 +3,54 @@
 namespace Tests\Unit\Console;
 
 use Centum\Console\Terminal;
+use Centum\Console\Terminal\Arguments;
 use Tests\Support\UnitTester;
 
 class TerminalCest
 {
     protected function getTerminal(): Terminal
     {
-        $argv = [
-            "cli.php",
-            "this:command:does:not:exist",
-        ];
+        $arguments = new Arguments(
+            [
+                "cli.php",
+                "this:command:does:not:exist",
+            ]
+        );
 
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        return new Terminal($argv, $stdin, $stdout, $stderr);
+        return new Terminal($arguments, $stdin, $stdout, $stderr);
     }
 
 
 
-    public function testGetArgv(UnitTester $I): void
+    public function testGetArguments(UnitTester $I): void
     {
-        $argv = [
-            "cli.php",
-            "this:command:does:not:exist",
-        ];
+        $arguments = $I->mock(Arguments::class);
 
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
         $I->assertSame(
-            $argv,
-            $terminal->getArgv()
+            $arguments,
+            $terminal->getArguments()
         );
     }
 
     public function testGetStdIn(UnitTester $I): void
     {
-        $argv = [
-            "cli.php",
-            "this:command:does:not:exist",
-        ];
+        $arguments = $I->mock(Arguments::class);
 
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
         $I->assertSame(
             $stdin,
@@ -63,16 +60,13 @@ class TerminalCest
 
     public function testGetStdOut(UnitTester $I): void
     {
-        $argv = [
-            "cli.php",
-            "this:command:does:not:exist",
-        ];
+        $arguments = $I->mock(Arguments::class);
 
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
         $I->assertSame(
             $stdout,
@@ -82,16 +76,13 @@ class TerminalCest
 
     public function testGetStdErr(UnitTester $I): void
     {
-        $argv = [
-            "cli.php",
-            "this:command:does:not:exist",
-        ];
+        $arguments = $I->mock(Arguments::class);
 
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
-        $terminal = new Terminal($argv, $stdin, $stdout, $stderr);
+        $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
         $I->assertSame(
             $stderr,

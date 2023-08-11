@@ -12,11 +12,11 @@ nav_order: 2
 # Input / Output
 
 The [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) makes it easy to interact with the Terminal, both in terms of input and output.
-By default, it uses `$_SERVER["argv"]` and reads and writes to `STDIN`, `STDOUT`, and `STDERR`.
+By default, it reads and writes to `STDIN`, `STDOUT`, and `STDERR`.
 
 ```php
 Centum\Console\Terminal(
-    array $argv = $_SERVER["argv"],
+    Centum\Interfaces\Console\Terminal\ArgumentsInterface $arguments,
     resource $stdin = STDIN,
     resource $stdout = STDOUT,
     resource $stderr = STDERR
@@ -36,10 +36,10 @@ $terminal = new Terminal();
 
 ## Input
 
-### Getting `$argv`
+### Getting the Arguments
 
 ```php
-$terminal->getArgv();
+$arguments = $terminal->getArguments();
 ```
 
 

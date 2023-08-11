@@ -54,19 +54,18 @@ Error commands can access the Exception through the Container:
 ```php
 namespace App\Commands;
 
-use Centum\Console\Command;
-use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Throwable;
 
-class ErrorCommand extends Command
+class ErrorCommand implements CommandInterface
 {
     public function __construct(
         protected readonly Throwable $throwable
     ) {
     }
 
-    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal): int
     {
         $terminal->writeErrorLine("An error occurred.");
 

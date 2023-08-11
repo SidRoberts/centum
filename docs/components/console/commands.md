@@ -23,25 +23,23 @@ Three constants exist to clearly describe an exit code:
 The [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) attribute class stores the name and description of the Command.
 This is separated so that this information can be validated without instantiating the Command.
 
-{: .highlight }
-[`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) implements [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
+Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php) which has only one public method:
 
-- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal, Centum\Interfaces\Console\ParametersInterface $parameters): int`
+- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
 
 By default, a Command can be as simple as this:
 
 ```php
 namespace App\Commands;
 
-use Centum\Console\Command;
 use Centum\Console\CommandMetadata;
-use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("this:is:your:name")]
-class IndexCommand extends Command
+class IndexCommand implements CommandInterface
 {
-    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal): int
     {
         $terminal->writeLine("hello");
 
@@ -55,33 +53,77 @@ To allow commands like `php cli.php`, empty names are allowed.
 
 
 
+## Command Arguments
+
+Commands can take inputs in the form of arguments:
+
+```bash
+php cli.php hello --name Sid --loud
+```
+
+To access these arguments from within a Command, they need to be declared in the constructor with a type of `string` or `bool`:
+
+```php
+use Centum\Console\CommandMetadata;
+use Centum\Interfaces\Console\CommandInterface;
+use Centum\Interfaces\Console\TerminalInterface;
+
+#[CommandMetadata("hello")]
+class HelloCommand implements CommandInterface
+{
+    public function __construct(
+        protected readonly string $name,
+        protected readonly bool $loud
+    ) {
+    }
+
+    public function execute(TerminalInterface $terminal): int
+    {
+        $message = "Hello {$this->name}!";
+
+        if ($this->loud) {
+            $message = strtoupper($message);
+        }
+
+        $terminal->writeLine($message);
+
+        return self::SUCCESS;
+    }
+}
+```
+
+Arguments are converted to camel-case so `--first-name` will become `$firstName` in the constructor.
+
+
+
 ## Injecting Services into the Application
 
-Services can be injected from the Container through the constructor method:
+Services from the Container can also be injected through the constructor method:
 
 ```php
 namespace App\Commands;
 
-use Centum\Console\Command;
 use Centum\Console\CommandMetadata;
-use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Interfaces\Clock\ClockInterface;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Filter\String\ToUpper;
 
-#[CommandMetadata("this:is:your:name")]
-class IndexCommand extends Command
+#[CommandMetadata("hello")]
+class HelloCommand implements CommandInterface
 {
     public function __construct(
-        protected readonly ToUpper $toUpperFilter
+        protected readonly string $name,
+        protected readonly ClockInterface $clock
     ) {
     }
 
-    public function execute(TerminalInterface $terminal, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal): int
     {
-        // Will output "HELLO"
-        $terminal->writeLine(
-            $this->toUpperFilter->filter("hello")
-        );
+        $terminal->writeLine("Hello {$this->name}!");
+
+        $now = $this->clock->now();
+
+        $terminal->writeLine("The time is now {$now->format("H:i:s")} in {$now->format("e")}.");
 
         return self::SUCCESS;
     }

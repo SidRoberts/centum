@@ -2,12 +2,13 @@
 
 namespace Centum\Interfaces\Console;
 
+use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
+
 interface TerminalInterface
 {
-    /**
-     * @return array<string>
-     */
-    public function getArgv(): array;
+    public function getArguments(): ArgumentsInterface;
+
+
 
     /**
      * @return resource

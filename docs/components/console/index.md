@@ -28,7 +28,6 @@ Centum\Console\Application(
 
 - `public function getCommandMetadata(string $commandClass): Centum\Console\CommandMetadata`
 - `public function addCommand(string $commandClass): void`
-- `public function getCommand(string $name): Centum\Interfaces\Console\CommandInterface`
 - `public function getCommands(): array<string, string>`
 - `public function addExceptionHandler(class-string $exceptionClass, string $commandClass): void`
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
@@ -61,8 +60,10 @@ php cli.php queue-consume
 
 (all in the `Centum\Console\Exception` namespace)
 
-- [`ArgvNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ArgvNotFoundException.php)
 - [`CommandMetadataNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandMetadataNotFoundException.php)
 - [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
+- [`CommandParameterRequiredException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandParameterRequiredException.php)
 - [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
 - [`NotACommandException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/NotACommandException.php)
+- [`ParameterMustHaveSimpleTypeException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParameterMustHaveSimpleTypeException.php)
+- [`ParameterNotRecognisedException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ParameterNotRecognisedException.php)

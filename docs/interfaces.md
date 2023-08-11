@@ -19,9 +19,9 @@ nav_order: 3
 
 ## Console
 
+- [`Centum\Interfaces\Console\Terminal\ArgumentsInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/Terminal/ArgumentsInterface.php)
 - [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php)
 - [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php)
-- [`Centum\Interfaces\Console\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ParametersInterface.php)
 - [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php)
 
 ## Container
