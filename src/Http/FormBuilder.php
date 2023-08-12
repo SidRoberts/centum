@@ -2,6 +2,8 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\ReflectionParameterMustHaveNamedTypeException;
+use Centum\Http\Exception\ReflectionParameterTypeNotRecognisedException;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FileGroupInterface;
@@ -83,12 +85,7 @@ class FormBuilder implements FormBuilderInterface
         $type = $parameter->getType();
 
         if (!($type instanceof ReflectionNamedType)) {
-            throw new Exception(
-                sprintf(
-                    "Parameter '%s' must have a simple named type.",
-                    $parameter->getName()
-                )
-            );
+            throw new ReflectionParameterMustHaveNamedTypeException($parameter);
         }
 
         if (!$type->isBuiltIn()) {
@@ -102,13 +99,7 @@ class FormBuilder implements FormBuilderInterface
         }
 
         if (!in_array($type->getName(), ["array", "string"])) {
-            throw new Exception(
-                sprintf(
-                    "Parameter '%s' type (%s) not recognised.",
-                    $parameter->getName(),
-                    $type->getName()
-                )
-            );
+            throw new ReflectionParameterTypeNotRecognisedException($parameter);
         }
 
         return $this->getFromDataOrFiles($this->data, $parameter);
