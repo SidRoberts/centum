@@ -60,6 +60,7 @@ php cli.php queue-consume
 
 (all in the `Centum\Console\Exception` namespace)
 
+- [`ArgvNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ArgvNotFoundException.php)
 - [`CommandMetadataNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandMetadataNotFoundException.php)
 - [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
 - [`CommandParameterRequiredException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandParameterRequiredException.php)

@@ -73,3 +73,13 @@ Centum\Paginator\Page(
 - `public function getPreviousPageNumber(): int|null`
 - `public function getNextPageNumber(): int|null`
 - `public function getPageRange(int $i): array`
+
+
+
+## Exceptions
+
+(all in the `Centum\Paginator\Exception` namespace)
+
+- [`InvalidItemsPerPageException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidItemsPerPageException.php)
+- [`InvalidMaxException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidMaxException.php)
+- [`InvalidPageNumberException`](https://github.com/SidRoberts/centum/blob/development/src/Paginator/Exception/InvalidPageNumberException.php)

@@ -102,5 +102,6 @@ $container->remove(RouterInterface::class);
 
 (all in the `Centum\Container\Exception` namespace)
 
+- [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FileGroupNotFoundException.php)
 - [`InstantiateInterfaceException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/InstantiateInterfaceException.php)
 - [`UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php)
