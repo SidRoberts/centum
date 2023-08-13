@@ -14,15 +14,16 @@ nav_order: 1
 ## Controllers
 
 Controllers are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/ResponseInterface.php) objects.
-Controllers don't have to extend or implement anything and can be as simple as this:
+Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ControllerInterface.php) and can be as simple as this:
 
 ```php
 namespace App\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class LoginController
+class LoginController implements ControllerInterface
 {
     public function form(): ResponseInterface
     {
@@ -99,8 +100,9 @@ namespace App\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class LoginController
+class LoginController implements ControllerInterface
 {
     public function form(): ResponseInterface
     {

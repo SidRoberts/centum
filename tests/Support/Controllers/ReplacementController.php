@@ -4,15 +4,26 @@ namespace Tests\Support\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
-use Centum\Interfaces\Router\ParametersInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class ReplacementController
+class ReplacementController implements ControllerInterface
 {
-    public function get(ParametersInterface $parameters): ResponseInterface
+    public function integer(int $i): ResponseInterface
     {
-        /** @var mixed */
-        $i = $parameters->get("i");
+        return new Response(
+            serialize($i)
+        );
+    }
 
+    public function char(string $i): ResponseInterface
+    {
+        return new Response(
+            serialize($i)
+        );
+    }
+
+    public function doubler(int $i): ResponseInterface
+    {
         return new Response(
             serialize($i)
         );

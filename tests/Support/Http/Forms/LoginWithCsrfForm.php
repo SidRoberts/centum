@@ -3,9 +3,10 @@
 namespace Tests\Support\Http\Forms;
 
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
+use Centum\Interfaces\Http\FormInterface;
 use Exception;
 
-class LoginWithCsrfForm
+class LoginWithCsrfForm implements FormInterface
 {
     public function __construct(
         ValidatorInterface $csrfValidator,

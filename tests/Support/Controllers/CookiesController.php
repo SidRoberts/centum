@@ -7,8 +7,9 @@ use Centum\Http\Cookies;
 use Centum\Http\Response;
 use Centum\Http\Status;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class CookiesController
+class CookiesController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

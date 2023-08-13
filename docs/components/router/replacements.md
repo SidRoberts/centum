@@ -83,15 +83,12 @@ namespace App\Controllers;
 use App\Models\Post;
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
-use Centum\Interfaces\Router\ParametersInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class PostController
+class PostController implements ControllerInterface
 {
-    public function view(ParametersInterface $parameters): ResponseInterface
+    public function view(Post $post): ResponseInterface
     {
-        /** @var Post */
-        $post = $parameters->get("post");
-
         //TODO Do something with the $post object.
 
         return new Response(

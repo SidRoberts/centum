@@ -5,8 +5,9 @@ namespace Tests\Support\Controllers;
 use Centum\Http\Response;
 use Centum\Http\Response\RedirectResponse;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class RedirectController
+class RedirectController implements ControllerInterface
 {
     public function redirect1(): ResponseInterface
     {

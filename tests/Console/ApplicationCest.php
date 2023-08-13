@@ -7,7 +7,6 @@ use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Centum\Console\Exception\NotACommandException;
 use Centum\Console\Exception\NotAThrowableException;
-use Centum\Interfaces\Console\CommandBuilderInterface;
 use Exception;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
@@ -32,9 +31,7 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(MainCommand::class);
 
@@ -60,9 +57,7 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(MathCommand::class);
 
@@ -85,9 +80,7 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(MainCommand::class);
 
@@ -111,9 +104,7 @@ class ApplicationCest
 
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $I->expectThrowable(
             new CommandNotFoundException($name),
@@ -127,9 +118,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(BoringCommand::class);
         $application->addCommand(MathCommand::class);
@@ -151,9 +140,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(ProblematicCommand::class);
 
@@ -178,9 +165,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $notAThrowableClass = ErrorCommand::class;
 
@@ -199,9 +184,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $notACommandClass = Exception::class;
 
@@ -220,9 +203,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(ProblematicCommand::class);
 
@@ -258,9 +239,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $I->expectThrowable(
             new InvalidCommandNameException("https://github.com/"),
@@ -274,9 +253,7 @@ class ApplicationCest
     {
         $container = $I->grabContainer();
 
-        $commandBuilder = $I->grabFromContainer(CommandBuilderInterface::class);
-
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         $application->addCommand(HelloCommand::class);
 

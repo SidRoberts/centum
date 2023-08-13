@@ -4,8 +4,9 @@ namespace Tests\Support\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class LoginController
+class LoginController implements ControllerInterface
 {
     public function form(): ResponseInterface
     {

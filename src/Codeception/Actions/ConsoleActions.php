@@ -7,7 +7,6 @@ use Centum\Console\CommandMetadata;
 use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
 use Centum\Interfaces\Console\ApplicationInterface;
-use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Exception\ModuleException;
@@ -212,10 +211,9 @@ trait ConsoleActions
      */
     public function grabCommandMetadata(string $commandClass): CommandMetadata
     {
-        $container      = $this->grabContainer();
-        $commandBuilder = $container->get(CommandBuilderInterface::class);
+        $container = $this->grabContainer();
 
-        $application = new Application($container, $commandBuilder);
+        $application = new Application($container);
 
         return $application->getCommandMetadata($commandClass);
     }

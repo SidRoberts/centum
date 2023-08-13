@@ -2,6 +2,8 @@
 
 namespace Centum\Router;
 
+use Centum\Container\FormResolver;
+use Centum\Container\RouterParametersResolver;
 use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
@@ -196,6 +198,14 @@ class Router implements RouterInterface
 
         $this->container->set(ParametersInterface::class, $parameters);
         $this->container->set(RequestInterface::class, $request);
+
+        $this->container->addResolver(
+            new RouterParametersResolver($parameters)
+        );
+
+        $this->container->addResolver(
+            new FormResolver($request)
+        );
 
         $class  = $route->getClass();
         $method = $route->getMethod();

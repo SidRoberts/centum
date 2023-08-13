@@ -43,4 +43,8 @@ interface ContainerInterface
      * @param interface-string $interface
      */
     public function remove(string $interface): void;
+
+
+
+    public function addResolver(ResolverInterface $resolver): void;
 }

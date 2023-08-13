@@ -1,21 +1,25 @@
 <?php
 
-namespace Tests\Unit\Http;
+namespace Tests\Unit\Container;
 
+use Centum\Container\Exception\FileGroupNotFoundException;
+use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
+use Centum\Http\File;
+use Centum\Http\FileGroup;
+use Centum\Http\Files;
 use Centum\Interfaces\Http\DataInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
-use InvalidArgumentException;
-use Tests\Support\Http\Forms\FormWithoutAConstructor;
 use Tests\Support\Http\Forms\LoginForm;
 use Tests\Support\Http\Forms\LoginWithCsrfForm;
+use Tests\Support\Http\Forms\UploadForm;
 use Tests\Support\UnitTester;
 use Throwable;
 
-class FormBuilderCest
+class FormResolverCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
@@ -61,32 +65,10 @@ class FormBuilderCest
 
 
 
-    public function testFormWithoutAConstructor(UnitTester $I): void
-    {
-        $data = $I->mock(DataInterface::class);
-
-        $I->expectThrowable(
-            new InvalidArgumentException(
-                sprintf(
-                    "%s does not have a constructor.",
-                    FormWithoutAConstructor::class
-                )
-            ),
-            function () use ($I, $data): void {
-                $I->buildForm(
-                    FormWithoutAConstructor::class,
-                    $data
-                );
-            }
-        );
-    }
-
-
-
     #[DataProvider("providerBad")]
     public function testBad(UnitTester $I, Example $example): void
     {
-        /** @var Throwable */
+        /** @var Throwable|string */
         $throwable = $example["throwable"];
 
         /** @var DataInterface */
@@ -118,7 +100,7 @@ class FormBuilderCest
                         "username" => "sidroberts",
                     ]
                 ),
-                "throwable" => new Exception("'password' is required."),
+                "throwable" => UnresolvableParameterException::class,
             ],
 
             [
@@ -137,7 +119,7 @@ class FormBuilderCest
                         "password" => "hunter2",
                     ]
                 ),
-                "throwable" => new Exception("'username' is required."),
+                "throwable" => UnresolvableParameterException::class,
             ],
 
             [
@@ -156,7 +138,7 @@ class FormBuilderCest
                         "username" => "",
                     ]
                 ),
-                "throwable" => new Exception("'password' is required."),
+                "throwable" => UnresolvableParameterException::class,
             ],
 
             [
@@ -165,12 +147,12 @@ class FormBuilderCest
                         "password" => "",
                     ]
                 ),
-                "throwable" => new Exception("'username' is required."),
+                "throwable" => UnresolvableParameterException::class,
             ],
 
             [
                 "data"      => new Data([]),
-                "throwable" => new Exception("'username' is required."),
+                "throwable" => UnresolvableParameterException::class,
             ],
         ];
     }
@@ -258,5 +240,50 @@ class FormBuilderCest
                 ),
             ],
         ];
+    }
+
+
+
+    public function testFiles(UnitTester $I): void
+    {
+        $data = new Data([]);
+
+
+
+        $fileGroup = new FileGroup("images");
+
+        $file1 = new File("image1.png", "image/png", 123, "/tmp/php/php1aaa11", UPLOAD_ERR_OK);
+        $file2 = new File("image2.png", "image/png", 456, "/tmp/php/php2aaa22", UPLOAD_ERR_OK);
+
+        $fileGroup->add($file1);
+        $fileGroup->add($file2);
+
+        $files = new Files(
+            [
+                $fileGroup,
+            ]
+        );
+
+
+
+        $form = $I->buildForm(UploadForm::class, $data, $files);
+
+        $I->assertEquals(
+            $fileGroup,
+            $form->getImages()
+        );
+    }
+
+    public function testFilesNotSet(UnitTester $I): void
+    {
+        $data  = new Data([]);
+        $files = new Files();
+
+        $I->expectFormThrowable(
+            FileGroupNotFoundException::class,
+            UploadForm::class,
+            $data,
+            $files
+        );
     }
 }

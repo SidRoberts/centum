@@ -64,9 +64,9 @@ class RouterCest
 
         $group->submission("/submission", LoginController::class);
 
-        $group->get("/replacements/integer/{i:int}", ReplacementController::class, "get");
-        $group->get("/replacements/char/{i:char}", ReplacementController::class, "get");
-        $group->get("/replacements/doubler/{i:doubler}", ReplacementController::class, "get");
+        $group->get("/replacements/integer/{i:int}", ReplacementController::class, "integer");
+        $group->get("/replacements/char/{i:char}", ReplacementController::class, "char");
+        $group->get("/replacements/doubler/{i:doubler}", ReplacementController::class, "doubler");
 
 
 

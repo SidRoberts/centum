@@ -2,17 +2,19 @@
 
 namespace Centum\Container\Exception;
 
+use ReflectionParameter;
+
 class UnresolvableParameterException extends \Exception
 {
     public function __construct(
-        protected readonly string $name
+        protected readonly ReflectionParameter $reflectionParameter
     ) {
     }
 
 
 
-    public function getName(): string
+    public function getReflectionParameter(): ReflectionParameter
     {
-        return $this->name;
+        return $this->reflectionParameter;
     }
 }

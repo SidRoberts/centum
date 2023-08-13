@@ -3,19 +3,20 @@
 namespace Tests\Unit\Container\Exception;
 
 use Centum\Container\Exception\UnresolvableParameterException;
+use ReflectionParameter;
 use Tests\Support\UnitTester;
 
 class UnresolvableParameterExceptionCest
 {
     public function test(UnitTester $I): void
     {
-        $name = "bleh";
+        $reflectionParameter = $I->mock(ReflectionParameter::class);
 
-        $exception = new UnresolvableParameterException($name);
+        $exception = new UnresolvableParameterException($reflectionParameter);
 
-        $I->assertEquals(
-            $name,
-            $exception->getName()
+        $I->assertSame(
+            $reflectionParameter,
+            $exception->getReflectionParameter()
         );
     }
 }

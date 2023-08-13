@@ -8,8 +8,8 @@ use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\NotACommandException;
 use Centum\Console\Exception\NotAThrowableException;
+use Centum\Container\ConsoleResolver;
 use Centum\Interfaces\Console\ApplicationInterface;
-use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -28,7 +28,6 @@ class Application implements ApplicationInterface
 
     public function __construct(
         protected readonly ContainerInterface $container,
-        protected readonly CommandBuilderInterface $commandBuilder
     ) {
         $container->set(ApplicationInterface::class, $this);
 
@@ -103,11 +102,16 @@ class Application implements ApplicationInterface
     {
         $arguments = $terminal->getArguments();
 
+        $this->container->addResolver(
+            new ConsoleResolver($arguments)
+        );
+
         $name = $arguments->getCommandName();
 
         $commandClass = $this->commands[$name] ?? throw new CommandNotFoundException($name);
 
-        $command = $this->commandBuilder->build($commandClass, $arguments);
+        /** @var CommandInterface */
+        $command = $this->container->get($commandClass);
 
         try {
             return $command->execute($terminal);
@@ -119,7 +123,8 @@ class Application implements ApplicationInterface
                     $this->container->set($exceptionClass, $exception);
                     $this->container->set(Throwable::class, $exception);
 
-                    $command = $this->commandBuilder->build($commandClass, $arguments);
+                    /** @var CommandInterface */
+                    $command = $this->container->get($commandClass);
 
                     return $command->execute($terminal);
                 }

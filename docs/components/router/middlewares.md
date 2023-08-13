@@ -69,8 +69,9 @@ namespace App\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class AccountController
+class AccountController implements ControllerInterface
 {
     public function guest(): ResponseInterface
     {

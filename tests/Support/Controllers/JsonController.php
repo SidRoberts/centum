@@ -4,8 +4,9 @@ namespace Tests\Support\Controllers;
 
 use Centum\Http\Response\JsonResponse;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class JsonController
+class JsonController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

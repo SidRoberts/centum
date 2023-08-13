@@ -21,22 +21,18 @@ $group = $router->group();
 $group->get("/post/{id}", PostController::class, "view");
 ```
 
-This value is then available from the [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ParametersInterface.php) property within the Controller:
+This value is then available from within the Controller:
 
 ```php
 namespace App\Controllers;
 
 use Centum\Interfaces\Http\ResponseInterface;
-use Centum\Interfaces\Router\ParametersInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class PostController
+class PostController implements ControllerInterface
 {
-    public function view(ParametersInterface $parameters): ResponseInterface
+    public function view(string $id): ResponseInterface
     {
-        $id = $parameters->get("id");
-
-        //TODO Do something with $id.
-
         return new Response("hello $id");
     }
 }
@@ -56,19 +52,13 @@ $group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 namespace App\Controllers;
 
 use Centum\Interfaces\Http\ResponseInterface;
-use Centum\Interfaces\Router\ParametersInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class CalendarController
+class CalendarController implements ControllerInterface
 {
-    public function day(ParametersInterface $parameters): ResponseInterface
+    public function day(string $year, string $month, string $day): ResponseInterface
     {
-        $year  = $parameters->get("year");
-        $month = $parameters->get("month");
-        $day   = $parameters->get("day");
-
-        //TODO Do something with $year, $month, and $day.
-
-        return new Response("hello $year, $month, $day");
+        return new Response("The date is $year-$month-$day.");
     }
 }
 ```
@@ -97,4 +87,21 @@ use App\Controllers\PostController;
 $group = $router->group();
 
 $group->get("/post/{id:int}", PostController::class, "view");
+```
+
+Also take note that the `int` Replacement converts the value to an integer so you'll need to specify the `int` type in the Controller:
+
+```php
+namespace App\Controllers;
+
+use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
+
+class PostController implements ControllerInterface
+{
+    public function view(int $id): ResponseInterface
+    {
+        return new Response("hello $id");
+    }
+}
 ```

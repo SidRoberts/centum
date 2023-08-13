@@ -4,7 +4,6 @@ namespace Centum\Container;
 
 use Centum\Access\Access;
 use Centum\Console\Application;
-use Centum\Console\CommandBuilder;
 use Centum\Console\Terminal;
 use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
@@ -13,20 +12,18 @@ use Centum\Flash\Flash;
 use Centum\Http\Csrf\Generator;
 use Centum\Http\Csrf\Storage;
 use Centum\Http\Csrf\Validator;
-use Centum\Http\FormBuilder;
 use Centum\Http\Request;
 use Centum\Http\Session\GlobalSession;
 use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
-use Centum\Interfaces\Console\CommandBuilderInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
-use Centum\Interfaces\Http\FormBuilderInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
@@ -40,7 +37,6 @@ use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
-use ReflectionNamedType;
 use ReflectionParameter;
 
 class Container implements ContainerInterface
@@ -50,28 +46,35 @@ class Container implements ContainerInterface
 
     /** @var array<interface-string, class-string> */
     protected array $aliases = [
-        AccessInterface::class         => Access::class,
-        ApplicationInterface::class    => Application::class,
-        CronInterface::class           => Cron::class,
-        GeneratorInterface::class      => Generator::class,
-        StorageInterface::class        => Storage::class,
-        ValidatorInterface::class      => Validator::class,
-        FlashInterface::class          => Flash::class,
-        FormBuilderInterface::class    => FormBuilder::class,
-        RequestInterface::class        => Request::class,
-        RouterInterface::class         => Router::class,
-        SessionInterface::class        => GlobalSession::class,
-        UrlInterface::class            => Url::class,
-        TaskRunnerInterface::class     => TaskRunner::class,
-        TerminalInterface::class       => Terminal::class,
-        CommandBuilderInterface::class => CommandBuilder::class,
+        AccessInterface::class      => Access::class,
+        ApplicationInterface::class => Application::class,
+        CronInterface::class        => Cron::class,
+        GeneratorInterface::class   => Generator::class,
+        StorageInterface::class     => Storage::class,
+        ValidatorInterface::class   => Validator::class,
+        FlashInterface::class       => Flash::class,
+        RequestInterface::class     => Request::class,
+        RouterInterface::class      => Router::class,
+        SessionInterface::class     => GlobalSession::class,
+        UrlInterface::class         => Url::class,
+        TaskRunnerInterface::class  => TaskRunner::class,
+        TerminalInterface::class    => Terminal::class,
     ];
+
+    /**
+     * @var array<ResolverInterface>
+     */
+    protected array $resolvers = [];
 
 
 
     public function __construct()
     {
         $this->set(ContainerInterface::class, $this);
+
+        $containerResolver = new ContainerResolver($this);
+
+        $this->addResolver($containerResolver);
     }
 
 
@@ -175,6 +178,13 @@ class Container implements ContainerInterface
 
 
 
+    public function addResolver(ResolverInterface $resolver): void
+    {
+        $this->resolvers[] = $resolver;
+    }
+
+
+
     /**
      * @return array<int<0, max>, mixed>
      */
@@ -194,34 +204,21 @@ class Container implements ContainerInterface
 
     protected function resolveParam(ReflectionParameter $parameter): mixed
     {
-        $type = $parameter->getType();
+        foreach (array_reverse($this->resolvers) as $resolver) {
+            try {
+                return $resolver->resolve($parameter);
+            } catch (UnresolvableParameterException) {
+            }
+        }
 
-        if ($type === null && $parameter->isDefaultValueAvailable()) {
+        if ($parameter->isDefaultValueAvailable()) {
             return $parameter->getDefaultValue();
         }
 
-        if (!($type instanceof ReflectionNamedType)) {
-            $name = $parameter->getName();
-
-            throw new UnresolvableParameterException($name);
+        if ($parameter->allowsNull()) {
+            return null;
         }
 
-        if ($type->isBuiltIn()) {
-            if ($parameter->isDefaultValueAvailable()) {
-                return $parameter->getDefaultValue();
-            }
-
-            if ($parameter->allowsNull()) {
-                return null;
-            }
-
-            $name = $parameter->getName();
-
-            throw new UnresolvableParameterException($name);
-        }
-
-        $class = $type->getName();
-
-        return $this->get($class);
+        throw new UnresolvableParameterException($parameter);
     }
 }

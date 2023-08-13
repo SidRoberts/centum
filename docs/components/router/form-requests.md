@@ -20,9 +20,10 @@ First, we need to create a Form:
 ```php
 namespace App\Forms;
 
+use Centum\Interfaces\Http\FormInterface;
 use Exception;
 
-class LoginForm
+class LoginForm implements FormInterface
 {
     public function __construct(
         protected string $username,
@@ -75,9 +76,9 @@ $group = $router->group();
 $group->post("/login", LoginController::class, "submit");
 ```
 
-Within a Controller, you can use a Form Builder to populate it with data from the Request object.
+Within a Controller, you can use a Form to populate it with data from the Request object.
 If the data is not valid, a Form can throw an exception to prevent any further code execution.
-Exceptions in a Form can be caught with a `try`/`catch` block in the Controller or with an [exception handler](exception-handlers.md).
+Exceptions in a Form can be caught with an [exception handler](exception-handlers.md).
 
 As described in the Form, `$username` will be lowercase and trimmed:
 
@@ -86,15 +87,13 @@ namespace App\Controllers;
 
 use App\Forms\LoginForm;
 use Centum\Http\Response;
-use Centum\Interfaces\Http\FormBuilderInterface;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class LoginController
+class LoginController implements ControllerInterface
 {
-    public function submit(FormBuilderInterface $formBuilder): ResponseInterface
+    public function submit(LoginForm $loginForm): ResponseInterface
     {
-        $loginForm = $formBuilder->build(LoginForm::class);
-
         $username = $loginForm->getUsername();
         $password = $loginForm->getPassword();
 

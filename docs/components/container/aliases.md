@@ -38,7 +38,6 @@ By default, some aliases have already been set:
 | `Centum\Interfaces\Http\Csrf\GeneratorInterface` | `Centum\Http\Csrf\Generator` |
 | `Centum\Interfaces\Http\Csrf\StorageInterface`   | `Centum\Http\Csrf\Storage`   |
 | `Centum\Interfaces\Http\Csrf\ValidatorInterface` | `Centum\Http\Csrf\Validator` |
-| `Centum\Interfaces\Http\FormBuilderInterface`    | `Centum\Http\FormBuilder`    |
 | `Centum\Interfaces\Http\RequestInterface`        | `Centum\Http\Request`        |
 | `Centum\Interfaces\Http\SessionInterface`        | `Centum\Http\GlobalSession`  |
 | `Centum\Interfaces\Router\RouterInterface`       | `Centum\Router\Router`       |

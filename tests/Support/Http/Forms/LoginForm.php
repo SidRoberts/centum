@@ -2,9 +2,10 @@
 
 namespace Tests\Support\Http\Forms;
 
+use Centum\Interfaces\Http\FormInterface;
 use Exception;
 
-class LoginForm
+class LoginForm implements FormInterface
 {
     public function __construct(
         protected readonly string $username,
