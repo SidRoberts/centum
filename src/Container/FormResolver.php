@@ -21,9 +21,8 @@ class FormResolver implements ResolverInterface
 
 
 
-    public function __construct(
-        protected readonly RequestInterface $request
-    ) {
+    public function __construct(RequestInterface $request)
+    {
         $this->data  = $request->getData();
         $this->files = $request->getFiles();
     }
