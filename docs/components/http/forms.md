@@ -71,6 +71,8 @@ class LoginController implements ControllerInterface
 }
 ```
 
+If a field cannot be found in the Request data, a [`Centum\Container\Exception\FormFieldNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FormFieldNotFoundException.php) will be thrown.
+
 
 
 ## Different Types of Data

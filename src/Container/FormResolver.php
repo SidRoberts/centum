@@ -3,6 +3,7 @@
 namespace Centum\Container;
 
 use Centum\Container\Exception\FileGroupNotFoundException;
+use Centum\Container\Exception\FormFieldNotFoundException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Http\DataInterface;
@@ -63,7 +64,7 @@ class FormResolver implements ResolverInterface
         }
 
         if (!$this->data->has($name)) {
-            throw new UnresolvableParameterException($parameter);
+            throw new FormFieldNotFoundException($name);
         }
 
         /** @var mixed */
