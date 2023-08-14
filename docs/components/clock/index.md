@@ -13,6 +13,13 @@ permalink: clock
 The Clock component handles time determination.
 
 ```php
+Centum\Clock\Clock(
+    string $datetime = "now",
+    DateTimeZone|null $timezone = null
+);
+```
+
+```php
 use Centum\Clock\Clock;
 
 $clock = new Clock();
@@ -29,4 +36,4 @@ $now = $clock->now();
 $model->setDateUpdated($now);
 ```
 
-This can be useful in testing that has timing-based side effects to can ensure that tests are consistent and repeatable.
+This can be useful in testing that has timing-based side effects to ensure that tests are consistent and repeatable.
