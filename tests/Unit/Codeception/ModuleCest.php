@@ -10,6 +10,7 @@ use Codeception\Lib\Di;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
+use Mockery\MockInterface;
 use Tests\Support\Container\Incrementer;
 use Tests\Support\UnitTester;
 use TypeError;
@@ -169,6 +170,48 @@ class ModuleCest
             function () use ($module, $test): void {
                 $module->_before($test);
             }
+        );
+    }
+
+
+
+    public function testMock(UnitTester $I): void
+    {
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
+
+        $incrementer = $module->mock(Incrementer::class);
+
+        $I->assertInstanceOf(
+            Incrementer::class,
+            $incrementer
+        );
+
+        $I->assertInstanceOf(
+            MockInterface::class,
+            $incrementer
+        );
+    }
+
+    public function testMockInContainer(UnitTester $I): void
+    {
+        $module = $this->getModule();
+
+        $module->_beforeSuite();
+
+        $module->mockInContainer(Incrementer::class);
+
+        $incrementer = $module->grabFromContainer(Incrementer::class);
+
+        $I->assertInstanceOf(
+            Incrementer::class,
+            $incrementer
+        );
+
+        $I->assertInstanceOf(
+            MockInterface::class,
+            $incrementer
         );
     }
 }
