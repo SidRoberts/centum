@@ -63,7 +63,6 @@ php cli.php queue-consume
 - [`ArgvNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/ArgvNotFoundException.php)
 - [`CommandMetadataNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandMetadataNotFoundException.php)
 - [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
-- [`CommandParameterRequiredException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandParameterRequiredException.php)
 - [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php)
 - [`NotACommandException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/NotACommandException.php)
 - [`NotAThrowableException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/NotAThrowableException.php)
