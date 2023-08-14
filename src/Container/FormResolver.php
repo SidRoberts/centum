@@ -62,7 +62,7 @@ class FormResolver implements ResolverInterface
             return $this->data->has($name);
         }
 
-        if (!$this->data->has($name)) {
+        if (!$this->data->has($name) && !$parameter->isOptional()) {
             throw new FormFieldNotFoundException($name);
         }
 

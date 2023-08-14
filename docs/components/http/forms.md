@@ -172,7 +172,7 @@ class ExampleForm implements FormInterface
 {
     public function __construct(
         protected readonly string $requiredField,
-        protected readonly ?string $optionalField1, // Will be `null` if not set.
+        protected readonly ?string $optionalField1 = null,
         protected readonly string $optionalField2 = "default value"
     ) {
         // ...

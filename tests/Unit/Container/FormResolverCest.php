@@ -3,6 +3,7 @@
 namespace Tests\Unit\Container;
 
 use Centum\Container\Exception\FileGroupNotFoundException;
+use Centum\Container\Exception\FormFieldNotFoundException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
@@ -100,7 +101,7 @@ class FormResolverCest
                         "username" => "sidroberts",
                     ]
                 ),
-                "throwable" => UnresolvableParameterException::class,
+                "throwable" => new FormFieldNotFoundException("password"),
             ],
 
             [
@@ -119,7 +120,7 @@ class FormResolverCest
                         "password" => "hunter2",
                     ]
                 ),
-                "throwable" => UnresolvableParameterException::class,
+                "throwable" => new FormFieldNotFoundException("username"),
             ],
 
             [
@@ -138,7 +139,7 @@ class FormResolverCest
                         "username" => "",
                     ]
                 ),
-                "throwable" => UnresolvableParameterException::class,
+                "throwable" => new FormFieldNotFoundException("password"),
             ],
 
             [
@@ -147,12 +148,12 @@ class FormResolverCest
                         "password" => "",
                     ]
                 ),
-                "throwable" => UnresolvableParameterException::class,
+                "throwable" => new FormFieldNotFoundException("username"),
             ],
 
             [
                 "data"      => new Data([]),
-                "throwable" => UnresolvableParameterException::class,
+                "throwable" => new FormFieldNotFoundException("username"),
             ],
         ];
     }
