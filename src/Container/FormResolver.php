@@ -58,6 +58,10 @@ class FormResolver implements ResolverInterface
             return $this->files->get($name);
         }
 
+        if ($type->getName() === "bool") {
+            return $this->data->has($name);
+        }
+
         if (!$this->data->has($name)) {
             throw new UnresolvableParameterException($parameter);
         }
@@ -73,7 +77,6 @@ class FormResolver implements ResolverInterface
             $valueType = gettype($value);
 
             $valueType = match ($valueType) {
-                "boolean" => "bool",
                 "double"  => "float",
                 "integer" => "int",
                 default   => $valueType,
