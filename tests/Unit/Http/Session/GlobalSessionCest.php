@@ -7,12 +7,12 @@ use Tests\Support\UnitTester;
 
 class GlobalSessionCest
 {
-    public function _before(UnitTester $I): void
+    public function _before(): void
     {
         $_SESSION = [];
     }
 
-    public function _after(UnitTester $I): void
+    public function _after(): void
     {
         $_SESSION = [];
     }

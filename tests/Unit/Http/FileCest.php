@@ -125,7 +125,7 @@ class FileCest
 
 
 
-    public function testValidateGoodFile(UnitTester $I): void
+    public function testValidateGoodFile(): void
     {
         $name     = "image.png";
         $type     = "image/png";
