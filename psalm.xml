@@ -22,27 +22,11 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
-        <TooManyArguments>
-            <errorLevel type="suppress">
-                <directory name="tests/Codeception"/>
-                <directory name="tests/Console"/>
-                <directory name="tests/Unit"/>
-                <directory name="tests/Web"/>
-            </errorLevel>
-        </TooManyArguments>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
                 <directory name="tests/Support/Models"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
-        <MissingConstructor>
-            <errorLevel type="suppress">
-                <directory name="tests/Codeception"/>
-                <directory name="tests/Console"/>
-                <directory name="tests/Unit"/>
-                <directory name="tests/Web"/>
-            </errorLevel>
-        </MissingConstructor>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\MockeryPlugin\Plugin"/>
