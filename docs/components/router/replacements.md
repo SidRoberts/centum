@@ -4,6 +4,7 @@ title: Replacements
 parent: Router
 grand_parent: Components
 permalink: router/replacements
+nav_order: 3
 ---
 
 

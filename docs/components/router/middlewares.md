@@ -4,7 +4,7 @@ title: Middlewares
 parent: Router
 grand_parent: Components
 permalink: router/middlewares
-nav_order: 3
+nav_order: 4
 ---
 
 
