@@ -4,6 +4,7 @@ title: Exception Handlers
 parent: Console
 grand_parent: Components
 permalink: console/exception-handlers
+nav_order: 4
 ---
 
 
