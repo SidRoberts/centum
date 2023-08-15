@@ -17,10 +17,9 @@ interface ApplicationInterface
 
 
     /**
-     * @param class-string $exceptionClass
-     * @param class-string $commandClass
+     * @param class-string $exceptionHandlerClass
      */
-    public function addExceptionHandler(string $exceptionClass, string $commandClass): void;
+    public function addExceptionHandler(string $exceptionHandlerClass): void;
 
 
 

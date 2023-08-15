@@ -5,18 +5,16 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
-use Centum\Console\Exception\NotACommandException;
-use Centum\Console\Exception\NotAThrowableException;
+use Centum\Console\Exception\NotAnExceptionHandlerException;
 use Exception;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
-use Tests\Support\Commands\ErrorCommand;
 use Tests\Support\Commands\HelloCommand;
 use Tests\Support\Commands\MainCommand;
 use Tests\Support\Commands\MathCommand;
 use Tests\Support\Commands\ProblematicCommand;
+use Tests\Support\Commands\ThrowableExceptionHandler;
 use Tests\Support\ConsoleTester;
-use Throwable;
 
 class ApplicationCest
 {
@@ -161,39 +159,21 @@ class ApplicationCest
         );
     }
 
-    public function testAddExceptionHandlerNotAThrowable(ConsoleTester $I): void
+
+
+    public function testAddExceptionHandlerNotAnExceptionHandler(ConsoleTester $I): void
     {
         $container = $I->grabContainer();
 
         $application = new Application($container);
 
-        $notAThrowableClass = ErrorCommand::class;
+        $notAnExceptionHandlerClass = Exception::class;
 
         $I->expectThrowable(
-            new NotAThrowableException($notAThrowableClass),
-            function () use ($application, $notAThrowableClass): void {
+            new NotAnExceptionHandlerException($notAnExceptionHandlerClass),
+            function () use ($application, $notAnExceptionHandlerClass): void {
                 $application->addExceptionHandler(
-                    $notAThrowableClass,
-                    ErrorCommand::class
-                );
-            }
-        );
-    }
-
-    public function testAddExceptionHandlerNotACommand(ConsoleTester $I): void
-    {
-        $container = $I->grabContainer();
-
-        $application = new Application($container);
-
-        $notACommandClass = Exception::class;
-
-        $I->expectThrowable(
-            new NotACommandException($notACommandClass),
-            function () use ($application, $notACommandClass): void {
-                $application->addExceptionHandler(
-                    Throwable::class,
-                    $notACommandClass
+                    $notAnExceptionHandlerClass
                 );
             }
         );
@@ -208,8 +188,7 @@ class ApplicationCest
         $application->addCommand(ProblematicCommand::class);
 
         $application->addExceptionHandler(
-            Throwable::class,
-            ErrorCommand::class
+            ThrowableExceptionHandler::class
         );
 
 
@@ -234,6 +213,8 @@ class ApplicationCest
             $exitCode
         );
     }
+
+
 
     public function testValidCommandName(ConsoleTester $I): void
     {

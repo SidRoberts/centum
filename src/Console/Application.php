@@ -7,10 +7,12 @@ use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\NotACommandException;
-use Centum\Console\Exception\NotAThrowableException;
+use Centum\Console\Exception\NotAnExceptionHandlerException;
+use Centum\Console\Exception\UnsuitableExceptionHandlerException;
 use Centum\Container\ConsoleResolver;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
+use Centum\Interfaces\Console\ExceptionHandlerInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use ReflectionClass;
@@ -21,7 +23,7 @@ class Application implements ApplicationInterface
     /** @var array<string, class-string> */
     protected array $commands = [];
 
-    /** @var array<class-string, class-string> */
+    /** @var array<class-string> */
     protected array $exceptionHandlers = [];
 
 
@@ -80,20 +82,15 @@ class Application implements ApplicationInterface
 
 
     /**
-     * @param class-string $exceptionClass
-     * @param class-string $commandClass
+     * @param class-string $exceptionHandlerClass
      */
-    public function addExceptionHandler(string $exceptionClass, string $commandClass): void
+    public function addExceptionHandler(string $exceptionHandlerClass): void
     {
-        if ($exceptionClass !== Throwable::class && !is_subclass_of($exceptionClass, Throwable::class)) {
-            throw new NotAThrowableException($exceptionClass);
+        if (!is_subclass_of($exceptionHandlerClass, ExceptionHandlerInterface::class)) {
+            throw new NotAnExceptionHandlerException($exceptionHandlerClass);
         }
 
-        if (!is_subclass_of($commandClass, CommandInterface::class)) {
-            throw new NotACommandException($commandClass);
-        }
-
-        $this->exceptionHandlers[$exceptionClass] = $commandClass;
+        $this->exceptionHandlers[] = $exceptionHandlerClass;
     }
 
 
@@ -115,22 +112,26 @@ class Application implements ApplicationInterface
 
         try {
             return $command->execute($terminal);
-        } catch (Throwable $exception) {
-            foreach ($this->exceptionHandlers as $exceptionClass => $commandClass) {
-                /** @psalm-suppress DocblockTypeContradiction */
-                if (is_a($exception, $exceptionClass)) {
-                    $this->container->set(get_class($exception), $exception);
-                    $this->container->set($exceptionClass, $exception);
-                    $this->container->set(Throwable::class, $exception);
+        } catch (Throwable $throwable) {
+            return $this->handleException($terminal, $throwable);
+        }
+    }
 
-                    /** @var CommandInterface */
-                    $command = $this->container->get($commandClass);
+    protected function handleException(TerminalInterface $terminal, Throwable $throwable): int
+    {
+        foreach ($this->exceptionHandlers as $exceptionHandlerClass) {
+            /** @var ExceptionHandlerInterface */
+            $exceptionHandler = $this->container->get($exceptionHandlerClass);
 
-                    return $command->execute($terminal);
-                }
+            try {
+                $exceptionHandler->handle($terminal, $throwable);
+            } catch (UnsuitableExceptionHandlerException) {
+                continue;
             }
 
-            throw $exception;
+            return CommandInterface::FAILURE;
         }
+
+        throw $throwable;
     }
 }

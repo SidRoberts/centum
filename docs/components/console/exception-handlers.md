@@ -13,72 +13,83 @@ nav_order: 4
 
 Exception Handlers are used to catch and handle Exceptions in Commands.
 
+Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ExceptionHandlerInterface.php) and implement the following public method:
+
+- `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal, Throwable $throwable): void`
+
+Multiple Exception Handlers can be added to a Console Application and can be used to handle different types of Exceptions.
+Within the `handle()` method, an [`Centum\Console\Exception\UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/UnsuitableExceptionHandlerException.php) can be thrown so that the Application can try another Exception Handler instead.
+
 Exception Handlers can be used to handle situations where no command is found by handling [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php):
 
 ```php
-use App\Commands\ErrorCommand;
-use Centum\Console\Exception\CommandNotFoundException;
+use App\Commands\CommandNotFoundExceptionHandler;
 
 $application->addExceptionHandler(
-    CommandNotFoundException::class,
-    ErrorCommand::class
+    CommandNotFoundExceptionHandler::class
 );
 ```
-
-Other Exception Handlers could be added to handle specific Exception classes:
-
-```php
-use App\Commands\ErrorCommand;
-use Twig\Error\Error;
-
-$application->addExceptionHandler(
-    Error::class,
-    ErrorCommand::class
-);
-```
-
-As all Exceptions and Errors extend the `Throwable` class, this example will catch any other Exceptions/Errors.
-Take note that exception handlers are processed in the order that they are added so this should be the very last handler:
-
-```php
-use App\Commands\ErrorCommand;
-use Throwable;
-
-$application->addExceptionHandler(
-    Throwable::class,
-    ErrorCommand::class
-);
-```
-
-Error commands can access the Exception through the Container:
 
 ```php
 namespace App\Commands;
 
-use Centum\Interfaces\Console\CommandInterface;
+use Centum\Console\Exception\CommandNotFoundException;
+use Centum\Console\Exception\UnsuitableExceptionHandlerException;
+use Centum\Interfaces\Console\ExceptionHandlerInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Throwable;
 
-class ErrorCommand implements CommandInterface
+class CommandNotFoundExceptionHandler implements ExceptionHandlerInterface
 {
-    public function __construct(
-        protected readonly Throwable $throwable
-    ) {
-    }
+    public function handle(TerminalInterface $terminal, Throwable $throwable): void
+    {
+        if (!($throwable instanceof CommandNotFoundException)) {
+            throw new UnsuitableExceptionHandlerException();
+        }
 
-    public function execute(TerminalInterface $terminal): int
+        $terminal->writeErrorLine("Command not found.");
+
+        $terminal->writeErrorLine(
+            sprintf(
+                "The application was unable to find a command with the name '%s'.",
+                $throwable->getName()
+            )
+        );
+    }
+}
+```
+
+In the case that other Exception Handlers are unsuitable for a particular Exception, this example will act as a catch-all for any other Exceptions/Errors.
+Exception Handlers are processed in the order that they are added to the Application so this should be the very last Exception Handler:
+
+```php
+use App\Commands\ThrowableExceptionHandler;
+
+$application->addExceptionHandler(
+    ThrowableExceptionHandler::class
+);
+```
+
+```php
+namespace App\Commands;
+
+use Centum\Interfaces\Console\ExceptionHandlerInterface;
+use Centum\Interfaces\Console\TerminalInterface;
+use Throwable;
+
+class ThrowableExceptionHandler implements ExceptionHandlerInterface
+{
+    public function handle(TerminalInterface $terminal, Throwable $throwable): void
     {
         $terminal->writeErrorLine("An error occurred.");
 
         $terminal->writeErrorLine(
-            get_class($this->throwable)
+            get_class($throwable)
         );
 
         $terminal->writeErrorLine(
-            $this->throwable->getMessage()
+            $throwable->getMessage()
         );
-
-        return self::FAILURE;
     }
 }
 ```

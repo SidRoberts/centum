@@ -2,7 +2,7 @@
 
 namespace Centum\Console\Exception;
 
-class NotAThrowableException extends \Exception
+class NotAnExceptionHandlerException extends \Exception
 {
     /**
      * @param class-string $class
