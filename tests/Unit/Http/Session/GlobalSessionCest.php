@@ -26,16 +26,62 @@ class GlobalSessionCest
          * reliably tested so they have to be replaced in the testing process.
          */
         return new class () extends GlobalSession {
+            protected bool $startState = false;
+
             public function start(): bool
             {
+                if ($this->startState) {
+                    return false;
+                }
+
+                $this->startState = true;
+
                 return true;
             }
 
             public function isActive(): bool
             {
-                return true;
+                return $this->startState;
             }
         };
+    }
+
+
+
+    public function testStartIfNotActive(UnitTester $I): void
+    {
+        $session = $this->getSession();
+
+        $I->assertFalse(
+            $session->isActive()
+        );
+
+        $I->assertTrue(
+            $session->startIfNotActive()
+        );
+
+        $I->assertTrue(
+            $session->isActive()
+        );
+    }
+
+    public function testStartIfNotActiveAlreadyActive(UnitTester $I): void
+    {
+        $session = $this->getSession();
+
+        $I->assertFalse(
+            $session->isActive()
+        );
+
+        $session->start();
+
+        $I->assertTrue(
+            $session->startIfNotActive()
+        );
+
+        $I->assertTrue(
+            $session->isActive()
+        );
     }
 
 
