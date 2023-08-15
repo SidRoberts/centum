@@ -35,5 +35,5 @@ $twig->addExtension(
 Then within your Twig files, you can call the `url()` function which will effectively call `$url->get()` to display all of the current flash messages:
 
 ```twig
-<a href="{{ url('/link/to/a/page')|escape('html_attr') }}">Link</a>
+<a href="{% raw %}{{ url('/link/to/a/page')|escape('html_attr') }}{% endraw %}">Link</a>
 ```

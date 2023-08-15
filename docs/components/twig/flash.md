@@ -38,5 +38,5 @@ $twig->addExtension(
 Then within your Twig files, you can call the `flash()` function which will effectively call `$flash->output()` to display all of the current flash messages:
 
 ```twig
-{{ flash() }}
+{% raw %}{{ flash() }}{% endraw %}
 ```
