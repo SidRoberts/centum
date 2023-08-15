@@ -18,7 +18,7 @@ trait AjaxActions
     /**
      * @param array<string, mixed> $data
      */
-    public function sendAjaxRequest(string $method, string $uri, array $data = []): void
+    public function createAjaxRequest(string $method, string $uri, array $data = []): RequestInterface
     {
         $data = new Data($data);
 
@@ -29,6 +29,18 @@ trait AjaxActions
         );
 
         $request = new Request($uri, $method, $data, $headers);
+
+        return $request;
+    }
+
+
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function sendAjaxRequest(string $method, string $uri, array $data = []): void
+    {
+        $request = $this->createAjaxRequest($method, $uri, $data);
 
         $this->handleRequest($request);
     }
