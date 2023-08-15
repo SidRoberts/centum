@@ -18,7 +18,7 @@ By returning `false` in a Middleware, the Router will ignore that Group and then
 A common use case for Middlewares is to use different Routes for visitors that are logged in and visitors that are not:
 
 ```php
-namespace App\Middlewares\Web;
+namespace App\Middlewares;
 
 use App\Auth;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -42,8 +42,8 @@ When creating the Group in the Router, we simply assign the first parameter as a
 
 ```php
 use App\Controllers\AccountController;
-use App\Middlewares\Web\IsGuestMiddleware;
-use App\Middlewares\Web\IsUserMiddleware;
+use App\Middlewares\IsGuestMiddleware;
+use App\Middlewares\IsUserMiddleware;
 
 $guestGroup = $router->group(
     new IsGuestMiddleware()
@@ -60,7 +60,7 @@ $userGroup = $router->group(
 $userGroup->get("/something", AccountController::class, "user");
 ```
 
-(`App\Middlewares\Web\IsGuestMiddleware` is not shown but performs as you'd expect.)
+(`App\Middlewares\IsGuestMiddleware` is not shown but performs as you'd expect.)
 
 Now, in a Controller, we can use two different methods, `guest()` and `user()`, for these two groups:
 
