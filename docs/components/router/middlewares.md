@@ -21,17 +21,19 @@ A common use case for Middlewares is to use different Routes for visitors that a
 namespace App\Middlewares;
 
 use App\Auth;
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 
 class IsUserMiddleware implements MiddlewareInterface
 {
-    public function middleware(RequestInterface $request, ContainerInterface $container): bool
-    {
-        $auth = $container->get(Auth::class);
+    public function __construct(
+        protected readonly Auth $auth
+    ) {
+    }
 
-        return $auth->isLoggedIn();
+    public function middleware(RequestInterface $request): bool
+    {
+        return $this->auth->isLoggedIn();
     }
 }
 ```
@@ -41,12 +43,15 @@ class IsUserMiddleware implements MiddlewareInterface
 When creating the Group in the Router, we simply assign the first parameter as a Middleware object:
 
 ```php
+use App\Auth;
 use App\Controllers\AccountController;
 use App\Middlewares\IsGuestMiddleware;
 use App\Middlewares\IsUserMiddleware;
 
+/** @var Auth $auth */
+
 $guestGroup = $router->group(
-    new IsGuestMiddleware()
+    new IsGuestMiddleware($auth)
 );
 
 $guestGroup->get("/something", AccountController::class, "guest");
@@ -54,7 +59,7 @@ $guestGroup->get("/something", AccountController::class, "guest");
 
 
 $userGroup = $router->group(
-    new IsUserMiddleware()
+    new IsUserMiddleware($auth)
 );
 
 $userGroup->get("/something", AccountController::class, "user");
