@@ -12,10 +12,9 @@ interface RouterInterface
 
 
     /**
-     * @param class-string $exceptionClass
-     * @param class-string $class
+     * @param class-string $exceptionHandlerClass
      */
-    public function addExceptionHandler(string $exceptionClass, string $class, string $method): void;
+    public function addExceptionHandler(string $exceptionHandlerClass): void;
 
 
 

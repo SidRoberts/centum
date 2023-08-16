@@ -10,8 +10,8 @@ use Centum\Router\Middleware\TrueMiddleware;
 use Centum\Router\Router;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
-use Exception;
 use Tests\Support\Controllers\ExceptionController;
+use Tests\Support\Controllers\ExceptionHandler;
 use Tests\Support\Controllers\HttpMethodController;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\Controllers\LoginController;
@@ -19,6 +19,7 @@ use Tests\Support\Controllers\MiddlewareController;
 use Tests\Support\Controllers\PostController;
 use Tests\Support\Controllers\ReplacementController;
 use Tests\Support\Controllers\RequirementsController;
+use Tests\Support\Controllers\RouteNotFoundExceptionHandler;
 use Tests\Support\Router\Replacements\DoublerReplacement;
 use Tests\Support\UnitTester;
 
@@ -521,15 +522,11 @@ class RouterCest
 
 
         $router->addExceptionHandler(
-            RouteNotFoundException::class,
-            ExceptionController::class,
-            "pageNotFound"
+            RouteNotFoundExceptionHandler::class
         );
 
         $router->addExceptionHandler(
-            Exception::class,
-            ExceptionController::class,
-            "internalServerError"
+            ExceptionHandler::class
         );
 
 

@@ -8,16 +8,19 @@ use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ExceptionHandlerInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Interfaces\Router\RouteInterface;
 use Centum\Interfaces\Router\RouterInterface;
+use Centum\Router\Exception\NotAnExceptionHandlerException;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\ReplacementNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
 use Centum\Router\Exception\RouteNotFoundException;
+use Centum\Router\Exception\UnsuitableExceptionHandlerException;
 use Centum\Router\Middleware\TrueMiddleware;
 use Centum\Router\Replacements\AnyReplacement;
 use Centum\Router\Replacements\CharacterReplacement;
@@ -33,7 +36,7 @@ class Router implements RouterInterface
     /** @var array<string, ReplacementInterface> */
     protected array $replacements = [];
 
-    /** @var array<class-string, array{class-string, string}> */
+    /** @var array<class-string> */
     protected array $exceptionHandlers = [];
 
 
@@ -78,15 +81,15 @@ class Router implements RouterInterface
 
 
     /**
-     * @param class-string $exceptionClass
-     * @param class-string $class
+     * @param class-string $exceptionHandlerClass
      */
-    public function addExceptionHandler(string $exceptionClass, string $class, string $method): void
+    public function addExceptionHandler(string $exceptionHandlerClass): void
     {
-        $this->exceptionHandlers[$exceptionClass] = [
-            $class,
-            $method,
-        ];
+        if (!is_subclass_of($exceptionHandlerClass, ExceptionHandlerInterface::class)) {
+            throw new NotAnExceptionHandlerException($exceptionHandlerClass);
+        }
+
+        $this->exceptionHandlers[] = $exceptionHandlerClass;
     }
 
 
@@ -113,24 +116,8 @@ class Router implements RouterInterface
             }
 
             throw new RouteNotFoundException($request);
-        } catch (Throwable $exception) {
-            foreach ($this->exceptionHandlers as $exceptionClass => $path) {
-                /** @psalm-suppress DocblockTypeContradiction */
-                if (is_a($exception, $exceptionClass)) {
-                    $this->container->set(get_class($exception), $exception);
-                    $this->container->set($exceptionClass, $exception);
-                    $this->container->set(Throwable::class, $exception);
-
-                    $this->container->set(RequestInterface::class, $request);
-
-                    $class  = $path[0];
-                    $method = $path[1];
-
-                    return $this->executeMethod($class, $method);
-                }
-            }
-
-            throw $exception;
+        } catch (Throwable $throwable) {
+            return $this->handleException($request, $throwable);
         }
     }
 
@@ -224,6 +211,24 @@ class Router implements RouterInterface
 
         /** @var Response */
         return $this->container->typehintMethod($controller, $method);
+    }
+
+
+
+    protected function handleException(RequestInterface $request, Throwable $throwable): ResponseInterface
+    {
+        foreach ($this->exceptionHandlers as $exceptionHandlerClass) {
+            /** @var ExceptionHandlerInterface */
+            $exceptionHandler = $this->container->get($exceptionHandlerClass);
+
+            try {
+                return $exceptionHandler->handle($request, $throwable);
+            } catch (UnsuitableExceptionHandlerException) {
+                continue;
+            }
+        }
+
+        throw $throwable;
     }
 
 

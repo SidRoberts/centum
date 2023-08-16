@@ -7,9 +7,11 @@ use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Exception\RouteNotFoundException;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Controllers\ExceptionController;
+use Tests\Support\Controllers\ExceptionHandler;
 use Tests\Support\Controllers\HtmlController;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\Controllers\RedirectController;
+use Tests\Support\Controllers\RouteNotFoundExceptionHandler;
 
 class RouterActionsCest
 {
@@ -245,9 +247,7 @@ class RouterActionsCest
         $router = $I->grabRouter();
 
         $router->addExceptionHandler(
-            RouteNotFoundException::class,
-            ExceptionController::class,
-            "pageNotFound"
+            RouteNotFoundExceptionHandler::class
         );
 
         $I->amOnPage("/page/that/doesnt/exist");
@@ -260,9 +260,7 @@ class RouterActionsCest
         $router = $I->grabRouter();
 
         $router->addExceptionHandler(
-            RouteNotFoundException::class,
-            ExceptionController::class,
-            "pageNotFound"
+            RouteNotFoundExceptionHandler::class
         );
 
         $I->amOnPage("/page/that/doesnt/exist");
@@ -287,8 +285,13 @@ class RouterActionsCest
     {
         $group = $I->makeRouterGroup();
 
-        $group->get("/internal-server-error", ExceptionController::class, "internalServerError");
+        $group->get("/internal-server-error", ExceptionController::class, "index");
 
+        $router = $I->grabRouter();
+
+        $router->addExceptionHandler(
+            ExceptionHandler::class
+        );
 
 
         $I->amOnPage("/internal-server-error");
@@ -301,9 +304,7 @@ class RouterActionsCest
         $router = $I->grabRouter();
 
         $router->addExceptionHandler(
-            RouteNotFoundException::class,
-            ExceptionController::class,
-            "pageNotFound"
+            RouteNotFoundExceptionHandler::class
         );
 
         $I->amOnPage("/page/that/doesnt/exist");
