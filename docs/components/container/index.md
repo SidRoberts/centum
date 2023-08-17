@@ -52,22 +52,17 @@ Objects can be dynamically set in a closure using `setDynamic()`.
 This closure is typehinted so you can reference other objects in the function signature:
 
 ```php
-use App\Controllers\ErrorController;
+use App\Controllers\ExceptionHandler;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Router;
-use Throwable;
 
 $container->setDynamic(
     RouterInterface::class,
-    function (ContainerInterface $container) {
+    function (ContainerInterface $container): void {
         $router = new Router($container);
 
-        $router->addExceptionHandler(
-            Throwable::class,
-            ErrorController::class,
-            "throwable"
-        );
+        $router->addExceptionHandler(ExceptionHandler::class);
 
         return $router;
     }
