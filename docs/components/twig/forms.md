@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Forms
+title: Forms Extension
 parent: Twig
 grand_parent: Components
 permalink: twig/forms

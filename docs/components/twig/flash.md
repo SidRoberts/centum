@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Flash
+title: Flash Extension
 parent: Twig
 grand_parent: Components
 permalink: twig/flash

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Whitelisted Functions
+title: Whitelisted Functions Extension
 parent: Twig
 grand_parent: Components
 permalink: twig/whitelisted-functions

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: URL
+title: URL Extension
 parent: Twig
 grand_parent: Components
 permalink: twig/url
