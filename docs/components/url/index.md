@@ -2,7 +2,7 @@
 layout: default
 title: Url
 parent: Components
-has_children: false
+has_children: true
 permalink: url
 ---
 
