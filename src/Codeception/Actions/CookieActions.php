@@ -66,22 +66,22 @@ trait CookieActions
 
 
 
-    public function seeCookieValueIs(string $name, string $value = null): void
+    public function seeCookieValueIs(string $name, string $expectedValue): void
     {
         $cookieValue = $this->grabCookieValue($name);
 
         Assert::assertEquals(
-            $value,
+            $expectedValue,
             $cookieValue
         );
     }
 
-    public function dontSeeCookieValueIs(string $name, string $value = null): void
+    public function dontSeeCookieValueIs(string $name, string $expectedValue): void
     {
         $cookieValue = $this->grabCookieValue($name);
 
         Assert::assertNotEquals(
-            $value,
+            $expectedValue,
             $cookieValue
         );
     }

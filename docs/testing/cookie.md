@@ -15,5 +15,5 @@ permalink: testing/cookie
 - `grabCookieValue(string $name): void`
 - `seeCookie(string $name): void`
 - `dontSeeCookie(string $name): void`
-- `seeCookieValueIs(string $name, string $value): void`
-- `dontSeeCookieValueIs(string $name, string $value): void`
+- `seeCookieValueIs(string $name, string $expectedValue): void`
+- `dontSeeCookieValueIs(string $name, string $expectedValue): void`
