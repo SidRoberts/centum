@@ -15,11 +15,11 @@ permalink: testing/console
 - `grabStdoutContent(): string`
 - `grabStderrContent(): string`
 - `grabConsoleApplication(): Centum\Interfaces\Console\ApplicationInterface`
-- `addCommand(Centum\Interfaces\Console\CommandInterface $command): void`
+- `addCommand(string $commandClass): void`
 - `runCommand(array $argv): int`
 - `grabExitCode(): int`
-- `seeExitCodeIs(int $exitCode, string $message = ""): void`
-- `seeExitCodeIsNot(int $exitCode, string $message = ""): void`
+- `seeExitCodeIs(int $expected, string $message = ""): void`
+- `seeExitCodeIsNot(int $expected, string $message = ""): void`
 - `seeStdoutEquals(string $expected, string $message = ""): void`
 - `seeStdoutNotEquals(string $expected, string $message = ""): void`
 - `seeStdoutContains(string $expected, string $message = ""): void`

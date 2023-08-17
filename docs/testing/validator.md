@@ -11,5 +11,5 @@ permalink: testing/validator
 
 [`Centum\Codeception\Actions\ValidatorActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ValidatorActions.php)
 
-- `seeValidatorPasses(Centum\Interfaces\Validator\ValidatorInterface, mixed $value): void`
-- `seeValidatorFails(Centum\Interfaces\Validator\ValidatorInterface, mixed $value, array $expectedViolations = null): void`
+- `seeValidatorPasses(Centum\Interfaces\Validator\ValidatorInterface $validator, mixed $value): void`
+- `seeValidatorFails(Centum\Interfaces\Validator\ValidatorInterface $validator, mixed $value, array $expectedViolations = null): void`

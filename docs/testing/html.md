@@ -22,4 +22,4 @@ permalink: testing/html
 - `grabPageTitle(): string`
 - `seeElement(string $selector): void`
 - `dontSeeElement(string $selector): void`
-- `grabElement(string $selector): Crawler|null`
+- `grabElement(string $selector): ?Symfony\Component\DomCrawler\Crawler`

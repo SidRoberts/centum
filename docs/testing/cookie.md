@@ -12,7 +12,7 @@ permalink: testing/cookie
 [`Centum\Codeception\Actions\CookieActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CookieActions.php)
 
 - `grabCookies(): Centum\Interfaces\Http\CookiesInterface`
-- `grabCookieValue(string $name): void`
+- `grabCookieValue(string $name): ?string`
 - `seeCookie(string $name): void`
 - `dontSeeCookie(string $name): void`
 - `seeCookieValueIs(string $name, string $expectedValue): void`

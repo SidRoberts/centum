@@ -12,17 +12,17 @@ permalink: testing/router
 [`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterActions.php)
 
 - `grabRouter(): Centum\Interfaces\Router\RouterInterface`
-- `makeRouterGroup(Centum\Interfaces\Router\MiddlewareInterface $middleware = null): GroupInterface`
+- `makeRouterGroup(Centum\Interfaces\Router\MiddlewareInterface $middleware = null): Centum\Interfaces\Router\GroupInterface`
 - `startFollowingRedirects(): void`
 - `stopFollowingRedirects(): void`
 - `seeRouteExists(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
 - `seeRouteNotFound(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
-- `amOnPage(string $uri, array $params): void`
+- `amOnPage(string $uri, array $params = []): void`
 - `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
 - `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
 - `grabCurrentUri(): string`
 - `seeCurrentUriEquals(string $expectedUri): void`
-- `grabResponse(): Centum\Interfaces\Router\ResponseInterface`
+- `grabResponse(): Centum\Interfaces\Http\ResponseInterface`
 - `grabResponseContent(): string`
 - `seeResponseContentEquals(string $expected): void`
 - `seeResponseContentContains(string $expected): void`
