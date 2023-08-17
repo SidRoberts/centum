@@ -24,12 +24,12 @@ use Twig\Environment;
 
 /** @var string $baseUri */
 
-$csrf = new Url($baseUri);
+$url = new Url($baseUri);
 
 /** @var Environment $twig */
 
 $twig->addExtension(
-    new UrlExtension($csrf)
+    new UrlExtension($url)
 );
 ```
 
