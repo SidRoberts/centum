@@ -10,6 +10,6 @@ class RequirementsController implements ControllerInterface
 {
     public function required(): ResponseInterface
     {
-        return new Response();
+        return new Response("");
     }
 }

@@ -10,6 +10,6 @@ class MiddlewareController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {
-        return new Response();
+        return new Response("");
     }
 }

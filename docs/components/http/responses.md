@@ -17,7 +17,7 @@ nav_order: 8
 
 ```php
 Centum\Http\Response(
-    string $content = "",
+    string $content,
     Centum\Http\Status $status = Centum\Http\Status::OK,
     Centum\Interfaces\Http\HeadersInterface $headers = null,
     Centum\Interfaces\Http\CookiesInterface $cookies = null
