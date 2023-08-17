@@ -100,11 +100,3 @@ class QueueConsumeCommand extends Command
     }
 }
 ```
-
-
-
-## Exceptions
-
-(all in the `Centum\Queue\Exception` namespace)
-
-- [`NoTasksInQueueException`](https://github.com/SidRoberts/centum/blob/development/src/Queue/Exception/NoTasksInQueueException.php)
