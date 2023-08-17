@@ -66,22 +66,22 @@ trait HeaderActions
 
 
 
-    public function seeHeaderValueIs(string $name, string $value = null): void
+    public function seeHeaderValueIs(string $name, string $expectedValue): void
     {
         $headerValue = $this->grabHeaderValue($name);
 
         Assert::assertEquals(
-            $value,
+            $expectedValue,
             $headerValue
         );
     }
 
-    public function dontSeeHeaderValueIs(string $name, string $value = null): void
+    public function dontSeeHeaderValueIs(string $name, string $expectedValue): void
     {
         $headerValue = $this->grabHeaderValue($name);
 
         Assert::assertNotEquals(
-            $value,
+            $expectedValue,
             $headerValue
         );
     }

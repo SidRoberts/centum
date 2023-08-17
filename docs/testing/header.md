@@ -15,5 +15,5 @@ permalink: testing/header
 - `grabHeaderValue(string $name): void`
 - `seeHeader(string $name): void`
 - `dontSeeHeader(string $name): void`
-- `seeHeaderValueIs(string $name, string $value): void`
-- `dontSeeHeaderValueIs(string $name, string $value): void`
+- `seeHeaderValueIs(string $name, string $expectedValue): void`
+- `dontSeeHeaderValueIs(string $name, string $expectedValue): void`
