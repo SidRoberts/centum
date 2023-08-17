@@ -56,18 +56,18 @@ trait RouterActions
 
 
 
-    public function seeRouteExists(RequestInterface $request, string $message = ""): void
+    public function seeRouteExists(RequestInterface $request): void
     {
         $router = $this->grabRouter();
 
         try {
             $router->handle($request);
         } catch (RouteNotFoundException) {
-            Assert::fail($message);
+            Assert::fail();
         }
     }
 
-    public function seeRouteNotFound(RequestInterface $request, string $message = ""): void
+    public function seeRouteNotFound(RequestInterface $request): void
     {
         $router = $this->grabRouter();
 
@@ -77,7 +77,7 @@ trait RouterActions
             return;
         }
 
-        Assert::fail($message);
+        Assert::fail();
     }
 
 
@@ -192,52 +192,48 @@ trait RouterActions
         return $status->getCode();
     }
 
-    public function seeResponseCodeIs(int $expected, string $message = ""): void
+    public function seeResponseCodeIs(int $expected): void
     {
         $responseCode = $this->grabResponseCode();
 
         Assert::assertSame(
             $expected,
-            $responseCode,
-            $message
+            $responseCode
         );
     }
 
-    public function seeResponseCodeIsNot(int $expected, string $message = ""): void
+    public function seeResponseCodeIsNot(int $expected): void
     {
         $responseCode = $this->grabResponseCode();
 
         Assert::assertNotSame(
             $expected,
-            $responseCode,
-            $message
+            $responseCode
         );
     }
 
-    public function seeResponseCodeIsSuccessful(string $message = ""): void
+    public function seeResponseCodeIsSuccessful(): void
     {
         $responseCode = $this->grabResponseCode();
 
         Assert::assertMatchesRegularExpression(
             "/^2\d{2}$/",
-            (string) $responseCode,
-            $message
+            (string) $responseCode
         );
     }
 
-    public function seeResponseCodeIsServerError(string $message = ""): void
+    public function seeResponseCodeIsServerError(): void
     {
         $responseCode = $this->grabResponseCode();
 
         Assert::assertMatchesRegularExpression(
             "/^5\d{2}$/",
-            (string) $responseCode,
-            $message
+            (string) $responseCode
         );
     }
 
-    public function seePageNotFound(string $message = ""): void
+    public function seePageNotFound(): void
     {
-        $this->seeResponseCodeIs(404, $message);
+        $this->seeResponseCodeIs(404);
     }
 }

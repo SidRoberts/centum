@@ -110,97 +110,87 @@ trait ConsoleActions
         return $this->exitCode ?? throw new ModuleException($this, "Command hasn't been executed yet.");
     }
 
-    public function seeExitCodeIs(int $expected, string $message = ""): void
+    public function seeExitCodeIs(int $expected): void
     {
         Assert::assertSame(
             $expected,
-            $this->exitCode,
-            $message
+            $this->exitCode
         );
     }
 
-    public function seeExitCodeIsNot(int $expected, string $message = ""): void
+    public function seeExitCodeIsNot(int $expected): void
     {
         Assert::assertNotSame(
             $expected,
-            $this->exitCode,
-            $message
+            $this->exitCode
         );
     }
 
 
 
-    public function seeStdoutEquals(string $expected, string $message = ""): void
+    public function seeStdoutEquals(string $expected): void
     {
         Assert::assertEquals(
             $expected,
-            $this->grabStdoutContent(),
-            $message
+            $this->grabStdoutContent()
         );
     }
 
-    public function seeStdoutNotEquals(string $expected, string $message = ""): void
+    public function seeStdoutNotEquals(string $expected): void
     {
         Assert::assertNotEquals(
             $expected,
-            $this->grabStdoutContent(),
-            $message
+            $this->grabStdoutContent()
         );
     }
 
-    public function seeStdoutContains(string $expected, string $message = ""): void
+    public function seeStdoutContains(string $expected): void
     {
         Assert::assertStringContainsString(
             $expected,
-            $this->grabStdoutContent(),
-            $message
+            $this->grabStdoutContent()
         );
     }
 
-    public function seeStdoutNotContains(string $expected, string $message = ""): void
+    public function seeStdoutNotContains(string $expected): void
     {
         Assert::assertStringNotContainsString(
             $expected,
-            $this->grabStdoutContent(),
-            $message
+            $this->grabStdoutContent()
         );
     }
 
 
 
-    public function seeStderrEquals(string $expected, string $message = ""): void
+    public function seeStderrEquals(string $expected): void
     {
         Assert::assertEquals(
             $expected,
-            $this->grabStderrContent(),
-            $message
+            $this->grabStderrContent()
         );
     }
 
-    public function seeStderrNotEquals(string $expected, string $message = ""): void
+    public function seeStderrNotEquals(string $expected): void
     {
         Assert::assertNotEquals(
             $expected,
-            $this->grabStderrContent(),
-            $message
+            $this->grabStderrContent()
         );
     }
 
-    public function seeStderrContains(string $expected, string $message = ""): void
+    public function seeStderrContains(string $expected): void
     {
         Assert::assertStringContainsString(
             $expected,
-            $this->grabStderrContent(),
-            $message
+            $this->grabStderrContent()
         );
     }
 
-    public function seeStderrNotContains(string $expected, string $message = ""): void
+    public function seeStderrNotContains(string $expected): void
     {
         Assert::assertStringNotContainsString(
             $expected,
-            $this->grabStderrContent(),
-            $message
+            $this->grabStderrContent()
         );
     }
 

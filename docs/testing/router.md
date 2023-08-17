@@ -15,8 +15,8 @@ permalink: testing/router
 - `makeRouterGroup(Centum\Interfaces\Router\MiddlewareInterface $middleware = null): Centum\Interfaces\Router\GroupInterface`
 - `startFollowingRedirects(): void`
 - `stopFollowingRedirects(): void`
-- `seeRouteExists(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
-- `seeRouteNotFound(Centum\Interfaces\Http\RequestInterface $request, string $message = ""): void`
+- `seeRouteExists(Centum\Interfaces\Http\RequestInterface $request): void`
+- `seeRouteNotFound(Centum\Interfaces\Http\RequestInterface $request): void`
 - `amOnPage(string $uri, array $params = []): void`
 - `handleRequest(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
 - `followRedirect(): Centum\Interfaces\Http\ResponseInterface`
@@ -27,8 +27,8 @@ permalink: testing/router
 - `seeResponseContentEquals(string $expected): void`
 - `seeResponseContentContains(string $expected): void`
 - `grabResponseCode(): int`
-- `seeResponseCodeIs(int $expected, string $message = ""): void`
-- `seeResponseCodeIsNot(int $expected, string $message = ""): void`
-- `seeResponseCodeIsSuccessful(string $message = ""): void`
-- `seeResponseCodeIsServerError(string $message = ""): void`
-- `seePageNotFound(string $message = ""): void`
+- `seeResponseCodeIs(int $expected): void`
+- `seeResponseCodeIsNot(int $expected): void`
+- `seeResponseCodeIsSuccessful(): void`
+- `seeResponseCodeIsServerError(): void`
+- `seePageNotFound(): void`

@@ -18,14 +18,14 @@ permalink: testing/console
 - `addCommand(string $commandClass): void`
 - `runCommand(array $argv): int`
 - `grabExitCode(): int`
-- `seeExitCodeIs(int $expected, string $message = ""): void`
-- `seeExitCodeIsNot(int $expected, string $message = ""): void`
-- `seeStdoutEquals(string $expected, string $message = ""): void`
-- `seeStdoutNotEquals(string $expected, string $message = ""): void`
-- `seeStdoutContains(string $expected, string $message = ""): void`
-- `seeStdoutNotContains(string $expected, string $message = ""): void`
-- `seeStderrEquals(string $expected, string $message = ""): void`
-- `seeStderrNotEquals(string $expected, string $message = ""): void`
-- `seeStderrContains(string $expected, string $message = ""): void`
-- `seeStderrNotContains(string $expected, string $message = ""): void`
+- `seeExitCodeIs(int $expected): void`
+- `seeExitCodeIsNot(int $expected): void`
+- `seeStdoutEquals(string $expected): void`
+- `seeStdoutNotEquals(string $expected): void`
+- `seeStdoutContains(string $expected): void`
+- `seeStdoutNotContains(string $expected): void`
+- `seeStderrEquals(string $expected): void`
+- `seeStderrNotEquals(string $expected): void`
+- `seeStderrContains(string $expected): void`
+- `seeStderrNotContains(string $expected): void`
 - `grabCommandMetadata(string $commandClass): Centum\Console\CommandMetadata`
