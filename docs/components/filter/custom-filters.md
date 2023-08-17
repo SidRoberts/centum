@@ -4,6 +4,7 @@ title: Custom Filters
 parent: Filter
 grand_parent: Components
 permalink: filter/custom-filters
+nav_order: 1
 ---
 
 

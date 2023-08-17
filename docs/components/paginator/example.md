@@ -4,6 +4,7 @@ title: Example
 parent: Paginator
 grand_parent: Components
 permalink: paginator/example
+nav_order: 1
 ---
 
 

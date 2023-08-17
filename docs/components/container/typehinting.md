@@ -4,6 +4,7 @@ title: Typehinting Methods and Functions
 parent: Container
 grand_parent: Components
 permalink: container/typehinting
+nav_order: 2
 ---
 
 

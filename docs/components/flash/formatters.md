@@ -4,6 +4,7 @@ title: Formatters
 parent: Flash
 grand_parent: Components
 permalink: flash/formatters
+nav_order: 1
 ---
 
 

@@ -4,6 +4,7 @@ title: Templates
 parent: Forms
 grand_parent: Components
 permalink: forms/templates
+nav_order: 2
 ---
 
 

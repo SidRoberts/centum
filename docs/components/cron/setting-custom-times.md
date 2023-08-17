@@ -4,6 +4,7 @@ title: Setting custom times
 parent: Cron
 grand_parent: Components
 permalink: cron/setting-custom-times
+nav_order: 3
 ---
 
 

@@ -4,6 +4,7 @@ title: Beanstalkd Queue
 parent: Queue
 grand_parent: Components
 permalink: queue/beanstalkd-queue
+nav_order: 2
 ---
 
 

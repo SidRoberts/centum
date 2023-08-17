@@ -4,6 +4,7 @@ title: Immediate Queue
 parent: Queue
 grand_parent: Components
 permalink: queue/immediate-queue
+nav_order: 3
 ---
 
 

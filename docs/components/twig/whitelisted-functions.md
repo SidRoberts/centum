@@ -4,6 +4,7 @@ title: Whitelisted Functions
 parent: Twig
 grand_parent: Components
 permalink: twig/whitelisted-functions
+nav_order: 5
 ---
 
 

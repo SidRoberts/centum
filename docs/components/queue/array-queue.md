@@ -4,6 +4,7 @@ title: Array Queue
 parent: Queue
 grand_parent: Components
 permalink: queue/array-queue
+nav_order: 1
 ---
 
 

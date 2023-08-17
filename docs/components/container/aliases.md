@@ -4,6 +4,7 @@ title: Aliases
 parent: Container
 grand_parent: Components
 permalink: container/aliases
+nav_order: 1
 ---
 
 
