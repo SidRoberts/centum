@@ -115,8 +115,10 @@ trait RouterActions
             throw new ModuleException($this, "Page not loaded.");
         }
 
+        $locationHeader = $this->response->getHeaders()->get("Location");
+
         $request = new Request(
-            $this->response->getHeaders()->get("Location")->getValue()
+            $locationHeader->getValue()
         );
 
         return $this->handleRequest($request);
