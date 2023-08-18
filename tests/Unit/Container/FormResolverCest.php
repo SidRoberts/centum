@@ -4,7 +4,6 @@ namespace Tests\Unit\Container;
 
 use Centum\Container\Exception\FileGroupNotFoundException;
 use Centum\Container\Exception\FormFieldNotFoundException;
-use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
 use Centum\Http\File;
