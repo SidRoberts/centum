@@ -54,7 +54,7 @@ This Task can then be published from anywhere and consumed from anywhere else in
 One typical use case is publishing a Task from within a Controller and then consuming it in a Command:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use App\Tasks\LogTask;
 use Centum\Http\Response;
@@ -76,7 +76,7 @@ class IndexController implements ControllerInterface
 ```
 
 ```php
-namespace App\Commands;
+namespace App\Console\Commands;
 
 use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\CommandInterface;

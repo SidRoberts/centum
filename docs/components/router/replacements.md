@@ -15,7 +15,7 @@ Replacements are particularly useful at preprocessing URL parameters - for examp
 Any Replacements you create must implement [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ReplacementInterface.php).
 
 ```php
-namespace App\Replacements;
+namespace App\Web\Replacements;
 
 use App\Models\Post;
 use Centum\Interfaces\Container\ContainerInterface;
@@ -61,8 +61,8 @@ When this exception is thrown, the Router understands that to mean that this Rou
 When setting the Routes in the Router a Replacement can be added and Routes can reference its identifier (in this case `Post`):
 
 ```php
-use App\Controllers\PostController;
-use App\Replacements\PostReplacement;
+use App\Web\Controllers\PostController;
+use App\Web\Replacements\PostReplacement;
 use Doctrine\ORM\EntityManagerInterface;
 
 /** @var EntityManagerInterface $entityManager */
@@ -79,7 +79,7 @@ $group->get("/post/{post:Post}", PostController::class, "view");
 Now, the Controller has access to the Post object:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use App\Models\Post;
 use Centum\Http\Response;

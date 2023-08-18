@@ -19,7 +19,7 @@ Both of these fields are required and must follow certain rules.
 First, we need to create a Form:
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Http\FormInterface;
 use Exception;
@@ -70,7 +70,7 @@ class LoginForm implements FormInterface
 Now we can create a Route:
 
 ```php
-use App\Controllers\LoginController;
+use App\Web\Controllers\LoginController;
 
 $group = $router->group();
 
@@ -84,9 +84,9 @@ Exceptions in a Form can be caught with an [exception handler](exception-handler
 As described in the Form, `$username` will be lowercase and trimmed:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
-use App\Forms\LoginForm;
+use App\Web\Forms\LoginForm;
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;

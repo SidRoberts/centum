@@ -52,7 +52,7 @@ Objects can be dynamically set in a closure using `setDynamic()`.
 This closure is typehinted so you can reference other objects in the function signature:
 
 ```php
-use App\Controllers\ExceptionHandler;
+use App\Web\ExceptionHandlers\ExceptionHandler;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Router;

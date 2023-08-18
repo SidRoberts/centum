@@ -14,7 +14,7 @@ nav_order: 3
 URLs can be defined with dynamic values by enclosing their identifier in curly brackets (eg. `{id}`):
 
 ```php
-use App\Controllers\PostController;
+use App\Web\Controllers\PostController;
 
 $group = $router->group();
 
@@ -24,7 +24,7 @@ $group->get("/post/{id}", PostController::class, "view");
 This value is then available from within the Controller:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
@@ -41,7 +41,7 @@ class PostController implements ControllerInterface
 Multiple parameters can also be defined:
 
 ```php
-use App\Controllers\CalendarController;
+use App\Web\Controllers\CalendarController;
 
 $group = $router->group();
 
@@ -49,7 +49,7 @@ $group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 ```
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
@@ -82,7 +82,7 @@ If no type is specified, the Router will default to `any`.
 Reusing the `PostController` from earlier, this example will match `/post/1`, `/post/2`, `/post/3` and so on but will not match something like `/post/abc`:
 
 ```php
-use App\Controllers\PostController;
+use App\Web\Controllers\PostController;
 
 $group = $router->group();
 
@@ -92,7 +92,7 @@ $group->get("/post/{id:int}", PostController::class, "view");
 Also take note that the `int` Replacement converts the value to an integer so you'll need to specify the `int` type in the Controller:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;

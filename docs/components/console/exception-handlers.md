@@ -23,7 +23,7 @@ Within the `handle()` method, an [`Centum\Console\Exception\UnsuitableExceptionH
 Exception Handlers can be used to handle situations where no command is found by handling [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php):
 
 ```php
-use App\Commands\CommandNotFoundExceptionHandler;
+use App\Console\ExceptionHandlers\CommandNotFoundExceptionHandler;
 
 $application->addExceptionHandler(
     CommandNotFoundExceptionHandler::class
@@ -31,7 +31,7 @@ $application->addExceptionHandler(
 ```
 
 ```php
-namespace App\Commands;
+namespace App\Console\ExceptionHandlers;
 
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\UnsuitableExceptionHandlerException;
@@ -63,7 +63,7 @@ In the case that other Exception Handlers are unsuitable for a particular Except
 Exception Handlers are processed in the order that they are added to the Application so this should be the very last Exception Handler:
 
 ```php
-use App\Commands\ThrowableExceptionHandler;
+use App\Console\ExceptionHandlers\ThrowableExceptionHandler;
 
 $application->addExceptionHandler(
     ThrowableExceptionHandler::class
@@ -71,7 +71,7 @@ $application->addExceptionHandler(
 ```
 
 ```php
-namespace App\Commands;
+namespace App\Console\ExceptionHandlers;
 
 use Centum\Interfaces\Console\ExceptionHandlerInterface;
 use Centum\Interfaces\Console\TerminalInterface;

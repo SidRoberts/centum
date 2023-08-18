@@ -41,15 +41,19 @@ resources/
         php.ini
     twig/
 src/
-    Commands/
-    Controllers/
+    Console/
+        Commands/
+        ExceptionHandlers/
     Filters/
-    Forms/
-    Middlewares/
     Models/
     Observers/
     Tasks/
     Validators/
+    Web/
+        Controllers/
+        ExceptionHandlers/
+        Forms/
+        Middlewares/
 tests/
     _output/
     Console/

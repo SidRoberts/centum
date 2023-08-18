@@ -16,7 +16,7 @@ Whilst it is possible to access a [`RequestInterface`](https://github.com/SidRob
 Forms that implement [`Centum\Interfaces\Http\FormInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FormInterface.php) have special access to the data and files in a Request:
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Http\FormInterface;
 use InvalidArgumentException;
@@ -51,9 +51,9 @@ class LoginForm implements FormInterface
 You can then inject the Form in a Controller:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
-use App\Forms\LoginForm;
+use App\Web\Forms\LoginForm;
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
@@ -100,7 +100,7 @@ For example, a login form might have a checkbox to remember the user:
 ```
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Http\FormInterface;
 
@@ -138,7 +138,7 @@ If a field has multiple values, you can use the `array` type in the constructor:
 ```
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Http\FormInterface;
 
@@ -165,7 +165,7 @@ In the previous examples, all of the fields were required by the Form.
 It is possible to make these optional by allowing `null` or setting a default value in the constructor:
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Http\FormInterface;
 
@@ -190,7 +190,7 @@ class ExampleForm implements FormInterface
 You can, of course, inject things from the Container, as you normally would:
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Clock\ClockInterface;
 use Centum\Interfaces\Http\FormInterface;
@@ -259,7 +259,7 @@ File uploads can also be accessed in a Form:
 In the Form, you can access the [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FileGroupInterface.php) instances:
 
 ```php
-namespace App\Forms;
+namespace App\Web\Forms;
 
 use Centum\Interfaces\Http\FileGroupInterface;
 use Centum\Interfaces\Http\FormInterface;

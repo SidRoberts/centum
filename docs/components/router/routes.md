@@ -17,7 +17,7 @@ Controllers are responsible for returning [`Centum\Interfaces\Http\ResponseInter
 Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ControllerInterface.php) and can be as simple as this:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -78,7 +78,7 @@ When adding a route to the Router, you must specify which HTTP method it matches
 If we wanted to add the login form from the `LoginController` in the earlier example, we might decide that it should be a `GET` request and match the `/login` URL:
 
 ```php
-use App\Controllers\LoginController;
+use App\Web\Controllers\LoginController;
 use Centum\Router\Router;
 
 /** @var Router $router */
@@ -96,7 +96,7 @@ It's likely that at some point you'll want to use the same URL for different thi
 For example, you might want to show users a login form at `/login` but also allow the form to submit the login data to `/login`:
 
 ```php
-namespace App\Controllers;
+namespace App\Web\Controllers;
 
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -119,7 +119,7 @@ class LoginController implements ControllerInterface
 When adding these routes to the Router, you can use the different Group methods to denote which HTTP method they will apply to:
 
 ```php
-use App\Controllers\LoginController;
+use App\Web\Controllers\LoginController;
 
 $group = $router->group();
 
@@ -132,7 +132,7 @@ $group->post("/login", LoginController::class, "submit");
 A shorthand exists for this kind of use case which uses the naming convention of `form()` and `submit()` inside the Controller:
 
 ```php
-use App\Controllers\LoginController;
+use App\Web\Controllers\LoginController;
 
 $group = $router->group();
 

@@ -23,7 +23,7 @@ Within the `handle()` method, an [`Centum\Router\Exception\UnsuitableExceptionHa
 Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteNotFoundException.php):
 
 ```php
-use App\Controllers\RouteNotFoundExceptionHandler;
+use App\Web\ExceptionHandlers\RouteNotFoundExceptionHandler;
 
 $router->addExceptionHandler(
     RouteNotFoundExceptionHandler::class
@@ -31,7 +31,7 @@ $router->addExceptionHandler(
 ```
 
 ```php
-namespace App\Controllers;
+namespace App\Web\ExceptionHandlers;
 
 use Centum\Http\Response;
 use Centum\Http\Status;
@@ -62,7 +62,7 @@ In the case that other Exception Handlers are unsuitable for a particular Except
 Exception Handlers are processed in the order that they are added to the Application so this should be the very last Exception Handler:
 
 ```php
-use App\Controllers\ThrowableExceptionHandler;
+use App\Web\ExceptionHandlers\ThrowableExceptionHandler;
 
 $router->addExceptionHandler(
     ThrowableExceptionHandler::class
@@ -70,7 +70,7 @@ $router->addExceptionHandler(
 ```
 
 ```php
-namespace App\Controllers;
+namespace App\Web\ExceptionHandlers;
 
 use Centum\Http\Response;
 use Centum\Http\Status;

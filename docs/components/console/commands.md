@@ -30,7 +30,7 @@ Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://g
 By default, a Command can be as simple as this:
 
 ```php
-namespace App\Commands;
+namespace App\Console\Commands;
 
 use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\CommandInterface;
@@ -64,7 +64,7 @@ php cli.php hello --name Sid --loud
 To access these arguments from within a Command, they need to be declared in the constructor with a type of `string` or `bool`:
 
 ```php
-namespace App\Commands;
+namespace App\Console\Commands;
 
 use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\CommandInterface;
@@ -103,7 +103,7 @@ Arguments are converted to camel-case so `--first-name` will become `$firstName`
 Services from the Container can also be injected through the constructor method:
 
 ```php
-namespace App\Commands;
+namespace App\Console\Commands;
 
 use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Clock\ClockInterface;
@@ -139,7 +139,7 @@ class HelloCommand implements CommandInterface
 Commands can be added to the Application, using the `addCommand()` method:
 
 ```php
-use App\Commands\IndexCommand;
+use App\Console\Commands\IndexCommand;
 use Centum\Interfaces\Console\ApplicationInterface;
 
 /** @var ApplicationInterface $application */
