@@ -54,6 +54,7 @@ src/
         ExceptionHandlers/
         Forms/
         Middlewares/
+        Replacements/
 tests/
     _output/
     Console/
