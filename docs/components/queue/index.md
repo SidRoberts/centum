@@ -60,8 +60,9 @@ use App\Tasks\LogTask;
 use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Queue\QueueInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 
-class IndexController
+class IndexController implements ControllerInterface
 {
     public function index(QueueInterface $queue): ResponseInterface
     {
@@ -77,24 +78,22 @@ class IndexController
 ```php
 namespace App\Commands;
 
-use Centum\Console\Command;
-use Centum\Interfaces\Console\ParametersInterface;
+use Centum\Console\CommandMetadata;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 
-class QueueConsumeCommand extends Command
+#[CommandMetadata("queue-consume")]
+class QueueConsumeCommand implements CommandInterface
 {
-    public function getName(): string
-    {
-        return "queue-consume";
+    public function __construct(
+        protected readonly QueueInterface $queue
+    ) {
     }
 
-    public function execute(TerminalInterface $terminal, ContainerInterface $container, ParametersInterface $parameters): int
+    public function execute(TerminalInterface $terminal): int
     {
-        $queue = $container->get(QueueInterface::class);
-
-        $queue->consume();
+        $this->queue->consume();
 
         return 0;
     }
