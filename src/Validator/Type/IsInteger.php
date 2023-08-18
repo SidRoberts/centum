@@ -4,6 +4,9 @@ namespace Centum\Validator\Type;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is an integer or an integer string.
+ */
 class IsInteger implements ValidatorInterface
 {
     public function validate(mixed $value): array

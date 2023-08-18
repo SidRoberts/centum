@@ -4,6 +4,9 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is an alphanumeric string.
+ */
 class Alphanumeric implements ValidatorInterface
 {
     public function validate(mixed $value): array

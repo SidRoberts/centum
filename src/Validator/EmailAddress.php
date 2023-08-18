@@ -4,6 +4,9 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is a valid email address.
+ */
 class EmailAddress implements ValidatorInterface
 {
     public function validate(mixed $value): array

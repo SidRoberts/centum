@@ -4,6 +4,10 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value against a callback function. Allows custom Validators to be
+ * wrapped within a callable.
+ */
 class Callback implements ValidatorInterface
 {
     /**

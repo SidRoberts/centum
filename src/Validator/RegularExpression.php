@@ -4,6 +4,9 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is matches a regular expression.
+ */
 class RegularExpression implements ValidatorInterface
 {
     /**

@@ -4,6 +4,9 @@ namespace Centum\Validator\Type;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is an array.
+ */
 class IsArray implements ValidatorInterface
 {
     public function validate(mixed $value): array

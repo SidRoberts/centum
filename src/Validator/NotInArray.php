@@ -4,6 +4,9 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is not in an array of values.
+ */
 class NotInArray implements ValidatorInterface
 {
     /**

@@ -4,6 +4,10 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is an alphabetic string (no numbers, spaces, or
+ * punctuation).
+ */
 class Alpha implements ValidatorInterface
 {
     public function validate(mixed $value): array

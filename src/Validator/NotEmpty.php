@@ -4,6 +4,9 @@ namespace Centum\Validator;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is not empty.
+ */
 class NotEmpty implements ValidatorInterface
 {
     public function validate(mixed $value): array

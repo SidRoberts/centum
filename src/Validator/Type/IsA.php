@@ -4,6 +4,9 @@ namespace Centum\Validator\Type;
 
 use Centum\Interfaces\Validator\ValidatorInterface;
 
+/**
+ * Checks if a value is an instance of a particular class.
+ */
 class IsA implements ValidatorInterface
 {
     /**

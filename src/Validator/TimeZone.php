@@ -5,6 +5,9 @@ namespace Centum\Validator;
 use Centum\Interfaces\Validator\ValidatorInterface;
 use DateTimeZone;
 
+/**
+ * Checks if a value is a valid time zone identifier.
+ */
 class TimeZone implements ValidatorInterface
 {
     public function validate(mixed $value): array
