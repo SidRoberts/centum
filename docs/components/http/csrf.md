@@ -96,6 +96,8 @@ $.post(
 Regardless of how the CSRF token is placed, `ValidatorInterface::validate()` must be called at the top of your Form's constructor method to validate it:
 
 ```php
+namespace App\Forms;
+
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Centum\Interfaces\Http\FormInterface;
 

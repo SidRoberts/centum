@@ -21,6 +21,8 @@ An empty array has no violations meaning that the value is valid.
 As an example, a Validator can be made to check the a value is not empty:
 
 ```php
+namespace App\Validators;
+
 use Centum\Interfaces\Validator\ValidatorInterface;
 
 class NotEmptyValidator implements ValidatorInterface
@@ -43,6 +45,8 @@ class NotEmptyValidator implements ValidatorInterface
 More complex Validators can be made by injecting other objects into the validator:
 
 ```php
+namespace App\Validators;
+
 use Centum\Interfaces\Validator\ValidatorInterface;
 use DatePeriod;
 use DateTimeInterface;

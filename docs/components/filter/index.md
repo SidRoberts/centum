@@ -24,6 +24,8 @@ The `filter()` method takes an input of any data type and return a filtered outp
 You can leave the return value as `mixed` or you can be more specific, for example:
 
 ```php
+namespace App\Filters;
+
 use Centum\Interfaces\Filter\FilterInterface;
 
 class ArrayFilter implements FilterInterface

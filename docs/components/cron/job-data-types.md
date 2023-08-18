@@ -62,6 +62,8 @@ To enforce a particular type, you can extend `Centum\Cron\Job`.
 For example, you can use this class to enforce that all jobs use a [`Centum\Interfaces\Queue\TaskInterface` object](../queue/index.md):
 
 ```php
+namespace App;
+
 use Centum\Cron\Job;
 use Centum\Interfaces\Queue\TaskInterface;
 

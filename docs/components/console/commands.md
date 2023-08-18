@@ -64,6 +64,8 @@ php cli.php hello --name Sid --loud
 To access these arguments from within a Command, they need to be declared in the constructor with a type of `string` or `bool`:
 
 ```php
+namespace App\Commands;
+
 use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
