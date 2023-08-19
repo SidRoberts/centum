@@ -3,6 +3,7 @@
 namespace Tests\Unit\Flash\Formatter;
 
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Flash\Level;
 use Centum\Flash\Message;
 use Tests\Support\UnitTester;
 
@@ -13,7 +14,7 @@ class HtmlFormatterCest
         $formatter = new HtmlFormatter();
 
         $message = new Message(
-            "danger",
+            Level::DANGER,
             "Hello world"
         );
 

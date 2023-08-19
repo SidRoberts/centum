@@ -7,7 +7,7 @@ use Centum\Interfaces\Flash\MessageInterface;
 class Message implements MessageInterface
 {
     public function __construct(
-        protected readonly string $level,
+        protected readonly Level $level,
         protected readonly string $text
     ) {
     }
@@ -16,7 +16,7 @@ class Message implements MessageInterface
 
     public function getLevel(): string
     {
-        return $this->level;
+        return $this->level->value;
     }
 
     public function getText(): string

@@ -23,25 +23,25 @@ class Flash implements FlashInterface
 
     public function success(string $text): void
     {
-        $this->add("success", $text);
+        $this->add(Level::SUCCESS, $text);
     }
 
     public function info(string $text): void
     {
-        $this->add("info", $text);
+        $this->add(Level::INFO, $text);
     }
 
     public function warning(string $text): void
     {
-        $this->add("warning", $text);
+        $this->add(Level::WARNING, $text);
     }
 
     public function danger(string $text): void
     {
-        $this->add("danger", $text);
+        $this->add(Level::DANGER, $text);
     }
 
-    protected function add(string $level, string $text): void
+    protected function add(Level $level, string $text): void
     {
         $messageBag = $this->getMessageBag();
 
