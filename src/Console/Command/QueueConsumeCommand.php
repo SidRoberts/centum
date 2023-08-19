@@ -7,7 +7,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 
-#[CommandMetadata("queue-consume")]
+#[CommandMetadata("queue:consume")]
 class QueueConsumeCommand implements CommandInterface
 {
     public function __construct(

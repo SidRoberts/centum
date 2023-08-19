@@ -51,5 +51,5 @@ php cli.php list
 Will take the next available Task from the Queue and consume it ([see Queue docs](../queue/index.md)):
 
 ```bash
-php cli.php queue-consume
+php cli.php queue:consume
 ```

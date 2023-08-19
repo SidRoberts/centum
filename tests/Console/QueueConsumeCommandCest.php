@@ -14,7 +14,7 @@ class QueueConsumeCommandCest
         $metadata = $I->grabCommandMetadata(QueueConsumeCommand::class);
 
         $I->assertEquals(
-            "queue-consume",
+            "queue:consume",
             $metadata->getName()
         );
     }
@@ -36,7 +36,7 @@ class QueueConsumeCommandCest
         $I->runCommand(
             [
                 "cli.php",
-                "queue-consume",
+                "queue:consume",
             ]
         );
 
