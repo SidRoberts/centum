@@ -36,7 +36,7 @@ class ConsoleResolver implements ResolverInterface
             throw new UnresolvableParameterException($parameter);
         }
 
-        $name = $this->slugToCamelCase(
+        $name = $this->camelCaseToSlug(
             $parameter->getName()
         );
 
@@ -55,14 +55,14 @@ class ConsoleResolver implements ResolverInterface
         return $this->arguments->getParameter($name);
     }
 
-    protected function slugToCamelCase(string $slug): string
+    protected function camelCaseToSlug(string $slug): string
     {
         return preg_replace_callback(
             "/([A-Z])/",
             function ($matches): string {
                 return "-" . strtolower($matches[1]);
             },
-            $slug
+            lcfirst($slug)
         );
     }
 }
