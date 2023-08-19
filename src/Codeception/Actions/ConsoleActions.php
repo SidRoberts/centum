@@ -105,6 +105,18 @@ trait ConsoleActions
 
 
 
+    /**
+     * @param class-string $exceptionHandlerClass
+     */
+    public function addConsoleExceptionHandler(string $exceptionHandlerClass): void
+    {
+        $application = $this->grabConsoleApplication();
+
+        $application->addExceptionHandler($exceptionHandlerClass);
+    }
+
+
+
     public function grabExitCode(): int
     {
         return $this->exitCode ?? throw new ModuleException($this, "Command hasn't been executed yet.");

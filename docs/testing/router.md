@@ -13,6 +13,7 @@ permalink: testing/router
 
 - `grabRouter(): Centum\Interfaces\Router\RouterInterface`
 - `makeRouterGroup(Centum\Interfaces\Router\MiddlewareInterface $middleware = null): Centum\Interfaces\Router\GroupInterface`
+- `addRouterExceptionHandler(string $exceptionHandlerClass): void`
 - `startFollowingRedirects(): void`
 - `stopFollowingRedirects(): void`
 - `seeRouteExists(Centum\Interfaces\Http\RequestInterface $request): void`

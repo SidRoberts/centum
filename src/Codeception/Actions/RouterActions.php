@@ -42,6 +42,16 @@ trait RouterActions
         return $router->group($middleware);
     }
 
+    /**
+     * @param class-string $exceptionHandlerClass
+     */
+    public function addRouterExceptionHandler(string $exceptionHandlerClass): void
+    {
+        $router = $this->grabRouter();
+
+        $router->addExceptionHandler($exceptionHandlerClass);
+    }
+
 
 
     public function startFollowingRedirects(): void

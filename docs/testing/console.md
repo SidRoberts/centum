@@ -17,6 +17,7 @@ permalink: testing/console
 - `grabConsoleApplication(): Centum\Interfaces\Console\ApplicationInterface`
 - `addCommand(string $commandClass): void`
 - `runCommand(array $argv): int`
+- `addConsoleExceptionHandler(string $exceptionHandlerClass): void`
 - `grabExitCode(): int`
 - `seeExitCodeIs(int $expected): void`
 - `seeExitCodeIsNot(int $expected): void`
