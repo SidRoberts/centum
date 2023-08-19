@@ -5,6 +5,11 @@ namespace Centum\Flash\Formatter;
 use Centum\Interfaces\Flash\FormatterInterface;
 use Centum\Interfaces\Flash\MessageInterface;
 
+/**
+ * ```html
+ * <div class="alert alert-danger">This is an example message.</div>
+ * ```
+ */
 class HtmlFormatter implements FormatterInterface
 {
     public function output(MessageInterface $message): string
