@@ -19,10 +19,10 @@ nav_order: 102
 
 - `get(string $class): object`
 - `typehintMethod(object $class, string $methodName): mixed`
-- `typehintFunction(unknown $function): mixed`
+- `typehintFunction(Closure|string $function): mixed`
 - `addAlias(string $interface, string $alias): void`
 - `set(string $interface, object $object): void`
-- `setDynamic(string $interface, unknown $function): void`
+- `setDynamic(string $interface, Closure|string $function): void`
 - `remove(string $interface): void`
 - `addResolver(Centum\Interfaces\Container\ResolverInterface $resolver): void`
 

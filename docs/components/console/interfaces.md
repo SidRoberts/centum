@@ -39,9 +39,9 @@ nav_order: 102
 ## [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php)
 
 - `getArguments(): Centum\Interfaces\Console\Terminal\ArgumentsInterface`
-- `getStdIn(): `
-- `getStdOut(): `
-- `getStdErr(): `
+- `getStdIn(): resource`
+- `getStdOut(): resource`
+- `getStdErr(): resource`
 - `write(string $string): void`
 - `writeLine(string $string = ""): void`
 - `writeList(array $list): void`
