@@ -6,6 +6,9 @@ use Centum\Interfaces\Filter\FilterInterface;
 use Exception;
 use InvalidArgumentException;
 
+/**
+ * Filters a string to only alphabetical characters.
+ */
 class Alpha implements FilterInterface
 {
     public function filter(mixed $value): string

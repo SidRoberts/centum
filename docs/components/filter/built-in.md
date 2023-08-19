@@ -11,25 +11,108 @@ nav_order: 1
 
 # Built-In Filters
 
-- [`Centum\Filter\Blacklist`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Blacklist.php)
-- [`Centum\Filter\Callback`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Callback.php)
-- [`Centum\Filter\Group`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Group.php)
-- [`Centum\Filter\Whitelist`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Whitelist.php)
-- `Centum\Filter\Cast`
-  - [`Centum\Filter\Cast\ToArray`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToArray.php)
-  - [`Centum\Filter\Cast\ToBool`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToBool.php)
-  - [`Centum\Filter\Cast\ToInteger`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToInteger.php)
-  - [`Centum\Filter\Cast\ToNull`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToNull.php)
-  - [`Centum\Filter\Cast\ToString`](https://github.com/SidRoberts/centum/tree/development/src/Filter/Cast/ToString.php)
-- `Centum\Filter\String`
-  - [`Centum\Filter\String\Alpha`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alpha.php)
-  - [`Centum\Filter\String\Alphanumeric`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Alphanumeric.php)
-  - [`Centum\Filter\String\Base64Decode`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Base64Decode.php)
-  - [`Centum\Filter\String\Base64Encode`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Base64Encode.php)
-  - [`Centum\Filter\String\Prefix`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Prefix.php)
-  - [`Centum\Filter\String\Replace`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Replace.php)
-  - [`Centum\Filter\String\Rot13`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Rot13.php)
-  - [`Centum\Filter\String\Suffix`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Suffix.php)
-  - [`Centum\Filter\String\ToLower`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToLower.php)
-  - [`Centum\Filter\String\ToUpper`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToUpper.php)
-  - [`Centum\Filter\String\Trim`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/Trim.php)
+
+
+## [`Centum\Filter\Blacklist`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Blacklist.php)
+
+
+
+## [`Centum\Filter\Callback`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Callback.php)
+
+
+
+## [`Centum\Filter\Cast\ToArray`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Cast/ToArray.php)
+
+
+
+## [`Centum\Filter\Cast\ToBool`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Cast/ToBool.php)
+
+Filters any value to a boolean.
+
+
+
+## [`Centum\Filter\Cast\ToInteger`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Cast/ToInteger.php)
+
+
+
+## [`Centum\Filter\Cast\ToNull`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Cast/ToNull.php)
+
+Filters any value to `null`.
+
+
+
+## [`Centum\Filter\Cast\ToString`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Cast/ToString.php)
+
+
+
+## [`Centum\Filter\Group`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Group.php)
+
+Groups multiple Filters together so that they can be used as one.
+
+
+
+## [`Centum\Filter\String\Alpha`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Alpha.php)
+
+Filters a string to only alphabetical characters.
+
+
+
+## [`Centum\Filter\String\Alphanumeric`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Alphanumeric.php)
+
+Filters a string to only alphanumeric characters.
+
+
+
+## [`Centum\Filter\String\Base64Decode`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Base64Decode.php)
+
+Base64 decodes a string.
+
+
+
+## [`Centum\Filter\String\Base64Encode`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Base64Encode.php)
+
+Base64 encodes a string.
+
+
+
+## [`Centum\Filter\String\Prefix`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Prefix.php)
+
+Adds a prefix to a string.
+
+
+
+## [`Centum\Filter\String\Replace`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Replace.php)
+
+
+
+## [`Centum\Filter\String\Rot13`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Rot13.php)
+
+Performs the `rot13` transformation on a string.
+
+
+
+## [`Centum\Filter\String\Suffix`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Suffix.php)
+
+Adds a suffix to a string.
+
+
+
+## [`Centum\Filter\String\ToLower`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/ToLower.php)
+
+Filters a string to lowercase.
+
+
+
+## [`Centum\Filter\String\ToUpper`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/ToUpper.php)
+
+Filters a string to uppercase.
+
+
+
+## [`Centum\Filter\String\Trim`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Trim.php)
+
+Trims a string.
+
+
+
+## [`Centum\Filter\Whitelist`](https://github.com/SidRoberts/centum/blob/development/src/Filter/Whitelist.php)

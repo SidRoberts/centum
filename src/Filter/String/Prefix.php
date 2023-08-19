@@ -5,6 +5,9 @@ namespace Centum\Filter\String;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Adds a prefix to a string.
+ */
 class Prefix implements FilterInterface
 {
     public function __construct(

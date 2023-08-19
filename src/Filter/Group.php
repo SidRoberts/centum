@@ -4,6 +4,9 @@ namespace Centum\Filter;
 
 use Centum\Interfaces\Filter\FilterInterface;
 
+/**
+ * Groups multiple Filters together so that they can be used as one.
+ */
 class Group implements FilterInterface
 {
     /** @var array<FilterInterface> */

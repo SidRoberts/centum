@@ -5,6 +5,9 @@ namespace Centum\Filter\String;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Performs the `rot13` transformation on a string.
+ */
 class Rot13 implements FilterInterface
 {
     public function filter(mixed $value): string

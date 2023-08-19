@@ -6,6 +6,9 @@ use Centum\Interfaces\Filter\FilterInterface;
 use Exception;
 use InvalidArgumentException;
 
+/**
+ * Filters a string to only alphanumeric characters.
+ */
 class Alphanumeric implements FilterInterface
 {
     public function filter(mixed $value): string

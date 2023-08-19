@@ -5,6 +5,9 @@ namespace Centum\Filter\String;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Base64 encodes a string.
+ */
 class Base64Encode implements FilterInterface
 {
     public function filter(mixed $value): string

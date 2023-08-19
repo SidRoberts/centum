@@ -5,6 +5,9 @@ namespace Centum\Filter\String;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Filters a string to uppercase.
+ */
 class ToUpper implements FilterInterface
 {
     public function filter(mixed $value): string

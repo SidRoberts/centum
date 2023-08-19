@@ -5,6 +5,9 @@ namespace Centum\Filter\String;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Trims a string.
+ */
 class Trim implements FilterInterface
 {
     public function filter(mixed $value): string
