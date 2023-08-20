@@ -54,7 +54,7 @@ use DateTimeInterface;
 class WithinDatePeriodValidator implements ValidatorInterface
 {
     public function __construct(
-        protected DatePeriod $datePeriod
+        protected readonly DatePeriod $datePeriod
     ) {
     }
 

@@ -33,7 +33,7 @@ use Centum\Interfaces\Queue\TaskInterface;
 class LogTask implements TaskInterface
 {
     public function __construct(
-        protected string $message
+        protected readonly string $message
     ) {
     }
 
