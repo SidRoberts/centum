@@ -45,7 +45,7 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php)
 
-- `middleware(Centum\Interfaces\Http\RequestInterface $request): bool`
+- `check(Centum\Interfaces\Http\RequestInterface $request): bool`
 
 
 

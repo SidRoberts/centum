@@ -31,7 +31,7 @@ class IsUserMiddleware implements MiddlewareInterface
     ) {
     }
 
-    public function middleware(RequestInterface $request): bool
+    public function check(RequestInterface $request): bool
     {
         return $this->auth->isLoggedIn();
     }

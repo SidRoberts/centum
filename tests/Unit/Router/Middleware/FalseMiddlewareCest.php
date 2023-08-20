@@ -15,7 +15,7 @@ class FalseMiddlewareCest
         $middleware = new FalseMiddleware();
 
         $I->assertFalse(
-            $middleware->middleware($request)
+            $middleware->check($request)
         );
     }
 }

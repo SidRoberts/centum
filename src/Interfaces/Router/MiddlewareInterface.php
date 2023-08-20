@@ -6,5 +6,5 @@ use Centum\Interfaces\Http\RequestInterface;
 
 interface MiddlewareInterface
 {
-    public function middleware(RequestInterface $request): bool;
+    public function check(RequestInterface $request): bool;
 }

@@ -100,7 +100,7 @@ class Router implements RouterInterface
             foreach ($this->groups as $group) {
                 $middleware = $group->getMiddleware();
 
-                if (!$middleware->middleware($request)) {
+                if (!$middleware->check($request)) {
                     continue;
                 }
 
