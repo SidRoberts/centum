@@ -32,7 +32,7 @@ class PostReplacement implements ReplacementInterface
 
 
 
-    public function getIdentifer(): string
+    public function getIdentifier(): string
     {
         return "Post";
     }
