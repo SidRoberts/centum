@@ -22,11 +22,6 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
-        <PropertyNotSetInConstructor>
-            <errorLevel type="suppress">
-                <directory name="tests/Support/Models"/>
-            </errorLevel>
-        </PropertyNotSetInConstructor>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\MockeryPlugin\Plugin"/>
