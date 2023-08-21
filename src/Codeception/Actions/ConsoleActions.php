@@ -219,4 +219,24 @@ trait ConsoleActions
 
         return $application->getCommandMetadata($commandClass);
     }
+
+    /**
+     * @param class-string $commandClass
+     */
+    public function grabCommandName(string $commandClass): string
+    {
+        $metadata = $this->grabCommandMetadata($commandClass);
+
+        return $metadata->getName();
+    }
+
+    /**
+     * @param class-string $commandClass
+     */
+    public function grabCommandDescription(string $commandClass): string
+    {
+        $metadata = $this->grabCommandMetadata($commandClass);
+
+        return $metadata->getDescription();
+    }
 }

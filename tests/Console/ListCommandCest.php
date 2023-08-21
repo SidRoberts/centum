@@ -7,23 +7,19 @@ use Tests\Support\ConsoleTester;
 
 class ListCommandCest
 {
-    public function testGetName(ConsoleTester $I): void
+    public function testName(ConsoleTester $I): void
     {
-        $metadata = $I->grabCommandMetadata(ListCommand::class);
-
         $I->assertEquals(
             "list",
-            $metadata->getName()
+            $I->grabCommandName(ListCommand::class)
         );
     }
 
-    public function testGetDescription(ConsoleTester $I): void
+    public function testDescription(ConsoleTester $I): void
     {
-        $metadata = $I->grabCommandMetadata(ListCommand::class);
-
         $I->assertEquals(
             "Lists all available commands.",
-            $metadata->getDescription()
+            $I->grabCommandDescription(ListCommand::class)
         );
     }
 

@@ -30,3 +30,5 @@ permalink: testing/console
 - `seeStderrContains(string $expected): void`
 - `seeStderrNotContains(string $expected): void`
 - `grabCommandMetadata(string $commandClass): Centum\Console\CommandMetadata`
+- `grabCommandName(string $commandClass): string`
+- `grabCommandDescription(string $commandClass): string`

@@ -9,13 +9,19 @@ use Tests\Support\ConsoleTester;
 
 class QueueConsumeCommandCest
 {
-    public function testGetName(ConsoleTester $I): void
+    public function testName(ConsoleTester $I): void
     {
-        $metadata = $I->grabCommandMetadata(QueueConsumeCommand::class);
-
         $I->assertEquals(
             "queue:consume",
-            $metadata->getName()
+            $I->grabCommandName(QueueConsumeCommand::class)
+        );
+    }
+
+    public function testDescription(ConsoleTester $I): void
+    {
+        $I->assertEquals(
+            "",
+            $I->grabCommandDescription(QueueConsumeCommand::class)
         );
     }
 
