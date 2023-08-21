@@ -47,10 +47,10 @@ class Response implements ResponseInterface
 
 
 
-    public function sendHeaders(): ResponseInterface
+    public function sendHeaders(): void
     {
         if (headers_sent()) {
-            return $this;
+            return;
         }
 
         $this->headers->send();
@@ -58,23 +58,17 @@ class Response implements ResponseInterface
         $this->cookies->send();
 
         $this->status->send();
-
-        return $this;
     }
 
-    public function sendContent(): ResponseInterface
+    public function sendContent(): void
     {
         echo $this->content;
-
-        return $this;
     }
 
-    public function send(): ResponseInterface
+    public function send(): void
     {
         $this->sendHeaders();
         $this->sendContent();
-
-        return $this;
     }
 
 

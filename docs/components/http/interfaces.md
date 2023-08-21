@@ -143,9 +143,9 @@ nav_order: 102
 - `getStatus(): Centum\Http\Status`
 - `getHeaders(): Centum\Interfaces\Http\HeadersInterface`
 - `getCookies(): Centum\Interfaces\Http\CookiesInterface`
-- `sendHeaders(): Centum\Interfaces\Http\ResponseInterface`
-- `sendContent(): Centum\Interfaces\Http\ResponseInterface`
-- `send(): Centum\Interfaces\Http\ResponseInterface`
+- `sendHeaders(): void`
+- `sendContent(): void`
+- `send(): void`
 - `getRaw(): string`
 - `__toString(): string`
 

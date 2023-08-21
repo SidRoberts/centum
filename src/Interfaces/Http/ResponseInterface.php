@@ -16,11 +16,11 @@ interface ResponseInterface
 
 
 
-    public function sendHeaders(): ResponseInterface;
+    public function sendHeaders(): void;
 
-    public function sendContent(): ResponseInterface;
+    public function sendContent(): void;
 
-    public function send(): ResponseInterface;
+    public function send(): void;
 
 
 
