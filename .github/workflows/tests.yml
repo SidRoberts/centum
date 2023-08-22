@@ -20,7 +20,7 @@ jobs:
       run: composer validate
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-    - name: Run Codeception tests
-      run: vendor/bin/codecept run
-    - name: Run psalm
-      run: vendor/bin/psalm
+    - name: Run tests
+      run: composer test
+    - name: Run static analysis
+      run: composer analyse
