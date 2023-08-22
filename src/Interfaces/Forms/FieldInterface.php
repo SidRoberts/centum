@@ -38,7 +38,7 @@ interface FieldInterface
 
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function getMessages(mixed $value): array;
 }

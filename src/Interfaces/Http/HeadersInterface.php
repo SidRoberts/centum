@@ -7,7 +7,7 @@ interface HeadersInterface
     public function add(HeaderInterface $header): void;
 
     /**
-     * @param HeaderInterface[] $headers
+     * @param array<HeaderInterface> $headers
      */
     public function addMultiple(array $headers): void;
 

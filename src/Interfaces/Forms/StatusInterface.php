@@ -7,7 +7,7 @@ interface StatusInterface
     public function isValid(): bool;
 
     /**
-     * @return array<string, string[]>
+     * @return array<string, array<string>>
      */
     public function getMessages(): array;
 }

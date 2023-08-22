@@ -7,7 +7,7 @@ use Centum\Interfaces\Flash\MessageInterface;
 
 class MessageBag implements MessageBagInterface
 {
-    /** @var MessageInterface[] */
+    /** @var array<MessageInterface> */
     protected array $messages = [];
 
 
@@ -20,7 +20,7 @@ class MessageBag implements MessageBagInterface
 
 
     /**
-     * @return MessageInterface[]
+     * @return array<MessageInterface>
      */
     public function getMessages(): array
     {

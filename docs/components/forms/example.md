@@ -76,7 +76,7 @@ Validating a Form is done using the `validate()` method which returns a [`Centum
 It has 2 public methods:
 
 - `public function isValid(): bool`
-- `public function getMessages(): array<string, string[]>`
+- `public function getMessages(): array<string, array<string>>`
 
 {: .highlight }
 [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Status.php) implements [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/StatusInterface.php).

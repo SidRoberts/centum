@@ -13,7 +13,7 @@ nav_order: 1
 
 Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Validator/ValidatorInterface.php) and implement the following methods:
 
-- `public function validate(mixed $value): string[]`
+- `public function validate(mixed $value): array<string>`
 
 The `validate()` method returns an array of violations as strings.
 An empty array has no violations meaning that the value is valid.

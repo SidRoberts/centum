@@ -9,10 +9,10 @@ use Throwable;
 
 class Field implements FieldInterface
 {
-    /** @var FilterInterface[] */
+    /** @var array<FilterInterface> */
     protected array $filters = [];
 
-    /** @var ValidatorInterface[] */
+    /** @var array<ValidatorInterface> */
     protected array $validators = [];
 
 
@@ -84,7 +84,7 @@ class Field implements FieldInterface
 
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function getMessages(mixed $value): array
     {

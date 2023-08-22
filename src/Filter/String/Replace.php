@@ -8,8 +8,8 @@ use InvalidArgumentException;
 class Replace implements FilterInterface
 {
     /**
-     * @param string[] $search
-     * @param string[] $replace
+     * @param array<string> $search
+     * @param array<string> $replace
      */
     public function __construct(
         protected array $search,

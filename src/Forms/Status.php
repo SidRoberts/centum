@@ -7,7 +7,7 @@ use Centum\Interfaces\Forms\StatusInterface;
 class Status implements StatusInterface
 {
     /**
-     * @param array<string, string[]> $messages
+     * @param array<string, array<string>> $messages
      */
     public function __construct(
         protected readonly array $messages
@@ -22,7 +22,7 @@ class Status implements StatusInterface
     }
 
     /**
-     * @return array<string, string[]>
+     * @return array<string, array<string>>
      */
     public function getMessages(): array
     {

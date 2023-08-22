@@ -14,7 +14,7 @@ class Headers implements HeadersInterface
 
 
     /**
-     * @param HeaderInterface[] $headers
+     * @param array<HeaderInterface> $headers
      */
     public function __construct(array $headers = [])
     {
@@ -31,7 +31,7 @@ class Headers implements HeadersInterface
     }
 
     /**
-     * @param HeaderInterface[] $headers
+     * @param array<HeaderInterface> $headers
      */
     public function addMultiple(array $headers): void
     {

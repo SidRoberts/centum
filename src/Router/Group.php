@@ -8,7 +8,7 @@ use Centum\Interfaces\Router\RouteInterface;
 
 class Group implements GroupInterface
 {
-    /** @var RouteInterface[] */
+    /** @var array<RouteInterface> */
     protected array $routes = [];
 
 
@@ -26,7 +26,7 @@ class Group implements GroupInterface
     }
 
     /**
-     * @return RouteInterface[]
+     * @return array<RouteInterface>
      */
     public function getRoutes(): array
     {

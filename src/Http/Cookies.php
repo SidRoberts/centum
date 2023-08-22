@@ -14,7 +14,7 @@ class Cookies implements CookiesInterface
 
 
     /**
-     * @param CookieInterface[] $cookies
+     * @param array<CookieInterface> $cookies
      */
     public function __construct(array $cookies = [])
     {
