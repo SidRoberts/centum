@@ -88,7 +88,10 @@ class BeanstalkdQueueCest
 
         $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
 
-        $queue->consume();
+        $I->assertEquals(
+            $task,
+            $queue->consume()
+        );
     }
 
     public function testConsumeMalformedTask(UnitTester $I): void
