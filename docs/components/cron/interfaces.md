@@ -17,12 +17,28 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Cron\CronInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Cron/CronInterface.php)
 
-- `add(Centum\Interfaces\Cron\JobInterface $job): void`
-- `getDueJobs(DateTimeInterface $datetime = null): array`
-- `getAllJobs(): array`
+```php
+add(
+    Centum\Interfaces\Cron\JobInterface $job
+): void
+```
+
+```php
+getDueJobs(
+    DateTimeInterface $datetime = null
+): array<Centum\Interfaces\Cron\JobInterface>
+```
+
+```php
+getAllJobs(): array<Centum\Interfaces\Cron\JobInterface>
+```
 
 
 
 ## [`Centum\Interfaces\Cron\JobInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Cron/JobInterface.php)
 
-- `isDue(DateTimeInterface $datetime = null): bool`
+```php
+isDue(
+    DateTimeInterface $datetime = null
+): bool
+```

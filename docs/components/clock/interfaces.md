@@ -17,4 +17,6 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Clock/ClockInterface.php)
 
-- `now(): DateTimeImmutable`
+```php
+now(): DateTimeImmutable
+```

@@ -17,17 +17,64 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php)
 
-- `get(string $class): object`
-- `typehintMethod(object $class, string $methodName): mixed`
-- `typehintFunction(Closure|string $function): mixed`
-- `addAlias(string $interface, string $alias): void`
-- `set(string $interface, object $object): void`
-- `setDynamic(string $interface, Closure|string $function): void`
-- `remove(string $interface): void`
-- `addResolver(Centum\Interfaces\Container\ResolverInterface $resolver): void`
+```php
+get(
+    interface-string<T>|class-string<T> $class
+): T
+```
+
+```php
+typehintMethod(
+    object $class,
+    string $methodName
+): mixed
+```
+
+```php
+typehintFunction(
+    Closure|callable-string $function
+): mixed
+```
+
+```php
+addAlias(
+    interface-string $interface,
+    class-string $alias
+): void
+```
+
+```php
+set(
+    interface-string $interface,
+    object $object
+): void
+```
+
+```php
+setDynamic(
+    interface-string $interface,
+    Closure|callable-string $function
+): void
+```
+
+```php
+remove(
+    interface-string $interface
+): void
+```
+
+```php
+addResolver(
+    Centum\Interfaces\Container\ResolverInterface $resolver
+): void
+```
 
 
 
 ## [`Centum\Interfaces\Container\ResolverInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ResolverInterface.php)
 
-- `resolve(ReflectionParameter $parameter): mixed`
+```php
+resolve(
+    ReflectionParameter $parameter
+): mixed
+```

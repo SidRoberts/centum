@@ -17,4 +17,8 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php)
 
-- `filter(mixed $value): mixed`
+```php
+filter(
+    mixed $value
+): mixed
+```

@@ -21,62 +21,202 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ExceptionHandlerInterface.php)
 
-- `handle(Centum\Interfaces\Http\RequestInterface $request, Throwable $throwable): Centum\Interfaces\Http\ResponseInterface`
+```php
+handle(
+    Centum\Interfaces\Http\RequestInterface $request,
+    Throwable $throwable
+): Centum\Interfaces\Http\ResponseInterface
+```
 
 
 
 ## [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/GroupInterface.php)
 
-- `getMiddleware(): Centum\Interfaces\Router\MiddlewareInterface`
-- `getRoutes(): array`
-- `get(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `post(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `head(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `put(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `delete(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `trace(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `options(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `connect(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `patch(string $uri, string $class, string $method): Centum\Interfaces\Router\RouteInterface`
-- `crud(string $uri, string $class): void`
-- `submission(string $uri, string $class): void`
+```php
+getMiddleware(): Centum\Interfaces\Router\MiddlewareInterface
+```
+
+```php
+getRoutes(): array<Centum\Interfaces\Router\RouteInterface>
+```
+
+```php
+get(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+post(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+head(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+put(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+delete(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+trace(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+options(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+connect(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+patch(
+    string $uri,
+    class-string $class,
+    string $method
+): Centum\Interfaces\Router\RouteInterface
+```
+
+```php
+crud(
+    string $uri,
+    class-string $class
+): void
+```
+
+```php
+submission(
+    string $uri,
+    class-string $class
+): void
+```
 
 
 
 ## [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php)
 
-- `check(Centum\Interfaces\Http\RequestInterface $request): bool`
+```php
+check(
+    Centum\Interfaces\Http\RequestInterface $request
+): bool
+```
 
 
 
 ## [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ParametersInterface.php)
 
-- `get(string $name, mixed $defaultValue = null): mixed`
-- `has(string $name): bool`
-- `toArray(): array`
+```php
+get(
+    string $name,
+    mixed $defaultValue = null
+): mixed
+```
+
+```php
+has(
+    string $name
+): bool
+```
+
+```php
+toArray(): array<string, mixed>
+```
 
 
 
 ## [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ReplacementInterface.php)
 
-- `getIdentifier(): string`
-- `getRegularExpression(): string`
-- `filter(string $value): mixed`
+```php
+getIdentifier(): string
+```
+
+```php
+getRegularExpression(): string
+```
+
+```php
+filter(
+    string $value
+): mixed
+```
 
 
 
 ## [`Centum\Interfaces\Router\RouteInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/RouteInterface.php)
 
-- `getHttpMethod(): string`
-- `getUri(): string`
-- `getClass(): string`
-- `getMethod(): string`
-- `getParameters(): array`
+```php
+getHttpMethod(): string
+```
+
+```php
+getUri(): string
+```
+
+```php
+getClass(): class-string
+```
+
+```php
+getMethod(): string
+```
+
+```php
+getParameters(): array<string, string>
+```
 
 
 
 ## [`Centum\Interfaces\Router\RouterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/RouterInterface.php)
 
-- `group(Centum\Interfaces\Router\MiddlewareInterface $middleware = null): Centum\Interfaces\Router\GroupInterface`
-- `addExceptionHandler(string $exceptionHandlerClass): void`
-- `handle(Centum\Interfaces\Http\RequestInterface $request): Centum\Interfaces\Http\ResponseInterface`
+```php
+group(
+    Centum\Interfaces\Router\MiddlewareInterface $middleware = null
+): Centum\Interfaces\Router\GroupInterface
+```
+
+```php
+addExceptionHandler(
+    class-string $exceptionHandlerClass
+): void
+```
+
+```php
+handle(
+    Centum\Interfaces\Http\RequestInterface $request
+): Centum\Interfaces\Http\ResponseInterface
+```

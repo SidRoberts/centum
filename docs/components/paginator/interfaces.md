@@ -17,28 +17,77 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/DataInterface.php)
 
-- `getTotal(): int`
-- `toArray(): array`
-- `slice(int $offset, int $length): array`
+```php
+getTotal(): int
+```
+
+```php
+toArray(): array<mixed>
+```
+
+```php
+slice(
+    int $offset,
+    int $length
+): array<mixed>
+```
 
 
 
 ## [`Centum\Interfaces\Paginator\PageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PageInterface.php)
 
-- `getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface`
-- `getPageNumber(): int`
-- `getData(): array`
-- `getPreviousPageNumber(): ?int`
-- `getNextPageNumber(): ?int`
-- `getPageRange(int $max): array`
+```php
+getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface
+```
+
+```php
+getPageNumber(): int
+```
+
+```php
+getData(): array<mixed>
+```
+
+```php
+getPreviousPageNumber(): ?int
+```
+
+```php
+getNextPageNumber(): ?int
+```
+
+```php
+getPageRange(
+    int $max
+): list<int>
+```
 
 
 
 ## [`Centum\Interfaces\Paginator\PaginatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PaginatorInterface.php)
 
-- `getData(): Centum\Interfaces\Paginator\DataInterface`
-- `getItemsPerPage(): int`
-- `getUrlPrefix(): string`
-- `getTotalItems(): int`
-- `getTotalPages(): int`
-- `getPage(int $pageNumber): Centum\Interfaces\Paginator\PageInterface`
+```php
+getData(): Centum\Interfaces\Paginator\DataInterface
+```
+
+```php
+getItemsPerPage(): int
+```
+
+```php
+getUrlPrefix(): string
+```
+
+```php
+getTotalItems(): int
+```
+
+```php
+getTotalPages(): int
+```
+
+```php
+getPage(
+    int $pageNumber
+): Centum\Interfaces\Paginator\PageInterface
+```

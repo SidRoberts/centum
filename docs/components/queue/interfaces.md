@@ -17,17 +17,32 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php)
 
-- `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
-- `consume(): Centum\Interfaces\Queue\TaskInterface`
+```php
+publish(
+    Centum\Interfaces\Queue\TaskInterface $task
+): void
+```
+
+```php
+consume(): Centum\Interfaces\Queue\TaskInterface
+```
 
 
 
 ## [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/TaskInterface.php)
 
-- `execute(Centum\Interfaces\Container\ContainerInterface $container): void`
+```php
+execute(
+    Centum\Interfaces\Container\ContainerInterface $container
+): void
+```
 
 
 
 ## [`Centum\Interfaces\Queue\TaskRunnerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/TaskRunnerInterface.php)
 
-- `execute(Centum\Interfaces\Queue\TaskInterface $task): void`
+```php
+execute(
+    Centum\Interfaces\Queue\TaskInterface $task
+): void
+```

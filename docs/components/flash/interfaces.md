@@ -17,28 +17,66 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Flash\FlashInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FlashInterface.php)
 
-- `success(string $text): void`
-- `info(string $text): void`
-- `warning(string $text): void`
-- `danger(string $text): void`
-- `output(): string`
+```php
+success(
+    string $text
+): void
+```
+
+```php
+info(
+    string $text
+): void
+```
+
+```php
+warning(
+    string $text
+): void
+```
+
+```php
+danger(
+    string $text
+): void
+```
+
+```php
+output(): string
+```
 
 
 
 ## [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php)
 
-- `output(Centum\Interfaces\Flash\MessageInterface $message): string`
+```php
+output(
+    Centum\Interfaces\Flash\MessageInterface $message
+): string
+```
 
 
 
 ## [`Centum\Interfaces\Flash\MessageBagInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageBagInterface.php)
 
-- `add(Centum\Interfaces\Flash\MessageInterface $message): void`
-- `getMessages(): array`
+```php
+add(
+    Centum\Interfaces\Flash\MessageInterface $message
+): void
+```
+
+```php
+getMessages(): array<Centum\Interfaces\Flash\MessageInterface>
+```
 
 
 
 ## [`Centum\Interfaces\Flash\MessageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageInterface.php)
 
-- `getLevel(): string`
-- `getText(): string`
+```php
+getLevel(): string
+```
+
+```php
+getText(): string
+```

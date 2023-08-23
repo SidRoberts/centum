@@ -17,44 +17,128 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php)
 
-- `addCommand(string $commandClass): void`
-- `getCommands(): array`
-- `addExceptionHandler(string $exceptionHandlerClass): void`
-- `handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+```php
+addCommand(
+    class-string $commandClass
+): void
+```
+
+```php
+getCommands(): array<string, class-string>
+```
+
+```php
+addExceptionHandler(
+    class-string $exceptionHandlerClass
+): void
+```
+
+```php
+handle(
+    Centum\Interfaces\Console\TerminalInterface $terminal
+): int
+```
 
 
 
 ## [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php)
 
-- `execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+```php
+execute(
+    Centum\Interfaces\Console\TerminalInterface $terminal
+): int
+```
 
 
 
 ## [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ExceptionHandlerInterface.php)
 
-- `handle(Centum\Interfaces\Console\TerminalInterface $terminal, Throwable $throwable): void`
+```php
+handle(
+    Centum\Interfaces\Console\TerminalInterface $terminal,
+    Throwable $throwable
+): void
+```
 
 
 
 ## [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php)
 
-- `getArguments(): Centum\Interfaces\Console\Terminal\ArgumentsInterface`
-- `getStdIn(): resource`
-- `getStdOut(): resource`
-- `getStdErr(): resource`
-- `write(string $string): void`
-- `writeLine(string $string = ""): void`
-- `writeList(array $list): void`
-- `writeError(string $string): void`
-- `writeErrorLine(string $string = ""): void`
+```php
+getArguments(): Centum\Interfaces\Console\Terminal\ArgumentsInterface
+```
+
+```php
+getStdIn(): resource
+```
+
+```php
+getStdOut(): resource
+```
+
+```php
+getStdErr(): resource
+```
+
+```php
+write(
+    string $string
+): void
+```
+
+```php
+writeLine(
+    string $string = ""
+): void
+```
+
+```php
+writeList(
+    array<string> $list
+): void
+```
+
+```php
+writeError(
+    string $string
+): void
+```
+
+```php
+writeErrorLine(
+    string $string = ""
+): void
+```
 
 
 
 ## [`Centum\Interfaces\Console\Terminal\ArgumentsInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/Terminal/ArgumentsInterface.php)
 
-- `getFilename(): string`
-- `getCommandName(): string`
-- `getParameters(): array`
-- `getParameter(string $name, mixed $defaultValue = null): mixed`
-- `hasParameter(string $name): bool`
-- `toArray(): array`
+```php
+getFilename(): string
+```
+
+```php
+getCommandName(): string
+```
+
+```php
+getParameters(): array
+```
+
+```php
+getParameter(
+    string $name,
+    mixed $defaultValue = null
+): mixed
+```
+
+```php
+hasParameter(
+    string $name
+): bool
+```
+
+```php
+toArray(): array<string>
+```

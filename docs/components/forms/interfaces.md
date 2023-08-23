@@ -17,26 +17,78 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/FieldInterface.php)
 
-- `getName(): string`
-- `getFilters(): array`
-- `getValidators(): array`
-- `addFilter(Centum\Interfaces\Filter\FilterInterface $filter): void`
-- `addValidator(Centum\Interfaces\Validator\ValidatorInterface $validator): void`
-- `getFilteredValue(mixed $value): mixed`
-- `isValid(mixed $value): bool`
-- `getMessages(mixed $value): array`
+```php
+getName(): string
+```
+
+```php
+getFilters(): array<Centum\Interfaces\Filter\FilterInterface>
+```
+
+```php
+getValidators(): array<Centum\Interfaces\Validator\ValidatorInterface>
+```
+
+```php
+addFilter(
+    Centum\Interfaces\Filter\FilterInterface $filter
+): void
+```
+
+```php
+addValidator(
+    Centum\Interfaces\Validator\ValidatorInterface $validator
+): void
+```
+
+```php
+getFilteredValue(
+    mixed $value
+): mixed
+```
+
+```php
+isValid(
+    mixed $value
+): bool
+```
+
+```php
+getMessages(
+    mixed $value
+): array<string>
+```
 
 
 
 ## [`Centum\Interfaces\Forms\FormInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/FormInterface.php)
 
-- `add(Centum\Interfaces\Forms\FieldInterface $field): void`
-- `getFilteredValues(array $data): array`
-- `validate(array $data): Centum\Interfaces\Forms\StatusInterface`
+```php
+add(
+    Centum\Interfaces\Forms\FieldInterface $field
+): void
+```
+
+```php
+getFilteredValues(
+    array<string, mixed> $data
+): array<string, mixed>
+```
+
+```php
+validate(
+    array<string, mixed> $data
+): Centum\Interfaces\Forms\StatusInterface
+```
 
 
 
 ## [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/StatusInterface.php)
 
-- `isValid(): bool`
-- `getMessages(): array`
+```php
+isValid(): bool
+```
+
+```php
+getMessages(): array<string, array<string>>
+```

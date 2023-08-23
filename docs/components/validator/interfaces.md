@@ -17,4 +17,8 @@ nav_order: 102
 
 ## [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php)
 
-- `validate(mixed $value): array`
+```php
+validate(
+    mixed $value
+): array<string>
+```
