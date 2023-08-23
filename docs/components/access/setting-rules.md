@@ -35,7 +35,7 @@ if (!$access->isAllowed($userType, "delete-a-user")) {
 $user->delete();
 ```
 
-Even simpler, you can use `verify()` which will throw an `AccessDeniedException` if the user is not allowed to do a certain action.
+Even simpler, you can use `verify()` which will throw an [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/development/src/Access/Exception/AccessDeniedException.php) if the user is not allowed to do a certain action.
 
 ```php
 $userType = "moderator";
