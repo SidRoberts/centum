@@ -11,9 +11,62 @@ permalink: testing/header
 
 [`Centum\Codeception\Actions\HeaderActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HeaderActions.php)
 
-- `grabHeaders(): Centum\Interfaces\Http\HeadersInterface`
-- `grabHeaderValue(string $name): ?string`
-- `seeHeader(string $name): void`
-- `dontSeeHeader(string $name): void`
-- `seeHeaderValueIs(string $name, string $expectedValue): void`
-- `dontSeeHeaderValueIs(string $name, string $expectedValue): void`
+
+
+## `grabHeaders`
+
+```php
+grabHeaders(): Centum\Interfaces\Http\HeadersInterface
+```
+
+
+
+## `grabHeaderValue`
+
+```php
+grabHeaderValue(
+    string $name
+): ?string
+```
+
+
+
+## `seeHeader`
+
+```php
+seeHeader(
+    string $name
+): void
+```
+
+
+
+## `dontSeeHeader`
+
+```php
+dontSeeHeader(
+    string $name
+): void
+```
+
+
+
+## `seeHeaderValueIs`
+
+```php
+seeHeaderValueIs(
+    string $name,
+    string $expectedValue
+): void
+```
+
+
+
+## `dontSeeHeaderValueIs`
+
+```php
+dontSeeHeaderValueIs(
+    string $name,
+    string $expectedValue
+): void
+```

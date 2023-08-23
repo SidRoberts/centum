@@ -11,5 +11,23 @@ permalink: testing/unit-tests
 
 [`Centum\Codeception\Actions\UnitTestActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/UnitTestActions.php)
 
-- `grabEchoContent(callable $callable): string`
-- `expectEcho(string $expected, callable $callable): void`
+
+
+## `grabEchoContent`
+
+```php
+grabEchoContent(
+    callable $callable
+): string
+```
+
+
+
+## `expectEcho`
+
+```php
+expectEcho(
+    string $expected,
+    callable $callable
+): void
+```

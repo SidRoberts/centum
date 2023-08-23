@@ -11,7 +11,48 @@ permalink: testing/ajax
 
 [`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AjaxActions.php)
 
-- `createAjaxRequest(string $method, string $uri, array $data = []): Centum\Interfaces\Http\RequestInterface`
-- `sendAjaxRequest(string $method, string $uri, array $data = []): void`
-- `sendAjaxGetRequest(string $uri, array $data = []): void`
-- `sendAjaxPostRequest(string $uri, array $data = []): void`
+
+
+## `createAjaxRequest`
+
+```php
+createAjaxRequest(
+    string $method,
+    string $uri,
+    array<string, mixed> $data = []
+): Centum\Interfaces\Http\RequestInterface
+```
+
+
+
+## `sendAjaxRequest`
+
+```php
+sendAjaxRequest(
+    string $method,
+    string $uri,
+    array<string, mixed> $data = []
+): void
+```
+
+
+
+## `sendAjaxGetRequest`
+
+```php
+sendAjaxGetRequest(
+    string $uri,
+    array<string, mixed> $data = []
+): void
+```
+
+
+
+## `sendAjaxPostRequest`
+
+```php
+sendAjaxPostRequest(
+    string $uri,
+    array<string, mixed> $data = []
+): void
+```

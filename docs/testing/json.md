@@ -11,4 +11,10 @@ permalink: testing/json
 
 [`Centum\Codeception\Actions\JsonActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/JsonActions.php)
 
-- `seeResponseIsJson(): void`
+
+
+## `seeResponseIsJson`
+
+```php
+seeResponseIsJson(): void
+```

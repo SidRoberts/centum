@@ -11,5 +11,27 @@ permalink: testing/http-form
 
 [`Centum\Codeception\Actions\HttpFormActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HttpFormActions.php)
 
-- `buildForm(string $formClass, Centum\Interfaces\Http\DataInterface $data, Centum\Interfaces\Http\FilesInterface $files = null): object`
-- `expectFormThrowable(mixed $expectedThrowable, string $formClass, Centum\Interfaces\Http\DataInterface $data, Centum\Interfaces\Http\FilesInterface $files = null): void`
+
+
+## `buildForm`
+
+```php
+buildForm(
+    class-string<T> $formClass,
+    Centum\Interfaces\Http\DataInterface $data,
+    Centum\Interfaces\Http\FilesInterface $files = null
+): T
+```
+
+
+
+## `expectFormThrowable`
+
+```php
+expectFormThrowable(
+    Throwable|string $expectedThrowable,
+    class-string $formClass,
+    Centum\Interfaces\Http\DataInterface $data,
+    Centum\Interfaces\Http\FilesInterface $files = null
+): void
+```

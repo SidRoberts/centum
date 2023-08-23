@@ -11,15 +11,120 @@ permalink: testing/html
 
 [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
 
-- `grabTextContent(): string`
-- `submitForm(string $selector, array $data = [], Centum\Interfaces\Http\FilesInterface $files = null): void`
-- `see(string $needle): void`
-- `dontSee(string $needle): void`
-- `seeInSource(string $needle): void`
-- `dontSeeInSource(string $needle): void`
-- `seeInPageTitle(string $needle): void`
-- `dontSeeInPageTitle(string $needle): void`
-- `grabPageTitle(): string`
-- `seeElement(string $selector): void`
-- `dontSeeElement(string $selector): void`
-- `grabElement(string $selector): ?Symfony\Component\DomCrawler\Crawler`
+
+
+## `grabTextContent`
+
+```php
+grabTextContent(): string
+```
+
+
+
+## `submitForm`
+
+```php
+submitForm(
+    string $selector,
+    array<string, mixed> $data = [],
+    Centum\Interfaces\Http\FilesInterface $files = null
+): void
+```
+
+
+
+## `see`
+
+```php
+see(
+    string $needle
+): void
+```
+
+
+
+## `dontSee`
+
+```php
+dontSee(
+    string $needle
+): void
+```
+
+
+
+## `seeInSource`
+
+```php
+seeInSource(
+    string $needle
+): void
+```
+
+
+
+## `dontSeeInSource`
+
+```php
+dontSeeInSource(
+    string $needle
+): void
+```
+
+
+
+## `seeInPageTitle`
+
+```php
+seeInPageTitle(
+    string $needle
+): void
+```
+
+
+
+## `dontSeeInPageTitle`
+
+```php
+dontSeeInPageTitle(
+    string $needle
+): void
+```
+
+
+
+## `grabPageTitle`
+
+```php
+grabPageTitle(): string
+```
+
+
+
+## `seeElement`
+
+```php
+seeElement(
+    string $selector
+): void
+```
+
+
+
+## `dontSeeElement`
+
+```php
+dontSeeElement(
+    string $selector
+): void
+```
+
+
+
+## `grabElement`
+
+```php
+grabElement(
+    string $selector
+): ?Symfony\Component\DomCrawler\Crawler
+```

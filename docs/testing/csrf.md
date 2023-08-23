@@ -11,8 +11,42 @@ permalink: testing/csrf
 
 [`Centum\Codeception\Actions\CsrfActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CsrfActions.php)
 
-- `grabCsrfGenerator(): Centum\Interfaces\Http\Csrf\GeneratorInterface`
-- `grabCsrfStorage(): Centum\Interfaces\Http\Csrf\StorageInterface`
-- `getCsrfValue(): string`
-- `resetCsrfValue(): void`
-- `assumeCsrfIsValid(): void`
+
+
+## `grabCsrfGenerator`
+
+```php
+grabCsrfGenerator(): Centum\Interfaces\Http\Csrf\GeneratorInterface
+```
+
+
+
+## `grabCsrfStorage`
+
+```php
+grabCsrfStorage(): Centum\Interfaces\Http\Csrf\StorageInterface
+```
+
+
+
+## `getCsrfValue`
+
+```php
+getCsrfValue(): string
+```
+
+
+
+## `resetCsrfValue`
+
+```php
+resetCsrfValue(): void
+```
+
+
+
+## `assumeCsrfIsValid`
+
+```php
+assumeCsrfIsValid(): void
+```

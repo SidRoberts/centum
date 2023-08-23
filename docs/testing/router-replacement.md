@@ -11,7 +11,48 @@ permalink: testing/router-replacement
 
 [`Centum\Codeception\Actions\RouterReplacementActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterReplacementActions.php)
 
-- `assertRouterReplacementMatches(Centum\Interfaces\Router\ReplacementInterface $replacement, string $value): void`
-- `assertRouterReplacementDoesNotMatch(Centum\Interfaces\Router\ReplacementInterface $replacement, string $value): void`
-- `assertRouterReplacementFilterEquals(Centum\Interfaces\Router\ReplacementInterface $replacement, string $input, mixed $expectedOutput): void`
-- `assertRouterReplacementFilterDoesNotEqual(Centum\Interfaces\Router\ReplacementInterface $replacement, string $input, mixed $expectedOutput): void`
+
+
+## `assertRouterReplacementMatches`
+
+```php
+assertRouterReplacementMatches(
+    Centum\Interfaces\Router\ReplacementInterface $replacement,
+    string $value
+): void
+```
+
+
+
+## `assertRouterReplacementDoesNotMatch`
+
+```php
+assertRouterReplacementDoesNotMatch(
+    Centum\Interfaces\Router\ReplacementInterface $replacement,
+    string $value
+): void
+```
+
+
+
+## `assertRouterReplacementFilterEquals`
+
+```php
+assertRouterReplacementFilterEquals(
+    Centum\Interfaces\Router\ReplacementInterface $replacement,
+    string $input,
+    mixed $expectedOutput
+): void
+```
+
+
+
+## `assertRouterReplacementFilterDoesNotEqual`
+
+```php
+assertRouterReplacementFilterDoesNotEqual(
+    Centum\Interfaces\Router\ReplacementInterface $replacement,
+    string $input,
+    mixed $expectedOutput
+): void
+```

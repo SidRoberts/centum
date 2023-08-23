@@ -11,9 +11,65 @@ permalink: testing/access
 
 [`Centum\Codeception\Actions\AccessActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AccessActions.php)
 
-- `grabAccess(): Centum\Interfaces\Access\AccessInterface`
-- `allowAccess(string $user, string $activityName): void`
-- `denyAccess(string $user, string $activityName): void`
-- `removeFromAccess(string $user, string $activityName): void`
-- `seeIsAllowed(string $user, string $activityName): void`
-- `seeIsNotAllowed(string $user, string $activityName): void`
+
+
+## `grabAccess`
+
+```php
+grabAccess(): Centum\Interfaces\Access\AccessInterface
+```
+
+
+
+## `allowAccess`
+
+```php
+allowAccess(
+    string $user,
+    string $activityName
+): void
+```
+
+
+
+## `denyAccess`
+
+```php
+denyAccess(
+    string $user,
+    string $activityName
+): void
+```
+
+
+
+## `removeFromAccess`
+
+```php
+removeFromAccess(
+    string $user,
+    string $activityName
+): void
+```
+
+
+
+## `seeIsAllowed`
+
+```php
+seeIsAllowed(
+    string $user,
+    string $activityName
+): void
+```
+
+
+
+## `seeIsNotAllowed`
+
+```php
+seeIsNotAllowed(
+    string $user,
+    string $activityName
+): void
+```
