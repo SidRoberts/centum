@@ -154,7 +154,7 @@ grabResponseContent(): string
 
 ```php
 seeResponseContentEquals(
-    string $expected
+    string $expectedContent
 ): void
 ```
 
@@ -164,7 +164,7 @@ seeResponseContentEquals(
 
 ```php
 seeResponseContentContains(
-    string $expected
+    string $expectedContent
 ): void
 ```
 
@@ -186,7 +186,7 @@ See if the HTTP response code is an expected value.
 
 ```php
 seeResponseCodeIs(
-    int $expected
+    int $expectedCode
 ): void
 ```
 
@@ -198,7 +198,7 @@ See if the HTTP response code is NOT an expected value.
 
 ```php
 seeResponseCodeIsNot(
-    int $expected
+    int $expectedCode
 ): void
 ```
 

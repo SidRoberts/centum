@@ -4,7 +4,6 @@ namespace Centum\Codeception\Actions;
 
 use Centum\Http\Data;
 use Centum\Http\Request;
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\GroupInterface;
@@ -16,7 +15,12 @@ use PHPUnit\Framework\Assert;
 
 trait RouterActions
 {
-    abstract public function grabContainer(): ContainerInterface;
+    /**
+     * @template T of object
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    abstract public function grabFromContainer(string $class): object;
 
 
 
@@ -33,9 +37,7 @@ trait RouterActions
      */
     public function grabRouter(): RouterInterface
     {
-        $container = $this->grabContainer();
-
-        return $container->get(RouterInterface::class);
+        return $this->grabFromContainer(RouterInterface::class);
     }
 
     /**
@@ -187,22 +189,22 @@ trait RouterActions
 
 
 
-    public function seeResponseContentEquals(string $expected): void
+    public function seeResponseContentEquals(string $expectedContent): void
     {
         $content = $this->grabResponseContent();
 
         Assert::assertEquals(
-            $expected,
+            $expectedContent,
             $content
         );
     }
 
-    public function seeResponseContentContains(string $expected): void
+    public function seeResponseContentContains(string $expectedContent): void
     {
         $content = $this->grabResponseContent();
 
         Assert::assertStringContainsString(
-            $expected,
+            $expectedContent,
             $content
         );
     }
@@ -224,12 +226,12 @@ trait RouterActions
     /**
      * See if the HTTP response code is an expected value.
      */
-    public function seeResponseCodeIs(int $expected): void
+    public function seeResponseCodeIs(int $expectedCode): void
     {
         $responseCode = $this->grabResponseCode();
 
         Assert::assertSame(
-            $expected,
+            $expectedCode,
             $responseCode
         );
     }
@@ -237,12 +239,12 @@ trait RouterActions
     /**
      * See if the HTTP response code is NOT an expected value.
      */
-    public function seeResponseCodeIsNot(int $expected): void
+    public function seeResponseCodeIsNot(int $expectedCode): void
     {
         $responseCode = $this->grabResponseCode();
 
         Assert::assertNotSame(
-            $expected,
+            $expectedCode,
             $responseCode
         );
     }

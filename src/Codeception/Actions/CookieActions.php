@@ -28,9 +28,7 @@ trait CookieActions
 
     public function grabCookieValue(string $name): string|null
     {
-        $response = $this->grabResponse();
-
-        $cookies = $response->getCookies();
+        $cookies = $this->grabCookies();
 
         if (!$cookies->has($name)) {
             return null;
@@ -48,9 +46,7 @@ trait CookieActions
      */
     public function seeCookie(string $name): void
     {
-        $response = $this->grabResponse();
-
-        $cookies = $response->getCookies();
+        $cookies = $this->grabCookies();
 
         Assert::assertTrue(
             $cookies->has($name),
@@ -63,9 +59,7 @@ trait CookieActions
      */
     public function dontSeeCookie(string $name): void
     {
-        $response = $this->grabResponse();
-
-        $cookies = $response->getCookies();
+        $cookies = $this->grabCookies();
 
         Assert::assertFalse(
             $cookies->has($name),

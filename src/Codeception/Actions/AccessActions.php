@@ -3,12 +3,16 @@
 namespace Centum\Codeception\Actions;
 
 use Centum\Interfaces\Access\AccessInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 use PHPUnit\Framework\Assert;
 
 trait AccessActions
 {
-    abstract public function grabContainer(): ContainerInterface;
+    /**
+     * @template T of object
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    abstract public function grabFromContainer(string $class): object;
 
 
 
@@ -17,9 +21,7 @@ trait AccessActions
      */
     public function grabAccess(): AccessInterface
     {
-        $container = $this->grabContainer();
-
-        return $container->get(AccessInterface::class);
+        return $this->grabFromContainer(AccessInterface::class);
     }
 
     /**

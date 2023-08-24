@@ -2,7 +2,6 @@
 
 namespace Centum\Codeception\Actions;
 
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
@@ -10,7 +9,12 @@ use Mockery\MockInterface;
 
 trait CsrfActions
 {
-    abstract public function grabContainer(): ContainerInterface;
+    /**
+     * @template T of object
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    abstract public function grabFromContainer(string $class): object;
 
     /**
      * @template T of object
@@ -26,9 +30,7 @@ trait CsrfActions
      */
     public function grabCsrfGenerator(): GeneratorInterface
     {
-        $container = $this->grabContainer();
-
-        return $container->get(GeneratorInterface::class);
+        return $this->grabFromContainer(GeneratorInterface::class);
     }
 
     /**
@@ -36,9 +38,7 @@ trait CsrfActions
      */
     public function grabCsrfStorage(): StorageInterface
     {
-        $container = $this->grabContainer();
-
-        return $container->get(StorageInterface::class);
+        return $this->grabFromContainer(StorageInterface::class);
     }
 
 

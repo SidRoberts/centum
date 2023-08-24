@@ -2,13 +2,17 @@
 
 namespace Centum\Codeception\Actions;
 
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use PHPUnit\Framework\Assert;
 
 trait SessionActions
 {
-    abstract public function grabContainer(): ContainerInterface;
+    /**
+     * @template T of object
+     * @psalm-param interface-string<T>|class-string<T> $class
+     * @psalm-return T
+     */
+    abstract public function grabFromContainer(string $class): object;
 
 
 
@@ -17,11 +21,7 @@ trait SessionActions
      */
     public function grabSession(): SessionInterface
     {
-        $container = $this->grabContainer();
-
-        $session = $container->get(SessionInterface::class);
-
-        return $session;
+        return $this->grabFromContainer(SessionInterface::class);
     }
 
 

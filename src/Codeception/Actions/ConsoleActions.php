@@ -129,18 +129,18 @@ trait ConsoleActions
         return $this->exitCode ?? throw new ModuleException($this, "Command hasn't been executed yet.");
     }
 
-    public function seeExitCodeIs(int $expected): void
+    public function seeExitCodeIs(int $expectedCode): void
     {
         Assert::assertSame(
-            $expected,
+            $expectedCode,
             $this->exitCode
         );
     }
 
-    public function seeExitCodeIsNot(int $expected): void
+    public function seeExitCodeIsNot(int $expectedCode): void
     {
         Assert::assertNotSame(
-            $expected,
+            $expectedCode,
             $this->exitCode
         );
     }

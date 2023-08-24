@@ -95,7 +95,7 @@ grabExitCode(): int
 
 ```php
 seeExitCodeIs(
-    int $expected
+    int $expectedCode
 ): void
 ```
 
@@ -105,7 +105,7 @@ seeExitCodeIs(
 
 ```php
 seeExitCodeIsNot(
-    int $expected
+    int $expectedCode
 ): void
 ```
 

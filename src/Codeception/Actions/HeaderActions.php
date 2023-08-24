@@ -28,9 +28,7 @@ trait HeaderActions
 
     public function grabHeaderValue(string $name): string|null
     {
-        $response = $this->grabResponse();
-
-        $headers = $response->getHeaders();
+        $headers = $this->grabHeaders();
 
         if (!$headers->has($name)) {
             return null;
@@ -48,9 +46,7 @@ trait HeaderActions
      */
     public function seeHeader(string $name): void
     {
-        $response = $this->grabResponse();
-
-        $headers = $response->getHeaders();
+        $headers = $this->grabHeaders();
 
         Assert::assertTrue(
             $headers->has($name),
@@ -63,9 +59,7 @@ trait HeaderActions
      */
     public function dontSeeHeader(string $name): void
     {
-        $response = $this->grabResponse();
-
-        $headers = $response->getHeaders();
+        $headers = $this->grabHeaders();
 
         Assert::assertFalse(
             $headers->has($name),
