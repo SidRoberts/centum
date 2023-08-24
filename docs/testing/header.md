@@ -15,6 +15,8 @@ permalink: testing/header
 
 ## `grabHeaders`
 
+Grab the HTTP Headers from the Container.
+
 ```php
 grabHeaders(): Centum\Interfaces\Http\HeadersInterface
 ```
@@ -33,6 +35,8 @@ grabHeaderValue(
 
 ## `seeHeader`
 
+Check that a Header exists.
+
 ```php
 seeHeader(
     string $name
@@ -42,6 +46,8 @@ seeHeader(
 
 
 ## `dontSeeHeader`
+
+Check that a Header does not exist.
 
 ```php
 dontSeeHeader(

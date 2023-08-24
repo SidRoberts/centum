@@ -15,6 +15,8 @@ permalink: testing/cookie
 
 ## `grabCookies`
 
+Grab the HTTP Cookies from the Container.
+
 ```php
 grabCookies(): Centum\Interfaces\Http\CookiesInterface
 ```
@@ -33,6 +35,8 @@ grabCookieValue(
 
 ## `seeCookie`
 
+Check that a Cookie exists.
+
 ```php
 seeCookie(
     string $name
@@ -42,6 +46,8 @@ seeCookie(
 
 
 ## `dontSeeCookie`
+
+Check that a Cookie does not exist.
 
 ```php
 dontSeeCookie(

@@ -12,6 +12,9 @@ trait CookieActions
 
 
 
+    /**
+     * Grab the HTTP Cookies from the Container.
+     */
     public function grabCookies(): CookiesInterface
     {
         $response = $this->grabResponse();
@@ -40,6 +43,9 @@ trait CookieActions
 
 
 
+    /**
+     * Check that a Cookie exists.
+     */
     public function seeCookie(string $name): void
     {
         $response = $this->grabResponse();
@@ -52,6 +58,9 @@ trait CookieActions
         );
     }
 
+    /**
+     * Check that a Cookie does not exist.
+     */
     public function dontSeeCookie(string $name): void
     {
         $response = $this->grabResponse();

@@ -12,6 +12,9 @@ trait HeaderActions
 
 
 
+    /**
+     * Grab the HTTP Headers from the Container.
+     */
     public function grabHeaders(): HeadersInterface
     {
         $response = $this->grabResponse();
@@ -40,6 +43,9 @@ trait HeaderActions
 
 
 
+    /**
+     * Check that a Header exists.
+     */
     public function seeHeader(string $name): void
     {
         $response = $this->grabResponse();
@@ -52,6 +58,9 @@ trait HeaderActions
         );
     }
 
+    /**
+     * Check that a Header does not exist.
+     */
     public function dontSeeHeader(string $name): void
     {
         $response = $this->grabResponse();

@@ -15,6 +15,8 @@ permalink: testing/router
 
 ## `grabRouter`
 
+Grab the Router from the Container.
+
 ```php
 grabRouter(): Centum\Interfaces\Router\RouterInterface
 ```
@@ -22,6 +24,8 @@ grabRouter(): Centum\Interfaces\Router\RouterInterface
 
 
 ## `makeRouterGroup`
+
+Make a new group of Routes with an optional middleware.
 
 ```php
 makeRouterGroup(
@@ -32,6 +36,8 @@ makeRouterGroup(
 
 
 ## `addRouterExceptionHandler`
+
+Add an Exception Handler to the Router.
 
 ```php
 addRouterExceptionHandler(
@@ -126,6 +132,8 @@ seeCurrentUriEquals(
 
 ## `grabResponse`
 
+Grab the Response last created.
+
 ```php
 grabResponse(): Centum\Interfaces\Http\ResponseInterface
 ```
@@ -133,6 +141,8 @@ grabResponse(): Centum\Interfaces\Http\ResponseInterface
 
 
 ## `grabResponseContent`
+
+Grab the content from the Response last created.
 
 ```php
 grabResponseContent(): string
@@ -162,6 +172,8 @@ seeResponseContentContains(
 
 ## `grabResponseCode`
 
+Grab the HTTP response code from the Response last created.
+
 ```php
 grabResponseCode(): int
 ```
@@ -169,6 +181,8 @@ grabResponseCode(): int
 
 
 ## `seeResponseCodeIs`
+
+See if the HTTP response code is an expected value.
 
 ```php
 seeResponseCodeIs(
@@ -180,6 +194,8 @@ seeResponseCodeIs(
 
 ## `seeResponseCodeIsNot`
 
+See if the HTTP response code is NOT an expected value.
+
 ```php
 seeResponseCodeIsNot(
     int $expected
@@ -190,6 +206,8 @@ seeResponseCodeIsNot(
 
 ## `seeResponseCodeIsSuccessful`
 
+See if the HTTP response code is 2xx.
+
 ```php
 seeResponseCodeIsSuccessful(): void
 ```
@@ -198,6 +216,8 @@ seeResponseCodeIsSuccessful(): void
 
 ## `seeResponseCodeIsServerError`
 
+See if the HTTP response code is 5xx.
+
 ```php
 seeResponseCodeIsServerError(): void
 ```
@@ -205,6 +225,8 @@ seeResponseCodeIsServerError(): void
 
 
 ## `seePageNotFound`
+
+See if the HTTP response code is 404.
 
 ```php
 seePageNotFound(): void

@@ -109,6 +109,10 @@ trait HtmlActions
         );
     }
 
+    /**
+     * Grabs the page title from the `<title>` tag. If the title is not set, an
+     * empty string will be returned.
+     */
     public function grabPageTitle(): string
     {
         $crawler = $this->getCrawler();

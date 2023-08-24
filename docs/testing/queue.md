@@ -15,6 +15,8 @@ permalink: testing/queue
 
 ## `grabQueue`
 
+Grab the Queue from the Container.
+
 ```php
 grabQueue(): Centum\Interfaces\Queue\QueueInterface
 ```

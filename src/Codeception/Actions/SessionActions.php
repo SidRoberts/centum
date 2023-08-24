@@ -12,6 +12,9 @@ trait SessionActions
 
 
 
+    /**
+     * Grab the HTTP Session from the Container.
+     */
     public function grabSession(): SessionInterface
     {
         $container = $this->grabContainer();
@@ -23,6 +26,9 @@ trait SessionActions
 
 
 
+    /**
+     * Check that a Session key exists.
+     */
     public function seeInSession(string $key): void
     {
         $session = $this->grabSession();
@@ -32,6 +38,9 @@ trait SessionActions
         );
     }
 
+    /**
+     * Check that a Session key does not exist.
+     */
     public function dontSeeInSession(string $key): void
     {
         $session = $this->grabSession();
@@ -76,6 +85,9 @@ trait SessionActions
 
 
 
+    /**
+     * Remove a key from the Session.
+     */
     public function removeFromSession(string $key): void
     {
         $session = $this->grabSession();

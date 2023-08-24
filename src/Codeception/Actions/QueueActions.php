@@ -16,6 +16,9 @@ trait QueueActions
 
 
 
+    /**
+     * Grab the Queue from the Container.
+     */
     public function grabQueue(): QueueInterface
     {
         $container = $this->grabContainer();

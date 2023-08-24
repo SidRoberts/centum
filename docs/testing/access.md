@@ -15,6 +15,8 @@ permalink: testing/access
 
 ## `grabAccess`
 
+Grab the Access from the Container.
+
 ```php
 grabAccess(): Centum\Interfaces\Access\AccessInterface
 ```
@@ -22,6 +24,8 @@ grabAccess(): Centum\Interfaces\Access\AccessInterface
 
 
 ## `allowAccess`
+
+Allow a user to do a particular activity in Access.
 
 ```php
 allowAccess(
@@ -33,6 +37,8 @@ allowAccess(
 
 
 ## `denyAccess`
+
+Deny a user to do a particular activity in Access.
 
 ```php
 denyAccess(
@@ -56,6 +62,8 @@ removeFromAccess(
 
 ## `seeIsAllowed`
 
+Check if a user is allowed to do a particular activity in Access.
+
 ```php
 seeIsAllowed(
     string $user,
@@ -66,6 +74,8 @@ seeIsAllowed(
 
 
 ## `seeIsNotAllowed`
+
+Check if a user is NOT allowed to do a particular activity in Access.
 
 ```php
 seeIsNotAllowed(

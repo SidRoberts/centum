@@ -95,6 +95,9 @@ dontSeeInPageTitle(
 
 ## `grabPageTitle`
 
+Grabs the page title from the `<title>` tag. If the title is not set, an
+empty string will be returned.
+
 ```php
 grabPageTitle(): string
 ```

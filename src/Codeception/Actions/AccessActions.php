@@ -12,6 +12,9 @@ trait AccessActions
 
 
 
+    /**
+     * Grab the Access from the Container.
+     */
     public function grabAccess(): AccessInterface
     {
         $container = $this->grabContainer();
@@ -19,6 +22,9 @@ trait AccessActions
         return $container->get(AccessInterface::class);
     }
 
+    /**
+     * Allow a user to do a particular activity in Access.
+     */
     public function allowAccess(string $user, string $activityName): void
     {
         $access = $this->grabAccess();
@@ -26,6 +32,9 @@ trait AccessActions
         $access->allow($user, $activityName);
     }
 
+    /**
+     * Deny a user to do a particular activity in Access.
+     */
     public function denyAccess(string $user, string $activityName): void
     {
         $access = $this->grabAccess();
@@ -40,6 +49,9 @@ trait AccessActions
         $access->remove($user, $activityName);
     }
 
+    /**
+     * Check if a user is allowed to do a particular activity in Access.
+     */
     public function seeIsAllowed(string $user, string $activityName): void
     {
         $access = $this->grabAccess();
@@ -49,6 +61,9 @@ trait AccessActions
         );
     }
 
+    /**
+     * Check if a user is NOT allowed to do a particular activity in Access.
+     */
     public function seeIsNotAllowed(string $user, string $activityName): void
     {
         $access = $this->grabAccess();

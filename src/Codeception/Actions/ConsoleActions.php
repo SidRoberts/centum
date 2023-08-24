@@ -71,6 +71,9 @@ trait ConsoleActions
 
 
 
+    /**
+     * Grab the Console Application from the Container.
+     */
     public function grabConsoleApplication(): ApplicationInterface
     {
         $container = $this->grabContainer();
@@ -81,6 +84,8 @@ trait ConsoleActions
 
 
     /**
+     * Add a Command to the Console Application.
+     *
      * @param class-string $commandClass
      */
     public function addCommand(string $commandClass): void
@@ -106,6 +111,8 @@ trait ConsoleActions
 
 
     /**
+     * Add an Exception Handler to the Console Application.
+     *
      * @param class-string $exceptionHandlerClass
      */
     public function addConsoleExceptionHandler(string $exceptionHandlerClass): void

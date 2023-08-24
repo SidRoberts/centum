@@ -21,6 +21,9 @@ trait CsrfActions
 
 
 
+    /**
+     * Grab the CSRF Generator from the Container.
+     */
     public function grabCsrfGenerator(): GeneratorInterface
     {
         $container = $this->grabContainer();
@@ -28,6 +31,9 @@ trait CsrfActions
         return $container->get(GeneratorInterface::class);
     }
 
+    /**
+     * Grab the CSRF Storage from the Container.
+     */
     public function grabCsrfStorage(): StorageInterface
     {
         $container = $this->grabContainer();
@@ -53,6 +59,10 @@ trait CsrfActions
 
 
 
+    /**
+     * Replace the CSRF Validator with a mock that simply returns `true` for
+     * everything.
+     */
     public function assumeCsrfIsValid(): void
     {
         $this->mockInContainer(

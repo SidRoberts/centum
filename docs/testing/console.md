@@ -41,6 +41,8 @@ grabStderrContent(): string
 
 ## `grabConsoleApplication`
 
+Grab the Console Application from the Container.
+
 ```php
 grabConsoleApplication(): Centum\Interfaces\Console\ApplicationInterface
 ```
@@ -48,6 +50,8 @@ grabConsoleApplication(): Centum\Interfaces\Console\ApplicationInterface
 
 
 ## `addCommand`
+
+Add a Command to the Console Application.
 
 ```php
 addCommand(
@@ -68,6 +72,8 @@ runCommand(
 
 
 ## `addConsoleExceptionHandler`
+
+Add an Exception Handler to the Console Application.
 
 ```php
 addConsoleExceptionHandler(

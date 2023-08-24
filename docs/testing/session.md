@@ -15,6 +15,8 @@ permalink: testing/session
 
 ## `grabSession`
 
+Grab the HTTP Session from the Container.
+
 ```php
 grabSession(): Centum\Interfaces\Http\SessionInterface
 ```
@@ -22,6 +24,8 @@ grabSession(): Centum\Interfaces\Http\SessionInterface
 
 
 ## `seeInSession`
+
+Check that a Session key exists.
 
 ```php
 seeInSession(
@@ -32,6 +36,8 @@ seeInSession(
 
 
 ## `dontSeeInSession`
+
+Check that a Session key does not exist.
 
 ```php
 dontSeeInSession(
@@ -75,6 +81,8 @@ seeValueInSessionIsNot(
 
 
 ## `removeFromSession`
+
+Remove a key from the Session.
 
 ```php
 removeFromSession(

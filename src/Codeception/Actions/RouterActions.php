@@ -28,6 +28,9 @@ trait RouterActions
 
 
 
+    /**
+     * Grab the Router from the Container.
+     */
     public function grabRouter(): RouterInterface
     {
         $container = $this->grabContainer();
@@ -35,6 +38,9 @@ trait RouterActions
         return $container->get(RouterInterface::class);
     }
 
+    /**
+     * Make a new group of Routes with an optional middleware.
+     */
     public function makeRouterGroup(MiddlewareInterface $middleware = null): GroupInterface
     {
         $router = $this->grabRouter();
@@ -43,6 +49,8 @@ trait RouterActions
     }
 
     /**
+     * Add an Exception Handler to the Router.
+     *
      * @param class-string $exceptionHandlerClass
      */
     public function addRouterExceptionHandler(string $exceptionHandlerClass): void
@@ -155,6 +163,9 @@ trait RouterActions
         );
     }
 
+    /**
+     * Grab the Response last created.
+     */
     public function grabResponse(): ResponseInterface
     {
         if (!$this->response) {
@@ -164,6 +175,9 @@ trait RouterActions
         return $this->response;
     }
 
+    /**
+     * Grab the content from the Response last created.
+     */
     public function grabResponseContent(): string
     {
         $response = $this->grabResponse();
@@ -195,6 +209,9 @@ trait RouterActions
 
 
 
+    /**
+     * Grab the HTTP response code from the Response last created.
+     */
     public function grabResponseCode(): int
     {
         $response = $this->grabResponse();
@@ -204,6 +221,9 @@ trait RouterActions
         return $status->getCode();
     }
 
+    /**
+     * See if the HTTP response code is an expected value.
+     */
     public function seeResponseCodeIs(int $expected): void
     {
         $responseCode = $this->grabResponseCode();
@@ -214,6 +234,9 @@ trait RouterActions
         );
     }
 
+    /**
+     * See if the HTTP response code is NOT an expected value.
+     */
     public function seeResponseCodeIsNot(int $expected): void
     {
         $responseCode = $this->grabResponseCode();
@@ -224,6 +247,9 @@ trait RouterActions
         );
     }
 
+    /**
+     * See if the HTTP response code is 2xx.
+     */
     public function seeResponseCodeIsSuccessful(): void
     {
         $responseCode = $this->grabResponseCode();
@@ -234,6 +260,9 @@ trait RouterActions
         );
     }
 
+    /**
+     * See if the HTTP response code is 5xx.
+     */
     public function seeResponseCodeIsServerError(): void
     {
         $responseCode = $this->grabResponseCode();
@@ -244,6 +273,9 @@ trait RouterActions
         );
     }
 
+    /**
+     * See if the HTTP response code is 404.
+     */
     public function seePageNotFound(): void
     {
         $this->seeResponseCodeIs(404);
