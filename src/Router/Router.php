@@ -136,16 +136,14 @@ class Router implements RouterInterface
 
 
 
-        $replacements = $this->replacements;
-
         $pattern = preg_replace_callback(
             "/\{([A-Za-z]+)(\:([A-Za-z]+))?\}/",
-            function (array $match) use ($replacements): string {
+            function (array $match): string {
                 $key = $match[1];
 
                 $replacementID = $match[3] ?? "any";
 
-                $replacement = $replacements[$replacementID] ?? $replacements["any"];
+                $replacement = $this->replacements[$replacementID] ?? $this->replacements["any"];
 
                 $regularExpression = $replacement->getRegularExpression();
 
@@ -170,7 +168,7 @@ class Router implements RouterInterface
         $routeParameters = $route->getParameters();
 
         foreach ($routeParameters as $key => $replacementID) {
-            $replacement = $replacements[$replacementID] ?? throw new ReplacementNotFoundException($replacementID);
+            $replacement = $this->replacements[$replacementID] ?? throw new ReplacementNotFoundException($replacementID);
 
             /** @var string */
             $value = $parameters[$key] ?? throw new ParamNotFoundException($key);
