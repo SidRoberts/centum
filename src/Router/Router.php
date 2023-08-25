@@ -4,7 +4,6 @@ namespace Centum\Router;
 
 use Centum\Container\FormResolver;
 use Centum\Container\RouterParametersResolver;
-use Centum\Http\Response;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -207,7 +206,7 @@ class Router implements RouterInterface
     {
         $controller = $this->container->get($class);
 
-        /** @var Response */
+        /** @var ResponseInterface */
         return $this->container->typehintMethod($controller, $method);
     }
 
