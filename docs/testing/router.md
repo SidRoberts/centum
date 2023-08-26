@@ -41,7 +41,7 @@ Add an Exception Handler to the Router.
 
 ```php
 addRouterExceptionHandler(
-    class-string $exceptionHandlerClass
+    class-string<Centum\Interfaces\Router\ExceptionHandlerInterface> $exceptionHandlerClass
 ): void
 ```
 

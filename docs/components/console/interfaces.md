@@ -19,17 +19,17 @@ nav_order: 102
 
 ```php
 addCommand(
-    class-string $commandClass
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass
 ): void
 ```
 
 ```php
-getCommands(): array<string, class-string>
+getCommands(): array<string, class-string<Centum\Interfaces\Console\CommandInterface>>
 ```
 
 ```php
 addExceptionHandler(
-    class-string $exceptionHandlerClass
+    class-string<Centum\Interfaces\Console\ExceptionHandlerInterface> $exceptionHandlerClass
 ): void
 ```
 

@@ -6,6 +6,7 @@ use Centum\Http\Data;
 use Centum\Http\Request;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ExceptionHandlerInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 use Centum\Interfaces\Router\RouterInterface;
@@ -53,7 +54,7 @@ trait RouterActions
     /**
      * Add an Exception Handler to the Router.
      *
-     * @param class-string $exceptionHandlerClass
+     * @param class-string<ExceptionHandlerInterface> $exceptionHandlerClass
      */
     public function addRouterExceptionHandler(string $exceptionHandlerClass): void
     {

@@ -7,6 +7,8 @@ use Centum\Console\CommandMetadata;
 use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
 use Centum\Interfaces\Console\ApplicationInterface;
+use Centum\Interfaces\Console\CommandInterface;
+use Centum\Interfaces\Console\ExceptionHandlerInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Exception\ModuleException;
@@ -86,7 +88,7 @@ trait ConsoleActions
     /**
      * Add a Command to the Console Application.
      *
-     * @param class-string $commandClass
+     * @param class-string<CommandInterface> $commandClass
      */
     public function addCommand(string $commandClass): void
     {
@@ -113,7 +115,7 @@ trait ConsoleActions
     /**
      * Add an Exception Handler to the Console Application.
      *
-     * @param class-string $exceptionHandlerClass
+     * @param class-string<ExceptionHandlerInterface> $exceptionHandlerClass
      */
     public function addConsoleExceptionHandler(string $exceptionHandlerClass): void
     {
@@ -216,7 +218,7 @@ trait ConsoleActions
 
 
     /**
-     * @param class-string $commandClass
+     * @param class-string<CommandInterface> $commandClass
      */
     public function grabCommandMetadata(string $commandClass): CommandMetadata
     {
@@ -228,7 +230,7 @@ trait ConsoleActions
     }
 
     /**
-     * @param class-string $commandClass
+     * @param class-string<CommandInterface> $commandClass
      */
     public function grabCommandName(string $commandClass): string
     {
@@ -238,7 +240,7 @@ trait ConsoleActions
     }
 
     /**
-     * @param class-string $commandClass
+     * @param class-string<CommandInterface> $commandClass
      */
     public function grabCommandDescription(string $commandClass): string
     {

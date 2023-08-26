@@ -43,7 +43,7 @@ getRoutes(): array<Centum\Interfaces\Router\RouteInterface>
 ```php
 get(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -51,7 +51,7 @@ get(
 ```php
 post(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -59,7 +59,7 @@ post(
 ```php
 head(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -67,7 +67,7 @@ head(
 ```php
 put(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -75,7 +75,7 @@ put(
 ```php
 delete(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -83,7 +83,7 @@ delete(
 ```php
 trace(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -91,7 +91,7 @@ trace(
 ```php
 options(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -99,7 +99,7 @@ options(
 ```php
 connect(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -107,7 +107,7 @@ connect(
 ```php
 patch(
     string $uri,
-    class-string $class,
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class,
     string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
@@ -115,14 +115,14 @@ patch(
 ```php
 crud(
     string $uri,
-    class-string $class
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class
 ): void
 ```
 
 ```php
 submission(
     string $uri,
-    class-string $class
+    class-string<Centum\Interfaces\Router\ControllerInterface> $class
 ): void
 ```
 
@@ -188,7 +188,7 @@ getUri(): string
 ```
 
 ```php
-getClass(): class-string
+getClass(): class-string<Centum\Interfaces\Router\ControllerInterface>
 ```
 
 ```php
@@ -211,7 +211,7 @@ group(
 
 ```php
 addExceptionHandler(
-    class-string $exceptionHandlerClass
+    class-string<Centum\Interfaces\Router\ExceptionHandlerInterface> $exceptionHandlerClass
 ): void
 ```
 

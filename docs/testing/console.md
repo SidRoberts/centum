@@ -55,7 +55,7 @@ Add a Command to the Console Application.
 
 ```php
 addCommand(
-    class-string $commandClass
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass
 ): void
 ```
 
@@ -77,7 +77,7 @@ Add an Exception Handler to the Console Application.
 
 ```php
 addConsoleExceptionHandler(
-    class-string $exceptionHandlerClass
+    class-string<Centum\Interfaces\Console\ExceptionHandlerInterface> $exceptionHandlerClass
 ): void
 ```
 
@@ -195,7 +195,7 @@ seeStderrNotContains(
 
 ```php
 grabCommandMetadata(
-    class-string $commandClass
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass
 ): Centum\Console\CommandMetadata
 ```
 
@@ -205,7 +205,7 @@ grabCommandMetadata(
 
 ```php
 grabCommandName(
-    class-string $commandClass
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass
 ): string
 ```
 
@@ -215,6 +215,6 @@ grabCommandName(
 
 ```php
 grabCommandDescription(
-    class-string $commandClass
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass
 ): string
 ```

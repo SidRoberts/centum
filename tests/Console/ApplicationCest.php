@@ -5,7 +5,6 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
-use Centum\Console\Exception\NotAnExceptionHandlerException;
 use Exception;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
@@ -160,24 +159,6 @@ class ApplicationCest
     }
 
 
-
-    public function testAddExceptionHandlerNotAnExceptionHandler(ConsoleTester $I): void
-    {
-        $container = $I->grabContainer();
-
-        $application = new Application($container);
-
-        $notAnExceptionHandlerClass = Exception::class;
-
-        $I->expectThrowable(
-            new NotAnExceptionHandlerException($notAnExceptionHandlerClass),
-            function () use ($application, $notAnExceptionHandlerClass): void {
-                $application->addExceptionHandler(
-                    $notAnExceptionHandlerClass
-                );
-            }
-        );
-    }
 
     public function testExceptionHandlers(ConsoleTester $I): void
     {

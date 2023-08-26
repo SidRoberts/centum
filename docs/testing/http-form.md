@@ -30,7 +30,7 @@ buildForm(
 ```php
 expectFormThrowable(
     Throwable|string $expectedThrowable,
-    class-string $formClass,
+    class-string<Centum\Interfaces\Http\FormInterface> $formClass,
     Centum\Interfaces\Http\DataInterface $data,
     Centum\Interfaces\Http\FilesInterface $files = null
 ): void

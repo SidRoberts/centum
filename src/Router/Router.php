@@ -7,6 +7,7 @@ use Centum\Container\RouterParametersResolver;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Router\ControllerInterface;
 use Centum\Interfaces\Router\ExceptionHandlerInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
@@ -14,7 +15,6 @@ use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Interfaces\Router\RouteInterface;
 use Centum\Interfaces\Router\RouterInterface;
-use Centum\Router\Exception\NotAnExceptionHandlerException;
 use Centum\Router\Exception\ParamNotFoundException;
 use Centum\Router\Exception\ReplacementNotFoundException;
 use Centum\Router\Exception\RouteMismatchException;
@@ -35,7 +35,7 @@ class Router implements RouterInterface
     /** @var array<string, ReplacementInterface> */
     protected array $replacements = [];
 
-    /** @var array<class-string> */
+    /** @var array<class-string<ExceptionHandlerInterface>> */
     protected array $exceptionHandlers = [];
 
 
@@ -80,14 +80,10 @@ class Router implements RouterInterface
 
 
     /**
-     * @param class-string $exceptionHandlerClass
+     * @param class-string<ExceptionHandlerInterface> $exceptionHandlerClass
      */
     public function addExceptionHandler(string $exceptionHandlerClass): void
     {
-        if (!is_subclass_of($exceptionHandlerClass, ExceptionHandlerInterface::class)) {
-            throw new NotAnExceptionHandlerException($exceptionHandlerClass);
-        }
-
         $this->exceptionHandlers[] = $exceptionHandlerClass;
     }
 
@@ -200,7 +196,7 @@ class Router implements RouterInterface
     }
 
     /**
-     * @param class-string $class
+     * @param class-string<ControllerInterface> $class
      */
     protected function executeMethod(string $class, string $method): ResponseInterface
     {
@@ -215,7 +211,6 @@ class Router implements RouterInterface
     protected function handleException(RequestInterface $request, Throwable $throwable): ResponseInterface
     {
         foreach ($this->exceptionHandlers as $exceptionHandlerClass) {
-            /** @var ExceptionHandlerInterface */
             $exceptionHandler = $this->container->get($exceptionHandlerClass);
 
             try {

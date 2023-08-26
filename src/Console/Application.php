@@ -6,8 +6,6 @@ use Centum\Console\Command\ListCommand;
 use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
-use Centum\Console\Exception\NotACommandException;
-use Centum\Console\Exception\NotAnExceptionHandlerException;
 use Centum\Console\Exception\UnsuitableExceptionHandlerException;
 use Centum\Container\ConsoleResolver;
 use Centum\Interfaces\Console\ApplicationInterface;
@@ -20,10 +18,10 @@ use Throwable;
 
 class Application implements ApplicationInterface
 {
-    /** @var array<string, class-string> */
+    /** @var array<string, class-string<CommandInterface>> */
     protected array $commands = [];
 
-    /** @var array<class-string> */
+    /** @var array<class-string<ExceptionHandlerInterface>> */
     protected array $exceptionHandlers = [];
 
 
@@ -40,15 +38,11 @@ class Application implements ApplicationInterface
 
 
     /**
-     * @param class-string $commandClass
+     * @param class-string<CommandInterface> $commandClass
      */
     public function getCommandMetadata(string $commandClass): CommandMetadata
     {
         $reflectionClass = new ReflectionClass($commandClass);
-
-        if (!$reflectionClass->isSubclassOf(CommandInterface::class)) {
-            throw new NotACommandException($commandClass);
-        }
 
         $attributes = $reflectionClass->getAttributes(CommandMetadata::class);
 
@@ -60,7 +54,7 @@ class Application implements ApplicationInterface
 
 
     /**
-     * @param class-string $commandClass
+     * @param class-string<CommandInterface> $commandClass
      */
     public function addCommand(string $commandClass): void
     {
@@ -72,7 +66,7 @@ class Application implements ApplicationInterface
     }
 
     /**
-     * @return array<string, class-string>
+     * @return array<string, class-string<CommandInterface>>
      */
     public function getCommands(): array
     {
@@ -82,14 +76,10 @@ class Application implements ApplicationInterface
 
 
     /**
-     * @param class-string $exceptionHandlerClass
+     * @param class-string<ExceptionHandlerInterface> $exceptionHandlerClass
      */
     public function addExceptionHandler(string $exceptionHandlerClass): void
     {
-        if (!is_subclass_of($exceptionHandlerClass, ExceptionHandlerInterface::class)) {
-            throw new NotAnExceptionHandlerException($exceptionHandlerClass);
-        }
-
         $this->exceptionHandlers[] = $exceptionHandlerClass;
     }
 
@@ -107,7 +97,6 @@ class Application implements ApplicationInterface
 
         $commandClass = $this->commands[$name] ?? throw new CommandNotFoundException($name);
 
-        /** @var CommandInterface */
         $command = $this->container->get($commandClass);
 
         try {
@@ -120,7 +109,6 @@ class Application implements ApplicationInterface
     protected function handleException(TerminalInterface $terminal, Throwable $throwable): int
     {
         foreach ($this->exceptionHandlers as $exceptionHandlerClass) {
-            /** @var ExceptionHandlerInterface */
             $exceptionHandler = $this->container->get($exceptionHandlerClass);
 
             try {

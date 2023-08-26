@@ -9,7 +9,7 @@ interface RouteInterface
     public function getUri(): string;
 
     /**
-     * @return class-string
+     * @return class-string<ControllerInterface>
      */
     public function getClass(): string;
 

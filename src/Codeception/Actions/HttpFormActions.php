@@ -7,6 +7,7 @@ use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FilesInterface;
+use Centum\Interfaces\Http\FormInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Throwable;
 
@@ -22,7 +23,7 @@ trait HttpFormActions
 
 
     /**
-     * @template T of object
+     * @template T of FormInterface
      * @psalm-param class-string<T> $formClass
      * @psalm-return T
      */
@@ -52,7 +53,7 @@ trait HttpFormActions
 
     /**
      * @param Throwable|string $expectedThrowable
-     * @param class-string $formClass
+     * @param class-string<FormInterface> $formClass
      */
     public function expectFormThrowable($expectedThrowable, string $formClass, DataInterface $data, FilesInterface $files = null): void
     {
