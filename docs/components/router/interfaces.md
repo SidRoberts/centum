@@ -44,7 +44,7 @@ getRoutes(): array<Centum\Interfaces\Router\RouteInterface>
 get(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -52,7 +52,7 @@ get(
 post(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -60,7 +60,7 @@ post(
 head(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -68,7 +68,7 @@ head(
 put(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -76,7 +76,7 @@ put(
 delete(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -84,7 +84,7 @@ delete(
 trace(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -92,7 +92,7 @@ trace(
 options(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -100,7 +100,7 @@ options(
 connect(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -108,7 +108,7 @@ connect(
 patch(
     string $uri,
     class-string<Centum\Interfaces\Router\ControllerInterface> $class,
-    string $method
+    non-empty-string $method
 ): Centum\Interfaces\Router\RouteInterface
 ```
 
@@ -192,7 +192,7 @@ getClass(): class-string<Centum\Interfaces\Router\ControllerInterface>
 ```
 
 ```php
-getMethod(): string
+getMethod(): non-empty-string
 ```
 
 ```php

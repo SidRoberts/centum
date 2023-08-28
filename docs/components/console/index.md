@@ -26,10 +26,10 @@ Centum\Console\Application(
 );
 ```
 
-- `public function getCommandMetadata(string $commandClass): Centum\Console\CommandMetadata`
-- `public function addCommand(string $commandClass): void`
-- `public function getCommands(): array<string, string>`
-- `public function addExceptionHandler(class-string $exceptionClass, string $commandClass): void`
+- `public function getCommandMetadata(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): Centum\Console\CommandMetadata`
+- `public function addCommand(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): void`
+- `public function getCommands(): array<string, class-string<Centum\Interfaces\Console\CommandInterface>>`
+- `public function addExceptionHandler(class-string<Centum\Interfaces\Console\ExceptionHandlerInterface> $exceptionClass): void`
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
 
 

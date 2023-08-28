@@ -18,7 +18,7 @@ nav_order: 102
 ## [`Centum\Interfaces\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/DataInterface.php)
 
 ```php
-getTotal(): int
+getTotal(): non-negative-int
 ```
 
 ```php
@@ -41,7 +41,7 @@ getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface
 ```
 
 ```php
-getPageNumber(): int
+getPageNumber(): positive-int
 ```
 
 ```php
@@ -49,17 +49,17 @@ getData(): array<mixed>
 ```
 
 ```php
-getPreviousPageNumber(): ?int
+getPreviousPageNumber(): positive-int|null
 ```
 
 ```php
-getNextPageNumber(): ?int
+getNextPageNumber(): positive-int|null
 ```
 
 ```php
 getPageRange(
-    int $max
-): list<int>
+    positive-int $max
+): list<positive-int>
 ```
 
 
@@ -79,15 +79,15 @@ getUrlPrefix(): string
 ```
 
 ```php
-getTotalItems(): int
+getTotalItems(): non-negative-int
 ```
 
 ```php
-getTotalPages(): int
+getTotalPages(): positive-int
 ```
 
 ```php
 getPage(
-    int $pageNumber
+    positive-int $pageNumber
 ): Centum\Interfaces\Paginator\PageInterface
 ```

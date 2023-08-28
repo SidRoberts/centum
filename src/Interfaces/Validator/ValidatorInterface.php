@@ -5,7 +5,7 @@ namespace Centum\Interfaces\Validator;
 interface ValidatorInterface
 {
     /**
-     * @return array<string>
+     * @return list<string>
      */
     public function validate(mixed $value): array;
 }

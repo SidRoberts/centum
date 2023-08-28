@@ -3,10 +3,7 @@
 namespace Tests\Unit\Paginator;
 
 use Centum\Paginator\Data\ArrayData;
-use Centum\Paginator\Exception\InvalidItemsPerPageException;
 use Centum\Paginator\Paginator;
-use Codeception\Attribute\DataProvider;
-use Codeception\Example;
 use Tests\Support\UnitTester;
 
 /**
@@ -14,34 +11,6 @@ use Tests\Support\UnitTester;
  */
 class PaginatorCest
 {
-    #[DataProvider("providerConstructorItemsPerPageException")]
-    public function testConstructorItemsPerPageException(UnitTester $I, Example $example): void
-    {
-        $data = new ArrayData(
-            range(1, 100)
-        );
-
-        /** @var int */
-        $itemsPerPage = $example[0];
-
-        $I->expectThrowable(
-            new InvalidItemsPerPageException($itemsPerPage),
-            function () use ($data, $itemsPerPage) {
-                new Paginator($data, $itemsPerPage, "/items/");
-            }
-        );
-    }
-
-    protected function providerConstructorItemsPerPageException(): array
-    {
-        return [
-            [-1],
-            [0],
-        ];
-    }
-
-
-
     public function testGetData(UnitTester $I): void
     {
         $data = new ArrayData(

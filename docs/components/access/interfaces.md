@@ -19,29 +19,29 @@ nav_order: 102
 
 ```php
 allow(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
 ```php
 deny(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
 ```php
 remove(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
 ```php
 isAllowed(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): bool
 ```
 
@@ -50,29 +50,29 @@ isAllowed(
 ## [`Centum\Interfaces\Access\ActivityInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/ActivityInterface.php)
 
 ```php
-getName(): string
+getName(): non-empty-string
 ```
 
 ```php
 allow(
-    string $user
+    non-empty-string $user
 ): void
 ```
 
 ```php
 deny(
-    string $user
+    non-empty-string $user
 ): void
 ```
 
 ```php
 remove(
-    string $user
+    non-empty-string $user
 ): void
 ```
 
 ```php
 isAllowed(
-    string $user
+    non-empty-string $user
 ): bool
 ```

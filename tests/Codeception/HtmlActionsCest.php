@@ -112,7 +112,7 @@ class HtmlActionsCest
     {
         $group = $I->makeRouterGroup();
 
-        /** @var string */
+        /** @var non-empty-string */
         $method = $example["method"];
 
         $group->get("/html", HtmlController::class, $method);

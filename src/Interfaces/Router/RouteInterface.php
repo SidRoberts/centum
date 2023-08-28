@@ -13,6 +13,9 @@ interface RouteInterface
      */
     public function getClass(): string;
 
+    /**
+     * @return non-empty-string
+     */
     public function getMethod(): string;
 
     /**

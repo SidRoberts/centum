@@ -30,6 +30,6 @@ seeValidatorPasses(
 seeValidatorFails(
     Centum\Interfaces\Validator\ValidatorInterface $validator,
     mixed $value,
-    array $expectedViolations = null
+    list<string>|null $expectedViolations = null
 ): void
 ```

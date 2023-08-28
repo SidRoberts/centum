@@ -14,6 +14,9 @@ trait ValidatorActions
         Assert::assertCount(0, $violations);
     }
 
+    /**
+     * @param list<string>|null $expectedViolations
+     */
     public function seeValidatorFails(ValidatorInterface $validator, mixed $value, array $expectedViolations = null): void
     {
         $violations = $validator->validate($value);

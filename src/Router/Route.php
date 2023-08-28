@@ -9,6 +9,7 @@ class Route implements RouteInterface
 {
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function __construct(
         protected readonly string $httpMethod,
@@ -38,6 +39,9 @@ class Route implements RouteInterface
         return $this->class;
     }
 
+    /**
+     * @return non-empty-string
+     */
     public function getMethod(): string
     {
         return $this->method;

@@ -13,7 +13,7 @@ class Access implements AccessInterface
 
 
 
-    /** @var array<string, ActivityInterface> */
+    /** @var array<non-empty-string, ActivityInterface> */
     protected array $activities = [];
 
 
@@ -32,6 +32,10 @@ class Access implements AccessInterface
 
 
 
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
     public function allow(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
@@ -39,6 +43,10 @@ class Access implements AccessInterface
         $activity->allow($user);
     }
 
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
     public function deny(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
@@ -46,6 +54,10 @@ class Access implements AccessInterface
         $activity->deny($user);
     }
 
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
     public function remove(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
@@ -55,6 +67,10 @@ class Access implements AccessInterface
 
 
 
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
     public function isAllowed(string $user, string $activityName): bool
     {
         $activity = $this->getActivity($activityName);
@@ -62,6 +78,10 @@ class Access implements AccessInterface
         return $activity->isAllowed($user);
     }
 
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
     public function verify(string $user, string $activityName): void
     {
         if (!$this->isAllowed($user, $activityName)) {
@@ -71,6 +91,9 @@ class Access implements AccessInterface
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     protected function getActivity(string $name): ActivityInterface
     {
         if (!isset($this->activities[$name])) {

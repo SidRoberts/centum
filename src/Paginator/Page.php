@@ -4,18 +4,16 @@ namespace Centum\Paginator;
 
 use Centum\Interfaces\Paginator\PageInterface;
 use Centum\Interfaces\Paginator\PaginatorInterface;
-use Centum\Paginator\Exception\InvalidMaxException;
-use Centum\Paginator\Exception\InvalidPageNumberException;
 
 class Page implements PageInterface
 {
+    /**
+     * @param positive-int $pageNumber
+     */
     public function __construct(
         protected readonly PaginatorInterface $paginator,
         protected readonly int $pageNumber
     ) {
-        if ($pageNumber < 1) {
-            throw new InvalidPageNumberException($pageNumber);
-        }
     }
 
 
@@ -25,6 +23,9 @@ class Page implements PageInterface
         return $this->paginator;
     }
 
+    /**
+     * @return positive-int
+     */
     public function getPageNumber(): int
     {
         return $this->pageNumber;
@@ -47,6 +48,9 @@ class Page implements PageInterface
 
 
 
+    /**
+     * @return positive-int|null
+     */
     public function getPreviousPageNumber(): int|null
     {
         $previousPageNumber = $this->pageNumber - 1;
@@ -58,6 +62,9 @@ class Page implements PageInterface
         return $previousPageNumber;
     }
 
+    /**
+     * @return positive-int|null
+     */
     public function getNextPageNumber(): int|null
     {
         $nextPageNumber = $this->pageNumber + 1;
@@ -72,14 +79,12 @@ class Page implements PageInterface
 
 
     /**
-     * @return list<int>
+     * @param positive-int $max
+     *
+     * @return list<positive-int>
      */
     public function getPageRange(int $max): array
     {
-        if ($max < 1) {
-            throw new InvalidMaxException($max);
-        }
-
         $pageNumber = $this->pageNumber;
 
         if ($pageNumber > $this->paginator->getTotalPages()) {
@@ -89,6 +94,7 @@ class Page implements PageInterface
         $firstPaginationPageNumber = max($pageNumber - $max, 1);
         $lastPaginationPageNumber  = min($pageNumber + $max, $this->paginator->getTotalPages());
 
+        /** @var list<positive-int> */
         return range($firstPaginationPageNumber, $lastPaginationPageNumber);
     }
 }

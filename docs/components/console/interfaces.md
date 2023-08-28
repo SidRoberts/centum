@@ -123,19 +123,19 @@ getCommandName(): string
 ```
 
 ```php
-getParameters(): array
+getParameters(): array<non-empty-string, string|bool>
 ```
 
 ```php
 getParameter(
-    string $name,
+    non-empty-string $name,
     mixed $defaultValue = null
 ): mixed
 ```
 
 ```php
 hasParameter(
-    string $name
+    non-empty-string $name
 ): bool
 ```
 

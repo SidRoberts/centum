@@ -13,6 +13,9 @@ interface ContainerInterface
      */
     public function get(string $class): object;
 
+    /**
+     * @param non-empty-string $methodName
+     */
     public function typehintMethod(object $class, string $methodName): mixed;
 
     /**

@@ -5,18 +5,17 @@ namespace Centum\Paginator;
 use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Interfaces\Paginator\PageInterface;
 use Centum\Interfaces\Paginator\PaginatorInterface;
-use Centum\Paginator\Exception\InvalidItemsPerPageException;
 
 class Paginator implements PaginatorInterface
 {
+    /**
+     * @param positive-int $itemsPerPage
+     */
     public function __construct(
         protected readonly DataInterface $data,
         protected readonly int $itemsPerPage,
         protected readonly string $urlPrefix
     ) {
-        if ($itemsPerPage < 1) {
-            throw new InvalidItemsPerPageException($itemsPerPage);
-        }
     }
 
 
@@ -26,6 +25,9 @@ class Paginator implements PaginatorInterface
         return $this->data;
     }
 
+    /**
+     * @return positive-int
+     */
     public function getItemsPerPage(): int
     {
         return $this->itemsPerPage;
@@ -38,22 +40,34 @@ class Paginator implements PaginatorInterface
 
 
 
+    /**
+     * @return non-negative-int
+     */
     public function getTotalItems(): int
     {
         return $this->data->getTotal();
     }
 
+    /**
+     * @return positive-int
+     */
     public function getTotalPages(): int
     {
-        if ($this->getTotalItems() === 0) {
+        $totalItems = $this->getTotalItems();
+
+        if ($totalItems === 0) {
             return 1;
         }
 
-        return (int) ceil($this->getTotalItems() / $this->itemsPerPage);
+        /** @var positive-int */
+        return (int) ceil($totalItems / $this->itemsPerPage);
     }
 
 
 
+    /**
+     * @param positive-int $pageNumber
+     */
     public function getPage(int $pageNumber): PageInterface
     {
         return new Page($this, $pageNumber);

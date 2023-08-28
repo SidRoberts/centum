@@ -10,7 +10,7 @@ class Arguments implements ArgumentsInterface
     protected readonly string $commandName;
 
     /**
-     * @var array<string, string|bool>
+     * @var array<non-empty-string, string|bool>
      */
     protected readonly array $parameters;
 
@@ -35,6 +35,7 @@ class Arguments implements ArgumentsInterface
                 continue;
             }
 
+            /** @var non-empty-string */
             $name = $match[1];
 
             $value = $match[3] ?? true;
@@ -62,7 +63,7 @@ class Arguments implements ArgumentsInterface
     }
 
     /**
-     * @return array<string, string|bool>
+     * @return array<non-empty-string, string|bool>
      */
     public function getParameters(): array
     {
@@ -71,11 +72,17 @@ class Arguments implements ArgumentsInterface
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     public function getParameter(string $name, mixed $defaultValue = null): mixed
     {
         return $this->parameters[$name] ?? $defaultValue;
     }
 
+    /**
+     * @param non-empty-string $name
+     */
     public function hasParameter(string $name): bool
     {
         return array_key_exists($name, $this->parameters);

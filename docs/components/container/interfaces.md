@@ -26,7 +26,7 @@ get(
 ```php
 typehintMethod(
     object $class,
-    string $methodName
+    non-empty-string $methodName
 ): mixed
 ```
 

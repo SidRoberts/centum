@@ -155,7 +155,6 @@ class Router implements RouterInterface
             throw new RouteMismatchException();
         }
 
-        /** @var array<string, string> */
         $parameters = $this->removeIntegerKeys($parameters);
 
 
@@ -197,6 +196,7 @@ class Router implements RouterInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     protected function executeMethod(string $class, string $method): ResponseInterface
     {
@@ -226,12 +226,15 @@ class Router implements RouterInterface
 
 
     /**
-     * @param array<array-key, mixed> $array
+     * @template T
      *
-     * @return array<array-key, mixed>
+     * @param array<array-key, T> $array
+     *
+     * @return array<string, T>
      */
     protected function removeIntegerKeys(array $array): array
     {
+        /** @var array<string, T> */
         return array_filter(
             $array,
             function (mixed $key): bool {

@@ -112,6 +112,9 @@ class Container implements ContainerInterface
 
 
 
+    /**
+     * @param non-empty-string $methodName
+     */
     public function typehintMethod(object $class, string $methodName): mixed
     {
         $reflectionMethod = new ReflectionMethod($class, $methodName);
@@ -186,7 +189,7 @@ class Container implements ContainerInterface
 
 
     /**
-     * @return array<int<0, max>, mixed>
+     * @return array<non-negative-int, mixed>
      */
     protected function resolveParams(ReflectionFunctionAbstract $method): array
     {

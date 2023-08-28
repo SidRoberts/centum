@@ -16,6 +16,9 @@ class ArrayData implements DataInterface
 
 
 
+    /**
+     * @return non-negative-int
+     */
     public function getTotal(): int
     {
         return count($this->data);

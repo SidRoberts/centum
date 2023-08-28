@@ -3,8 +3,6 @@
 namespace Tests\Unit\Paginator;
 
 use Centum\Paginator\Data\ArrayData;
-use Centum\Paginator\Exception\InvalidMaxException;
-use Centum\Paginator\Exception\InvalidPageNumberException;
 use Centum\Paginator\Page;
 use Centum\Paginator\Paginator;
 use Codeception\Attribute\DataProvider;
@@ -16,37 +14,6 @@ use Tests\Support\UnitTester;
  */
 class PageCest
 {
-    #[DataProvider("providerBadPageNumbers")]
-    public function testBadPageNumbers(UnitTester $I, Example $example): void
-    {
-        $data = new ArrayData(
-            range(1, 100)
-        );
-
-        $paginator = new Paginator($data, 10, "/items/");
-
-        /** @var int */
-        $pageNumber = $example[0];
-
-        $I->expectThrowable(
-            new InvalidPageNumberException($pageNumber),
-            function () use ($paginator, $pageNumber) {
-                new Page($paginator, $pageNumber);
-            }
-        );
-    }
-
-    protected function providerBadPageNumbers(): array
-    {
-        return [
-            [0],
-            [-1],
-            [-123],
-        ];
-    }
-
-
-
     public function testGetPaginator(UnitTester $I): void
     {
         $data = new ArrayData(
@@ -76,7 +43,7 @@ class PageCest
 
         $paginator = new Paginator($data, 10, "/items/");
 
-        /** @var int */
+        /** @var positive-int */
         $pageNumber = $example["pageNumber"];
 
         $page = new Page($paginator, $pageNumber);
@@ -126,7 +93,7 @@ class PageCest
 
         $paginator = new Paginator($data, 10, "/items/");
 
-        /** @var int */
+        /** @var positive-int */
         $pageNumber = $example["pageNumber"];
 
         $page = new Page($paginator, $pageNumber);
@@ -171,7 +138,7 @@ class PageCest
 
         $paginator = new Paginator($data, 10, "/items/");
 
-        /** @var int */
+        /** @var positive-int */
         $pageNumber = $example["pageNumber"];
 
         $page = new Page($paginator, $pageNumber);
@@ -216,7 +183,7 @@ class PageCest
 
         $paginator = new Paginator($data, 10, "/items/");
 
-        /** @var int */
+        /** @var positive-int */
         $pageNumber = $example["pageNumber"];
 
         $page = new Page($paginator, $pageNumber);
@@ -224,7 +191,7 @@ class PageCest
         /** @var array */
         $expected = $example["expected"];
 
-        /** @var int */
+        /** @var positive-int */
         $i = $example["i"];
 
         $I->assertSame(
@@ -278,38 +245,6 @@ class PageCest
                 "expected"   => range(7, 10),
                 "i"          => 3,
             ],
-        ];
-    }
-
-
-
-    #[DataProvider("providerGetPageRangeBad")]
-    public function testGetPageRangeBad(UnitTester $I, Example $example): void
-    {
-        $data = new ArrayData(
-            range(1, 100)
-        );
-
-        $paginator = new Paginator($data, 10, "/items/");
-
-        $page = new Page($paginator, 5);
-
-        /** @var int */
-        $max = $example[0];
-
-        $I->expectThrowable(
-            new InvalidMaxException($max),
-            function () use ($page, $max) {
-                $page->getPageRange($max);
-            }
-        );
-    }
-
-    protected function providerGetPageRangeBad(): array
-    {
-        return [
-            [0],
-            [-1],
         ];
     }
 }

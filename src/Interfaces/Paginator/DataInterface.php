@@ -4,6 +4,9 @@ namespace Centum\Interfaces\Paginator;
 
 interface DataInterface
 {
+    /**
+     * @return non-negative-int
+     */
     public function getTotal(): int;
 
     /**

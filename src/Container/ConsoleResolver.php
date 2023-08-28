@@ -36,6 +36,7 @@ class ConsoleResolver implements ResolverInterface
             throw new UnresolvableParameterException($parameter);
         }
 
+        /** @var non-empty-string */
         $name = $this->camelCaseToSlug(
             $parameter->getName()
         );

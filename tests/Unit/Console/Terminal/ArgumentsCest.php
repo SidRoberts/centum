@@ -72,7 +72,7 @@ class ArgumentsCest
 
         $parameters = $this->getArguments();
 
-        /** @var string */
+        /** @var non-empty-string */
         $key = $example["key"];
 
         $I->assertEquals(

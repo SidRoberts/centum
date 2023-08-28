@@ -26,6 +26,9 @@ trait AccessActions
 
     /**
      * Allow a user to do a particular activity in Access.
+     *
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
      */
     public function allowAccess(string $user, string $activityName): void
     {
@@ -36,6 +39,9 @@ trait AccessActions
 
     /**
      * Deny a user to do a particular activity in Access.
+     *
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
      */
     public function denyAccess(string $user, string $activityName): void
     {
@@ -44,6 +50,10 @@ trait AccessActions
         $access->deny($user, $activityName);
     }
 
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
     public function removeFromAccess(string $user, string $activityName): void
     {
         $access = $this->grabAccess();
@@ -53,6 +63,9 @@ trait AccessActions
 
     /**
      * Check if a user is allowed to do a particular activity in Access.
+     *
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
      */
     public function seeIsAllowed(string $user, string $activityName): void
     {
@@ -65,6 +78,9 @@ trait AccessActions
 
     /**
      * Check if a user is NOT allowed to do a particular activity in Access.
+     *
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
      */
     public function seeIsNotAllowed(string $user, string $activityName): void
     {

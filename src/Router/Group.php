@@ -38,6 +38,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function get(string $uri, string $class, string $method): RouteInterface
     {
@@ -50,6 +51,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function post(string $uri, string $class, string $method): RouteInterface
     {
@@ -62,6 +64,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function head(string $uri, string $class, string $method): RouteInterface
     {
@@ -74,6 +77,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function put(string $uri, string $class, string $method): RouteInterface
     {
@@ -86,6 +90,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function delete(string $uri, string $class, string $method): RouteInterface
     {
@@ -98,6 +103,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function trace(string $uri, string $class, string $method): RouteInterface
     {
@@ -110,6 +116,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function options(string $uri, string $class, string $method): RouteInterface
     {
@@ -122,6 +129,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function connect(string $uri, string $class, string $method): RouteInterface
     {
@@ -134,6 +142,7 @@ class Group implements GroupInterface
 
     /**
      * @param class-string<ControllerInterface> $class
+     * @param non-empty-string $method
      */
     public function patch(string $uri, string $class, string $method): RouteInterface
     {

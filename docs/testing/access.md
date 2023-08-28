@@ -29,8 +29,8 @@ Allow a user to do a particular activity in Access.
 
 ```php
 allowAccess(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
@@ -42,8 +42,8 @@ Deny a user to do a particular activity in Access.
 
 ```php
 denyAccess(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
@@ -53,8 +53,8 @@ denyAccess(
 
 ```php
 removeFromAccess(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
@@ -66,8 +66,8 @@ Check if a user is allowed to do a particular activity in Access.
 
 ```php
 seeIsAllowed(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
 
@@ -79,7 +79,7 @@ Check if a user is NOT allowed to do a particular activity in Access.
 
 ```php
 seeIsNotAllowed(
-    string $user,
-    string $activityName
+    non-empty-string $user,
+    non-empty-string $activityName
 ): void
 ```
