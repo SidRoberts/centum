@@ -8,6 +8,9 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\Type\IsString
+ */
 class IsStringCest
 {
     #[DataProvider("providerGood")]

@@ -6,6 +6,9 @@ use Centum\Http\Exception\FileAlreadyMovedException;
 use Centum\Http\File;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Exception\FileAlreadyMovedException
+ */
 class FileAlreadyMovedExceptionCest
 {
     public function test(UnitTester $I): void

@@ -16,6 +16,9 @@ use Tests\Support\UnitTester;
 use Throwable;
 use UnexpectedValueException;
 
+/**
+ * @covers \Centum\Queue\BeanstalkdQueue
+ */
 class BeanstalkdQueueCest
 {
     public function testPublish(UnitTester $I): void

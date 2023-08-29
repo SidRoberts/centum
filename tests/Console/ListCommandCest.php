@@ -5,6 +5,9 @@ namespace Tests\Console;
 use Centum\Console\Command\ListCommand;
 use Tests\Support\ConsoleTester;
 
+/**
+ * @covers \Centum\Console\Command\ListCommand
+ */
 class ListCommandCest
 {
     public function testName(ConsoleTester $I): void

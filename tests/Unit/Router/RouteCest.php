@@ -6,6 +6,9 @@ use Centum\Router\Route;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Route
+ */
 class RouteCest
 {
     protected function getRoute(): Route

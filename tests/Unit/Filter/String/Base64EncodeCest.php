@@ -8,6 +8,9 @@ use Codeception\Example;
 use InvalidArgumentException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Filter\String\Base64Encode
+ */
 class Base64EncodeCest
 {
     #[DataProvider("provider")]

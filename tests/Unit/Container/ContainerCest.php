@@ -17,6 +17,9 @@ use Tests\Support\Container\UnresolvableClass;
 use Tests\Support\UnitTester;
 use Throwable;
 
+/**
+ * @covers \Centum\Container\Container
+ */
 class ContainerCest
 {
     public function testGetContainerInterface(UnitTester $I): void

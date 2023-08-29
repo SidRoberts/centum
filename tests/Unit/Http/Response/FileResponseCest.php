@@ -6,6 +6,9 @@ use Centum\Http\Response\FileResponse;
 use Exception;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Response\FileResponse
+ */
 class FileResponseCest
 {
     public function test(UnitTester $I): void

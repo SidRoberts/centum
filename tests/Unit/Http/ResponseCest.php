@@ -11,6 +11,9 @@ use Centum\Http\Status;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Response
+ */
 class ResponseCest
 {
     public function testGetters(UnitTester $I): void

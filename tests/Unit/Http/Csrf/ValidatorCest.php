@@ -12,6 +12,9 @@ use Codeception\Example;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Csrf\Validator
+ */
 class ValidatorCest
 {
     #[DataProvider("providerValidate")]

@@ -6,6 +6,9 @@ use Centum\Http\Request;
 use Centum\Router\Middleware\TrueMiddleware;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Middleware\TrueMiddleware
+ */
 class TrueMiddlewareCest
 {
     public function test(UnitTester $I): void

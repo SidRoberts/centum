@@ -5,6 +5,9 @@ namespace Tests\Unit\Clock;
 use Centum\Clock\Clock;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Clock\Clock
+ */
 class ClockCest
 {
     public function test(UnitTester $I): void

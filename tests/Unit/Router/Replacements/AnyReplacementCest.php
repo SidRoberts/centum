@@ -5,6 +5,9 @@ namespace Tests\Unit\Router\Replacements;
 use Centum\Router\Replacements\AnyReplacement;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Replacements\AnyReplacement
+ */
 class AnyReplacementCest
 {
     public function testGetIdentifier(UnitTester $I): void

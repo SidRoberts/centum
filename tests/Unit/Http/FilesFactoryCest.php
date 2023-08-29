@@ -9,6 +9,9 @@ use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\FilesFactory
+ */
 class FilesFactoryCest
 {
     #[DataProvider("providerCreateFromArray")]

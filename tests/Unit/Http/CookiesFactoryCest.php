@@ -6,6 +6,9 @@ use Centum\Http\CookiesFactory;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\CookiesFactory
+ */
 class CookiesFactoryCest
 {
     public function testCreateFromBrowserKitRequest(UnitTester $I): void

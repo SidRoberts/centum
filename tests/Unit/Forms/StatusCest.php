@@ -7,6 +7,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Forms\Status
+ */
 class StatusCest
 {
     #[DataProvider("providerIsValid")]

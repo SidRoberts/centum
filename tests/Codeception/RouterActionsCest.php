@@ -12,6 +12,9 @@ use Tests\Support\Controllers\IndexController;
 use Tests\Support\Controllers\RedirectController;
 use Tests\Support\Controllers\RouteNotFoundExceptionHandler;
 
+/**
+ * @covers \Centum\Codeception\Actions\RouterActions
+ */
 class RouterActionsCest
 {
     public function testGrabRouter(CodeceptionTester $I): void

@@ -6,6 +6,9 @@ use Centum\Cron\Cron;
 use Centum\Cron\Job;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Cron\Cron
+ */
 class CronCest
 {
     public function testAddJobsToCron(UnitTester $I): void

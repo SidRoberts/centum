@@ -9,6 +9,9 @@ use Tests\Support\UnitTester;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 
+/**
+ * @covers \Centum\Twig\FormExtension
+ */
 class FormExtensionCest
 {
     #[DataProvider("provider")]

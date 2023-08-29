@@ -8,6 +8,9 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\Callback
+ */
 class CallbackCest
 {
     #[DataProvider("providerGood")]

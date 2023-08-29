@@ -7,6 +7,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Url\Url
+ */
 class UrlCest
 {
     public function testGetBaseUrl(UnitTester $I): void

@@ -9,6 +9,9 @@ use Mockery\MockInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Headers
+ */
 class HeadersCest
 {
     public function testConstructor(UnitTester $I): void

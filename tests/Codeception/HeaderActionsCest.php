@@ -7,6 +7,9 @@ use Centum\Http\Headers;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Controllers\HeadersController;
 
+/**
+ * @covers \Centum\Codeception\Actions\HeaderActions
+ */
 class HeaderActionsCest
 {
     public function testGrabHeaders(CodeceptionTester $I): void

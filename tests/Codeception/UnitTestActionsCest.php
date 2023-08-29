@@ -4,6 +4,9 @@ namespace Tests\Codeception;
 
 use Tests\Support\CodeceptionTester;
 
+/**
+ * @covers \Centum\Codeception\Actions\UnitTestActions
+ */
 class UnitTestActionsCest
 {
     public function testGrabEchoContent(CodeceptionTester $I): void

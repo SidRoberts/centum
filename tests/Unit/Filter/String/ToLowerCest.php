@@ -8,6 +8,9 @@ use Codeception\Example;
 use InvalidArgumentException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Filter\String\ToLower
+ */
 class ToLowerCest
 {
     #[DataProvider("provider")]

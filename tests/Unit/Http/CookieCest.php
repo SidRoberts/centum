@@ -5,6 +5,9 @@ namespace Tests\Unit\Http;
 use Centum\Http\Cookie;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Cookie
+ */
 class CookieCest
 {
     public function testGetters(UnitTester $I): void

@@ -8,6 +8,9 @@ use Codeception\Example;
 use InvalidArgumentException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Filter\String\Alphanumeric
+ */
 class AlphanumericCest
 {
     #[DataProvider("provider")]

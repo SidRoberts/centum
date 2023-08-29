@@ -6,6 +6,9 @@ use Centum\Http\Session\ArraySession;
 use Centum\Interfaces\Http\SessionInterface;
 use Tests\Support\CodeceptionTester;
 
+/**
+ * @covers \Centum\Codeception\Actions\SessionActions
+ */
 class SessionActionsCest
 {
     public function testGrabSession(CodeceptionTester $I): void

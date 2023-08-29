@@ -6,6 +6,9 @@ use Centum\Access\Access;
 use Centum\Interfaces\Access\AccessInterface;
 use Tests\Support\CodeceptionTester;
 
+/**
+ * @covers \Centum\Codeception\Actions\AccessActions
+ */
 class AccessActionsCest
 {
     public function testGrabAccess(CodeceptionTester $I): void

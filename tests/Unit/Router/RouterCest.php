@@ -23,6 +23,9 @@ use Tests\Support\Controllers\RouteNotFoundExceptionHandler;
 use Tests\Support\Router\Replacements\DoublerReplacement;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Router
+ */
 class RouterCest
 {
     protected function getRouter(ContainerInterface $container): Router

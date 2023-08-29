@@ -9,6 +9,9 @@ use Centum\Interfaces\Http\SessionInterface;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Csrf\Storage
+ */
 class StorageCest
 {
     public function testGet(UnitTester $I): void

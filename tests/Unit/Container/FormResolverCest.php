@@ -19,6 +19,9 @@ use Tests\Support\Http\Forms\UploadForm;
 use Tests\Support\UnitTester;
 use Throwable;
 
+/**
+ * @covers \Centum\Container\FormResolver
+ */
 class FormResolverCest
 {
     #[DataProvider("provider")]

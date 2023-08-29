@@ -5,6 +5,9 @@ namespace Tests\Unit\Router\Exception;
 use Centum\Router\Exception\ParamNotFoundException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Exception\ParamNotFoundException
+ */
 class ParamNotFoundExceptionCest
 {
     public function testGetKey(UnitTester $I): void

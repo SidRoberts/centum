@@ -9,6 +9,9 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\Type\IsObject
+ */
 class IsObjectCest
 {
     #[DataProvider("providerGood")]

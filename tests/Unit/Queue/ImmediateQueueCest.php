@@ -15,6 +15,9 @@ use Tests\Support\Queue\ProblematicTask;
 use Tests\Support\UnitTester;
 use Throwable;
 
+/**
+ * @covers \Centum\Queue\ImmediateQueue
+ */
 class ImmediateQueueCest
 {
     public function testPublish(UnitTester $I): void

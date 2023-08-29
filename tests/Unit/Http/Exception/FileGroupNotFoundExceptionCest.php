@@ -5,6 +5,9 @@ namespace Tests\Unit\Http\Exception;
 use Centum\Http\Exception\FileGroupNotFoundException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Exception\FileGroupNotFoundException
+ */
 class FileGroupNotFoundExceptionCest
 {
     public function test(UnitTester $I): void

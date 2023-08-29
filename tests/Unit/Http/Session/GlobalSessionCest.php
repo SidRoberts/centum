@@ -5,6 +5,9 @@ namespace Tests\Unit\Http\Session;
 use Centum\Http\Session\GlobalSession;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Session\GlobalSession
+ */
 class GlobalSessionCest
 {
     public function _before(): void

@@ -6,6 +6,9 @@ use Centum\Container\Exception\UnresolvableParameterException;
 use ReflectionParameter;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Container\Exception\UnresolvableParameterException
+ */
 class UnresolvableParameterExceptionCest
 {
     public function test(UnitTester $I): void

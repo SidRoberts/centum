@@ -5,6 +5,9 @@ namespace Tests\Unit\Console\Exception;
 use Centum\Console\Exception\InvalidCommandNameException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Console\Exception\InvalidCommandNameException
+ */
 class InvalidCommandNameExceptionCest
 {
     public function test(UnitTester $I): void

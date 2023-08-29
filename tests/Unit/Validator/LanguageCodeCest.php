@@ -7,6 +7,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\LanguageCode
+ */
 class LanguageCodeCest
 {
     #[DataProvider("providerGood")]

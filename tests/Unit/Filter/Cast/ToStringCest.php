@@ -9,6 +9,9 @@ use stdClass;
 use Tests\Support\Filters\FancyString;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Filter\Cast\ToString
+ */
 class ToStringCest
 {
     #[DataProvider("provider")]

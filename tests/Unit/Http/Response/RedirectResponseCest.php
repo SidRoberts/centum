@@ -9,6 +9,9 @@ use Centum\Http\Status;
 use InvalidArgumentException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Response\RedirectResponse
+ */
 class RedirectResponseCest
 {
     public function testEmptyUrl(UnitTester $I): void

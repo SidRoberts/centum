@@ -6,6 +6,9 @@ use Centum\Http\HeadersFactory;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\HeadersFactory
+ */
 class HeadersFactoryCest
 {
     public function testCreateFromBrowserKitRequest(UnitTester $I): void

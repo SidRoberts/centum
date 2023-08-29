@@ -7,6 +7,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\Base64
+ */
 class Base64Cest
 {
     #[DataProvider("providerGood")]

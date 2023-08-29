@@ -13,6 +13,9 @@ use Tests\Support\Queue\ProblematicTask;
 use Tests\Support\UnitTester;
 use Throwable;
 
+/**
+ * @covers \Centum\Queue\ArrayQueue
+ */
 class ArrayQueueCest
 {
     public function testPublish(UnitTester $I): void

@@ -10,6 +10,9 @@ use Tests\Support\UnitTester;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 
+/**
+ * @covers \Centum\Twig\UrlExtension
+ */
 class UrlExtensionCest
 {
     #[DataProvider("provider")]

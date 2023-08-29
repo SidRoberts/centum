@@ -5,6 +5,9 @@ namespace Tests\Codeception;
 use Centum\Interfaces\Validator\ValidatorInterface;
 use Tests\Support\CodeceptionTester;
 
+/**
+ * @covers \Centum\Codeception\Actions\ValidatorActions
+ */
 class ValidatorActionsCest
 {
     public function testSeeValidatorPasses(CodeceptionTester $I): void

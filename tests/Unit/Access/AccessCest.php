@@ -8,6 +8,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Access\Access
+ */
 class AccessCest
 {
     public function testDefault(UnitTester $I): void

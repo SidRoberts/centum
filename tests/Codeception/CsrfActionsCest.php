@@ -7,6 +7,9 @@ use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Mockery\MockInterface;
 use Tests\Support\CodeceptionTester;
 
+/**
+ * @covers \Centum\Codeception\Actions\CsrfActions
+ */
 class CsrfActionsCest
 {
     public function testGrabCsrfGenerator(CodeceptionTester $I): void

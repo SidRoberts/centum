@@ -5,6 +5,9 @@ namespace Tests\Unit\Router\Exception;
 use Centum\Router\Exception\ReplacementNotFoundException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Exception\ReplacementNotFoundException
+ */
 class ReplacementNotFoundExceptionCest
 {
     public function test(UnitTester $I): void

@@ -7,6 +7,9 @@ use Centum\Router\Middleware\TrueMiddleware;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Group
+ */
 class GroupCest
 {
     public function testGetMiddleware(UnitTester $I): void

@@ -7,6 +7,9 @@ use Centum\Flash\Message;
 use Centum\Flash\MessageBag;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Flash\MessageBag
+ */
 class MessageBagCest
 {
     public function testGetMessages(UnitTester $I): void

@@ -5,6 +5,9 @@ namespace Tests\Unit\Http\Session;
 use Centum\Http\Session\ArraySession;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Session\ArraySession
+ */
 class ArraySessionCest
 {
     public function testStart(UnitTester $I): void

@@ -6,6 +6,9 @@ use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Console\Terminal
+ */
 class TerminalCest
 {
     protected function getTerminal(): Terminal

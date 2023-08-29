@@ -11,6 +11,9 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\Type\IsInstanceOf
+ */
 class IsInstanceOfCest
 {
     #[DataProvider("providerGood")]

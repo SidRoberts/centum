@@ -9,6 +9,9 @@ use InvalidArgumentException;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Filter\Cast\ToInteger
+ */
 class ToIntegerCest
 {
     #[DataProvider("providerGood")]

@@ -5,6 +5,9 @@ namespace Tests\Codeception;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Controllers\JsonController;
 
+/**
+ * @covers \Centum\Codeception\Actions\JsonActions
+ */
 class JsonActionsCest
 {
     public function testSeeResponseIsJson(CodeceptionTester $I): void

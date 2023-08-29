@@ -10,6 +10,9 @@ use Tests\Support\Filters\FancyString;
 use Tests\Support\UnitTester;
 use UnexpectedValueException;
 
+/**
+ * @covers \Centum\Filter\Cast\ToArray
+ */
 class ToArrayCest
 {
     #[DataProvider("provider")]

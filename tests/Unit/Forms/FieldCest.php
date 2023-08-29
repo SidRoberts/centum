@@ -12,6 +12,9 @@ use Codeception\Example;
 use Exception;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Forms\Field
+ */
 class FieldCest
 {
     public function testGetters(UnitTester $I): void

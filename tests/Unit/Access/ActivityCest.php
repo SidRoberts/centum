@@ -8,6 +8,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Access\Activity
+ */
 class ActivityCest
 {
     public function testGetName(UnitTester $I): void

@@ -5,6 +5,9 @@ namespace Tests\Unit\Http;
 use Centum\Http\Header;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Header
+ */
 class HeaderCest
 {
     public function testGetters(UnitTester $I): void

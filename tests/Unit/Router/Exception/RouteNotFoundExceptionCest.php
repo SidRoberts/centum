@@ -6,6 +6,9 @@ use Centum\Http\Request;
 use Centum\Router\Exception\RouteNotFoundException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Router\Exception\RouteNotFoundException
+ */
 class RouteNotFoundExceptionCest
 {
     public function test(UnitTester $I): void

@@ -5,6 +5,9 @@ namespace Tests\Unit\Http\Exception;
 use Centum\Http\Exception\FileGroupAlreadyExistsException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Exception\FileGroupAlreadyExistsException
+ */
 class FileGroupAlreadyExistsExceptionCest
 {
     public function test(UnitTester $I): void

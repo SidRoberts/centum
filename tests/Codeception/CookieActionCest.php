@@ -7,6 +7,9 @@ use Centum\Http\Cookies;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Controllers\CookiesController;
 
+/**
+ * @covers \Centum\Codeception\Actions\CookieActions
+ */
 class CookieActionsCest
 {
     public function testGrabCookies(CodeceptionTester $I): void

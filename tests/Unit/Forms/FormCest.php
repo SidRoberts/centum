@@ -11,6 +11,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Forms\Form
+ */
 class FormCest
 {
     public function testEmptyForm(UnitTester $I): void

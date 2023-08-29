@@ -5,6 +5,9 @@ namespace Tests\Unit\Container\Exception;
 use Centum\Container\Exception\FormFieldNotFoundException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Container\Exception\FormFieldNotFoundException
+ */
 class FormFieldNotFoundExceptionCest
 {
     public function test(UnitTester $I): void

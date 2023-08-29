@@ -9,6 +9,9 @@ use Centum\Interfaces\Console\ApplicationInterface;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\App\ConsoleBootstrap
+ */
 class ConsoleBootstrapCest
 {
     public function test(UnitTester $I): void

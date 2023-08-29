@@ -5,6 +5,9 @@ namespace Tests\Http;
 use Centum\Http\Data;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Data
+ */
 class DataCest
 {
     public function testGet(UnitTester $I): void

@@ -13,6 +13,9 @@ use Centum\Http\Headers;
 use Centum\Http\Request;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Request
+ */
 class RequestCest
 {
     public function testGetters(UnitTester $I): void

@@ -15,6 +15,9 @@ use Tests\Support\Container\Incrementer;
 use Tests\Support\UnitTester;
 use TypeError;
 
+/**
+ * @covers \Centum\Codeception\Module
+ */
 class ModuleCest
 {
     public function getModule(string $containerFile = "tests/Support/Data/container.php"): Module

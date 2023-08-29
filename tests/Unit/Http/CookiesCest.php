@@ -9,6 +9,9 @@ use Mockery\MockInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Cookies
+ */
 class CookiesCest
 {
     public function testConstructor(UnitTester $I): void

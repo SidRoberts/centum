@@ -7,6 +7,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Paginator\Data\ArrayData
+ */
 class ArrayDataCest
 {
     public function testToArray(UnitTester $I): void

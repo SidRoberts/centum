@@ -15,6 +15,9 @@ use Tests\Support\Commands\ProblematicCommand;
 use Tests\Support\Commands\ThrowableExceptionHandler;
 use Tests\Support\ConsoleTester;
 
+/**
+ * @covers \Centum\Console\Application
+ */
 class ApplicationCest
 {
     public function testBasicHandle(ConsoleTester $I): void

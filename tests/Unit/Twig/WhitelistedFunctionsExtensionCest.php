@@ -8,6 +8,9 @@ use Twig\Environment;
 use Twig\Error\SyntaxError;
 use Twig\Loader\ArrayLoader;
 
+/**
+ * @covers \Centum\Twig\WhitelistedFunctionsExtension
+ */
 class WhitelistedFunctionsExtensionCest
 {
     protected function getTwig(): Environment

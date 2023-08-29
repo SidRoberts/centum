@@ -5,6 +5,9 @@ namespace Tests\Codeception;
 use Centum\Filter\String\ToUpper;
 use Tests\Support\CodeceptionTester;
 
+/**
+ * @covers \Centum\Codeception\Actions\FilterActions
+ */
 class FilterActionsCest
 {
     public function testExpectFilterOutput(CodeceptionTester $I): void

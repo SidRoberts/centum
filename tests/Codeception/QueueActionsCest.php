@@ -14,6 +14,9 @@ use Tests\Support\Queue\ProblematicTask;
 use Tests\Support\Queue\Task;
 use Throwable;
 
+/**
+ * @covers \Centum\Codeception\Actions\QueueActions
+ */
 class QueueActionsCest
 {
     public function testGrabQueue(CodeceptionTester $I): void

@@ -10,6 +10,9 @@ use stdClass;
 use Tests\Support\Filters\Doubler;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Response\VariableResponse
+ */
 class VariableResponseCest
 {
     #[DataProvider("provider")]

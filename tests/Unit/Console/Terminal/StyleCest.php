@@ -5,6 +5,9 @@ namespace Tests\Unit\Console\Terminal;
 use Centum\Console\Terminal\Style;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Console\Terminal\Style
+ */
 class StyleCest
 {
     public function testBold(UnitTester $I): void

@@ -9,6 +9,9 @@ use Exception;
 use Tests\Support\UnitTester;
 use Throwable;
 
+/**
+ * @covers \Centum\Http\File
+ */
 class FileCest
 {
     public function testGetters(UnitTester $I): void

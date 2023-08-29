@@ -5,6 +5,9 @@ namespace Tests\Codeception;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Commands\ExitCodeCommand;
 
+/**
+ * @covers \Centum\Codeception\Actions\ConsoleActions
+ */
 class ConsoleActionsCest
 {
     public function testCreateTerminal(CodeceptionTester $I): void

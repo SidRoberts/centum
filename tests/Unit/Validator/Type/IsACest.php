@@ -12,6 +12,9 @@ use stdClass;
 use Tests\Support\UnitTester;
 use Throwable;
 
+/**
+ * @covers \Centum\Validator\Type\IsA
+ */
 class IsACest
 {
     #[DataProvider("providerGood")]

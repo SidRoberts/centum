@@ -8,6 +8,9 @@ use Centum\Queue\TaskRunner;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Queue\TaskRunner
+ */
 class TaskRunnerCest
 {
     public function test(UnitTester $I): void

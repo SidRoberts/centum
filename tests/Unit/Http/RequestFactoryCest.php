@@ -8,6 +8,9 @@ use Codeception\Example;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\RequestFactory
+ */
 class RequestFactoryCest
 {
     public function testCreateFromGlobals(UnitTester $I): void

@@ -7,6 +7,9 @@ use Centum\Flash\Level;
 use Centum\Flash\Message;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Flash\Formatter\HtmlFormatter
+ */
 class HtmlFormatterCest
 {
     public function testOutput(UnitTester $I): void

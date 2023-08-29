@@ -5,6 +5,9 @@ namespace Tests\Unit\Http\Exception;
 use Centum\Http\Exception\CsrfException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Exception\CsrfException
+ */
 class CsrfExceptionCest
 {
     public function testGetValue(UnitTester $I): void

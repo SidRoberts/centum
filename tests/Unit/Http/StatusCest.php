@@ -8,6 +8,9 @@ use Codeception\Example;
 use Tests\Support\UnitTester;
 use ValueError;
 
+/**
+ * @covers \Centum\Http\Status
+ */
 class StatusCest
 {
     public function test(UnitTester $I): void

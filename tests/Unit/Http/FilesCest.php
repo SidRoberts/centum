@@ -11,6 +11,9 @@ use Codeception\Example;
 use OverflowException;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Files
+ */
 class FilesCest
 {
     public function testAdd(UnitTester $I): void

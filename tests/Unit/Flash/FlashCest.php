@@ -7,6 +7,9 @@ use Centum\Flash\Formatter\TextFormatter;
 use Centum\Http\Session\ArraySession;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Flash\Flash
+ */
 class FlashCest
 {
     public function testOutput(UnitTester $I): void

@@ -7,6 +7,9 @@ use Centum\Interfaces\Queue\QueueInterface;
 use Mockery\MockInterface;
 use Tests\Support\ConsoleTester;
 
+/**
+ * @covers \Centum\Console\Command\QueueConsumeCommand
+ */
 class QueueConsumeCommandCest
 {
     public function testName(ConsoleTester $I): void

@@ -5,6 +5,9 @@ namespace Tests\Unit\Http\Csrf;
 use Centum\Http\Csrf\Generator;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Csrf\Generator
+ */
 class GeneratorCest
 {
     public function testGenerateIsDifferentEveryTime(UnitTester $I): void

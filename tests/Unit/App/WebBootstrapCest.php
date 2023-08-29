@@ -9,6 +9,9 @@ use Centum\Interfaces\Router\RouterInterface;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\App\WebBootstrap
+ */
 class WebBootstrapCest
 {
     public function test(UnitTester $I): void

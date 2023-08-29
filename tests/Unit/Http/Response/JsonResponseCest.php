@@ -9,6 +9,9 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Http\Response\JsonResponse
+ */
 class JsonResponseCest
 {
     #[DataProvider("provider")]

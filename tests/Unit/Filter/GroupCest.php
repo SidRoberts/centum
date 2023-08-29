@@ -10,6 +10,9 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Filter\Group
+ */
 class GroupCest
 {
     #[DataProvider("provider")]

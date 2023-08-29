@@ -8,6 +8,9 @@ use Tests\Support\Forms\UserTemplate;
 use Tests\Support\Forms\UserWithConstructorTemplate;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Forms\FormFactory
+ */
 class FormFactoryCest
 {
     public function test(UnitTester $I): void

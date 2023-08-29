@@ -9,6 +9,9 @@ use Codeception\Example;
 use stdClass;
 use Tests\Support\UnitTester;
 
+/**
+ * @covers \Centum\Validator\Type\IsIterable
+ */
 class IsIterableCest
 {
     #[DataProvider("providerGood")]
