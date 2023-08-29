@@ -2,15 +2,11 @@
 
 namespace Tests\Unit\Flash;
 
-use Centum\Flash\Flash;
-use Centum\Flash\Formatter\TextFormatter;
 use Centum\Flash\Storage;
-use Centum\Http\Session\ArraySession;
-use Tests\Support\UnitTester;
+use Centum\Interfaces\Flash\MessageBagInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Mockery\MockInterface;
-use Centum\Flash\MessageBag;
-use Centum\Interfaces\Flash\MessageBagInterface;
+use Tests\Support\UnitTester;
 
 /**
  * @covers \Centum\Flash\Storage

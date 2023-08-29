@@ -2,8 +2,10 @@
 
 namespace Tests\Unit\Router;
 
+use Centum\Http\Method;
 use Centum\Router\Group;
 use Centum\Router\Middleware\TrueMiddleware;
+use Centum\Router\Route;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\UnitTester;
 
@@ -233,11 +235,41 @@ class GroupCest
 
     public function testCrud(UnitTester $I): void
     {
-        $I->markTestIncomplete();
+        $middleware = new TrueMiddleware();
+
+        $group = new Group($middleware);
+
+        $group->crud("/uri", IndexController::class);
+
+        $I->assertEquals(
+            [
+                new Route(Method::GET, "/uri", IndexController::class, "index"),
+                new Route(Method::GET, "/uri/create", IndexController::class, "create"),
+                new Route(Method::POST, "/uri", IndexController::class, "store"),
+                new Route(Method::GET, "/uri/{id}", IndexController::class, "show"),
+                new Route(Method::GET, "/uri/{id}/edit", IndexController::class, "edit"),
+                new Route(Method::PUT, "/uri/{id}", IndexController::class, "update"),
+                new Route(Method::PATCH, "/uri/{id}", IndexController::class, "update"),
+                new Route(Method::DELETE, "/uri/{id}", IndexController::class, "destroy"),
+            ],
+            $group->getRoutes()
+        );
     }
 
     public function testSubmission(UnitTester $I): void
     {
-        $I->markTestIncomplete();
+        $middleware = new TrueMiddleware();
+
+        $group = new Group($middleware);
+
+        $group->submission("/uri", IndexController::class);
+
+        $I->assertEquals(
+            [
+                new Route(Method::GET, "/uri", IndexController::class, "form"),
+                new Route(Method::POST, "/uri", IndexController::class, "submit"),
+            ],
+            $group->getRoutes()
+        );
     }
 }

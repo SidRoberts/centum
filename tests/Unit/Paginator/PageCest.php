@@ -34,6 +34,26 @@ class PageCest
 
 
 
+    public function testGetPageNumber(UnitTester $I): void
+    {
+        $data = new ArrayData(
+            range(1, 100)
+        );
+
+        $paginator = new Paginator($data, 10, "/items/");
+
+        $pageNumber = random_int(1, 100);
+
+        $page = new Page($paginator, $pageNumber);
+
+        $I->assertSame(
+            $pageNumber,
+            $page->getPageNumber()
+        );
+    }
+
+
+
     #[DataProvider("providerGetData")]
     public function testGetData(UnitTester $I, Example $example): void
     {
