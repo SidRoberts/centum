@@ -12,10 +12,16 @@ nav_order: 4
 # Middlewares
 
 We already know about Route Groups but we haven't used them yet in a meaningful way.
-The main purpose of Route Groups is to be able to assign a Middleware to a collection of Routes easily.
+The main purpose of Route Groups is to be able to easily assign a Middleware to a collection of Routes.
+
+Middlewares must implement [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php) and require only one public method:
+
+- `check(Centum\Interfaces\Http\RequestInterface $request): bool`
+
 By returning `false` in a Middleware, the Router will ignore that Group and then continue checking the following Groups.
 
-A common use case for Middlewares is to use different Routes for visitors that are logged in and visitors that are not:
+A common use case for Middlewares is to use different Routes for visitors that are logged in and visitors that are not.
+First, we need to create a Middleware to check if the user is logged in:
 
 ```php
 namespace App\Web\Middlewares;
@@ -40,34 +46,31 @@ class IsUserMiddleware implements MiddlewareInterface
 
 (The `App\Auth` class is not shown and is just used as an example.)
 
-When creating the Group in the Router, we simply assign the first parameter as a Middleware object:
+When creating the Group in the Router, we simply assign the first parameter as a `MiddlewareInterface` object.
+We can also use [`Centum\Router\Middleware\InverseMiddleware`](https://github.com/SidRoberts/centum/blob/development/src/Router/Middleware/InverseMiddleware.php) to inverse the result of an existing Middleware so that one Middleware can be used for opposing Groups:
 
 ```php
-use App\Auth;
-use App\Web\Controllers\AccountController;
-use App\Web\Middlewares\IsGuestMiddleware;
 use App\Web\Middlewares\IsUserMiddleware;
+use Centum\Router\Middleware\InverseMiddleware;
 
-/** @var Auth $auth */
+/** @var IsUserMiddleware $isUserMiddleware */
+
+
+
+$userGroup = $router->group($isUserMiddleware);
+
+$userGroup->get("/account", AccountController::class, "user");
+
+
 
 $guestGroup = $router->group(
-    new IsGuestMiddleware($auth)
+    new InverseMiddleware($isUserMiddleware)
 );
 
-$guestGroup->get("/something", AccountController::class, "guest");
-
-
-
-$userGroup = $router->group(
-    new IsUserMiddleware($auth)
-);
-
-$userGroup->get("/something", AccountController::class, "user");
+$guestGroup->get("/account", AccountController::class, "guest");
 ```
 
-(`App\Web\Middlewares\IsGuestMiddleware` is not shown but performs as you'd expect.)
-
-Now, in a Controller, we can use two different methods, `guest()` and `user()`, for these two groups:
+Now, in a Controller, we can use two different methods, `user()` and `guest()`, for these two groups:
 
 ```php
 namespace App\Web\Controllers;
@@ -78,14 +81,14 @@ use Centum\Interfaces\Router\ControllerInterface;
 
 class AccountController implements ControllerInterface
 {
-    public function guest(): ResponseInterface
-    {
-        return new Response("This visitor is logged out.");
-    }
-
     public function user(): ResponseInterface
     {
         return new Response("This visitor is logged in.");
+    }
+
+    public function guest(): ResponseInterface
+    {
+        return new Response("This visitor is logged out.");
     }
 }
 ```
