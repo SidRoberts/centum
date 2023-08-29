@@ -75,6 +75,10 @@ Base64 encodes a string.
 
 
 
+## [`Centum\Filter\String\CamelCaseToSlug`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/CamelCaseToSlug.php)
+
+
+
 ## [`Centum\Filter\String\Prefix`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Prefix.php)
 
 Adds a prefix to a string.
@@ -88,6 +92,10 @@ Adds a prefix to a string.
 ## [`Centum\Filter\String\Rot13`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/Rot13.php)
 
 Performs the `rot13` transformation on a string.
+
+
+
+## [`Centum\Filter\String\SlugToCamelCase`](https://github.com/SidRoberts/centum/blob/development/src/Filter/String/SlugToCamelCase.php)
 
 
 
