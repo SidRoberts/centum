@@ -3,9 +3,6 @@
 namespace Centum\Cron;
 
 use Centum\Interfaces\Cron\JobInterface;
-use Cron\CronExpression;
-use DateTimeImmutable;
-use DateTimeInterface;
 
 class Job implements JobInterface
 {
@@ -25,20 +22,5 @@ class Job implements JobInterface
     public function getData(): mixed
     {
         return $this->data;
-    }
-
-
-
-    public function isDue(DateTimeInterface $datetime = null): bool
-    {
-        $cronExpression = new CronExpression(
-            $this->getExpression()
-        );
-
-        if ($datetime === null) {
-            $datetime = new DateTimeImmutable();
-        }
-
-        return $cronExpression->isDue($datetime);
     }
 }
