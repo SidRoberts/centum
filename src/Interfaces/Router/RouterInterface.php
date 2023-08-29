@@ -7,6 +7,9 @@ use Centum\Interfaces\Http\ResponseInterface;
 
 interface RouterInterface
 {
+    /**
+     * Make a new group of Routes with an optional middleware.
+     */
     public function group(MiddlewareInterface $middleware = null): GroupInterface;
 
 
@@ -18,5 +21,8 @@ interface RouterInterface
 
 
 
+    /**
+     * Handle a Request object and convert into a Response object.
+     */
     public function handle(RequestInterface $request): ResponseInterface;
 }
