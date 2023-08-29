@@ -9,6 +9,7 @@ use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Cron\Cron;
 use Centum\Flash\Flash;
+use Centum\Flash\Formatter\HtmlFormatter;
 use Centum\Flash\Storage as FlashStorage;
 use Centum\Http\Csrf\Generator;
 use Centum\Http\Csrf\Storage;
@@ -22,6 +23,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
+use Centum\Interfaces\Flash\FormatterInterface;
 use Centum\Interfaces\Flash\StorageInterface as FlashStorageInterface;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
@@ -60,6 +62,7 @@ class Container implements ContainerInterface
         ValidatorInterface::class    => Validator::class,
         ////////////////////////////////////////////////////////////////////////
         FlashInterface::class        => Flash::class,
+        FormatterInterface::class    => HtmlFormatter::class,
         FlashStorageInterface::class => FlashStorage::class,
         ////////////////////////////////////////////////////////////////////////
         RequestInterface::class      => Request::class,

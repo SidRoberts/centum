@@ -8,6 +8,7 @@ use Centum\Codeception\Actions\ConsoleActions;
 use Centum\Codeception\Actions\CookieActions;
 use Centum\Codeception\Actions\CsrfActions;
 use Centum\Codeception\Actions\FilterActions;
+use Centum\Codeception\Actions\FlashActions;
 use Centum\Codeception\Actions\HeaderActions;
 use Centum\Codeception\Actions\HtmlActions;
 use Centum\Codeception\Actions\HttpFormActions;
@@ -33,6 +34,7 @@ class CodeceptionTester extends Actor
     use CookieActions;
     use CsrfActions;
     use FilterActions;
+    use FlashActions;
     use HeaderActions;
     use HtmlActions;
     use HttpFormActions;
