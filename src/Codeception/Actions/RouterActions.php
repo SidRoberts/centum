@@ -3,6 +3,7 @@
 namespace Centum\Codeception\Actions;
 
 use Centum\Http\Data;
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -110,7 +111,7 @@ trait RouterActions
     {
         $data = new Data($params);
 
-        $request = new Request($uri, "GET", $data);
+        $request = new Request($uri, Method::GET, $data);
 
         $this->handleRequest($request);
     }

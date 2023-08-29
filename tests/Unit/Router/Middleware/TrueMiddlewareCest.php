@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router\Middleware;
 
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Router\Middleware\TrueMiddleware;
 use Tests\Support\UnitTester;
@@ -13,7 +14,7 @@ class TrueMiddlewareCest
 {
     public function test(UnitTester $I): void
     {
-        $request = new Request("/", "GET");
+        $request = new Request("/", Method::GET);
 
         $middleware = new TrueMiddleware();
 

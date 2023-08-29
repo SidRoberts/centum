@@ -5,6 +5,7 @@ namespace Centum\Codeception\Actions;
 use Centum\Http\Data;
 use Centum\Http\Header;
 use Centum\Http\Headers;
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -18,7 +19,7 @@ trait AjaxActions
     /**
      * @param array<string, mixed> $data
      */
-    public function createAjaxRequest(string $method, string $uri, array $data = []): RequestInterface
+    public function createAjaxRequest(Method $method, string $uri, array $data = []): RequestInterface
     {
         $data = new Data($data);
 
@@ -38,7 +39,7 @@ trait AjaxActions
     /**
      * @param array<string, mixed> $data
      */
-    public function sendAjaxRequest(string $method, string $uri, array $data = []): void
+    public function sendAjaxRequest(Method $method, string $uri, array $data = []): void
     {
         $request = $this->createAjaxRequest($method, $uri, $data);
 
@@ -50,7 +51,7 @@ trait AjaxActions
      */
     public function sendAjaxGetRequest(string $uri, array $data = []): void
     {
-        $this->sendAjaxRequest("GET", $uri, $data);
+        $this->sendAjaxRequest(Method::GET, $uri, $data);
     }
 
     /**
@@ -58,6 +59,6 @@ trait AjaxActions
      */
     public function sendAjaxPostRequest(string $uri, array $data = []): void
     {
-        $this->sendAjaxRequest("POST", $uri, $data);
+        $this->sendAjaxRequest(Method::POST, $uri, $data);
     }
 }

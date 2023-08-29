@@ -2,6 +2,7 @@
 
 namespace Centum\Router;
 
+use Centum\Http\Method;
 use Centum\Interfaces\Router\ControllerInterface;
 use Centum\Interfaces\Router\RouteInterface;
 
@@ -12,7 +13,7 @@ class Route implements RouteInterface
      * @param non-empty-string $method
      */
     public function __construct(
-        protected readonly string $httpMethod,
+        protected readonly Method $httpMethod,
         protected readonly string $uri,
         protected readonly string $class,
         protected readonly string $method
@@ -23,7 +24,7 @@ class Route implements RouteInterface
 
     public function getHttpMethod(): string
     {
-        return $this->httpMethod;
+        return $this->httpMethod->value;
     }
 
     public function getUri(): string

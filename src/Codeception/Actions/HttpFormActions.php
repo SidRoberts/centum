@@ -3,6 +3,7 @@
 namespace Centum\Codeception\Actions;
 
 use Centum\Container\FormResolver;
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\DataInterface;
@@ -33,7 +34,7 @@ trait HttpFormActions
 
         $request = new Request(
             "/",
-            "GET",
+            Method::GET,
             $data,
             null,
             null,

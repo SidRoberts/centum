@@ -17,7 +17,7 @@ permalink: testing/ajax
 
 ```php
 createAjaxRequest(
-    string $method,
+    Centum\Http\Method $method,
     string $uri,
     array<string, mixed> $data = []
 ): Centum\Interfaces\Http\RequestInterface
@@ -29,7 +29,7 @@ createAjaxRequest(
 
 ```php
 sendAjaxRequest(
-    string $method,
+    Centum\Http\Method $method,
     string $uri,
     array<string, mixed> $data = []
 ): void

@@ -14,7 +14,7 @@ nav_order: 1
 ```php
 Centum\Http\Request(
     string $uri,
-    string $method = "GET",
+    Centum\Http\Method $method = Centum\Http\Method::GET,
     Centum\Interfaces\Http\DataInterface $data = null,
     Centum\Interfaces\Http\HeadersInterface $headers = null,
     Centum\Interfaces\Http\CookiesInterface $cookies = null,

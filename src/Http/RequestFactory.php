@@ -64,6 +64,8 @@ class RequestFactory
             unset($parameters["_method"]);
         }
 
+        $method = Method::from($method);
+
         /** @var array<string, mixed> $parameters */
         $data = new Data($parameters);
 
@@ -96,6 +98,8 @@ class RequestFactory
         $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
         $files      = $filesFactory->createFromBrowserKitRequest($browserKitRequest);
         $content    = $browserKitRequest->getContent();
+
+        $method = Method::from($method);
 
         return new Request(
             $requestUri,

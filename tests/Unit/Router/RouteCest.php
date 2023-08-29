@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router;
 
+use Centum\Http\Method;
 use Centum\Router\Route;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\UnitTester;
@@ -14,7 +15,7 @@ class RouteCest
     protected function getRoute(): Route
     {
         return new Route(
-            "GET",
+            Method::GET,
             "/",
             IndexController::class,
             "index"

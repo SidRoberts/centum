@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router;
 
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Router\Exception\RouteNotFoundException;
@@ -103,7 +104,7 @@ class RouterCest
 
 
 
-        $request = new Request("/", "GET");
+        $request = new Request("/", Method::GET);
 
         $response = $router->handle($request);
 
@@ -121,7 +122,7 @@ class RouterCest
 
 
 
-        $request = new Request("/login/", "GET");
+        $request = new Request("/login/", Method::GET);
 
         $response = $router->handle($request);
 
@@ -148,7 +149,7 @@ class RouterCest
 
         $request = new Request(
             $uri,
-            "GET"
+            Method::GET
         );
 
         $response = $router->handle($request);
@@ -195,7 +196,7 @@ class RouterCest
 
         $request = new Request(
             $uri,
-            "GET"
+            Method::GET
         );
 
         $I->expectThrowable(
@@ -231,7 +232,7 @@ class RouterCest
         $url = $example["url"];
 
         try {
-            $request = new Request($url, "GET");
+            $request = new Request($url, Method::GET);
 
             $router->handle($request);
 
@@ -280,7 +281,7 @@ class RouterCest
         /** @var string */
         $url = $example["url"];
 
-        $request = new Request($url, "GET");
+        $request = new Request($url, Method::GET);
 
         try {
             $router->handle($request);
@@ -322,7 +323,7 @@ class RouterCest
 
 
 
-        /** @var string */
+        /** @var Method */
         $method = $example["method"];
 
         $request = new Request("/http-method", $method);
@@ -330,7 +331,7 @@ class RouterCest
         $response = $router->handle($request);
 
         $I->assertEquals(
-            $method,
+            $method->value,
             $response->getContent()
         );
     }
@@ -338,15 +339,15 @@ class RouterCest
     protected function providerHttpMethods(): array
     {
         $methods = [
-            "GET",
-            "POST",
-            "HEAD",
-            "PUT",
-            "DELETE",
-            "TRACE",
-            "OPTIONS",
-            "CONNECT",
-            "PATCH",
+            Method::GET,
+            Method::POST,
+            Method::HEAD,
+            Method::PUT,
+            Method::DELETE,
+            Method::TRACE,
+            Method::OPTIONS,
+            Method::CONNECT,
+            Method::PATCH,
         ];
 
         return array_map(
@@ -371,7 +372,7 @@ class RouterCest
 
         $request = new Request(
             "/this/route/does/not/exist",
-            "GET"
+            Method::GET
         );
 
         $I->expectThrowable(
@@ -396,7 +397,7 @@ class RouterCest
         /** @var string */
         $uri = $example["uri"];
 
-        /** @var string */
+        /** @var Method */
         $method = $example["method"];
 
         $request = new Request($uri, $method);
@@ -419,49 +420,49 @@ class RouterCest
         return [
             [
                 "uri"     => "/posts",
-                "method"  => "GET",
+                "method"  => Method::GET,
                 "content" => "index",
             ],
 
             [
                 "uri"     => "/posts/create",
-                "method"  => "GET",
+                "method"  => Method::GET,
                 "content" => "create",
             ],
 
             [
                 "uri"     => "/posts",
-                "method"  => "POST",
+                "method"  => Method::POST,
                 "content" => "store",
             ],
 
             [
                 "uri"     => "/posts/123",
-                "method"  => "GET",
+                "method"  => Method::GET,
                 "content" => "show",
             ],
 
             [
                 "uri"     => "/posts/123/edit",
-                "method"  => "GET",
+                "method"  => Method::GET,
                 "content" => "edit",
             ],
 
             [
                 "uri"     => "/posts/123",
-                "method"  => "PUT",
+                "method"  => Method::PUT,
                 "content" => "update",
             ],
 
             [
                 "uri"     => "/posts/123",
-                "method"  => "PATCH",
+                "method"  => Method::PATCH,
                 "content" => "update",
             ],
 
             [
                 "uri"     => "/posts/123",
-                "method"  => "DELETE",
+                "method"  => Method::DELETE,
                 "content" => "destroy",
             ],
         ];
@@ -481,7 +482,7 @@ class RouterCest
         /** @var string */
         $uri = $example["uri"];
 
-        /** @var string */
+        /** @var Method */
         $method = $example["method"];
 
         $request = new Request($uri, $method);
@@ -502,13 +503,13 @@ class RouterCest
         return [
             [
                 "uri"     => "/submission",
-                "method"  => "GET",
+                "method"  => Method::GET,
                 "content" => "login form",
             ],
 
             [
                 "uri"     => "/submission",
-                "method"  => "POST",
+                "method"  => Method::POST,
                 "content" => "login successful",
             ],
         ];
@@ -534,7 +535,7 @@ class RouterCest
 
 
 
-        $request = new Request("/exception", "GET");
+        $request = new Request("/exception", Method::GET);
 
         $response = $router->handle($request);
 
@@ -545,7 +546,7 @@ class RouterCest
 
 
 
-        $request = new Request("/does-not-exist", "GET");
+        $request = new Request("/does-not-exist", Method::GET);
 
         $response = $router->handle($request);
 

@@ -10,6 +10,7 @@ use Centum\Http\FileGroup;
 use Centum\Http\Files;
 use Centum\Http\Header;
 use Centum\Http\Headers;
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Tests\Support\UnitTester;
 
@@ -59,7 +60,7 @@ class RequestCest
 
         $request = new Request(
             "/login",
-            "POST",
+            Method::POST,
             $data,
             $headers,
             $cookies,

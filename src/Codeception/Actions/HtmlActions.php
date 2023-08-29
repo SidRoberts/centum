@@ -3,6 +3,7 @@
 namespace Centum\Codeception\Actions;
 
 use Centum\Http\Data;
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Http\FilesInterface;
 use Codeception\Exception\ModuleException;
@@ -51,6 +52,7 @@ trait HtmlActions
 
         $method = $attributes[0][1] ?: "GET";
         $method = strtoupper($method);
+        $method = Method::from($method);
 
         $data = new Data($data);
 

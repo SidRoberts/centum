@@ -2,6 +2,7 @@
 
 namespace Tests\Codeception;
 
+use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Router\RouterInterface;
 use Tests\Support\CodeceptionTester;
@@ -145,14 +146,14 @@ class RouterActionsCest
 
 
 
-        $request = new Request("/", "GET");
+        $request = new Request("/", Method::GET);
 
         $I->seeRouteExists($request);
     }
 
     public function testSeeRouteNotFound(CodeceptionTester $I): void
     {
-        $request = new Request("/page/that/doesnt/exist", "GET");
+        $request = new Request("/page/that/doesnt/exist", Method::GET);
 
         $I->seeRouteNotFound($request);
     }
