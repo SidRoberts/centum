@@ -80,3 +80,21 @@ getLevel(): string
 ```php
 getText(): string
 ```
+
+
+
+## [`Centum\Interfaces\Flash\StorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/StorageInterface.php)
+
+```php
+get(): Centum\Interfaces\Flash\MessageBagInterface
+```
+
+```php
+set(
+    Centum\Interfaces\Flash\MessageBagInterface $messageBag
+): void
+```
+
+```php
+reset(): void
+```

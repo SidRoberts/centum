@@ -13,23 +13,19 @@ nav_order: 2
 
 **Before reading this, it may be prudent to first read about [Centum's Flash component](../flash/index.md).**
 
-This extension provides a quick shortcut to the [`Centum\Flash\Flash`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Flash.php) class in the form of a function.
+This extension provides a quick shortcut to the [Flash component](../flash/index.md) in the form of a function.
 
 First, the extension needs to be added to Twig:
 
 ```php
-use Centum\Flash\Flash;
-use Centum\Interfaces\Flash\FormatterInterface;
-use Centum\Interfaces\Http\SessionInterface;
+use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Twig\FlashExtension;
 use Twig\Environment;
 
-/** @var SessionInterface $session */
-/** @var FormatterInterface $formatter */
-
-$flash = new Flash($session, $formatter);
-
-/** @var Environment $twig */
+/**
+ * @var Environment $twig
+ * @var FlashInterface $flash
+ */
 
 $twig->addExtension(
     new FlashExtension($flash)

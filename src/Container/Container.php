@@ -9,6 +9,7 @@ use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Cron\Cron;
 use Centum\Flash\Flash;
+use Centum\Flash\Storage as FlashStorage;
 use Centum\Http\Csrf\Generator;
 use Centum\Http\Csrf\Storage;
 use Centum\Http\Csrf\Validator;
@@ -21,6 +22,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
+use Centum\Interfaces\Flash\StorageInterface as FlashStorageInterface;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
@@ -46,19 +48,28 @@ class Container implements ContainerInterface
 
     /** @var array<interface-string, class-string> */
     protected array $aliases = [
-        AccessInterface::class      => Access::class,
-        ApplicationInterface::class => Application::class,
-        CronInterface::class        => Cron::class,
-        GeneratorInterface::class   => Generator::class,
-        StorageInterface::class     => Storage::class,
-        ValidatorInterface::class   => Validator::class,
-        FlashInterface::class       => Flash::class,
-        RequestInterface::class     => Request::class,
-        RouterInterface::class      => Router::class,
-        SessionInterface::class     => GlobalSession::class,
-        UrlInterface::class         => Url::class,
-        TaskRunnerInterface::class  => TaskRunner::class,
-        TerminalInterface::class    => Terminal::class,
+        AccessInterface::class       => Access::class,
+        ////////////////////////////////////////////////////////////////////////
+        ApplicationInterface::class  => Application::class,
+        TerminalInterface::class     => Terminal::class,
+        ////////////////////////////////////////////////////////////////////////
+        CronInterface::class         => Cron::class,
+        ////////////////////////////////////////////////////////////////////////
+        GeneratorInterface::class    => Generator::class,
+        StorageInterface::class      => Storage::class,
+        ValidatorInterface::class    => Validator::class,
+        ////////////////////////////////////////////////////////////////////////
+        FlashInterface::class        => Flash::class,
+        FlashStorageInterface::class => FlashStorage::class,
+        ////////////////////////////////////////////////////////////////////////
+        RequestInterface::class      => Request::class,
+        SessionInterface::class      => GlobalSession::class,
+        ////////////////////////////////////////////////////////////////////////
+        RouterInterface::class       => Router::class,
+        ////////////////////////////////////////////////////////////////////////
+        UrlInterface::class          => Url::class,
+        ////////////////////////////////////////////////////////////////////////
+        TaskRunnerInterface::class   => TaskRunner::class,
     ];
 
     /**

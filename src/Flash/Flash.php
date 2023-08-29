@@ -4,17 +4,12 @@ namespace Centum\Flash;
 
 use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
-use Centum\Interfaces\Flash\MessageBagInterface;
-use Centum\Interfaces\Http\SessionInterface;
+use Centum\Interfaces\Flash\StorageInterface;
 
 class Flash implements FlashInterface
 {
-    public const SESSION_ID = "_flashMessages";
-
-
-
     public function __construct(
-        protected readonly SessionInterface $session,
+        protected readonly StorageInterface $storage,
         protected readonly FormatterInterface $formatter
     ) {
     }
@@ -43,20 +38,20 @@ class Flash implements FlashInterface
 
     protected function add(Level $level, string $text): void
     {
-        $messageBag = $this->getMessageBag();
+        $messageBag = $this->storage->get();
 
         $message = new Message($level, $text);
 
         $messageBag->add($message);
 
-        $this->session->set(self::SESSION_ID, $messageBag);
+        $this->storage->set($messageBag);
     }
 
 
 
     public function output(): string
     {
-        $messageBag = $this->getMessageBag();
+        $messageBag = $this->storage->get();
 
         $messages = $messageBag->getMessages();
 
@@ -67,17 +62,5 @@ class Flash implements FlashInterface
         }
 
         return $output;
-    }
-
-
-
-    protected function getMessageBag(): MessageBagInterface
-    {
-        /** @var MessageBagInterface */
-        $messageBag = $this->session->get(self::SESSION_ID) ?? new MessageBag();
-
-        $this->session->remove(self::SESSION_ID);
-
-        return $messageBag;
     }
 }
