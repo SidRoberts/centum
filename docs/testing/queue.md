@@ -23,6 +23,14 @@ grabQueue(): Centum\Interfaces\Queue\QueueInterface
 
 
 
+## `grabTaskRunner`
+
+```php
+grabTaskRunner(): Centum\Interfaces\Queue\TaskRunnerInterface
+```
+
+
+
 ## `useArrayQueue`
 
 ```php

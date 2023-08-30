@@ -5,9 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
+use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\ArrayQueue;
 use Centum\Queue\ImmediateQueue;
-use Centum\Queue\TaskRunner;
 use Exception;
 
 trait QueueActions
@@ -28,11 +28,22 @@ trait QueueActions
         return $queue;
     }
 
+    public function grabTaskRunner(): TaskRunnerInterface
+    {
+        $container = $this->grabContainer();
+
+        $taskRunner = $container->get(TaskRunnerInterface::class);
+
+        return $taskRunner;
+    }
+
+
+
     public function useArrayQueue(): void
     {
         $container = $this->grabContainer();
 
-        $taskRunner = new TaskRunner($container);
+        $taskRunner = $this->grabTaskRunner();
 
         $queue = new ArrayQueue($taskRunner);
 
@@ -43,7 +54,7 @@ trait QueueActions
     {
         $container = $this->grabContainer();
 
-        $taskRunner = new TaskRunner($container);
+        $taskRunner = $this->grabTaskRunner();
 
         $queue = new ImmediateQueue($taskRunner);
 
@@ -113,9 +124,7 @@ trait QueueActions
 
     public function executeTask(TaskInterface $task): void
     {
-        $container = $this->grabContainer();
-
-        $taskRunner = new TaskRunner($container);
+        $taskRunner = $this->grabTaskRunner();
 
         $taskRunner->execute($task);
     }

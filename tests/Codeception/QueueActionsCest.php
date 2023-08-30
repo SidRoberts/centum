@@ -33,6 +33,20 @@ class QueueActionsCest
         );
     }
 
+    public function testGrabTaskRunner(CodeceptionTester $I): void
+    {
+        $taskRunner = $I->mock(TaskRunnerInterface::class);
+
+        $I->addToContainer(TaskRunnerInterface::class, $taskRunner);
+
+        $I->assertSame(
+            $taskRunner,
+            $I->grabTaskRunner()
+        );
+    }
+
+
+
     public function testUseArrayQueue(CodeceptionTester $I): void
     {
         $I->useArrayQueue();
