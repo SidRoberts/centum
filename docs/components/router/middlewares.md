@@ -92,3 +92,22 @@ class AccountController implements ControllerInterface
     }
 }
 ```
+
+
+
+## Callback Middleware
+
+[`Centum\Router\Middleware\CallbackMiddleware`](https://github.com/SidRoberts/centum/blob/development/src/Router/Middleware/CallbackMiddleware.php) can be used to create a custom Middleware without creating a class for it:
+
+```php
+use Centum\Interfaces\Http\RequestInterface;
+use Centum\Router\Middleware\CallbackMiddleware;
+
+$router->group(
+    new CallbackMiddleware(
+        function (RequestInterface $request): bool {
+            return $request->getMethod() === "POST";
+        }
+    )
+);
+```
