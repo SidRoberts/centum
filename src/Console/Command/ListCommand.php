@@ -23,6 +23,13 @@ class ListCommand implements CommandInterface
 
         sort($commandNames);
 
+        $terminal->writeLine(
+            sprintf(
+                "%d commands found:",
+                count($commandNames)
+            )
+        );
+
         $terminal->writeList($commandNames);
 
         return self::SUCCESS;
