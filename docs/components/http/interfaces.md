@@ -228,6 +228,8 @@ toArray(): array<string, array<array{name: ?string, type: ?string, size: int, lo
 
 ## [`Centum\Interfaces\Http\FormInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FormInterface.php)
 
+No methods.
+
 
 
 ## [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeaderInterface.php)
