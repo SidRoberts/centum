@@ -51,6 +51,7 @@ To futher enhance testing, these traits are available:
 - [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
 - [`Centum\Codeception\Actions\HttpFormActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HttpFormActions.php)
 - [`Centum\Codeception\Actions\JsonActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/JsonActions.php)
+- [`Centum\Codeception\Actions\LoggerActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/LoggerActions.php)
 - [`Centum\Codeception\Actions\QueueActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/QueueActions.php)
 - [`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterActions.php)
 - [`Centum\Codeception\Actions\RouterReplacementActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterReplacementActions.php)
