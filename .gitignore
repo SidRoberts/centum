@@ -27,3 +27,7 @@ nbproject
 
 # Codeception
 /tests/Support/_generated/
+
+# Jekyll
+/docs/_site/
+/docs/Gemfile.lock
