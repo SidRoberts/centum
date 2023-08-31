@@ -171,11 +171,9 @@ class Module extends CodeceptionModule
      */
     public function mockInContainer(string $class, callable $callable = null): object
     {
-        $container = $this->grabContainer();
-
         $mock = $this->mock($class, $callable);
 
-        $container->set($class, $mock);
+        $this->addToContainer($class, $mock);
 
         return $mock;
     }
