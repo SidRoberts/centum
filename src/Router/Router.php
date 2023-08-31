@@ -186,20 +186,16 @@ class Router implements RouterInterface
             new FormResolver($request)
         );
 
-        $class  = $route->getClass();
-        $method = $route->getMethod();
-
-        $response = $this->executeMethod($class, $method);
+        $response = $this->executeRoute($route);
 
         return $response;
     }
 
-    /**
-     * @param class-string<ControllerInterface> $class
-     * @param non-empty-string $method
-     */
-    protected function executeMethod(string $class, string $method): ResponseInterface
+    protected function executeRoute(RouteInterface $route): ResponseInterface
     {
+        $class  = $route->getClass();
+        $method = $route->getMethod();
+
         $controller = $this->container->get($class);
 
         /** @var ResponseInterface */
