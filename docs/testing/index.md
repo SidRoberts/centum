@@ -34,7 +34,7 @@ These methods are available in your Tester classes (`tests/Support/UnitTester.ph
 - `grabContainer(): Centum\Interfaces\Container\ContainerInterface`
 - `addToContainer(class-string<T> $class, T $object): void`
 - `grabFromContainer(class-string<T> $class): T`
-- `removeFromContriner(class-string $class): void`
+- `removeFromContainer(class-string $class): void`
 - `mock(class-string $class, callable $callable = null): Mockery\MockInterface`
 - `mockInContainer(class-string $class, callable $callable = null): Mockery\MockInterface`
 
