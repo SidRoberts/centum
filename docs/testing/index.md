@@ -32,11 +32,7 @@ These methods are available in your Tester classes (`tests/Support/UnitTester.ph
 
 - `makeNewContainer(): void`
 - `grabContainer(): Centum\Interfaces\Container\ContainerInterface`
-- `addToContainer(class-string<T> $class, T $object): void`
-- `grabFromContainer(class-string<T> $class): T`
-- `removeFromContainer(class-string $class): void`
 - `mock(class-string $class, callable $callable = null): Mockery\MockInterface`
-- `mockInContainer(class-string $class, callable $callable = null): Mockery\MockInterface`
 
 
 
@@ -47,6 +43,7 @@ To futher enhance testing, these traits are available:
 - [`Centum\Codeception\Actions\AccessActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AccessActions.php)
 - [`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AjaxActions.php)
 - [`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ConsoleActions.php)
+- [`Centum\Codeception\Actions\ContainerActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ContainerActions.php)
 - [`Centum\Codeception\Actions\CookieActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CookieActions.php)
 - [`Centum\Codeception\Actions\CsrfActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CsrfActions.php)
 - [`Centum\Codeception\Actions\FilterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/FilterActions.php)

@@ -109,47 +109,6 @@ class Module extends CodeceptionModule
         return $this->container;
     }
 
-    /**
-     * @template T of object
-     *
-     * @param class-string<T> $class
-     * @param T $object
-     */
-    public function addToContainer(string $class, object $object): void
-    {
-        $container = $this->grabContainer();
-
-        $objectStorage = $container->getObjectStorage();
-
-        $objectStorage->set($class, $object);
-    }
-
-    /**
-     * @template T of object
-     *
-     * @param class-string<T> $class
-     *
-     * @return T
-     */
-    public function grabFromContainer(string $class): object
-    {
-        $container = $this->grabContainer();
-
-        return $container->get($class);
-    }
-
-    /**
-     * @param class-string $class
-     */
-    public function removeFromContainer(string $class): void
-    {
-        $container = $this->grabContainer();
-
-        $objectStorage = $container->getObjectStorage();
-
-        $objectStorage->remove($class);
-    }
-
 
 
     /**
@@ -171,22 +130,6 @@ class Module extends CodeceptionModule
             $class,
             $callable
         );
-
-        return $mock;
-    }
-
-    /**
-     * @template T of object
-     *
-     * @param class-string<T> $class
-     *
-     * @return T
-     */
-    public function mockInContainer(string $class, callable $callable = null): object
-    {
-        $mock = $this->mock($class, $callable);
-
-        $this->addToContainer($class, $mock);
 
         return $mock;
     }

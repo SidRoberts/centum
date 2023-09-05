@@ -5,6 +5,7 @@ namespace Tests\Support;
 use Centum\Codeception\Actions\AccessActions;
 use Centum\Codeception\Actions\AjaxActions;
 use Centum\Codeception\Actions\ConsoleActions;
+use Centum\Codeception\Actions\ContainerActions;
 use Centum\Codeception\Actions\CookieActions;
 use Centum\Codeception\Actions\CsrfActions;
 use Centum\Codeception\Actions\FilterActions;
@@ -31,6 +32,7 @@ class CodeceptionTester extends Actor
     use AccessActions;
     use AjaxActions;
     use ConsoleActions;
+    use ContainerActions;
     use CookieActions;
     use CsrfActions;
     use FilterActions;

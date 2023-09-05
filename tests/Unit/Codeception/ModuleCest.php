@@ -5,7 +5,6 @@ namespace Tests\Unit\Codeception;
 use Centum\Codeception\Exception\ContainerNotFoundException;
 use Centum\Codeception\Module;
 use Centum\Container\Container;
-use Centum\Router\Router;
 use Codeception\Lib\Di;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
@@ -20,7 +19,7 @@ use TypeError;
  */
 class ModuleCest
 {
-    public function getModule(string $containerFile = "tests/Support/Data/container.php"): Module
+    protected function getModule(string $containerFile = "tests/Support/Data/container.php"): Module
     {
         $di = new Di();
 
@@ -108,60 +107,6 @@ class ModuleCest
 
 
 
-    public function testAddToContainer(UnitTester $I): void
-    {
-        $module = $this->getModule();
-
-        $module->_beforeSuite();
-
-        $incrementer = new Incrementer();
-
-        $module->addToContainer(Incrementer::class, $incrementer);
-
-        $container = $module->grabContainer();
-
-        $I->assertSame(
-            $incrementer,
-            $container->get(Incrementer::class)
-        );
-    }
-
-    public function testGrabFromContainer(UnitTester $I): void
-    {
-        $module = $this->getModule();
-
-        $module->_beforeSuite();
-
-        $incrementer = new Incrementer();
-
-        $module->addToContainer(Incrementer::class, $incrementer);
-
-        $I->assertSame(
-            $incrementer,
-            $module->grabFromContainer(Incrementer::class)
-        );
-    }
-
-    public function testRemoveFromContainer(UnitTester $I): void
-    {
-        $module = $this->getModule();
-
-        $module->_beforeSuite();
-
-        $router1 = $module->grabFromContainer(Router::class);
-
-        $module->removeFromContainer(Router::class);
-
-        $router2 = $module->grabFromContainer(Router::class);
-
-        $I->assertNotSame(
-            $router1,
-            $router2
-        );
-    }
-
-
-
     public function testExceptionIsThrownIfContainerFileIsntAContainer(UnitTester $I): void
     {
         $module = $this->getModule(".php-cs-fixer.dist.php");
@@ -185,27 +130,6 @@ class ModuleCest
         $module->_beforeSuite();
 
         $incrementer = $module->mock(Incrementer::class);
-
-        $I->assertInstanceOf(
-            Incrementer::class,
-            $incrementer
-        );
-
-        $I->assertInstanceOf(
-            MockInterface::class,
-            $incrementer
-        );
-    }
-
-    public function testMockInContainer(UnitTester $I): void
-    {
-        $module = $this->getModule();
-
-        $module->_beforeSuite();
-
-        $module->mockInContainer(Incrementer::class);
-
-        $incrementer = $module->grabFromContainer(Incrementer::class);
 
         $I->assertInstanceOf(
             Incrementer::class,
