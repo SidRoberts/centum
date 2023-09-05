@@ -13,7 +13,10 @@ nav_order: 4
 
 Exception Handlers are used to catch and handle Exceptions in Commands.
 
-Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ExceptionHandlerInterface.php) and implement the following public method:
+{: .note }
+Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ExceptionHandlerInterface.php).
+
+Exception Handlers only require the following public method:
 
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal, Throwable $throwable): void`
 

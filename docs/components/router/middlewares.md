@@ -14,7 +14,10 @@ nav_order: 5
 We already know about Route Groups but we haven't used them yet in a meaningful way.
 The main purpose of Route Groups is to be able to easily assign a Middleware to a collection of Routes.
 
-Middlewares must implement [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php) and require only one public method:
+{: .note }
+Middlewares must implement [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php).
+
+Middlewares only require one public method:
 
 - `check(Centum\Interfaces\Http\RequestInterface $request): bool`
 

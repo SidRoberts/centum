@@ -11,7 +11,10 @@ nav_order: 2
 
 # Custom Filters
 
-Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Filter/FilterInterface.php) and implement the following methods:
+{: .note }
+Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Filter/FilterInterface.php).
+
+Filters only require the following methods:
 
 - `public function filter(mixed $value): mixed`
 

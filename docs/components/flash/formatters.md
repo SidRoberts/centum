@@ -12,7 +12,10 @@ nav_order: 1
 # Formatters
 
 Formatters determine how messages are outputted.
-To create your own you must implement [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php).
+
+{: .note }
+Formatters must implement [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php).
+
 Currently, there are 2 formatters:
 
 

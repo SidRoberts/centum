@@ -13,7 +13,10 @@ nav_order: 7
 
 Exception Handlers are used to catch and handle Exceptions in Controllers.
 
-Exception Handlers must implement [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ExceptionHandlerInterface.php) and implement the following public method:
+{: .note }
+Exception Handlers must implement [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ExceptionHandlerInterface.php).
+
+Exception Handlers only require the following public method:
 
 - `public function handle(Centum\Interfaces\Http\RequestInterface $request, Throwable $throwable): Centum\Interfaces\Http\ResponseInterface`
 

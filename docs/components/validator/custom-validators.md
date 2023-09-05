@@ -11,7 +11,10 @@ nav_order: 1
 
 # Custom Validators
 
-Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Validator/ValidatorInterface.php) and implement the following public methods:
+{: .note }
+Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Validator/ValidatorInterface.php).
+
+Validators only require the following public methods:
 
 - `validate(mixed $value): list<non-empty-string>`
 

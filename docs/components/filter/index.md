@@ -13,10 +13,10 @@ permalink: filter
 Filters are used to transform one value into another.
 They are very useful in validation as it allows you to standardise a value before validating it.
 
-{: .highlight }
-All filters implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php).
+{: .note }
+Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php).
 
-Filters must implement one public method:
+Filters only require one public method:
 
 - `filter(mixed $value): mixed`
 

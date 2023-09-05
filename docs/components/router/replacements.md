@@ -12,7 +12,9 @@ nav_order: 4
 # Replacements
 
 Replacements are particularly useful at preprocessing URL parameters - for example, converting an ID number into an actual object.
-Any Replacements you create must implement [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ReplacementInterface.php).
+
+{: .note }
+Replacements must implement [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ReplacementInterface.php).
 
 ```php
 namespace App\Web\Replacements;

@@ -11,9 +11,16 @@ nav_order: 1
 
 # Commands
 
-A Command is responsible for providing the actual code to run (`execute()`).
-It's return value is the exit code.
+A Command functions similarly to a Controller in a web application.
 
+{: .note }
+Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
+
+Commands only require one public method:
+
+- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+
+The `execute()` method's return value is the exit code.
 Three constants exist to clearly describe an exit code:
 
 - `Centum\Interfaces\Console\CommandInterface::SUCCESS = 0`
@@ -22,10 +29,6 @@ Three constants exist to clearly describe an exit code:
 
 The [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) attribute class stores the name and description of the Command.
 This is separated so that this information can be validated without instantiating the Command.
-
-Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php) which has only one public method:
-
-- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
 
 By default, a Command can be as simple as this:
 
