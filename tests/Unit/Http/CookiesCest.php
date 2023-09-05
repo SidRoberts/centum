@@ -219,4 +219,30 @@ class CookiesCest
             $cookies->all()
         );
     }
+
+    public function testToArray(UnitTester $I): void
+    {
+        $cookie1 = new Cookie("username", "SidRoberts");
+        $cookie2 = new Cookie("language", "en");
+        $cookie3 = new Cookie("timezone", "Asia/Seoul");
+
+
+
+        $cookies = new Cookies();
+
+        $cookies->add($cookie1);
+        $cookies->add($cookie2);
+        $cookies->add($cookie3);
+
+
+
+        $I->assertEquals(
+            [
+                "username" => "SidRoberts",
+                "language" => "en",
+                "timezone" => "Asia/Seoul",
+            ],
+            $cookies->toArray()
+        );
+    }
 }
