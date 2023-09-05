@@ -5,6 +5,7 @@ namespace Tests\Support\Controllers;
 use Centum\Http\Response;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
+use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
 class ParametersController implements ControllerInterface
@@ -19,10 +20,17 @@ class ParametersController implements ControllerInterface
         );
     }
 
-    public function fromContainer(RequestInterface $request): ResponseInterface
+    public function requestFromContainer(RequestInterface $request): ResponseInterface
     {
         return new Response(
             get_class($request)
+        );
+    }
+
+    public function sessionFromContainer(SessionInterface $session): ResponseInterface
+    {
+        return new Response(
+            get_class($session)
         );
     }
 }

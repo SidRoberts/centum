@@ -4,7 +4,7 @@ title: Exception Handlers
 parent: Router
 grand_parent: Components
 permalink: router/exception-handlers
-nav_order: 6
+nav_order: 7
 ---
 
 

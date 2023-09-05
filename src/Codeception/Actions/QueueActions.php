@@ -47,7 +47,7 @@ trait QueueActions
 
         $queue = new ArrayQueue($taskRunner);
 
-        $container->set(QueueInterface::class, $queue);
+        $container->getObjectStorage()->set(QueueInterface::class, $queue);
     }
 
     public function useImmediateQueue(): void
@@ -58,7 +58,7 @@ trait QueueActions
 
         $queue = new ImmediateQueue($taskRunner);
 
-        $container->set(QueueInterface::class, $queue);
+        $container->getObjectStorage()->set(QueueInterface::class, $queue);
     }
 
 

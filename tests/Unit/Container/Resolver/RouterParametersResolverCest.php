@@ -1,14 +1,15 @@
 <?php
 
-namespace Tests\Unit\Container;
+namespace Tests\Unit\Container\Resolver;
 
 use Centum\Http\Request;
+use Centum\Interfaces\Http\SessionInterface;
 use Centum\Router\Router;
 use Tests\Support\Controllers\ParametersController;
 use Tests\Support\UnitTester;
 
 /**
- * @covers \Centum\Container\RouterParametersResolver
+ * @covers \Centum\Container\Resolver\RouterParametersResolver
  */
 class RouterParametersResolverCest
 {
@@ -40,14 +41,16 @@ class RouterParametersResolverCest
 
         $group = $router->group();
 
-        $group->get("/", ParametersController::class, "fromContainer");
+        $group->get("/", ParametersController::class, "sessionFromContainer");
 
         $request = new Request("/");
 
         $response = $router->handle($request);
 
+        $session = $container->get(SessionInterface::class);
+
         $I->assertEquals(
-            $request::class,
+            $session::class,
             $response->getContent()
         );
     }

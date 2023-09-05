@@ -5,9 +5,9 @@ namespace Tests\Unit\Container;
 use Tests\Support\UnitTester;
 
 /**
- * @covers \Centum\Container\ContainerResolver
+ * @covers \Centum\Container\ResolverGroup
  */
-class ContainerResolverCest
+class ResolverGroupCest
 {
     public function test(UnitTester $I): void
     {

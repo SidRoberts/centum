@@ -47,6 +47,7 @@ src/
     Filters/
     Models/
     Observers/
+    Services/
     Tasks/
     Validators/
     Web/

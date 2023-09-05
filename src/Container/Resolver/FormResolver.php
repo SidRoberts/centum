@@ -1,19 +1,19 @@
 <?php
 
-namespace Centum\Container;
+namespace Centum\Container\Resolver;
 
+use Centum\Container\Exception\FormFieldNotFoundException;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Interfaces\Container\ResolverInterface;
+use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FormInterface;
-use Centum\Interfaces\Router\ControllerInterface;
-use Centum\Interfaces\Router\ParametersInterface;
 use ReflectionNamedType;
 use ReflectionParameter;
 
-class RouterParametersResolver implements ResolverInterface
+class FormResolver implements ResolverInterface
 {
     public function __construct(
-        protected readonly ParametersInterface $parameters
+        protected readonly DataInterface $data
     ) {
     }
 
@@ -23,45 +23,40 @@ class RouterParametersResolver implements ResolverInterface
     {
         $declaringClass = $parameter->getDeclaringClass();
 
-        if ($declaringClass === null || !is_subclass_of($declaringClass->getName(), ControllerInterface::class)) {
+        if ($declaringClass === null || !is_subclass_of($declaringClass->getName(), FormInterface::class)) {
             throw new UnresolvableParameterException($parameter);
         }
 
+        $name = $parameter->getName();
         $type = $parameter->getType();
 
         if (!($type instanceof ReflectionNamedType)) {
             throw new UnresolvableParameterException($parameter);
         }
 
-        if (is_subclass_of($type->getName(), FormInterface::class)) {
+        if (!$type->isBuiltIn()) {
             throw new UnresolvableParameterException($parameter);
         }
 
-        $name = $parameter->getName();
+        if ($type->getName() === "bool") {
+            return $this->data->has($name);
+        }
 
-        if (!$this->parameters->has($name)) {
-            throw new UnresolvableParameterException($parameter);
+        if (!$this->data->has($name) && !$parameter->isOptional()) {
+            throw new FormFieldNotFoundException($name);
         }
 
         /** @var mixed */
-        $value = $this->parameters->get($name);
+        $value = $this->data->get($name);
 
         if ($value === null) {
             if (!$parameter->allowsNull()) {
-                throw new UnresolvableParameterException($parameter);
-            }
-        } elseif (is_object($value)) {
-            /** @var class-string */
-            $typeName = $type->getName();
-
-            if (!is_a($value, $typeName) && !is_subclass_of($value, $typeName)) {
                 throw new UnresolvableParameterException($parameter);
             }
         } else {
             $valueType = gettype($value);
 
             $valueType = match ($valueType) {
-                "boolean" => "bool",
                 "double"  => "float",
                 "integer" => "int",
                 default   => $valueType,

@@ -2,16 +2,15 @@
 
 namespace Centum\Router;
 
-use Centum\Container\FormResolver;
-use Centum\Container\RouterParametersResolver;
+use Centum\Container\Resolver\FormResolver;
+use Centum\Container\Resolver\RequestResolver;
+use Centum\Container\Resolver\RouterParametersResolver;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
-use Centum\Interfaces\Router\ControllerInterface;
 use Centum\Interfaces\Router\ExceptionHandlerInterface;
 use Centum\Interfaces\Router\GroupInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
-use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Interfaces\Router\RouteInterface;
 use Centum\Interfaces\Router\RouterInterface;
@@ -43,8 +42,6 @@ class Router implements RouterInterface
     public function __construct(
         protected readonly ContainerInterface $container
     ) {
-        $container->set(RouterInterface::class, $this);
-
         $this->replacements = [
             "int"  => new IntegerReplacement(),
             "slug" => new SlugReplacement(),
@@ -175,18 +172,31 @@ class Router implements RouterInterface
 
         $parameters = new Parameters($parameters);
 
-        $this->container->set(ParametersInterface::class, $parameters);
-        $this->container->set(RequestInterface::class, $request);
+        $data = $request->getData();
 
-        $this->container->addResolver(
-            new RouterParametersResolver($parameters)
-        );
 
-        $this->container->addResolver(
-            new FormResolver($request)
-        );
+
+        $resolverGroup = $this->container->getResolverGroup();
+
+        $requestResolver          = new RequestResolver($request);
+        $routerParametersResolver = new RouterParametersResolver($parameters);
+        $formResolver             = new FormResolver($data);
+
+        $resolverGroup->add($requestResolver);
+        $resolverGroup->add($routerParametersResolver);
+        $resolverGroup->add($formResolver);
+
+
 
         $response = $this->executeRoute($route);
+
+
+
+        $resolverGroup->remove($requestResolver);
+        $resolverGroup->remove($routerParametersResolver);
+        $resolverGroup->remove($formResolver);
+
+
 
         return $response;
     }

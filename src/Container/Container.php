@@ -2,129 +2,137 @@
 
 namespace Centum\Container;
 
-use Centum\Access\Access;
-use Centum\Console\Application;
-use Centum\Console\Terminal;
 use Centum\Container\Exception\InstantiateInterfaceException;
-use Centum\Container\Exception\UnresolvableParameterException;
-use Centum\Cron\Cron;
-use Centum\Flash\Flash;
-use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Flash\Storage as FlashStorage;
-use Centum\Http\Csrf\Generator;
-use Centum\Http\Csrf\Storage;
-use Centum\Http\Csrf\Validator;
-use Centum\Http\Request;
-use Centum\Http\Session\GlobalSession;
-use Centum\Interfaces\Access\AccessInterface;
-use Centum\Interfaces\Console\ApplicationInterface;
-use Centum\Interfaces\Console\TerminalInterface;
+use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Interfaces\Container\ResolverInterface;
-use Centum\Interfaces\Cron\CronInterface;
-use Centum\Interfaces\Flash\FlashInterface;
-use Centum\Interfaces\Flash\FormatterInterface;
-use Centum\Interfaces\Flash\StorageInterface as FlashStorageInterface;
-use Centum\Interfaces\Http\Csrf\GeneratorInterface;
-use Centum\Interfaces\Http\Csrf\StorageInterface;
-use Centum\Interfaces\Http\Csrf\ValidatorInterface;
-use Centum\Interfaces\Http\RequestInterface;
-use Centum\Interfaces\Http\SessionInterface;
-use Centum\Interfaces\Queue\TaskRunnerInterface;
-use Centum\Interfaces\Router\RouterInterface;
-use Centum\Interfaces\Url\UrlInterface;
-use Centum\Queue\TaskRunner;
-use Centum\Router\Router;
-use Centum\Url\Url;
+use Centum\Interfaces\Container\ObjectStorageInterface;
+use Centum\Interfaces\Container\ResolverGroupInterface;
+use Centum\Interfaces\Container\ServiceInterface;
+use Centum\Interfaces\Container\ServiceStorageInterface;
 use Closure;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
-use ReflectionParameter;
 
 class Container implements ContainerInterface
 {
-    /** @var array<interface-string, object> */
-    protected array $objects = [];
-
-    /** @var array<interface-string, class-string> */
-    protected array $aliases = [
-        AccessInterface::class       => Access::class,
-        ////////////////////////////////////////////////////////////////////////
-        ApplicationInterface::class  => Application::class,
-        TerminalInterface::class     => Terminal::class,
-        ////////////////////////////////////////////////////////////////////////
-        CronInterface::class         => Cron::class,
-        ////////////////////////////////////////////////////////////////////////
-        GeneratorInterface::class    => Generator::class,
-        StorageInterface::class      => Storage::class,
-        ValidatorInterface::class    => Validator::class,
-        ////////////////////////////////////////////////////////////////////////
-        FlashInterface::class        => Flash::class,
-        FormatterInterface::class    => HtmlFormatter::class,
-        FlashStorageInterface::class => FlashStorage::class,
-        ////////////////////////////////////////////////////////////////////////
-        RequestInterface::class      => Request::class,
-        SessionInterface::class      => GlobalSession::class,
-        ////////////////////////////////////////////////////////////////////////
-        RouterInterface::class       => Router::class,
-        ////////////////////////////////////////////////////////////////////////
-        UrlInterface::class          => Url::class,
-        ////////////////////////////////////////////////////////////////////////
-        TaskRunnerInterface::class   => TaskRunner::class,
-    ];
-
-    /**
-     * @var array<ResolverInterface>
-     */
-    protected array $resolvers = [];
+    protected readonly AliasManagerInterface $aliasManager;
+    protected readonly ResolverGroupInterface $resolverGroup;
+    protected readonly ObjectStorageInterface $objectStorage;
+    protected readonly ServiceStorageInterface $serviceStorage;
 
 
 
-    public function __construct()
+    public function __construct(
+        AliasManagerInterface $aliasManager = null,
+        ResolverGroupInterface $resolverGroup = null,
+        ObjectStorageInterface $objectStorage = null,
+        ServiceStorageInterface $serviceStorage = null
+    ) {
+        $this->aliasManager   = $aliasManager   ?? new AliasManager();
+        $this->resolverGroup  = $resolverGroup  ?? new ResolverGroup();
+        $this->objectStorage  = $objectStorage  ?? new ObjectStorage();
+        $this->serviceStorage = $serviceStorage ?? new ServiceStorage();
+
+        $this->objectStorage->set(ContainerInterface::class, $this);
+    }
+
+
+
+    public function getAliasManager(): AliasManagerInterface
     {
-        $this->set(ContainerInterface::class, $this);
+        return $this->aliasManager;
+    }
 
-        $containerResolver = new ContainerResolver($this);
+    public function getResolverGroup(): ResolverGroupInterface
+    {
+        return $this->resolverGroup;
+    }
 
-        $this->addResolver($containerResolver);
+    public function getObjectStorage(): ObjectStorageInterface
+    {
+        return $this->objectStorage;
+    }
+
+    public function getServiceStorage(): ServiceStorageInterface
+    {
+        return $this->serviceStorage;
     }
 
 
 
     /**
      * @template T of object
-     * @psalm-param interface-string<T>|class-string<T> $class
-     * @psalm-return T
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
      */
     public function get(string $class): object
     {
-        if (!isset($this->objects[$class])) {
-            $alias = $this->aliases[$class] ?? $class;
+        if (!$this->objectStorage->has($class)) {
+            $service = $this->serviceStorage->get($class);
 
-            if (interface_exists($alias)) {
-                throw new InstantiateInterfaceException($alias);
-            }
-
-            $reflectionClass = new ReflectionClass($alias);
-
-            $constructor = $reflectionClass->getConstructor();
-
-            if ($constructor) {
-                $params = $this->resolveParams($constructor);
-
-                $this->objects[$class] = $reflectionClass->newInstanceArgs($params);
+            if ($service !== null) {
+                $object = $this->typehintService($service);
             } else {
-                $this->objects[$class] = $reflectionClass->newInstance();
+                $object = $this->typehintClass($class);
             }
+
+            $this->objectStorage->set($class, $object);
         }
 
-        /** @psalm-var T */
-        return $this->objects[$class];
+        /** @var T */
+        return $this->objectStorage->get($class);
     }
 
 
+
+    /**
+     * @template T of object
+     *
+     * @param class-string<ServiceInterface<T>> $serviceClass
+     *
+     * @return T
+     */
+    public function typehintService(string $serviceClass): object
+    {
+        $service = $this->typehintClass($serviceClass);
+
+        return $service->build();
+    }
+
+
+
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
+     */
+    public function typehintClass(string $class): object
+    {
+        /** @var class-string<T> */
+        $alias = $this->aliasManager->get($class);
+
+        if (interface_exists($alias)) {
+            throw new InstantiateInterfaceException($alias);
+        }
+
+        $reflectionClass = new ReflectionClass($alias);
+
+        $constructor = $reflectionClass->getConstructor();
+
+        if (!$constructor) {
+            return $reflectionClass->newInstance();
+        }
+
+        $params = $this->resolveParams($constructor);
+
+        return $reflectionClass->newInstanceArgs($params);
+    }
 
     /**
      * @param non-empty-string $methodName
@@ -143,61 +151,13 @@ class Container implements ContainerInterface
     /**
      * @param Closure|callable-string $function
      */
-    public function typehintFunction(Closure | string $function): mixed
+    public function typehintFunction(Closure|string $function): mixed
     {
         $reflectionFunction = new ReflectionFunction($function);
 
         $params = $this->resolveParams($reflectionFunction);
 
         return $reflectionFunction->invokeArgs($params);
-    }
-
-
-
-    /**
-     * @param interface-string $interface
-     * @param class-string $alias
-     */
-    public function addAlias(string $interface, string $alias): void
-    {
-        $this->aliases[$interface] = $alias;
-    }
-
-
-
-    /**
-     * @param interface-string $interface
-     */
-    public function set(string $interface, object $object): void
-    {
-        $this->objects[$interface] = $object;
-    }
-
-    /**
-     * @param interface-string $interface
-     * @param Closure|callable-string $function
-     */
-    public function setDynamic(string $interface, Closure | string $function): void
-    {
-        /** @var object */
-        $object = $this->typehintFunction($function);
-
-        $this->objects[$interface] = $object;
-    }
-
-    /**
-     * @param interface-string $interface
-     */
-    public function remove(string $interface): void
-    {
-        unset($this->objects[$interface]);
-    }
-
-
-
-    public function addResolver(ResolverInterface $resolver): void
-    {
-        $this->resolvers[] = $resolver;
     }
 
 
@@ -213,29 +173,9 @@ class Container implements ContainerInterface
 
         foreach ($parameters as $parameter) {
             /** @var mixed */
-            $resolvedParameters[] = $this->resolveParam($parameter);
+            $resolvedParameters[] = $this->resolverGroup->resolve($parameter, $this);
         }
 
         return $resolvedParameters;
-    }
-
-    protected function resolveParam(ReflectionParameter $parameter): mixed
-    {
-        foreach (array_reverse($this->resolvers) as $resolver) {
-            try {
-                return $resolver->resolve($parameter);
-            } catch (UnresolvableParameterException) {
-            }
-        }
-
-        if ($parameter->isDefaultValueAvailable()) {
-            return $parameter->getDefaultValue();
-        }
-
-        if ($parameter->allowsNull()) {
-            return null;
-        }
-
-        throw new UnresolvableParameterException($parameter);
     }
 }

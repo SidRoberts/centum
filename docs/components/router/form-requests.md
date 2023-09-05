@@ -4,7 +4,7 @@ title: Form Requests
 parent: Router
 grand_parent: Components
 permalink: router/form-requests
-nav_order: 5
+nav_order: 6
 ---
 
 

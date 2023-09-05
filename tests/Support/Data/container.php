@@ -1,8 +1,8 @@
 <?php
 
 use Centum\Container\Container;
-use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
+use Tests\Support\Container\Services\RouterService;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 CONTAINER                                  //
@@ -10,20 +10,15 @@ use Centum\Router\Router;
 
 $container = new Container();
 
+$serviceStorage = $container->getServiceStorage();
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                APPLICATION                                 //
 ////////////////////////////////////////////////////////////////////////////////
 
-$container->setDynamic(
-    Router::class,
-    /** @psalm-suppress UnusedClosureParam */
-    function (ContainerInterface $container): Router {
-        /** @var Router */
-        return require __DIR__ . "/router.php";
-    }
-);
+$serviceStorage->set(RouterInterface::class, RouterService::class);
 
 ////////////////////////////////////////////////////////////////////////////////
 

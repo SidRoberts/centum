@@ -6,7 +6,6 @@ use Centum\Http\Csrf\Validator;
 use Centum\Http\Exception\CsrfException;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\DataInterface;
-use Centum\Interfaces\Http\RequestInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Mockery\MockInterface;
@@ -34,14 +33,6 @@ class ValidatorCest
             }
         );
 
-        $request = $I->mock(
-            RequestInterface::class,
-            function (MockInterface $mock) use ($data): void {
-                $mock->shouldReceive("getData")
-                    ->andReturn($data);
-            }
-        );
-
         $storage = $I->mock(
             StorageInterface::class,
             function (MockInterface $mock) use ($abc): void {
@@ -50,7 +41,7 @@ class ValidatorCest
             }
         );
 
-        $validator = new Validator($request, $storage);
+        $validator = new Validator($data, $storage);
 
         /** @var bool */
         $isValid = $example["isValid"];

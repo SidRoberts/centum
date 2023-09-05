@@ -11,20 +11,76 @@ nav_order: 1
 
 # Aliases
 
-Aliases can be added using the `addAlias()` method.
-This is particularly useful for interfaces that cannot be directly instantiated:
+In many cases, classes will have typehints for interfaces, rather than concrete classes.
+As the Container cannot assume which class to inject, the Alias Manager exists to provide aliases to actual classes.
+
+```php
+Centum\Container\AliasManager();
+```
+
+{: .highlight }
+[`Centum\Container\AliasManager`](https://github.com/SidRoberts/centum/blob/development/src/Container/AliasManager.php) implements [`Centum\Interfaces\Container\AliasManagerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/AliasManagerInterface.php).
+
+You can obtain the Alias Manager from a Container:
+
+```php
+use Centum\Interfaces\Container\ContainerInterface;
+
+/** @var ContainerInterface $container */
+
+$aliasManager = $container->getAliasManager();
+```
+
+Aliases can be added using the `add()` method:
 
 ```php
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
 
-$container->addAlias(
-    FormatterInterface::class,
-    HtmlFormatter::class
-);
+/** @var AliasManagerInterface $aliasManager */
+
+$aliasManager->add(FormatterInterface::class, HtmlFormatter::class);
 ```
 
-Now, any call to [`FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php) will return or create a new [`HtmlFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/HtmlFormatter.php) object.
+Now, any call with [`FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php) will return the [`HtmlFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/HtmlFormatter.php) class instead:
+
+```php
+use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Container\AliasManagerInterface;
+use Centum\Interfaces\Flash\FormatterInterface;
+
+/** @var AliasManagerInterface $aliasManager */
+
+$alias = $aliasManager->get(FormatterInterface::class); // = HtmlFormatter::class
+```
+
+If an alias hasn't been set, then the original class will be returned:
+
+```php
+use Centum\Interfaces\Console\TerminalInterface;
+use Centum\Interfaces\Container\AliasManagerInterface;
+
+/** @var AliasManagerInterface $aliasManager */
+
+$alias = $aliasManager->get(TerminalInterface::class); // = TerminalInterface::class
+```
+
+The Container will implicitly handle aliases internally so getting `FormatterInterface` from the Container will now actually return a `HtmlFormatter` object:
+
+```php
+use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Flash\FormatterInterface;
+
+/** @var ContainerInterface $container */
+
+$formatter = $container->get(FormatterInterface::class); // = HtmlFormatter object
+```
+
+
+
+## Default Aliases
 
 By default, some aliases have already been set:
 

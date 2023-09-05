@@ -1,6 +1,6 @@
 <?php
 
-namespace Centum\Container;
+namespace Centum\Container\Resolver;
 
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Interfaces\Console\CommandInterface;

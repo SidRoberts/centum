@@ -110,19 +110,26 @@ class Module extends CodeceptionModule
     }
 
     /**
-     * @param class-string $class
+     * @template T of object
+     *
+     * @param class-string<T> $class
+     * @param T $object
      */
     public function addToContainer(string $class, object $object): void
     {
         $container = $this->grabContainer();
 
-        $container->set($class, $object);
+        $objectStorage = $container->getObjectStorage();
+
+        $objectStorage->set($class, $object);
     }
 
     /**
      * @template T of object
-     * @psalm-param interface-string<T>|class-string<T> $class
-     * @psalm-return T
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
      */
     public function grabFromContainer(string $class): object
     {
@@ -132,21 +139,25 @@ class Module extends CodeceptionModule
     }
 
     /**
-     * @psalm-param interface-string $class
+     * @param class-string $class
      */
     public function removeFromContainer(string $class): void
     {
         $container = $this->grabContainer();
 
-        $container->remove($class);
+        $objectStorage = $container->getObjectStorage();
+
+        $objectStorage->remove($class);
     }
 
 
 
     /**
      * @template T of object
-     * @psalm-param interface-string<T>|class-string<T> $class
-     * @psalm-return T
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
      */
     public function mock(string $class, callable $callable = null): object
     {
@@ -155,7 +166,7 @@ class Module extends CodeceptionModule
             $callable = function (MockInterface $mock): void {};
         }
 
-        /** @psalm-var T */
+        /** @var T */
         $mock = Mockery::mock(
             $class,
             $callable
@@ -166,8 +177,10 @@ class Module extends CodeceptionModule
 
     /**
      * @template T of object
-     * @psalm-param interface-string<T>|class-string<T> $class
-     * @psalm-return T
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
      */
     public function mockInContainer(string $class, callable $callable = null): object
     {

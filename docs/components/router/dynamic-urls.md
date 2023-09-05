@@ -4,7 +4,7 @@ title: Dynamic URLs
 parent: Router
 grand_parent: Components
 permalink: router/dynamic-urls
-nav_order: 3
+nav_order: 2
 ---
 
 

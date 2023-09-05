@@ -19,8 +19,10 @@ trait RouterActions
 {
     /**
      * @template T of object
-     * @psalm-param interface-string<T>|class-string<T> $class
-     * @psalm-return T
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
      */
     abstract public function grabFromContainer(string $class): object;
 

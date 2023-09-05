@@ -15,11 +15,72 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php)
+## [`Centum\Interfaces\Container\AliasManagerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/AliasManagerInterface.php)
+
+```php
+add(
+    class-string $class,
+    class-string $alias
+): void
+```
 
 ```php
 get(
-    interface-string<T>|class-string<T> $class
+    class-string $class
+): class-string
+```
+
+```php
+has(
+    class-string $class
+): bool
+```
+
+```php
+remove(
+    class-string $class
+): void
+```
+
+```php
+getAll(): array<class-string, class-string>
+```
+
+
+
+## [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php)
+
+```php
+getAliasManager(): Centum\Interfaces\Container\AliasManagerInterface
+```
+
+```php
+getResolverGroup(): Centum\Interfaces\Container\ResolverGroupInterface
+```
+
+```php
+getObjectStorage(): Centum\Interfaces\Container\ObjectStorageInterface
+```
+
+```php
+getServiceStorage(): Centum\Interfaces\Container\ServiceStorageInterface
+```
+
+```php
+get(
+    class-string<T> $class
+): T
+```
+
+```php
+typehintService(
+    class-string<Centum\Interfaces\Container\ServiceInterface<T>> $serviceClass
+): T
+```
+
+```php
+typehintClass(
+    class-string<T> $class
 ): T
 ```
 
@@ -36,37 +97,56 @@ typehintFunction(
 ): mixed
 ```
 
+
+
+## [`Centum\Interfaces\Container\ObjectStorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ObjectStorageInterface.php)
+
 ```php
-addAlias(
-    interface-string $interface,
-    class-string $alias
-): void
+has(
+    class-string $class
+): bool
+```
+
+```php
+get(
+    class-string<T> $class
+): T|null
 ```
 
 ```php
 set(
-    interface-string $interface,
-    object $object
-): void
-```
-
-```php
-setDynamic(
-    interface-string $interface,
-    Closure|callable-string $function
+    class-string<T> $class,
+    T $object
 ): void
 ```
 
 ```php
 remove(
-    interface-string $interface
+    class-string $class
+): void
+```
+
+
+
+## [`Centum\Interfaces\Container\ResolverGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ResolverGroupInterface.php)
+
+```php
+add(
+    Centum\Interfaces\Container\ResolverInterface $resolver
 ): void
 ```
 
 ```php
-addResolver(
+remove(
     Centum\Interfaces\Container\ResolverInterface $resolver
 ): void
+```
+
+```php
+resolve(
+    ReflectionParameter $parameter,
+    Centum\Interfaces\Container\ContainerInterface $container
+): mixed
 ```
 
 
@@ -77,4 +157,41 @@ addResolver(
 resolve(
     ReflectionParameter $parameter
 ): mixed
+```
+
+
+
+## [`Centum\Interfaces\Container\ServiceInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ServiceInterface.php)
+
+```php
+build(): T
+```
+
+
+
+## [`Centum\Interfaces\Container\ServiceStorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ServiceStorageInterface.php)
+
+```php
+has(
+    class-string $class
+): bool
+```
+
+```php
+get(
+    class-string<T> $class
+): class-string<ServiceInterface<T>>|null
+```
+
+```php
+set(
+    class-string<T> $class,
+    class-string<Centum\Interfaces\Container\ServiceInterface<T>> $service
+): void
+```
+
+```php
+remove(
+    class-string $class
+): void
 ```

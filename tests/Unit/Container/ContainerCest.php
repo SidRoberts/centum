@@ -2,17 +2,22 @@
 
 namespace Tests\Unit\Container;
 
+use Centum\Container\AliasManager;
 use Centum\Container\Container;
 use Centum\Container\Exception\InstantiateInterfaceException;
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Container\ObjectStorage;
+use Centum\Container\ResolverGroup;
+use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Container\ObjectStorageInterface;
+use Centum\Interfaces\Container\ResolverGroupInterface;
 use stdClass;
-use Tests\Support\Container\Alias\ACommand;
-use Tests\Support\Container\Alias\CommandInterface;
 use Tests\Support\Container\DifferentTypes;
 use Tests\Support\Container\Incrementer;
 use Tests\Support\Container\ResolvableClass;
 use Tests\Support\Container\ResolvableClassNoConstructor;
+use Tests\Support\Container\Services\IncrementerService;
 use Tests\Support\Container\UnresolvableClass;
 use Tests\Support\UnitTester;
 use Throwable;
@@ -22,6 +27,78 @@ use Throwable;
  */
 class ContainerCest
 {
+    public function testGetAliasManagerDefault(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $I->assertInstanceOf(
+            AliasManagerInterface::class,
+            $container->getAliasManager()
+        );
+    }
+
+    public function testGetAliasManagerCustom(UnitTester $I): void
+    {
+        $aliasManager = new AliasManager();
+
+        $container = new Container($aliasManager);
+
+        $I->assertSame(
+            $aliasManager,
+            $container->getAliasManager()
+        );
+    }
+
+
+
+    public function testGetResolverGroupDefault(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $I->assertInstanceOf(
+            ResolverGroupInterface::class,
+            $container->getResolverGroup()
+        );
+    }
+
+    public function testGetResolverGroupCustom(UnitTester $I): void
+    {
+        $resolverGroup = new ResolverGroup();
+
+        $container = new Container(null, $resolverGroup);
+
+        $I->assertSame(
+            $resolverGroup,
+            $container->getResolverGroup()
+        );
+    }
+
+
+
+    public function testGetObjectStorageDefault(UnitTester $I): void
+    {
+        $container = new Container();
+
+        $I->assertInstanceOf(
+            ObjectStorageInterface::class,
+            $container->getObjectStorage()
+        );
+    }
+
+    public function testGetObjectStorageCustom(UnitTester $I): void
+    {
+        $objectStorage = new ObjectStorage();
+
+        $container = new Container(null, null, $objectStorage);
+
+        $I->assertSame(
+            $objectStorage,
+            $container->getObjectStorage()
+        );
+    }
+
+
+
     public function testGetContainerInterface(UnitTester $I): void
     {
         $container = new Container();
@@ -81,17 +158,9 @@ class ContainerCest
     {
         $container = new Container();
 
-        $container->setDynamic(
-            Incrementer::class,
-            function (): Incrementer {
-                $incrementer = new Incrementer();
+        $serviceStorage = $container->getServiceStorage();
 
-                $incrementer->increment();
-                $incrementer->increment();
-
-                return $incrementer;
-            }
-        );
+        $serviceStorage->set(Incrementer::class, IncrementerService::class);
 
         $incrementer = $container->get(Incrementer::class);
 
@@ -248,33 +317,6 @@ class ContainerCest
                 $container->typehintMethod($differentTypes, "unresolvable2");
             }
         );
-    }
-
-    public function testAliases(UnitTester $I): void
-    {
-        $container = new Container();
-
-        $container->addAlias(CommandInterface::class, ACommand::class);
-
-        $object = $container->get(CommandInterface::class);
-
-        $I->assertInstanceOf(
-            ACommand::class,
-            $object
-        );
-    }
-
-    public function testRemove(UnitTester $I): void
-    {
-        $container = new Container();
-
-        $incrementer1 = $container->get(Incrementer::class);
-
-        $container->remove(Incrementer::class);
-
-        $incrementer2 = $container->get(Incrementer::class);
-
-        $I->assertNotSame($incrementer1, $incrementer2);
     }
 
 

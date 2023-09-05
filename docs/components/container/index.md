@@ -13,11 +13,23 @@ permalink: container
 The Container component handles object dependencies by centralising object creation and storage.
 Whenever an object is created in the Container, it is saved and reused again whenever that class is required.
 
-```php
-use Centum\Container\Container;
+The Container is made up of four parts:
 
-$container = new Container();
+- Alias Manager
+- Resolver Group
+- Object Storage
+- Service Storage
+
+```php
+Centum\Container\Container(
+    Centum\Interfaces\Container\AliasManagerInterface $aliasManager = null,
+    Centum\Interfaces\Container\ResolverGroupInterface $resolverGroup = null,
+    Centum\Interfaces\Container\ObjectStorageInterface $objectStorage = null,
+    Centum\Interfaces\Container\ServiceStorageInterface $serviceStorage = null
+);
 ```
+
+If any of these parts are not explicitly set, then the Container will create a default for that part.
 
 {: .highlight }
 [`Centum\Container\Container`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php) implements [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php).
@@ -36,57 +48,4 @@ $router = $container->get(RouterInterface::class);
 
 If the object does not exist within the Container, then a new instance will be created and returned.
 
-
-
-## Specifying objects
-
-Objects can be set using the `set()` method:
-
-```php
-use Centum\Interfaces\Router\RouterInterface;
-
-$container->set(RouterInterface::class, $router);
-```
-
-Objects can be dynamically set in a closure using `setDynamic()`.
-This closure is typehinted so you can reference other objects in the function signature:
-
-```php
-use App\Web\ExceptionHandlers\ExceptionHandler;
-use Centum\Interfaces\Container\ContainerInterface;
-use Centum\Interfaces\Router\RouterInterface;
-use Centum\Router\Router;
-
-$container->setDynamic(
-    RouterInterface::class,
-    function (ContainerInterface $container): void {
-        $router = new Router($container);
-
-        $router->addExceptionHandler(ExceptionHandler::class);
-
-        return $router;
-    }
-);
-```
-
-It is then possible to retreive that object from the Container:
-
-```php
-use Centum\Interfaces\Router\RouterInterface;
-
-$router = $container->get(RouterInterface::class);
-```
-
 If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php).
-
-
-
-## Removing objects
-
-You can remove objects from the Container using the `remove()` method:
-
-```php
-use Centum\Interfaces\Router\RouterInterface;
-
-$container->remove(RouterInterface::class);
-```

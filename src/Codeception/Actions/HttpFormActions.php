@@ -2,14 +2,14 @@
 
 namespace Centum\Codeception\Actions;
 
-use Centum\Container\FormResolver;
+use Centum\Container\Resolver\FormResolver;
+use Centum\Container\Resolver\RequestResolver;
 use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FilesInterface;
 use Centum\Interfaces\Http\FormInterface;
-use Centum\Interfaces\Http\RequestInterface;
 use Throwable;
 
 trait HttpFormActions
@@ -25,8 +25,10 @@ trait HttpFormActions
 
     /**
      * @template T of FormInterface
-     * @psalm-param class-string<T> $formClass
-     * @psalm-return T
+     *
+     * @param class-string<T> $formClass
+     *
+     * @return T
      */
     public function buildForm(string $formClass, DataInterface $data, FilesInterface $files = null): object
     {
@@ -41,13 +43,28 @@ trait HttpFormActions
             $files
         );
 
-        $container->set(RequestInterface::class, $request);
 
-        $container->addResolver(
-            new FormResolver($request)
-        );
 
-        return $container->get($formClass);
+        $resolverGroup = $container->getResolverGroup();
+
+        $requestResolver = new RequestResolver($request);
+        $formResolver    = new FormResolver($data);
+
+        $resolverGroup->add($requestResolver);
+        $resolverGroup->add($formResolver);
+
+
+
+        $form = $container->get($formClass);
+
+
+
+        $resolverGroup->remove($requestResolver);
+        $resolverGroup->remove($formResolver);
+
+
+
+        return $form;
     }
 
 

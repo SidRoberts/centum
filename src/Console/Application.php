@@ -7,7 +7,7 @@ use Centum\Console\Command\QueueConsumeCommand;
 use Centum\Console\Exception\CommandMetadataNotFoundException;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\UnsuitableExceptionHandlerException;
-use Centum\Container\ConsoleResolver;
+use Centum\Container\Resolver\ConsoleResolver;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\ExceptionHandlerInterface;
@@ -29,8 +29,6 @@ class Application implements ApplicationInterface
     public function __construct(
         protected readonly ContainerInterface $container,
     ) {
-        $container->set(ApplicationInterface::class, $this);
-
         $this->addCommand(ListCommand::class);
         $this->addCommand(QueueConsumeCommand::class);
     }
@@ -89,9 +87,11 @@ class Application implements ApplicationInterface
     {
         $arguments = $terminal->getArguments();
 
-        $this->container->addResolver(
-            new ConsoleResolver($arguments)
-        );
+        $resolverGroup = $this->container->getResolverGroup();
+
+        $consoleResolver = new ConsoleResolver($arguments);
+
+        $resolverGroup->add($consoleResolver);
 
         $name = $arguments->getCommandName();
 
@@ -103,6 +103,8 @@ class Application implements ApplicationInterface
             return $command->execute($terminal);
         } catch (Throwable $throwable) {
             return $this->handleException($terminal, $throwable);
+        } finally {
+            $resolverGroup->remove($consoleResolver);
         }
     }
 
