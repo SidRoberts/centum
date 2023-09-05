@@ -28,8 +28,11 @@ Centum\Console\Terminal(
 
 ```php
 use Centum\Console\Terminal;
+use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
 
-$terminal = new Terminal();
+/** @var ArgumentsInterface $arguments */
+
+$terminal = new Terminal($arguments);
 ```
 
 

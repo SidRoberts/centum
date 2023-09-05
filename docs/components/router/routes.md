@@ -51,9 +51,9 @@ A group can store as many routes as you wish and can be used to organise and gro
 A new group can be created with the `group()` method:
 
 ```php
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 
-/** @var Router $router */
+/** @var RouterInterface $router */
 
 $group = $router->group();
 ```
@@ -83,9 +83,9 @@ If we wanted to add the login form from the `LoginController` in the earlier exa
 
 ```php
 use App\Web\Controllers\LoginController;
-use Centum\Router\Router;
+use Centum\Interfaces\Router\RouterInterface;
 
-/** @var Router $router */
+/** @var RouterInterface $router */
 
 $group = $router->group();
 
