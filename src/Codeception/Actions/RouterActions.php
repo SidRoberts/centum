@@ -126,7 +126,9 @@ trait RouterActions
 
         $this->response = $router->handle($request);
 
-        if ($this->response->getStatus()->isRedirect() && $this->followRedirects) {
+        $status = $this->response->getStatus();
+
+        if ($status->isRedirect() && $this->followRedirects) {
             return $this->followRedirect();
         }
 
@@ -139,7 +141,9 @@ trait RouterActions
             throw new ModuleException($this, "Page not loaded.");
         }
 
-        $locationHeader = $this->response->getHeaders()->get("Location");
+        $headers = $this->response->getHeaders();
+
+        $locationHeader = $headers->get("Location");
 
         $request = new Request(
             $locationHeader->getValue()
