@@ -45,6 +45,13 @@ isAllowed(
 ): bool
 ```
 
+```php
+verify(
+    non-empty-string $user,
+    non-empty-string $activityName
+): void
+```
+
 
 
 ## [`Centum\Interfaces\Access\ActivityInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/ActivityInterface.php)

@@ -80,10 +80,6 @@ class Access implements AccessInterface
         return $activity->isAllowed($user);
     }
 
-    /**
-     * @param non-empty-string $user
-     * @param non-empty-string $activityName
-     */
     public function verify(string $user, string $activityName): void
     {
         if (!$this->isAllowed($user, $activityName)) {

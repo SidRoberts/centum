@@ -29,4 +29,10 @@ interface AccessInterface
      * @param non-empty-string $activityName
      */
     public function isAllowed(string $user, string $activityName): bool;
+
+    /**
+     * @param non-empty-string $user
+     * @param non-empty-string $activityName
+     */
+    public function verify(string $user, string $activityName): void;
 }
