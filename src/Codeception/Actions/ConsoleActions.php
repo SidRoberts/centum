@@ -22,13 +22,19 @@ trait ConsoleActions
 
     protected ?int $exitCode = null;
 
-    /** @var ?resource */
+    /**
+     * @var ?resource
+     */
     protected $stdin = null;
 
-    /** @var ?resource */
+    /**
+     * @var ?resource
+     */
     protected $stdout = null;
 
-    /** @var ?resource */
+    /**
+     * @var ?resource
+     */
     protected $stderr = null;
 
 

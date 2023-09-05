@@ -10,7 +10,9 @@ use Throwable;
 
 class ImmediateQueue implements QueueInterface
 {
-    /** @var array<TaskInterface> */
+    /**
+     * @var array<TaskInterface>
+     */
     protected array $buriedTasks = [];
 
 

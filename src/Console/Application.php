@@ -18,10 +18,14 @@ use Throwable;
 
 class Application implements ApplicationInterface
 {
-    /** @var array<string, class-string<CommandInterface>> */
+    /**
+     * @var array<string, class-string<CommandInterface>>
+     */
     protected array $commands = [];
 
-    /** @var array<class-string<ExceptionHandlerInterface>> */
+    /**
+     * @var array<class-string<ExceptionHandlerInterface>>
+     */
     protected array $exceptionHandlers = [];
 
 

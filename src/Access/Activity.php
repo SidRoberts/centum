@@ -6,7 +6,9 @@ use Centum\Interfaces\Access\ActivityInterface;
 
 class Activity implements ActivityInterface
 {
-    /** @var array<non-empty-string, bool> */
+    /**
+     * @var array<non-empty-string, bool>
+     */
     protected array $users = [];
 
 

@@ -10,10 +10,14 @@ use Throwable;
 
 class ArrayQueue implements QueueInterface
 {
-    /** @var array<TaskInterface> */
+    /**
+     * @var array<TaskInterface>
+     */
     protected array $tasks = [];
 
-    /** @var array<TaskInterface> */
+    /**
+     * @var array<TaskInterface>
+     */
     protected array $buriedTasks = [];
 
 

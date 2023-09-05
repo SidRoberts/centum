@@ -9,7 +9,9 @@ use Centum\Interfaces\Filter\FilterInterface;
  */
 class Group implements FilterInterface
 {
-    /** @var array<FilterInterface> */
+    /**
+     * @var array<FilterInterface>
+     */
     protected array $filters = [];
 
 

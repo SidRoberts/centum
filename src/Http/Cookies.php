@@ -8,7 +8,9 @@ use OutOfRangeException;
 
 class Cookies implements CookiesInterface
 {
-    /** @var array<string, CookieInterface> */
+    /**
+     * @var array<string, CookieInterface>
+     */
     protected array $cookies = [];
 
 

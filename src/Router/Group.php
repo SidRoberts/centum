@@ -10,7 +10,9 @@ use Centum\Interfaces\Router\RouteInterface;
 
 class Group implements GroupInterface
 {
-    /** @var array<RouteInterface> */
+    /**
+     * @var array<RouteInterface>
+     */
     protected array $routes = [];
 
 

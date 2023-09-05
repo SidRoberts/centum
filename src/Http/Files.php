@@ -9,7 +9,9 @@ use Centum\Interfaces\Http\FilesInterface;
 
 class Files implements FilesInterface
 {
-    /** @var array<string, FileGroupInterface> */
+    /**
+     * @var array<string, FileGroupInterface>
+     */
     protected array $fileGroups = [];
 
 

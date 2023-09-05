@@ -28,13 +28,19 @@ use Throwable;
 
 class Router implements RouterInterface
 {
-    /** @var array<GroupInterface> */
+    /**
+     * @var array<GroupInterface>
+     */
     protected array $groups = [];
 
-    /** @var array<string, ReplacementInterface> */
+    /**
+     * @var array<non-empty-string, ReplacementInterface>
+     */
     protected array $replacements = [];
 
-    /** @var array<class-string<ExceptionHandlerInterface>> */
+    /**
+     * @var array<class-string<ExceptionHandlerInterface>>
+     */
     protected array $exceptionHandlers = [];
 
 

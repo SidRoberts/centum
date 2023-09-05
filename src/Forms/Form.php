@@ -8,7 +8,9 @@ use Centum\Interfaces\Forms\StatusInterface;
 
 class Form implements FormInterface
 {
-    /** @var array<string, FieldInterface> */
+    /**
+     * @var array<string, FieldInterface>
+     */
     protected array $fields = [];
 
 

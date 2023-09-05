@@ -9,10 +9,14 @@ use Throwable;
 
 class Field implements FieldInterface
 {
-    /** @var array<FilterInterface> */
+    /**
+     * @var array<FilterInterface>
+     */
     protected array $filters = [];
 
-    /** @var array<ValidatorInterface> */
+    /**
+     * @var array<ValidatorInterface>
+     */
     protected array $validators = [];
 
 

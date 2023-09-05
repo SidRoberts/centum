@@ -8,7 +8,9 @@ use OutOfRangeException;
 
 class Headers implements HeadersInterface
 {
-    /** @var array<string, HeaderInterface> */
+    /**
+     * @var array<string, HeaderInterface>
+     */
     protected array $headers = [];
 
 

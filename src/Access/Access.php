@@ -13,7 +13,9 @@ class Access implements AccessInterface
 
 
 
-    /** @var array<non-empty-string, ActivityInterface> */
+    /**
+     * @var array<non-empty-string, ActivityInterface>
+     */
     protected array $activities = [];
 
 

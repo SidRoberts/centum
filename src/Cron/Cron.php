@@ -10,7 +10,9 @@ use DateTimeInterface;
 
 class Cron implements CronInterface
 {
-    /** @var array<JobInterface> $jobs */
+    /**
+     * @var array<JobInterface> $jobs
+     */
     protected array $jobs = [];
 
 
