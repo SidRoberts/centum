@@ -24,3 +24,5 @@ jobs:
       run: composer test
     - name: Run static analysis
       run: composer analyse
+    - name: Check PHP formatting
+      run: composer format -- --dry-run
