@@ -24,9 +24,6 @@ class Activity implements ActivityInterface
 
 
 
-    /**
-     * @return non-empty-string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -34,25 +31,16 @@ class Activity implements ActivityInterface
 
 
 
-    /**
-     * @param non-empty-string $user
-     */
     public function allow(string $user): void
     {
         $this->users[$user] = Access::ALLOW;
     }
 
-    /**
-     * @param non-empty-string $user
-     */
     public function deny(string $user): void
     {
         $this->users[$user] = Access::DENY;
     }
 
-    /**
-     * @param non-empty-string $user
-     */
     public function remove(string $user): void
     {
         unset(
@@ -62,9 +50,6 @@ class Activity implements ActivityInterface
 
 
 
-    /**
-     * @param non-empty-string $user
-     */
     public function isAllowed(string $user): bool
     {
         if (!isset($this->users[$user])) {

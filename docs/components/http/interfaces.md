@@ -18,7 +18,7 @@ nav_order: 102
 ## [`Centum\Interfaces\Http\CookieInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookieInterface.php)
 
 ```php
-getName(): string
+getName(): non-empty-string
 ```
 
 ```php
@@ -26,7 +26,7 @@ getValue(): string
 ```
 
 ```php
-getHeaderString(): string
+getHeaderString(): non-empty-string
 ```
 
 ```php
@@ -34,7 +34,7 @@ send(): void
 ```
 
 ```php
-__toString(): string
+__toString(): non-empty-string
 ```
 
 
@@ -49,13 +49,13 @@ add(
 
 ```php
 get(
-    string $name
+    non-empty-string $name
 ): Centum\Interfaces\Http\CookieInterface
 ```
 
 ```php
 has(
-    string $name
+    non-empty-string $name
 ): bool
 ```
 
@@ -64,11 +64,11 @@ send(): void
 ```
 
 ```php
-all(): array<string, Centum\Interfaces\Http\CookieInterface>
+all(): array<non-empty-string, Centum\Interfaces\Http\CookieInterface>
 ```
 
 ```php
-toArray(): array<string, string>
+toArray(): array<non-empty-string, string>
 ```
 
 
@@ -111,19 +111,19 @@ validate(): void
 
 ```php
 get(
-    string $name,
+    non-empty-string $name,
     mixed $defaultValue = null
 ): mixed
 ```
 
 ```php
 has(
-    string $name
+    non-empty-string $name
 ): bool
 ```
 
 ```php
-toArray(): array<string, mixed>
+toArray(): array<non-empty-string, mixed>
 ```
 
 
@@ -131,7 +131,7 @@ toArray(): array<string, mixed>
 ## [`Centum\Interfaces\Http\FileGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FileGroupInterface.php)
 
 ```php
-getID(): string
+getID(): non-empty-string
 ```
 
 ```php
@@ -161,7 +161,7 @@ getType(): ?string
 ```
 
 ```php
-getSize(): int
+getSize(): non-negative-int
 ```
 
 ```php
@@ -206,22 +206,22 @@ add(
 
 ```php
 has(
-    string $id
+    non-empty-string $id
 ): bool
 ```
 
 ```php
 get(
-    string $id
+    non-empty-string $id
 ): Centum\Interfaces\Http\FileGroupInterface
 ```
 
 ```php
-all(): array<string, Centum\Interfaces\Http\FileGroupInterface>
+all(): array<non-empty-string, Centum\Interfaces\Http\FileGroupInterface>
 ```
 
 ```php
-toArray(): array<string, array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>>
+toArray(): array<non-empty-string, array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>>
 ```
 
 
@@ -235,7 +235,7 @@ No methods.
 ## [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeaderInterface.php)
 
 ```php
-getName(): string
+getName(): non-empty-string
 ```
 
 ```php
@@ -243,7 +243,7 @@ getValue(): string
 ```
 
 ```php
-getHeaderString(): string
+getHeaderString(): non-empty-string
 ```
 
 ```php
@@ -251,7 +251,7 @@ send(): void
 ```
 
 ```php
-__toString(): string
+__toString(): non-empty-string
 ```
 
 
@@ -272,19 +272,19 @@ addMultiple(
 
 ```php
 get(
-    string $name
+    non-empty-string $name
 ): Centum\Interfaces\Http\HeaderInterface
 ```
 
 ```php
 has(
-    string $name
+    non-empty-string $name
 ): bool
 ```
 
 ```php
 matches(
-    string $name,
+    non-empty-string $name,
     string $value
 ): bool
 ```
@@ -294,11 +294,11 @@ send(): void
 ```
 
 ```php
-all(): array<string, Centum\Interfaces\Http\HeaderInterface>
+all(): array<non-empty-string, Centum\Interfaces\Http\HeaderInterface>
 ```
 
 ```php
-toArray(): array<string, string>
+toArray(): array<non-empty-string, string>
 ```
 
 
@@ -310,7 +310,7 @@ getUri(): string
 ```
 
 ```php
-getMethod(): string
+getMethod(): non-empty-string
 ```
 
 ```php
@@ -387,27 +387,27 @@ isActive(): bool
 
 ```php
 has(
-    string $name
+    non-empty-string $name
 ): bool
 ```
 
 ```php
 get(
-    string $name,
+    non-empty-string $name,
     mixed $defaultValue = null
 ): mixed
 ```
 
 ```php
 set(
-    string $name,
+    non-empty-string $name,
     mixed $value
 ): void
 ```
 
 ```php
 remove(
-    string $name
+    non-empty-string $name
 ): void
 ```
 
@@ -416,5 +416,5 @@ clear(): void
 ```
 
 ```php
-all(): array<string, mixed>
+all(): array<non-empty-string, mixed>
 ```

@@ -62,9 +62,6 @@ class Arguments implements ArgumentsInterface
         return $this->commandName;
     }
 
-    /**
-     * @return array<non-empty-string, string|bool>
-     */
     public function getParameters(): array
     {
         return $this->parameters;
@@ -72,17 +69,11 @@ class Arguments implements ArgumentsInterface
 
 
 
-    /**
-     * @param non-empty-string $name
-     */
     public function getParameter(string $name, mixed $defaultValue = null): mixed
     {
         return $this->parameters[$name] ?? $defaultValue;
     }
 
-    /**
-     * @param non-empty-string $name
-     */
     public function hasParameter(string $name): bool
     {
         return array_key_exists($name, $this->parameters);
@@ -90,9 +81,6 @@ class Arguments implements ArgumentsInterface
 
 
 
-    /**
-     * @return array<string>
-     */
     public function toArray(): array
     {
         return $this->arguments;

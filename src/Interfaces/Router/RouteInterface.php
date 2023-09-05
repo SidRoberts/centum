@@ -4,6 +4,9 @@ namespace Centum\Interfaces\Router;
 
 interface RouteInterface
 {
+    /**
+     * @return non-empty-string
+     */
     public function getHttpMethod(): string;
 
     public function getUri(): string;
@@ -19,7 +22,7 @@ interface RouteInterface
     public function getMethod(): string;
 
     /**
-     * @return array<string, string>
+     * @return array<non-empty-string, string>
      */
     public function getParameters(): array;
 }

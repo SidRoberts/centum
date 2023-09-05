@@ -38,7 +38,7 @@ getAllJobs(): array<Centum\Interfaces\Cron\JobInterface>
 ## [`Centum\Interfaces\Cron\JobInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Cron/JobInterface.php)
 
 ```php
-getExpression(): string
+getExpression(): non-empty-string
 ```
 
 ```php

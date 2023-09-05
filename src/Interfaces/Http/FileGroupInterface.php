@@ -4,6 +4,9 @@ namespace Centum\Interfaces\Http;
 
 interface FileGroupInterface
 {
+    /**
+     * @return non-empty-string
+     */
     public function getID(): string;
 
 

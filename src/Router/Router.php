@@ -82,9 +82,6 @@ class Router implements RouterInterface
 
 
 
-    /**
-     * @param class-string<ExceptionHandlerInterface> $exceptionHandlerClass
-     */
     public function addExceptionHandler(string $exceptionHandlerClass): void
     {
         $this->exceptionHandlers[] = $exceptionHandlerClass;
@@ -154,11 +151,12 @@ class Router implements RouterInterface
 
 
 
-        if (preg_match($pattern, $uri, $parameters) !== 1) {
+        if (preg_match($pattern, $uri, $params) !== 1) {
             throw new RouteMismatchException();
         }
 
-        $parameters = $this->removeIntegerKeys($parameters);
+        /** @var array<non-empty-string, mixed> $params */
+        $params = $this->removeIntegerKeys($params);
 
 
 
@@ -168,15 +166,15 @@ class Router implements RouterInterface
             $replacement = $this->replacements[$replacementID] ?? throw new ReplacementNotFoundException($replacementID);
 
             /** @var string */
-            $value = $parameters[$key] ?? throw new ParamNotFoundException($key);
+            $value = $params[$key] ?? throw new ParamNotFoundException($key);
 
             /** @var mixed */
-            $parameters[$key] = $replacement->filter($value);
+            $params[$key] = $replacement->filter($value);
         }
 
 
 
-        $parameters = new Parameters($parameters);
+        $parameters = new Parameters($params);
 
         $data = $request->getData();
 

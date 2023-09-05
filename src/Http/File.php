@@ -12,6 +12,9 @@ class File implements FileInterface
 
 
 
+    /**
+     * @param non-negative-int $size
+     */
     public function __construct(
         protected readonly ?string $name,
         protected readonly ?string $type,
@@ -113,9 +116,6 @@ class File implements FileInterface
 
 
 
-    /**
-     * @return array{name: ?string, type: ?string, size: int, location: ?string, error: int}
-     */
     public function toArray(): array
     {
         return [

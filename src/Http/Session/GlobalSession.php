@@ -63,14 +63,11 @@ class GlobalSession implements SessionInterface
         $_SESSION = [];
     }
 
-    /**
-     * @return array<string, mixed>
-     */
     public function all(): array
     {
         $this->startIfNotActive();
 
-        /** @var array<string, mixed> */
+        /** @var array<non-empty-string, mixed> */
         return $_SESSION;
     }
 }

@@ -74,7 +74,7 @@ getMessages(): array<Centum\Interfaces\Flash\MessageInterface>
 ## [`Centum\Interfaces\Flash\MessageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/MessageInterface.php)
 
 ```php
-getLevel(): string
+getLevel(): non-empty-string
 ```
 
 ```php

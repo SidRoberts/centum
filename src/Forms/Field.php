@@ -21,6 +21,9 @@ class Field implements FieldInterface
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     public function __construct(
         protected readonly string $name
     ) {
@@ -35,17 +38,11 @@ class Field implements FieldInterface
 
 
 
-    /**
-     * @return array<FilterInterface>
-     */
     public function getFilters(): array
     {
         return $this->filters;
     }
 
-    /**
-     * @return array<ValidatorInterface>
-     */
     public function getValidators(): array
     {
         return $this->validators;
@@ -87,9 +84,6 @@ class Field implements FieldInterface
 
 
 
-    /**
-     * @return array<string>
-     */
     public function getMessages(mixed $value): array
     {
         try {
@@ -105,8 +99,15 @@ class Field implements FieldInterface
                 array_push($allMessages, ...$messages);
             }
         } catch (Throwable $exception) {
+            $exceptionMessage = $exception->getMessage();
+
+            if ($exceptionMessage === "") {
+                $exceptionMessage = get_class($exception);
+            }
+
+            /** @var non-empty-string $exceptionMessage */
             return [
-                $exception->getMessage(),
+                $exceptionMessage,
             ];
         }
 

@@ -67,36 +67,21 @@ class AliasManager implements AliasManagerInterface
 
 
 
-    /**
-     * @param class-string $class
-     * @param class-string $alias
-     */
     public function add(string $class, string $alias): void
     {
         $this->aliases[$class] = $alias;
     }
 
-    /**
-     * @param class-string $class
-     *
-     * @return class-string
-     */
     public function get(string $class): string
     {
         return $this->aliases[$class] ?? $class;
     }
 
-    /**
-     * @param class-string $class
-     */
     public function has(string $class): bool
     {
         return isset($this->aliases[$class]);
     }
 
-    /**
-     * @param class-string $class
-     */
     public function remove(string $class): void
     {
         unset($this->aliases[$class]);
@@ -104,9 +89,6 @@ class AliasManager implements AliasManagerInterface
 
 
 
-    /**
-     * @return array<class-string, class-string>
-     */
     public function getAll(): array
     {
         return $this->aliases;

@@ -13,9 +13,6 @@ class ObjectStorage implements ObjectStorageInterface
 
 
 
-    /**
-     * @param class-string $class
-     */
     public function has(string $class): bool
     {
         return isset($this->objects[$class]);
@@ -44,9 +41,6 @@ class ObjectStorage implements ObjectStorageInterface
         $this->objects[$class] = $object;
     }
 
-    /**
-     * @param class-string $class
-     */
     public function remove(string $class): void
     {
         unset($this->objects[$class]);

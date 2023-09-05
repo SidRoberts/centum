@@ -18,7 +18,7 @@ nav_order: 102
 ## [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/FieldInterface.php)
 
 ```php
-getName(): string
+getName(): non-empty-string
 ```
 
 ```php
@@ -56,7 +56,7 @@ isValid(
 ```php
 getMessages(
     mixed $value
-): array<string>
+): array<non-empty-string>
 ```
 
 
@@ -90,5 +90,5 @@ isValid(): bool
 ```
 
 ```php
-getMessages(): array<string, array<string>>
+getMessages(): array<non-empty-string, array<non-empty-string>>
 ```

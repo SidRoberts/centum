@@ -32,17 +32,11 @@ class Route implements RouteInterface
         return $this->uri;
     }
 
-    /**
-     * @return class-string<ControllerInterface>
-     */
     public function getClass(): string
     {
         return $this->class;
     }
 
-    /**
-     * @return non-empty-string
-     */
     public function getMethod(): string
     {
         return $this->method;
@@ -50,9 +44,6 @@ class Route implements RouteInterface
 
 
 
-    /**
-     * @return array<string, string>
-     */
     public function getParameters(): array
     {
         preg_match_all(
@@ -63,6 +54,9 @@ class Route implements RouteInterface
 
         $parameters = [];
 
+        /**
+         * @var non-empty-string $key
+         */
         foreach ($matches[1] as $i => $key) {
             $parameters[$key] = $matches[3][$i] ?: "any";
         }

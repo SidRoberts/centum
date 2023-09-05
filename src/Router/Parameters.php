@@ -7,7 +7,7 @@ use Centum\Interfaces\Router\ParametersInterface;
 class Parameters implements ParametersInterface
 {
     /**
-     * @param array<string, mixed> $parameters
+     * @param array<non-empty-string, mixed> $parameters
      */
     public function __construct(
         protected readonly array $parameters
@@ -28,9 +28,6 @@ class Parameters implements ParametersInterface
 
 
 
-    /**
-     * @return array<string, mixed>
-     */
     public function toArray(): array
     {
         return $this->parameters;

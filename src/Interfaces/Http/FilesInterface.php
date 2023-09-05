@@ -8,19 +8,25 @@ interface FilesInterface
 
 
 
+    /**
+     * @param non-empty-string $id
+     */
     public function has(string $id): bool;
 
+    /**
+     * @param non-empty-string $id
+     */
     public function get(string $id): FileGroupInterface;
 
 
 
     /**
-     * @return array<string, FileGroupInterface>
+     * @return array<non-empty-string, FileGroupInterface>
      */
     public function all(): array;
 
     /**
-     * @return array<string, array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>>
+     * @return array<non-empty-string, array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>>
      */
     public function toArray(): array;
 }

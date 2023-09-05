@@ -31,7 +31,7 @@ trait HtmlActions
 
 
     /**
-     * @param array<string, mixed> $data
+     * @param array<non-empty-string, mixed> $data
      */
     public function submitForm(string $selector, array $data = [], FilesInterface $files = null): void
     {
@@ -63,6 +63,9 @@ trait HtmlActions
 
 
 
+    /**
+     * @param non-empty-string $needle
+     */
     public function see(string $needle): void
     {
         $textContent = $this->grabTextContent();
@@ -70,6 +73,9 @@ trait HtmlActions
         Assert::assertStringContainsString($needle, $textContent);
     }
 
+    /**
+     * @param non-empty-string $needle
+     */
     public function dontSee(string $needle): void
     {
         $textContent = $this->grabTextContent();
@@ -79,6 +85,9 @@ trait HtmlActions
 
 
 
+    /**
+     * @param non-empty-string $needle
+     */
     public function seeInSource(string $needle): void
     {
         $textContent = $this->grabResponseContent();
@@ -86,6 +95,9 @@ trait HtmlActions
         Assert::assertStringContainsString($needle, $textContent);
     }
 
+    /**
+     * @param non-empty-string $needle
+     */
     public function dontSeeInSource(string $needle): void
     {
         $textContent = $this->grabResponseContent();
@@ -95,6 +107,9 @@ trait HtmlActions
 
 
 
+    /**
+     * @param non-empty-string $needle
+     */
     public function seeInPageTitle(string $needle): void
     {
         Assert::assertStringContainsString(
@@ -103,6 +118,9 @@ trait HtmlActions
         );
     }
 
+    /**
+     * @param non-empty-string $needle
+     */
     public function dontSeeInPageTitle(string $needle): void
     {
         Assert::assertStringNotContainsString(

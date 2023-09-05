@@ -3,20 +3,21 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\HeadersInterface;
+use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class HeadersFactory
 {
     public function createFromGlobal(): HeadersInterface
     {
-        /** @var array<string, string> */
+        /** @var array<non-empty-string, string> */
         $array = getallheaders();
 
         return $this->createFromArray($array);
     }
 
     /**
-     * @param array<string, string> $array
+     * @param array<non-empty-string, string> $array
      */
     public function createFromArray(array $array): HeadersInterface
     {
@@ -38,7 +39,7 @@ class HeadersFactory
         /** @var array<string, string> */
         $server = $browserKitRequest->getServer();
 
-        $contentHeaders = ['Content-Length', 'Content-Md5', 'Content-Type'];
+        $contentHeaders = ["Content-Length", "Content-Md5", "Content-Type"];
 
         foreach ($server as $key => $value) {
             $key = str_replace("_", "-", $key);
@@ -51,6 +52,10 @@ class HeadersFactory
 
             if (str_starts_with($key, "Http-")) {
                 $key = substr($key, 5);
+            }
+
+            if ($key === "") {
+                throw new Exception("Header must have a key.");
             }
 
             $header = new Header($key, $value);

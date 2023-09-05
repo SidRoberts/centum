@@ -26,6 +26,9 @@ trait HeaderActions
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     public function grabHeaderValue(string $name): string|null
     {
         $headers = $this->grabHeaders();
@@ -43,6 +46,8 @@ trait HeaderActions
 
     /**
      * Check that a Header exists.
+     *
+     * @param non-empty-string $name
      */
     public function seeHeader(string $name): void
     {
@@ -56,6 +61,8 @@ trait HeaderActions
 
     /**
      * Check that a Header does not exist.
+     *
+     * @param non-empty-string $name
      */
     public function dontSeeHeader(string $name): void
     {
@@ -69,6 +76,9 @@ trait HeaderActions
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     public function seeHeaderValueIs(string $name, string $expectedValue): void
     {
         $headerValue = $this->grabHeaderValue($name);
@@ -79,6 +89,9 @@ trait HeaderActions
         );
     }
 
+    /**
+     * @param non-empty-string $name
+     */
     public function dontSeeHeaderValueIs(string $name, string $expectedValue): void
     {
         $headerValue = $this->grabHeaderValue($name);

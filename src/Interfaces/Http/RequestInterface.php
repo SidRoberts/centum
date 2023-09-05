@@ -6,6 +6,9 @@ interface RequestInterface
 {
     public function getUri(): string;
 
+    /**
+     * @return non-empty-string
+     */
     public function getMethod(): string;
 
     public function getData(): DataInterface;

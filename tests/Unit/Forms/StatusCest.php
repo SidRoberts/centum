@@ -15,7 +15,7 @@ class StatusCest
     #[DataProvider("providerIsValid")]
     public function testIsValid(UnitTester $I, Example $example): void
     {
-        /** @var array<string, string[]> */
+        /** @var array<non-empty-string, array<non-empty-string>> */
         $messages = $example["messages"];
 
         $status = new Status($messages);
@@ -59,7 +59,7 @@ class StatusCest
     #[DataProvider("providerGetMessages")]
     public function testGetMessages(UnitTester $I, Example $example): void
     {
-        /** @var array<string, string[]> */
+        /** @var array<non-empty-string, array<non-empty-string>> */
         $messages = $example["messages"];
 
         $status = new Status($messages);

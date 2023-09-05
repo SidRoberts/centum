@@ -17,7 +17,7 @@ trait AjaxActions
 
 
     /**
-     * @param array<string, mixed> $data
+     * @param array<non-empty-string, mixed> $data
      */
     public function createAjaxRequest(Method $method, string $uri, array $data = []): RequestInterface
     {
@@ -37,7 +37,7 @@ trait AjaxActions
 
 
     /**
-     * @param array<string, mixed> $data
+     * @param array<non-empty-string, mixed> $data
      */
     public function sendAjaxRequest(Method $method, string $uri, array $data = []): void
     {
@@ -47,7 +47,7 @@ trait AjaxActions
     }
 
     /**
-     * @param array<string, mixed> $data
+     * @param array<non-empty-string, mixed> $data
      */
     public function sendAjaxGetRequest(string $uri, array $data = []): void
     {
@@ -55,7 +55,7 @@ trait AjaxActions
     }
 
     /**
-     * @param array<string, mixed> $data
+     * @param array<non-empty-string, mixed> $data
      */
     public function sendAjaxPostRequest(string $uri, array $data = []): void
     {

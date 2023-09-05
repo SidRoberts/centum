@@ -66,7 +66,7 @@ class RequestFactory
 
         $method = Method::from($method);
 
-        /** @var array<string, mixed> $parameters */
+        /** @var array<non-empty-string, mixed> $parameters */
         $data = new Data($parameters);
 
         $headersFactory = new HeadersFactory();
@@ -88,7 +88,7 @@ class RequestFactory
 
         $uri = $browserKitRequest->getUri();
 
-        /** @var array<string, mixed> */
+        /** @var array<non-empty-string, mixed> */
         $parameters = $browserKitRequest->getParameters();
 
         $requestUri = parse_url($uri, PHP_URL_PATH);

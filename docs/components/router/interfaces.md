@@ -144,19 +144,19 @@ check(
 
 ```php
 get(
-    string $name,
+    non-empty-string $name,
     mixed $defaultValue = null
 ): mixed
 ```
 
 ```php
 has(
-    string $name
+    non-empty-string $name
 ): bool
 ```
 
 ```php
-toArray(): array<string, mixed>
+toArray(): array<non-empty-string, mixed>
 ```
 
 
@@ -168,7 +168,7 @@ getIdentifier(): non-empty-string
 ```
 
 ```php
-getRegularExpression(): string
+getRegularExpression(): non-empty-string
 ```
 
 ```php
@@ -182,7 +182,7 @@ filter(
 ## [`Centum\Interfaces\Router\RouteInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/RouteInterface.php)
 
 ```php
-getHttpMethod(): string
+getHttpMethod(): non-empty-string
 ```
 
 ```php
@@ -198,7 +198,7 @@ getMethod(): non-empty-string
 ```
 
 ```php
-getParameters(): array<string, string>
+getParameters(): array<non-empty-string, string>
 ```
 
 

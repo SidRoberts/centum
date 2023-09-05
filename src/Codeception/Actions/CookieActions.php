@@ -26,6 +26,9 @@ trait CookieActions
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     public function grabCookieValue(string $name): string|null
     {
         $cookies = $this->grabCookies();
@@ -43,6 +46,8 @@ trait CookieActions
 
     /**
      * Check that a Cookie exists.
+     *
+     * @param non-empty-string $name
      */
     public function seeCookie(string $name): void
     {
@@ -56,6 +61,8 @@ trait CookieActions
 
     /**
      * Check that a Cookie does not exist.
+     *
+     * @param non-empty-string $name
      */
     public function dontSeeCookie(string $name): void
     {
@@ -69,6 +76,9 @@ trait CookieActions
 
 
 
+    /**
+     * @param non-empty-string $name
+     */
     public function seeCookieValueIs(string $name, string $expectedValue): void
     {
         $cookieValue = $this->grabCookieValue($name);
@@ -79,6 +89,9 @@ trait CookieActions
         );
     }
 
+    /**
+     * @param non-empty-string $name
+     */
     public function dontSeeCookieValueIs(string $name, string $expectedValue): void
     {
         $cookieValue = $this->grabCookieValue($name);

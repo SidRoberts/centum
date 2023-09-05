@@ -4,12 +4,18 @@ namespace Centum\Interfaces\Http;
 
 interface CookieInterface
 {
+    /**
+     * @return non-empty-string
+     */
     public function getName(): string;
 
     public function getValue(): string;
 
 
 
+    /**
+     * @return non-empty-string
+     */
     public function getHeaderString(): string;
 
 
@@ -18,5 +24,8 @@ interface CookieInterface
 
 
 
+    /**
+     * @return non-empty-string
+     */
     public function __toString(): string;
 }

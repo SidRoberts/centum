@@ -26,7 +26,7 @@ grabTextContent(): string
 ```php
 submitForm(
     string $selector,
-    array<string, mixed> $data = [],
+    array<non-empty-string, mixed> $data = [],
     Centum\Interfaces\Http\FilesInterface $files = null
 ): void
 ```
@@ -37,7 +37,7 @@ submitForm(
 
 ```php
 see(
-    string $needle
+    non-empty-string $needle
 ): void
 ```
 
@@ -47,7 +47,7 @@ see(
 
 ```php
 dontSee(
-    string $needle
+    non-empty-string $needle
 ): void
 ```
 
@@ -57,7 +57,7 @@ dontSee(
 
 ```php
 seeInSource(
-    string $needle
+    non-empty-string $needle
 ): void
 ```
 
@@ -67,7 +67,7 @@ seeInSource(
 
 ```php
 dontSeeInSource(
-    string $needle
+    non-empty-string $needle
 ): void
 ```
 
@@ -77,7 +77,7 @@ dontSeeInSource(
 
 ```php
 seeInPageTitle(
-    string $needle
+    non-empty-string $needle
 ): void
 ```
 
@@ -87,7 +87,7 @@ seeInPageTitle(
 
 ```php
 dontSeeInPageTitle(
-    string $needle
+    non-empty-string $needle
 ): void
 ```
 

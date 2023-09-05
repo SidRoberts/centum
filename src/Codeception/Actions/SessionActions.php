@@ -28,6 +28,8 @@ trait SessionActions
 
     /**
      * Check that a Session key exists.
+     *
+     * @param non-empty-string $key
      */
     public function seeInSession(string $key): void
     {
@@ -40,6 +42,8 @@ trait SessionActions
 
     /**
      * Check that a Session key does not exist.
+     *
+     * @param non-empty-string $key
      */
     public function dontSeeInSession(string $key): void
     {
@@ -52,6 +56,9 @@ trait SessionActions
 
 
 
+    /**
+     * @param non-empty-string $key
+     */
     public function grabFromSession(string $key, mixed $defaultValue = null): mixed
     {
         $session = $this->grabSession();
@@ -61,6 +68,9 @@ trait SessionActions
 
 
 
+    /**
+     * @param non-empty-string $key
+     */
     public function seeValueInSessionIs(string $key, mixed $expectedValue): void
     {
         /** @var mixed */
@@ -72,6 +82,9 @@ trait SessionActions
         );
     }
 
+    /**
+     * @param non-empty-string $key
+     */
     public function seeValueInSessionIsNot(string $key, mixed $expectedValue): void
     {
         /** @var mixed */
@@ -87,6 +100,8 @@ trait SessionActions
 
     /**
      * Remove a key from the Session.
+     *
+     * @param non-empty-string $key
      */
     public function removeFromSession(string $key): void
     {

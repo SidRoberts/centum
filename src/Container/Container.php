@@ -134,9 +134,6 @@ class Container implements ContainerInterface
         return $reflectionClass->newInstanceArgs($params);
     }
 
-    /**
-     * @param non-empty-string $methodName
-     */
     public function typehintMethod(object $class, string $methodName): mixed
     {
         $reflectionMethod = new ReflectionMethod($class, $methodName);
@@ -148,9 +145,6 @@ class Container implements ContainerInterface
 
 
 
-    /**
-     * @param Closure|callable-string $function
-     */
     public function typehintFunction(Closure|string $function): mixed
     {
         $reflectionFunction = new ReflectionFunction($function);

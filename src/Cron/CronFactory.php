@@ -7,7 +7,7 @@ use Centum\Interfaces\Cron\CronInterface;
 class CronFactory
 {
     /**
-     * @param array<array{0: string, 1: mixed}> $array
+     * @param array<array{0: non-empty-string, 1: mixed}> $array
      */
     public function createFromArray(array $array): CronInterface
     {

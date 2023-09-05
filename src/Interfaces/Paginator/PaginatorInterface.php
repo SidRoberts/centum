@@ -7,7 +7,7 @@ interface PaginatorInterface
     public function getData(): DataInterface;
 
     /**
-     * @param positive-int $pageNumber
+     * @return positive-int
      */
     public function getItemsPerPage(): int;
 

@@ -9,9 +9,12 @@ class FileFactory
 {
     public function createFromRealFile(string $path): FileInterface
     {
-        $name     = basename($path);
-        $type     = mime_content_type($path);
-        $size     = filesize($path);
+        $name = basename($path);
+        $type = mime_content_type($path);
+
+        /** @var non-negative-int|false */
+        $size = filesize($path);
+
         $location = realpath($path);
 
         if ($type === false || $size === false || $location === false) {

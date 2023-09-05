@@ -6,6 +6,9 @@ use Centum\Interfaces\Http\HeaderInterface;
 
 class Header implements HeaderInterface
 {
+    /**
+     * @param non-empty-string $name
+     */
     public function __construct(
         protected readonly string $name,
         protected readonly string $value

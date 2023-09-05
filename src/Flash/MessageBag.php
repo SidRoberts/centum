@@ -21,9 +21,6 @@ class MessageBag implements MessageBagInterface
 
 
 
-    /**
-     * @return array<MessageInterface>
-     */
     public function getMessages(): array
     {
         return $this->messages;

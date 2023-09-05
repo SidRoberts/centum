@@ -25,9 +25,6 @@ class Paginator implements PaginatorInterface
         return $this->data;
     }
 
-    /**
-     * @return positive-int
-     */
     public function getItemsPerPage(): int
     {
         return $this->itemsPerPage;
@@ -40,17 +37,11 @@ class Paginator implements PaginatorInterface
 
 
 
-    /**
-     * @return non-negative-int
-     */
     public function getTotalItems(): int
     {
         return $this->data->getTotal();
     }
 
-    /**
-     * @return positive-int
-     */
     public function getTotalPages(): int
     {
         $totalItems = $this->getTotalItems();
@@ -65,9 +56,6 @@ class Paginator implements PaginatorInterface
 
 
 
-    /**
-     * @param positive-int $pageNumber
-     */
     public function getPage(int $pageNumber): PageInterface
     {
         return new Page($this, $pageNumber);

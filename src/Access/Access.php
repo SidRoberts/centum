@@ -34,10 +34,6 @@ class Access implements AccessInterface
 
 
 
-    /**
-     * @param non-empty-string $user
-     * @param non-empty-string $activityName
-     */
     public function allow(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
@@ -45,10 +41,6 @@ class Access implements AccessInterface
         $activity->allow($user);
     }
 
-    /**
-     * @param non-empty-string $user
-     * @param non-empty-string $activityName
-     */
     public function deny(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
@@ -56,10 +48,6 @@ class Access implements AccessInterface
         $activity->deny($user);
     }
 
-    /**
-     * @param non-empty-string $user
-     * @param non-empty-string $activityName
-     */
     public function remove(string $user, string $activityName): void
     {
         $activity = $this->getActivity($activityName);
@@ -69,10 +57,6 @@ class Access implements AccessInterface
 
 
 
-    /**
-     * @param non-empty-string $user
-     * @param non-empty-string $activityName
-     */
     public function isAllowed(string $user, string $activityName): bool
     {
         $activity = $this->getActivity($activityName);

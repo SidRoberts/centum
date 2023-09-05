@@ -14,6 +14,9 @@ class FileGroup implements FileGroupInterface
 
 
 
+    /**
+     * @param non-empty-string $id
+     */
     public function __construct(
         protected readonly string $id
     ) {
@@ -35,17 +38,11 @@ class FileGroup implements FileGroupInterface
 
 
 
-    /**
-     * @return array<FileInterface>
-     */
     public function all(): array
     {
         return $this->files;
     }
 
-    /**
-     * @return array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>
-     */
     public function toArray(): array
     {
         $files = [];

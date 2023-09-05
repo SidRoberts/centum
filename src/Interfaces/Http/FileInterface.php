@@ -8,6 +8,9 @@ interface FileInterface
 
     public function getType(): ?string;
 
+    /**
+     * @return non-negative-int
+     */
     public function getSize(): int;
 
     public function getLocation(): ?string;

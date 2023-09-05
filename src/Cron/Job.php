@@ -6,6 +6,9 @@ use Centum\Interfaces\Cron\JobInterface;
 
 class Job implements JobInterface
 {
+    /**
+     * @param non-empty-string $expression
+     */
     public function __construct(
         protected readonly string $expression,
         protected readonly mixed $data

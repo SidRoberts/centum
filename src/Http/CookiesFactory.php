@@ -3,19 +3,20 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\CookiesInterface;
+use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class CookiesFactory
 {
     public function createFromGlobal(): CookiesInterface
     {
-        /** @var array<string, string> $_COOKIE */
+        /** @var array<non-empty-string, string> $_COOKIE */
 
         return $this->createFromArray($_COOKIE);
     }
 
     /**
-     * @param array<string, string> $array
+     * @param array<non-empty-string, string> $array
      */
     public function createFromArray(array $array): CookiesInterface
     {
@@ -38,6 +39,10 @@ class CookiesFactory
         $browserKitCookies = $browserKitRequest->getCookies();
 
         foreach ($browserKitCookies as $key => $value) {
+            if ($key === "") {
+                throw new Exception("Cookie must have a key.");
+            }
+
             $cookie = new Cookie($key, $value);
 
             $cookies->add($cookie);

@@ -10,7 +10,7 @@ use Centum\Interfaces\Http\FilesInterface;
 class Files implements FilesInterface
 {
     /**
-     * @var array<string, FileGroupInterface>
+     * @var array<non-empty-string, FileGroupInterface>
      */
     protected array $fileGroups = [];
 
@@ -53,17 +53,11 @@ class Files implements FilesInterface
 
 
 
-    /**
-     * @return array<string, FileGroupInterface>
-     */
     public function all(): array
     {
         return $this->fileGroups;
     }
 
-    /**
-     * @return array<string, array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>>
-     */
     public function toArray(): array
     {
         $fileGroups = [];

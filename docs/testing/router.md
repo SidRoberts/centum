@@ -88,7 +88,7 @@ seeRouteNotFound(
 ```php
 amOnPage(
     string $uri,
-    array<string, mixed> $params = []
+    array<non-empty-string, mixed> $params = []
 ): void
 ```
 
@@ -175,7 +175,7 @@ seeResponseContentContains(
 Grab the HTTP response code from the Response last created.
 
 ```php
-grabResponseCode(): int
+grabResponseCode(): positive-int
 ```
 
 
@@ -186,7 +186,7 @@ See if the HTTP response code is an expected value.
 
 ```php
 seeResponseCodeIs(
-    int $expectedCode
+    positive-int $expectedCode
 ): void
 ```
 
@@ -198,7 +198,7 @@ See if the HTTP response code is NOT an expected value.
 
 ```php
 seeResponseCodeIsNot(
-    int $expectedCode
+    positive-int $expectedCode
 ): void
 ```
 

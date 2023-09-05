@@ -7,7 +7,7 @@ use Centum\Interfaces\Http\DataInterface;
 class Data implements DataInterface
 {
     /**
-     * @param array<string, mixed> $data
+     * @param array<non-empty-string, mixed> $data
      */
     public function __construct(
         protected readonly array $data
@@ -28,9 +28,6 @@ class Data implements DataInterface
 
 
 
-    /**
-     * @return array<string, mixed>
-     */
     public function toArray(): array
     {
         return $this->data;

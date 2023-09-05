@@ -107,7 +107,7 @@ trait RouterActions
 
 
     /**
-     * @param array<string, mixed> $params
+     * @param array<non-empty-string, mixed> $params
      */
     public function amOnPage(string $uri, array $params = []): void
     {
@@ -221,6 +221,8 @@ trait RouterActions
 
     /**
      * Grab the HTTP response code from the Response last created.
+     *
+     * @return positive-int
      */
     public function grabResponseCode(): int
     {
@@ -233,6 +235,8 @@ trait RouterActions
 
     /**
      * See if the HTTP response code is an expected value.
+     *
+     * @param positive-int $expectedCode
      */
     public function seeResponseCodeIs(int $expectedCode): void
     {
@@ -246,6 +250,8 @@ trait RouterActions
 
     /**
      * See if the HTTP response code is NOT an expected value.
+     *
+     * @param positive-int $expectedCode
      */
     public function seeResponseCodeIsNot(int $expectedCode): void
     {

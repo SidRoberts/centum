@@ -29,25 +29,16 @@ class Terminal implements TerminalInterface
 
 
 
-    /**
-     * @return resource
-     */
     public function getStdIn()
     {
         return $this->stdin;
     }
 
-    /**
-     * @return resource
-     */
     public function getStdOut()
     {
         return $this->stdout;
     }
 
-    /**
-     * @return resource
-     */
     public function getStdErr()
     {
         return $this->stderr;
@@ -67,9 +58,6 @@ class Terminal implements TerminalInterface
         $this->write($string . PHP_EOL);
     }
 
-    /**
-     * @param array<string> $list
-     */
     public function writeList(array $list): void
     {
         $this->writeLine();

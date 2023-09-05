@@ -27,7 +27,7 @@ grabCookies(): Centum\Interfaces\Http\CookiesInterface
 
 ```php
 grabCookieValue(
-    string $name
+    non-empty-string $name
 ): ?string
 ```
 
@@ -39,7 +39,7 @@ Check that a Cookie exists.
 
 ```php
 seeCookie(
-    string $name
+    non-empty-string $name
 ): void
 ```
 
@@ -51,7 +51,7 @@ Check that a Cookie does not exist.
 
 ```php
 dontSeeCookie(
-    string $name
+    non-empty-string $name
 ): void
 ```
 
@@ -61,7 +61,7 @@ dontSeeCookie(
 
 ```php
 seeCookieValueIs(
-    string $name,
+    non-empty-string $name,
     string $expectedValue
 ): void
 ```
@@ -72,7 +72,7 @@ seeCookieValueIs(
 
 ```php
 dontSeeCookieValueIs(
-    string $name,
+    non-empty-string $name,
     string $expectedValue
 ): void
 ```

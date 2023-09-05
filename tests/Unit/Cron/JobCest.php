@@ -15,7 +15,7 @@ class JobCest
     #[DataProvider("providerGetters")]
     public function testGetters(UnitTester $I, Example $example): void
     {
-        /** @var string */
+        /** @var non-empty-string */
         $expression = $example["expression"];
 
         /** @var mixed */

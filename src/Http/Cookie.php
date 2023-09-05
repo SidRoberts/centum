@@ -6,6 +6,9 @@ use Centum\Interfaces\Http\CookieInterface;
 
 class Cookie implements CookieInterface
 {
+    /**
+     * @param non-empty-string $name
+     */
     public function __construct(
         protected readonly string $name,
         protected readonly string $value

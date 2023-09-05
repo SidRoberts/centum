@@ -55,9 +55,6 @@ class Application implements ApplicationInterface
 
 
 
-    /**
-     * @param class-string<CommandInterface> $commandClass
-     */
     public function addCommand(string $commandClass): void
     {
         $metadata = $this->getCommandMetadata($commandClass);
@@ -67,9 +64,6 @@ class Application implements ApplicationInterface
         $this->commands[$name] = $commandClass;
     }
 
-    /**
-     * @return array<string, class-string<CommandInterface>>
-     */
     public function getCommands(): array
     {
         return $this->commands;
@@ -77,9 +71,6 @@ class Application implements ApplicationInterface
 
 
 
-    /**
-     * @param class-string<ExceptionHandlerInterface> $exceptionHandlerClass
-     */
     public function addExceptionHandler(string $exceptionHandlerClass): void
     {
         $this->exceptionHandlers[] = $exceptionHandlerClass;

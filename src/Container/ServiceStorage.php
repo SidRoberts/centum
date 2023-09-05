@@ -14,9 +14,6 @@ class ServiceStorage implements ServiceStorageInterface
 
 
 
-    /**
-     * @param class-string $class
-     */
     public function has(string $class): bool
     {
         return isset($this->services[$class]);
@@ -25,7 +22,7 @@ class ServiceStorage implements ServiceStorageInterface
     /**
      * @template T of object
      *
-     * @param class-string $class<T>
+     * @param class-string<T> $class
      *
      * @return class-string<ServiceInterface<T>>|null
      */
@@ -46,9 +43,6 @@ class ServiceStorage implements ServiceStorageInterface
         $this->services[$class] = $service;
     }
 
-    /**
-     * @param class-string $class
-     */
     public function remove(string $class): void
     {
         unset($this->services[$class]);

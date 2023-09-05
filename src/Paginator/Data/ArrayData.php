@@ -16,25 +16,16 @@ class ArrayData implements DataInterface
 
 
 
-    /**
-     * @return non-negative-int
-     */
     public function getTotal(): int
     {
         return count($this->data);
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function toArray(): array
     {
         return $this->data;
     }
 
-    /**
-     * @return array<mixed>
-     */
     public function slice(int $offset, int $length): array
     {
         return array_slice($this->data, $offset, $length);

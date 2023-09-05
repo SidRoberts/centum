@@ -17,10 +17,10 @@ class FilesFactoryCest
     #[DataProvider("providerCreateFromArray")]
     public function testCreateFromArray(UnitTester $I, Example $example): void
     {
-        /** @var array<string, array> */
+        /** @var array<non-empty-string, array> */
         $array = $example["array"];
 
-        /** @var array<string, array> */
+        /** @var array<non-empty-string, array> */
         $expected = $example["expected"];
 
         $filesFactory = new FilesFactory();

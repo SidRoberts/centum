@@ -7,6 +7,9 @@ use Centum\Interfaces\Validator\ValidatorInterface;
 
 interface FieldInterface
 {
+    /**
+     * @return non-empty-string
+     */
     public function getName(): string;
 
 
@@ -38,7 +41,7 @@ interface FieldInterface
 
 
     /**
-     * @return array<string>
+     * @return array<non-empty-string>
      */
     public function getMessages(mixed $value): array;
 }

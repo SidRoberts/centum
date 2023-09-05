@@ -9,7 +9,7 @@ use Centum\Interfaces\Forms\StatusInterface;
 class Form implements FormInterface
 {
     /**
-     * @var array<string, FieldInterface>
+     * @var array<non-empty-string, FieldInterface>
      */
     protected array $fields = [];
 
@@ -24,11 +24,6 @@ class Form implements FormInterface
 
 
 
-    /**
-     * @param array<string, mixed> $data
-     *
-     * @return array<string, mixed>
-     */
     public function getFilteredValues(array $data): array
     {
         /** @var array<string, mixed> */
@@ -47,9 +42,6 @@ class Form implements FormInterface
 
 
 
-    /**
-     * @param array<string, mixed> $data
-     */
     public function validate(array $data): StatusInterface
     {
         $messages = [];

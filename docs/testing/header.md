@@ -27,7 +27,7 @@ grabHeaders(): Centum\Interfaces\Http\HeadersInterface
 
 ```php
 grabHeaderValue(
-    string $name
+    non-empty-string $name
 ): ?string
 ```
 
@@ -39,7 +39,7 @@ Check that a Header exists.
 
 ```php
 seeHeader(
-    string $name
+    non-empty-string $name
 ): void
 ```
 
@@ -51,7 +51,7 @@ Check that a Header does not exist.
 
 ```php
 dontSeeHeader(
-    string $name
+    non-empty-string $name
 ): void
 ```
 
@@ -61,7 +61,7 @@ dontSeeHeader(
 
 ```php
 seeHeaderValueIs(
-    string $name,
+    non-empty-string $name,
     string $expectedValue
 ): void
 ```
@@ -72,7 +72,7 @@ seeHeaderValueIs(
 
 ```php
 dontSeeHeaderValueIs(
-    string $name,
+    non-empty-string $name,
     string $expectedValue
 ): void
 ```

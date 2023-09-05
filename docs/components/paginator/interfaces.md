@@ -71,7 +71,7 @@ getData(): Centum\Interfaces\Paginator\DataInterface
 ```
 
 ```php
-getItemsPerPage(): int
+getItemsPerPage(): positive-int
 ```
 
 ```php

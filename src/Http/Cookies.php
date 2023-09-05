@@ -9,7 +9,7 @@ use OutOfRangeException;
 class Cookies implements CookiesInterface
 {
     /**
-     * @var array<string, CookieInterface>
+     * @var array<non-empty-string, CookieInterface>
      */
     protected array $cookies = [];
 
@@ -57,17 +57,11 @@ class Cookies implements CookiesInterface
 
 
 
-    /**
-     * @return array<string, CookieInterface>
-     */
     public function all(): array
     {
         return $this->cookies;
     }
 
-    /**
-     * @return array<string, string>
-     */
     public function toArray(): array
     {
         $cookies = [];

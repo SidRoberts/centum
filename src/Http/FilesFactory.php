@@ -10,13 +10,13 @@ class FilesFactory
 {
     public function createFromGlobal(): FilesInterface
     {
-        /** @var array<string, array> $_FILES */
+        /** @var array<non-empty-string, array> $_FILES */
 
         return $this->createFromArray($_FILES);
     }
 
     /**
-     * @param array<string, array> $array
+     * @param array<non-empty-string, array> $array
      */
     public function createFromArray(array $array): FilesInterface
     {
@@ -36,12 +36,12 @@ class FilesFactory
 
             /**
              * @var array{
-             *     name: string[],
-             *     type: string[],
-             *     size: int[],
-             *     tmp_name: string[],
-             *     error: int[],
-             *     full_path: string[]
+             *     name: array<string>,
+             *     type: array<string>,
+             *     size: array<non-negative-int>,
+             *     tmp_name: array<string>,
+             *     error: array<int>,
+             *     full_path: array<string>
              * } $abc
              */
             $numberOfFiles = count($abc["name"]);

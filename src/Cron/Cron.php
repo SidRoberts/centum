@@ -22,9 +22,6 @@ class Cron implements CronInterface
         $this->jobs[] = $job;
     }
 
-    /**
-     * @return array<JobInterface>
-     */
     public function getDueJobs(DateTimeInterface $datetime = null): array
     {
         $jobs = array_filter(
@@ -37,9 +34,6 @@ class Cron implements CronInterface
         return $jobs;
     }
 
-    /**
-     * @return array<JobInterface>
-     */
     public function getAllJobs(): array
     {
         return $this->jobs;

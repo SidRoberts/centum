@@ -20,9 +20,6 @@ class Url implements UrlInterface
 
 
 
-    /**
-     * @param array<mixed> $arguments
-     */
     public function get(string $uri = "", array $arguments = []): string
     {
         $uri = rtrim($this->baseUri, "/") . "/" . ltrim($uri, "/");

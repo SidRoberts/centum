@@ -9,7 +9,7 @@ use OutOfRangeException;
 class Headers implements HeadersInterface
 {
     /**
-     * @var array<string, HeaderInterface>
+     * @var array<non-empty-string, HeaderInterface>
      */
     protected array $headers = [];
 
@@ -32,9 +32,6 @@ class Headers implements HeadersInterface
         $this->headers[$name] = $header;
     }
 
-    /**
-     * @param array<HeaderInterface> $headers
-     */
     public function addMultiple(array $headers): void
     {
         foreach ($headers as $header) {
@@ -76,17 +73,11 @@ class Headers implements HeadersInterface
 
 
 
-    /**
-     * @return array<string, HeaderInterface>
-     */
     public function all(): array
     {
         return $this->headers;
     }
 
-    /**
-     * @return array<string, string>
-     */
     public function toArray(): array
     {
         $headers = [];

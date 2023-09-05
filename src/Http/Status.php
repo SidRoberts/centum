@@ -68,6 +68,9 @@ enum Status: int
 
 
 
+    /**
+     * @return positive-int
+     */
     public function getCode(): int
     {
         return $this->value;

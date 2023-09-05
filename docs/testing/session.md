@@ -29,7 +29,7 @@ Check that a Session key exists.
 
 ```php
 seeInSession(
-    string $key
+    non-empty-string $key
 ): void
 ```
 
@@ -41,7 +41,7 @@ Check that a Session key does not exist.
 
 ```php
 dontSeeInSession(
-    string $key
+    non-empty-string $key
 ): void
 ```
 
@@ -51,7 +51,7 @@ dontSeeInSession(
 
 ```php
 grabFromSession(
-    string $key,
+    non-empty-string $key,
     mixed $defaultValue = null
 ): mixed
 ```
@@ -62,7 +62,7 @@ grabFromSession(
 
 ```php
 seeValueInSessionIs(
-    string $key,
+    non-empty-string $key,
     mixed $expectedValue
 ): void
 ```
@@ -73,7 +73,7 @@ seeValueInSessionIs(
 
 ```php
 seeValueInSessionIsNot(
-    string $key,
+    non-empty-string $key,
     mixed $expectedValue
 ): void
 ```
@@ -86,6 +86,6 @@ Remove a key from the Session.
 
 ```php
 removeFromSession(
-    string $key
+    non-empty-string $key
 ): void
 ```

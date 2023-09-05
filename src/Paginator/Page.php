@@ -23,9 +23,6 @@ class Page implements PageInterface
         return $this->paginator;
     }
 
-    /**
-     * @return positive-int
-     */
     public function getPageNumber(): int
     {
         return $this->pageNumber;
@@ -33,9 +30,6 @@ class Page implements PageInterface
 
 
 
-    /**
-     * @return array<mixed>
-     */
     public function getData(): array
     {
         $offset = ($this->pageNumber - 1) * $this->paginator->getItemsPerPage();
@@ -48,9 +42,6 @@ class Page implements PageInterface
 
 
 
-    /**
-     * @return positive-int|null
-     */
     public function getPreviousPageNumber(): int|null
     {
         $previousPageNumber = $this->pageNumber - 1;
@@ -62,9 +53,6 @@ class Page implements PageInterface
         return $previousPageNumber;
     }
 
-    /**
-     * @return positive-int|null
-     */
     public function getNextPageNumber(): int|null
     {
         $nextPageNumber = $this->pageNumber + 1;
@@ -78,11 +66,6 @@ class Page implements PageInterface
 
 
 
-    /**
-     * @param positive-int $max
-     *
-     * @return list<positive-int>
-     */
     public function getPageRange(int $max): array
     {
         $pageNumber = $this->pageNumber;

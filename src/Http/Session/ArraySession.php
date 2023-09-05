@@ -7,7 +7,7 @@ use Centum\Interfaces\Http\SessionInterface;
 class ArraySession implements SessionInterface
 {
     /**
-     * @var array<string, mixed>
+     * @var array<non-empty-string, mixed>
      */
     protected array $data = [];
 
@@ -50,9 +50,6 @@ class ArraySession implements SessionInterface
         $this->data = [];
     }
 
-    /**
-     * @return array<string, mixed>
-     */
     public function all(): array
     {
         return $this->data;
