@@ -20,5 +20,5 @@ nav_order: 102
 ```php
 validate(
     mixed $value
-): list<string>
+): list<non-empty-string>
 ```

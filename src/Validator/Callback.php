@@ -22,7 +22,7 @@ class Callback implements ValidatorInterface
 
     public function validate(mixed $value): array
     {
-        /** @var list<string> */
+        /** @var list<non-empty-string> */
         return call_user_func_array(
             $this->callable,
             [

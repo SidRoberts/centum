@@ -17,7 +17,7 @@ All validators implement [`Centum\Interfaces\Validator\ValidatorInterface`](http
 
 Validators must implement one public method:
 
-- `validate(mixed $value): array<string>`
+- `validate(mixed $value): list<non-empty-string>`
 
 The `validate()` method must return an array of string messages explaining why the data is not valid.
 If a piece of data is valid, then `validate()` would return an empty array.
