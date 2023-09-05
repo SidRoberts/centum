@@ -164,7 +164,7 @@ toArray(): array<string, mixed>
 ## [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ReplacementInterface.php)
 
 ```php
-getIdentifier(): string
+getIdentifier(): non-empty-string
 ```
 
 ```php
