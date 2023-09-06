@@ -22,3 +22,5 @@ Centum\Queue\BeanstalkdQueue(
 ```
 
 It uses the `centum-tasks` tube to store Tasks (available from `Centum\Queue\BeanstalkdQueue::TUBE`).
+
+Tasks have 10 minutes to complete before Beanstalkd will release them and allow them to be run again.

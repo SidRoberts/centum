@@ -42,7 +42,12 @@ class BeanstalkdQueueCest
                     ->with(BeanstalkdQueue::TUBE);
 
                 $mock->shouldReceive("put")
-                    ->with($serializedTask)
+                    ->with(
+                        $serializedTask,
+                        PheanstalkInterface::DEFAULT_PRIORITY,
+                        PheanstalkInterface::DEFAULT_DELAY,
+                        600
+                    )
                     ->andReturn($job);
             }
         );

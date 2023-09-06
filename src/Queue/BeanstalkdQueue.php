@@ -29,7 +29,10 @@ class BeanstalkdQueue implements QueueInterface
         $this->pheanstalk->useTube(self::TUBE);
 
         $this->pheanstalk->put(
-            serialize($task)
+            serialize($task),
+            PheanstalkInterface::DEFAULT_PRIORITY,
+            PheanstalkInterface::DEFAULT_DELAY,
+            600 // 10 minutes
         );
     }
 
