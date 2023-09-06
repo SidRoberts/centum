@@ -2,7 +2,6 @@
 
 namespace Centum\Codeception\Actions;
 
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
@@ -12,7 +11,22 @@ use Exception;
 
 trait QueueActions
 {
-    abstract public function grabContainer(): ContainerInterface;
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $class
+     *
+     * @return T
+     */
+    abstract public function grabFromContainer(string $class): object;
+
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $class
+     * @param T $object
+     */
+    abstract public function addToContainer(string $class, object $object): void;
 
 
 
@@ -21,44 +35,32 @@ trait QueueActions
      */
     public function grabQueue(): QueueInterface
     {
-        $container = $this->grabContainer();
-
-        $queue = $container->get(QueueInterface::class);
-
-        return $queue;
+        return $this->grabFromContainer(QueueInterface::class);
     }
 
     public function grabTaskRunner(): TaskRunnerInterface
     {
-        $container = $this->grabContainer();
-
-        $taskRunner = $container->get(TaskRunnerInterface::class);
-
-        return $taskRunner;
+        return $this->grabFromContainer(TaskRunnerInterface::class);
     }
 
 
 
     public function useArrayQueue(): void
     {
-        $container = $this->grabContainer();
-
         $taskRunner = $this->grabTaskRunner();
 
         $queue = new ArrayQueue($taskRunner);
 
-        $container->getObjectStorage()->set(QueueInterface::class, $queue);
+        $this->addToContainer(QueueInterface::class, $queue);
     }
 
     public function useImmediateQueue(): void
     {
-        $container = $this->grabContainer();
-
         $taskRunner = $this->grabTaskRunner();
 
         $queue = new ImmediateQueue($taskRunner);
 
-        $container->getObjectStorage()->set(QueueInterface::class, $queue);
+        $this->addToContainer(QueueInterface::class, $queue);
     }
 
 
