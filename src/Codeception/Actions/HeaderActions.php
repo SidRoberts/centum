@@ -6,6 +6,9 @@ use Centum\Interfaces\Http\HeadersInterface;
 use Centum\Interfaces\Http\ResponseInterface;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Header Actions
+ */
 trait HeaderActions
 {
     abstract public function grabResponse(): ResponseInterface;

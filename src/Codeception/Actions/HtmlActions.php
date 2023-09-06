@@ -11,6 +11,9 @@ use Exception;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\DomCrawler\Crawler;
 
+/**
+ * HTML Actions
+ */
 trait HtmlActions
 {
     abstract public function grabResponseContent(): string;

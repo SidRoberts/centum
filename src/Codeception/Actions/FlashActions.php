@@ -4,6 +4,9 @@ namespace Centum\Codeception\Actions;
 
 use Centum\Interfaces\Flash\FlashInterface;
 
+/**
+ * Flash Actions
+ */
 trait FlashActions
 {
     /**

@@ -51,6 +51,8 @@ denyAccess(
 
 ## `removeFromAccess`
 
+Remove a rule from Access.
+
 ```php
 removeFromAccess(
     non-empty-string $user,

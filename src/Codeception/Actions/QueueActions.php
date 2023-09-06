@@ -9,6 +9,9 @@ use Centum\Queue\ArrayQueue;
 use Centum\Queue\ImmediateQueue;
 use Exception;
 
+/**
+ * Queue Actions
+ */
 trait QueueActions
 {
     /**
@@ -38,6 +41,9 @@ trait QueueActions
         return $this->grabFromContainer(QueueInterface::class);
     }
 
+    /**
+     * Grab the Task Runner from the Container.
+     */
     public function grabTaskRunner(): TaskRunnerInterface
     {
         return $this->grabFromContainer(TaskRunnerInterface::class);
@@ -65,6 +71,9 @@ trait QueueActions
 
 
 
+    /**
+     * Publish a Task to the Queue.
+     */
     public function publishToQueue(TaskInterface $task): void
     {
         $queue = $this->grabQueue();
@@ -72,6 +81,9 @@ trait QueueActions
         $queue->publish($task);
     }
 
+    /**
+     * Consume a Task from the Queue.
+     */
     public function consumeFromQueue(): TaskInterface
     {
         $queue = $this->grabQueue();
@@ -124,6 +136,9 @@ trait QueueActions
 
 
 
+    /**
+     * Executes a Task using the Task Runner.
+     */
     public function executeTask(TaskInterface $task): void
     {
         $taskRunner = $this->grabTaskRunner();

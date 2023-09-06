@@ -15,6 +15,9 @@ use Centum\Router\Exception\RouteNotFoundException;
 use Codeception\Exception\ModuleException;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Router Actions
+ */
 trait RouterActions
 {
     /**

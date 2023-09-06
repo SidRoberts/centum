@@ -12,6 +12,9 @@ use Centum\Interfaces\Http\FilesInterface;
 use Centum\Interfaces\Http\FormInterface;
 use Throwable;
 
+/**
+ * HTTP Form Actions
+ */
 trait HttpFormActions
 {
     abstract public function grabContainer(): ContainerInterface;

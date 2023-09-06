@@ -6,6 +6,9 @@ use Centum\Interfaces\Filter\FilterInterface;
 use PHPUnit\Framework\Assert;
 use Throwable;
 
+/**
+ * Filter Actions
+ */
 trait FilterActions
 {
     /**

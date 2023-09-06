@@ -5,6 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Interfaces\Validator\ValidatorInterface;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Validator Actions
+ */
 trait ValidatorActions
 {
     public function seeValidatorPasses(ValidatorInterface $validator, mixed $value): void

@@ -4,6 +4,9 @@ namespace Centum\Codeception\Actions;
 
 use PHPUnit\Framework\Assert;
 
+/**
+ * JSON Actions
+ */
 trait JsonActions
 {
     abstract public function grabResponseContent(): string;

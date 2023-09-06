@@ -7,6 +7,9 @@ use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Mockery\MockInterface;
 
+/**
+ * CSRF Actions
+ */
 trait CsrfActions
 {
     /**
@@ -47,6 +50,9 @@ trait CsrfActions
 
 
 
+    /**
+     * Get the current CSRF value.
+     */
     public function getCsrfValue(): string
     {
         $csrfStorage = $this->grabCsrfStorage();
@@ -54,6 +60,10 @@ trait CsrfActions
         return $csrfStorage->get();
     }
 
+    /**
+     * Reset the CSRF value, forcing it to be regenerated the next time it is
+     * needed.
+     */
     public function resetCsrfValue(): void
     {
         $csrfStorage = $this->grabCsrfStorage();

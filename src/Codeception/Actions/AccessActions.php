@@ -5,6 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Interfaces\Access\AccessInterface;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Access Actions
+ */
 trait AccessActions
 {
     /**
@@ -53,6 +56,8 @@ trait AccessActions
     }
 
     /**
+     * Remove a rule from Access.
+     *
      * @param non-empty-string $user
      * @param non-empty-string $activityName
      */

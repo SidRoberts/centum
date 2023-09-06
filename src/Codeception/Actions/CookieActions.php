@@ -6,6 +6,9 @@ use Centum\Interfaces\Http\CookiesInterface;
 use Centum\Interfaces\Http\ResponseInterface;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Cookie Actions
+ */
 trait CookieActions
 {
     abstract public function grabResponse(): ResponseInterface;

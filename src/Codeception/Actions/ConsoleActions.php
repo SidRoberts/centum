@@ -14,6 +14,9 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Exception\ModuleException;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Console Actions
+ */
 trait ConsoleActions
 {
     abstract public function grabContainer(): ContainerInterface;

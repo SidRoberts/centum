@@ -35,6 +35,8 @@ grabCsrfStorage(): Centum\Interfaces\Http\Csrf\StorageInterface
 
 ## `getCsrfValue`
 
+Get the current CSRF value.
+
 ```php
 getCsrfValue(): string
 ```
@@ -42,6 +44,9 @@ getCsrfValue(): string
 
 
 ## `resetCsrfValue`
+
+Reset the CSRF value, forcing it to be regenerated the next time it is
+needed.
 
 ```php
 resetCsrfValue(): void

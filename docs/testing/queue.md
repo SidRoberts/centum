@@ -25,6 +25,8 @@ grabQueue(): Centum\Interfaces\Queue\QueueInterface
 
 ## `grabTaskRunner`
 
+Grab the Task Runner from the Container.
+
 ```php
 grabTaskRunner(): Centum\Interfaces\Queue\TaskRunnerInterface
 ```
@@ -49,6 +51,8 @@ useImmediateQueue(): void
 
 ## `publishToQueue`
 
+Publish a Task to the Queue.
+
 ```php
 publishToQueue(
     Centum\Interfaces\Queue\TaskInterface $task
@@ -58,6 +62,8 @@ publishToQueue(
 
 
 ## `consumeFromQueue`
+
+Consume a Task from the Queue.
 
 ```php
 consumeFromQueue(): Centum\Interfaces\Queue\TaskInterface
@@ -82,6 +88,8 @@ grabQueueBuriedTasks(): array<Centum\Interfaces\Queue\TaskInterface>
 
 
 ## `executeTask`
+
+Executes a Task using the Task Runner.
 
 ```php
 executeTask(

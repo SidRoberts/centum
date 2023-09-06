@@ -44,6 +44,8 @@ addToContainer(
 
 ## `removeFromContainer`
 
+Remove an object from the Container.
+
 ```php
 removeFromContainer(
     class-string $class

@@ -5,6 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Interfaces\Http\SessionInterface;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Session Actions
+ */
 trait SessionActions
 {
     /**

@@ -5,6 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Interfaces\Router\ReplacementInterface;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Router Replacement Actions
+ */
 trait RouterReplacementActions
 {
     public function assertRouterReplacementMatches(ReplacementInterface $replacement, string $value): void

@@ -10,6 +10,9 @@ use Centum\Http\Request;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
 
+/**
+ * Ajax Actions
+ */
 trait AjaxActions
 {
     abstract public function handleRequest(RequestInterface $request): ResponseInterface;

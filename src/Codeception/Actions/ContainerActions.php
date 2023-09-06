@@ -5,6 +5,9 @@ namespace Centum\Codeception\Actions;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Container\ObjectStorageInterface;
 
+/**
+ * Container Actions
+ */
 trait ContainerActions
 {
     abstract public function grabContainer(): ContainerInterface;
@@ -57,6 +60,8 @@ trait ContainerActions
     }
 
     /**
+     * Remove an object from the Container.
+     *
      * @param class-string $class
      */
     public function removeFromContainer(string $class): void

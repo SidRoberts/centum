@@ -5,6 +5,9 @@ namespace Centum\Codeception\Actions;
 use PHPUnit\Framework\Assert;
 use Throwable;
 
+/**
+ * Unit Test Actions
+ */
 trait UnitTestActions
 {
     public function grabEchoContent(callable $callable): string
