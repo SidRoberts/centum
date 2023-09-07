@@ -28,11 +28,3 @@ Centum\Access\Access(
 
 - `Centum\Access\Access::ALLOW`
 - `Centum\Access\Access::DENY`
-
-[`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php) has 5 public methods:
-
-- `public function getDefault(): bool`
-- `public function allow(non-empty-string $user, non-empty-string $activityName): void`
-- `public function deny(non-empty-string $user, non-empty-string $activityName): void`
-- `public function remove(non-empty-string $user, non-empty-string $activityName): void`
-- `public function isAllowed(non-empty-string $user, non-empty-string $activityName): bool`
