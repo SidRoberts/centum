@@ -3,12 +3,17 @@
 namespace Tests\Unit\Container\Resolver;
 
 use Centum\Container\Exception\FileGroupNotFoundException;
+use Centum\Http\Cookie;
+use Centum\Http\Cookies;
 use Centum\Http\Data;
 use Centum\Http\File;
 use Centum\Http\FileGroup;
 use Centum\Http\Files;
+use Centum\Http\Method;
 use Centum\Http\Request;
+use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Router;
+use Tests\Support\Controllers\CookiesController;
 use Tests\Support\Controllers\ParametersController;
 use Tests\Support\Http\Forms\UploadForm;
 use Tests\Support\UnitTester;
@@ -34,6 +39,98 @@ class RequestResolverCest
 
         $I->assertEquals(
             $request::class,
+            $response->getContent()
+        );
+    }
+
+
+
+    public function testCookies(UnitTester $I): void
+    {
+        $cookies = new Cookies();
+
+        $cookie = new Cookie("username", "SidRoberts");
+
+        $cookies->add($cookie);
+
+        $router = $I->grabFromContainer(RouterInterface::class);
+
+        $group = $router->group();
+
+        $group->get("/cookies", CookiesController::class, "resolverCookies");
+
+        $request = new Request("/cookies", Method::GET, null, null, $cookies);
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            serialize($cookies),
+            $response->getContent()
+        );
+    }
+
+    public function testCookie(UnitTester $I): void
+    {
+        $cookies = new Cookies();
+
+        $cookie = new Cookie("username", "SidRoberts");
+
+        $cookies->add($cookie);
+
+        $router = $I->grabFromContainer(RouterInterface::class);
+
+        $group = $router->group();
+
+        $group->get("/cookie", CookiesController::class, "resolverCookie");
+
+        $request = new Request("/cookie", Method::GET, null, null, $cookies);
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "SidRoberts",
+            $response->getContent()
+        );
+    }
+
+    public function testCookieOptionalSet(UnitTester $I): void
+    {
+        $cookies = new Cookies();
+
+        $cookie = new Cookie("username", "SidRoberts");
+
+        $cookies->add($cookie);
+
+        $router = $I->grabFromContainer(RouterInterface::class);
+
+        $group = $router->group();
+
+        $group->get("/cookie-optional", CookiesController::class, "resolverCookieOptional");
+
+        $request = new Request("/cookie-optional", Method::GET, null, null, $cookies);
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "SidRoberts",
+            $response->getContent()
+        );
+    }
+
+    public function testCookieOptionalNotSet(UnitTester $I): void
+    {
+        $router = $I->grabFromContainer(RouterInterface::class);
+
+        $group = $router->group();
+
+        $group->get("/cookie-optional", CookiesController::class, "resolverCookieOptional");
+
+        $request = new Request("/cookie-optional");
+
+        $response = $router->handle($request);
+
+        $I->assertEquals(
+            "username not set.",
             $response->getContent()
         );
     }
