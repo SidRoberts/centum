@@ -10,7 +10,7 @@ class Clock implements ClockInterface
 {
     public function __construct(
         protected string $datetime = "now",
-        protected DateTimeZone|null $timezone = null
+        protected ?DateTimeZone $timezone = null
     ) {
     }
 

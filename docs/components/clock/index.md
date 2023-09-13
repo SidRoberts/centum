@@ -15,7 +15,7 @@ The Clock component handles time determination.
 ```php
 Centum\Clock\Clock(
     string $datetime = "now",
-    DateTimeZone|null $timezone = null
+    ?DateTimeZone $timezone = null
 );
 ```
 
