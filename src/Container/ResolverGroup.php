@@ -4,10 +4,9 @@ namespace Centum\Container;
 
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Container\ParameterInterface;
 use Centum\Interfaces\Container\ResolverGroupInterface;
 use Centum\Interfaces\Container\ResolverInterface;
-use ReflectionNamedType;
-use ReflectionParameter;
 
 class ResolverGroup implements ResolverGroupInterface
 {
@@ -41,7 +40,7 @@ class ResolverGroup implements ResolverGroupInterface
     /**
      * @throws UnresolvableParameterException
      */
-    public function resolve(ReflectionParameter $parameter, ContainerInterface $container): mixed
+    public function resolve(ParameterInterface $parameter, ContainerInterface $container): mixed
     {
         foreach ($this->resolvers as $resolver) {
             try {
@@ -50,23 +49,31 @@ class ResolverGroup implements ResolverGroupInterface
             }
         }
 
-        $type = $parameter->getType();
+        if ($parameter->isObject()) {
+            $class = $parameter->getType();
 
-        if ($type === null && $parameter->isDefaultValueAvailable()) {
-            return $parameter->getDefaultValue();
+            $aliasManager   = $container->getAliasManager();
+            $objectStorage  = $container->getObjectStorage();
+            $serviceStorage = $container->getServiceStorage();
+
+            if (!$objectStorage->has($class)) {
+                $service = $serviceStorage->get($class);
+
+                if ($service !== null) {
+                    $object = $container->typehintService($service);
+                } else {
+                    $alias = $aliasManager->get($class);
+
+                    $object = $container->typehintClass($alias);
+                }
+
+                $objectStorage->set($class, $object);
+            }
+
+            return $objectStorage->get($class);
         }
 
-        if (!($type instanceof ReflectionNamedType)) {
-            throw new UnresolvableParameterException($parameter);
-        }
-
-        if (!$type->isBuiltIn()) {
-            $class = $type->getName();
-
-            return $container->get($class);
-        }
-
-        if ($parameter->isDefaultValueAvailable()) {
+        if ($parameter->hasDefaultValue()) {
             return $parameter->getDefaultValue();
         }
 

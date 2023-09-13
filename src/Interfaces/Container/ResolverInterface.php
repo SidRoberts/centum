@@ -2,9 +2,7 @@
 
 namespace Centum\Interfaces\Container;
 
-use ReflectionParameter;
-
 interface ResolverInterface
 {
-    public function resolve(ReflectionParameter $parameter): mixed;
+    public function resolve(ParameterInterface $parameter): mixed;
 }

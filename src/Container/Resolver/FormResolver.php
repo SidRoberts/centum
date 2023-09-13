@@ -4,11 +4,10 @@ namespace Centum\Container\Resolver;
 
 use Centum\Container\Exception\FormFieldNotFoundException;
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Interfaces\Container\ParameterInterface;
 use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Centum\Interfaces\Http\FormInterface;
-use ReflectionNamedType;
-use ReflectionParameter;
 
 class FormResolver implements ResolverInterface
 {
@@ -23,30 +22,36 @@ class FormResolver implements ResolverInterface
      * @throws UnresolvableParameterException
      * @throws FormFieldNotFoundException
      */
-    public function resolve(ReflectionParameter $parameter): mixed
+    public function resolve(ParameterInterface $parameter): mixed
     {
-        $declaringClass = $parameter->getDeclaringClass();
+        if (!$parameter->hasDeclaringClass() || !is_subclass_of($parameter->getDeclaringClass(), FormInterface::class)) {
+            throw new UnresolvableParameterException($parameter);
+        }
 
-        if ($declaringClass === null || !is_subclass_of($declaringClass->getName(), FormInterface::class)) {
+        if (!$parameter->hasName()) {
+            throw new UnresolvableParameterException($parameter);
+        }
+
+        if ($parameter->isObject()) {
             throw new UnresolvableParameterException($parameter);
         }
 
         $name = $parameter->getName();
         $type = $parameter->getType();
 
-        if (!($type instanceof ReflectionNamedType)) {
-            throw new UnresolvableParameterException($parameter);
-        }
-
-        if (!$type->isBuiltIn()) {
-            throw new UnresolvableParameterException($parameter);
-        }
-
-        if ($type->getName() === "bool") {
+        if ($type === "bool") {
             return $this->data->has($name);
         }
 
-        if (!$this->data->has($name) && !$parameter->isOptional()) {
+        if (!$this->data->has($name)) {
+            if ($parameter->hasDefaultValue()) {
+                return $parameter->getDefaultValue();
+            }
+
+            if ($parameter->allowsNull()) {
+                return null;
+            }
+
             throw new FormFieldNotFoundException($name);
         }
 
@@ -54,21 +59,27 @@ class FormResolver implements ResolverInterface
         $value = $this->data->get($name);
 
         if ($value === null) {
-            if (!$parameter->allowsNull()) {
-                throw new UnresolvableParameterException($parameter);
+            if ($parameter->hasDefaultValue()) {
+                return $parameter->getDefaultValue();
             }
-        } else {
-            $valueType = gettype($value);
 
-            $valueType = match ($valueType) {
-                "double"  => "float",
-                "integer" => "int",
-                default   => $valueType,
-            };
-
-            if ($valueType !== $type->getName()) {
-                throw new UnresolvableParameterException($parameter);
+            if ($parameter->allowsNull()) {
+                return null;
             }
+
+            throw new UnresolvableParameterException($parameter);
+        }
+
+        $valueType = gettype($value);
+
+        $valueType = match ($valueType) {
+            "double"  => "float",
+            "integer" => "int",
+            default   => $valueType,
+        };
+
+        if ($valueType !== $type) {
+            throw new UnresolvableParameterException($parameter);
         }
 
         return $value;

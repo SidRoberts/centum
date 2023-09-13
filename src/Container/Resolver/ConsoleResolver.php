@@ -5,9 +5,8 @@ namespace Centum\Container\Resolver;
 use Centum\Container\Exception\UnresolvableParameterException;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
+use Centum\Interfaces\Container\ParameterInterface;
 use Centum\Interfaces\Container\ResolverInterface;
-use ReflectionNamedType;
-use ReflectionParameter;
 
 class ConsoleResolver implements ResolverInterface
 {
@@ -21,21 +20,17 @@ class ConsoleResolver implements ResolverInterface
     /**
      * @throws UnresolvableParameterException
      */
-    public function resolve(ReflectionParameter $parameter): mixed
+    public function resolve(ParameterInterface $parameter): mixed
     {
-        $declaringClass = $parameter->getDeclaringClass();
-
-        if ($declaringClass === null || !is_subclass_of($declaringClass->getName(), CommandInterface::class)) {
+        if (!$parameter->hasDeclaringClass() || !is_subclass_of($parameter->getDeclaringClass(), CommandInterface::class)) {
             throw new UnresolvableParameterException($parameter);
         }
 
-        $type = $parameter->getType();
-
-        if (!($type instanceof ReflectionNamedType)) {
+        if ($parameter->isObject()) {
             throw new UnresolvableParameterException($parameter);
         }
 
-        if (!$type->isBuiltIn()) {
+        if (!$parameter->hasName()) {
             throw new UnresolvableParameterException($parameter);
         }
 
@@ -44,11 +39,11 @@ class ConsoleResolver implements ResolverInterface
             $parameter->getName()
         );
 
-        if ($type->getName() === "bool") {
+        if ($parameter->getType() === "bool") {
             return $this->arguments->hasParameter($name);
         }
 
-        if ($type->getName() !== "string") {
+        if ($parameter->getType() !== "string") {
             throw new UnresolvableParameterException($parameter);
         }
 

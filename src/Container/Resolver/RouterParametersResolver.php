@@ -3,12 +3,11 @@
 namespace Centum\Container\Resolver;
 
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Interfaces\Container\ParameterInterface;
 use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Http\FormInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 use Centum\Interfaces\Router\ParametersInterface;
-use ReflectionNamedType;
-use ReflectionParameter;
 
 class RouterParametersResolver implements ResolverInterface
 {
@@ -22,21 +21,17 @@ class RouterParametersResolver implements ResolverInterface
     /**
      * @throws UnresolvableParameterException
      */
-    public function resolve(ReflectionParameter $parameter): mixed
+    public function resolve(ParameterInterface $parameter): mixed
     {
-        $declaringClass = $parameter->getDeclaringClass();
-
-        if ($declaringClass === null || !is_subclass_of($declaringClass->getName(), ControllerInterface::class)) {
+        if (!$parameter->hasDeclaringClass() || !is_subclass_of($parameter->getDeclaringClass(), ControllerInterface::class)) {
             throw new UnresolvableParameterException($parameter);
         }
 
-        $type = $parameter->getType();
-
-        if (!($type instanceof ReflectionNamedType)) {
+        if ($parameter->hasType() && is_subclass_of($parameter->getType(), FormInterface::class)) {
             throw new UnresolvableParameterException($parameter);
         }
 
-        if (is_subclass_of($type->getName(), FormInterface::class)) {
+        if (!$parameter->hasName()) {
             throw new UnresolvableParameterException($parameter);
         }
 
@@ -50,12 +45,18 @@ class RouterParametersResolver implements ResolverInterface
         $value = $this->parameters->get($name);
 
         if ($value === null) {
-            if (!$parameter->allowsNull()) {
-                throw new UnresolvableParameterException($parameter);
+            if ($parameter->hasDefaultValue()) {
+                return $parameter->getDefaultValue();
             }
+
+            if ($parameter->allowsNull()) {
+                return null;
+            }
+
+            throw new UnresolvableParameterException($parameter);
         } elseif (is_object($value)) {
             /** @var class-string */
-            $typeName = $type->getName();
+            $typeName = $parameter->getType();
 
             if (!is_a($value, $typeName) && !is_subclass_of($value, $typeName)) {
                 throw new UnresolvableParameterException($parameter);
@@ -70,7 +71,7 @@ class RouterParametersResolver implements ResolverInterface
                 default   => $valueType,
             };
 
-            if ($valueType !== $type->getName()) {
+            if ($parameter->getType() !== $valueType) {
                 throw new UnresolvableParameterException($parameter);
             }
         }

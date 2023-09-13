@@ -308,15 +308,6 @@ class ContainerCest
                 $container->typehintMethod($differentTypes, "unresolvable");
             }
         );
-
-
-
-        $I->expectThrowable(
-            UnresolvableParameterException::class,
-            function () use ($container, $differentTypes): void {
-                $container->typehintMethod($differentTypes, "unresolvable2");
-            }
-        );
     }
 
 

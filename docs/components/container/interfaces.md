@@ -128,6 +128,50 @@ remove(
 
 
 
+## [`Centum\Interfaces\Container\ParameterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ParameterInterface.php)
+
+```php
+hasType(): bool
+```
+
+```php
+getType(): ?non-empty-string
+```
+
+```php
+isObject(): bool
+```
+
+```php
+hasName(): bool
+```
+
+```php
+getName(): ?non-empty-string
+```
+
+```php
+allowsNull(): bool
+```
+
+```php
+hasDefaultValue(): bool
+```
+
+```php
+getDefaultValue(): mixed
+```
+
+```php
+hasDeclaringClass(): bool
+```
+
+```php
+getDeclaringClass(): ?class-string
+```
+
+
+
 ## [`Centum\Interfaces\Container\ResolverGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ResolverGroupInterface.php)
 
 ```php
@@ -144,7 +188,7 @@ remove(
 
 ```php
 resolve(
-    ReflectionParameter $parameter,
+    Centum\Interfaces\Container\ParameterInterface $parameter,
     Centum\Interfaces\Container\ContainerInterface $container
 ): mixed
 ```
@@ -155,7 +199,7 @@ resolve(
 
 ```php
 resolve(
-    ReflectionParameter $parameter
+    Centum\Interfaces\Container\ParameterInterface $parameter
 ): mixed
 ```
 

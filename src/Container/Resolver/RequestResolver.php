@@ -5,6 +5,7 @@ namespace Centum\Container\Resolver;
 use Centum\Container\Exception\CookieNotFoundException;
 use Centum\Container\Exception\FileGroupNotFoundException;
 use Centum\Container\Exception\UnresolvableParameterException;
+use Centum\Interfaces\Container\ParameterInterface;
 use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Http\CookieInterface;
 use Centum\Interfaces\Http\CookiesInterface;
@@ -13,8 +14,6 @@ use Centum\Interfaces\Http\FileGroupInterface;
 use Centum\Interfaces\Http\FilesInterface;
 use Centum\Interfaces\Http\HeadersInterface;
 use Centum\Interfaces\Http\RequestInterface;
-use ReflectionNamedType;
-use ReflectionParameter;
 
 class RequestResolver implements ResolverInterface
 {
@@ -30,28 +29,20 @@ class RequestResolver implements ResolverInterface
      * @throws CookieNotFoundException
      * @throws FileGroupNotFoundException
      */
-    public function resolve(ReflectionParameter $parameter): mixed
+    public function resolve(ParameterInterface $parameter): mixed
     {
-        $declaringClass = $parameter->getDeclaringClass();
+        if (!$parameter->hasName()) {
+            throw new UnresolvableParameterException($parameter);
+        }
 
-        if ($declaringClass === null) {
+        if (!$parameter->isObject()) {
             throw new UnresolvableParameterException($parameter);
         }
 
         $name = $parameter->getName();
         $type = $parameter->getType();
 
-        if (!($type instanceof ReflectionNamedType)) {
-            throw new UnresolvableParameterException($parameter);
-        }
-
-        if ($type->isBuiltIn()) {
-            throw new UnresolvableParameterException($parameter);
-        }
-
-        $class = $type->getName();
-
-        if ($class === CookieInterface::class) {
+        if ($type === CookieInterface::class) {
             $cookies = $this->request->getCookies();
 
             if (!$cookies->has($name)) {
@@ -65,7 +56,7 @@ class RequestResolver implements ResolverInterface
             return $cookies->get($name);
         }
 
-        if ($class === FileGroupInterface::class) {
+        if ($type === FileGroupInterface::class) {
             $files = $this->request->getFiles();
 
             if (!$files->has($name)) {
@@ -79,7 +70,7 @@ class RequestResolver implements ResolverInterface
             return $files->get($name);
         }
 
-        return match ($class) {
+        return match ($type) {
             RequestInterface::class => $this->request,
             DataInterface::class    => $this->request->getData(),
             HeadersInterface::class => $this->request->getHeaders(),

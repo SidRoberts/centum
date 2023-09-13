@@ -10,10 +10,12 @@ use Centum\Interfaces\Container\ResolverGroupInterface;
 use Centum\Interfaces\Container\ServiceInterface;
 use Centum\Interfaces\Container\ServiceStorageInterface;
 use Closure;
+use Exception;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
+use ReflectionNamedType;
 
 class Container implements ContainerInterface
 {
@@ -73,20 +75,10 @@ class Container implements ContainerInterface
      */
     public function get(string $class): object
     {
-        if (!$this->objectStorage->has($class)) {
-            $service = $this->serviceStorage->get($class);
-
-            if ($service !== null) {
-                $object = $this->typehintService($service);
-            } else {
-                $object = $this->typehintClass($class);
-            }
-
-            $this->objectStorage->set($class, $object);
-        }
+        $parameter = new Parameter($class);
 
         /** @var T */
-        return $this->objectStorage->get($class);
+        return $this->resolverGroup->resolve($parameter, $this);
     }
 
 
@@ -172,6 +164,21 @@ class Container implements ContainerInterface
         $resolvedParameters = [];
 
         foreach ($parameters as $parameter) {
+            $type = $parameter->getType();
+
+            if ($type !== null && !($type instanceof ReflectionNamedType)) {
+                throw new Exception();
+            }
+
+            $parameter = new Parameter(
+                $type?->getName(),
+                $parameter->getName(),
+                $parameter->allowsNull(),
+                $parameter->isDefaultValueAvailable(),
+                $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null,
+                $parameter->getDeclaringClass()?->getName()
+            );
+
             /** @var mixed */
             $resolvedParameters[] = $this->resolverGroup->resolve($parameter, $this);
         }

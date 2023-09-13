@@ -11,6 +11,9 @@ use Centum\Interfaces\Container\ContainerInterface;
 
 class ConsoleBootstrap extends Bootstrap
 {
+    /**
+     * @throws ArgvNotFoundException
+     */
     public function boot(ContainerInterface $container): void
     {
         $application = $container->get(ApplicationInterface::class);
@@ -22,6 +25,9 @@ class ConsoleBootstrap extends Bootstrap
         $this->exit($exitCode);
     }
 
+    /**
+     * @throws ArgvNotFoundException
+     */
     protected function getTerminal(): TerminalInterface
     {
         /** @var array<string> */
