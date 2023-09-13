@@ -2,12 +2,15 @@
 
 namespace Centum\Interfaces\Http;
 
+/**
+ * @psalm-immutable
+ */
 interface DataInterface
 {
     /**
      * @param non-empty-string $name
      */
-    public function get(string $name, mixed $defaultValue = null): mixed;
+    public function get(string $name): mixed;
 
     /**
      * @param non-empty-string $name

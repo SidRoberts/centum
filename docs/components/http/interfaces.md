@@ -111,8 +111,7 @@ validate(): void
 
 ```php
 get(
-    non-empty-string $name,
-    mixed $defaultValue = null
+    non-empty-string $name
 ): mixed
 ```
 

@@ -3,6 +3,7 @@
 namespace Tests\Http;
 
 use Centum\Http\Data;
+use OutOfRangeException;
 use Tests\Support\UnitTester;
 
 /**
@@ -29,23 +30,11 @@ class DataCest
             $data->get("key2")
         );
 
-        $I->assertNull(
-            $data->get("key3")
-        );
-
-        $I->assertEquals(
-            "value1",
-            $data->get("key1", "default value")
-        );
-
-        $I->assertEquals(
-            "value2",
-            $data->get("key2", "default value")
-        );
-
-        $I->assertEquals(
-            "default value",
-            $data->get("key3", "default value")
+        $I->expectThrowable(
+            OutOfRangeException::class,
+            function () use ($data): void {
+                $data->get("key3");
+            }
         );
     }
 

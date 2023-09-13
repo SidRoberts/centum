@@ -22,6 +22,10 @@ class Validator implements ValidatorInterface
      */
     public function validate(): void
     {
+        if (!$this->data->has("csrf")) {
+            throw new CsrfException(null);
+        }
+
         /** @var string|null */
         $value = $this->data->get("csrf");
 

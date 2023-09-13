@@ -27,6 +27,10 @@ class ValidatorCest
         $data = $I->mock(
             DataInterface::class,
             function (MockInterface $mock) use ($value): void {
+                $mock->shouldReceive("has")
+                    ->with("csrf")
+                    ->andReturn(true);
+
                 $mock->shouldReceive("get")
                     ->with("csrf")
                     ->andReturn($value);

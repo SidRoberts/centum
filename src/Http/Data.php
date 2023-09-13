@@ -3,7 +3,11 @@
 namespace Centum\Http;
 
 use Centum\Interfaces\Http\DataInterface;
+use OutOfRangeException;
 
+/**
+ * @psalm-immutable
+ */
 class Data implements DataInterface
 {
     /**
@@ -16,9 +20,16 @@ class Data implements DataInterface
 
 
 
-    public function get(string $name, mixed $defaultValue = null): mixed
+    /**
+     * @throws OutOfRangeException
+     */
+    public function get(string $name): mixed
     {
-        return $this->data[$name] ?? $defaultValue;
+        if (!isset($this->data[$name])) {
+            throw new OutOfRangeException($name);
+        }
+
+        return $this->data[$name];
     }
 
     public function has(string $name): bool
