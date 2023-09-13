@@ -13,9 +13,51 @@ nav_order: 101
 
 (all in the `Centum\Http\Exception` namespace)
 
-- [`CsrfException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CsrfException.php)
-- [`FailedToOpenInputStreamException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FailedToOpenInputStreamException.php)
-- [`FileAlreadyMovedException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileAlreadyMovedException.php)
-- [`FileGroupAlreadyExistsException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileGroupAlreadyExistsException.php)
-- [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileGroupNotFoundException.php)
-- [`UriParseException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/UriParseException.php)
+
+
+## [`CsrfException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CsrfException.php)
+
+Thrown in:
+
+- [`Centum\Http\Csrf\Validator::validate()`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Validator.php#L23)
+
+
+
+## [`FailedToOpenInputStreamException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FailedToOpenInputStreamException.php)
+
+Thrown in:
+
+- [`Centum\Http\RequestFactory::createFromGlobals()`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php#L17)
+
+
+
+## [`FileAlreadyMovedException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileAlreadyMovedException.php)
+
+Thrown in:
+
+- [`Centum\Http\File::moveTo()`](https://github.com/SidRoberts/centum/blob/development/src/Http/File.php#L112)
+
+
+
+## [`FileGroupAlreadyExistsException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileGroupAlreadyExistsException.php)
+
+Thrown in:
+
+- [`Centum\Http\Files::add()`](https://github.com/SidRoberts/centum/blob/development/src/Http/Files.php#L34)
+
+
+
+## [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/FileGroupNotFoundException.php)
+
+Thrown in:
+
+- [`Centum\Http\Files::get()`](https://github.com/SidRoberts/centum/blob/development/src/Http/Files.php#L55)
+
+
+
+## [`UriParseException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/UriParseException.php)
+
+Thrown in:
+
+- [`Centum\Http\RequestFactory::createFromGlobals()`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php#L17)
+- [`Centum\Http\RequestFactory::createFromArrays()`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php#L33)

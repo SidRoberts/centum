@@ -13,8 +13,48 @@ nav_order: 101
 
 (all in the `Centum\Container\Exception` namespace)
 
-- [`CookieNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/CookieNotFoundException.php)
-- [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FileGroupNotFoundException.php)
-- [`FormFieldNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FormFieldNotFoundException.php)
-- [`InstantiateInterfaceException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/InstantiateInterfaceException.php)
-- [`UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php)
+
+
+## [`CookieNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/CookieNotFoundException.php)
+
+Thrown in:
+
+- [`Centum\Container\Resolver\RequestResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RequestResolver.php#L32)
+
+
+
+## [`FileGroupNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FileGroupNotFoundException.php)
+
+Thrown in:
+
+- [`Centum\Container\Resolver\RequestResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RequestResolver.php#L32)
+
+
+
+## [`FormFieldNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FormFieldNotFoundException.php)
+
+Thrown in:
+
+- [`Centum\Container\Resolver\FormResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/FormResolver.php#L25)
+
+
+
+## [`InstantiateInterfaceException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/InstantiateInterfaceException.php)
+
+Thrown in:
+
+- [`Centum\Container\Container::get()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L76)
+- [`Centum\Container\Container::typehintService()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L95)
+- [`Centum\Container\Container::typehintClass()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L113)
+
+
+
+## [`UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php)
+
+Thrown in:
+
+- [`Centum\Container\ResolverGroup::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/ResolverGroup.php#L43)
+- [`Centum\Container\Resolver\ConsoleResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/ConsoleResolver.php#L23)
+- [`Centum\Container\Resolver\FormResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/FormResolver.php#L25)
+- [`Centum\Container\Resolver\RequestResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RequestResolver.php#L32)
+- [`Centum\Container\Resolver\RouterParametersResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RouterParametersResolver.php#L24)
