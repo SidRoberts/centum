@@ -68,6 +68,8 @@ class Container implements ContainerInterface
      * @param class-string<T> $class
      *
      * @return T
+     *
+     * @throws InstantiateInterfaceException
      */
     public function get(string $class): object
     {
@@ -95,6 +97,8 @@ class Container implements ContainerInterface
      * @param class-string<ServiceInterface<T>> $serviceClass
      *
      * @return T
+     *
+     * @throws InstantiateInterfaceException
      */
     public function typehintService(string $serviceClass): object
     {
@@ -111,6 +115,8 @@ class Container implements ContainerInterface
      * @param class-string<T> $class
      *
      * @return T
+     *
+     * @throws InstantiateInterfaceException
      */
     public function typehintClass(string $class): object
     {

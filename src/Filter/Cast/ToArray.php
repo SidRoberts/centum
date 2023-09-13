@@ -9,6 +9,8 @@ class ToArray implements FilterInterface
 {
     /**
      * @return array<mixed>
+     *
+     * @throws UnexpectedValueException
      */
     public function filter(mixed $value): array
     {

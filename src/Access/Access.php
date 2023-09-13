@@ -64,6 +64,9 @@ class Access implements AccessInterface
         return $activity->isAllowed($user);
     }
 
+    /**
+     * @throws AccessDeniedException
+     */
     public function verify(string $user, string $activityName): void
     {
         if (!$this->isAllowed($user, $activityName)) {

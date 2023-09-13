@@ -7,6 +7,9 @@ use Exception;
 
 class Generator implements GeneratorInterface
 {
+    /**
+     * @throws Exception
+     */
     public function generate(): string
     {
         $binaryLength = (int) ceil(self::LENGTH / 2);

@@ -17,6 +17,9 @@ class Validator implements ValidatorInterface
 
 
 
+    /**
+     * @throws CsrfException
+     */
     public function validate(): void
     {
         /** @var string|null */

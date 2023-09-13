@@ -36,6 +36,10 @@ class BeanstalkdQueue implements QueueInterface
         );
     }
 
+    /**
+     * @throws UnexpectedValueException
+     * @throws Throwable
+     */
     public function consume(): TaskInterface
     {
         $this->pheanstalk->watch(self::TUBE);

@@ -24,6 +24,9 @@ class ImmediateQueue implements QueueInterface
 
 
 
+    /**
+     * @throws Throwable
+     */
     public function publish(TaskInterface $task): void
     {
         try {
@@ -35,6 +38,9 @@ class ImmediateQueue implements QueueInterface
         }
     }
 
+    /**
+     * @throws NoTasksInQueueException
+     */
     public function consume(): TaskInterface
     {
         throw new NoTasksInQueueException();

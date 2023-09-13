@@ -8,6 +8,9 @@ use Centum\Console\Exception\InvalidCommandNameException;
 #[Attribute(Attribute::TARGET_CLASS)]
 class CommandMetadata
 {
+    /**
+     * @throws InvalidCommandNameException
+     */
     public function __construct(
         protected readonly string $name,
         protected readonly string $description = ""

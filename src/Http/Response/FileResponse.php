@@ -10,6 +10,9 @@ use Exception;
 
 class FileResponse extends Response
 {
+    /**
+     * @throws Exception
+     */
     public function __construct(string $filePath, string $fileName)
     {
         $content = @file_get_contents($filePath);
@@ -49,6 +52,9 @@ class FileResponse extends Response
 
 
 
+    /**
+     * @throws Exception
+     */
     protected function sanitiseFileName(string $fileName): string
     {
         $fileName = mb_ereg_replace(

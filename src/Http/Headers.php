@@ -41,9 +41,16 @@ class Headers implements HeadersInterface
 
 
 
+    /**
+     * @throws OutOfRangeException
+     */
     public function get(string $name): HeaderInterface
     {
-        return $this->headers[$name] ?? throw new OutOfRangeException();
+        if (!isset($this->headers[$name])) {
+            throw new OutOfRangeException();
+        }
+
+        return $this->headers[$name];
     }
 
     public function has(string $name): bool
@@ -51,6 +58,9 @@ class Headers implements HeadersInterface
         return isset($this->headers[$name]);
     }
 
+    /**
+     * @throws OutOfRangeException
+     */
     public function matches(string $name, string $value): bool
     {
         if (!$this->has($name)) {

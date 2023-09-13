@@ -28,6 +28,9 @@ class Files implements FilesInterface
 
 
 
+    /**
+     * @throws FileGroupAlreadyExistsException
+     */
     public function add(FileGroupInterface $fileGroup): void
     {
         $id = $fileGroup->getID();
@@ -46,9 +49,16 @@ class Files implements FilesInterface
         return isset($this->fileGroups[$id]);
     }
 
+    /**
+     * @throws FileGroupNotFoundException
+     */
     public function get(string $id): FileGroupInterface
     {
-        return $this->fileGroups[$id] ?? throw new FileGroupNotFoundException($id);
+        if (!isset($this->fileGroups[$id])) {
+            throw new FileGroupNotFoundException($id);
+        }
+
+        return $this->fileGroups[$id];
     }
 
 

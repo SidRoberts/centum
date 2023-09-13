@@ -60,6 +60,9 @@ class File implements FileInterface
 
 
 
+    /**
+     * @throws Exception
+     */
     public function validate(): void
     {
         $error = $this->getError();
@@ -90,6 +93,9 @@ class File implements FileInterface
 
 
 
+    /**
+     * @throws Exception
+     */
     public function getExtension(): ?string
     {
         if ($this->error !== UPLOAD_ERR_OK || $this->name === null) {
@@ -99,6 +105,10 @@ class File implements FileInterface
         return pathinfo($this->name, PATHINFO_EXTENSION);
     }
 
+    /**
+     * @throws Exception
+     * @throws FileAlreadyMovedException
+     */
     public function moveTo(string $path): bool
     {
         if ($this->error !== UPLOAD_ERR_OK || $this->location === null) {

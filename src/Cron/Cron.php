@@ -7,6 +7,7 @@ use Centum\Interfaces\Cron\JobInterface;
 use Cron\CronExpression;
 use DateTimeImmutable;
 use DateTimeInterface;
+use InvalidArgumentException;
 
 class Cron implements CronInterface
 {
@@ -41,6 +42,9 @@ class Cron implements CronInterface
 
 
 
+    /**
+     * @throws InvalidArgumentException
+     */
     protected function isDue(JobInterface $job, DateTimeInterface $datetime = null): bool
     {
         $cronExpression = new CronExpression(

@@ -19,6 +19,9 @@ class RouterParametersResolver implements ResolverInterface
 
 
 
+    /**
+     * @throws UnresolvableParameterException
+     */
     public function resolve(ReflectionParameter $parameter): mixed
     {
         $declaringClass = $parameter->getDeclaringClass();

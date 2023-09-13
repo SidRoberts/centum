@@ -8,6 +8,10 @@ use JsonException;
 
 class ToString implements FilterInterface
 {
+    /**
+     * @throws JsonException
+     * @throws InvalidArgumentException
+     */
     public function filter(mixed $value): string
     {
         if (is_object($value) && !method_exists($value, "__toString")) {

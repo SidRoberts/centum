@@ -135,9 +135,16 @@ trait ConsoleActions
 
 
 
+    /**
+     * @throws ModuleException
+     */
     public function grabExitCode(): int
     {
-        return $this->exitCode ?? throw new ModuleException($this, "Command hasn't been executed yet.");
+        if ($this->exitCode === null) {
+            throw new ModuleException($this, "Command hasn't been executed yet.");
+        }
+
+        return $this->exitCode;
     }
 
     public function seeExitCodeIs(int $expectedCode): void

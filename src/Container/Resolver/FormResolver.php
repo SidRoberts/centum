@@ -19,6 +19,10 @@ class FormResolver implements ResolverInterface
 
 
 
+    /**
+     * @throws UnresolvableParameterException
+     * @throws FormFieldNotFoundException
+     */
     public function resolve(ReflectionParameter $parameter): mixed
     {
         $declaringClass = $parameter->getDeclaringClass();

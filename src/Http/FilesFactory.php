@@ -66,6 +66,9 @@ class FilesFactory
         return $files;
     }
 
+    /**
+     * @throws Exception
+     */
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): FilesInterface
     {
         $browserKitFiles = $browserKitRequest->getFiles();

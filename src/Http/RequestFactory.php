@@ -5,10 +5,15 @@ namespace Centum\Http;
 use Centum\Http\Exception\FailedToOpenInputStreamException;
 use Centum\Http\Exception\UriParseException;
 use Centum\Interfaces\Http\RequestInterface;
+use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class RequestFactory
 {
+    /**
+     * @throws FailedToOpenInputStreamException
+     * @throws UriParseException
+     */
     public function createFromGlobals(): RequestInterface
     {
         $inputStream = fopen("php://input", "r");
@@ -22,6 +27,9 @@ class RequestFactory
         return $this->createFromArrays($_SERVER, $_GET, $_POST, $content);
     }
 
+    /**
+     * @throws UriParseException
+     */
     public function createFromArrays(array $server, array $get, array $post, string $content): RequestInterface
     {
         /** @var string */
@@ -80,6 +88,9 @@ class RequestFactory
         return new Request($uri, $method, $data, $headers, $cookies, $files, $content);
     }
 
+    /**
+     * @throws Exception
+     */
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): RequestInterface
     {
         $headersFactory = new HeadersFactory();

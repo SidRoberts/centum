@@ -89,6 +89,9 @@ class Router implements RouterInterface
 
 
 
+    /**
+     * @throws Throwable
+     */
     public function handle(RequestInterface $request): ResponseInterface
     {
         try {
@@ -118,6 +121,9 @@ class Router implements RouterInterface
 
 
 
+    /**
+     * @throws RouteMismatchException
+     */
     protected function matchRouteToRequest(RequestInterface $request, RouteInterface $route): ResponseInterface
     {
         if ($request->getMethod() !== $route->getHttpMethod()) {
@@ -218,6 +224,9 @@ class Router implements RouterInterface
 
 
 
+    /**
+     * @throws Throwable
+     */
     protected function handleException(RequestInterface $request, Throwable $throwable): ResponseInterface
     {
         foreach ($this->exceptionHandlers as $exceptionHandlerClass) {

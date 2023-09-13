@@ -38,6 +38,9 @@ class ResolverGroup implements ResolverGroupInterface
 
 
 
+    /**
+     * @throws UnresolvableParameterException
+     */
     public function resolve(ReflectionParameter $parameter, ContainerInterface $container): mixed
     {
         foreach ($this->resolvers as $resolver) {

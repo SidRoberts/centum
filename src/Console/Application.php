@@ -30,6 +30,9 @@ class Application implements ApplicationInterface
 
 
 
+    /**
+     * @throws CommandMetadataNotFoundException
+     */
     public function __construct(
         protected readonly ContainerInterface $container,
     ) {
@@ -41,6 +44,8 @@ class Application implements ApplicationInterface
 
     /**
      * @param class-string<CommandInterface> $commandClass
+     *
+     * @throws CommandMetadataNotFoundException
      */
     public function getCommandMetadata(string $commandClass): CommandMetadata
     {
@@ -48,13 +53,20 @@ class Application implements ApplicationInterface
 
         $attributes = $reflectionClass->getAttributes(CommandMetadata::class);
 
-        $attribute = $attributes[0] ?? throw new CommandMetadataNotFoundException($commandClass);
+        if (count($attributes) === 0) {
+            throw new CommandMetadataNotFoundException($commandClass);
+        }
+
+        $attribute = $attributes[0];
 
         return $attribute->newInstance();
     }
 
 
 
+    /**
+     * @throws CommandMetadataNotFoundException
+     */
     public function addCommand(string $commandClass): void
     {
         $metadata = $this->getCommandMetadata($commandClass);
@@ -78,6 +90,10 @@ class Application implements ApplicationInterface
 
 
 
+    /**
+     * @throws Throwable
+     * @throws CommandNotFoundException
+     */
     public function handle(TerminalInterface $terminal): int
     {
         $arguments = $terminal->getArguments();
@@ -90,7 +106,11 @@ class Application implements ApplicationInterface
 
         $name = $arguments->getCommandName();
 
-        $commandClass = $this->commands[$name] ?? throw new CommandNotFoundException($name);
+        if (!isset($this->commands[$name])) {
+            throw new CommandNotFoundException($name);
+        }
+
+        $commandClass = $this->commands[$name];
 
         $command = $this->container->get($commandClass);
 
@@ -103,6 +123,9 @@ class Application implements ApplicationInterface
         }
     }
 
+    /**
+     * @throws Throwable
+     */
     protected function handleException(TerminalInterface $terminal, Throwable $throwable): int
     {
         foreach ($this->exceptionHandlers as $exceptionHandlerClass) {

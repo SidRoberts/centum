@@ -11,6 +11,9 @@ use InvalidArgumentException;
 
 class RedirectResponse extends Response
 {
+    /**
+     * @throws InvalidArgumentException
+     */
     public function __construct(
         protected readonly string $targetUrl,
         Status $status = Status::FOUND,

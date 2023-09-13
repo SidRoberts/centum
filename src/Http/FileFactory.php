@@ -7,6 +7,9 @@ use Exception;
 
 class FileFactory
 {
+    /**
+     * @throws Exception
+     */
     public function createFromRealFile(string $path): FileInterface
     {
         $name = basename($path);

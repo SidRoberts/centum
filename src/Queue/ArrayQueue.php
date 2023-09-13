@@ -34,9 +34,17 @@ class ArrayQueue implements QueueInterface
         $this->tasks[] = $task;
     }
 
+    /**
+     * @throws NoTasksInQueueException
+     * @throws Throwable
+     */
     public function consume(): TaskInterface
     {
-        $task = array_shift($this->tasks) ?? throw new NoTasksInQueueException();
+        if (count($this->tasks) === 0) {
+            throw new NoTasksInQueueException();
+        }
+
+        $task = array_shift($this->tasks);
 
         try {
             $this->taskRunner->execute($task);

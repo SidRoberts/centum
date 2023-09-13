@@ -31,6 +31,9 @@ class Module extends CodeceptionModule
      * @param array<mixed> $settings
      *
      * @return void
+     *
+     * @throws Exception
+     * @throws TypeError
      */
     public function _beforeSuite(array $settings = [])
     {
@@ -41,6 +44,9 @@ class Module extends CodeceptionModule
 
     /**
      * @return void
+     *
+     * @throws Exception
+     * @throws TypeError
      */
     public function _before(TestInterface $test)
     {
@@ -69,6 +75,10 @@ class Module extends CodeceptionModule
 
 
 
+    /**
+     * @throws Exception
+     * @throws TypeError
+     */
     public function makeNewContainer(): void
     {
         $containerFile = Configuration::projectDir() . $this->config["container"];
@@ -100,6 +110,9 @@ class Module extends CodeceptionModule
 
 
 
+    /**
+     * @throws ContainerNotFoundException
+     */
     public function grabContainer(): ContainerInterface
     {
         if (!$this->container) {

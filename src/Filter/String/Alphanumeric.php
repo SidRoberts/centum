@@ -11,6 +11,10 @@ use InvalidArgumentException;
  */
 class Alphanumeric implements FilterInterface
 {
+    /**
+     * @throws InvalidArgumentException
+     * @throws Exception
+     */
     public function filter(mixed $value): string
     {
         if (!is_string($value)) {

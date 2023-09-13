@@ -36,9 +36,16 @@ class Cookies implements CookiesInterface
 
 
 
+    /**
+     * @throws OutOfRangeException
+     */
     public function get(string $name): CookieInterface
     {
-        return $this->cookies[$name] ?? throw new OutOfRangeException();
+        if (!isset($this->cookies[$name])) {
+            throw new OutOfRangeException();
+        }
+
+        return $this->cookies[$name];
     }
 
     public function has(string $name): bool

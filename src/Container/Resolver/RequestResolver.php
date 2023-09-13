@@ -25,6 +25,11 @@ class RequestResolver implements ResolverInterface
 
 
 
+    /**
+     * @throws UnresolvableParameterException
+     * @throws CookieNotFoundException
+     * @throws FileGroupNotFoundException
+     */
     public function resolve(ReflectionParameter $parameter): mixed
     {
         $declaringClass = $parameter->getDeclaringClass();

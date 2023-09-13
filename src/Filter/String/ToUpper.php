@@ -10,6 +10,9 @@ use InvalidArgumentException;
  */
 class ToUpper implements FilterInterface
 {
+    /**
+     * @throws InvalidArgumentException
+     */
     public function filter(mixed $value): string
     {
         if (!is_string($value)) {
