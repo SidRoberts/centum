@@ -5,22 +5,25 @@ namespace Centum\App;
 use Centum\Console\Exception\ArgvNotFoundException;
 use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
+use Centum\Interfaces\App\BootstrapInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\ContainerInterface;
 
-class ConsoleBootstrap extends Bootstrap
+class ConsoleBootstrap implements BootstrapInterface
 {
+    public function __construct(
+        protected readonly ApplicationInterface $application
+    ) {
+    }
+
     /**
      * @throws ArgvNotFoundException
      */
-    public function boot(ContainerInterface $container): void
+    public function boot(): void
     {
-        $application = $container->get(ApplicationInterface::class);
-
         $terminal = $this->getTerminal();
 
-        $exitCode = $application->handle($terminal);
+        $exitCode = $this->application->handle($terminal);
 
         $this->exit($exitCode);
     }

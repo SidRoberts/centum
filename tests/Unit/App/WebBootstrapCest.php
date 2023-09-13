@@ -38,10 +38,8 @@ class WebBootstrapCest
 
 
 
-        $bootstrap = new WebBootstrap();
+        $bootstrap = $I->grabFromContainer(WebBootstrap::class);
 
-        $container = $I->grabContainer();
-
-        $bootstrap->boot($container);
+        $bootstrap->boot();
     }
 }

@@ -2,21 +2,21 @@
 
 namespace Centum\App;
 
-use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\App\BootstrapInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Router\RouterInterface;
 
-class WebBootstrap extends Bootstrap
+class WebBootstrap implements BootstrapInterface
 {
-    public function boot(ContainerInterface $container): void
+    public function __construct(
+        protected readonly RouterInterface $router,
+        protected readonly RequestInterface $request
+    ) {
+    }
+
+    public function boot(): void
     {
-        $router = $container->get(RouterInterface::class);
-
-        $request = $container->get(RequestInterface::class);
-
-
-
-        $response = $router->handle($request);
+        $response = $this->router->handle($this->request);
 
         $response->send();
     }
