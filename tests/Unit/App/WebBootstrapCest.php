@@ -27,7 +27,7 @@ class WebBootstrapCest
 
 
 
-        $I->mockInContainer(
+        $router = $I->mock(
             RouterInterface::class,
             function (MockInterface $mock) use ($request, $response): void {
                 $mock->shouldReceive("handle")
@@ -38,8 +38,8 @@ class WebBootstrapCest
 
 
 
-        $bootstrap = $I->grabFromContainer(WebBootstrap::class);
+        $webBootstrap = new WebBootstrap($router, $request);
 
-        $bootstrap->boot();
+        $webBootstrap->boot();
     }
 }
