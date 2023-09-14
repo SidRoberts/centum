@@ -2,8 +2,10 @@
 
 namespace Tests\Codeception;
 
+use Centum\Interfaces\Console\ExceptionHandlerInterface;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Commands\ExitCodeCommand;
+use Tests\Support\Commands\ThrowableExceptionHandler;
 
 /**
  * @covers \Centum\Codeception\Actions\ConsoleActions
@@ -14,6 +16,29 @@ class ConsoleActionsCest
     {
         $I->markTestIncomplete();
     }
+
+
+
+    public function testAddRouterExceptionHandler(CodeceptionTester $I): void
+    {
+        $I->addConsoleExceptionHandler(ThrowableExceptionHandler::class);
+
+        $application = $I->grabConsoleApplication();
+
+        /**
+         * @var array<class-string<ExceptionHandlerInterface>>
+         */
+        $exceptionHandlers = $I->getPropertyValue($application, "exceptionHandlers");
+
+        $I->assertEquals(
+            [
+                ThrowableExceptionHandler::class,
+            ],
+            $exceptionHandlers
+        );
+    }
+
+
 
     public function testGrabStdoutContent(CodeceptionTester $I): void
     {

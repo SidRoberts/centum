@@ -3,6 +3,7 @@
 namespace Centum\Codeception\Actions;
 
 use PHPUnit\Framework\Assert;
+use ReflectionClass;
 use Throwable;
 
 /**
@@ -34,5 +35,19 @@ trait UnitTestActions
             $actual,
             "Failed asserting callable echoes an expected string."
         );
+    }
+
+
+
+    /**
+     * @param non-empty-string $name
+     */
+    public function getPropertyValue(object $object, string $name): mixed
+    {
+        $reflection = new ReflectionClass($object);
+
+        $property = $reflection->getProperty($name);
+
+        return $property->getValue($object);
     }
 }

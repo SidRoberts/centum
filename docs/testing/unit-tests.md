@@ -31,3 +31,14 @@ expectEcho(
     callable $callable
 ): void
 ```
+
+
+
+## `getPropertyValue`
+
+```php
+getPropertyValue(
+    object $object,
+    non-empty-string $name
+): mixed
+```

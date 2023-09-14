@@ -4,6 +4,7 @@ namespace Tests\Codeception;
 
 use Centum\Http\Method;
 use Centum\Http\Request;
+use Centum\Interfaces\Router\ExceptionHandlerInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Controllers\ExceptionController;
@@ -33,6 +34,25 @@ class RouterActionsCest
     public function testMakeRouterGroup(CodeceptionTester $I): void
     {
         $I->markTestIncomplete();
+    }
+
+    public function testAddRouterExceptionHandler(CodeceptionTester $I): void
+    {
+        $I->addRouterExceptionHandler(RouteNotFoundExceptionHandler::class);
+
+        $router = $I->grabRouter();
+
+        /**
+         * @var array<class-string<ExceptionHandlerInterface>>
+         */
+        $exceptionHandlers = $I->getPropertyValue($router, "exceptionHandlers");
+
+        $I->assertEquals(
+            [
+                RouteNotFoundExceptionHandler::class,
+            ],
+            $exceptionHandlers
+        );
     }
 
 
