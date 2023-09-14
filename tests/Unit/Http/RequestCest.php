@@ -28,20 +28,16 @@ class RequestCest
             ]
         );
 
-
-
         $headers = new Headers(
             [
                 new Header("cache-control", "no-cache"),
             ]
         );
 
-
-
-        $cookies = new Cookies();
-
-        $cookies->add(
-            new Cookie("timezone", "Asia/Seoul")
+        $cookies = new Cookies(
+            [
+                new Cookie("timezone", "Asia/Seoul"),
+            ]
         );
 
 

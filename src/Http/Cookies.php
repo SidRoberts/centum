@@ -21,17 +21,10 @@ class Cookies implements CookiesInterface
     public function __construct(array $cookies = [])
     {
         foreach ($cookies as $cookie) {
-            $this->add($cookie);
+            $name = $cookie->getName();
+
+            $this->cookies[$name] = $cookie;
         }
-    }
-
-
-
-    public function add(CookieInterface $cookie): void
-    {
-        $name = $cookie->getName();
-
-        $this->cookies[$name] = $cookie;
     }
 
 

@@ -4,10 +4,6 @@ namespace Centum\Interfaces\Http;
 
 interface CookiesInterface
 {
-    public function add(CookieInterface $cookie): void;
-
-
-
     /**
      * @param non-empty-string $name
      */

@@ -20,8 +20,6 @@ class CookiesCest
         $cookie2 = new Cookie("language", "en");
         $cookie3 = new Cookie("timezone", "Asia/Seoul");
 
-
-
         $cookies = new Cookies(
             [
                 $cookie1,
@@ -44,47 +42,19 @@ class CookiesCest
 
 
 
-    public function testAdd(UnitTester $I): void
-    {
-        $cookie1 = new Cookie("username", "SidRoberts");
-        $cookie2 = new Cookie("language", "en");
-        $cookie3 = new Cookie("timezone", "Asia/Seoul");
-
-
-
-        $cookies = new Cookies();
-
-        $cookies->add($cookie1);
-        $cookies->add($cookie2);
-        $cookies->add($cookie3);
-
-
-
-        $I->assertEquals(
-            [
-                "username" => $cookie1,
-                "language" => $cookie2,
-                "timezone" => $cookie3,
-            ],
-            $cookies->all()
-        );
-    }
-
-
-
     public function testGet(UnitTester $I): void
     {
         $cookie1 = new Cookie("username", "SidRoberts");
         $cookie2 = new Cookie("language", "en");
         $cookie3 = new Cookie("timezone", "Asia/Seoul");
 
-
-
-        $cookies = new Cookies();
-
-        $cookies->add($cookie1);
-        $cookies->add($cookie2);
-        $cookies->add($cookie3);
+        $cookies = new Cookies(
+            [
+                $cookie1,
+                $cookie2,
+                $cookie3,
+            ]
+        );
 
 
 
@@ -119,13 +89,13 @@ class CookiesCest
         $cookie2 = new Cookie("language", "en");
         $cookie3 = new Cookie("timezone", "Asia/Seoul");
 
-
-
-        $cookies = new Cookies();
-
-        $cookies->add($cookie1);
-        $cookies->add($cookie2);
-        $cookies->add($cookie3);
+        $cookies = new Cookies(
+            [
+                $cookie1,
+                $cookie2,
+                $cookie3,
+            ]
+        );
 
 
 
@@ -185,11 +155,13 @@ class CookiesCest
 
 
 
-        $cookies = new Cookies();
-
-        $cookies->add($cookie1);
-        $cookies->add($cookie2);
-        $cookies->add($cookie3);
+        $cookies = new Cookies(
+            [
+                $cookie1,
+                $cookie2,
+                $cookie3,
+            ]
+        );
 
         $cookies->send();
     }
@@ -200,13 +172,13 @@ class CookiesCest
         $cookie2 = new Cookie("language", "en");
         $cookie3 = new Cookie("timezone", "Asia/Seoul");
 
-
-
-        $cookies = new Cookies();
-
-        $cookies->add($cookie1);
-        $cookies->add($cookie2);
-        $cookies->add($cookie3);
+        $cookies = new Cookies(
+            [
+                $cookie1,
+                $cookie2,
+                $cookie3,
+            ]
+        );
 
 
 
@@ -226,13 +198,13 @@ class CookiesCest
         $cookie2 = new Cookie("language", "en");
         $cookie3 = new Cookie("timezone", "Asia/Seoul");
 
-
-
-        $cookies = new Cookies();
-
-        $cookies->add($cookie1);
-        $cookies->add($cookie2);
-        $cookies->add($cookie3);
+        $cookies = new Cookies(
+            [
+                $cookie1,
+                $cookie2,
+                $cookie3,
+            ]
+        );
 
 
 

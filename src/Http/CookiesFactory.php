@@ -20,20 +20,18 @@ class CookiesFactory
      */
     public function createFromArray(array $array): CookiesInterface
     {
-        $cookies = new Cookies();
+        $cookies = [];
 
         foreach ($array as $key => $value) {
-            $cookie = new Cookie($key, $value);
-
-            $cookies->add($cookie);
+            $cookies[] = new Cookie($key, $value);
         }
 
-        return $cookies;
+        return new Cookies($cookies);
     }
 
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): CookiesInterface
     {
-        $cookies = new Cookies();
+        $cookies = [];
 
         /** @var array<string, string> */
         $browserKitCookies = $browserKitRequest->getCookies();
@@ -43,11 +41,9 @@ class CookiesFactory
                 throw new Exception("Cookie must have a key.");
             }
 
-            $cookie = new Cookie($key, $value);
-
-            $cookies->add($cookie);
+            $cookies[] = new Cookie($key, $value);
         }
 
-        return $cookies;
+        return new Cookies($cookies);
     }
 }

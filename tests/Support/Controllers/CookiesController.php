@@ -15,10 +15,10 @@ class CookiesController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {
-        $cookies = new Cookies();
-
-        $cookies->add(
-            new Cookie("username", "SidRoberts")
+        $cookies = new Cookies(
+            [
+                new Cookie("username", "SidRoberts"),
+            ]
         );
 
         return new Response(

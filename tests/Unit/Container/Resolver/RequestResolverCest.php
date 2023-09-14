@@ -47,11 +47,11 @@ class RequestResolverCest
 
     public function testCookies(UnitTester $I): void
     {
-        $cookies = new Cookies();
-
-        $cookie = new Cookie("username", "SidRoberts");
-
-        $cookies->add($cookie);
+        $cookies = new Cookies(
+            [
+                new Cookie("username", "SidRoberts"),
+            ]
+        );
 
         $router = $I->grabFromContainer(RouterInterface::class);
 
@@ -71,11 +71,11 @@ class RequestResolverCest
 
     public function testCookie(UnitTester $I): void
     {
-        $cookies = new Cookies();
-
-        $cookie = new Cookie("username", "SidRoberts");
-
-        $cookies->add($cookie);
+        $cookies = new Cookies(
+            [
+                new Cookie("username", "SidRoberts"),
+            ]
+        );
 
         $router = $I->grabFromContainer(RouterInterface::class);
 
@@ -95,11 +95,11 @@ class RequestResolverCest
 
     public function testCookieOptionalSet(UnitTester $I): void
     {
-        $cookies = new Cookies();
-
-        $cookie = new Cookie("username", "SidRoberts");
-
-        $cookies->add($cookie);
+        $cookies = new Cookies(
+            [
+                new Cookie("username", "SidRoberts"),
+            ]
+        );
 
         $router = $I->grabFromContainer(RouterInterface::class);
 
