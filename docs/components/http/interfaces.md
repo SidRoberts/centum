@@ -258,18 +258,6 @@ __toString(): non-empty-string
 ## [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeadersInterface.php)
 
 ```php
-add(
-    Centum\Interfaces\Http\HeaderInterface $header
-): void
-```
-
-```php
-addMultiple(
-    array<Centum\Interfaces\Http\HeaderInterface> $headers
-): void
-```
-
-```php
 get(
     non-empty-string $name
 ): Centum\Interfaces\Http\HeaderInterface

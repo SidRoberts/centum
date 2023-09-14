@@ -4,15 +4,6 @@ namespace Centum\Interfaces\Http;
 
 interface HeadersInterface
 {
-    public function add(HeaderInterface $header): void;
-
-    /**
-     * @param array<HeaderInterface> $headers
-     */
-    public function addMultiple(array $headers): void;
-
-
-
     /**
      * @param non-empty-string $name
      */

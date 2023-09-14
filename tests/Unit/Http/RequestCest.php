@@ -30,10 +30,10 @@ class RequestCest
 
 
 
-        $headers = new Headers();
-
-        $headers->add(
-            new Header("cache-control", "no-cache")
+        $headers = new Headers(
+            [
+                new Header("cache-control", "no-cache"),
+            ]
         );
 
 

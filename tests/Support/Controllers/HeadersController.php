@@ -13,10 +13,10 @@ class HeadersController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {
-        $headers = new Headers();
-
-        $headers->add(
-            new Header("Cache-Control", "max-age")
+        $headers = new Headers(
+            [
+                new Header("Cache-Control", "max-age"),
+            ]
         );
 
         return new Response(

@@ -2,8 +2,6 @@
 
 namespace Tests\Unit\Http\Response;
 
-use Centum\Http\Header;
-use Centum\Http\Headers;
 use Centum\Http\Response\RedirectResponse;
 use Centum\Http\Status;
 use InvalidArgumentException;
@@ -44,29 +42,9 @@ class RedirectResponseCest
         );
     }
 
-    public function testLocationHeaderIsSetWhenNoHeadersGiven(UnitTester $I): void
+    public function testLocationHeaderIsSet(UnitTester $I): void
     {
         $response = new RedirectResponse("https://github.com/sidroberts");
-
-        $headers = $response->getHeaders()->toArray();
-
-        $I->assertArrayHasKey("Location", $headers);
-
-        $I->assertEquals(
-            "https://github.com/sidroberts",
-            $headers["Location"]
-        );
-    }
-
-    public function testLocationHeaderIsSetWhenHeadersGiven(UnitTester $I): void
-    {
-        $headers = new Headers();
-
-        $headers->add(
-            new Header("Location", "https://github.com/")
-        );
-
-        $response = new RedirectResponse("https://github.com/sidroberts", Status::FOUND, $headers);
 
         $headers = $response->getHeaders()->toArray();
 

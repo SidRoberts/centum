@@ -63,8 +63,7 @@ If for some reason, the HTTP client doesn't obey the redirect, a HTML response i
 ```php
 Centum\Http\Response\RedirectResponse(
     string $url,
-    Centum\Http\Status $status = Centum\Http\Status::FOUND,
-    Centum\Interfaces\Http\HeadersInterface $headers = null
+    Centum\Http\Status $status = Centum\Http\Status::FOUND
 );
 ```
 

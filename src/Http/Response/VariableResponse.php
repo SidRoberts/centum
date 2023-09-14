@@ -13,10 +13,10 @@ class VariableResponse extends Response
     {
         $content = var_export($variable, true);
 
-        $headers = new Headers();
-
-        $headers->add(
-            new Header("Content-Type", "text/plain")
+        $headers = new Headers(
+            [
+                new Header("Content-Type", "text/plain"),
+            ]
         );
 
         parent::__construct($content, Status::OK, $headers);

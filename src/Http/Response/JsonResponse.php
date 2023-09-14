@@ -16,10 +16,10 @@ class JsonResponse extends Response
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
 
-        $headers = new Headers();
-
-        $headers->add(
-            new Header("Content-Type", "application/json")
+        $headers = new Headers(
+            [
+                new Header("Content-Type", "application/json"),
+            ]
         );
 
         parent::__construct($content, $status, $headers);

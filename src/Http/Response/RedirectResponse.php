@@ -6,7 +6,6 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
 use Centum\Http\Status;
-use Centum\Interfaces\Http\HeadersInterface;
 use InvalidArgumentException;
 
 class RedirectResponse extends Response
@@ -16,8 +15,7 @@ class RedirectResponse extends Response
      */
     public function __construct(
         protected readonly string $targetUrl,
-        Status $status = Status::FOUND,
-        HeadersInterface $headers = null
+        Status $status = Status::FOUND
     ) {
         if ($targetUrl === "") {
             throw new InvalidArgumentException("URL can't be empty.");
@@ -36,16 +34,11 @@ class RedirectResponse extends Response
     </body>
 </html>', htmlspecialchars($targetUrl, \ENT_QUOTES, "UTF-8"));
 
-        if ($headers === null) {
-            $headers = new Headers();
-        }
-
-        $headers->add(
-            new Header("Content-Type", "text/html")
-        );
-
-        $headers->add(
-            new Header("Location", $targetUrl)
+        $headers = new Headers(
+            [
+                new Header("Content-Type", "text/html"),
+                new Header("Location", $targetUrl),
+            ]
         );
 
         if (!$status->isRedirect()) {

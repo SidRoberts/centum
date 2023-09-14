@@ -21,20 +21,18 @@ class HeadersFactory
      */
     public function createFromArray(array $array): HeadersInterface
     {
-        $headers = new Headers();
+        $headers = [];
 
         foreach ($array as $key => $value) {
-            $header = new Header($key, $value);
-
-            $headers->add($header);
+            $headers[] = new Header($key, $value);
         }
 
-        return $headers;
+        return new Headers($headers);
     }
 
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): HeadersInterface
     {
-        $headers = new Headers();
+        $headers = [];
 
         /** @var array<string, string> */
         $server = $browserKitRequest->getServer();
@@ -58,11 +56,9 @@ class HeadersFactory
                 throw new Exception("Header must have a key.");
             }
 
-            $header = new Header($key, $value);
-
-            $headers->add($header);
+            $headers[] = new Header($key, $value);
         }
 
-        return $headers;
+        return new Headers($headers);
     }
 }
