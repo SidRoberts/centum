@@ -27,7 +27,7 @@ class ArraySession implements SessionInterface
 
     public function has(string $name): bool
     {
-        return isset($this->data[$name]);
+        return array_key_exists($name, $this->data);
     }
 
     public function get(string $name, mixed $defaultValue = null): mixed

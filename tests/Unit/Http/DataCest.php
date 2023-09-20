@@ -16,7 +16,7 @@ class DataCest
         $data = new Data(
             [
                 "key1" => "value1",
-                "key2" => "value2",
+                "key2" => null,
             ]
         );
 
@@ -25,8 +25,7 @@ class DataCest
             $data->get("key1")
         );
 
-        $I->assertEquals(
-            "value2",
+        $I->assertNull(
             $data->get("key2")
         );
 
@@ -45,7 +44,7 @@ class DataCest
         $data = new Data(
             [
                 "key1" => "value1",
-                "key2" => "value2",
+                "key2" => null,
             ]
         );
 

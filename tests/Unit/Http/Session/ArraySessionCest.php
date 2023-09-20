@@ -55,6 +55,12 @@ class ArraySessionCest
         $I->assertTrue(
             $session->has("name")
         );
+
+        $session->set("nullValue", null);
+
+        $I->assertTrue(
+            $session->has("nullValue")
+        );
     }
 
     public function testAll(UnitTester $I): void

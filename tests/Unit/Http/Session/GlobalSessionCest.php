@@ -132,6 +132,17 @@ class GlobalSessionCest
             "name",
             $_SESSION
         );
+
+        $session->set("nullValue", null);
+
+        $I->assertTrue(
+            $session->has("nullValue")
+        );
+
+        $I->assertArrayHasKey(
+            "nullValue",
+            $_SESSION
+        );
     }
 
     public function testAll(UnitTester $I): void

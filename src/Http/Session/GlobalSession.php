@@ -31,7 +31,7 @@ class GlobalSession implements SessionInterface
     {
         $this->startIfNotActive();
 
-        return isset($_SESSION[$name]);
+        return isset($_SESSION) && array_key_exists($name, $_SESSION);
     }
 
     public function get(string $name, mixed $defaultValue = null): mixed
