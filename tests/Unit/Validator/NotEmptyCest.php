@@ -27,7 +27,7 @@ final class NotEmptyCest
     protected function providerGood(): array
     {
         return [
-            [[1,2,3]],
+            [[1, 2, 3]],
             [true],
             [123.456],
             [123],

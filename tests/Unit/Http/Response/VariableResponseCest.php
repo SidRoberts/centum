@@ -57,7 +57,7 @@ final class VariableResponseCest
             ],
 
             [
-                "variable" => [1,"a"],
+                "variable" => [1, "a"],
                 "expected" => "array (" . PHP_EOL . "  0 => 1," . PHP_EOL . "  1 => 'a'," . PHP_EOL . ")",
             ],
 

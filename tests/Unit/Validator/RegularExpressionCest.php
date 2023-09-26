@@ -74,7 +74,7 @@ final class RegularExpressionCest
     protected function providerNonString(): array
     {
         return [
-            [[1,2,3]],
+            [[1, 2, 3]],
             [[]],
             [true],
             [false],

@@ -24,7 +24,7 @@ final class WhitelistCest
                 "Yeosu",
                 1,
                 false,
-                [1,2,3],
+                [1, 2, 3],
             ],
             $strict
         );
@@ -70,9 +70,9 @@ final class WhitelistCest
             ],
 
             [
-                "input"  => [1,2,3],
+                "input"  => [1, 2, 3],
                 "strict" => true,
-                "output" => [1,2,3],
+                "output" => [1, 2, 3],
             ],
 
             [

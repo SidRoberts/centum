@@ -55,7 +55,7 @@ final class IsScalarCest
     protected function providerBad(): array
     {
         return [
-            [[1,2,3]],
+            [[1, 2, 3]],
             [[]],
             [null],
             [new HtmlFormatter()],

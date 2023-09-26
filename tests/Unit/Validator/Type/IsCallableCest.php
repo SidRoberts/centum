@@ -50,7 +50,7 @@ final class IsCallableCest
     protected function providerBad(): array
     {
         return [
-            [[1,2,3]],
+            [[1, 2, 3]],
             [[]],
             [true],
             [false],

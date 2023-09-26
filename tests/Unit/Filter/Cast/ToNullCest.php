@@ -29,7 +29,7 @@ final class ToNullCest
     {
         return [
             [
-                "input" => [1,2,3],
+                "input" => [1, 2, 3],
             ],
 
             [

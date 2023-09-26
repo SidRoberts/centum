@@ -24,7 +24,7 @@ final class BlacklistCest
                 "Yeosu",
                 1,
                 false,
-                [1,2,3],
+                [1, 2, 3],
             ],
             $strict
         );
@@ -70,7 +70,7 @@ final class BlacklistCest
             ],
 
             [
-                "input"  => [1,2,3],
+                "input"  => [1, 2, 3],
                 "strict" => true,
                 "output" => null,
             ],

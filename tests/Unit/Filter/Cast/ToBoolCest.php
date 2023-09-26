@@ -29,7 +29,7 @@ final class ToBoolCest
     {
         return [
             [
-                "input"  => [1,2,3],
+                "input"  => [1, 2, 3],
                 "output" => true,
             ],
 

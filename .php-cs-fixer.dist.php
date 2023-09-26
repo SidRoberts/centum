@@ -31,6 +31,7 @@ $config->setRules(
         "ternary_to_null_coalescing"          => true,
         "trailing_comma_in_multiline"         => ["elements" => ["arrays"]],
         "trim_array_spaces"                   => true,
+        "whitespace_after_comma_in_array"     => true,
     ]
 );
 

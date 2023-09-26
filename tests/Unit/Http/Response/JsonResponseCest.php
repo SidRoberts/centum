@@ -52,7 +52,7 @@ final class JsonResponseCest
             ],
 
             [
-                "variable" => [1,"a"],
+                "variable" => [1, "a"],
                 "expected" => "[" . PHP_EOL . "    1," . PHP_EOL . "    \"a\"" . PHP_EOL . "]",
             ],
 
