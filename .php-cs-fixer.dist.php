@@ -28,6 +28,7 @@ $config->setRules(
         "no_useless_return"                   => true,
         "no_whitespace_before_comma_in_array" => true,
         "ordered_imports"                     => true,
+        "ordered_interfaces"                  => true,
         "ternary_to_null_coalescing"          => true,
         "trailing_comma_in_multiline"         => ["elements" => ["arrays"]],
         "trim_array_spaces"                   => true,
