@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Session\GlobalSession
  */
-class GlobalSessionCest
+final class GlobalSessionCest
 {
     public function _before(): void
     {

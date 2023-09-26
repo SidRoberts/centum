@@ -17,7 +17,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Request
  */
-class RequestCest
+final class RequestCest
 {
     public function testGetters(UnitTester $I): void
     {

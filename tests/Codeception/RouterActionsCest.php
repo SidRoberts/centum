@@ -17,7 +17,7 @@ use Tests\Support\Controllers\RouteNotFoundExceptionHandler;
 /**
  * @covers \Centum\Codeception\Actions\RouterActions
  */
-class RouterActionsCest
+final class RouterActionsCest
 {
     public function testGrabRouter(CodeceptionTester $I): void
     {

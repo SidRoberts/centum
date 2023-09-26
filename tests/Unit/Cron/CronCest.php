@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Cron\Cron
  */
-class CronCest
+final class CronCest
 {
     public function testAddJobsToCron(UnitTester $I): void
     {

@@ -14,7 +14,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Files
  */
-class FilesCest
+final class FilesCest
 {
     public function testAdd(UnitTester $I): void
     {

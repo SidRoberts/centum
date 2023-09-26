@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Access\Access
  */
-class AccessCest
+final class AccessCest
 {
     public function testDefault(UnitTester $I): void
     {

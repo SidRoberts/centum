@@ -19,7 +19,7 @@ use UnexpectedValueException;
 /**
  * @covers \Centum\Queue\BeanstalkdQueue
  */
-class BeanstalkdQueueCest
+final class BeanstalkdQueueCest
 {
     public function testPublish(UnitTester $I): void
     {

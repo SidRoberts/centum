@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Forms\Status
  */
-class StatusCest
+final class StatusCest
 {
     #[DataProvider("providerIsValid")]
     public function testIsValid(UnitTester $I, Example $example): void

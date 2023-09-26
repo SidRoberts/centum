@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Middleware\FalseMiddleware
  */
-class FalseMiddlewareCest
+final class FalseMiddlewareCest
 {
     public function test(UnitTester $I): void
     {

@@ -27,7 +27,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Router
  */
-class RouterCest
+final class RouterCest
 {
     protected function getRouter(ContainerInterface $container): Router
     {

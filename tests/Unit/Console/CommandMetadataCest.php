@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\CommandMetadata
  */
-class CommandMetadataCest
+final class CommandMetadataCest
 {
     public function testInvalidName(UnitTester $I): void
     {

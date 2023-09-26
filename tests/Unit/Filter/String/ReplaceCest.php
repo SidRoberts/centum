@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Replace
  */
-class ReplaceCest
+final class ReplaceCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

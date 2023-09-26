@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Suffix
  */
-class SuffixCest
+final class SuffixCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

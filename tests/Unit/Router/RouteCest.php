@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Route
  */
-class RouteCest
+final class RouteCest
 {
     protected function getRoute(): Route
     {

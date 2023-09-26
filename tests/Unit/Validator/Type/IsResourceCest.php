@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsResource
  */
-class IsResourceCest
+final class IsResourceCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

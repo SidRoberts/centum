@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Flash\Flash
  */
-class FlashCest
+final class FlashCest
 {
     public function testOutput(UnitTester $I): void
     {

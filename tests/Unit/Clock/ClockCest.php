@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Clock\Clock
  */
-class ClockCest
+final class ClockCest
 {
     public function test(UnitTester $I): void
     {

@@ -17,7 +17,7 @@ use Throwable;
 /**
  * @covers \Centum\Codeception\Actions\QueueActions
  */
-class QueueActionsCest
+final class QueueActionsCest
 {
     public function testGrabQueue(CodeceptionTester $I): void
     {

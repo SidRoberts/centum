@@ -18,7 +18,7 @@ use Tests\Support\ConsoleTester;
 /**
  * @covers \Centum\Console\Application
  */
-class ApplicationCest
+final class ApplicationCest
 {
     public function testBasicHandle(ConsoleTester $I): void
     {

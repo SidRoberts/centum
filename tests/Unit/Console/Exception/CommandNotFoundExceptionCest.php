@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\Exception\CommandNotFoundException
  */
-class CommandNotFoundExceptionCest
+final class CommandNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

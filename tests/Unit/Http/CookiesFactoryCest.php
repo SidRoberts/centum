@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\CookiesFactory
  */
-class CookiesFactoryCest
+final class CookiesFactoryCest
 {
     public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {

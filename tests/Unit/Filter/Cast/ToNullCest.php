@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Cast\ToNull
  */
-class ToNullCest
+final class ToNullCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

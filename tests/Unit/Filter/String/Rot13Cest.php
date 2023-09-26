@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Rot13
  */
-class Rot13Cest
+final class Rot13Cest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

@@ -25,7 +25,7 @@ use Throwable;
 /**
  * @covers \Centum\Container\Container
  */
-class ContainerCest
+final class ContainerCest
 {
     public function testGetAliasManagerDefault(UnitTester $I): void
     {

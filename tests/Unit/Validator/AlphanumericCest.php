@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Alphanumeric
  */
-class AlphanumericCest
+final class AlphanumericCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

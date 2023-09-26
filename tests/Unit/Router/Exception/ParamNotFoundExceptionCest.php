@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Exception\ParamNotFoundException
  */
-class ParamNotFoundExceptionCest
+final class ParamNotFoundExceptionCest
 {
     public function testGetKey(UnitTester $I): void
     {

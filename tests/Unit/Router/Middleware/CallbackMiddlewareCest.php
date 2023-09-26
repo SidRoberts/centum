@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Middleware\CallbackMiddleware
  */
-class CallbackMiddlewareCest
+final class CallbackMiddlewareCest
 {
     public function test(UnitTester $I): void
     {

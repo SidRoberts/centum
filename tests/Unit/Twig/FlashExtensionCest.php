@@ -14,7 +14,7 @@ use Twig\Loader\ArrayLoader;
 /**
  * @covers \Centum\Twig\FlashExtension
  */
-class FlashExtensionCest
+final class FlashExtensionCest
 {
     protected function getTwig(): Environment
     {

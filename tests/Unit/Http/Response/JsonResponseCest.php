@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Response\JsonResponse
  */
-class JsonResponseCest
+final class JsonResponseCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

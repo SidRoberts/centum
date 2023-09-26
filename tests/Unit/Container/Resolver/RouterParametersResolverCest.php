@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Resolver\RouterParametersResolver
  */
-class RouterParametersResolverCest
+final class RouterParametersResolverCest
 {
     public function testRegularParameter(UnitTester $I): void
     {

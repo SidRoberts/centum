@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsIterable
  */
-class IsIterableCest
+final class IsIterableCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

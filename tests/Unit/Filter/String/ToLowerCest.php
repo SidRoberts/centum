@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\ToLower
  */
-class ToLowerCest
+final class ToLowerCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

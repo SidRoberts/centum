@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Access\Activity
  */
-class ActivityCest
+final class ActivityCest
 {
     public function testGetName(UnitTester $I): void
     {

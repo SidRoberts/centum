@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\FileGroup
  */
-class FileGroupCest
+final class FileGroupCest
 {
     public function testGetID(UnitTester $I): void
     {

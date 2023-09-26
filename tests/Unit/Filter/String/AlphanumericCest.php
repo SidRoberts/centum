@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Alphanumeric
  */
-class AlphanumericCest
+final class AlphanumericCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

@@ -7,7 +7,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Resolver\ConsoleResolver
  */
-class ConsoleResolverCest
+final class ConsoleResolverCest
 {
     public function test(UnitTester $I): void
     {

@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsScalar
  */
-class IsScalarCest
+final class IsScalarCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

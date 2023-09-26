@@ -7,7 +7,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\FileFactory
  */
-class FileFactoryCest
+final class FileFactoryCest
 {
     public function testCreateFromRealFile(UnitTester $I): void
     {

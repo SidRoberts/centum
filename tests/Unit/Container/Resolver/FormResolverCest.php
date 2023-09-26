@@ -17,7 +17,7 @@ use Throwable;
 /**
  * @covers \Centum\Container\Resolver\FormResolver
  */
-class FormResolverCest
+final class FormResolverCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

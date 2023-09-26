@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Blacklist
  */
-class BlacklistCest
+final class BlacklistCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

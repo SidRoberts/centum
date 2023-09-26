@@ -17,7 +17,7 @@ use TypeError;
 /**
  * @covers \Centum\Codeception\Module
  */
-class ModuleCest
+final class ModuleCest
 {
     protected function getModule(string $containerFile = "tests/Support/Data/container.php"): Module
     {

@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Headers
  */
-class HeadersCest
+final class HeadersCest
 {
     public function testConstructor(UnitTester $I): void
     {

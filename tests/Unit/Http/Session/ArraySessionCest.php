@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Session\ArraySession
  */
-class ArraySessionCest
+final class ArraySessionCest
 {
     public function testStart(UnitTester $I): void
     {

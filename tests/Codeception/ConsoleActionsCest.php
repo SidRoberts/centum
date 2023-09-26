@@ -10,7 +10,7 @@ use Tests\Support\Commands\ThrowableExceptionHandler;
 /**
  * @covers \Centum\Codeception\Actions\ConsoleActions
  */
-class ConsoleActionsCest
+final class ConsoleActionsCest
 {
     public function testCreateTerminal(CodeceptionTester $I): void
     {

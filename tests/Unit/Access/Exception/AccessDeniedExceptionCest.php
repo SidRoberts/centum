@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Access\Exception\AccessDeniedException
  */
-class AccessDeniedExceptionCest
+final class AccessDeniedExceptionCest
 {
     public function test(UnitTester $I): void
     {

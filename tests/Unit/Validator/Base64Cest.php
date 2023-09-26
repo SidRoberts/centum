@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Base64
  */
-class Base64Cest
+final class Base64Cest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

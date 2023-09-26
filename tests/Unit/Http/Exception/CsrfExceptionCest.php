@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Exception\CsrfException
  */
-class CsrfExceptionCest
+final class CsrfExceptionCest
 {
     public function testGetValue(UnitTester $I): void
     {

@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\SlugToCamelCase
  */
-class SlugToCamelCaseCest
+final class SlugToCamelCaseCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

@@ -14,7 +14,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsInstanceOf
  */
-class IsInstanceOfCest
+final class IsInstanceOfCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

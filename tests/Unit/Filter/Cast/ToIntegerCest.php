@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Cast\ToInteger
  */
-class ToIntegerCest
+final class ToIntegerCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

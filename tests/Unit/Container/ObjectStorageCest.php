@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\ObjectStorage
  */
-class ObjectStorageCest
+final class ObjectStorageCest
 {
     public function testHas(UnitTester $I): void
     {

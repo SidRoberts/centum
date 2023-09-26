@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Exception\FormFieldNotFoundException
  */
-class FormFieldNotFoundExceptionCest
+final class FormFieldNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

@@ -12,7 +12,7 @@ use Twig\Loader\ArrayLoader;
 /**
  * @covers \Centum\Twig\FormExtension
  */
-class FormExtensionCest
+final class FormExtensionCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

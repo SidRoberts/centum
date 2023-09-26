@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Response\RedirectResponse
  */
-class RedirectResponseCest
+final class RedirectResponseCest
 {
     public function testEmptyUrl(UnitTester $I): void
     {

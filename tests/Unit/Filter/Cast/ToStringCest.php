@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Cast\ToString
  */
-class ToStringCest
+final class ToStringCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

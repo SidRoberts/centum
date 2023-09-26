@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Data
  */
-class DataCest
+final class DataCest
 {
     public function testGet(UnitTester $I): void
     {

@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Paginator\Page
  */
-class PageCest
+final class PageCest
 {
     public function testGetPaginator(UnitTester $I): void
     {

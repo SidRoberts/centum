@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Middleware\InverseMiddleware
  */
-class InverseMiddlewareCest
+final class InverseMiddlewareCest
 {
     public function test(UnitTester $I): void
     {

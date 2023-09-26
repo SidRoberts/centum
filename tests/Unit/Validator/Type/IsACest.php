@@ -15,7 +15,7 @@ use Throwable;
 /**
  * @covers \Centum\Validator\Type\IsA
  */
-class IsACest
+final class IsACest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

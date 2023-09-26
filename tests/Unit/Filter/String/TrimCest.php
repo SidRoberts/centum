@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Trim
  */
-class TrimCest
+final class TrimCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

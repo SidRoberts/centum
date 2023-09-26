@@ -10,7 +10,7 @@ use Tests\Support\Controllers\CookiesController;
 /**
  * @covers \Centum\Codeception\Actions\CookieActions
  */
-class CookieActionsCest
+final class CookieActionsCest
 {
     public function testGrabCookies(CodeceptionTester $I): void
     {

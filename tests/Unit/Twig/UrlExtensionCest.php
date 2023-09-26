@@ -13,7 +13,7 @@ use Twig\Loader\ArrayLoader;
 /**
  * @covers \Centum\Twig\UrlExtension
  */
-class UrlExtensionCest
+final class UrlExtensionCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

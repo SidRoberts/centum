@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\Terminal\Style
  */
-class StyleCest
+final class StyleCest
 {
     public function testBold(UnitTester $I): void
     {

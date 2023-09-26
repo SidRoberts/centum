@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Exception\UnresolvableParameterException
  */
-class UnresolvableParameterExceptionCest
+final class UnresolvableParameterExceptionCest
 {
     public function test(UnitTester $I): void
     {

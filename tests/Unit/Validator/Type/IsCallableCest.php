@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsCallable
  */
-class IsCallableCest
+final class IsCallableCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

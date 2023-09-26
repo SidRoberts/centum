@@ -10,7 +10,7 @@ use Tests\Support\Controllers\HeadersController;
 /**
  * @covers \Centum\Codeception\Actions\HeaderActions
  */
-class HeaderActionsCest
+final class HeaderActionsCest
 {
     public function testGrabHeaders(CodeceptionTester $I): void
     {

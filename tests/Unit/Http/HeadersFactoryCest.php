@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\HeadersFactory
  */
-class HeadersFactoryCest
+final class HeadersFactoryCest
 {
     public function testCreateFromBrowserKitRequest(UnitTester $I): void
     {

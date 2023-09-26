@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\NotEmpty
  */
-class NotEmptyCest
+final class NotEmptyCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

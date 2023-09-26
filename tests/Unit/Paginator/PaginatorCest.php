@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Paginator\Paginator
  */
-class PaginatorCest
+final class PaginatorCest
 {
     public function testGetData(UnitTester $I): void
     {

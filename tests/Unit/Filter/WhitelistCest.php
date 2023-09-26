@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Whitelist
  */
-class WhitelistCest
+final class WhitelistCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

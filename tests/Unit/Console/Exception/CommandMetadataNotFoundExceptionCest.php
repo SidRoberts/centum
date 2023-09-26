@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\Exception\CommandMetadataNotFoundException
  */
-class CommandMetadataNotFoundExceptionCest
+final class CommandMetadataNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

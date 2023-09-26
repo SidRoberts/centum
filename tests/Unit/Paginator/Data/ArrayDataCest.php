@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Paginator\Data\ArrayData
  */
-class ArrayDataCest
+final class ArrayDataCest
 {
     public function testToArray(UnitTester $I): void
     {

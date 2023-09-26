@@ -12,7 +12,7 @@ use Throwable;
 /**
  * @covers \Centum\Http\File
  */
-class FileCest
+final class FileCest
 {
     public function testGetters(UnitTester $I): void
     {

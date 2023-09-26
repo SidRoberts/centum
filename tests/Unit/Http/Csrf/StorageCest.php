@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Csrf\Storage
  */
-class StorageCest
+final class StorageCest
 {
     public function testGet(UnitTester $I): void
     {

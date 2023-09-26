@@ -14,7 +14,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Forms\Form
  */
-class FormCest
+final class FormCest
 {
     public function testEmptyForm(UnitTester $I): void
     {

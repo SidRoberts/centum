@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\ZipCode
  */
-class ZipCodeCest
+final class ZipCodeCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

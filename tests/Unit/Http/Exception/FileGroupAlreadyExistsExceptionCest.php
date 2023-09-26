@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Exception\FileGroupAlreadyExistsException
  */
-class FileGroupAlreadyExistsExceptionCest
+final class FileGroupAlreadyExistsExceptionCest
 {
     public function test(UnitTester $I): void
     {

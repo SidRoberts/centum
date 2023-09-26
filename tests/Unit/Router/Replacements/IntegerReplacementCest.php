@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Replacements\IntegerReplacement
  */
-class IntegerReplacementCest
+final class IntegerReplacementCest
 {
     public function testGetIdentifier(UnitTester $I): void
     {

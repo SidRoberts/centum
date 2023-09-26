@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Csrf\Generator
  */
-class GeneratorCest
+final class GeneratorCest
 {
     public function testGenerateIsDifferentEveryTime(UnitTester $I): void
     {

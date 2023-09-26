@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsArray
  */
-class IsArrayCest
+final class IsArrayCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

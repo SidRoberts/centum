@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\Terminal\Arguments
  */
-class ArgumentsCest
+final class ArgumentsCest
 {
     public function getArguments(): Arguments
     {

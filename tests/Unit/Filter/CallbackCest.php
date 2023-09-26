@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Callback
  */
-class CallbackCest
+final class CallbackCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

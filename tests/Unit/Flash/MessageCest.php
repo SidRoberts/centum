@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Flash\Message
  */
-class MessageCest
+final class MessageCest
 {
     public function testGetLevel(UnitTester $I): void
     {

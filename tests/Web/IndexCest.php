@@ -5,7 +5,7 @@ namespace Tests\Web;
 use Codeception\Util\HttpCode;
 use Tests\Support\WebTester;
 
-class IndexCest
+final class IndexCest
 {
     public function tryToTest(WebTester $I): void
     {

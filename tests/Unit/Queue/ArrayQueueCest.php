@@ -16,7 +16,7 @@ use Throwable;
 /**
  * @covers \Centum\Queue\ArrayQueue
  */
-class ArrayQueueCest
+final class ArrayQueueCest
 {
     public function testPublish(UnitTester $I): void
     {

@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsBoolean
  */
-class IsBooleanCest
+final class IsBooleanCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

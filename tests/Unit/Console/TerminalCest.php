@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\Terminal
  */
-class TerminalCest
+final class TerminalCest
 {
     protected function getTerminal(): Terminal
     {

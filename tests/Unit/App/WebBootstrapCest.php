@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\App\WebBootstrap
  */
-class WebBootstrapCest
+final class WebBootstrapCest
 {
     public function test(UnitTester $I): void
     {

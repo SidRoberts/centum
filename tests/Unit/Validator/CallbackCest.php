@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Callback
  */
-class CallbackCest
+final class CallbackCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

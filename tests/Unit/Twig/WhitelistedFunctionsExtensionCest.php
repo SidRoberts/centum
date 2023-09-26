@@ -11,7 +11,7 @@ use Twig\Loader\ArrayLoader;
 /**
  * @covers \Centum\Twig\WhitelistedFunctionsExtension
  */
-class WhitelistedFunctionsExtensionCest
+final class WhitelistedFunctionsExtensionCest
 {
     protected function getTwig(): Environment
     {

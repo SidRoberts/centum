@@ -41,7 +41,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\AliasManager
  */
-class AliasManagerCest
+final class AliasManagerCest
 {
     public function testAdd(UnitTester $I): void
     {

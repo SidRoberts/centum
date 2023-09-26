@@ -10,7 +10,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\CsrfActions
  */
-class CsrfActionsCest
+final class CsrfActionsCest
 {
     public function testGrabCsrfGenerator(CodeceptionTester $I): void
     {

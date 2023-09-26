@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Exception\ReplacementNotFoundException
  */
-class ReplacementNotFoundExceptionCest
+final class ReplacementNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

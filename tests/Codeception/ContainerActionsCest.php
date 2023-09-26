@@ -10,7 +10,7 @@ use Tests\Support\Container\Incrementer;
 /**
  * @covers \Centum\Codeception\Actions\ContainerActions
  */
-class ContainerActionsCest
+final class ContainerActionsCest
 {
     public function testAddToContainer(CodeceptionTester $I): void
     {

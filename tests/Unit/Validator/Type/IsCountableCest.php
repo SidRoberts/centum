@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsCountable
  */
-class IsCountableCest
+final class IsCountableCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

@@ -8,7 +8,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\ValidatorActions
  */
-class ValidatorActionsCest
+final class ValidatorActionsCest
 {
     public function testSeeValidatorPasses(CodeceptionTester $I): void
     {

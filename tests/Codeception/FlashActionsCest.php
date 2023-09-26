@@ -8,7 +8,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\FlashActions
  */
-class FlashActionsCest
+final class FlashActionsCest
 {
     public function testGrabFlash(CodeceptionTester $I): void
     {

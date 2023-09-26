@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Exception\FileAlreadyMovedException
  */
-class FileAlreadyMovedExceptionCest
+final class FileAlreadyMovedExceptionCest
 {
     public function test(UnitTester $I): void
     {

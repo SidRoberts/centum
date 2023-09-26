@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\LanguageCode
  */
-class LanguageCodeCest
+final class LanguageCodeCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

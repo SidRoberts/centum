@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Exception\CookieNotFoundException
  */
-class CookieNotFoundExceptionCest
+final class CookieNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

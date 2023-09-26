@@ -14,7 +14,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Csrf\Validator
  */
-class ValidatorCest
+final class ValidatorCest
 {
     #[DataProvider("providerValidate")]
     public function testValidate(UnitTester $I, Example $example): void

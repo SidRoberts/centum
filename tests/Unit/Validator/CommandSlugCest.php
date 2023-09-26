@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\CommandSlug
  */
-class CommandSlugCest
+final class CommandSlugCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

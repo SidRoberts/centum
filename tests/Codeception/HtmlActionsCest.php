@@ -10,7 +10,7 @@ use Tests\Support\Controllers\HtmlController;
 /**
  * @covers \Centum\Codeception\Actions\HtmlActions
  */
-class HtmlActionsCest
+final class HtmlActionsCest
 {
     public function testGrabTextContent(CodeceptionTester $I): void
     {

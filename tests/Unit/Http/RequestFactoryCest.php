@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\RequestFactory
  */
-class RequestFactoryCest
+final class RequestFactoryCest
 {
     public function testCreateFromGlobals(UnitTester $I): void
     {

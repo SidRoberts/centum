@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Flash\MessageBag
  */
-class MessageBagCest
+final class MessageBagCest
 {
     public function testGetMessages(UnitTester $I): void
     {

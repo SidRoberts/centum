@@ -8,7 +8,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\FilterActions
  */
-class FilterActionsCest
+final class FilterActionsCest
 {
     public function testExpectFilterOutput(CodeceptionTester $I): void
     {

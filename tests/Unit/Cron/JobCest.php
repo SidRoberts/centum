@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Cron\Job
  */
-class JobCest
+final class JobCest
 {
     #[DataProvider("providerGetters")]
     public function testGetters(UnitTester $I, Example $example): void

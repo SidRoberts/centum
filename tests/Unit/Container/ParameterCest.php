@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Parameter
  */
-class ParameterCest
+final class ParameterCest
 {
     public function testHasType(UnitTester $I): void
     {

@@ -7,7 +7,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\UnitTestActions
  */
-class UnitTestActionsCest
+final class UnitTestActionsCest
 {
     public function testGrabEchoContent(CodeceptionTester $I): void
     {

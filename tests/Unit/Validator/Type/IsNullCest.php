@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsNull
  */
-class IsNullCest
+final class IsNullCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

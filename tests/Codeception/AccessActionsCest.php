@@ -9,7 +9,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\AccessActions
  */
-class AccessActionsCest
+final class AccessActionsCest
 {
     public function testGrabAccess(CodeceptionTester $I): void
     {

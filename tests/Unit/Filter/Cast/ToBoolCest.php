@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Cast\ToBool
  */
-class ToBoolCest
+final class ToBoolCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

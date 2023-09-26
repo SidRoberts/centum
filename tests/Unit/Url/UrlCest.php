@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Url\Url
  */
-class UrlCest
+final class UrlCest
 {
     public function testGetBaseUrl(UnitTester $I): void
     {

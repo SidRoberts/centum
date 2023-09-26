@@ -9,7 +9,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\SessionActions
  */
-class SessionActionsCest
+final class SessionActionsCest
 {
     public function testGrabSession(CodeceptionTester $I): void
     {

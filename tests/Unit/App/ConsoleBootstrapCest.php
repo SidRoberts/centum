@@ -13,7 +13,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\App\ConsoleBootstrap
  */
-class ConsoleBootstrapCest
+final class ConsoleBootstrapCest
 {
     public function test(UnitTester $I): void
     {

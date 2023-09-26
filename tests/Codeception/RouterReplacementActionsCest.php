@@ -7,7 +7,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\RouterReplacementActions
  */
-class RouterReplacementActionsCest
+final class RouterReplacementActionsCest
 {
     public function test(CodeceptionTester $I): void
     {

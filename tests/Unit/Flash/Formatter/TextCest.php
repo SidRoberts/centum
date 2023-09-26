@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Flash\Formatter\TextFormatter
  */
-class TextCest
+final class TextCest
 {
     public function testOutput(UnitTester $I): void
     {

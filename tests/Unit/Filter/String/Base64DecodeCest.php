@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Base64Decode
  */
-class Base64DecodeCest
+final class Base64DecodeCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

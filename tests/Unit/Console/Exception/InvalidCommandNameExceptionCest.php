@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Console\Exception\InvalidCommandNameException
  */
-class InvalidCommandNameExceptionCest
+final class InvalidCommandNameExceptionCest
 {
     public function test(UnitTester $I): void
     {

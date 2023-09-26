@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Exception\FileGroupNotFoundException
  */
-class FileGroupNotFoundExceptionCest
+final class FileGroupNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

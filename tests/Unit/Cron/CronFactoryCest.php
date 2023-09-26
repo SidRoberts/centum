@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Cron\CronFactory
  */
-class CronFactoryCest
+final class CronFactoryCest
 {
     public function testAddJobsFromArray(UnitTester $I): void
     {

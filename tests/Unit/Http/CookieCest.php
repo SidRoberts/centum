@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Cookie
  */
-class CookieCest
+final class CookieCest
 {
     public function testGetters(UnitTester $I): void
     {

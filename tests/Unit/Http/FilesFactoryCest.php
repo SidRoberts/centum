@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\FilesFactory
  */
-class FilesFactoryCest
+final class FilesFactoryCest
 {
     #[DataProvider("providerCreateFromArray")]
     public function testCreateFromArray(UnitTester $I, Example $example): void

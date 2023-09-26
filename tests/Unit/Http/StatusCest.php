@@ -11,7 +11,7 @@ use ValueError;
 /**
  * @covers \Centum\Http\Status
  */
-class StatusCest
+final class StatusCest
 {
     public function test(UnitTester $I): void
     {

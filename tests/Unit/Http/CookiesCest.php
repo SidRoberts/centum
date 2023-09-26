@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Cookies
  */
-class CookiesCest
+final class CookiesCest
 {
     public function testConstructor(UnitTester $I): void
     {

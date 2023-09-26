@@ -18,7 +18,7 @@ use Throwable;
 /**
  * @covers \Centum\Queue\ImmediateQueue
  */
-class ImmediateQueueCest
+final class ImmediateQueueCest
 {
     public function testPublish(UnitTester $I): void
     {

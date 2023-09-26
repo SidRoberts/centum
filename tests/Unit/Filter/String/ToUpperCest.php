@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\ToUpper
  */
-class ToUpperCest
+final class ToUpperCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

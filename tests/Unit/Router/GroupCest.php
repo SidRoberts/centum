@@ -12,7 +12,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Group
  */
-class GroupCest
+final class GroupCest
 {
     public function testGetMiddleware(UnitTester $I): void
     {

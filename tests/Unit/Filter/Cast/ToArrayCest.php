@@ -13,7 +13,7 @@ use UnexpectedValueException;
 /**
  * @covers \Centum\Filter\Cast\ToArray
  */
-class ToArrayCest
+final class ToArrayCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

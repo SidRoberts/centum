@@ -13,7 +13,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Response\VariableResponse
  */
-class VariableResponseCest
+final class VariableResponseCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

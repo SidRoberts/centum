@@ -12,7 +12,7 @@ use Twig\Loader\ArrayLoader;
 /**
  * @covers \Centum\Twig\CsrfExtension
  */
-class CsrfExtensionCest
+final class CsrfExtensionCest
 {
     protected function getTwig(): Environment
     {

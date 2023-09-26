@@ -13,7 +13,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\Group
  */
-class GroupCest
+final class GroupCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

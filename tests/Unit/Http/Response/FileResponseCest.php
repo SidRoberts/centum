@@ -9,7 +9,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Response\FileResponse
  */
-class FileResponseCest
+final class FileResponseCest
 {
     public function test(UnitTester $I): void
     {

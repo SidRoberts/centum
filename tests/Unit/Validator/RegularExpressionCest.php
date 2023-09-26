@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\RegularExpression
  */
-class RegularExpressionCest
+final class RegularExpressionCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

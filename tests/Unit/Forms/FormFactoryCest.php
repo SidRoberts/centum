@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Forms\FormFactory
  */
-class FormFactoryCest
+final class FormFactoryCest
 {
     public function test(UnitTester $I): void
     {

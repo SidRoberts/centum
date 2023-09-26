@@ -8,7 +8,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Http\Header
  */
-class HeaderCest
+final class HeaderCest
 {
     public function testGetters(UnitTester $I): void
     {

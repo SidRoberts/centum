@@ -8,7 +8,7 @@ use Tests\Support\ConsoleTester;
 /**
  * @covers \Centum\Console\Command\ListCommand
  */
-class ListCommandCest
+final class ListCommandCest
 {
     public function testName(ConsoleTester $I): void
     {

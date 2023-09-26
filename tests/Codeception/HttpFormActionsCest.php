@@ -7,7 +7,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\HttpFormActions
  */
-class HttpFormActionsCest
+final class HttpFormActionsCest
 {
     public function test(CodeceptionTester $I): void
     {

@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Queue\TaskRunner
  */
-class TaskRunnerCest
+final class TaskRunnerCest
 {
     public function test(UnitTester $I): void
     {

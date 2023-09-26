@@ -21,7 +21,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Container\Resolver\RequestResolver
  */
-class RequestResolverCest
+final class RequestResolverCest
 {
     public function test(UnitTester $I): void
     {

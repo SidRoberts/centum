@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Filter\String\Prefix
  */
-class PrefixCest
+final class PrefixCest
 {
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void

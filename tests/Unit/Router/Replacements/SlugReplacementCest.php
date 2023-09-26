@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Replacements\SlugReplacement
  */
-class SlugReplacementCest
+final class SlugReplacementCest
 {
     public function testGetIdentifier(UnitTester $I): void
     {

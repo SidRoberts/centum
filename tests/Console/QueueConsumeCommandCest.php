@@ -10,7 +10,7 @@ use Tests\Support\ConsoleTester;
 /**
  * @covers \Centum\Console\Command\QueueConsumeCommand
  */
-class QueueConsumeCommandCest
+final class QueueConsumeCommandCest
 {
     public function testName(ConsoleTester $I): void
     {

@@ -11,7 +11,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Validator\Type\IsCharacter
  */
-class IsCharacterCest
+final class IsCharacterCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void

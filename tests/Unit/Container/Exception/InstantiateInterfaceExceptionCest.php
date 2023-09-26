@@ -9,7 +9,7 @@ use Throwable;
 /**
  * @covers \Centum\Container\Exception\InstantiateInterfaceException
  */
-class InstantiateInterfaceExceptionCest
+final class InstantiateInterfaceExceptionCest
 {
     public function test(UnitTester $I): void
     {

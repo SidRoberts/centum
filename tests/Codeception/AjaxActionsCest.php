@@ -7,7 +7,7 @@ use Tests\Support\CodeceptionTester;
 /**
  * @covers \Centum\Codeception\Actions\AjaxActions
  */
-class AjaxActionsCest
+final class AjaxActionsCest
 {
     public function testSendAjaxRequest(CodeceptionTester $I): void
     {

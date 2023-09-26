@@ -10,7 +10,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Router\Exception\RouteNotFoundException
  */
-class RouteNotFoundExceptionCest
+final class RouteNotFoundExceptionCest
 {
     public function test(UnitTester $I): void
     {

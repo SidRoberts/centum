@@ -15,7 +15,7 @@ use Tests\Support\UnitTester;
 /**
  * @covers \Centum\Forms\Field
  */
-class FieldCest
+final class FieldCest
 {
     public function testGetters(UnitTester $I): void
     {
