@@ -27,6 +27,7 @@ $config->setRules(
         "no_useless_else"                     => true,
         "no_useless_return"                   => true,
         "no_whitespace_before_comma_in_array" => true,
+        "non_printable_character"             => true,
         "ordered_imports"                     => true,
         "ordered_interfaces"                  => true,
         "ternary_to_null_coalescing"          => true,
