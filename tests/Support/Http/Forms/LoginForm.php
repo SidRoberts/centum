@@ -11,11 +11,11 @@ class LoginForm implements FormInterface
         protected readonly string $username,
         protected readonly string $password
     ) {
-        if (strlen($username) === 0) {
+        if (mb_strlen($username) === 0) {
             throw new Exception("Username cannot be empty.");
         }
 
-        if (strlen($password) < 6) {
+        if (mb_strlen($password) < 6) {
             throw new Exception("Password is too short.");
         }
     }

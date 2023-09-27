@@ -19,10 +19,6 @@ use PHPUnit\Framework\Assert;
  */
 trait ConsoleActions
 {
-    abstract public function grabContainer(): ContainerInterface;
-
-
-
     protected ?int $exitCode = null;
 
     /**
@@ -39,6 +35,10 @@ trait ConsoleActions
      * @var ?resource
      */
     protected $stderr = null;
+
+
+
+    abstract public function grabContainer(): ContainerInterface;
 
 
 

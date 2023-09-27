@@ -31,7 +31,7 @@ class FormExtension extends AbstractExtension
 
     public function formStart(string $method = "GET", string $action = ""): string
     {
-        $method = strtoupper($method);
+        $method = mb_strtoupper($method);
 
         $formMethod = ($method === "GET") ? "GET" : "POST";
 
@@ -42,7 +42,7 @@ class FormExtension extends AbstractExtension
         );
 
         // HTML forms only support sending via GET and POST.
-        if (!in_array($method, ["GET", "POST"])) {
+        if (!in_array($method, ["GET", "POST"], true)) {
             $html .= PHP_EOL . sprintf(
                 "<input type=\"hidden\" name=\"_method\" value=\"%s\">",
                 htmlspecialchars($method, \ENT_QUOTES, "UTF-8")

@@ -17,7 +17,7 @@ class IsCharacter implements ValidatorInterface
             ];
         }
 
-        if (strlen($value) !== 1) {
+        if (mb_strlen($value) !== 1) {
             return [
                 "Value is not a character.",
             ];

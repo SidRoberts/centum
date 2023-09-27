@@ -8,6 +8,7 @@ interface ParameterInterface
      * @psalm-mutation-free
      *
      * @psalm-assert-if-true non-empty-string $this->getType()
+     *
      * @psalm-assert-if-false null $this->getType()
      */
     public function hasType(): bool;
@@ -30,6 +31,7 @@ interface ParameterInterface
      * @psalm-mutation-free
      *
      * @psalm-assert-if-true non-empty-string $this->getName()
+     *
      * @psalm-assert-if-false null $this->getName()
      */
     public function hasName(): bool;
@@ -57,6 +59,7 @@ interface ParameterInterface
      * @psalm-mutation-free
      *
      * @psalm-assert-if-true class-string $this->getDeclaringClass()
+     *
      * @psalm-assert-if-false null $this->getDeclaringClass()
      */
     public function hasDeclaringClass(): bool;

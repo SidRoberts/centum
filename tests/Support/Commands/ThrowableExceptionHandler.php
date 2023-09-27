@@ -13,7 +13,7 @@ class ThrowableExceptionHandler implements ExceptionHandlerInterface
         $terminal->writeError(
             sprintf(
                 "Something went wrong. %s was thrown with the message \"%s\".",
-                get_class($throwable),
+                $throwable::class,
                 $throwable->getMessage()
             )
         );

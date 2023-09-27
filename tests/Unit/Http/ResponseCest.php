@@ -133,13 +133,13 @@ final class ResponseCest
             $cookies
         );
 
-        $expected  = "HTTP/1.0 200 OK" . "\r\n";
-        $expected .= "Content-Type: text/plain" . "\r\n";
-        $expected .= "Last-Modified: Sun, 04 Apr 2021 17:04:00 GMT" . "\r\n";
-        $expected .= "Content-Encoding: gzip" . "\r\n";
-        $expected .= "Set-Cookie: username: SidRoberts" . "\r\n";
-        $expected .= "Set-Cookie: language: en"  . "\r\n";
-        $expected .= "Set-Cookie: timezone: Asia/Seoul" . "\r\n";
+        $expected  = "HTTP/1.0 200 OK\r\n";
+        $expected .= "Content-Type: text/plain\r\n";
+        $expected .= "Last-Modified: Sun, 04 Apr 2021 17:04:00 GMT\r\n";
+        $expected .= "Content-Encoding: gzip\r\n";
+        $expected .= "Set-Cookie: username: SidRoberts\r\n";
+        $expected .= "Set-Cookie: language: en\r\n";
+        $expected .= "Set-Cookie: timezone: Asia/Seoul\r\n";
         $expected .= "\r\n";
         $expected .= "This is the body.";
 
@@ -192,13 +192,13 @@ final class ResponseCest
             $cookies
         );
 
-        $expected  = "HTTP/1.0 200 OK" . "\r\n";
-        $expected .= "Content-Type: text/plain" . "\r\n";
-        $expected .= "Last-Modified: Sun, 04 Apr 2021 17:04:00 GMT" . "\r\n";
-        $expected .= "Content-Encoding: gzip" . "\r\n";
-        $expected .= "Set-Cookie: username: SidRoberts" . "\r\n";
-        $expected .= "Set-Cookie: language: en"  . "\r\n";
-        $expected .= "Set-Cookie: timezone: Asia/Seoul" . "\r\n";
+        $expected  = "HTTP/1.0 200 OK\r\n";
+        $expected .= "Content-Type: text/plain\r\n";
+        $expected .= "Last-Modified: Sun, 04 Apr 2021 17:04:00 GMT\r\n";
+        $expected .= "Content-Encoding: gzip\r\n";
+        $expected .= "Set-Cookie: username: SidRoberts\r\n";
+        $expected .= "Set-Cookie: language: en\r\n";
+        $expected .= "Set-Cookie: timezone: Asia/Seoul\r\n";
         $expected .= "\r\n";
         $expected .= "This is the body.";
 

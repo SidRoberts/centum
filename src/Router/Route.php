@@ -10,7 +10,7 @@ class Route implements RouteInterface
 {
     /**
      * @param class-string<ControllerInterface> $class
-     * @param non-empty-string $method
+     * @param non-empty-string                  $method
      */
     public function __construct(
         protected readonly Method $httpMethod,

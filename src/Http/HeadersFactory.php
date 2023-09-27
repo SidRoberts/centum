@@ -41,15 +41,15 @@ class HeadersFactory
 
         foreach ($server as $key => $value) {
             $key = str_replace("_", "-", $key);
-            $key = strtolower($key);
+            $key = mb_strtolower($key);
             $key = ucwords($key, "-");
 
-            if (!in_array($key, $contentHeaders) && !str_starts_with($key, "Http-")) {
+            if (!in_array($key, $contentHeaders, true) && !str_starts_with($key, "Http-")) {
                 continue;
             }
 
             if (str_starts_with($key, "Http-")) {
-                $key = substr($key, 5);
+                $key = mb_substr($key, 5);
             }
 
             if ($key === "") {

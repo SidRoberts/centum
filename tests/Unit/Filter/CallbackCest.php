@@ -22,7 +22,7 @@ final class CallbackCest
                     throw new InvalidArgumentException("Value is not a string.");
                 }
 
-                return str_replace(" ", "-", strtolower($value));
+                return str_replace(" ", "-", mb_strtolower($value));
             }
         );
 

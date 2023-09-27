@@ -22,7 +22,7 @@ interface ObjectStorageInterface
      * @template T of object
      *
      * @param class-string<T> $class
-     * @param T $object
+     * @param T               $object
      */
     public function set(string $class, object $object): void;
 

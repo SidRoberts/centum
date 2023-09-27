@@ -16,7 +16,7 @@ class TextFormatter implements FormatterInterface
     {
         return sprintf(
             "[%s] %s",
-            strtoupper($message->getLevel()),
+            mb_strtoupper($message->getLevel()),
             $message->getText()
         );
     }

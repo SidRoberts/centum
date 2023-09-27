@@ -36,6 +36,6 @@ class ToString implements FilterInterface
             throw new InvalidArgumentException();
         }
 
-        return strval($value);
+        return (string) $value;
     }
 }

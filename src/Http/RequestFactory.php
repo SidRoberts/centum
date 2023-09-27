@@ -103,7 +103,7 @@ class RequestFactory
         $parameters = $browserKitRequest->getParameters();
 
         $requestUri = parse_url($uri, PHP_URL_PATH);
-        $method     = strtoupper($browserKitRequest->getMethod());
+        $method     = mb_strtoupper($browserKitRequest->getMethod());
         $data       = new Data($parameters);
         $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
         $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);

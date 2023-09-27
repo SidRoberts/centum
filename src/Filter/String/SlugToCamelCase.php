@@ -23,7 +23,7 @@ class SlugToCamelCase implements FilterInterface
         return preg_replace_callback(
             "/\-([a-z0-9])/",
             function ($matches): string {
-                return strtoupper($matches[1]);
+                return mb_strtoupper($matches[1]);
             },
             $value
         );

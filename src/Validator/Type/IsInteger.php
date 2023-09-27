@@ -11,7 +11,7 @@ class IsInteger implements ValidatorInterface
 {
     public function validate(mixed $value): array
     {
-        if (is_bool($value) || !is_scalar($value) || preg_match("/^\d+$/", strval($value)) !== 1) {
+        if (is_bool($value) || !is_scalar($value) || preg_match("/^\d+$/", (string) $value) !== 1) {
             return [
                 "Value is not an integer.",
             ];

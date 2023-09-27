@@ -54,7 +54,7 @@ trait HtmlActions
         $uri = $attributes[0][0] ?: $this->currentURI;
 
         $method = $attributes[0][1] ?: "GET";
-        $method = strtoupper($method);
+        $method = mb_strtoupper($method);
         $method = Method::from($method);
 
         $data = new Data($data);

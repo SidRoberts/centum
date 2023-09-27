@@ -26,7 +26,7 @@ class ResolverGroup implements ResolverGroupInterface
 
     public function remove(ResolverInterface $resolver): void
     {
-        $key = array_search($resolver, $this->resolvers);
+        $key = array_search($resolver, $this->resolvers, true);
 
         if ($key === false) {
             return;

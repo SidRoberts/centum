@@ -20,6 +20,14 @@ use PHPUnit\Framework\Assert;
  */
 trait RouterActions
 {
+    protected ?string $currentURI = null;
+
+    protected ?ResponseInterface $response = null;
+
+    protected bool $followRedirects = true;
+
+
+
     /**
      * @template T of object
      *
@@ -28,14 +36,6 @@ trait RouterActions
      * @return T
      */
     abstract public function grabFromContainer(string $class): object;
-
-
-
-    protected ?string $currentURI = null;
-
-    protected ?ResponseInterface $response = null;
-
-    protected bool $followRedirects = true;
 
 
 

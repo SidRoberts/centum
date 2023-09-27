@@ -20,7 +20,7 @@ class TimeZone implements ValidatorInterface
 
         $timeZones = DateTimeZone::listIdentifiers();
 
-        if (!in_array($value, $timeZones)) {
+        if (!in_array($value, $timeZones, true)) {
             return [
                 "Value is not a valid time zone.",
             ];

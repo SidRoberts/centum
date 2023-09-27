@@ -12,7 +12,7 @@ use InvalidArgumentException;
 class Cron implements CronInterface
 {
     /**
-     * @var array<JobInterface> $jobs
+     * @var array<JobInterface>
      */
     protected array $jobs = [];
 

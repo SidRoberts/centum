@@ -57,8 +57,8 @@ class FileResponse extends Response
      */
     protected function sanitiseFileName(string $fileName): string
     {
-        $fileName = mb_ereg_replace(
-            "([^\w\s\d\-_~,\[\]\(\).'\"])",
+        $fileName = preg_replace(
+            "/([^\w\s\d\-_~,\[\]\(\).'\"]+)/",
             "",
             $fileName
         );

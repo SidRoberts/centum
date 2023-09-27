@@ -102,7 +102,7 @@ class Field implements FieldInterface
             $exceptionMessage = $exception->getMessage();
 
             if ($exceptionMessage === "") {
-                $exceptionMessage = get_class($exception);
+                $exceptionMessage = $exception::class;
             }
 
             /** @var non-empty-string $exceptionMessage */

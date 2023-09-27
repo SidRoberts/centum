@@ -21,7 +21,7 @@ class InArray implements ValidatorInterface
 
     public function validate(mixed $value): array
     {
-        if (!in_array($value, $this->values)) {
+        if (!in_array($value, $this->values, true)) {
             return [
                 "Value is not in the list of allowed values.",
             ];

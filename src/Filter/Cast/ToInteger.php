@@ -18,6 +18,6 @@ class ToInteger implements FilterInterface
             );
         }
 
-        return intval($value);
+        return (int) $value;
     }
 }

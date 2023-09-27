@@ -73,7 +73,7 @@ trait HttpFormActions
 
 
     /**
-     * @param Throwable|string $expectedThrowable
+     * @param Throwable|string            $expectedThrowable
      * @param class-string<FormInterface> $formClass
      */
     public function expectFormThrowable($expectedThrowable, string $formClass, DataInterface $data, FilesInterface $files = null): void

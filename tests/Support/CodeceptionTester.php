@@ -42,8 +42,8 @@ class CodeceptionTester extends Actor
     use HttpFormActions;
     use JsonActions;
     use QueueActions;
-    use RouterReplacementActions;
     use RouterActions;
+    use RouterReplacementActions;
     use SessionActions;
     use UnitTestActions;
     use ValidatorActions;

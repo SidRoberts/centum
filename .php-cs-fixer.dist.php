@@ -7,33 +7,73 @@ $finder = Finder::create()
     ->exclude("node_modules")
     ->exclude("tests/Support/_generated")
     ->exclude("vendor")
+    ->ignoreDotFiles(false)
     ->in(__DIR__);
 
 $config = new Config();
 
 $config->setRules(
     [
-        "@PSR12"                              => true,
-        "array_syntax"                        => ["syntax" => "short"],
-        "binary_operator_spaces"              => ["default" => "align"],
-        "blank_line_before_statement"         => true,
-        "cast_spaces"                         => true,
-        "combine_consecutive_unsets"          => true,
-        "linebreak_after_opening_tag"         => true,
-        "no_blank_lines_after_class_opening"  => true,
-        "no_blank_lines_after_phpdoc"         => true,
-        "no_spaces_around_offset"             => true,
-        "no_unused_imports"                   => true,
-        "no_useless_else"                     => true,
-        "no_useless_return"                   => true,
-        "no_whitespace_before_comma_in_array" => true,
-        "non_printable_character"             => true,
-        "ordered_imports"                     => true,
-        "ordered_interfaces"                  => true,
-        "ternary_to_null_coalescing"          => true,
-        "trailing_comma_in_multiline"         => ["elements" => ["arrays"]],
-        "trim_array_spaces"                   => true,
-        "whitespace_after_comma_in_array"     => true,
+        "@PSR12"         => true,
+        "@PSR12:risky"   => true,
+        "@Symfony"       => true,
+        "@Symfony:risky" => true,
+
+        "binary_operator_spaces" => [
+            "default" => "align",
+        ],
+
+        "class_attributes_separation"        => false,
+        "combine_consecutive_unsets"         => true,
+        "concat_space"                       => false,
+        "ereg_to_preg"                       => true,
+        "final_internal_class"               => true,
+        "global_namespace_import"            => false,
+        "increment_style"                    => false,
+        "is_null"                            => false,
+        "mb_str_functions"                   => true,
+        "native_constant_invocation"         => false,
+        "native_function_invocation"         => false,
+        "no_blank_lines_after_class_opening" => true,
+        "no_extra_blank_lines"               => false,
+        "no_null_property_initialization"    => false,
+        "no_superfluous_phpdoc_tags"         => false,
+        "no_unneeded_control_parentheses"    => false,
+        "no_useless_else"                    => true,
+        "no_useless_return"                  => true,
+
+        "ordered_class_elements" => [
+            "order" => [
+                "use_trait",
+                "case",
+                "constant_public",
+                "constant_protected",
+                "constant_private",
+                "property_public",
+                "property_protected",
+                "property_private",
+                "construct",
+                "destruct",
+                "phpunit",
+                "method",
+                "magic",
+            ],
+        ],
+
+        "ordered_imports"             => false,
+        "ordered_imports"             => true,
+        "ordered_interfaces"          => true,
+        "phpdoc_summary"              => false,
+        "phpdoc_to_comment"           => false,
+        "random_api_migration"        => true,
+        "single_import_per_statement" => false,
+        "single_line_comment_spacing" => false,
+        "single_line_throw"           => false,
+        "single_quote"                => false,
+        "strict_comparison"           => true,
+        "strict_param"                => true,
+        "ternary_to_null_coalescing"  => true,
+        "yoda_style"                  => false,
     ]
 );
 

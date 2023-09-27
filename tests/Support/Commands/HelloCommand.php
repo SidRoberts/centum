@@ -21,7 +21,7 @@ class HelloCommand implements CommandInterface
         $message = "Hello {$this->name}!";
 
         if ($this->loud) {
-            $message = strtoupper($message);
+            $message = mb_strtoupper($message);
         }
 
         if ($this->backwards) {

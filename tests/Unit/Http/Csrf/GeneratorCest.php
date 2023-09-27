@@ -28,7 +28,7 @@ final class GeneratorCest
 
         $I->assertSame(
             Generator::LENGTH,
-            strlen($randomString)
+            mb_strlen($randomString)
         );
     }
 }

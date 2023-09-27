@@ -26,7 +26,7 @@ class Url implements UrlInterface
 
         $queryString = http_build_query($arguments);
 
-        if (strlen($queryString) > 0) {
+        if (mb_strlen($queryString) > 0) {
             if (str_contains($uri, "?")) {
                 $uri .= "&" . $queryString;
             } else {

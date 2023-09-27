@@ -51,7 +51,7 @@ final class FormCest
                 function (string $value): string {
                     $value = trim($value);
                     $value = preg_replace("/\s+/", " ", $value);
-                    $value = ucwords(strtolower($value));
+                    $value = ucwords(mb_strtolower($value));
 
                     return $value;
                 }

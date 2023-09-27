@@ -10,7 +10,7 @@ class Parameter implements ParameterInterface
     /**
      * @param ?non-empty-string $type
      * @param ?non-empty-string $name
-     * @param ?class-string $declaringClass
+     * @param ?class-string     $declaringClass
      */
     public function __construct(
         protected ?string $type = null,

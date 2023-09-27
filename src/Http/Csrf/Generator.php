@@ -22,7 +22,7 @@ class Generator implements GeneratorInterface
 
         $hexString = bin2hex($binaryString);
 
-        $randomString = substr($hexString, 0, self::LENGTH);
+        $randomString = mb_substr($hexString, 0, self::LENGTH);
 
         return $randomString;
     }

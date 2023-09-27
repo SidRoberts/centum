@@ -23,14 +23,14 @@ class ParametersController implements ControllerInterface
     public function requestFromContainer(RequestInterface $request): ResponseInterface
     {
         return new Response(
-            get_class($request)
+            $request::class
         );
     }
 
     public function sessionFromContainer(SessionInterface $session): ResponseInterface
     {
         return new Response(
-            get_class($session)
+            $session::class
         );
     }
 }

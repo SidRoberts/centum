@@ -35,7 +35,7 @@ class ServiceStorage implements ServiceStorageInterface
     /**
      * @template T of object
      *
-     * @param class-string<T> $class
+     * @param class-string<T>                   $class
      * @param class-string<ServiceInterface<T>> $service
      */
     public function set(string $class, string $service): void

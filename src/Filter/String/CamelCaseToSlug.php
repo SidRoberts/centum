@@ -23,7 +23,7 @@ class CamelCaseToSlug implements FilterInterface
         return preg_replace_callback(
             "/([A-Z])/",
             function ($matches): string {
-                return "-" . strtolower($matches[1]);
+                return "-" . mb_strtolower($matches[1]);
             },
             lcfirst($value)
         );
