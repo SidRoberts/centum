@@ -14,7 +14,11 @@ class ToString implements FilterInterface
      */
     public function filter(mixed $value): string
     {
-        if (is_object($value) && !method_exists($value, "__toString")) {
+        if (is_object($value)) {
+            if (method_exists($value, "__toString")) {
+                return (string) $value;
+            }
+
             return serialize($value);
         }
 
@@ -28,7 +32,7 @@ class ToString implements FilterInterface
             return $json;
         }
 
-        if (!is_null($value) && !is_object($value) && !is_scalar($value)) {
+        if (!is_null($value) && !is_scalar($value)) {
             throw new InvalidArgumentException();
         }
 
