@@ -15,7 +15,7 @@ use TypeError;
 class Module extends CodeceptionModule
 {
     /**
-     * @var array<string, string>
+     * @var array<non-empty-string, string>
      *
      * @psalm-suppress NonInvariantDocblockPropertyType
      */
