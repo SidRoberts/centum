@@ -12,9 +12,9 @@ class ToInteger implements FilterInterface
      */
     public function filter(mixed $value): int
     {
-        if (!is_array($value) && !is_resource($value) && !is_null($value) && !is_scalar($value)) {
+        if (!is_resource($value) && !is_null($value) && !is_scalar($value)) {
             throw new InvalidArgumentException(
-                "Value must be an array, a resource, a scalar, or null."
+                "Value must be a resource, a scalar, or null."
             );
         }
 

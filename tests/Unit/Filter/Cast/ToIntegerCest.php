@@ -59,7 +59,7 @@ final class ToIntegerCest
         $filter = new ToInteger();
 
         $expectedThrowable = new InvalidArgumentException(
-            "Value must be an array, a resource, a scalar, or null."
+            "Value must be a resource, a scalar, or null."
         );
 
         $I->expectFilterThrowable(
