@@ -42,12 +42,6 @@ __toString(): non-empty-string
 ## [`Centum\Interfaces\Http\CookiesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookiesInterface.php)
 
 ```php
-add(
-    Centum\Interfaces\Http\CookieInterface $cookie
-): void
-```
-
-```php
 get(
     non-empty-string $name
 ): Centum\Interfaces\Http\CookieInterface
