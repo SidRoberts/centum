@@ -44,8 +44,8 @@ Thrown in:
 Thrown in:
 
 - [`Centum\Container\Container::get()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L76)
-- [`Centum\Container\Container::typehintService()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L95)
-- [`Centum\Container\Container::typehintClass()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L113)
+- [`Centum\Container\Container::typehintService()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L96)
+- [`Centum\Container\Container::typehintClass()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L115)
 
 
 
@@ -58,3 +58,15 @@ Thrown in:
 - [`Centum\Container\Resolver\FormResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/FormResolver.php#L25)
 - [`Centum\Container\Resolver\RequestResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RequestResolver.php#L32)
 - [`Centum\Container\Resolver\RouterParametersResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RouterParametersResolver.php#L24)
+
+
+
+## [`UnsupportedParameterTypeException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnsupportedParameterTypeException.php)
+
+Thrown in:
+
+- [`Centum\Container\Container::typehintService()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L96)
+- [`Centum\Container\Container::typehintClass()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L115)
+- [`Centum\Container\Container::typehintMethod()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L140)
+- [`Centum\Container\Container::typehintFunction()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L154)
+- [`Centum\Container\Container::resolveParams()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php#L170)

@@ -3,6 +3,7 @@
 namespace Centum\Container;
 
 use Centum\Container\Exception\InstantiateInterfaceException;
+use Centum\Container\Exception\UnsupportedParameterTypeException;
 use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Container\ObjectStorageInterface;
@@ -10,7 +11,6 @@ use Centum\Interfaces\Container\ResolverGroupInterface;
 use Centum\Interfaces\Container\ServiceInterface;
 use Centum\Interfaces\Container\ServiceStorageInterface;
 use Closure;
-use Exception;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
@@ -91,6 +91,7 @@ class Container implements ContainerInterface
      * @return T
      *
      * @throws InstantiateInterfaceException
+     * @throws UnsupportedParameterTypeException
      */
     public function typehintService(string $serviceClass): object
     {
@@ -109,6 +110,7 @@ class Container implements ContainerInterface
      * @return T
      *
      * @throws InstantiateInterfaceException
+     * @throws UnsupportedParameterTypeException
      */
     public function typehintClass(string $class): object
     {
@@ -132,6 +134,9 @@ class Container implements ContainerInterface
         return $reflectionClass->newInstanceArgs($params);
     }
 
+    /**
+     * @throws UnsupportedParameterTypeException
+     */
     public function typehintMethod(object $class, string $methodName): mixed
     {
         $reflectionMethod = new ReflectionMethod($class, $methodName);
@@ -143,6 +148,9 @@ class Container implements ContainerInterface
 
 
 
+    /**
+     * @throws UnsupportedParameterTypeException
+     */
     public function typehintFunction(Closure|string $function): mixed
     {
         $reflectionFunction = new ReflectionFunction($function);
@@ -156,6 +164,8 @@ class Container implements ContainerInterface
 
     /**
      * @return array<non-negative-int, mixed>
+     *
+     * @throws UnsupportedParameterTypeException
      */
     protected function resolveParams(ReflectionFunctionAbstract $method): array
     {
@@ -167,7 +177,7 @@ class Container implements ContainerInterface
             $type = $parameter->getType();
 
             if ($type !== null && !($type instanceof ReflectionNamedType)) {
-                throw new Exception();
+                throw new UnsupportedParameterTypeException($parameter);
             }
 
             $parameter = new Parameter(
