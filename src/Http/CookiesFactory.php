@@ -2,8 +2,8 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\CookieKeyEmptyException;
 use Centum\Interfaces\Http\CookiesInterface;
-use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class CookiesFactory
@@ -29,6 +29,9 @@ class CookiesFactory
         return new Cookies($cookies);
     }
 
+    /**
+     * @throws CookieKeyEmptyException
+     */
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): CookiesInterface
     {
         $cookies = [];
@@ -38,7 +41,7 @@ class CookiesFactory
 
         foreach ($browserKitCookies as $key => $value) {
             if ($key === "") {
-                throw new Exception("Cookie must have a key.");
+                throw new CookieKeyEmptyException();
             }
 
             $cookies[] = new Cookie($key, $value);

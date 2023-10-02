@@ -15,6 +15,14 @@ nav_order: 101
 
 
 
+## [`CookieKeyEmptyException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CookieKeyEmptyException.php)
+
+Thrown in:
+
+- [`Centum\Http\CookiesFactory::createFromBrowserKitRequest()`](https://github.com/SidRoberts/centum/blob/development/src/Http/CookiesFactory.php#L35)
+
+
+
 ## [`CsrfException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CsrfException.php)
 
 Thrown in:
@@ -52,6 +60,14 @@ Thrown in:
 Thrown in:
 
 - [`Centum\Http\Files::get()`](https://github.com/SidRoberts/centum/blob/development/src/Http/Files.php#L55)
+
+
+
+## [`HeaderKeyEmptyException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/HeaderKeyEmptyException.php)
+
+Thrown in:
+
+- [`Centum\Http\HeadersFactory::createFromBrowserKitRequest()`](https://github.com/SidRoberts/centum/blob/development/src/Http/HeadersFactory.php#L36)
 
 
 

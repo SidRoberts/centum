@@ -2,8 +2,8 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\HeaderKeyEmptyException;
 use Centum\Interfaces\Http\HeadersInterface;
-use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class HeadersFactory
@@ -30,6 +30,9 @@ class HeadersFactory
         return new Headers($headers);
     }
 
+    /**
+     * @throws HeaderKeyEmptyException
+     */
     public function createFromBrowserKitRequest(BrowserKitRequest $browserKitRequest): HeadersInterface
     {
         $headers = [];
@@ -53,7 +56,7 @@ class HeadersFactory
             }
 
             if ($key === "") {
-                throw new Exception("Header must have a key.");
+                throw new HeaderKeyEmptyException();
             }
 
             $headers[] = new Header($key, $value);
