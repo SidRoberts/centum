@@ -2,6 +2,7 @@
 
 namespace Centum\Http\Response;
 
+use Centum\Http\Exception\CannotReadFileException;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
@@ -12,13 +13,14 @@ class FileResponse extends Response
 {
     /**
      * @throws Exception
+     * @throws CannotReadFileException
      */
     public function __construct(string $filePath, string $fileName)
     {
         $content = @file_get_contents($filePath);
 
         if ($content === false) {
-            throw new Exception("Unable to read file.");
+            throw new CannotReadFileException($filePath);
         }
 
 

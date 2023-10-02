@@ -15,6 +15,14 @@ nav_order: 101
 
 
 
+## [`CannotReadFileException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CannotReadFileException.php)
+
+Thrown in:
+
+- [`Centum\Http\Response\FileResponse::__construct()`](https://github.com/SidRoberts/centum/blob/development/src/Http/Response/FileResponse.php#L18)
+
+
+
 ## [`CookieKeyEmptyException`](https://github.com/SidRoberts/centum/blob/development/src/Http/Exception/CookieKeyEmptyException.php)
 
 Thrown in:
