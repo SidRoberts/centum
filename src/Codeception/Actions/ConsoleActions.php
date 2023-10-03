@@ -264,4 +264,32 @@ trait ConsoleActions
 
         return $metadata->getDescription();
     }
+
+
+
+    /**
+     * @param class-string<CommandInterface> $commandClass
+     */
+    public function seeCommandNameIs(string $commandClass, string $expectedName): void
+    {
+        $metadata = $this->grabCommandMetadata($commandClass);
+
+        Assert::assertSame(
+            $expectedName,
+            $metadata->getName()
+        );
+    }
+
+    /**
+     * @param class-string<CommandInterface> $commandClass
+     */
+    public function seeCommandDescriptionIs(string $commandClass, string $expectedName): void
+    {
+        $metadata = $this->grabCommandMetadata($commandClass);
+
+        Assert::assertSame(
+            $expectedName,
+            $metadata->getDescription()
+        );
+    }
 }

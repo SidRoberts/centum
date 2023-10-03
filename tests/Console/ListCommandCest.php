@@ -12,17 +12,17 @@ final class ListCommandCest
 {
     public function testName(ConsoleTester $I): void
     {
-        $I->assertEquals(
-            "list",
-            $I->grabCommandName(ListCommand::class)
+        $I->seeCommandNameIs(
+            ListCommand::class,
+            "list"
         );
     }
 
     public function testDescription(ConsoleTester $I): void
     {
-        $I->assertEquals(
-            "Lists all available commands.",
-            $I->grabCommandDescription(ListCommand::class)
+        $I->seeCommandDescriptionIs(
+            ListCommand::class,
+            "Lists all available commands."
         );
     }
 

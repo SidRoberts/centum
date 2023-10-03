@@ -5,6 +5,7 @@ namespace Tests\Codeception;
 use Centum\Interfaces\Console\ExceptionHandlerInterface;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Commands\ExitCodeCommand;
+use Tests\Support\Commands\HelloCommand;
 use Tests\Support\Commands\ThrowableExceptionHandler;
 
 /**
@@ -354,6 +355,24 @@ final class ConsoleActionsCest
 
         $I->seeStderrNotContains(
             "123"
+        );
+    }
+
+
+
+    public function testSeeCommandNameIs(CodeceptionTester $I): void
+    {
+        $I->seeCommandNameIs(
+            HelloCommand::class,
+            "hello"
+        );
+    }
+
+    public function testSeeCommandDescriptionIs(CodeceptionTester $I): void
+    {
+        $I->seeCommandDescriptionIs(
+            HelloCommand::class,
+            "Say hello to the user."
         );
     }
 }

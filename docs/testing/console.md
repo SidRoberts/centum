@@ -218,3 +218,25 @@ grabCommandDescription(
     class-string<Centum\Interfaces\Console\CommandInterface> $commandClass
 ): string
 ```
+
+
+
+## `seeCommandNameIs`
+
+```php
+seeCommandNameIs(
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass,
+    string $expectedName
+): void
+```
+
+
+
+## `seeCommandDescriptionIs`
+
+```php
+seeCommandDescriptionIs(
+    class-string<Centum\Interfaces\Console\CommandInterface> $commandClass,
+    string $expectedName
+): void
+```

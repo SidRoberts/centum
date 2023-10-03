@@ -14,17 +14,17 @@ final class QueueConsumeCommandCest
 {
     public function testName(ConsoleTester $I): void
     {
-        $I->assertEquals(
-            "queue:consume",
-            $I->grabCommandName(QueueConsumeCommand::class)
+        $I->seeCommandNameIs(
+            QueueConsumeCommand::class,
+            "queue:consume"
         );
     }
 
     public function testDescription(ConsoleTester $I): void
     {
-        $I->assertEquals(
-            "",
-            $I->grabCommandDescription(QueueConsumeCommand::class)
+        $I->seeCommandDescriptionIs(
+            QueueConsumeCommand::class,
+            ""
         );
     }
 

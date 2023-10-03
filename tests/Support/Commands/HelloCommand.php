@@ -6,7 +6,7 @@ use Centum\Console\CommandMetadata;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
-#[CommandMetadata("hello")]
+#[CommandMetadata("hello", "Say hello to the user.")]
 class HelloCommand implements CommandInterface
 {
     public function __construct(
