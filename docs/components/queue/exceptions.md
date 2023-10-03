@@ -20,4 +20,4 @@ nav_order: 101
 Thrown in:
 
 - [`Centum\Queue\ArrayQueue::consume()`](https://github.com/SidRoberts/centum/blob/development/src/Queue/ArrayQueue.php#L41)
-- [`Centum\Queue\ImmediateQueue::consume()`](https://github.com/SidRoberts/centum/blob/development/src/Queue/ImmediateQueue.php#L44)
+- [`Centum\Queue\ImmediateQueue::consume()`](https://github.com/SidRoberts/centum/blob/development/src/Queue/ImmediateQueue.php#L46)

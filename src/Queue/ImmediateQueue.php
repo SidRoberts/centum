@@ -39,6 +39,8 @@ class ImmediateQueue implements QueueInterface
     }
 
     /**
+     * @return never
+     *
      * @throws NoTasksInQueueException
      */
     public function consume(): TaskInterface
