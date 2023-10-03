@@ -47,7 +47,7 @@ class CommandNotFoundExceptionHandler implements ExceptionHandlerInterface
     public function handle(TerminalInterface $terminal, Throwable $throwable): void
     {
         if (!($throwable instanceof CommandNotFoundException)) {
-            throw new UnsuitableExceptionHandlerException();
+            throw new UnsuitableExceptionHandlerException($this);
         }
 
         $terminal->writeErrorLine("Command not found.");

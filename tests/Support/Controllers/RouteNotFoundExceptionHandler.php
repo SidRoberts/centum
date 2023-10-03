@@ -16,7 +16,7 @@ class RouteNotFoundExceptionHandler implements ExceptionHandlerInterface
     public function handle(RequestInterface $request, Throwable $throwable): ResponseInterface
     {
         if (!($throwable instanceof RouteNotFoundException)) {
-            throw new UnsuitableExceptionHandlerException();
+            throw new UnsuitableExceptionHandlerException($this);
         }
 
         return new Response(
