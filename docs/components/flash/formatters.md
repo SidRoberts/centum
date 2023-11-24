@@ -30,6 +30,6 @@ Currently, there are 2 formatters:
 
 ## [`Centum\Flash\Formatter\TextFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/TextFormatter.php)
 
-```
+```text
 [DANGER] This is an example message.
 ```

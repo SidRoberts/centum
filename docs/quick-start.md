@@ -28,7 +28,7 @@ This skeleton project is available on GitHub as [SidRoberts/centum-project](http
 
 By default, the `App` namespace is used and has this folder structure:
 
-```
+```text
 config/
     console.php
     container.php
