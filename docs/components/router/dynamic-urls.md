@@ -65,7 +65,7 @@ class CalendarController implements ControllerInterface
 
 
 
-### Parameter Requirements
+## Parameter Requirements
 
 You can require that the parameters adhere to a certain format by appending the type onto the end of the parameter identifier.
 By default, the Router can interpret these 4 types but can be extended using [Replacements](replacements.md):
