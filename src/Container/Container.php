@@ -117,11 +117,11 @@ class Container implements ContainerInterface
         /** @var class-string<T> */
         $alias = $this->aliasManager->get($class);
 
-        if (interface_exists($alias)) {
+        $reflectionClass = new ReflectionClass($alias);
+
+        if ($reflectionClass->isInterface()) {
             throw new InstantiateInterfaceException($alias);
         }
-
-        $reflectionClass = new ReflectionClass($alias);
 
         $constructor = $reflectionClass->getConstructor();
 
