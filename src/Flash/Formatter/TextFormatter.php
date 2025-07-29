@@ -6,7 +6,7 @@ use Centum\Interfaces\Flash\FormatterInterface;
 use Centum\Interfaces\Flash\MessageInterface;
 
 /**
- * ```
+ * ```text
  * [DANGER] This is an example message.
  * ```
  */
