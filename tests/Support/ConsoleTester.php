@@ -9,7 +9,7 @@ use Codeception\Actor;
 /**
  * @SuppressWarnings(PHPMD)
  */
-class ConsoleTester extends Actor
+final class ConsoleTester extends Actor
 {
     use _generated\ConsoleTesterActions;
 

@@ -12,7 +12,7 @@ use Codeception\Actor;
 /**
  * @SuppressWarnings(PHPMD)
  */
-class WebTester extends Actor
+final class WebTester extends Actor
 {
     use _generated\WebTesterActions;
 

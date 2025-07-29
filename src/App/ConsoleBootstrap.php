@@ -8,6 +8,7 @@ use Centum\Console\Terminal\Arguments;
 use Centum\Interfaces\App\BootstrapInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\TerminalInterface;
+use InvalidArgumentException;
 
 class ConsoleBootstrap implements BootstrapInterface
 {
@@ -18,6 +19,7 @@ class ConsoleBootstrap implements BootstrapInterface
 
     /**
      * @throws ArgvNotFoundException
+     * @throws InvalidArgumentException
      */
     public function boot(): void
     {
@@ -30,6 +32,7 @@ class ConsoleBootstrap implements BootstrapInterface
 
     /**
      * @throws ArgvNotFoundException
+     * @throws InvalidArgumentException
      */
     protected function getTerminal(): TerminalInterface
     {

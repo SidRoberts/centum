@@ -2,7 +2,7 @@
 
 namespace Tests\Support\Container;
 
-class Incrementer
+final class Incrementer
 {
     protected int $i = 0;
 

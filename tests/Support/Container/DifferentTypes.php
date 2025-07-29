@@ -2,7 +2,7 @@
 
 namespace Tests\Support\Container;
 
-class DifferentTypes
+final class DifferentTypes
 {
     public function resolvable(string $name = "Sid"): string
     {

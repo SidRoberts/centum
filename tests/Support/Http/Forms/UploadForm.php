@@ -6,7 +6,7 @@ use Centum\Interfaces\Http\FileGroupInterface;
 use Centum\Interfaces\Http\FormInterface;
 use InvalidArgumentException;
 
-class UploadForm implements FormInterface
+final class UploadForm implements FormInterface
 {
     public function __construct(
         protected readonly FileGroupInterface $images

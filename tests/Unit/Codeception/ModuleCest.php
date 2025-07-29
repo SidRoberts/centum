@@ -9,8 +9,7 @@ use Codeception\Lib\Di;
 use Codeception\Lib\ModuleContainer;
 use Codeception\TestInterface;
 use Exception;
-use Mockery\MockInterface;
-use Tests\Support\Container\Incrementer;
+use stdClass;
 use Tests\Support\UnitTester;
 use TypeError;
 
@@ -129,16 +128,16 @@ final class ModuleCest
 
         $module->_beforeSuite();
 
-        $incrementer = $module->mock(Incrementer::class);
+        $object = $module->mock(stdClass::class);
 
         $I->assertInstanceOf(
-            Incrementer::class,
-            $incrementer
+            stdClass::class,
+            $object
         );
 
         $I->assertInstanceOf(
-            MockInterface::class,
-            $incrementer
+            stdClass::class,
+            $object
         );
     }
 }

@@ -54,7 +54,7 @@ Thrown in:
 Thrown in:
 
 - [`Centum\Container\ResolverGroup::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/ResolverGroup.php#L43)
-- [`Centum\Container\Resolver\ConsoleResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/ConsoleResolver.php#L23)
+- [`Centum\Container\Resolver\ConsoleResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/ConsoleResolver.php#L25)
 - [`Centum\Container\Resolver\FormResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/FormResolver.php#L25)
 - [`Centum\Container\Resolver\RequestResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RequestResolver.php#L32)
 - [`Centum\Container\Resolver\RouterParametersResolver::resolve()`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RouterParametersResolver.php#L24)

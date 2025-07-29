@@ -2,7 +2,7 @@
 
 namespace Tests\Support\Container;
 
-class UnresolvableClass
+final class UnresolvableClass
 {
     public function __construct(
         protected readonly string $name

@@ -6,7 +6,7 @@ use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class IndexController implements ControllerInterface
+final class IndexController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

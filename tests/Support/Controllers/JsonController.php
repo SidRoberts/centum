@@ -6,7 +6,7 @@ use Centum\Http\Response\JsonResponse;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class JsonController implements ControllerInterface
+final class JsonController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

@@ -6,7 +6,7 @@ use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Centum\Interfaces\Http\FormInterface;
 use Exception;
 
-class LoginWithCsrfForm implements FormInterface
+final class LoginWithCsrfForm implements FormInterface
 {
     public function __construct(
         ValidatorInterface $csrfValidator,

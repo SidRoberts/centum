@@ -84,4 +84,4 @@ Thrown in:
 Thrown in:
 
 - [`Centum\Http\RequestFactory::createFromGlobals()`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php#L17)
-- [`Centum\Http\RequestFactory::createFromArrays()`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php#L33)
+- [`Centum\Http\RequestFactory::createFromArrays()`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php#L37)

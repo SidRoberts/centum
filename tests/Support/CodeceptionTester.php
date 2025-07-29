@@ -25,7 +25,7 @@ use Codeception\Actor;
 /**
  * @SuppressWarnings(PHPMD)
  */
-class CodeceptionTester extends Actor
+final class CodeceptionTester extends Actor
 {
     use _generated\CodeceptionTesterActions;
 

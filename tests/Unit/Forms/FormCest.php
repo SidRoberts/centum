@@ -9,6 +9,7 @@ use Centum\Forms\Form;
 use Centum\Validator\NotEmpty;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
+use RuntimeException;
 use Tests\Support\UnitTester;
 
 /**
@@ -51,6 +52,11 @@ final class FormCest
                 function (string $value): string {
                     $value = trim($value);
                     $value = preg_replace("/\s+/", " ", $value);
+
+                    if ($value === null) {
+                        throw new RuntimeException("Unable to truncate whitespace.");
+                    }
+
                     $value = ucwords(mb_strtolower($value));
 
                     return $value;

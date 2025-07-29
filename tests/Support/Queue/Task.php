@@ -5,7 +5,7 @@ namespace Tests\Support\Queue;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 
-class Task implements TaskInterface
+final class Task implements TaskInterface
 {
     protected bool $wasExecuted = false;
 

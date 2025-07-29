@@ -6,7 +6,7 @@ use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 use InvalidArgumentException;
 
-class ExceptionController implements ControllerInterface
+final class ExceptionController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

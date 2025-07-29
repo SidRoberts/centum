@@ -3,7 +3,7 @@
 namespace Tests\Codeception;
 
 use Centum\Router\Router;
-use Mockery\MockInterface;
+use stdClass;
 use Tests\Support\CodeceptionTester;
 use Tests\Support\Container\Incrementer;
 
@@ -54,18 +54,18 @@ final class ContainerActionsCest
 
     public function testMockInContainer(CodeceptionTester $I): void
     {
-        $I->mockInContainer(Incrementer::class);
+        $I->mockInContainer(stdClass::class);
 
-        $incrementer = $I->grabFromContainer(Incrementer::class);
+        $object = $I->grabFromContainer(stdClass::class);
 
         $I->assertInstanceOf(
-            Incrementer::class,
-            $incrementer
+            stdClass::class,
+            $object
         );
 
         $I->assertInstanceOf(
-            MockInterface::class,
-            $incrementer
+            stdClass::class,
+            $object
         );
     }
 }

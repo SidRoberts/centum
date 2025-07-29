@@ -4,6 +4,7 @@ namespace Centum\Codeception\Actions;
 
 use PHPUnit\Framework\Assert;
 use ReflectionClass;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -23,7 +24,13 @@ trait UnitTestActions
             throw $throwable;
         }
 
-        return ob_get_clean();
+        $contents = ob_get_clean();
+
+        if ($contents === false) {
+            throw new RuntimeException("Failed to get output buffer contents.");
+        }
+
+        return $contents;
     }
 
     public function expectEcho(string $expected, callable $callable): void

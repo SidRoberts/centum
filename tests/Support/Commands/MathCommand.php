@@ -8,7 +8,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("math:add")]
-class MathCommand implements CommandInterface
+final class MathCommand implements CommandInterface
 {
     protected readonly int $a;
     protected readonly int $b;

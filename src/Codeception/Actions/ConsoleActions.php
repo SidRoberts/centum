@@ -13,6 +13,7 @@ use Centum\Interfaces\Console\TerminalInterface;
 use Centum\Interfaces\Container\ContainerInterface;
 use Codeception\Exception\ModuleException;
 use PHPUnit\Framework\Assert;
+use RuntimeException;
 
 /**
  * Console Actions
@@ -49,9 +50,18 @@ trait ConsoleActions
     {
         $arguments = new Arguments($argv);
 
-        $this->stdin  = fopen("php://memory", "r");
-        $this->stdout = fopen("php://memory", "w");
-        $this->stderr = fopen("php://memory", "w");
+        $stdin  = fopen("php://memory", "r");
+        $stdout = fopen("php://memory", "w");
+        $stderr = fopen("php://memory", "w");
+
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
+
+        $this->stdin    = $stdin;
+        $this->stdout   = $stdout;
+        $this->stderr   = $stderr;
+        $this->exitCode = null;
 
         return new Terminal($arguments, $this->stdin, $this->stdout, $this->stderr);
     }
@@ -66,7 +76,13 @@ trait ConsoleActions
 
         rewind($this->stdout);
 
-        return stream_get_contents($this->stdout);
+        $contents = stream_get_contents($this->stdout);
+
+        if ($contents === false) {
+            throw new RuntimeException("Failed to read from stdout stream.");
+        }
+
+        return $contents;
     }
 
     public function grabStderrContent(): string
@@ -77,7 +93,13 @@ trait ConsoleActions
 
         rewind($this->stderr);
 
-        return stream_get_contents($this->stderr);
+        $contents = stream_get_contents($this->stderr);
+
+        if ($contents === false) {
+            throw new RuntimeException("Failed to read from stderr stream.");
+        }
+
+        return $contents;
     }
 
 

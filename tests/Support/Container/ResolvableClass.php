@@ -2,7 +2,7 @@
 
 namespace Tests\Support\Container;
 
-class ResolvableClass
+final class ResolvableClass
 {
     public function __construct(
         protected readonly Incrementer $incrementer

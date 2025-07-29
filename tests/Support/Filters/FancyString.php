@@ -4,7 +4,7 @@ namespace Tests\Support\Filters;
 
 use Stringable;
 
-class FancyString implements Stringable
+final class FancyString implements Stringable
 {
     public function __construct(
         protected readonly string $value

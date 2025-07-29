@@ -4,7 +4,7 @@ namespace Tests\Support\Filters;
 
 use Centum\Interfaces\Filter\FilterInterface;
 
-class Doubler implements FilterInterface
+final class Doubler implements FilterInterface
 {
     public function filter(mixed $value): int
     {

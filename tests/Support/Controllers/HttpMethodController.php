@@ -6,7 +6,7 @@ use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class HttpMethodController implements ControllerInterface
+final class HttpMethodController implements ControllerInterface
 {
     public function get(): ResponseInterface
     {

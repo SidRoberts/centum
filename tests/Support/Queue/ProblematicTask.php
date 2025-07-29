@@ -6,7 +6,7 @@ use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Exception;
 
-class ProblematicTask implements TaskInterface
+final class ProblematicTask implements TaskInterface
 {
     public function execute(ContainerInterface $container): void
     {

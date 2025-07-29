@@ -4,11 +4,13 @@ namespace Centum\Filter\String;
 
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
+use RuntimeException;
 
 class SlugToCamelCase implements FilterInterface
 {
     /**
      * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function filter(mixed $value): string
     {
@@ -20,12 +22,18 @@ class SlugToCamelCase implements FilterInterface
             throw new InvalidArgumentException("Value is not a valid slug.");
         }
 
-        return preg_replace_callback(
+        $camelCase = preg_replace_callback(
             "/\-([a-z0-9])/",
             function ($matches): string {
                 return mb_strtoupper($matches[1]);
             },
             $value
         );
+
+        if ($camelCase === null) {
+            throw new RuntimeException("Failed to convert slug to camel-case.");
+        }
+
+        return $camelCase;
     }
 }

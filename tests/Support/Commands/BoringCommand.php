@@ -7,7 +7,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("boring")]
-class BoringCommand implements CommandInterface
+final class BoringCommand implements CommandInterface
 {
     public function execute(TerminalInterface $terminal): int
     {

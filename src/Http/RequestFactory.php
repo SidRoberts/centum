@@ -24,6 +24,10 @@ class RequestFactory
 
         $content = stream_get_contents($inputStream);
 
+        if ($content === false) {
+            throw new FailedToOpenInputStreamException();
+        }
+
         return $this->createFromArrays($_SERVER, $_GET, $_POST, $content);
     }
 
@@ -103,12 +107,17 @@ class RequestFactory
         $parameters = $browserKitRequest->getParameters();
 
         $requestUri = parse_url($uri, PHP_URL_PATH);
-        $method     = mb_strtoupper($browserKitRequest->getMethod());
-        $data       = new Data($parameters);
-        $headers    = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
-        $cookies    = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
-        $files      = $filesFactory->createFromBrowserKitRequest($browserKitRequest);
-        $content    = $browserKitRequest->getContent();
+
+        if (!is_string($requestUri)) {
+            throw new UriParseException();
+        }
+
+        $method  = mb_strtoupper($browserKitRequest->getMethod());
+        $data    = new Data($parameters);
+        $headers = $headersFactory->createFromBrowserKitRequest($browserKitRequest);
+        $cookies = $cookiesFactory->createFromBrowserKitRequest($browserKitRequest);
+        $files   = $filesFactory->createFromBrowserKitRequest($browserKitRequest);
+        $content = $browserKitRequest->getContent();
 
         $method = Method::from($method);
 

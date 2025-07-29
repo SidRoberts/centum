@@ -8,7 +8,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("exit-code")]
-class ExitCodeCommand implements CommandInterface
+final class ExitCodeCommand implements CommandInterface
 {
     protected readonly int $exitCode;
 

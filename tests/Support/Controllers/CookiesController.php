@@ -11,7 +11,7 @@ use Centum\Interfaces\Http\CookiesInterface;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class CookiesController implements ControllerInterface
+final class CookiesController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

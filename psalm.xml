@@ -6,6 +6,8 @@
     findUnusedCode="false"
     findUnusedVariablesAndParams="true"
     checkForThrowsDocblock="true"
+    strictBinaryOperands="true"
+    ensureOverrideAttribute="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -29,6 +31,11 @@
                 <directory name="tests"/>
             </errorLevel>
         </MissingThrowsDocblock>
+        <ClassMustBeFinal>
+            <errorLevel type="suppress">
+                <directory name="src"/>
+            </errorLevel>
+        </ClassMustBeFinal>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\MockeryPlugin\Plugin"/>

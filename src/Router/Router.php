@@ -24,6 +24,7 @@ use Centum\Router\Replacements\AnyReplacement;
 use Centum\Router\Replacements\CharacterReplacement;
 use Centum\Router\Replacements\IntegerReplacement;
 use Centum\Router\Replacements\SlugReplacement;
+use RuntimeException;
 use Throwable;
 
 class Router implements RouterInterface
@@ -123,6 +124,7 @@ class Router implements RouterInterface
 
     /**
      * @throws RouteMismatchException
+     * @throws RuntimeException
      */
     protected function matchRouteToRequest(RequestInterface $request, RouteInterface $route): ResponseInterface
     {
@@ -152,6 +154,10 @@ class Router implements RouterInterface
             },
             $route->getUri()
         );
+
+        if ($pattern === null) {
+            throw new RuntimeException("Failed to create regex pattern from URI.");
+        }
 
         $pattern = "#^" . $pattern . "$#u";
 

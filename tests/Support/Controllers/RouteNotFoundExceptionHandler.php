@@ -11,7 +11,7 @@ use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Exception\UnsuitableExceptionHandlerException;
 use Throwable;
 
-class RouteNotFoundExceptionHandler implements ExceptionHandlerInterface
+final class RouteNotFoundExceptionHandler implements ExceptionHandlerInterface
 {
     public function handle(RequestInterface $request, Throwable $throwable): ResponseInterface
     {

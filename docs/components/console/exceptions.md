@@ -19,8 +19,8 @@ nav_order: 101
 
 Thrown in:
 
-- [`Centum\App\ConsoleBootstrap::boot()`](https://github.com/SidRoberts/centum/blob/development/src/App/ConsoleBootstrap.php#L22)
-- [`Centum\App\ConsoleBootstrap::getTerminal()`](https://github.com/SidRoberts/centum/blob/development/src/App/ConsoleBootstrap.php#L34)
+- [`Centum\App\ConsoleBootstrap::boot()`](https://github.com/SidRoberts/centum/blob/development/src/App/ConsoleBootstrap.php#L24)
+- [`Centum\App\ConsoleBootstrap::getTerminal()`](https://github.com/SidRoberts/centum/blob/development/src/App/ConsoleBootstrap.php#L37)
 
 
 

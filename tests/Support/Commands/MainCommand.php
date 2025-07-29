@@ -7,7 +7,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("")]
-class MainCommand implements CommandInterface
+final class MainCommand implements CommandInterface
 {
     public function execute(TerminalInterface $terminal): int
     {

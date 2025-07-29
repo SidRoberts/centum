@@ -8,7 +8,7 @@ use Centum\Interfaces\Console\TerminalInterface;
 use Exception;
 
 #[CommandMetadata("problematic")]
-class ProblematicCommand implements CommandInterface
+final class ProblematicCommand implements CommandInterface
 {
     public function execute(TerminalInterface $terminal): int
     {

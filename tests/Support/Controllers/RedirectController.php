@@ -7,7 +7,7 @@ use Centum\Http\Response\RedirectResponse;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class RedirectController implements ControllerInterface
+final class RedirectController implements ControllerInterface
 {
     public function redirect1(): ResponseInterface
     {

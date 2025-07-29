@@ -8,6 +8,7 @@ use Centum\Console\Terminal\Arguments;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Mockery;
 use Mockery\MockInterface;
+use RuntimeException;
 use Tests\Support\UnitTester;
 
 /**
@@ -27,6 +28,10 @@ final class ConsoleBootstrapCest
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
+
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
 
         $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 

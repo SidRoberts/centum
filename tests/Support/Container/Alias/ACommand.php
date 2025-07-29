@@ -2,7 +2,7 @@
 
 namespace Tests\Support\Container\Alias;
 
-class ACommand implements CommandInterface
+final class ACommand implements CommandInterface
 {
     public function execute(): string
     {

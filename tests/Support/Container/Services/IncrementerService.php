@@ -8,7 +8,7 @@ use Tests\Support\Container\Incrementer;
 /**
  * @implements ServiceInterface<Incrementer>
  */
-class IncrementerService implements ServiceInterface
+final class IncrementerService implements ServiceInterface
 {
     public function build(): Incrementer
     {

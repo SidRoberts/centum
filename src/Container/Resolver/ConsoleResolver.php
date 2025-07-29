@@ -7,6 +7,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
 use Centum\Interfaces\Container\ParameterInterface;
 use Centum\Interfaces\Container\ResolverInterface;
+use RuntimeException;
 
 class ConsoleResolver implements ResolverInterface
 {
@@ -18,6 +19,7 @@ class ConsoleResolver implements ResolverInterface
 
 
     /**
+     * @throws RuntimeException
      * @throws UnresolvableParameterException
      */
     public function resolve(ParameterInterface $parameter): mixed
@@ -54,14 +56,23 @@ class ConsoleResolver implements ResolverInterface
         return $this->arguments->getParameter($name);
     }
 
-    protected function camelCaseToSlug(string $slug): string
+    /**
+     * @throws RuntimeException
+     */
+    protected function camelCaseToSlug(string $camelCase): string
     {
-        return preg_replace_callback(
+        $slug = preg_replace_callback(
             "/([A-Z])/",
             function ($matches): string {
                 return "-" . mb_strtolower($matches[1]);
             },
-            lcfirst($slug)
+            lcfirst($camelCase)
         );
+
+        if ($slug === null) {
+            throw new RuntimeException("Failed to convert camel-case to slug.");
+        }
+
+        return $slug;
     }
 }

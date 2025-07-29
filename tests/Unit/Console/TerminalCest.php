@@ -4,6 +4,7 @@ namespace Tests\Unit\Console;
 
 use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
+use RuntimeException;
 use Tests\Support\UnitTester;
 
 /**
@@ -24,6 +25,10 @@ final class TerminalCest
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
+
         return new Terminal($arguments, $stdin, $stdout, $stderr);
     }
 
@@ -36,6 +41,10 @@ final class TerminalCest
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
+
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
 
         $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
@@ -53,6 +62,10 @@ final class TerminalCest
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
+
         $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
         $I->assertSame(
@@ -69,6 +82,10 @@ final class TerminalCest
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
 
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
+
         $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 
         $I->assertSame(
@@ -84,6 +101,10 @@ final class TerminalCest
         $stdin  = fopen("php://memory", "r");
         $stdout = fopen("php://memory", "w");
         $stderr = fopen("php://memory", "w");
+
+        if ($stdin === false || $stdout === false || $stderr === false) {
+            throw new RuntimeException("Failed to open streams.");
+        }
 
         $terminal = new Terminal($arguments, $stdin, $stdout, $stderr);
 

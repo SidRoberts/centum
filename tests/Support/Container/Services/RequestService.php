@@ -9,7 +9,7 @@ use Centum\Interfaces\Http\RequestInterface;
 /**
  * @implements ServiceInterface<RequestInterface>
  */
-class RequestService implements ServiceInterface
+final class RequestService implements ServiceInterface
 {
     public function __construct(
         protected readonly RequestFactory $requestFactory

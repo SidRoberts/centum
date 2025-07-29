@@ -7,7 +7,7 @@ use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
 
 #[CommandMetadata("hello", "Say hello to the user.")]
-class HelloCommand implements CommandInterface
+final class HelloCommand implements CommandInterface
 {
     public function __construct(
         protected readonly string $name,

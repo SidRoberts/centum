@@ -9,7 +9,7 @@ use Centum\Http\Status;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class HeadersController implements ControllerInterface
+final class HeadersController implements ControllerInterface
 {
     public function index(): ResponseInterface
     {

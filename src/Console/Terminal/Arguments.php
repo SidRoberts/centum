@@ -3,10 +3,15 @@
 namespace Centum\Console\Terminal;
 
 use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
+use InvalidArgumentException;
 
 class Arguments implements ArgumentsInterface
 {
+    /**
+     * @var non-empty-string
+     */
     protected readonly string $filename;
+
     protected readonly string $commandName;
 
     /**
@@ -18,11 +23,21 @@ class Arguments implements ArgumentsInterface
 
     /**
      * @param array<string> $arguments
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(
         protected readonly array $arguments
     ) {
-        $this->filename = array_shift($arguments);
+        $filename = array_shift($arguments);
+
+        if ($filename === null || $filename === "") {
+            throw new InvalidArgumentException(
+                "Invalid filename."
+            );
+        }
+
+        $this->filename = $filename;
 
         $this->commandName = array_shift($arguments) ?? "";
 

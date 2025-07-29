@@ -9,7 +9,7 @@ use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ExceptionHandlerInterface;
 use Throwable;
 
-class ExceptionHandler implements ExceptionHandlerInterface
+final class ExceptionHandler implements ExceptionHandlerInterface
 {
     public function handle(RequestInterface $request, Throwable $throwable): ResponseInterface
     {

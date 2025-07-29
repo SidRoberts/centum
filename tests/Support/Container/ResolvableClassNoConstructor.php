@@ -2,6 +2,6 @@
 
 namespace Tests\Support\Container;
 
-class ResolvableClassNoConstructor
+final class ResolvableClassNoConstructor
 {
 }

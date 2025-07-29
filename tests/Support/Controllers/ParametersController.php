@@ -8,7 +8,7 @@ use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class ParametersController implements ControllerInterface
+final class ParametersController implements ControllerInterface
 {
     public function regularParameter(string $username): ResponseInterface
     {

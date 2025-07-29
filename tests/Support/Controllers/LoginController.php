@@ -6,7 +6,7 @@ use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class LoginController implements ControllerInterface
+final class LoginController implements ControllerInterface
 {
     public function form(): ResponseInterface
     {

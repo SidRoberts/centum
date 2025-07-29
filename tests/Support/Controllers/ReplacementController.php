@@ -6,7 +6,7 @@ use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class ReplacementController implements ControllerInterface
+final class ReplacementController implements ControllerInterface
 {
     public function integer(int $i): ResponseInterface
     {

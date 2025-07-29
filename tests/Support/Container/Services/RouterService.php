@@ -9,7 +9,7 @@ use Centum\Interfaces\Router\RouterInterface;
 /**
  * @implements ServiceInterface<RouterInterface>
  */
-class RouterService implements ServiceInterface
+final class RouterService implements ServiceInterface
 {
     public function __construct(
         protected readonly ContainerInterface $container

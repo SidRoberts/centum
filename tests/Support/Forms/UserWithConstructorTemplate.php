@@ -9,7 +9,7 @@ use Centum\Forms\FormTemplate;
 use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Validator\NotEmpty;
 
-class UserWithConstructorTemplate extends FormTemplate
+final class UserWithConstructorTemplate extends FormTemplate
 {
     public function __construct(
         protected readonly ContainerInterface $container
