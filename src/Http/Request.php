@@ -20,10 +20,10 @@ class Request implements RequestInterface
     public function __construct(
         protected readonly string $uri,
         protected readonly Method $method = Method::GET,
-        DataInterface $data = null,
-        HeadersInterface $headers = null,
-        CookiesInterface $cookies = null,
-        FilesInterface $files = null,
+        ?DataInterface $data = null,
+        ?HeadersInterface $headers = null,
+        ?CookiesInterface $cookies = null,
+        ?FilesInterface $files = null,
         protected readonly ?string $content = null
     ) {
         $this->data    = $data    ?? new Data([]);

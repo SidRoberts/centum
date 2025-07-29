@@ -32,7 +32,7 @@ trait CookieActions
     /**
      * @param non-empty-string $name
      */
-    public function grabCookieValue(string $name): string|null
+    public function grabCookieValue(string $name): ?string
     {
         $cookies = $this->grabCookies();
 

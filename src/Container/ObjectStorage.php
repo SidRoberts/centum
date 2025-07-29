@@ -25,7 +25,7 @@ class ObjectStorage implements ObjectStorageInterface
      *
      * @return T|null
      */
-    public function get(string $class): object|null
+    public function get(string $class): ?object
     {
         return $this->objects[$class] ?? null;
     }

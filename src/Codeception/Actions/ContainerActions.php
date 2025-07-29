@@ -19,7 +19,7 @@ trait ContainerActions
      *
      * @return T
      */
-    abstract public function mock(string $class, callable $callable = null): object;
+    abstract public function mock(string $class, ?callable $callable = null): object;
 
 
 
@@ -80,7 +80,7 @@ trait ContainerActions
      *
      * @return T
      */
-    public function mockInContainer(string $class, callable $callable = null): object
+    public function mockInContainer(string $class, ?callable $callable = null): object
     {
         $mock = $this->mock($class, $callable);
 

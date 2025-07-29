@@ -81,7 +81,7 @@ final class ToArrayCest
 
     public function testToArrayReturnsAnUnexpectedValue(UnitTester $I): void
     {
-        $input = new class() {
+        $input = new class {
             public function toArray(): string
             {
                 return "you're not expecting this.";

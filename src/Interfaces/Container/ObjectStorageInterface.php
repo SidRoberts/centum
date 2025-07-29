@@ -16,7 +16,7 @@ interface ObjectStorageInterface
      *
      * @return T|null
      */
-    public function get(string $class): object|null;
+    public function get(string $class): ?object;
 
     /**
      * @template T of object

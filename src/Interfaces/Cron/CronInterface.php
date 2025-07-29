@@ -11,7 +11,7 @@ interface CronInterface
     /**
      * @return array<JobInterface>
      */
-    public function getDueJobs(DateTimeInterface $datetime = null): array;
+    public function getDueJobs(?DateTimeInterface $datetime = null): array;
 
     /**
      * @return array<JobInterface>

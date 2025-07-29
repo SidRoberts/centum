@@ -23,7 +23,7 @@ class Cron implements CronInterface
         $this->jobs[] = $job;
     }
 
-    public function getDueJobs(DateTimeInterface $datetime = null): array
+    public function getDueJobs(?DateTimeInterface $datetime = null): array
     {
         $jobs = array_filter(
             $this->jobs,
@@ -45,7 +45,7 @@ class Cron implements CronInterface
     /**
      * @throws InvalidArgumentException
      */
-    protected function isDue(JobInterface $job, DateTimeInterface $datetime = null): bool
+    protected function isDue(JobInterface $job, ?DateTimeInterface $datetime = null): bool
     {
         $cronExpression = new CronExpression(
             $job->getExpression()

@@ -42,7 +42,7 @@ class Page implements PageInterface
 
 
 
-    public function getPreviousPageNumber(): int|null
+    public function getPreviousPageNumber(): ?int
     {
         $previousPageNumber = $this->pageNumber - 1;
 
@@ -53,7 +53,7 @@ class Page implements PageInterface
         return $previousPageNumber;
     }
 
-    public function getNextPageNumber(): int|null
+    public function getNextPageNumber(): ?int
     {
         $nextPageNumber = $this->pageNumber + 1;
 

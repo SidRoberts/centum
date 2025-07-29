@@ -16,8 +16,8 @@ class Response implements ResponseInterface
     public function __construct(
         protected readonly string $content,
         protected readonly Status $status = Status::OK,
-        HeadersInterface $headers = null,
-        CookiesInterface $cookies = null
+        ?HeadersInterface $headers = null,
+        ?CookiesInterface $cookies = null
     ) {
         $this->headers = $headers ?? new Headers();
         $this->cookies = $cookies ?? new Cookies();

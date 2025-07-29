@@ -131,9 +131,9 @@ class Module extends CodeceptionModule
      *
      * @return T
      */
-    public function mock(string $class, callable $callable = null): object
+    public function mock(string $class, ?callable $callable = null): object
     {
-        if (!$callable) {
+        if ($callable === null) {
             /** @psalm-suppress UnusedClosureParam */
             $callable = function (MockInterface $mock): void {};
         }

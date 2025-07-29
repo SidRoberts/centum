@@ -65,7 +65,7 @@ class FileResponse extends Response
             $fileName
         );
 
-        if (!$fileName) {
+        if ($fileName === null || $fileName === "") {
             throw new Exception();
         }
 

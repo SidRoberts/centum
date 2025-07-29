@@ -12,7 +12,7 @@ use UnexpectedValueException;
 
 class BeanstalkdQueue implements QueueInterface
 {
-    public const TUBE = "centum-tasks";
+    public const string TUBE = "centum-tasks";
 
 
 

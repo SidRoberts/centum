@@ -50,7 +50,7 @@ trait RouterActions
     /**
      * Make a new group of Routes with an optional middleware.
      */
-    public function makeRouterGroup(MiddlewareInterface $middleware = null): GroupInterface
+    public function makeRouterGroup(?MiddlewareInterface $middleware = null): GroupInterface
     {
         $router = $this->grabRouter();
 
@@ -159,7 +159,7 @@ trait RouterActions
 
     public function grabCurrentUri(): string
     {
-        if (!$this->currentURI) {
+        if ($this->currentURI === null) {
             throw new ModuleException($this, "Page not loaded.");
         }
 

@@ -28,7 +28,7 @@ final class GlobalSessionCest
          * `start()` and `isActive()` rely on native PHP functions that can't be
          * reliably tested so they have to be replaced in the testing process.
          */
-        return new class() extends GlobalSession {
+        return new class extends GlobalSession {
             protected bool $startState = false;
 
             public function start(): bool

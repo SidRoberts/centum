@@ -16,7 +16,7 @@ interface ServiceStorageInterface
      *
      * @return class-string<ServiceInterface<T>>|null
      */
-    public function get(string $class): string|null;
+    public function get(string $class): ?string;
 
     /**
      * @template T of object

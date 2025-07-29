@@ -27,10 +27,10 @@ class Container implements ContainerInterface
 
 
     public function __construct(
-        AliasManagerInterface $aliasManager = null,
-        ResolverGroupInterface $resolverGroup = null,
-        ObjectStorageInterface $objectStorage = null,
-        ServiceStorageInterface $serviceStorage = null
+        ?AliasManagerInterface $aliasManager = null,
+        ?ResolverGroupInterface $resolverGroup = null,
+        ?ObjectStorageInterface $objectStorage = null,
+        ?ServiceStorageInterface $serviceStorage = null
     ) {
         $this->aliasManager   = $aliasManager   ?? new AliasManager();
         $this->resolverGroup  = $resolverGroup  ?? new ResolverGroup();

@@ -26,7 +26,7 @@ class ServiceStorage implements ServiceStorageInterface
      *
      * @return class-string<ServiceInterface<T>>|null
      */
-    public function get(string $class): string|null
+    public function get(string $class): ?string
     {
         /** @var class-string<ServiceInterface<T>>|null */
         return $this->services[$class] ?? null;

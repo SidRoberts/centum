@@ -73,7 +73,14 @@ $config->setRules(
         "strict_comparison"           => true,
         "strict_param"                => true,
         "ternary_to_null_coalescing"  => true,
-        "yoda_style"                  => false,
+
+        "trailing_comma_in_multiline" => [
+            "elements" => [
+                "arrays",
+            ],
+        ],
+
+        "yoda_style" => false,
     ]
 );
 

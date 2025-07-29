@@ -1,6 +1,8 @@
 <?php
 
 use Centum\Container\Container;
+use Centum\Http\Session\ArraySession;
+use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Tests\Support\Container\Services\RouterService;
 
@@ -11,6 +13,8 @@ use Tests\Support\Container\Services\RouterService;
 $container = new Container();
 
 $serviceStorage = $container->getServiceStorage();
+
+$aliasManager = $container->getAliasManager();
 
 
 
@@ -28,6 +32,10 @@ $serviceStorage->set(RouterInterface::class, RouterService::class);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                  SERVICES                                  //
+////////////////////////////////////////////////////////////////////////////////
+
+$aliasManager->add(SessionInterface::class, ArraySession::class);
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // ...

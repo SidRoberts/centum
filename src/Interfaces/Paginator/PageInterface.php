@@ -21,12 +21,12 @@ interface PageInterface
     /**
      * @return positive-int|null
      */
-    public function getPreviousPageNumber(): int|null;
+    public function getPreviousPageNumber(): ?int;
 
     /**
      * @return positive-int|null
      */
-    public function getNextPageNumber(): int|null;
+    public function getNextPageNumber(): ?int;
 
 
 

@@ -32,7 +32,7 @@ trait HeaderActions
     /**
      * @param non-empty-string $name
      */
-    public function grabHeaderValue(string $name): string|null
+    public function grabHeaderValue(string $name): ?string
     {
         $headers = $this->grabHeaders();
 

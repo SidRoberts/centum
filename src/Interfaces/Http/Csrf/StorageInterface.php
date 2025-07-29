@@ -4,7 +4,7 @@ namespace Centum\Interfaces\Http\Csrf;
 
 interface StorageInterface
 {
-    public const TOKEN = "centum-csrf";
+    public const string TOKEN = "centum-csrf";
 
 
 

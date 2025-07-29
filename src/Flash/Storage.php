@@ -8,7 +8,7 @@ use Centum\Interfaces\Http\SessionInterface;
 
 class Storage implements StorageInterface
 {
-    public const SESSION_ID = "centum-flash";
+    public const string SESSION_ID = "centum-flash";
 
 
 

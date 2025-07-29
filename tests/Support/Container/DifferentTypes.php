@@ -9,7 +9,7 @@ class DifferentTypes
         return $name;
     }
 
-    public function resolvable2(string $name = null): ?string
+    public function resolvable2(?string $name = null): ?string
     {
         return $name;
     }

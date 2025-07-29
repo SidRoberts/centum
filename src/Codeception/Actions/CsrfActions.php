@@ -28,7 +28,7 @@ trait CsrfActions
      *
      * @return T
      */
-    abstract public function mockInContainer(string $class, callable $callable = null): object;
+    abstract public function mockInContainer(string $class, ?callable $callable = null): object;
 
 
 

@@ -86,7 +86,7 @@ class File implements FileInterface
 
         $location = $this->getLocation();
 
-        if (!$location) {
+        if ($location === null || $location === "") {
             throw new Exception("No known location.");
         }
     }

@@ -20,13 +20,13 @@ trait ValidatorActions
     /**
      * @param list<string>|null $expectedViolations
      */
-    public function seeValidatorFails(ValidatorInterface $validator, mixed $value, array $expectedViolations = null): void
+    public function seeValidatorFails(ValidatorInterface $validator, mixed $value, ?array $expectedViolations = null): void
     {
         $violations = $validator->validate($value);
 
         Assert::assertNotCount(0, $violations);
 
-        if ($expectedViolations) {
+        if ($expectedViolations !== null) {
             Assert::assertEquals(
                 $expectedViolations,
                 $violations

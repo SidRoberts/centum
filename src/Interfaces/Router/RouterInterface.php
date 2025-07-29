@@ -10,7 +10,7 @@ interface RouterInterface
     /**
      * Make a new group of Routes with an optional middleware.
      */
-    public function group(MiddlewareInterface $middleware = null): GroupInterface;
+    public function group(?MiddlewareInterface $middleware = null): GroupInterface;
 
 
 

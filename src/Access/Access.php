@@ -8,8 +8,8 @@ use Centum\Interfaces\Access\ActivityInterface;
 
 class Access implements AccessInterface
 {
-    public const ALLOW = true;
-    public const DENY  = false;
+    public const bool ALLOW = true;
+    public const bool DENY  = false;
 
 
 

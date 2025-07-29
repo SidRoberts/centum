@@ -58,7 +58,7 @@ class Router implements RouterInterface
 
 
 
-    public function group(MiddlewareInterface $middleware = null): GroupInterface
+    public function group(?MiddlewareInterface $middleware = null): GroupInterface
     {
         if (!$middleware) {
             $middleware = new TrueMiddleware();

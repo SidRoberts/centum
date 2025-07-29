@@ -36,9 +36,9 @@ trait HtmlActions
     /**
      * @param array<non-empty-string, mixed> $data
      */
-    public function submitForm(string $selector, array $data = [], FilesInterface $files = null): void
+    public function submitForm(string $selector, array $data = [], ?FilesInterface $files = null): void
     {
-        if (!$this->currentURI) {
+        if ($this->currentURI === null) {
             throw new ModuleException($this, "Page not loaded.");
         }
 
@@ -171,7 +171,7 @@ trait HtmlActions
         );
     }
 
-    public function grabElement(string $selector): Crawler|null
+    public function grabElement(string $selector): ?Crawler
     {
         $crawler = $this->getCrawler();
 
@@ -190,7 +190,7 @@ trait HtmlActions
 
 
 
-    protected function getCrawler(): Crawler|null
+    protected function getCrawler(): ?Crawler
     {
         $content = $this->grabResponseContent();
 

@@ -15,7 +15,7 @@ final class TimeZoneCest
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {
-        $validator = new Timezone();
+        $validator = new TimeZone();
 
         $I->seeValidatorPasses(
             $validator,
@@ -37,7 +37,7 @@ final class TimeZoneCest
     #[DataProvider("providerBad")]
     public function testBad(UnitTester $I, Example $example): void
     {
-        $validator = new Timezone();
+        $validator = new TimeZone();
 
         $I->seeValidatorFails(
             $validator,
@@ -61,7 +61,7 @@ final class TimeZoneCest
     #[DataProvider("providerNonString")]
     public function testNonString(UnitTester $I, Example $example): void
     {
-        $validator = new Timezone();
+        $validator = new TimeZone();
 
         $I->seeValidatorFails(
             $validator,
