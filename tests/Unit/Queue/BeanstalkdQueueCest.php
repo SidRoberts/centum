@@ -7,8 +7,10 @@ use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\BeanstalkdQueue;
 use Centum\Queue\TaskRunner;
 use Mockery\MockInterface;
-use Pheanstalk\Contract\PheanstalkInterface;
-use Pheanstalk\Job;
+use Pheanstalk\Contract\PheanstalkPublisherInterface;
+use Pheanstalk\Contract\PheanstalkSubscriberInterface;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobId;
 use stdClass;
 use Tests\Support\Queue\DoNothingTask;
 use Tests\Support\Queue\ProblematicTask;
@@ -29,14 +31,17 @@ final class BeanstalkdQueueCest
 
 
 
-        $job = new Job(1, $serializedTask);
+        $job = new Job(
+            new JobId(1),
+            $serializedTask
+        );
 
 
 
         $taskRunner = $I->mock(TaskRunnerInterface::class);
 
-        $pheanstalk = $I->mock(
-            PheanstalkInterface::class,
+        $pheanstalkPublisher = $I->mock(
+            PheanstalkPublisherInterface::class,
             function (MockInterface $mock) use ($serializedTask, $job): void {
                 $mock->shouldReceive("useTube")
                     ->with(BeanstalkdQueue::TUBE);
@@ -44,17 +49,19 @@ final class BeanstalkdQueueCest
                 $mock->shouldReceive("put")
                     ->with(
                         $serializedTask,
-                        PheanstalkInterface::DEFAULT_PRIORITY,
-                        PheanstalkInterface::DEFAULT_DELAY,
+                        PheanstalkPublisherInterface::DEFAULT_PRIORITY,
+                        PheanstalkPublisherInterface::DEFAULT_DELAY,
                         600
                     )
                     ->andReturn($job);
             }
         );
 
+        $pheanstalkSubscriber = $I->mock(PheanstalkSubscriberInterface::class);
 
 
-        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
+
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalkPublisher, $pheanstalkSubscriber);
 
         $queue->publish($task);
     }
@@ -65,16 +72,15 @@ final class BeanstalkdQueueCest
     {
         $task = new DoNothingTask();
 
-        $job = $I->mock(
-            Job::class,
-            function (MockInterface $mock) use ($task): void {
-                $mock->shouldReceive("getData")
-                    ->andReturn(serialize($task));
-            }
+        $job = new Job(
+            new JobId(1),
+            serialize($task)
         );
 
-        $pheanstalk = $I->mock(
-            PheanstalkInterface::class,
+        $pheanstalkPublisher = $I->mock(PheanstalkPublisherInterface::class);
+
+        $pheanstalkSubscriber = $I->mock(
+            PheanstalkSubscriberInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
                     ->with(BeanstalkdQueue::TUBE);
@@ -94,7 +100,7 @@ final class BeanstalkdQueueCest
 
         $taskRunner = new TaskRunner($container);
 
-        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalkPublisher, $pheanstalkSubscriber);
 
         $I->assertEquals(
             $task,
@@ -106,16 +112,15 @@ final class BeanstalkdQueueCest
     {
         $task = new stdClass();
 
-        $job = $I->mock(
-            Job::class,
-            function (MockInterface $mock) use ($task): void {
-                $mock->shouldReceive("getData")
-                    ->andReturn(serialize($task));
-            }
+        $job = new Job(
+            new JobId(1),
+            serialize($task)
         );
 
-        $pheanstalk = $I->mock(
-            PheanstalkInterface::class,
+        $pheanstalkPublisher = $I->mock(PheanstalkPublisherInterface::class);
+
+        $pheanstalkSubscriber = $I->mock(
+            PheanstalkSubscriberInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
                     ->with(BeanstalkdQueue::TUBE);
@@ -135,7 +140,7 @@ final class BeanstalkdQueueCest
 
 
 
-        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalkPublisher, $pheanstalkSubscriber);
 
         $I->expectThrowable(
             new UnexpectedValueException("Object from centum-tasks tube is not a Centum\\Interfaces\\Queue\\TaskInterface object."),
@@ -151,16 +156,15 @@ final class BeanstalkdQueueCest
     {
         $task = new ProblematicTask();
 
-        $job = $I->mock(
-            Job::class,
-            function (MockInterface $mock) use ($task): void {
-                $mock->shouldReceive("getData")
-                    ->andReturn(serialize($task));
-            }
+        $job = new Job(
+            new JobId(1),
+            serialize($task)
         );
 
-        $pheanstalk = $I->mock(
-            PheanstalkInterface::class,
+        $pheanstalkPublisher = $I->mock(PheanstalkPublisherInterface::class);
+
+        $pheanstalkSubscriber = $I->mock(
+            PheanstalkSubscriberInterface::class,
             function (MockInterface $mock) use ($job): void {
                 $mock->shouldReceive("watch")
                     ->with(BeanstalkdQueue::TUBE);
@@ -180,7 +184,7 @@ final class BeanstalkdQueueCest
 
         $taskRunner = new TaskRunner($container);
 
-        $queue = new BeanstalkdQueue($taskRunner, $pheanstalk);
+        $queue = new BeanstalkdQueue($taskRunner, $pheanstalkPublisher, $pheanstalkSubscriber);
 
         $I->expectThrowable(
             Throwable::class,

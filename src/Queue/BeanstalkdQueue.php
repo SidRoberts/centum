@@ -5,8 +5,9 @@ namespace Centum\Queue;
 use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
-use Pheanstalk\Contract\PheanstalkInterface;
-use Pheanstalk\Job;
+use Pheanstalk\Contract\PheanstalkPublisherInterface;
+use Pheanstalk\Contract\PheanstalkSubscriberInterface;
+use Pheanstalk\Values\TubeName;
 use Throwable;
 use UnexpectedValueException;
 
@@ -18,7 +19,8 @@ class BeanstalkdQueue implements QueueInterface
 
     public function __construct(
         protected readonly TaskRunnerInterface $taskRunner,
-        protected readonly PheanstalkInterface $pheanstalk
+        protected readonly PheanstalkPublisherInterface $pheanstalkPublisher,
+        protected readonly PheanstalkSubscriberInterface $pheanstalkSubscriber
     ) {
     }
 
@@ -26,12 +28,14 @@ class BeanstalkdQueue implements QueueInterface
 
     public function publish(TaskInterface $task): void
     {
-        $this->pheanstalk->useTube(self::TUBE);
+        $this->pheanstalkPublisher->useTube(
+            new TubeName(self::TUBE)
+        );
 
-        $this->pheanstalk->put(
+        $this->pheanstalkPublisher->put(
             serialize($task),
-            PheanstalkInterface::DEFAULT_PRIORITY,
-            PheanstalkInterface::DEFAULT_DELAY,
+            PheanstalkPublisherInterface::DEFAULT_PRIORITY,
+            PheanstalkPublisherInterface::DEFAULT_DELAY,
             600 // 10 minutes
         );
     }
@@ -42,15 +46,11 @@ class BeanstalkdQueue implements QueueInterface
      */
     public function consume(): TaskInterface
     {
-        $this->pheanstalk->watch(self::TUBE);
+        $this->pheanstalkSubscriber->watch(
+            new TubeName(self::TUBE)
+        );
 
-        /**
-         * PheanstalkInterface::reserve() returns ?Job instead of just Job.
-         * This is fixed in Pheanstalk v5 - not yet released.
-         *
-         * @var Job
-         */
-        $job = $this->pheanstalk->reserve();
+        $job = $this->pheanstalkSubscriber->reserve();
 
         $task = unserialize(
             $job->getData()
@@ -69,9 +69,9 @@ class BeanstalkdQueue implements QueueInterface
         try {
             $this->taskRunner->execute($task);
 
-            $this->pheanstalk->delete($job);
+            $this->pheanstalkSubscriber->delete($job);
         } catch (Throwable $e) {
-            $this->pheanstalk->bury($job);
+            $this->pheanstalkSubscriber->bury($job);
 
             throw $e;
         }

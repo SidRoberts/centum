@@ -17,7 +17,8 @@ Internally it uses [Pheanstalk](https://github.com/pheanstalk/pheanstalk) to int
 ```php
 Centum\Queue\BeanstalkdQueue(
     Centum\Interfaces\Queue\TaskRunnerInterface $taskRunner,
-    Pheanstalk\Contract\PheanstalkInterface $pheanstalk
+    Pheanstalk\Contract\PheanstalkPublisherInterface $pheanstalkPublisher,
+    Pheanstalk\Contract\PheanstalkSubscriberInterface $pheanstalkSubscriber
 );
 ```
 
