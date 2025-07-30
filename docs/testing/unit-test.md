@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Unit Tests Actions
+title: Unit Test Actions
 parent: Testing
-permalink: testing/unit-tests
+permalink: testing/unit-test
 ---
 
 
 
-# Unit Tests Actions
+# Unit Test Actions
 
 [`Centum\Codeception\Actions\UnitTestActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/UnitTestActions.php)
 
