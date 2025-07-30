@@ -43,7 +43,7 @@ final class IsCallableCest
         $I->seeValidatorFails(
             $validator,
             $example[0],
-            ["Value is not a callable."]
+            ["Value is not callable."]
         );
     }
 

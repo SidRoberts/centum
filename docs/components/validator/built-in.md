@@ -28,13 +28,13 @@ Checks if a value is an alphanumeric string.
 
 ## [`Centum\Validator\Base64`](https://github.com/SidRoberts/centum/blob/development/src/Validator/Base64.php)
 
-Checks if a value is is a valid base64 string.
+Checks if a value is a valid base64 string.
 
 
 
 ## [`Centum\Validator\Callback`](https://github.com/SidRoberts/centum/blob/development/src/Validator/Callback.php)
 
-Checks if a value against a callback function. Allows custom Validators to be
+Checks a value against a callback function. Allows custom Validators to be
 wrapped within a callable.
 
 
@@ -80,7 +80,7 @@ Checks if a value is not in an array of values.
 
 ## [`Centum\Validator\RegularExpression`](https://github.com/SidRoberts/centum/blob/development/src/Validator/RegularExpression.php)
 
-Checks if a value is matches a regular expression.
+Checks if a value matches a regular expression.
 
 
 

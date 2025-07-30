@@ -5,7 +5,7 @@ namespace Centum\Validator;
 use Centum\Interfaces\Validator\ValidatorInterface;
 
 /**
- * Checks if a value is is a valid base64 string.
+ * Checks if a value is a valid base64 string.
  */
 class Base64 implements ValidatorInterface
 {

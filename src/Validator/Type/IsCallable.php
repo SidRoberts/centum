@@ -13,7 +13,7 @@ class IsCallable implements ValidatorInterface
     {
         if (!is_callable($value)) {
             return [
-                "Value is not a callable.",
+                "Value is not callable.",
             ];
         }
 

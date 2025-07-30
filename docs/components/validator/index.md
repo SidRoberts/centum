@@ -15,7 +15,7 @@ Validators are used to validate data and provide useful error messages explainin
 {: .note }
 Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php).
 
-Validators only require one public method:
+Validators require one public method:
 
 - `validate(mixed $value): list<non-empty-string>`
 

@@ -11,17 +11,21 @@ nav_order: 1
 
 # Custom Validators
 
+Custom Validators can be used anywhere you need to validate data, such as in Forms or Controllers.
+
 {: .note }
 Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Validator/ValidatorInterface.php).
 
-Validators only require the following public methods:
+Validators require the following public method:
 
 - `validate(mixed $value): list<non-empty-string>`
 
 The `validate()` method returns an array of violations as strings.
-An empty array has no violations meaning that the value is valid.
+An empty array means the value is valid.
 
-As an example, a Validator can be made to check the a value is not empty:
+
+
+## Example: Not Empty Validator
 
 ```php
 namespace App\Validators;
@@ -43,9 +47,11 @@ class NotEmptyValidator implements ValidatorInterface
 }
 ```
 
-(see also [`Centum\Validator\NotEmpty`](https://github.com/SidRoberts/centum/tree/development/src/Validator/NotEmpty.php)).
+See also [`Centum\Validator\NotEmpty`](https://github.com/SidRoberts/centum/tree/development/src/Validator/NotEmpty.php).
 
-More complex Validators can be made by injecting other objects into the validator:
+
+
+## Example: Validator with Dependency Injection
 
 ```php
 namespace App\Validators;
