@@ -11,14 +11,26 @@ nav_order: 3
 
 # Immediate Queue
 
-The [`Centum\Queue\ImmediateQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ImmediateQueue.php) class immediately executes any Tasks that are published to it.
-This technically is not a Queue as Tasks are actually executed within the `publish()` method.
+[`Centum\Queue\ImmediateQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ImmediateQueue.php) immediately executes any tasks published to it.
+
+{: .note }
+This is technically not a queue as Tasks are executed synchronously within the `publish()` method.
+
+
+
+## Constructor
 
 ```php
 Centum\Queue\ImmediateQueue(
     Centum\Interfaces\Queue\TaskRunnerInterface $taskRunner
 );
 ```
+
+
+
+## Features
+
+Tasks are run instantly when `publish()` is called.
 
 As this is designed for testing and development, it also providers the getter `getBuriedTasks()` so that you can inspect the contents of the queue.
 

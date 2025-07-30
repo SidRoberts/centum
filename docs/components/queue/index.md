@@ -10,19 +10,31 @@ permalink: queue
 
 # `Centum\Queue`
 
-The Queue component is designed for offloading work so that it can be processed elsewhere or at a later time.
-This is especially useful for tasks that could take a long time, be hardware intensive, or otherwise negatively affect the application's performance.
+The Queue component enables you to offload work for asynchronous or deferred processing.
+This is especially useful for tasks that are time-consuming, resource-intensive, or could negatively impact application performance if run synchronously.
 
-[`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php) features two public methods:
 
-* `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
-* `consume(): Centum\Interfaces\Queue\TaskInterface`
 
-The `consume()` method will retreive the next available Task and also execute it.
-If a Task throws an Exception whilst it is being consumed, the Queue component **may** bury it or mark it as failed so that it can be dealt with later.
+## Interface Overview
 
-Both methods work with [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Queue/TaskInterface.php) which represents a piece of work that a background worker can execute.
-Tasks may be serialised/unserialised internally so any complicated objects should be called through the Container in the `execute()` method:
+[`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php) exposes two main methods:
+
+- `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
+  Add a task to the queue for later execution.
+- `consume(): Centum\Interfaces\Queue\TaskInterface`
+  Retrieve and execute the next available task.
+
+When `consume()` is called, the next task is executed.
+If a task throws an exception during execution, the queue implementation **may** bury or mark it as failed for later inspection or retry.
+
+
+
+## Task Representation
+
+All queue operations use [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Queue/TaskInterface.php), which represents a unit of work for a background worker.
+Tasks may be serialized/unserialized internally, so complex dependencies should be resolved via the Container in the `execute()` method.
+
+### Example Task
 
 ```php
 namespace App\Tasks;
@@ -50,8 +62,13 @@ class LogTask implements TaskInterface
 }
 ```
 
-This Task can then be published from anywhere and consumed from anywhere else in your code.
-One typical use case is publishing a Task from within a Controller and then consuming it in a Command:
+
+
+## Typical Usage
+
+Tasks can be published from anywhere in your application and consumed elsewhere, such as in a background worker or CLI command.
+
+### Publishing a Task (e.g., from a Controller)
 
 ```php
 namespace App\Web\Controllers;
@@ -75,6 +92,8 @@ class IndexController implements ControllerInterface
 }
 ```
 
+### Consuming Tasks (e.g., from a Console Command)
+
 ```php
 namespace App\Console\Commands;
 
@@ -95,7 +114,15 @@ class QueueConsumeCommand implements CommandInterface
     {
         $this->queue->consume();
 
-        return 0;
+        return self::SUCCESS;
     }
 }
 ```
+
+
+
+## Supported Queue Implementations
+
+- [ArrayQueue](array-queue.md): In-memory, non-persistent queue for testing and development.
+- [BeanstalkdQueue](beanstalkd-queue.md): Persistent queue backed by Beanstalkd.
+- [ImmediateQueue](immediate-queue.md): Executes tasks synchronously as soon as they are published.
