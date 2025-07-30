@@ -10,10 +10,14 @@ permalink: access
 
 # `Centum\Access`
 
-This component simplifies access control management.
+The Access component simplifies access control management for your application.
 
-Users (or groups of users) can allowed or denied the privilege of an activity.
-Activities are known by a single string identifier, as are users/groups, to keep things simple.
+You can allow or deny users (or groups of users) the privilege to perform specific activities.
+Both activities and users/groups are identified by simple string identifiers for ease of use.
+
+
+
+## Constructor
 
 ```php
 Centum\Access\Access(
@@ -21,10 +25,14 @@ Centum\Access\Access(
 );
 ```
 
+- **$default**: Sets the default access policy (`ALLOW` or `DENY`) for activities not explicitly configured.
+
 {: .highlight }
 [`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php) implements [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/AccessInterface.php).
 
-[`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php) has 2 public constants:
 
-- `Centum\Access\Access::ALLOW`
-- `Centum\Access\Access::DENY`
+
+## Constants
+
+- `Centum\Access\Access::ALLOW` — Allow access
+- `Centum\Access\Access::DENY` — Deny access

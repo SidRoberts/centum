@@ -11,17 +11,18 @@ nav_order: 2
 
 # Setting Rules
 
-Rules can be set using the `allow()` and `deny()` methods:
+You can define access control rules using the `allow()` and `deny()` methods:
 
 ```php
-$access->allow("admin", "delete-a-user");
+$access->allow("admin", "delete-a-user");      // Allow "admin" to delete a user
+$access->deny("moderator", "delete-a-user");   // Deny "moderator" from deleting a user
 ```
 
-```php
-$access->deny("moderator", "delete-a-user");
-```
 
-You can then check what a user is able to do with `isAllowed()`:
+
+## Checking Permissions
+
+To check if a user or group is allowed to perform an action, use `isAllowed()`:
 
 ```php
 use Exception;
@@ -35,7 +36,12 @@ if (!$access->isAllowed($userType, "delete-a-user")) {
 $user->delete();
 ```
 
-Even simpler, you can use `verify()` which will throw an [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/development/src/Access/Exception/AccessDeniedException.php) if the user is not allowed to do a certain action.
+
+
+## Enforcing Permissions
+
+For convenience, use `verify()`.
+This method will throw an [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/development/src/Access/Exception/AccessDeniedException.php) if the user is not allowed:
 
 ```php
 $userType = "moderator";
