@@ -60,7 +60,6 @@ $config->setRules(
             ],
         ],
 
-        "ordered_imports"             => false,
         "ordered_imports"             => true,
         "ordered_interfaces"          => true,
         "ordered_types"               => true,
