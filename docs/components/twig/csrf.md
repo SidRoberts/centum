@@ -15,6 +15,17 @@ nav_order: 1
 
 This extension provides a quick shortcut to the [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/StorageInterface.php) interface in the form of a function.
 
+
+
+## Functions
+
+- `csrf()`
+- `csrfValue()`
+
+
+
+## Usage
+
 First, the extension needs to be added to Twig:
 
 ```php

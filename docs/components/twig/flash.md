@@ -15,6 +15,16 @@ nav_order: 2
 
 This extension provides a quick shortcut to the [Flash component](../flash/index.md) in the form of a function.
 
+
+
+## Functions
+
+- `flash()`
+
+
+
+## Usage
+
 First, the extension needs to be added to Twig:
 
 ```php

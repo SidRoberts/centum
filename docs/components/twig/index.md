@@ -10,7 +10,9 @@ permalink: twig
 
 # `Centum\Twig`
 
-...
+Centum's Twig component provides extensions for integrating application features into Twig templates.
+
+
 
 ## Available Extensions
 

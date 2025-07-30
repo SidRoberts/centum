@@ -13,7 +13,17 @@ nav_order: 4
 
 **Before reading this, it may be prudent to first read about [Centum's URL component](../url/index.md).**
 
-This extension provides a quick shortcut to the [`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/development/src/Url/Url.php) class in the form of a function.
+This extension provides a shortcut to the [`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/development/src/Url/Url.php) class in Twig templates in the form of a function.
+
+
+
+## Functions
+
+- `url(string $uri = "", array $arguments = [])`
+
+
+
+## Usage
 
 First, the extension needs to be added to Twig:
 

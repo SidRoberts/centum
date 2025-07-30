@@ -11,6 +11,14 @@ nav_order: 5
 
 # Whitelisted Functions
 
+This extension allows you to expose specific PHP functions to Twig templates.
+
+
+
+## Usage
+
+First, the extension needs to be added to Twig:
+
 ```php
 use Centum\Twig\WhitelistedFunctionsExtension;
 use Twig\Environment;
