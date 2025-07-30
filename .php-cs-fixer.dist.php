@@ -63,6 +63,7 @@ $config->setRules(
         "ordered_imports"             => false,
         "ordered_imports"             => true,
         "ordered_interfaces"          => true,
+        "ordered_types"               => true,
         "phpdoc_summary"              => false,
         "phpdoc_to_comment"           => false,
         "random_api_migration"        => true,

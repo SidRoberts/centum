@@ -66,7 +66,7 @@ final class FormResolverCest
     #[DataProvider("providerBad")]
     public function testBad(UnitTester $I, Example $example): void
     {
-        /** @var Throwable|string */
+        /** @var class-string<Throwable>|interface-string<Throwable>|Throwable */
         $throwable = $example["throwable"];
 
         /** @var DataInterface */

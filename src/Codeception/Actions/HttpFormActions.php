@@ -19,7 +19,10 @@ trait HttpFormActions
 {
     abstract public function grabContainer(): ContainerInterface;
 
-    abstract public function expectThrowable(Throwable|string $throwable, callable $callback): void;
+    /**
+     * @param class-string<Throwable>|interface-string<Throwable>|Throwable $throwable
+     */
+    abstract public function expectThrowable(string|Throwable $throwable, callable $callback): void;
 
 
 
@@ -70,9 +73,10 @@ trait HttpFormActions
 
 
     /**
-     * @param class-string<FormInterface> $formClass
+     * @param class-string<Throwable>|interface-string<Throwable>|Throwable $expectedThrowable
+     * @param class-string<FormInterface>                                   $formClass
      */
-    public function expectFormThrowable(Throwable|string $expectedThrowable, string $formClass, DataInterface $data, ?FilesInterface $files = null): void
+    public function expectFormThrowable(string|Throwable $expectedThrowable, string $formClass, DataInterface $data, ?FilesInterface $files = null): void
     {
         $this->expectThrowable(
             $expectedThrowable,

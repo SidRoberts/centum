@@ -11,7 +11,10 @@ use Throwable;
  */
 trait FilterActions
 {
-    abstract public function expectThrowable(Throwable|string $throwable, callable $callback): void;
+    /**
+     * @param class-string<Throwable>|interface-string<Throwable>|Throwable $throwable
+     */
+    abstract public function expectThrowable(string|Throwable $throwable, callable $callback): void;
 
 
 
