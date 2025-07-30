@@ -11,7 +11,9 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 
 
 
-## Features
+## 🚀 Features
+
+Centum provides modular components for rapid development:
 
 - [Access](https://sidroberts.co.uk/centum/access)
 - [Clock](https://sidroberts.co.uk/centum/clock)
@@ -32,16 +34,19 @@ Centum is an all-encompassing framework designed to simplify the building of MVC
 
 
 
-## Documentation
+## 📚 Documentation
 
 [![Docs Build Status](https://img.shields.io/github/deployments/SidRoberts/centum/github-pages?style=for-the-badge)](https://sidroberts.co.uk/centum)
 [![Docs Lint Status](https://img.shields.io/github/actions/workflow/status/SidRoberts/centum/docs-lint.yml?style=for-the-badge&label=Docs%20Lint)](https://github.com/SidRoberts/centum/actions)
 
-Documentation is available at [https://sidroberts.co.uk/centum](https://sidroberts.co.uk/centum) and in the [docs/](docs/) folder.
+- [Online Documentation](https://sidroberts.co.uk/centum)
+- [docs/ folder](docs/)
 
 
 
-## Quick Start
+## 🚀 Quick Start
+
+Create a new Centum project:
 
 ```bash
 composer create-project sidroberts/centum-project YOUR-PROJECT-NAME -s dev
@@ -55,7 +60,7 @@ docker-compose up
 
 
 
-## Testing
+## 🧪 Testing
 
 Centum uses [Codeception](https://codeception.com/) for testing and is available through a Composer script:
 
@@ -63,7 +68,7 @@ Centum uses [Codeception](https://codeception.com/) for testing and is available
 composer test
 ```
 
-To run Codeception with code coverage:
+To run tests with code coverage:
 
 ```bash
 composer test-coverage
@@ -71,23 +76,21 @@ composer test-coverage
 
 
 
-## Technologies
-
-Centum uses the following technologies:
+## 🛠 Technologies
 
 - [PHP 8](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
 - [Twig](https://twig.symfony.com/)
 - [Beanstalkd](https://beanstalkd.github.io/)
 
-### Testing
+### Testing Tools
 
 - [Codeception](https://codeception.com/)
 - [Psalm](https://psalm.dev/)
 
 
 
-## License
+## 📄 License
 
 [![License](https://img.shields.io/github/license/SidRoberts/centum?style=for-the-badge)](LICENSE.md)
 
