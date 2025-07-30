@@ -11,17 +11,17 @@ permalink: filter
 # `Centum\Filter`
 
 Filters are used to transform one value into another.
-They are very useful in validation as it allows you to standardise a value before validating it.
+They are especially useful in validation, allowing you to standardize or sanitize a value before validating it.
 
 {: .note }
-Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php).
+All filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php).
 
 Filters only require one public method:
 
 - `filter(mixed $value): mixed`
+  Accepts any input and returns the filtered output.
 
-The `filter()` method takes an input of any data type and return a filtered output of any type.
-You can leave the return value as `mixed` or you can be more specific, for example:
+You can leave the return value of `filter()` as `mixed` or you can be more specific, for example:
 
 ```php
 namespace App\Filters;

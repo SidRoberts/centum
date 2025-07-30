@@ -14,11 +14,16 @@ nav_order: 2
 {: .note }
 Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Filter/FilterInterface.php).
 
-Filters only require the following methods:
+Filters only require one public method:
 
 - `public function filter(mixed $value): mixed`
+  Accepts any input and returns the filtered output.
 
-As an example, a Filter can be made to return a string as lowercase:
+
+
+## Example: Lowercase Filter
+
+A simple filter that converts a string to lowercase:
 
 ```php
 namespace App\Filters;
@@ -34,9 +39,13 @@ class LowercaseFilter implements FilterInterface
 }
 ```
 
-(see also [`Centum\Filter\String\ToLower`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToLower.php)).
+See also [`Centum\Filter\String\ToLower`](https://github.com/SidRoberts/centum/tree/development/src/Filter/String/ToLower.php) for a built-in implementation.
 
-More complex Filters can be made by injecting other objects into the filter:
+
+
+## Example: Filter with Dependency Injection
+
+You can create more advanced filters by injecting dependencies, such as services or formatters:
 
 ```php
 namespace App\Filters;
@@ -56,4 +65,16 @@ class NumberFormatterFilter implements FilterInterface
         return $this->numberFormatter->format($value);
     }
 }
+```
+
+
+
+## Usage
+
+Custom filters can be used anywhere you need to transform or sanitize data, such as before validation or storage.
+
+```php
+$filter = new \App\Filters\LowercaseFilter();
+
+$result = $filter->filter("HELLO WORLD"); // "hello world"
 ```
