@@ -11,9 +11,27 @@ nav_order: 6
 
 # CSRF
 
-The [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf.php) namespace exists to prevent [cross-site request forgery attacks](https://en.wikipedia.org/wiki/Cross-site_request_forgery) that could exist in HTML forms.
+Cross-Site Request Forgery (CSRF) is a security vulnerability that allows attackers to perform actions on behalf of authenticated users without their consent.
+Centum's CSRF protection helps prevent these attacks by generating, storing, and validating secure tokens for HTML forms.
 
-This component comes in three parts: [`Generator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Generator.php), [`Storage`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Storage.php), and [`Validator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Validator.php).
+
+
+## How It Works
+
+- A random token is generated and stored in the user's session.
+- The token is injected into forms as a hidden field.
+- On form submission, the token is validated against the stored value.
+- If the token matches, the request is considered genuine.
+
+
+
+## Overview
+
+The [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf.php) namespace provides three main classes:
+
+- [`Generator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Generator.php): Generates random CSRF tokens.
+- [`Storage`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Storage.php): Stores and retrieves tokens using the session.
+- [`Validator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Validator.php): Validates tokens on incoming requests.
 
 {: .highlight }
 [`Centum\Http\Csrf\Generator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Generator.php) implements [`Centum\Interfaces\Http\Csrf\GeneratorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/GeneratorInterface.php).
@@ -43,12 +61,16 @@ Centum\Http\Csrf\Validator(
 );
 ```
 
-The `Centum\Http\Csrf` namespace works by generating and storing a random string in a `Centum\Interfaces\Http\SessionInterface` object and making this value available for use in a `<form>`.
-By comparing the value submitted by the user and the known value from the Session, we can validate whether the POST request is genuine or not.
+
+
+## Usage
+
+### 1. Obtaining a CSRF Token
 
 Wherever a POST request requires CSRF protection, the current token value can be obtained from a `Storage` object and injected into the view:
 
 ```php
+use Centum\Http\Csrf\Storage;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Centum\Interfaces\Http\SessionInterface;
 
@@ -59,6 +81,8 @@ $csrfStorage = new Storage($session, $generator);
 
 $csrfValue = $csrfStorage->get();
 ```
+
+### 2. Add the Token to Your Form
 
 ```html
 <form>
@@ -93,7 +117,9 @@ $.post(
 );
 ```
 
-Regardless of how the CSRF token is placed, `ValidatorInterface::validate()` must be called at the top of your Form's constructor method to validate it:
+### 3. Validate the Token
+
+Call `ValidatorInterface::validate()` at the start of your form handler:
 
 ```php
 namespace App\Web\Forms;
@@ -112,7 +138,9 @@ class SubmissionForm implements FormInterface
 }
 ```
 
-Values are generated with the `GeneratorInterface::generate()` method:
+### 4. Generate or Reset Tokens
+
+Generate a new token:
 
 ```php
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;

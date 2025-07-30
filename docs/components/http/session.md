@@ -11,12 +11,15 @@ nav_order: 2
 
 # Session
 
-Session classes are used to persist data for individual users, such as login details or site preferences.
+Sessions allow you to persist data across multiple requests for individual users.
+Common use cases include storing login status, user preferences, and temporary data.
+
+Centum provides session classes that abstract session management, making it easy to interact with session data.
 
 {: .highlight }
 All session classes implement [`Centum\Interfaces\Http\SessionInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/SessionInterface.php).
 
-[`SessionInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/SessionInterface.php) has 8 public methods:
+`SessionInterface` defines the following public methods:
 
 - `start(): bool`
 - `isActive(): bool`
@@ -29,7 +32,9 @@ All session classes implement [`Centum\Interfaces\Http\SessionInterface`](https:
 
 
 
-## Available Validators
+## Available Implementations
 
-- [`Centum\Interfaces\Http\Session\ArraySession`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Session/ArraySession.php)
-- [`Centum\Interfaces\Http\Session\GlobalSession`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Session/GlobalSession.php)
+Centum provides different session implementations to suit various needs:
+
+- [`Centum\Http\Session\ArraySession`](https://github.com/SidRoberts/centum/blob/development/src/Http/Session/ArraySession.php) — Stores session data in memory (useful for testing).
+- [`Centum\Http\Session\GlobalSession`](https://github.com/SidRoberts/centum/blob/development/src/Http/Session/GlobalSession.php) — Uses PHP's global `$_SESSION` array.
