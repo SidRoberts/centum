@@ -11,26 +11,40 @@ nav_order: 1
 
 # Commands
 
-A Command functions similarly to a Controller in a web application.
+A Command in Centum functions similarly to a Controller in a web application, providing an entry point for CLI actions.
 
 {: .note }
 Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
 
-Commands only require one public method:
+
+
+## Command Structure
+
+Commands require one public method:
 
 - `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+  The return value is the exit code.
 
-The `execute()` method's return value is the exit code.
+### Exit Codes
+
 Three constants exist to clearly describe an exit code:
 
 - `Centum\Interfaces\Console\CommandInterface::SUCCESS = 0`
 - `Centum\Interfaces\Console\CommandInterface::FAILURE = 1`
 - `Centum\Interfaces\Console\CommandInterface::INVALID = 2`
 
-The [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) attribute class stores the name and description of the Command.
+Within a Command, you can use the `self` keyword (for example: `return self::SUCCESS;`).
+
+
+
+## Metadata
+
+Use the [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) attribute to define the command’s name and description.
 This is separated so that this information can be validated without instantiating the Command.
 
-By default, a Command can be as simple as this:
+
+
+## Example: Basic Command
 
 ```php
 namespace App\Console\Commands;
@@ -51,20 +65,21 @@ class IndexCommand implements CommandInterface
 }
 ```
 
-A Command's name must follow a slug pattern - all lowercase, alphanumeric with dashes, and must begin and end with alphanumeric characters.
-To allow commands like `php cli.php`, empty names are allowed.
+**Command names** must follow a slug pattern: all lowercase, alphanumeric with dashes, and must begin and end with alphanumeric characters.
+Empty names are allowed for default commands (e.g., `php cli.php`).
 
 
 
 ## Command Arguments
 
-Commands can take inputs in the form of arguments:
+Commands can accept arguments via the CLI:
 
 ```bash
-php cli.php hello --name Sid --loud
+php cli.php hello --first-name Sid --loud
 ```
 
-To access these arguments from within a Command, they need to be declared in the constructor with a type of `string` or `bool`:
+Declare arguments in the constructor with `string` or `bool` types.
+Arguments are converted to camel-case, so `--first-name` becomes `$firstName`.
 
 ```php
 namespace App\Console\Commands;
@@ -77,14 +92,14 @@ use Centum\Interfaces\Console\TerminalInterface;
 class HelloCommand implements CommandInterface
 {
     public function __construct(
-        protected readonly string $name,
+        protected readonly string $firstName,
         protected readonly bool $loud
     ) {
     }
 
     public function execute(TerminalInterface $terminal): int
     {
-        $message = "Hello {$this->name}!";
+        $message = "Hello {$this->firstName}!";
 
         if ($this->loud) {
             $message = strtoupper($message);
@@ -97,13 +112,11 @@ class HelloCommand implements CommandInterface
 }
 ```
 
-Arguments are converted to camel-case so `--first-name` will become `$firstName` in the constructor.
 
 
+## Injecting Services
 
-## Injecting Services into the Application
-
-Services from the Container can also be injected through the constructor method:
+You can inject services from the Container into your command’s constructor:
 
 ```php
 namespace App\Console\Commands;
@@ -128,7 +141,9 @@ class HelloCommand implements CommandInterface
 
         $now = $this->clock->now();
 
-        $terminal->writeLine("The time is now {$now->format("H:i:s")} in {$now->format("e")}.");
+        $terminal->writeLine(
+            "The time is now {$now->format("H:i:s")} in {$now->format("e")}."
+        );
 
         return self::SUCCESS;
     }
@@ -139,7 +154,7 @@ class HelloCommand implements CommandInterface
 
 ## Adding Commands to the Application
 
-Commands can be added to the Application, using the `addCommand()` method:
+Add Commands to the Application using the `addCommand()` method:
 
 ```php
 use App\Console\Commands\IndexCommand;
@@ -150,7 +165,8 @@ use Centum\Interfaces\Console\ApplicationInterface;
 $application->addCommand(IndexCommand::class);
 ```
 
-The Application will be able to determine Command's name from the CommandMetadata attribute.
-Commands are processed in the order that they are added to the Application but a later added Command can overwrite an older Command with the same name.
+The Application will be able to determine Command's name from the `CommandMetadata` attribute.
+Commands are processed in the order they are added.
+A later Command with the same name will overwrite an earlier one.
 
-If the Command's name is not valid, then an [`Centum\Console\Exception\InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php) will be thrown.
+If the Command's name is invalid, [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php) will be thrown.

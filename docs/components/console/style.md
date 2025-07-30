@@ -11,18 +11,24 @@ nav_order: 3
 
 # Style
 
-Writing plain text to the terminal can be pretty boring.
-[`Centum\Console\Terminal\Style`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal/Style.php) allows you to jazz up your terminal output with various text decorations.
+Plain text output can be dull.
+[`Centum\Console\Terminal\Style`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal/Style.php) lets you enhance your terminal output with colors and decorations.
+
+
+
+## Instantiating Style
 
 ```php
-Centum\Console\Terminal\Style();
+use Centum\Console\Terminal\Style;
+
+$style = new Style();
 ```
 
 
 
 ## Text Color
 
-The `text*()` methods allow you to change the color of the text:
+Use the `text*()` methods to change text color:
 
 ```php
 use Centum\Console\Terminal\Style;
@@ -38,21 +44,15 @@ $terminal->write(
 );
 ```
 
-Produces three lines of different colored text.
+Produces three lines of differently colored text.
 
 
 
 ## Background Color
 
-The `background*()` methods allow you to change the background color of the text:
+Use the `background*()` methods to change the background color:
 
 ```php
-use Centum\Console\Terminal\Style;
-use Centum\Interfaces\Console\TerminalInterface;
-
-/** @var TerminalInterface $terminal */
-/** @var Style $style */
-
 $terminal->write(
     $style->backgroundRed("This text has a red background.") . PHP_EOL .
     $style->backgroundGreen("This text has a green background.") . PHP_EOL .
@@ -60,26 +60,38 @@ $terminal->write(
 );
 ```
 
-Produces three lines of text with different colored backgrounds.
+Produces three lines with differently colored backgrounds.
 
 
 
 ## Combining Decorations
 
-Style decorations can be combined to produce more interesting effects.
+You can nest style methods to combine effects:
 
 ```php
-use Centum\Console\Terminal\Style;
-use Centum\Interfaces\Console\TerminalInterface;
-
-/** @var TerminalInterface $terminal */
-/** @var Style $style */
-
 $terminal->write(
     $style->textYellow(
         $style->backgroundBlue(
             "This text is yellow and has a blue background."
         )
     )
+);
+```
+
+
+
+## Additional Decorations
+
+Style also supports other text decorations, such as bold and underline:
+
+```php
+$terminal->write(
+    $style->bold("Bold text") . PHP_EOL .
+    $style->italics("Italicised text") . PHP_EOL .
+    $style->underline("Underlined text") . PHP_EOL .
+    $style->highlight("Highlighted text") . PHP_EOL .
+    $style->dim("Dimmed text") . PHP_EOL .
+    $style->blink("Blinking text") . PHP_EOL .
+    $style->reversed("Reversed text") // text colour becomes background colour, background colour becomes text colour
 );
 ```

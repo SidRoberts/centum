@@ -10,7 +10,7 @@ permalink: console
 
 # `Centum\Console`
 
-The Console component can be used to easily develop command line applications.
+The Console component makes it easy to develop command line applications in Centum.
 
 Application endpoints are treated as [`Centum\Console\Command`](https://github.com/SidRoberts/centum/blob/development/src/Console/Command.php) objects.
 These Commands contain all of the code and all of the metadata is stored in a [`Centum\Console\CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) object.
@@ -20,6 +20,10 @@ These Commands contain all of the code and all of the metadata is stored in a [`
 {: .highlight }
 [`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/development/src/Console/Application.php) implements [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ApplicationInterface.php).
 
+
+
+## Constructor
+
 ```php
 Centum\Console\Application(
     Centum\Interfaces\Container\ContainerInterface $container
@@ -27,10 +31,15 @@ Centum\Console\Application(
 ```
 
 - `public function getCommandMetadata(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): Centum\Console\CommandMetadata`
+  Retrieve metadata for a command.
 - `public function addCommand(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): void`
+  Register a new command.
 - `public function getCommands(): array<string, class-string<Centum\Interfaces\Console\CommandInterface>>`
+  List all registered commands.
 - `public function addExceptionHandler(class-string<Centum\Interfaces\Console\ExceptionHandlerInterface> $exceptionClass): void`
+  Register an exception handler for console errors.
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+  Run the console application.
 
 
 
@@ -52,4 +61,25 @@ Will take the next available Task from the Queue and consume it ([see Queue docs
 
 ```bash
 php cli.php queue:consume
+```
+
+
+
+## Example: Defining a Custom Command
+
+```php
+use Centum\Console\CommandMetadata;
+use Centum\Interfaces\Console\CommandInterface;
+use Centum\Interfaces\Console\TerminalInterface;
+
+#[CommandMetadata("greet")]
+class GreetCommand implements CommandInterface
+{
+    public function execute(TerminalInterface $terminal): int
+    {
+        $terminal->writeLine("Hello from Centum Console!");
+
+        return self::SUCCESS;
+    }
+}
 ```

@@ -11,19 +11,24 @@ nav_order: 4
 
 # Exception Handlers
 
-Exception Handlers are used to catch and handle Exceptions in Commands.
+Exception Handlers allow you to catch and handle exceptions that occur during command execution in your Centum console application.
 
 {: .note }
 Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ExceptionHandlerInterface.php).
 
-Exception Handlers only require the following public method:
+Exception Handlers require the following public method:
 
 - `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal, Throwable $throwable): void`
 
-Multiple Exception Handlers can be added to a Console Application and can be used to handle different types of Exceptions.
-Within the `handle()` method, an [`Centum\Console\Exception\UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/UnsuitableExceptionHandlerException.php) can be thrown so that the Application can try another Exception Handler instead.
+You can register multiple Exception Handlers for different exception types.
 
-Exception Handlers can be used to handle situations where no command is found by handling [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php):
+If an Exception Handler is unsuitable for a given exception, it should throw [`UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/UnsuitableExceptionHandlerException.php) so the application can try the next Exception Handler.
+
+
+
+## Example: Handling Command Not Found
+
+Handle situations where a Command is not found by catching [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php):
 
 ```php
 use App\Console\ExceptionHandlers\CommandNotFoundExceptionHandler;
@@ -62,8 +67,12 @@ class CommandNotFoundExceptionHandler implements ExceptionHandlerInterface
 }
 ```
 
-In the case that other Exception Handlers are unsuitable for a particular Exception, this example will act as a catch-all for any other Exceptions/Errors.
-Exception Handlers are processed in the order that they are added to the Application so this should be the very last Exception Handler:
+
+
+## Example: Catch-All Exception Handler
+
+Add a catch-all Exception Handler for any other exceptions or errors.
+Exception Handlers are processed in the order they are added, so this should be added last:
 
 ```php
 use App\Console\ExceptionHandlers\ThrowableExceptionHandler;
@@ -101,7 +110,7 @@ class ThrowableExceptionHandler implements ExceptionHandlerInterface
 
 ## Good Practices
 
-Depending on your use case, it may not be desired to have exception handlers but for user-facing applications, it is **strongly recommended** to have exception handlers for:
+For user-facing applications, it is **strongly recommended** to provide exception handlers for:
 
 - [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
-- `Throwable`
+- `Throwable` (catch-all)

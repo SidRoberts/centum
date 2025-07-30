@@ -11,8 +11,12 @@ nav_order: 2
 
 # Input / Output
 
-The [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) makes it easy to interact with the Terminal, both in terms of input and output.
-By default, it reads and writes to `STDIN`, `STDOUT`, and `STDERR`.
+The [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) provides a simple interface for interacting with the terminal, handling both input and output.
+By default, it reads from `STDIN` and writes to `STDOUT` and `STDERR`.
+
+
+
+## Constructor
 
 ```php
 Centum\Console\Terminal(
@@ -25,6 +29,10 @@ Centum\Console\Terminal(
 
 {: .highlight }
 [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) implements [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php).
+
+
+
+## Example: Creating a Terminal
 
 ```php
 use Centum\Console\Terminal;
@@ -39,43 +47,35 @@ $terminal = new Terminal($arguments);
 
 ## Input
 
-### Getting the Arguments
+### Accessing Arguments
+
+Retrieve CLI arguments passed to your command:
 
 ```php
 $arguments = $terminal->getArguments();
 ```
 
+You can then access individual arguments or options as needed.
+
 
 
 ## Output
 
-### Writing to the Terminal
-
-(to `STDOUT`)
+### Writing to STDOUT
 
 ```php
-$terminal->write("hello");
+$terminal->write("hello");     // Writes without newline
+$terminal->writeLine("hello"); // Writes with newline
 ```
+
+### Writing to STDERR
 
 ```php
-$terminal->writeLine("hello");
+$terminal->writeError("error");     // Writes error message without newline
+$terminal->writeErrorLine("error"); // Writes error message with newline
 ```
 
-### Error messages
-
-(to `STDERR`)
-
-```php
-$terminal->writeError("hello");
-```
-
-```php
-$terminal->writeErrorLine("hello");
-```
-
-
-
-### Displaying a list
+### Displaying a List
 
 ```php
 $terminal->writeList(
