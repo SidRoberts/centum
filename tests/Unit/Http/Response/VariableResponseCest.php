@@ -88,7 +88,7 @@ final class VariableResponseCest
 
         $I->assertEquals(
             "text/plain",
-            $response->getHeaders()->toArray()["Content-Type"]
+            $response->getHeaders()->get("Content-Type")->getValue()
         );
     }
 }
