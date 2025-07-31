@@ -17,7 +17,7 @@ composer create-project sidroberts/centum-project YOUR-PROJECT-NAME -s dev
 
 cd YOUR-PROJECT-NAME
 
-docker-compose up
+docker compose up
 ```
 
 This skeleton project is available on GitHub as [SidRoberts/centum-project](https://github.com/SidRoberts/centum-project).
