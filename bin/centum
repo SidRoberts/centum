@@ -19,6 +19,6 @@ if (file_exists("vendor/autoload.php")) {
     throw new Exception("Couldn't find \`autoload.php\`.");
 }
 
-$bootstrap = new ConsoleBootstrap();
+$bootstrap = $container->get(ConsoleBootstrap::class);
 
 $bootstrap->boot($container);
