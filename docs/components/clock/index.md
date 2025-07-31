@@ -10,30 +10,13 @@ permalink: clock
 
 # `Centum\Clock`
 
-The Clock component handles time determination.
-
-```php
-Centum\Clock\Clock(
-    string $datetime = "now",
-    ?DateTimeZone $timezone = null
-);
-```
-
-```php
-use Centum\Clock\Clock;
-
-$clock = new Clock();
-```
+The Clock component provides a consistent way to determine the current time in your application.
+It is especially useful for testing, scheduling, and anywhere you need to reference or control time.
 
 {: .highlight }
-[`Centum\Clock\Clock`](https://github.com/SidRoberts/centum/blob/development/src/Clock/Clock.php) implements [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Clock/ClockInterface.php).
+Clocks implement [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Clock/ClockInterface.php).
 
-The `now()` method returns a `DateTimeImmutable` instance that can be used for when your code needs to reference the current time.
+Clocks require two public methods:
 
-```php
-$now = $clock->now();
-
-$model->setDateUpdated($now);
-```
-
-This can be useful in testing that has timing-based side effects to ensure that tests are consistent and repeatable.
+- `public function now(): DateTimeImmutable`
+- `public function sleep(int $seconds): void`

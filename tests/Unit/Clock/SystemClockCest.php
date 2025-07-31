@@ -2,17 +2,17 @@
 
 namespace Tests\Unit\Clock;
 
-use Centum\Clock\Clock;
+use Centum\Clock\SystemClock;
 use Tests\Support\UnitTester;
 
 /**
- * @covers \Centum\Clock\Clock
+ * @covers \Centum\Clock\SystemClock
  */
-final class ClockCest
+final class SystemClockCest
 {
-    public function test(UnitTester $I): void
+    public function testNow(UnitTester $I): void
     {
-        $clock = new Clock("2023-01-13 11:23:00");
+        $clock = new SystemClock();
 
         $time1 = $clock->now();
 
@@ -20,7 +20,7 @@ final class ClockCest
 
         $time2 = $clock->now();
 
-        $I->assertEquals(
+        $I->assertNotEquals(
             $time1,
             $time2
         );

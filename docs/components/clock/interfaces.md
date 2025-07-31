@@ -20,3 +20,9 @@ nav_order: 102
 ```php
 now(): DateTimeImmutable
 ```
+
+```php
+sleep(
+    int $seconds
+): void
+```
