@@ -69,7 +69,7 @@ class FileResponse extends Response
             throw new Exception();
         }
 
-        $fileName = trim($fileName);
+        $fileName = mb_trim($fileName);
 
         return $fileName;
     }

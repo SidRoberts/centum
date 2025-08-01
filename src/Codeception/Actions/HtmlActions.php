@@ -152,7 +152,7 @@ trait HtmlActions
 
         $title = $title->first()->html();
 
-        return trim($title);
+        return mb_trim($title);
     }
 
 

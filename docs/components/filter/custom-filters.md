@@ -34,7 +34,7 @@ class LowercaseFilter implements FilterInterface
 {
     public function filter(mixed $value): mixed
     {
-        return strtolower($value);
+        return mb_strtolower($value);
     }
 }
 ```

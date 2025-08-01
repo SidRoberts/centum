@@ -102,7 +102,7 @@ class HelloCommand implements CommandInterface
         $message = "Hello {$this->firstName}!";
 
         if ($this->loud) {
-            $message = strtoupper($message);
+            $message = mb_strtoupper($message);
         }
 
         $terminal->writeLine($message);

@@ -135,7 +135,7 @@ class Router implements RouterInterface
 
 
         $uri = $request->getUri();
-        $uri = "/" . trim($uri, "/");
+        $uri = "/" . mb_trim($uri, "/");
 
 
 

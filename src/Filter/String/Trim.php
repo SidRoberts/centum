@@ -19,6 +19,6 @@ class Trim implements FilterInterface
             throw new InvalidArgumentException("Value must be a string.");
         }
 
-        return trim($value);
+        return mb_trim($value);
     }
 }

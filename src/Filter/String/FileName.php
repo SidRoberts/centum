@@ -36,7 +36,7 @@ class FileName implements FilterInterface
 
         $fileName = str_replace($problematicCharacters, $replacement, $value);
 
-        $fileName = trim($fileName);
+        $fileName = mb_trim($fileName);
 
         if (!$fileName) {
             throw new RuntimeException("Not a valid filename.");

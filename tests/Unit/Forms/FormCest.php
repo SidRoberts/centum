@@ -50,7 +50,7 @@ final class FormCest
         $nameField->addFilter(
             new Callback(
                 function (string $value): string {
-                    $value = trim($value);
+                    $value = mb_trim($value);
                     $value = preg_replace("/\s+/", " ", $value);
 
                     if ($value === null) {

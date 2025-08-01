@@ -27,11 +27,11 @@ class LoginForm implements FormInterface
         protected readonly string $username,
         protected readonly string $password
     ) {
-        if (strlen($username) < 6) {
+        if (mb_strlen($username) < 6) {
             throw new InvalidArgumentException("Username is too short.");
         }
 
-        if (strlen($password) < 6) {
+        if (mb_strlen($password) < 6) {
             throw new InvalidArgumentException("Password is too short.");
         }
     }
@@ -207,7 +207,7 @@ class CreateUserForm implements FormInterface
         ClockInterface $clock,
         UsernameChecker $usernameChecker
     ) {
-        if (strlen($username) < 6) {
+        if (mb_strlen($username) < 6) {
             throw new InvalidArgumentException("Username is too short.");
         }
 
@@ -215,7 +215,7 @@ class CreateUserForm implements FormInterface
             throw new InvalidArgumentException("Username already exists.");
         }
 
-        if (strlen($password) < 6) {
+        if (mb_strlen($password) < 6) {
             throw new InvalidArgumentException("Password is too short.");
         }
 

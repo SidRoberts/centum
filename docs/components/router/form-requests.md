@@ -30,13 +30,13 @@ class LoginForm implements FormInterface
         protected string $username,
         protected readonly string $password
     ) {
-        $username = trim($username);
+        $username = mb_trim($username);
 
-        if (strlen($username) < 6) {
+        if (mb_strlen($username) < 6) {
             throw new Exception("Username too short.");
         }
 
-        if (strlen($username) > 20) {
+        if (mb_strlen($username) > 20) {
             throw new Exception("Username too long.");
         }
 
@@ -44,11 +44,11 @@ class LoginForm implements FormInterface
             throw new Exception("Username must be alphanumeric with dashes.");
         }
 
-        $this->username = strtolower($username);
+        $this->username = mb_strtolower($username);
 
 
 
-        if (strlen($password) < 6) {
+        if (mb_strlen($password) < 6) {
             throw new Exception("Password too short.");
         }
     }

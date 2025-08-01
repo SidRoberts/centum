@@ -22,7 +22,7 @@ class Url implements UrlInterface
 
     public function get(string $uri = "", array $arguments = []): string
     {
-        $uri = rtrim($this->baseUri, "/") . "/" . ltrim($uri, "/");
+        $uri = mb_rtrim($this->baseUri, "/") . "/" . mb_ltrim($uri, "/");
 
         $queryString = http_build_query($arguments);
 
