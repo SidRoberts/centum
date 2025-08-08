@@ -58,11 +58,11 @@ class AliasManager implements AliasManagerInterface
         RequestInterface::class      => Request::class,
         SessionInterface::class      => GlobalSession::class,
         ////////////////////////////////////////////////////////////////////////
+        TaskRunnerInterface::class   => TaskRunner::class,
+        ////////////////////////////////////////////////////////////////////////
         RouterInterface::class       => Router::class,
         ////////////////////////////////////////////////////////////////////////
         UrlInterface::class          => Url::class,
-        ////////////////////////////////////////////////////////////////////////
-        TaskRunnerInterface::class   => TaskRunner::class,
     ];
 
 
