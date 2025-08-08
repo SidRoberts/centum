@@ -4,6 +4,25 @@ namespace Centum\Console\Terminal;
 
 class Style
 {
+    /**
+     * @param array<string> $items
+     */
+    public function list(array $items): string
+    {
+        $list = "";
+
+        foreach ($items as $item) {
+            $list .= sprintf(
+                " - %s",
+                $item
+            ) . PHP_EOL;
+        }
+
+        return PHP_EOL . $list . PHP_EOL;
+    }
+
+
+
     public function bold(string $text): string
     {
         return $this->embed(

@@ -10,6 +10,24 @@ use Tests\Support\UnitTester;
  */
 final class StyleCest
 {
+    public function testList(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            PHP_EOL . " - one" . PHP_EOL . " - two" . PHP_EOL . " - three" . PHP_EOL . PHP_EOL,
+            $style->list(
+                [
+                    "one",
+                    "two",
+                    "three",
+                ]
+            )
+        );
+    }
+
+
+
     public function testBold(UnitTester $I): void
     {
         $style = new Style();

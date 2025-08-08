@@ -58,22 +58,6 @@ class Terminal implements TerminalInterface
         $this->write($string . PHP_EOL);
     }
 
-    public function writeList(array $list): void
-    {
-        $this->writeLine();
-
-        foreach ($list as $item) {
-            $this->writeLine(
-                sprintf(
-                    " * %s",
-                    $item
-                )
-            );
-        }
-
-        $this->writeLine();
-    }
-
 
 
     public function writeError(string $string): void

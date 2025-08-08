@@ -93,12 +93,6 @@ writeLine(
 ```
 
 ```php
-writeList(
-    array<string> $list
-): void
-```
-
-```php
 writeError(
     string $string
 ): void

@@ -3,6 +3,7 @@
 namespace Centum\Console\Command;
 
 use Centum\Console\CommandMetadata;
+use Centum\Console\Terminal\Style;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
@@ -30,7 +31,11 @@ class ListCommand implements CommandInterface
             )
         );
 
-        $terminal->writeList($commandNames);
+        $style = new Style();
+
+        $terminal->write(
+            $style->list($commandNames)
+        );
 
         return self::SUCCESS;
     }

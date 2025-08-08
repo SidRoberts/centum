@@ -136,28 +136,6 @@ final class TerminalCest
         );
     }
 
-    public function testWriteList(UnitTester $I): void
-    {
-        $terminal = $this->getTerminal();
-
-        $terminal->writeList(
-            [
-                "one",
-                "two",
-                "three",
-            ]
-        );
-
-        $stdout = $terminal->getStdOut();
-
-        rewind($stdout);
-
-        $I->assertEquals(
-            PHP_EOL . " * one" . PHP_EOL . " * two" . PHP_EOL . " * three" . PHP_EOL . PHP_EOL,
-            stream_get_contents($stdout)
-        );
-    }
-
     public function testWriteError(UnitTester $I): void
     {
         $terminal = $this->getTerminal();

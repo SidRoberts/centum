@@ -31,11 +31,6 @@ interface TerminalInterface
 
     public function writeLine(string $string = ""): void;
 
-    /**
-     * @param array<string> $list
-     */
-    public function writeList(array $list): void;
-
 
 
     public function writeError(string $string): void;

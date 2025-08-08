@@ -26,9 +26,7 @@ $style = new Style();
 
 
 
-## Text Color
-
-Use the `text*()` methods to change text color:
+### Displaying a List
 
 ```php
 use Centum\Console\Terminal\Style;
@@ -37,6 +35,24 @@ use Centum\Interfaces\Console\TerminalInterface;
 /** @var TerminalInterface $terminal */
 /** @var Style $style */
 
+$terminal->write(
+    $style->list(
+        [
+            "Item 1",
+            "Item 2",
+            "Item 3",
+        ]
+    )
+);
+```
+
+
+
+## Text Color
+
+Use the `text*()` methods to change text color:
+
+```php
 $terminal->write(
     $style->textRed("This text is red.") . PHP_EOL .
     $style->textGreen("This text is green.") . PHP_EOL .

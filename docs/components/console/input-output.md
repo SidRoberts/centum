@@ -74,15 +74,3 @@ $terminal->writeLine("hello"); // Writes with newline
 $terminal->writeError("error");     // Writes error message without newline
 $terminal->writeErrorLine("error"); // Writes error message with newline
 ```
-
-### Displaying a List
-
-```php
-$terminal->writeList(
-    [
-        "Item 1",
-        "Item 2",
-        "Item 3",
-    ]
-);
-```
