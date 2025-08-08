@@ -8,7 +8,10 @@ use Codeception\Example;
 use Exception;
 use Tests\Support\UnitTester;
 
-final class FileNameFilterCest
+/**
+ * @covers \Centum\Filter\String\FileName
+ */
+final class FileNameCest
 {
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
