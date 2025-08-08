@@ -39,6 +39,7 @@ resources/
     docker/
         nginx.conf
         php.ini
+    translations/
     twig/
 src/
     Console/

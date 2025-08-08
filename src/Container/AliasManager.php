@@ -29,9 +29,11 @@ use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Interfaces\Router\RouterInterface;
+use Centum\Interfaces\Translation\TranslatorInterface;
 use Centum\Interfaces\Url\UrlInterface;
 use Centum\Queue\TaskRunner;
 use Centum\Router\Router;
+use Centum\Translation\Translator;
 use Centum\Url\Url;
 
 class AliasManager implements AliasManagerInterface
@@ -61,6 +63,8 @@ class AliasManager implements AliasManagerInterface
         TaskRunnerInterface::class   => TaskRunner::class,
         ////////////////////////////////////////////////////////////////////////
         RouterInterface::class       => Router::class,
+        ////////////////////////////////////////////////////////////////////////
+        TranslatorInterface::class   => Translator::class,
         ////////////////////////////////////////////////////////////////////////
         UrlInterface::class          => Url::class,
     ];

@@ -30,9 +30,11 @@ use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Interfaces\Router\RouterInterface;
+use Centum\Interfaces\Translation\TranslatorInterface;
 use Centum\Interfaces\Url\UrlInterface;
 use Centum\Queue\TaskRunner;
 use Centum\Router\Router;
+use Centum\Translation\Translator;
 use Centum\Url\Url;
 use stdClass;
 use Tests\Support\Container\Alias\ACommand;
@@ -130,6 +132,7 @@ final class AliasManagerCest
                 SessionInterface::class      => GlobalSession::class,
                 TaskRunnerInterface::class   => TaskRunner::class,
                 RouterInterface::class       => Router::class,
+                TranslatorInterface::class   => Translator::class,
                 UrlInterface::class          => Url::class,
             ],
             $aliasManager->getAll()
