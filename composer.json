@@ -70,8 +70,8 @@
 
     "scripts": {
         "analyse":       "vendor/bin/psalm --no-cache",
+        "format":        "vendor/bin/php-cs-fixer fix --allow-risky=yes",
         "test":          "vendor/bin/codecept run",
-        "test-coverage": "vendor/bin/codecept run --coverage-html",
-        "format":        "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        "test-coverage": "vendor/bin/codecept run --coverage-html"
     }
 }
