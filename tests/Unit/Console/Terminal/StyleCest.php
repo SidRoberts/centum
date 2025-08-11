@@ -28,6 +28,59 @@ final class StyleCest
 
 
 
+    public function testLinkWithText(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e]8;;https://sidroberts.co.uk/centum\e\\Centum Documentation\e]8;;\e\\",
+            $style->link(
+                "https://sidroberts.co.uk/centum",
+                "Centum Documentation"
+            )
+        );
+    }
+
+    public function testLinkWithoutURL(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "Hello",
+            $style->link(
+                "",
+                "Hello"
+            )
+        );
+    }
+
+    public function testLinkWithEmptyText(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e]8;;https://sidroberts.co.uk/centum\e\\https://sidroberts.co.uk/centum\e]8;;\e\\",
+            $style->link(
+                "https://sidroberts.co.uk/centum",
+                ""
+            )
+        );
+    }
+
+    public function testLinkWithNullText(UnitTester $I): void
+    {
+        $style = new Style();
+
+        $I->assertEquals(
+            "\e]8;;https://sidroberts.co.uk/centum\e\\https://sidroberts.co.uk/centum\e]8;;\e\\",
+            $style->link(
+                "https://sidroberts.co.uk/centum"
+            )
+        );
+    }
+
+
+
     public function testBold(UnitTester $I): void
     {
         $style = new Style();

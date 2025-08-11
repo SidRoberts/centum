@@ -23,6 +23,21 @@ class Style
 
 
 
+    public function link(string $url, ?string $text = null): string
+    {
+        if ($text === "" || $text === null) {
+            $text = $url;
+        }
+
+        if ($url === "") {
+            return $text;
+        }
+
+        return "\e]8;;" . $url . "\e\\" . $text . "\e]8;;\e\\";
+    }
+
+
+
     public function bold(string $text): string
     {
         return $this->embed(
