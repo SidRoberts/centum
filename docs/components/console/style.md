@@ -48,6 +48,26 @@ $terminal->write(
 
 
 
+### Links
+
+Use the `link()` method to create a link:
+
+```php
+$terminal->write(
+    $style->link("https://sidroberts.co.uk/centum", "Centum Documentation")
+);
+```
+
+If a `$text` isn't set, it will show the URL instead:
+
+```php
+$terminal->write(
+    $style->link("https://sidroberts.co.uk/centum")
+);
+```
+
+
+
 ## Text Color
 
 Use the `text*()` methods to change text color:
