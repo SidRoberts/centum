@@ -92,8 +92,8 @@ composer test-coverage
 
 ## 📄 License
 
-[![License](https://img.shields.io/github/license/SidRoberts/centum?style=for-the-badge)](LICENSE.md)
+[![License](https://img.shields.io/github/license/SidRoberts/centum?style=for-the-badge)](LICENSE)
 
-See [LICENSE.md](LICENSE.md) for more details.
+See [LICENSE](LICENSE) for more details.
 
 © [Sid Roberts](https://github.com/SidRoberts)
