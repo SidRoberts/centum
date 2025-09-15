@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/DataInterface.php)
+## [`Centum\Interfaces\Paginator\DataInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/DataInterface.php)
 
 ```php
 getTotal(): non-negative-int
@@ -34,7 +34,7 @@ slice(
 
 
 
-## [`Centum\Interfaces\Paginator\PageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PageInterface.php)
+## [`Centum\Interfaces\Paginator\PageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/PageInterface.php)
 
 ```php
 getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface
@@ -64,7 +64,7 @@ getPageRange(
 
 
 
-## [`Centum\Interfaces\Paginator\PaginatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Paginator/PaginatorInterface.php)
+## [`Centum\Interfaces\Paginator\PaginatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/PaginatorInterface.php)
 
 ```php
 getData(): Centum\Interfaces\Paginator\DataInterface

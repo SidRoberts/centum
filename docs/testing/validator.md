@@ -9,7 +9,7 @@ permalink: testing/validator
 
 # Validator Actions
 
-[`Centum\Codeception\Actions\ValidatorActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ValidatorActions.php)
+[`Centum\Codeception\Actions\ValidatorActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ValidatorActions.php)
 
 
 

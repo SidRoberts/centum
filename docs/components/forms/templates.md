@@ -14,7 +14,7 @@ nav_order: 2
 To reuse the same form in multiple places, you can define the fields in a Form Template.
 Form Templates are designed to simplify the process of creating Forms.
 
-In a Form Template, each public method represents a [`Centum\Forms\Field`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Field.php).
+In a Form Template, each public method represents a [`Centum\Forms\Field`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Field.php).
 The Field's name is defined as the method's name.
 The Field is passed as a parameter and does not need to be returned.
 

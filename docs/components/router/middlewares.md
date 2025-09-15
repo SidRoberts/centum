@@ -15,7 +15,7 @@ We already know about Route Groups but we haven't used them yet in a meaningful 
 The main purpose of Route Groups is to be able to easily assign a Middleware to a collection of Routes.
 
 {: .note }
-Middlewares must implement [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/MiddlewareInterface.php).
+Middlewares must implement [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/MiddlewareInterface.php).
 
 Middlewares only require one public method:
 
@@ -50,7 +50,7 @@ class IsUserMiddleware implements MiddlewareInterface
 (The `App\Auth` class is not shown and is just used as an example.)
 
 When creating the Group in the Router, we simply assign the first parameter as a `MiddlewareInterface` object.
-We can also use [`Centum\Router\Middleware\InverseMiddleware`](https://github.com/SidRoberts/centum/blob/development/src/Router/Middleware/InverseMiddleware.php) to inverse the result of an existing Middleware so that one Middleware can be used for opposing Groups:
+We can also use [`Centum\Router\Middleware\InverseMiddleware`](https://github.com/SidRoberts/centum/blob/main/src/Router/Middleware/InverseMiddleware.php) to inverse the result of an existing Middleware so that one Middleware can be used for opposing Groups:
 
 ```php
 use App\Web\Middlewares\IsUserMiddleware;
@@ -100,7 +100,7 @@ class AccountController implements ControllerInterface
 
 ## Callback Middleware
 
-[`Centum\Router\Middleware\CallbackMiddleware`](https://github.com/SidRoberts/centum/blob/development/src/Router/Middleware/CallbackMiddleware.php) can be used to create a custom Middleware without creating a class for it:
+[`Centum\Router\Middleware\CallbackMiddleware`](https://github.com/SidRoberts/centum/blob/main/src/Router/Middleware/CallbackMiddleware.php) can be used to create a custom Middleware without creating a class for it:
 
 ```php
 use Centum\Interfaces\Http\RequestInterface;

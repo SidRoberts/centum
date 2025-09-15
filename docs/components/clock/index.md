@@ -14,7 +14,7 @@ The Clock component provides a consistent way to determine the current time in y
 It is especially useful for testing, scheduling, and anywhere you need to reference or control time.
 
 {: .highlight }
-Clocks implement [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Clock/ClockInterface.php).
+Clocks implement [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Clock/ClockInterface.php).
 
 Clocks require two public methods:
 

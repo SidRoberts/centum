@@ -14,7 +14,7 @@ nav_order: 4
 Exception Handlers allow you to catch and handle exceptions that occur during command execution in your Centum console application.
 
 {: .note }
-Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/ExceptionHandlerInterface.php).
+Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ExceptionHandlerInterface.php).
 
 Exception Handlers require the following public method:
 
@@ -22,13 +22,13 @@ Exception Handlers require the following public method:
 
 You can register multiple Exception Handlers for different exception types.
 
-If an Exception Handler is unsuitable for a given exception, it should throw [`UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/UnsuitableExceptionHandlerException.php) so the application can try the next Exception Handler.
+If an Exception Handler is unsuitable for a given exception, it should throw [`UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/main/src/Console/Exception/UnsuitableExceptionHandlerException.php) so the application can try the next Exception Handler.
 
 
 
 ## Example: Handling Command Not Found
 
-Handle situations where a Command is not found by catching [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php):
+Handle situations where a Command is not found by catching [`CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Console/Exception/CommandNotFoundException.php):
 
 ```php
 use App\Console\ExceptionHandlers\CommandNotFoundExceptionHandler;
@@ -112,5 +112,5 @@ class ThrowableExceptionHandler implements ExceptionHandlerInterface
 
 For user-facing applications, it is **strongly recommended** to provide exception handlers for:
 
-- [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/CommandNotFoundException.php)
+- [`Centum\Console\Exception\CommandNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Console/Exception/CommandNotFoundException.php)
 - `Throwable` (catch-all)

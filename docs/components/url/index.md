@@ -20,9 +20,9 @@ Centum\Url\Url(
 ```
 
 {: .highlight }
-[`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/development/src/Url/Url.php) implements [`Centum\Interfaces\Url\UrlInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Url/UrlInterface.php).
+[`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/main/src/Url/Url.php) implements [`Centum\Interfaces\Url\UrlInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Url/UrlInterface.php).
 
-[`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/development/src/Url/Url.php) has 2 public methods:
+[`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/main/src/Url/Url.php) has 2 public methods:
 
 - `public function getBaseUri(): string`
 - `public function get(string $uri = "", array $arguments = []): string`

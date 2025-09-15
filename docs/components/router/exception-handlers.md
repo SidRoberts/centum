@@ -14,16 +14,16 @@ nav_order: 7
 Exception Handlers are used to catch and handle Exceptions in Controllers.
 
 {: .note }
-Exception Handlers must implement [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ExceptionHandlerInterface.php).
+Exception Handlers must implement [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ExceptionHandlerInterface.php).
 
 Exception Handlers only require the following public method:
 
 - `public function handle(Centum\Interfaces\Http\RequestInterface $request, Throwable $throwable): Centum\Interfaces\Http\ResponseInterface`
 
 Multiple Exception Handlers can be added to a Router and can be used to handle different types of Exceptions.
-Within the `handle()` method, an [`Centum\Router\Exception\UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/UnsuitableExceptionHandlerException.php) can be thrown so that the Router can try another Exception Handler instead.
+Within the `handle()` method, an [`Centum\Router\Exception\UnsuitableExceptionHandlerException`](https://github.com/SidRoberts/centum/blob/main/src/Router/Exception/UnsuitableExceptionHandlerException.php) can be thrown so that the Router can try another Exception Handler instead.
 
-Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteNotFoundException.php):
+Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Router/Exception/RouteNotFoundException.php):
 
 ```php
 use App\Web\ExceptionHandlers\RouteNotFoundExceptionHandler;
@@ -102,5 +102,5 @@ class ThrowableExceptionHandler implements ExceptionHandlerInterface
 
 It is **strongly recommended** to have exception handlers for:
 
-- [`Centum\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteNotFoundException.php)
+- [`Centum\Router\Exception\RouteNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Router/Exception/RouteNotFoundException.php)
 - `Throwable`

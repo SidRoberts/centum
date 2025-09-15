@@ -16,8 +16,8 @@ The App component provides the entry points and bootstrapping logic for Centum a
 
 ## Overview
 
-- [`Centum\App\WebBootstrap`](https://github.com/SidRoberts/centum/blob/development/src/App/WebBootstrap.php): Boots the application for HTTP requests.
-- [`Centum\App\ConsoleBootstrap`](https://github.com/SidRoberts/centum/blob/development/src/App/WebBootstrap.php): Boots the application for CLI commands.
+- [`Centum\App\WebBootstrap`](https://github.com/SidRoberts/centum/blob/main/src/App/WebBootstrap.php): Boots the application for HTTP requests.
+- [`Centum\App\ConsoleBootstrap`](https://github.com/SidRoberts/centum/blob/main/src/App/WebBootstrap.php): Boots the application for CLI commands.
 
 Check out [`SidRoberts/centum-project`](https://github.com/SidRoberts/centum-project) for working examples.
 

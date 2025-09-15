@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\App\BootstrapInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/App/BootstrapInterface.php)
+## [`Centum\Interfaces\App\BootstrapInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/App/BootstrapInterface.php)
 
 ```php
 boot(): void

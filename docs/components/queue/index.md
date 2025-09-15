@@ -17,7 +17,7 @@ This is especially useful for tasks that are time-consuming, resource-intensive,
 
 ## Interface Overview
 
-[`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php) exposes two main methods:
+[`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Queue/QueueInterface.php) exposes two main methods:
 
 - `publish(Centum\Interfaces\Queue\TaskInterface $task): void`
   Add a task to the queue for later execution.

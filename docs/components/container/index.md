@@ -32,7 +32,7 @@ Centum\Container\Container(
 If any of these parts are not explicitly set, then the Container will create a default for that part.
 
 {: .highlight }
-[`Centum\Container\Container`](https://github.com/SidRoberts/centum/blob/development/src/Container/Container.php) implements [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ContainerInterface.php).
+[`Centum\Container\Container`](https://github.com/SidRoberts/centum/blob/main/src/Container/Container.php) implements [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ContainerInterface.php).
 
 
 
@@ -48,4 +48,4 @@ $router = $container->get(RouterInterface::class);
 
 If the object does not exist within the Container, then a new instance will be created and returned.
 
-If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/UnresolvableParameterException.php).
+If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/main/src/Container/Exception/UnresolvableParameterException.php).

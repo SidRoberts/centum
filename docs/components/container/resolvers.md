@@ -15,14 +15,14 @@ A Resolver takes a parameter from a method or a function and tries to resolve it
 Resolved values/objects are not stored in the Container unless the Resolver specifically adds it to the Object Storage.
 
 {: .note }
-Resolvers must implement [`Centum\Interfaces\Container\ResolverInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ResolverInterface.php).
+Resolvers must implement [`Centum\Interfaces\Container\ResolverInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ResolverInterface.php).
 
 Centum has the following Resolvers:
 
-- [`ConsoleResolver`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/ConsoleResolver.php) - provides Terminal arguments to [Commands](../console/commands.md). See [Command Arguments](../console/commands.md#command-arguments).
-- [`FormResolver`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/FormResolver.php) - provides direct access to GET/POST values to [Forms](../http/forms.md).
-- [`RequestResolver`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RouterRequestResolver.php) - provides direct access to objects within a Request as well as individual [Cookie](../http/cookies.md) and [FileGroup](../http/files.md) objects.
-- [`RouterParametersResolver`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RouterParametersResolver.php) - provides [Route Parameters](../router/dynamic-urls.md) to [Controllers](../router/routes.md).
+- [`ConsoleResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/ConsoleResolver.php) - provides Terminal arguments to [Commands](../console/commands.md). See [Command Arguments](../console/commands.md#command-arguments).
+- [`FormResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/FormResolver.php) - provides direct access to GET/POST values to [Forms](../http/forms.md).
+- [`RequestResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/RouterRequestResolver.php) - provides direct access to objects within a Request as well as individual [Cookie](../http/cookies.md) and [FileGroup](../http/files.md) objects.
+- [`RouterParametersResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/RouterParametersResolver.php) - provides [Route Parameters](../router/dynamic-urls.md) to [Controllers](../router/routes.md).
 
 
 
@@ -36,7 +36,7 @@ Centum\Container\ResolverGroup();
 ```
 
 {: .highlight }
-[`Centum\Container\ResolverGroup`](https://github.com/SidRoberts/centum/blob/development/src/Container/ResolverGroup.php) implements [`Centum\Interfaces\Container\ResolverGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ResolverGroupInterface.php).
+[`Centum\Container\ResolverGroup`](https://github.com/SidRoberts/centum/blob/main/src/Container/ResolverGroup.php) implements [`Centum\Interfaces\Container\ResolverGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ResolverGroupInterface.php).
 
 You can obtain the Resolver Group from a Container:
 

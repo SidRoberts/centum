@@ -12,7 +12,7 @@ permalink: cron
 
 This component is designed for development workflows that would benefit from having scheduled tasks defined in PHP or at least in the same codebase as the rest of the code.
 
-Cron Jobs are represented by [`Centum\Cron\Job`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Job.php).
+Cron Jobs are represented by [`Centum\Cron\Job`](https://github.com/SidRoberts/centum/blob/main/src/Cron/Job.php).
 Jobs take two parameters, the Cron expression and the job data which can take any form:
 
 ```php
@@ -40,10 +40,10 @@ $job3 = new Job(
 );
 ```
 
-Cron Jobs can be added to a [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Cron.php) object that determines which jobs are due at any given time.
+Cron Jobs can be added to a [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/main/src/Cron/Cron.php) object that determines which jobs are due at any given time.
 
 {: .highlight }
-[`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/development/src/Cron/Cron.php) implements [`Centum\Interfaces\Cron\CronInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Cron/CronInterface.php).
+[`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/main/src/Cron/Cron.php) implements [`Centum\Interfaces\Cron\CronInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Cron/CronInterface.php).
 
 ```php
 use Centum\Cron\Cron;

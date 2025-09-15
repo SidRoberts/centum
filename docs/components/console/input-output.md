@@ -11,7 +11,7 @@ nav_order: 2
 
 # Input / Output
 
-The [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) provides a simple interface for interacting with the terminal, handling both input and output.
+The [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/main/src/Console/Terminal.php) provides a simple interface for interacting with the terminal, handling both input and output.
 By default, it reads from `STDIN` and writes to `STDOUT` and `STDERR`.
 
 
@@ -28,7 +28,7 @@ Centum\Console\Terminal(
 ```
 
 {: .highlight }
-[`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal.php) implements [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/TerminalInterface.php).
+[`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/main/src/Console/Terminal.php) implements [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/TerminalInterface.php).
 
 
 

@@ -31,7 +31,7 @@ Centum\Http\Header(
 - `$value`: The header value (e.g., `"application/json"`).
 
 {: .highlight }
-[`Centum\Http\Header`](https://github.com/SidRoberts/centum/blob/development/src/Http/Header.php) implements [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeaderInterface.php).
+[`Centum\Http\Header`](https://github.com/SidRoberts/centum/blob/main/src/Http/Header.php) implements [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeaderInterface.php).
 
 
 
@@ -40,7 +40,7 @@ Centum\Http\Header(
 Represents a collection of HTTP headers.
 
 {: .highlight }
-[`Centum\Http\Headers`](https://github.com/SidRoberts/centum/blob/development/src/Http/Headers.php) implements [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeadersInterface.php).
+[`Centum\Http\Headers`](https://github.com/SidRoberts/centum/blob/main/src/Http/Headers.php) implements [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeadersInterface.php).
 
 ### Example
 
@@ -60,7 +60,7 @@ $headers = new Headers(
 
 ## Headers Factory
 
-You can obtain a Headers object populated from global variables using [`HeadersFactory`](https://github.com/SidRoberts/centum/blob/development/src/Http/HeadersFactory.php):
+You can obtain a Headers object populated from global variables using [`HeadersFactory`](https://github.com/SidRoberts/centum/blob/main/src/Http/HeadersFactory.php):
 
 ```php
 use Centum\Http\HeadersFactory;

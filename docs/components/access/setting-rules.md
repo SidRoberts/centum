@@ -41,7 +41,7 @@ $user->delete();
 ## Enforcing Permissions
 
 For convenience, use `verify()`.
-This method will throw an [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/development/src/Access/Exception/AccessDeniedException.php) if the user is not allowed:
+This method will throw an [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/main/src/Access/Exception/AccessDeniedException.php) if the user is not allowed:
 
 ```php
 $userType = "moderator";

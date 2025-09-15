@@ -9,7 +9,7 @@ permalink: testing/flash
 
 # Flash Actions
 
-[`Centum\Codeception\Actions\FlashActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/FlashActions.php)
+[`Centum\Codeception\Actions\FlashActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/FlashActions.php)
 
 
 

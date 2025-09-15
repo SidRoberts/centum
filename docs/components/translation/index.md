@@ -12,7 +12,7 @@ permalink: translation
 
 The Translation component provides a simple way to translate strings into multiple languages.
 
-Translated strings are stored within [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Translation/LocaleInterface.php) objects.
+Translated strings are stored within [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/LocaleInterface.php) objects.
 
 ```php
 Centum\Translate\Locale(
@@ -22,7 +22,7 @@ Centum\Translate\Locale(
 ```
 
 {: .highlight }
-[`Centum\Translation\Locale`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Locale.php) implements [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Translation/LocaleInterface.php).
+[`Centum\Translation\Locale`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Locale.php) implements [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/LocaleInterface.php).
 
 ```php
 use Centum\Translation\Locale;
@@ -56,7 +56,7 @@ $translator = new Translator($enLocale);
 ```
 
 {: .highlight }
-[`Centum\Translation\Translator`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Translator.php) implements [`Centum\Interfaces\Translation\TranslatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Translation/TranslatorInterface.php).
+[`Centum\Translation\Translator`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Translator.php) implements [`Centum\Interfaces\Translation\TranslatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/TranslatorInterface.php).
 
 
 

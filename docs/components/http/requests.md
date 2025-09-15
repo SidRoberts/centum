@@ -29,7 +29,7 @@ Centum\Http\Request(
 ```
 
 {: .highlight }
-[`Centum\Http\Request`](https://github.com/SidRoberts/centum/blob/development/src/Http/Request.php) implements [`Centum\Interfaces\Http\RequestInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/RequestInterface.php).
+[`Centum\Http\Request`](https://github.com/SidRoberts/centum/blob/main/src/Http/Request.php) implements [`Centum\Interfaces\Http\RequestInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/RequestInterface.php).
 
 
 
@@ -52,7 +52,7 @@ $request = new Request(
 
 ## Request Factory
 
-You can obtain a Request object made with global variables using the [`RequestFactory`](https://github.com/SidRoberts/centum/blob/development/src/Http/RequestFactory.php):
+You can obtain a Request object made with global variables using the [`RequestFactory`](https://github.com/SidRoberts/centum/blob/main/src/Http/RequestFactory.php):
 
 ```php
 use Centum\Http\RequestFactory;

@@ -23,7 +23,7 @@ $passwordField = new Field("password");
 ```
 
 {: .highlight }
-[`Centum\Forms\Field`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Field.php) implements [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/FieldInterface.php).
+[`Centum\Forms\Field`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Field.php) implements [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FieldInterface.php).
 
 Now we need to add some filters and validators to these fields.
 Obviously, neither of these fields should be empty and the email field should contain a valid email address:
@@ -56,7 +56,7 @@ $passwordField->addValidator(
 
 Filters are applied before validating the data.
 
-Now we need to encapsulate them into a [`Centum\Forms\Form`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Form.php):
+Now we need to encapsulate them into a [`Centum\Forms\Form`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Form.php):
 
 ```php
 use Centum\Forms\Form;
@@ -72,14 +72,14 @@ $loginForm->add($passwordField);
 
 ## Validating
 
-Validating a Form is done using the `validate()` method which returns a [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Status.php) object.
+Validating a Form is done using the `validate()` method which returns a [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Status.php) object.
 It has 2 public methods:
 
 - `public function isValid(): bool`
 - `public function getMessages(): array<string, array<string>>`
 
 {: .highlight }
-[`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/development/src/Forms/Status.php) implements [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Forms/StatusInterface.php).
+[`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Status.php) implements [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/StatusInterface.php).
 
 Validating data against these filters and validators is as easy as:
 

@@ -9,7 +9,7 @@ permalink: testing/ajax
 
 # Ajax Actions
 
-[`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AjaxActions.php)
+[`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/AjaxActions.php)
 
 
 

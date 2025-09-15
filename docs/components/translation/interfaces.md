@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Translation/LocaleInterface.php)
+## [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/LocaleInterface.php)
 
 ```php
 getCode(): non-empty-string
@@ -31,7 +31,7 @@ flattenKeys(): list<non-empty-string>
 
 
 
-## [`Centum\Interfaces\Translation\LocalesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Translation/LocalesInterface.php)
+## [`Centum\Interfaces\Translation\LocalesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/LocalesInterface.php)
 
 ```php
 getAvailableCodes(): list<non-empty-string>
@@ -45,7 +45,7 @@ load(
 
 
 
-## [`Centum\Interfaces\Translation\TranslatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Translation/TranslatorInterface.php)
+## [`Centum\Interfaces\Translation\TranslatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/TranslatorInterface.php)
 
 ```php
 translate(

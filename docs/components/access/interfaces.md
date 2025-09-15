@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/AccessInterface.php)
+## [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Access/AccessInterface.php)
 
 ```php
 allow(
@@ -54,7 +54,7 @@ verify(
 
 
 
-## [`Centum\Interfaces\Access\ActivityInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/ActivityInterface.php)
+## [`Centum\Interfaces\Access\ActivityInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Access/ActivityInterface.php)
 
 ```php
 getName(): non-empty-string

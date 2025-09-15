@@ -27,20 +27,20 @@ Centum's CSRF protection helps prevent these attacks by generating, storing, and
 
 ## Overview
 
-The [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf.php) namespace provides three main classes:
+The [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf.php) namespace provides three main classes:
 
-- [`Generator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Generator.php): Generates random CSRF tokens.
-- [`Storage`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Storage.php): Stores and retrieves tokens using the session.
-- [`Validator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Validator.php): Validates tokens on incoming requests.
-
-{: .highlight }
-[`Centum\Http\Csrf\Generator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Generator.php) implements [`Centum\Interfaces\Http\Csrf\GeneratorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/GeneratorInterface.php).
+- [`Generator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Generator.php): Generates random CSRF tokens.
+- [`Storage`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Storage.php): Stores and retrieves tokens using the session.
+- [`Validator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Validator.php): Validates tokens on incoming requests.
 
 {: .highlight }
-[`Centum\Http\Csrf\Storage`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Storage.php) implements [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/StorageInterface.php).
+[`Centum\Http\Csrf\Generator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Generator.php) implements [`Centum\Interfaces\Http\Csrf\GeneratorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/GeneratorInterface.php).
 
 {: .highlight }
-[`Centum\Http\Csrf\Validator`](https://github.com/SidRoberts/centum/blob/development/src/Http/Csrf/Validator.php) implements [`Centum\Interfaces\Http\Csrf\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/ValidatorInterface.php).
+[`Centum\Http\Csrf\Storage`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Storage.php) implements [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/StorageInterface.php).
+
+{: .highlight }
+[`Centum\Http\Csrf\Validator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Validator.php) implements [`Centum\Interfaces\Http\Csrf\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/ValidatorInterface.php).
 
 ```php
 Centum\Http\Csrf\Generator(

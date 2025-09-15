@@ -13,18 +13,18 @@ nav_order: 5
 
 HTTP Files are encapsulated in 3 classes in Centum:
 
-- [`Centum\Http\Files`](https://github.com/SidRoberts/centum/blob/development/src/Http/Files.php)
-- [`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/development/src/Http/FileGroup.php)
-- [`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/development/src/Http/File.php)
+- [`Centum\Http\Files`](https://github.com/SidRoberts/centum/blob/main/src/Http/Files.php)
+- [`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/main/src/Http/FileGroup.php)
+- [`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/main/src/Http/File.php)
 
 {: .highlight }
-[`Centum\Http\Files`](https://github.com/SidRoberts/centum/blob/development/src/Http/Files.php) implements [`Centum\Interfaces\Http\FilesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FilesInterface.php).
+[`Centum\Http\Files`](https://github.com/SidRoberts/centum/blob/main/src/Http/Files.php) implements [`Centum\Interfaces\Http\FilesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FilesInterface.php).
 
 {: .highlight }
-[`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/development/src/Http/FileGroup.php) implements [`Centum\Interfaces\Http\FileGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FileGroupInterface.php).
+[`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/main/src/Http/FileGroup.php) implements [`Centum\Interfaces\Http\FileGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FileGroupInterface.php).
 
 {: .highlight }
-[`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/development/src/Http/File.php) implements [`Centum\Interfaces\Http\FileGroupInte`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FileGroupInte.php).
+[`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/main/src/Http/File.php) implements [`Centum\Interfaces\Http\FileGroupInte`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FileGroupInte.php).
 
 In an effort to simplify file uploads, both from the complexity of HTML file inputs in forms and the complexity of the `$_FILES` superglobal, a FileGroup represents all files that share the `name` property.
 In this HTML form, three `name` properties exist - `images`, `documents`, `audio`:
@@ -96,7 +96,7 @@ Centum\Http\File(
 
 ## Files Factory
 
-You can obtain a Files object made with global variables using the [FilesFactory](https://github.com/SidRoberts/centum/blob/development/src/Http/FilesFactory.php):
+You can obtain a Files object made with global variables using the [FilesFactory](https://github.com/SidRoberts/centum/blob/main/src/Http/FilesFactory.php):
 
 ```php
 use Centum\Http\FilesFactory;
@@ -110,7 +110,7 @@ $files = $filesFactory->createFromGlobals();
 
 ## File Factory
 
-You can obtain a [`File`](https://github.com/SidRoberts/centum/blob/development/src/Http/File.php) object from a real file using the [`FileFactory`](https://github.com/SidRoberts/centum/blob/development/src/Http/FileFactory.php):
+You can obtain a [`File`](https://github.com/SidRoberts/centum/blob/main/src/Http/File.php) object from a real file using the [`FileFactory`](https://github.com/SidRoberts/centum/blob/main/src/Http/FileFactory.php):
 
 ```php
 use Centum\Http\FileFactory;

@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php)
+## [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Validator/ValidatorInterface.php)
 
 ```php
 validate(

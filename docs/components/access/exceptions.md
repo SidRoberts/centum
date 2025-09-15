@@ -15,8 +15,8 @@ nav_order: 101
 
 
 
-## [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/development/src/Access/Exception/AccessDeniedException.php)
+## [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/main/src/Access/Exception/AccessDeniedException.php)
 
 Thrown in:
 
-- [`Centum\Access\Access::verify()`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php#L70)
+- [`Centum\Access\Access::verify()`](https://github.com/SidRoberts/centum/blob/main/src/Access/Access.php#L70)

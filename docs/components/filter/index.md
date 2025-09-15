@@ -14,7 +14,7 @@ Filters are used to transform one value into another.
 They are especially useful in validation, allowing you to standardize or sanitize a value before validating it.
 
 {: .note }
-All filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Filter/FilterInterface.php).
+All filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Filter/FilterInterface.php).
 
 Filters only require one public method:
 

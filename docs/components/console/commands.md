@@ -14,7 +14,7 @@ nav_order: 1
 A Command in Centum functions similarly to a Controller in a web application, providing an entry point for CLI actions.
 
 {: .note }
-Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Console/CommandInterface.php).
+Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/CommandInterface.php).
 
 
 
@@ -39,7 +39,7 @@ Within a Command, you can use the `self` keyword (for example: `return self::SUC
 
 ## Metadata
 
-Use the [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/development/src/Console/CommandMetadata.php) attribute to define the command’s name and description.
+Use the [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/main/src/Console/CommandMetadata.php) attribute to define the command’s name and description.
 This is separated so that this information can be validated without instantiating the Command.
 
 
@@ -169,4 +169,4 @@ The Application will be able to determine Command's name from the `CommandMetada
 Commands are processed in the order they are added.
 A later Command with the same name will overwrite an earlier one.
 
-If the Command's name is invalid, [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/development/src/Console/Exception/InvalidCommandNameException.php) will be thrown.
+If the Command's name is invalid, [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/main/src/Console/Exception/InvalidCommandNameException.php) will be thrown.

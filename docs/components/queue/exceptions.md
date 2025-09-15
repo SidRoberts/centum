@@ -15,9 +15,9 @@ nav_order: 101
 
 
 
-## [`NoTasksInQueueException`](https://github.com/SidRoberts/centum/blob/development/src/Queue/Exception/NoTasksInQueueException.php)
+## [`NoTasksInQueueException`](https://github.com/SidRoberts/centum/blob/main/src/Queue/Exception/NoTasksInQueueException.php)
 
 Thrown in:
 
-- [`Centum\Queue\ArrayQueue::consume()`](https://github.com/SidRoberts/centum/blob/development/src/Queue/ArrayQueue.php#L41)
-- [`Centum\Queue\ImmediateQueue::consume()`](https://github.com/SidRoberts/centum/blob/development/src/Queue/ImmediateQueue.php#L46)
+- [`Centum\Queue\ArrayQueue::consume()`](https://github.com/SidRoberts/centum/blob/main/src/Queue/ArrayQueue.php#L41)
+- [`Centum\Queue\ImmediateQueue::consume()`](https://github.com/SidRoberts/centum/blob/main/src/Queue/ImmediateQueue.php#L46)

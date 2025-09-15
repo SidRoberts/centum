@@ -9,7 +9,7 @@ permalink: testing/router
 
 # Router Actions
 
-[`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/RouterActions.php)
+[`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/RouterActions.php)
 
 
 

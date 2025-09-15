@@ -9,7 +9,7 @@ permalink: testing/console
 
 # Console Actions
 
-[`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/ConsoleActions.php)
+[`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ConsoleActions.php)
 
 
 

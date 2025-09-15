@@ -11,7 +11,7 @@ nav_order: 2
 
 # Building from an array
 
-It is possible to build a Cron manager from an array using the [Factory class](https://github.com/SidRoberts/centum/blob/development/src/Cron/Factory.php):
+It is possible to build a Cron manager from an array using the [Factory class](https://github.com/SidRoberts/centum/blob/main/src/Cron/Factory.php):
 
 ```php
 use Centum\Cron\CronFactory;

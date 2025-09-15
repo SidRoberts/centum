@@ -14,13 +14,13 @@ nav_order: 1
 Formatters determine how messages are outputted.
 
 {: .note }
-Formatters must implement [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Flash/FormatterInterface.php).
+Formatters must implement [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FormatterInterface.php).
 
 Currently, there are 2 formatters:
 
 
 
-## [`Centum\Flash\Formatter\HtmlFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/HtmlFormatter.php)
+## [`Centum\Flash\Formatter\HtmlFormatter`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Formatter/HtmlFormatter.php)
 
 ```html
 <div class="alert alert-danger">This is an example message.</div>
@@ -28,7 +28,7 @@ Currently, there are 2 formatters:
 
 
 
-## [`Centum\Flash\Formatter\TextFormatter`](https://github.com/SidRoberts/centum/blob/development/src/Flash/Formatter/TextFormatter.php)
+## [`Centum\Flash\Formatter\TextFormatter`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Formatter/TextFormatter.php)
 
 ```text
 [DANGER] This is an example message.

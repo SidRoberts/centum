@@ -14,7 +14,7 @@ nav_order: 4
 Replacements are particularly useful at preprocessing URL parameters - for example, converting an ID number into an actual object.
 
 {: .note }
-Replacements must implement [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ReplacementInterface.php).
+Replacements must implement [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ReplacementInterface.php).
 
 ```php
 namespace App\Web\Replacements;
@@ -57,7 +57,7 @@ class PostReplacement implements ReplacementInterface
 }
 ```
 
-In the above example, if the `App\Models\Post` object cannot be found in the database, [`Centum\Router\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/development/src/Router/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Controller.
+In the above example, if the `App\Models\Post` object cannot be found in the database, [`Centum\Router\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/main/src/Router/Exception/RouteMismatchException.php) is thrown to avoid having to deal with it in the Controller.
 When this exception is thrown, the Router understands that to mean that this Route isn't suitable and will continue iterating through the remaining Routes to find another match.
 
 When setting the Routes in the Router a Replacement can be added and Routes can reference its identifier (in this case `Post`):

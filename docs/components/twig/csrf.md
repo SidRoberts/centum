@@ -13,7 +13,7 @@ nav_order: 1
 
 **Before reading this, it may be prudent to first read about [Centum's CSRF component](../http/csrf.md).**
 
-This extension provides a quick shortcut to the [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/Csrf/StorageInterface.php) interface in the form of a function.
+This extension provides a quick shortcut to the [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/StorageInterface.php) interface in the form of a function.
 
 
 

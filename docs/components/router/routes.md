@@ -13,10 +13,10 @@ nav_order: 1
 
 ## Controllers
 
-Controllers are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/ResponseInterface.php) objects.
+Controllers are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/ResponseInterface.php) objects.
 
 {: .note }
-Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/ControllerInterface.php).
+Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ControllerInterface.php).
 
 A Controller can be as simple as this:
 
@@ -42,10 +42,10 @@ Controllers can also take advantage of things like dependency injection, filters
 
 ## Route Groups
 
-In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/development/src/Router/Group.php) objects.
+In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) objects.
 
 {: .highlight }
-[`Centum\Router\Group`](https://github.com/SidRoberts/centum/blob/development/src/Router/Group.php) implements [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Router/GroupInterface.php).
+[`Centum\Router\Group`](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) implements [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/GroupInterface.php).
 
 A group can store as many routes as you wish and can be used to organise and group similar routes.
 A new group can be created with the `group()` method:

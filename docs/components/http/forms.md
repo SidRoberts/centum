@@ -11,9 +11,9 @@ nav_order: 7
 
 # Forms
 
-Whilst it is possible to access a [`RequestInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/RequestInterface.php) from with a Controller, it is sometimes necessary to format or validate this data before using it.
+Whilst it is possible to access a [`RequestInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/RequestInterface.php) from with a Controller, it is sometimes necessary to format or validate this data before using it.
 
-Forms that implement [`Centum\Interfaces\Http\FormInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FormInterface.php) have special access to the data and files in a Request:
+Forms that implement [`Centum\Interfaces\Http\FormInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FormInterface.php) have special access to the data and files in a Request:
 
 ```php
 namespace App\Web\Forms;
@@ -72,7 +72,7 @@ class LoginController implements ControllerInterface
 }
 ```
 
-If a field cannot be found in the Request data, a [`Centum\Container\Exception\FormFieldNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Container/Exception/FormFieldNotFoundException.php) will be thrown.
+If a field cannot be found in the Request data, a [`Centum\Container\Exception\FormFieldNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Container/Exception/FormFieldNotFoundException.php) will be thrown.
 
 
 
@@ -256,7 +256,7 @@ File uploads can also be accessed in a Form:
 </form>
 ```
 
-In the Form, you can access the [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FileGroupInterface.php) instances:
+In the Form, you can access the [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FileGroupInterface.php) instances:
 
 ```php
 namespace App\Web\Forms;

@@ -13,7 +13,7 @@ permalink: validator
 Validators are used to validate data and provide useful error messages explaining why a piece of data failed.
 
 {: .note }
-Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Validator/ValidatorInterface.php).
+Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Validator/ValidatorInterface.php).
 
 Validators require one public method:
 

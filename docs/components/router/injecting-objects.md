@@ -29,14 +29,14 @@ class UserController implements ControllerInterface
 }
 ```
 
-Thanks to [`Centum\Container\Resolver\RouterRequestResolver`](https://github.com/SidRoberts/centum/blob/development/src/Container/Resolver/RouterRequestResolver.php), you also have direct access to things within the Request:
+Thanks to [`Centum\Container\Resolver\RouterRequestResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/RouterRequestResolver.php), you also have direct access to things within the Request:
 
-- [`DataInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/DataInterface.php)
-- [`HeadersInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/HeadersInterface.php)
-- [`CookiesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookiesInterface.php)
-- [`FilesInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FilesInterface.php)
-- Individual [`CookieInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/CookiesInterface.php) objects
-- Individual [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Http/FilesInterface.php) objects
+- [`DataInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/DataInterface.php)
+- [`HeadersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeadersInterface.php)
+- [`CookiesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookiesInterface.php)
+- [`FilesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FilesInterface.php)
+- Individual [`CookieInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookiesInterface.php) objects
+- Individual [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FilesInterface.php) objects
 
 For example, to access the HTTP Headers from within a Controller:
 

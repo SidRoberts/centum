@@ -52,7 +52,7 @@ class RouterService implements ServiceInterface
 ```
 
 {: .note }
-Services must implement [`Centum\Interfaces\Container\ServiceInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ServiceInterface.php).
+Services must implement [`Centum\Interfaces\Container\ServiceInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ServiceInterface.php).
 
 In the previous case, we needed the Container object to instantiate a new Router object.
 Any additional objects that you need can be injected in to the constructor.
@@ -68,7 +68,7 @@ Centum\Container\ServiceStorage();
 ```
 
 {: .highlight }
-[`Centum\Container\ServiceStorage`](https://github.com/SidRoberts/centum/blob/development/src/Container/ServiceStorage.php) implements [`Centum\Interfaces\Container\ServiceStorageInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Container/ServiceStorageInterface.php).
+[`Centum\Container\ServiceStorage`](https://github.com/SidRoberts/centum/blob/main/src/Container/ServiceStorage.php) implements [`Centum\Interfaces\Container\ServiceStorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ServiceStorageInterface.php).
 
 You can obtain the Service Storage from a Container:
 

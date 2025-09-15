@@ -9,7 +9,7 @@ permalink: testing/access
 
 # Access Actions
 
-[`Centum\Codeception\Actions\AccessActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/AccessActions.php)
+[`Centum\Codeception\Actions\AccessActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/AccessActions.php)
 
 
 

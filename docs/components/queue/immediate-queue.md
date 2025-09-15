@@ -34,4 +34,4 @@ Tasks are run instantly when `publish()` is called.
 
 As this is designed for testing and development, it also providers the getter `getBuriedTasks()` so that you can inspect the contents of the queue.
 
-As no Tasks are stored in the Queue, calling the `consume()` method will throw [`NoTasksInQueueException`](https://github.com/SidRoberts/centum/blob/development/src/Queue/Exception/NoTasksInQueueException.php).
+As no Tasks are stored in the Queue, calling the `consume()` method will throw [`NoTasksInQueueException`](https://github.com/SidRoberts/centum/blob/main/src/Queue/Exception/NoTasksInQueueException.php).

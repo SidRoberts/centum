@@ -9,7 +9,7 @@ permalink: testing/html
 
 # HTML Actions
 
-[`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HtmlActions.php)
+[`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HtmlActions.php)
 
 
 

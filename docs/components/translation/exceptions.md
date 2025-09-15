@@ -15,24 +15,24 @@ nav_order: 101
 
 
 
-## [`LocaleFileNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Exception/LocaleFileNotFoundException.php)
+## [`LocaleFileNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Exception/LocaleFileNotFoundException.php)
 
 Thrown in:
 
-- [`Centum\Translation\Locales::load()`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Locales.php#L31)
+- [`Centum\Translation\Locales::load()`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Locales.php#L31)
 
 
 
-## [`LocaleKeyNotFoundException`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Exception/LocaleKeyNotFoundException.php)
-
-Thrown in:
-
-- [`Centum\Translation\Locales::load()`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Locales.php#L31)
-
-
-
-## [`MissingTranslationException`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Exception/MissingTranslationException.php)
+## [`LocaleKeyNotFoundException`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Exception/LocaleKeyNotFoundException.php)
 
 Thrown in:
 
-- [`Centum\Translation\Translator::translate()`](https://github.com/SidRoberts/centum/blob/development/src/Translation/Translator.php#L22)
+- [`Centum\Translation\Locales::load()`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Locales.php#L31)
+
+
+
+## [`MissingTranslationException`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Exception/MissingTranslationException.php)
+
+Thrown in:
+
+- [`Centum\Translation\Translator::translate()`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Translator.php#L22)

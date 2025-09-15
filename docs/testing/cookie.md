@@ -9,7 +9,7 @@ permalink: testing/cookie
 
 # Cookie Actions
 
-[`Centum\Codeception\Actions\CookieActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CookieActions.php)
+[`Centum\Codeception\Actions\CookieActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/CookieActions.php)
 
 
 

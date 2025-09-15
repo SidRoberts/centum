@@ -9,7 +9,7 @@ permalink: testing/header
 
 # Header Actions
 
-[`Centum\Codeception\Actions\HeaderActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/HeaderActions.php)
+[`Centum\Codeception\Actions\HeaderActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HeaderActions.php)
 
 
 

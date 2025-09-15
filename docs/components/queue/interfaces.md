@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/QueueInterface.php)
+## [`Centum\Interfaces\Queue\QueueInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Queue/QueueInterface.php)
 
 ```php
 publish(
@@ -29,7 +29,7 @@ consume(): Centum\Interfaces\Queue\TaskInterface
 
 
 
-## [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/TaskInterface.php)
+## [`Centum\Interfaces\Queue\TaskInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Queue/TaskInterface.php)
 
 ```php
 execute(
@@ -39,7 +39,7 @@ execute(
 
 
 
-## [`Centum\Interfaces\Queue\TaskRunnerInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Queue/TaskRunnerInterface.php)
+## [`Centum\Interfaces\Queue\TaskRunnerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Queue/TaskRunnerInterface.php)
 
 ```php
 execute(

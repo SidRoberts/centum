@@ -12,7 +12,7 @@ nav_order: 3
 # Style
 
 Plain text output can be dull.
-[`Centum\Console\Terminal\Style`](https://github.com/SidRoberts/centum/blob/development/src/Console/Terminal/Style.php) lets you enhance your terminal output with colors and decorations.
+[`Centum\Console\Terminal\Style`](https://github.com/SidRoberts/centum/blob/main/src/Console/Terminal/Style.php) lets you enhance your terminal output with colors and decorations.
 
 
 

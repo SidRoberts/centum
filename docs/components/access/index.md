@@ -28,7 +28,7 @@ Centum\Access\Access(
 - **$default**: Sets the default access policy (`ALLOW` or `DENY`) for activities not explicitly configured.
 
 {: .highlight }
-[`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/development/src/Access/Access.php) implements [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/development/src/Interfaces/Access/AccessInterface.php).
+[`Centum\Access\Access`](https://github.com/SidRoberts/centum/blob/main/src/Access/Access.php) implements [`Centum\Interfaces\Access\AccessInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Access/AccessInterface.php).
 
 
 

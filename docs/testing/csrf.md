@@ -9,7 +9,7 @@ permalink: testing/csrf
 
 # CSRF Actions
 
-[`Centum\Codeception\Actions\CsrfActions`](https://github.com/SidRoberts/centum/blob/development/src/Codeception/Actions/CsrfActions.php)
+[`Centum\Codeception\Actions\CsrfActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/CsrfActions.php)
 
 
 
