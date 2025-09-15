@@ -16,7 +16,7 @@ class SlugReplacement implements ReplacementInterface
         return "[a-z0-9]+(?:\-[a-z0-9]+)*";
     }
 
-    public function filter(string $value): mixed
+    public function filter(string $value): string
     {
         return $value;
     }

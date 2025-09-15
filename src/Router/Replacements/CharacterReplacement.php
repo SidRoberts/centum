@@ -16,7 +16,7 @@ class CharacterReplacement implements ReplacementInterface
         return "[^/]";
     }
 
-    public function filter(string $value): mixed
+    public function filter(string $value): string
     {
         return $value;
     }
