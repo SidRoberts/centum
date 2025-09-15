@@ -7,7 +7,7 @@ interface GroupInterface
     public function getMiddleware(): MiddlewareInterface;
 
     /**
-     * @return array<RouteInterface>
+     * @return list<RouteInterface>
      */
     public function getRoutes(): array;
 

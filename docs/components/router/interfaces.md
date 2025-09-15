@@ -39,7 +39,7 @@ getMiddleware(): Centum\Interfaces\Router\MiddlewareInterface
 ```
 
 ```php
-getRoutes(): array<Centum\Interfaces\Router\RouteInterface>
+getRoutes(): list<Centum\Interfaces\Router\RouteInterface>
 ```
 
 ```php
