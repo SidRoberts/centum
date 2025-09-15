@@ -31,7 +31,7 @@ No Centum classes throw `Centum\Router\Exception\ReplacementNotFoundException`.
 
 Thrown in:
 
-- [`Centum\Router\Router::matchRouteToRequest()`](https://github.com/SidRoberts/centum/blob/main/src/Router/Router.php#L129)
+- [`Centum\Router\Router::matchRouteToRequest()`](https://github.com/SidRoberts/centum/blob/main/src/Router/Router.php#L133)
 
 
 

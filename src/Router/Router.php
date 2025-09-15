@@ -23,7 +23,9 @@ use Centum\Router\Middleware\TrueMiddleware;
 use Centum\Router\Replacements\AnyReplacement;
 use Centum\Router\Replacements\CharacterReplacement;
 use Centum\Router\Replacements\IntegerReplacement;
+use Centum\Router\Replacements\Sha256Replacement;
 use Centum\Router\Replacements\SlugReplacement;
+use Centum\Router\Replacements\Uuid4Replacement;
 use RuntimeException;
 use Throwable;
 
@@ -50,10 +52,12 @@ class Router implements RouterInterface
         protected readonly ContainerInterface $container
     ) {
         $this->replacements = [
-            "int"  => new IntegerReplacement(),
-            "slug" => new SlugReplacement(),
-            "char" => new CharacterReplacement(),
-            "any"  => new AnyReplacement(),
+            "int"    => new IntegerReplacement(),
+            "slug"   => new SlugReplacement(),
+            "char"   => new CharacterReplacement(),
+            "uuid4"  => new Uuid4Replacement(),
+            "sha256" => new Sha256Replacement(),
+            "any"    => new AnyReplacement(),
         ];
     }
 

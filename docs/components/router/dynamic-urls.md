@@ -68,14 +68,16 @@ class CalendarController implements ControllerInterface
 ## Parameter Requirements
 
 You can require that the parameters adhere to a certain format by appending the type onto the end of the parameter identifier.
-By default, the Router can interpret these 4 types but can be extended using [Replacements](replacements.md):
+By default, the Router can interpret these 6 types and can be extended using [Replacements](replacements.md):
 
-| Type   | Regular expression          |
-| ------ | --------------------------- |
-| `int`  | `\d+`                       |
-| `slug` | `[a-z0-9]+(?:\-[a-z0-9]+)*` |
-| `char` | `[^/]`                      |
-| `any`  | `[^/]+`                     |
+| Type     | Regular expression                                             |
+| -------- | -------------------------------------------------------------- |
+| `any`    | `[^/]+`                                                        |
+| `int`    | `\d+`                                                          |
+| `slug`   | `[a-z0-9]+(?:\-[a-z0-9]+)*`                                    |
+| `char`   | `[^/]`                                                         |
+| `sha256` | `[0-9a-f]{64}`                                                 |
+| `uuid4`  | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` |
 
 If no type is specified, the Router will default to `any`.
 
