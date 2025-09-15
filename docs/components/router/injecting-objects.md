@@ -29,7 +29,7 @@ class UserController implements ControllerInterface
 }
 ```
 
-Thanks to [`Centum\Container\Resolver\RouterRequestResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/RouterRequestResolver.php), you also have direct access to things within the Request:
+Thanks to [`Centum\Container\Resolver\RequestResolver`](https://github.com/SidRoberts/centum/blob/main/src/Container/Resolver/RequestResolver.php), you also have direct access to things within the Request:
 
 - [`DataInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/DataInterface.php)
 - [`HeadersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeadersInterface.php)
