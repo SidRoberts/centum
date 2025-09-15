@@ -32,7 +32,7 @@ use Throwable;
 class Router implements RouterInterface
 {
     /**
-     * @var array<GroupInterface>
+     * @var list<GroupInterface>
      */
     protected array $groups = [];
 
