@@ -41,7 +41,10 @@ If any of these parts are not explicitly set, then the Container will create a d
 Classes can be retreived using the `get()` method:
 
 ```php
+use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\RouterInterface;
+
+/** @var ContainerInterface $container */
 
 $router = $container->get(RouterInterface::class);
 ```

@@ -74,7 +74,9 @@ class NumberFormatterFilter implements FilterInterface
 Custom filters can be used anywhere you need to transform or sanitize data, such as before validation or storage.
 
 ```php
-$filter = new \App\Filters\LowercaseFilter();
+use App\Filters\LowercaseFilter;
+
+$filter = new LowercaseFilter();
 
 $result = $filter->filter("HELLO WORLD"); // "hello world"
 ```

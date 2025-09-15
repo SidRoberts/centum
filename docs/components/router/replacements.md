@@ -32,8 +32,6 @@ class PostReplacement implements ReplacementInterface
     ) {
     }
 
-
-
     public function getIdentifier(): string
     {
         return "Post";
@@ -92,8 +90,6 @@ class PostController implements ControllerInterface
 {
     public function view(Post $post): ResponseInterface
     {
-        //TODO Do something with the $post object.
-
         return new Response(
             $post->getTitle()
         );
