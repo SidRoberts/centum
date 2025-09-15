@@ -27,6 +27,7 @@ Centum provides modular components for rapid development:
 - [Paginator](https://sidroberts.co.uk/centum/paginator)
 - [Queue](https://sidroberts.co.uk/centum/queue)
 - [Router](https://sidroberts.co.uk/centum/router)
+- [Translate](https://sidroberts.co.uk/centum/translation)
 - [Twig](https://sidroberts.co.uk/centum/twig)
 - [Url](https://sidroberts.co.uk/centum/url)
 - [Validator](https://sidroberts.co.uk/centum/validator)
