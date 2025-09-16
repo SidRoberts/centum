@@ -30,7 +30,7 @@ final class IntegerReplacementCest
 
         $I->assertRouterReplacementMatches($replacement, $value);
 
-        $I->assertRouterReplacementFilterEquals($replacement, $value, 1);
+        $I->assertRouterReplacementEquals($replacement, $value, 1);
     }
 
 

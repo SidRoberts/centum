@@ -16,7 +16,7 @@ class AnyReplacement implements ReplacementInterface
         return "[^/]+";
     }
 
-    public function filter(string $value): string
+    public function process(string $value): string
     {
         return $value;
     }

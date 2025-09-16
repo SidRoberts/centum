@@ -30,7 +30,7 @@ final class AnyReplacementCest
 
         $I->assertRouterReplacementMatches($replacement, $value);
 
-        $I->assertRouterReplacementFilterEquals($replacement, $value, $value);
+        $I->assertRouterReplacementEquals($replacement, $value, $value);
     }
 
     public function testBad(UnitTester $I): void

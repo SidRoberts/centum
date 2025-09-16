@@ -16,7 +16,7 @@ class Sha256Replacement implements ReplacementInterface
         return "[0-9a-f]{64}";
     }
 
-    public function filter(string $value): string
+    public function process(string $value): string
     {
         return $value;
     }

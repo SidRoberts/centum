@@ -32,7 +32,7 @@ final class Sha256ReplacementCest
 
         $I->assertRouterReplacementMatches($replacement, $value);
 
-        $I->assertRouterReplacementFilterEquals($replacement, $value, $value);
+        $I->assertRouterReplacementEquals($replacement, $value, $value);
     }
 
 

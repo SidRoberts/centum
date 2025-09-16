@@ -185,7 +185,7 @@ class Router implements RouterInterface
             $value = $params[$key] ?? throw new ParamNotFoundException($key);
 
             /** @var mixed */
-            $params[$key] = $replacement->filter($value);
+            $params[$key] = $replacement->process($value);
         }
 
 

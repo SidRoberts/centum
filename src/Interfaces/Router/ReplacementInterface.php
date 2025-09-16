@@ -14,5 +14,5 @@ interface ReplacementInterface
      */
     public function getRegularExpression(): string;
 
-    public function filter(string $value): mixed;
+    public function process(string $value): mixed;
 }

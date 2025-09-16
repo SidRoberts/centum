@@ -172,7 +172,7 @@ getRegularExpression(): non-empty-string
 ```
 
 ```php
-filter(
+process(
     string $value
 ): mixed
 ```

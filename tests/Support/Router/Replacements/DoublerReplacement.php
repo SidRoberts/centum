@@ -16,7 +16,7 @@ final class DoublerReplacement implements ReplacementInterface
         return "\d+";
     }
 
-    public function filter(mixed $value): int
+    public function process(mixed $value): int
     {
         $value = (int) $value;
 

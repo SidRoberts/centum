@@ -26,18 +26,18 @@ trait RouterReplacementActions
 
 
 
-    public function assertRouterReplacementFilterEquals(ReplacementInterface $replacement, string $input, mixed $expectedOutput): void
+    public function assertRouterReplacementEquals(ReplacementInterface $replacement, string $input, mixed $expectedOutput): void
     {
         /** @var mixed */
-        $output = $replacement->filter($input);
+        $output = $replacement->process($input);
 
         Assert::assertEquals($expectedOutput, $output);
     }
 
-    public function assertRouterReplacementFilterDoesNotEqual(ReplacementInterface $replacement, string $input, mixed $expectedOutput): void
+    public function assertRouterReplacementDoesNotEqual(ReplacementInterface $replacement, string $input, mixed $expectedOutput): void
     {
         /** @var mixed */
-        $output = $replacement->filter($input);
+        $output = $replacement->process($input);
 
         Assert::assertNotEquals($expectedOutput, $output);
     }

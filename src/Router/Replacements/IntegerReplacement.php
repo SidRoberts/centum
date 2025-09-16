@@ -16,7 +16,7 @@ class IntegerReplacement implements ReplacementInterface
         return "\d+";
     }
 
-    public function filter(string $value): int
+    public function process(string $value): int
     {
         return (int) $value;
     }

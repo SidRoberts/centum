@@ -46,7 +46,7 @@ class PostReplacement implements ReplacementInterface
         return "\d+";
     }
 
-    public function filter(string $value): Post
+    public function process(string $value): Post
     {
         $postRepository = $this->entityManager->getRepository(
             Post::class
@@ -59,7 +59,7 @@ class PostReplacement implements ReplacementInterface
 }
 ```
 
-In this example, the `filter()` method retrieves a `Post` object based on the numeric value provided in the URL.
+In this example, the `process()` method retrieves a `Post` object based on the numeric value provided in the URL.
 If no matching `Post` is found, the method throws [`Centum\Router\Exception\RouteMismatchException`](https://github.com/SidRoberts/centum/blob/main/src/Router/Exception/RouteMismatchException.php).
 This exception signals to the Router that the current route does not match, allowing it to continue checking other routes instead of handling the error within the controller.
 This helps keep your controller code clean and focused only on business logic.

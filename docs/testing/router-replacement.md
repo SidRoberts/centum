@@ -35,10 +35,10 @@ assertRouterReplacementDoesNotMatch(
 
 
 
-## `assertRouterReplacementFilterEquals`
+## `assertRouterReplacementEquals`
 
 ```php
-assertRouterReplacementFilterEquals(
+assertRouterReplacementEquals(
     Centum\Interfaces\Router\ReplacementInterface $replacement,
     string $input,
     mixed $expectedOutput
@@ -47,10 +47,10 @@ assertRouterReplacementFilterEquals(
 
 
 
-## `assertRouterReplacementFilterDoesNotEqual`
+## `assertRouterReplacementDoesNotEqual`
 
 ```php
-assertRouterReplacementFilterDoesNotEqual(
+assertRouterReplacementDoesNotEqual(
     Centum\Interfaces\Router\ReplacementInterface $replacement,
     string $input,
     mixed $expectedOutput
