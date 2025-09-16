@@ -45,8 +45,8 @@ Available injectable interfaces include:
 - [`HeadersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeadersInterface.php) – to read HTTP headers
 - [`CookiesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookiesInterface.php) – to work with multiple cookies at once
 - [`FilesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FilesInterface.php) – to handle multiple uploaded files
-- Individual [`CookieInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookiesInterface.php) objects – for single cookies
-- Individual [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FilesInterface.php) objects – for specific groups of uploaded files
+- Individual [`CookieInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookieInterface.php) objects – for single cookies
+- Individual [`FileGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FileGroupInterface.php) objects – for specific groups of uploaded files
 
 For example, to access the HTTP Headers from within a Controller:
 
