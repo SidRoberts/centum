@@ -32,3 +32,15 @@
         max-width: 100% !important;
     }
 }
+
+p, blockquote {
+    &.highlight,
+    &.important,
+    &.new,
+    &.note,
+    &.warning {
+        &::before {
+            color: unset;
+        }
+    }
+}
