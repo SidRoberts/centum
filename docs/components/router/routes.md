@@ -40,6 +40,9 @@ class LoginController implements ControllerInterface
 However, Controllers can do far more: they can use dependency injection to receive services, apply filters and middlewares, and perform tasks such as form validation.
 These advanced features will be explained in later sections, but it is important to know that these things are possible.
 
+{: .note }
+[`Centum\Http\Response\HtmlResponse`](https://github.com/SidRoberts/centum/blob/main/src/Http/Response/HtmlResponse.php) can be used for HTML responses and [`Centum\Http\Response\JsonResponse`](https://github.com/SidRoberts/centum/blob/main/src/Http/Response/JsonResponse.php) can be used for JSON responses.
+
 
 
 ## Route Groups

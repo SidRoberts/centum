@@ -84,7 +84,7 @@ $router->addExceptionHandler(
 ```php
 namespace App\Web\ExceptionHandlers;
 
-use Centum\Http\Response;
+use Centum\Http\Response\HtmlResponse;
 use Centum\Http\Status;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -95,7 +95,7 @@ class ThrowableExceptionHandler implements ExceptionHandlerInterface
 {
     public function handle(RequestInterface $request, Throwable $throwable): ResponseInterface
     {
-        return new Response(
+        return new HtmlResponse(
             "<h1>An error occurred</h1>" .
             "<p>" . get_class($throwable) . "</p>" .
             "<p>" . $throwable->getMessage() . "</p>",
@@ -139,7 +139,7 @@ You can extend any Exception Handler to log the exception before returning a res
 
 ```php
 use Psr\Log\LoggerInterface;
-use Centum\Http\Response;
+use Centum\Http\Response\HtmlResponse;
 use Centum\Http\Status;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
@@ -163,7 +163,7 @@ class LoggedThrowableExceptionHandler implements ExceptionHandlerInterface
             ]
         );
 
-        return new Response(
+        return new HtmlResponse(
             "<h1>An internal error occurred</h1>",
             Status::INTERNAL_SERVER_ERROR
         );
