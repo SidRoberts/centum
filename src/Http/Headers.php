@@ -16,7 +16,7 @@ class Headers implements HeadersInterface
 
 
     /**
-     * @param array<HeaderInterface> $headers
+     * @param list<HeaderInterface> $headers
      */
     public function __construct(array $headers = [])
     {
