@@ -13,12 +13,13 @@ nav_order: 1
 
 ## Controllers
 
-Controllers are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/ResponseInterface.php) objects.
+Controllers are classes that are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/ResponseInterface.php) objects.
+When a user visits a URL or submits a form, the Router will direct the request to the appropriate Controller method, which will then generate and return a Response.
 
-{: .note }
+{: .highlight }
 Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ControllerInterface.php).
 
-A Controller can be as simple as this:
+A Controller can be as simple as the following example, which returns plain text:
 
 ```php
 namespace App\Web\Controllers;
@@ -36,19 +37,21 @@ class LoginController implements ControllerInterface
 }
 ```
 
-Controllers can also take advantage of things like dependency injection, filters, middlewares, and form validation which we'll learn more about later.
+However, Controllers can do far more: they can use dependency injection to receive services, apply filters and middlewares, and perform tasks such as form validation.
+These advanced features will be explained in later sections, but it is important to know that these things are possible.
 
 
 
 ## Route Groups
 
-In order to simplify the Route and Router classes, Routes are stored in [Group](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) objects.
+Routes are not added to the Router directly.
+Instead, to keep the Router class simple and organised, Routes are stored inside [Group](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) objects.
+Grouping routes together helps you organise related routes (for example, all the routes for user accounts or all the routes for an admin area).
 
 {: .highlight }
 [`Centum\Router\Group`](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) implements [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/GroupInterface.php).
 
-A group can store as many routes as you wish and can be used to organise and group similar routes.
-A new group can be created with the `group()` method:
+You can create a new group using the `group()` method on the Router:
 
 ```php
 use Centum\Interfaces\Router\RouterInterface;
@@ -58,14 +61,18 @@ use Centum\Interfaces\Router\RouterInterface;
 $group = $router->group();
 ```
 
-We'll learn more about Route Groups and how they can be useful in the [Middlewares](middlewares.md) section.
+Each group can contain as many routes as you want, and using groups allows you to apply middlewares to every route inside that group at once.
+We will go deeper into this in the [Middlewares](middlewares.md) section.
 
 
 
 ## HTTP Methods
 
-When adding a route to the Router, you must specify which HTTP method it matches.
-[RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2) specify the following HTTP methods which correlate with a Group method:
+When defining a route, you must tell the Router which HTTP method the route should respond to.
+This ensures that different kinds of requests (like viewing a page versus submitting data) are correctly separated.
+The standard HTTP methods are defined in [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4) and [RFC 5789](https://tools.ietf.org/html/rfc5789#section-2).
+
+Each of these methods has a corresponding method on the Group object:
 
 | HTTP Method | Group Method                             |
 | ----------- | ---------------------------------------- |
@@ -79,7 +86,7 @@ When adding a route to the Router, you must specify which HTTP method it matches
 | `CONNECT`   | `$group->connect($uri, $class, $method)` |
 | `PATCH`     | `$group->patch($uri, $class, $method)`   |
 
-If we wanted to add the login form from the `LoginController` in the earlier example, we might decide that it should be a `GET` request and match the `/login` URL:
+For example, if we want to display a login form at `/login` using the `form()` method from our `LoginController`, we would add a `GET` route for it like this:
 
 ```php
 use App\Web\Controllers\LoginController;
@@ -92,12 +99,12 @@ $group = $router->group();
 $group->get("/login", LoginController::class, "form");
 ```
 
-
-
 ### Same URL, Different Methods
 
-It's likely that at some point you'll want to use the same URL for different things.
-For example, you might want to show users a login form at `/login` but also allow the form to submit the login data to `/login`:
+It is common to have the same URL respond differently based on the HTTP method.
+A typical example is having a login page that displays a form on `GET /login` and processes the submitted form data on `POST /login`.
+
+Here is a controller that handles both cases:
 
 ```php
 namespace App\Web\Controllers;
@@ -110,17 +117,17 @@ class LoginController implements ControllerInterface
 {
     public function form(): ResponseInterface
     {
-        return new Response("hello GET");
+        return new Response("This is a GET request.");
     }
 
     public function submit(): ResponseInterface
     {
-        return new Response("hello POST");
+        return new Response("This is a POST request.");
     }
 }
 ```
 
-When adding these routes to the Router, you can use the different Group methods to denote which HTTP method they will apply to:
+And here is how you would register both routes with the Router:
 
 ```php
 use App\Web\Controllers\LoginController;
@@ -131,9 +138,11 @@ $group->get("/login", LoginController::class, "form");
 $group->post("/login", LoginController::class, "submit");
 ```
 
-`GET /login` would match `form()` and `POST /login` would match `submit()`.
+When the user visits `/login` with a GET request, the `form()` method will run.
+When the user submits the form with a POST request to `/login`, the `submit()` method will run.
 
-A shorthand exists for this kind of use case which uses the naming convention of `form()` and `submit()` inside the Controller:
+There is also a shorthand method called `submission()` for this common pattern.
+It assumes your controller uses the `form()` and `submit()` method names:
 
 ```php
 use App\Web\Controllers\LoginController;
@@ -147,8 +156,10 @@ $group->submission("/login", LoginController::class);
 
 ## Precedence
 
-The Router processes Routes in the order they are added.
-In this example, `GET /` would match `AController`:
+Routes are processed in the order they are added.
+This means the Router will check the first route you defined, then the second, and so on, stopping at the first route that matches the incoming request.
+
+For example, in this code, the `GET /` request will always match `AController` because it is defined before `BController`:
 
 ```php
 $group = $router->group();
@@ -156,3 +167,13 @@ $group = $router->group();
 $group->get("/", AController::class, "index");
 $group->get("/", BController::class, "index");
 ```
+
+Be careful not to accidentally define duplicate routes, as the later ones will never run.
+
+
+
+## Trailing Slashes
+
+Centum automatically removes trailing slashes from incoming request URLs.
+This means that requests to `/login` and `/login/` will be treated as the same route (`/login`).
+Because of this, you should always define your route URIs without a trailing slash (unless the route is simply `/`).

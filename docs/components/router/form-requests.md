@@ -13,9 +13,12 @@ nav_order: 6
 
 Within web apps, a user may submit data either through a HTML form or an API request.
 As with all user data, it may be necessary to filter and/or validate that data first before being able to use it.
+This ensures the application only works with clean and expected input, which helps prevent errors and potential security vulnerabilities.
+Form classes act as a middle layer between raw request data and the business logic in your application.
 
 As a basic example, you may have a login form with a username and password.
 Both of these fields are required and must follow certain rules.
+By encapsulating these rules in a Form, you can keep your controllers simple and avoid scattering validation logic throughout your code.
 First, we need to create a Form:
 
 ```php
@@ -67,6 +70,10 @@ class LoginForm implements FormInterface
 }
 ```
 
+This `LoginForm` class enforces several rules about the format and length of the data.
+If any of the rules are broken, an `Exception` will be thrown immediately, and no further processing will take place.
+This makes it easier to trust the data once the form has been successfully created.
+
 Now we can create a Route:
 
 ```php
@@ -80,6 +87,7 @@ $group->post("/login", LoginController::class, "submit");
 Within a Controller, you can use a Form to populate it with data from the Request object.
 If the data is not valid, a Form can throw an exception to prevent any further code execution.
 Exceptions in a Form can be caught with an [exception handler](exception-handlers.md).
+This lets you return helpful error messages back to the user without manually writing repetitive validation logic.
 
 As described in the Form, `$username` will be lowercase and trimmed:
 
@@ -109,3 +117,8 @@ class LoginController implements ControllerInterface
     }
 }
 ```
+
+In this controller, the `LoginForm` is automatically constructed and validated before the `submit()` method runs.
+By the time this method is called, you can be confident the data meets your defined requirements.
+This pattern helps keep controllers concise, readable, and easier to test.
+It also makes it much simpler to reuse the same form validation logic in multiple places across your application.
