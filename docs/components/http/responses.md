@@ -46,10 +46,14 @@ Centum\Http\Response\FileResponse(
 ## [`Centum\Http\Response\JsonResponse`](https://github.com/SidRoberts/centum/tree/development/src/Http/Response/JsonResponse.php)
 
 `JsonResponse` encodes a variable into a JSON object and pretty prints it.
+It automatically add the correct HTTP Content-Type header (`Content-Type: application/json`).
 
 ```php
 Centum\Http\Response\JsonResponse(
-    mixed $variable
+    mixed $variable,
+    Centum\Http\Status $status = Centum\Http\Status::OK,
+    ?Centum\Interfaces\Http\HeadersInterface $headers = null,
+    ?Centum\Interfaces\Http\CookiesInterface $cookies = null
 );
 ```
 

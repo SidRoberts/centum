@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\Http\Response;
 
+use Centum\Http\Header;
+use Centum\Http\Headers;
 use Centum\Http\Response\JsonResponse;
 use Centum\Http\Status;
 use Codeception\Attribute\DataProvider;
@@ -104,6 +106,57 @@ final class JsonResponseCest
         $I->assertSame(
             $status,
             $response->getStatus()
+        );
+    }
+
+    public function testHeader(UnitTester $I): void
+    {
+        $headers = new Headers(
+            [
+                new Header("Access-Control-Allow-Origin", "*"),
+            ]
+        );
+
+        $response = new JsonResponse(
+            [],
+            Status::OK,
+            $headers
+        );
+
+        $responseHeaders = $response->getHeaders();
+
+        $I->assertTrue(
+            $responseHeaders->matches("Access-Control-Allow-Origin", "*")
+        );
+
+        $I->assertTrue(
+            $responseHeaders->matches("Content-Type", "application/json")
+        );
+    }
+
+    public function testHeaderOverride(UnitTester $I): void
+    {
+        $headers = new Headers(
+            [
+                new Header("Access-Control-Allow-Origin", "*"),
+                new Header("Content-Type", "application/ld+json"),
+            ]
+        );
+
+        $response = new JsonResponse(
+            [],
+            Status::OK,
+            $headers
+        );
+
+        $responseHeaders = $response->getHeaders();
+
+        $I->assertTrue(
+            $responseHeaders->matches("Access-Control-Allow-Origin", "*")
+        );
+
+        $I->assertTrue(
+            $responseHeaders->matches("Content-Type", "application/ld+json")
         );
     }
 }
