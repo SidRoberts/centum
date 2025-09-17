@@ -79,8 +79,6 @@ Now we can create a Route:
 ```php
 use App\Web\Controllers\LoginController;
 
-$group = $router->group();
-
 $group->post("/login", LoginController::class, "submit");
 ```
 

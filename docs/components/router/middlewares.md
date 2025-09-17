@@ -116,7 +116,7 @@ This is especially handy for very small or one-off checks that don’t need thei
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Router\Middleware\CallbackMiddleware;
 
-$router->group(
+$group = $router->group(
     new CallbackMiddleware(
         function (RequestInterface $request): bool {
             return $request->getMethod() === "POST";
@@ -131,7 +131,7 @@ Alternatively, you can create an anonymous class:
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Router\MiddlewareInterface;
 
-$router->group(
+$group = $router->group(
     new class implements MiddlewareInterface
     {
         function check(RequestInterface $request): bool

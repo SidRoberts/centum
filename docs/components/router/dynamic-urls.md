@@ -18,8 +18,6 @@ To define a dynamic URL, place the parameter name inside curly brackets (for exa
 ```php
 use App\Web\Controllers\PostController;
 
-$group = $router->group();
-
 $group->get("/post/{id}", PostController::class, "view");
 ```
 
@@ -49,8 +47,6 @@ This allows you to build URLs that represent structured data, such as dates:
 
 ```php
 use App\Web\Controllers\CalendarController;
-
-$group = $router->group();
 
 $group->get("/calendar/{year}/{month}/{day}", CalendarController::class, "day");
 ```
@@ -103,8 +99,6 @@ For example, reusing the `PostController` from earlier, you can restrict the `{i
 
 ```php
 use App\Web\Controllers\PostController;
-
-$group = $router->group();
 
 $group->get("/post/{id:int}", PostController::class, "view");
 ```

@@ -93,11 +93,6 @@ For example, if we want to display a login form at `/login` using the `form()` m
 
 ```php
 use App\Web\Controllers\LoginController;
-use Centum\Interfaces\Router\RouterInterface;
-
-/** @var RouterInterface $router */
-
-$group = $router->group();
 
 $group->get("/login", LoginController::class, "form");
 ```
@@ -135,8 +130,6 @@ And here is how you would register both routes with the Router:
 ```php
 use App\Web\Controllers\LoginController;
 
-$group = $router->group();
-
 $group->get("/login", LoginController::class, "form");
 $group->post("/login", LoginController::class, "submit");
 ```
@@ -149,8 +142,6 @@ It assumes your controller uses the `form()` and `submit()` method names:
 
 ```php
 use App\Web\Controllers\LoginController;
-
-$group = $router->group();
 
 $group->submission("/login", LoginController::class);
 ```
@@ -165,8 +156,6 @@ This means the Router will check the first route you defined, then the second, a
 For example, in this code, the `GET /` request will always match `AController` because it is defined before `BController`:
 
 ```php
-$group = $router->group();
-
 $group->get("/", AController::class, "index");
 $group->get("/", BController::class, "index");
 ```

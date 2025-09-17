@@ -33,9 +33,7 @@ Exception Handlers can be used to handle 404 errors by handling [`RouteNotFoundE
 ```php
 use App\Web\ExceptionHandlers\RouteNotFoundExceptionHandler;
 
-$router->addExceptionHandler(
-    RouteNotFoundExceptionHandler::class
-);
+$router->addExceptionHandler(RouteNotFoundExceptionHandler::class);
 ```
 
 ```php
@@ -76,9 +74,7 @@ Exception Handlers are processed in the order that they are added to the Applica
 ```php
 use App\Web\ExceptionHandlers\ThrowableExceptionHandler;
 
-$router->addExceptionHandler(
-    ThrowableExceptionHandler::class
-);
+$router->addExceptionHandler(ThrowableExceptionHandler::class);
 ```
 
 ```php
