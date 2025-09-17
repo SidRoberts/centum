@@ -31,6 +31,7 @@ Inside the controller, you can access the captured parameter just like any other
 ```php
 namespace App\Web\Controllers;
 
+use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
@@ -59,6 +60,7 @@ And then access each parameter inside your controller method:
 ```php
 namespace App\Web\Controllers;
 
+use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
@@ -115,6 +117,7 @@ For example, the `int` type will convert the parameter into an integer, so your 
 ```php
 namespace App\Web\Controllers;
 
+use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 

@@ -57,6 +57,7 @@ We can also use [`Centum\Router\Middleware\InverseMiddleware`](https://github.co
 This helps keep the code clean because you don’t need to write two separate Middlewares for opposite conditions.
 
 ```php
+use App\Web\Controllers\AccountController;
 use App\Web\Middlewares\IsUserMiddleware;
 use Centum\Router\Middleware\InverseMiddleware;
 
@@ -128,7 +129,7 @@ Alternatively, you can create an anonymous class:
 
 ```php
 use Centum\Interfaces\Http\RequestInterface;
-use Centum\Router\Middleware\CallbackMiddleware;
+use Centum\Interfaces\Router\MiddlewareInterface;
 
 $router->group(
     new class implements MiddlewareInterface

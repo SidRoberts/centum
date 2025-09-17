@@ -18,6 +18,7 @@ For example, consider a simple `UserController` where we want to clear the user 
 ```php
 namespace App\Web\Controllers;
 
+use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Interfaces\Router\ControllerInterface;
