@@ -22,9 +22,9 @@ final class ResponseCest
 
         $status = Status::NOT_FOUND;
 
-        $headers = new Headers();
+        $headers = new Headers([]);
 
-        $cookies = new Cookies();
+        $cookies = new Cookies([]);
 
 
 

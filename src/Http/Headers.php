@@ -18,7 +18,7 @@ class Headers implements HeadersInterface
     /**
      * @param list<HeaderInterface> $headers
      */
-    public function __construct(array $headers = [])
+    public function __construct(array $headers)
     {
         foreach ($headers as $header) {
             $name = $header->getName();

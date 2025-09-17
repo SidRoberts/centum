@@ -27,8 +27,8 @@ class Request implements RequestInterface
         protected readonly ?string $content = null
     ) {
         $this->data    = $data    ?? new Data([]);
-        $this->headers = $headers ?? new Headers();
-        $this->cookies = $cookies ?? new Cookies();
+        $this->headers = $headers ?? new Headers([]);
+        $this->cookies = $cookies ?? new Cookies([]);
         $this->files   = $files   ?? new Files();
     }
 

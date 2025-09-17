@@ -18,7 +18,7 @@ class Cookies implements CookiesInterface
     /**
      * @param array<CookieInterface> $cookies
      */
-    public function __construct(array $cookies = [])
+    public function __construct(array $cookies)
     {
         foreach ($cookies as $cookie) {
             $name = $cookie->getName();

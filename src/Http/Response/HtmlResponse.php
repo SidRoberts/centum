@@ -27,7 +27,7 @@ class HtmlResponse extends Response
     protected function replaceHeaders(?HeadersInterface $headers = null): HeadersInterface
     {
         if ($headers === null) {
-            $headers = new Headers();
+            $headers = new Headers([]);
         }
 
         $existingHeaders = $headers->all();

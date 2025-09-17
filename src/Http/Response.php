@@ -19,8 +19,8 @@ class Response implements ResponseInterface
         ?HeadersInterface $headers = null,
         ?CookiesInterface $cookies = null
     ) {
-        $this->headers = $headers ?? new Headers();
-        $this->cookies = $cookies ?? new Cookies();
+        $this->headers = $headers ?? new Headers([]);
+        $this->cookies = $cookies ?? new Cookies([]);
     }
 
 
