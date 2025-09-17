@@ -41,6 +41,20 @@ Represents a collection of cookies.
 {: .highlight }
 [`Centum\Http\Cookies`](https://github.com/SidRoberts/centum/blob/main/src/Http/Cookies.php) implements [`Centum\Interfaces\Http\CookiesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookiesInterface.php).
 
+### Example
+
+```php
+use Centum\Http\Cookie;
+use Centum\Http\Cookies;
+
+$cookies = new Cookies(
+    [
+        new Cookie("preferred-language", "en"),
+        new Cookie("session_id", "abcdef1234567890abcdef1234567890"),
+    ]
+);
+```
+
 
 
 ## Cookies Factory
