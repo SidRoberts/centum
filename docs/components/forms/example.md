@@ -75,8 +75,8 @@ $loginForm->add($passwordField);
 Validating a Form is done using the `validate()` method which returns a [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Status.php) object.
 It has 2 public methods:
 
-- `public function isValid(): bool`
-- `public function getMessages(): array<string, array<string>>`
+- `isValid(): bool`
+- `getMessages(): array<string, array<string>>`
 
 {: .highlight }
 [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Status.php) implements [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/StatusInterface.php).

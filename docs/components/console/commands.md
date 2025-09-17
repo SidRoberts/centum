@@ -22,7 +22,7 @@ Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://g
 
 Commands require one public method:
 
-- `public function execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+- `execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
   The return value is the exit code.
 
 ### Exit Codes

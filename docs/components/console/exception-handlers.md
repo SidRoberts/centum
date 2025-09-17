@@ -18,7 +18,7 @@ Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerIn
 
 Exception Handlers require the following public method:
 
-- `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal, Throwable $throwable): void`
+- `handle(Centum\Interfaces\Console\TerminalInterface $terminal, Throwable $throwable): void`
 
 You can register multiple Exception Handlers for different exception types.
 

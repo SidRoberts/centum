@@ -30,15 +30,15 @@ Centum\Console\Application(
 );
 ```
 
-- `public function getCommandMetadata(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): Centum\Console\CommandMetadata`
+- `getCommandMetadata(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): Centum\Console\CommandMetadata`
   Retrieve metadata for a command.
-- `public function addCommand(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): void`
+- `addCommand(class-string<Centum\Interfaces\Console\CommandInterface> $commandClass): void`
   Register a new command.
-- `public function getCommands(): array<string, class-string<Centum\Interfaces\Console\CommandInterface>>`
+- `getCommands(): array<string, class-string<Centum\Interfaces\Console\CommandInterface>>`
   List all registered commands.
-- `public function addExceptionHandler(class-string<Centum\Interfaces\Console\ExceptionHandlerInterface> $exceptionClass): void`
+- `addExceptionHandler(class-string<Centum\Interfaces\Console\ExceptionHandlerInterface> $exceptionClass): void`
   Register an exception handler for console errors.
-- `public function handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
+- `handle(Centum\Interfaces\Console\TerminalInterface $terminal): int`
   Run the console application.
 
 

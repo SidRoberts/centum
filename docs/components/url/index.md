@@ -25,9 +25,9 @@ Centum\Url\Url(
 
 [`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/main/src/Url/Url.php) has 2 public methods:
 
-- `public function getBaseUri(): string`:
+- `getBaseUri(): string`:
   Returns the base URI that was set during construction.
-- `public function get(string $uri = "", array $arguments = []): string`:
+- `get(string $uri = "", array $arguments = []): string`:
   Generates a full URL by appending the given URI and query arguments to the base URI.
 
 `Centum\Url\Url` takes care of trailing and leading slashes, so you do not need to worry about double slashes or missing separators:

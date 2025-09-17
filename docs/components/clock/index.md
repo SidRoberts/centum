@@ -18,5 +18,5 @@ Clocks implement [`Centum\Interfaces\Clock\ClockInterface`](https://github.com/S
 
 Clocks require two public methods:
 
-- `public function now(): DateTimeImmutable`
-- `public function sleep(int $seconds): void`
+- `now(): DateTimeImmutable`
+- `sleep(int $seconds): void`

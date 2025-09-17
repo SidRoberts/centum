@@ -19,7 +19,7 @@ Exception Handlers must implement [`Centum\Interfaces\Router\ExceptionHandlerInt
 
 Exception Handlers only require the following public method:
 
-- `public function handle(Centum\Interfaces\Http\RequestInterface $request, Throwable $throwable): Centum\Interfaces\Http\ResponseInterface`
+- `handle(Centum\Interfaces\Http\RequestInterface $request, Throwable $throwable): Centum\Interfaces\Http\ResponseInterface`
 
 This `handle()` method is called whenever an exception is thrown during the processing of a request.
 It receives the original request and the exception that occurred, allowing you to inspect, log, or modify the response as needed.

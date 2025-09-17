@@ -16,7 +16,7 @@ Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://gith
 
 Filters only require one public method:
 
-- `public function filter(mixed $value): mixed`
+- `filter(mixed $value): mixed`
   Accepts any input and returns the filtered output.
 
 

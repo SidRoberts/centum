@@ -21,9 +21,9 @@ It is designed such that the entire dataset can be contained within a `DataInter
 
 [`DataInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/DataInterface.php) has 3 public methods:
 
-- `public function getTotal(): int`
-- `public function toArray(): array`
-- `public function slice(int $offset, int $length): array`
+- `getTotal(): int`
+- `toArray(): array`
+- `slice(int $offset, int $length): array`
 
 For data contained within a simple array, [`Centum\Paginator\Data\ArrayData`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Data/ArrayData.php) will suffice.
 
@@ -46,12 +46,12 @@ Centum\Paginator\Paginator(
 
 [`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Paginator.php) has 6 public methods:
 
-- `public function getData(): Centum\Interfaces\Paginator\DataInterface`
-- `public function getItemsPerPage(): int`
-- `public function getUrlPrefix(): string`
-- `public function getTotalItems(): int`
-- `public function getTotalPages(): int`
-- `public function getPage(int $pageNumber): Centum\Interfaces\Paginator\PageInterface`
+- `getData(): Centum\Interfaces\Paginator\DataInterface`
+- `getItemsPerPage(): int`
+- `getUrlPrefix(): string`
+- `getTotalItems(): int`
+- `getTotalPages(): int`
+- `getPage(int $pageNumber): Centum\Interfaces\Paginator\PageInterface`
 
 `Paginator` is responsible for creating [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Page.php) objects that represent a page of data.
 
@@ -67,9 +67,9 @@ Centum\Paginator\Page(
 
 [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Page.php) has several public methods:
 
-- `public function getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface`
-- `public function getPageNumber(): int`
-- `public function getData(): array`
-- `public function getPreviousPageNumber(): int|null`
-- `public function getNextPageNumber(): int|null`
-- `public function getPageRange(int $i): array`
+- `getPaginator(): Centum\Interfaces\Paginator\PaginatorInterface`
+- `getPageNumber(): int`
+- `getData(): array`
+- `getPreviousPageNumber(): int|null`
+- `getNextPageNumber(): int|null`
+- `getPageRange(int $i): array`
