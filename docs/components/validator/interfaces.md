@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Validator
-grand_parent: Components
+parent: Validator Component
 permalink: validator/interfaces
 nav_order: 102
 ---

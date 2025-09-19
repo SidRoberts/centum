@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/exceptions
 nav_order: 101
 ---

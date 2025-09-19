@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Paginator
-grand_parent: Components
+parent: Paginator Component
 permalink: paginator/interfaces
 nav_order: 102
 ---

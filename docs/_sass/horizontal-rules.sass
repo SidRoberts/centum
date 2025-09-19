@@ -1,0 +1,14 @@
+hr
+    @extend .vertical-spacing-lg
+
+    background-color:   $blue
+    border:             none
+    height:             0.25rem
+    print-color-adjust: exact
+
+    @each $word, $colour in $colour-variations
+        &.#{$word}
+            background-color: $colour
+
+    &.opposite
+        background-color: light-dark($black, $white)

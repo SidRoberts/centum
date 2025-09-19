@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Style
-parent: Console
-grand_parent: Components
+parent: Console Component
 permalink: console/style
 nav_order: 3
 ---

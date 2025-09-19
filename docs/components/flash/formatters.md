@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Formatters
-parent: Flash
-grand_parent: Components
+parent: Flash Component
 permalink: flash/formatters
 nav_order: 1
 ---
@@ -13,7 +12,7 @@ nav_order: 1
 
 Formatters determine how messages are outputted.
 
-{: .note }
+{: .callout.info }
 Formatters must implement [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FormatterInterface.php).
 
 Currently, there are 2 formatters:

@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Twig
-parent: Components
+title: Twig Component
 has_children: true
 permalink: twig
 ---

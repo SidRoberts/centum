@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/exceptions
 nav_order: 101
 ---

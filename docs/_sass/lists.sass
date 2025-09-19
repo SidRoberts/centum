@@ -1,0 +1,60 @@
+dl
+    @extend .vertical-spacing-md
+
+    & > dt
+        font-weight: 600
+
+        &::after
+            content: ":"
+
+    @media (max-width: $view-md-cutoff)
+        & > dt
+            margin-bottom: calc(#{$spacing-sm} / 2)
+
+        & > dd
+            margin-bottom: $spacing-sm
+
+            &:last-of-type
+                margin-bottom: 0
+
+    @media (min-width: $view-md-cutoff)
+        display: grid
+        gap:     1rem
+
+        & > dt
+            grid-column: 1
+            text-align:  end
+
+        & > dd
+            grid-column: 2
+
+    @media print
+        break-inside: avoid // Avoid it getting broken across two pages.
+
+
+
+main
+    ol, ul
+        @extend .vertical-spacing-md
+
+li
+    @extend .vertical-spacing-sm
+
+    margin-left:  $spacing-md
+    padding-left: $spacing-sm
+
+    ol, ul
+        margin-top: calc(#{$spacing-sm} / 2) !important
+
+        li
+            margin-left:  calc(#{$spacing-md} / 2)
+            padding-left: calc(#{$spacing-sm} / 2)
+
+
+
+li
+    break-inside: avoid
+
+    @each $word, $colour in $colour-variations
+        &.#{$word}::marker
+            color: $colour

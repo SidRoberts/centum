@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Paginator
-parent: Components
+title: Paginator Component
 has_children: true
 permalink: paginator
 ---
@@ -41,7 +40,7 @@ Centum\Paginator\Paginator(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Paginator.php) implements [`Centum\Interfaces\Paginator\PaginatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/PaginatorInterface.php).
 
 [`Centum\Paginator\Paginator`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Paginator.php) has 6 public methods:
@@ -62,7 +61,7 @@ Centum\Paginator\Page(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Page.php) implements [`Centum\Interfaces\Paginator\PageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/PageInterface.php).
 
 [`Centum\Paginator\Page`](https://github.com/SidRoberts/centum/blob/main/src/Paginator/Page.php) has several public methods:

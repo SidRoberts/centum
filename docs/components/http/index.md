@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Http
-parent: Components
+title: Http Component
 has_children: true
 permalink: http
 ---

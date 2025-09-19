@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Url
-grand_parent: Components
+parent: Url Component
 permalink: url/interfaces
 nav_order: 102
 ---

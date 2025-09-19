@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Built-In Validators
-parent: Validator
-grand_parent: Components
+parent: Validator Component
 permalink: validator/built-in
 nav_order: 1
 ---

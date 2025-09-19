@@ -1,8 +1,7 @@
 ---
 layout: default
 title: CSRF
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/csrf
 nav_order: 6
 ---
@@ -33,13 +32,13 @@ The [`Centum\Http\Csrf`](https://github.com/SidRoberts/centum/blob/main/src/Http
 - [`Storage`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Storage.php): Stores and retrieves tokens using the session.
 - [`Validator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Validator.php): Validates tokens on incoming requests.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Csrf\Generator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Generator.php) implements [`Centum\Interfaces\Http\Csrf\GeneratorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/GeneratorInterface.php).
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Csrf\Storage`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Storage.php) implements [`Centum\Interfaces\Http\Csrf\StorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/StorageInterface.php).
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Csrf\Validator`](https://github.com/SidRoberts/centum/blob/main/src/Http/Csrf/Validator.php) implements [`Centum\Interfaces\Http\Csrf\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/Csrf/ValidatorInterface.php).
 
 ```php

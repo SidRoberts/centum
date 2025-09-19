@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Immediate Queue
-parent: Queue
-grand_parent: Components
+parent: Queue Component
 permalink: queue/immediate-queue
 nav_order: 3
 ---
@@ -13,7 +12,7 @@ nav_order: 3
 
 [`Centum\Queue\ImmediateQueue`](https://github.com/SidRoberts/centum/tree/development/src/Queue/ImmediateQueue.php) immediately executes any tasks published to it.
 
-{: .note }
+{: .callout.info }
 This is technically not a queue as Tasks are executed synchronously within the `publish()` method.
 
 

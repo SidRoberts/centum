@@ -1,45 +1,9 @@
-title: "Centum Docs"
-remote_theme: pmarsceill/just-the-docs
-color_scheme: dark
+baseurl: "/centum"
 
-lang: en-GB
+gh_repository:      "https://github.com/SidRoberts/centum"
+gh_dir:             "docs"
+gh_edit_branch:     "main"
+gh_edit_view_mode:  "edit"
 
-permalink: pretty
-
-# Aux links for the upper right navigation
-aux_links:
-  "Centum on GitHub":
-    - "https://github.com/SidRoberts/centum"
-
-# Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: true
-
-back_to_top: true
-back_to_top_text: "Back to top"
-
-footer_content: "Copyright &copy; 2021-2025 Sid Roberts. Distributed by an <a href=\"https://github.com/SidRoberts/centum/blob/main/LICENSE\">MIT license.</a>"
-
-# Footer "Edit this page on GitHub" link text
-gh_edit_link: true
-gh_edit_link_text: "Edit this page on GitHub"
-gh_edit_repository: "https://github.com/SidRoberts/centum"
-gh_edit_branch: "main"
-gh_edit_source: "docs"
-gh_edit_view_mode: "edit"
-
-callouts_level: quiet
-callouts:
-  highlight:
-    color: yellow
-  important:
-    title: Important
-    color: blue
-  new:
-    title: New
-    color: green
-  note:
-    title: Note
-    color: purple
-  warning:
-    title: Warning
-    color: red
+include:
+  - _assets

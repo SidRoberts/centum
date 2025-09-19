@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Filter
-parent: Components
+title: Filter Component
 has_children: true
 permalink: filter
 ---
@@ -13,7 +12,7 @@ permalink: filter
 Filters are used to transform one value into another.
 They are especially useful in validation, allowing you to standardize or sanitize a value before validating it.
 
-{: .note }
+{: .callout.info }
 All filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Filter/FilterInterface.php).
 
 Filters only require one public method:

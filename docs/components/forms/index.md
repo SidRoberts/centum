@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Forms
-parent: Components
+title: Forms Component
 has_children: true
 permalink: forms
 ---
@@ -12,7 +11,7 @@ permalink: forms
 
 Forms are used for validating and processing data by taking advantage of the [Filter](../filter/index.md) and [Validator](../validator/index.md) components.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Forms\Form`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Form.php) implements [`Centum\Interfaces\Forms\FormInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FormInterface.php).
 
 

@@ -1,0 +1,21 @@
+{%- assign group_low = "" | split: "" -%}
+{%- assign group_none = "" | split: "" -%}
+{%- assign group_high = "" | split: "" -%}
+
+{%- for p in candidates -%}
+    {% if p.nav_order %}
+        {% if p.nav_order < 100 %}
+            {% assign group_low = group_low | push: p %}
+        {% else %}
+            {% assign group_high = group_high | push: p %}
+        {% endif %}
+    {% else %}
+        {% assign group_none = group_none | push: p %}
+    {% endif %}
+{%- endfor -%}
+
+{%- assign group_low = group_low | sort: "nav_order" -%}
+{%- assign group_none = group_none | sort: "title" -%}
+{%- assign group_high = group_high | sort: "nav_order" -%}
+
+{%- assign __return = group_low | concat: group_none | concat: group_high -%}

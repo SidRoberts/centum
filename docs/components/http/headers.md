@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Headers
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/headers
 nav_order: 4
 ---
@@ -30,7 +29,7 @@ Centum\Http\Header(
 - `$name`: The header name (e.g., `"Content-Type"`).
 - `$value`: The header value (e.g., `"application/json"`).
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Header`](https://github.com/SidRoberts/centum/blob/main/src/Http/Header.php) implements [`Centum\Interfaces\Http\HeaderInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeaderInterface.php).
 
 
@@ -39,7 +38,7 @@ Centum\Http\Header(
 
 Represents a collection of HTTP headers.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Headers`](https://github.com/SidRoberts/centum/blob/main/src/Http/Headers.php) implements [`Centum\Interfaces\Http\HeadersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/HeadersInterface.php).
 
 ### Example

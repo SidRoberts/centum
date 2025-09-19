@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Job data types
-parent: Cron
-grand_parent: Components
+parent: Cron Component
 permalink: cron/job-data-types
 nav_order: 1
 ---

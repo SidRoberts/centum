@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/exceptions
 nav_order: 101
 ---

@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Injecting Objects
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/injecting-objects
 nav_order: 3
 ---

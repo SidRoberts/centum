@@ -1,0 +1,31 @@
+@function lighter($colour)
+    @return mix(#FFFFFF, $colour, 50%)
+
+@function light($colour)
+    @return mix(#FFFFFF, $colour, 25%)
+
+@function dark($colour)
+    @return mix(#000000, $colour, 25%)
+
+@function darker($colour)
+    @return mix(#000000, $colour, 50%)
+
+
+
+@function tint($colour)
+    @return mix($white, $colour, 90%)
+
+@function shade($colour)
+    @return mix($black, $colour, 90%)
+
+
+
+$black:  #1F1F1F
+$white:  #FCFCFC
+$red:    #E92929
+$orange: #E76B23
+$yellow: #E2B100
+$green:  #14A647
+$blue:   #049DD9
+$purple: #934DD3
+$pink:   #B770C9

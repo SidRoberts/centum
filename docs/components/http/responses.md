@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Responses
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/responses
 nav_order: 8
 ---
@@ -24,7 +23,7 @@ Centum\Http\Response(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Response`](https://github.com/SidRoberts/centum/blob/main/src/Http/Response.php) implements [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/ResponseInterface.php).
 
 

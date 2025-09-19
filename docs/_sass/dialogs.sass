@@ -1,0 +1,63 @@
+dialog
+    background-color: light-dark($white, $black)
+    border:           none
+    border-radius:    $border-radius
+    box-shadow:       0 0 $spacing-sm light-dark($black, #000)
+    color:            light-dark($black, $white)
+    margin:           revert
+    max-width:        calc(100% - #{$spacing-md} - #{$spacing-md})
+    padding:          $spacing-md
+
+    @media (min-width: $view-sm-cutoff)
+        min-width: $view-sm-cutoff
+
+    & > .header, & > .content, & > .footer
+        @extend .vertical-spacing-md
+
+    & > .header
+        display: flex
+        gap:     $spacing-sm
+
+        & > .title
+            @extend .font-exo-2
+
+            flex-grow:   1
+            font-weight: 600
+
+        & > .dismiss
+            margin: 0
+
+            & > button
+                background: none
+                color:      inherit
+                margin:     0
+                padding:    0
+
+                &:hover, &:focus
+                    color: $red
+
+    & > .footer
+        display:   flex
+        flex-wrap: wrap
+        gap:       $spacing-sm
+
+    &::backdrop
+        background-color: rgba(0,0,0, 0.6)
+        backdrop-filter:  blur(0.125rem)
+
+    &[open]
+        animation: fadein $transition-speed ease-in forwards
+
+
+
+@keyframes fadein
+    from
+        opacity: 0
+
+    to
+        opacity: 1
+
+
+
+body:has(dialog[open])
+    overflow: hidden

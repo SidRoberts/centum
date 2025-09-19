@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Queue
-parent: Components
+title: Queue Component
 has_children: true
 permalink: queue
 ---

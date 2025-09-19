@@ -1,0 +1,76 @@
+table
+    @extend .vertical-spacing-md
+
+    border:         solid $border-sm $purple
+    border-radius:  $border-radius
+    border-spacing: 0
+    overflow:       hidden
+    width:          100%
+
+    @media print
+        break-inside: avoid // Avoid it getting broken across two pages.
+
+    th, td
+        border:  solid $border-sm $purple
+        padding: $spacing-sm
+
+    th
+        background-color: $purple
+        color:            $white
+        text-align:       start
+
+        @if lightness($purple) > 60
+            color: $black
+
+        @media print
+            background: none
+            color:      $black
+
+    & > thead
+        & > tr:last-child
+            th, td
+                border-bottom-width: $border-md
+
+    & > tfoot
+        background-color: light-dark(lighter($purple), darker($purple))
+
+        @media print
+            background: none
+
+        & > tr:first-child
+            th, td
+                border-top-width: $border-md
+
+    @each $word, $colour in $colour-variations
+        &.#{$word}
+            border-color: $colour
+
+            th, td
+                border-color: $colour
+
+            th
+                background-color: $colour
+                color:            $white
+
+                @if lightness($colour) > 60
+                    color: $black
+
+            & > tfoot
+                background-color: light-dark(lighter($colour), darker($colour))
+
+    &.opposite
+        border-color: light-dark($black, $white)
+
+        th, td
+            border-color: light-dark($black, $white)
+
+        th
+            background-color: light-dark($black, $white)
+            color:            light-dark($white, $black)
+
+            @media print
+                background: none
+                color:      $black
+
+        & > tfoot
+            background-color: light-dark(lighter($black), darker($white))

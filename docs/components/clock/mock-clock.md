@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Mock Clock
-parent: Clock
+parent: Clock Component
 permalink: clock/mock-clock
 nav_order: 2
 ---

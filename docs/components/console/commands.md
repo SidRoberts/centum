@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Commands
-parent: Console
-grand_parent: Components
+parent: Console Component
 permalink: console/commands
 nav_order: 1
 ---
@@ -13,7 +12,7 @@ nav_order: 1
 
 A Command in Centum functions similarly to a Controller in a web application, providing an entry point for CLI actions.
 
-{: .note }
+{: .callout.info }
 Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/CommandInterface.php).
 
 

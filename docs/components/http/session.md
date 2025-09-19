@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Session
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/session
 nav_order: 2
 ---
@@ -16,7 +15,7 @@ Common use cases include storing login status, user preferences, and temporary d
 
 Centum provides session classes that abstract session management, making it easy to interact with session data.
 
-{: .highlight }
+{: .callout.info }
 All session classes implement [`Centum\Interfaces\Http\SessionInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/SessionInterface.php).
 
 `SessionInterface` defines the following public methods:

@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Router
-parent: Components
+title: Router Component
 has_children: true
 permalink: router
 ---
@@ -18,7 +17,7 @@ Centum\Router\Router(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Router\Router`](https://github.com/SidRoberts/centum/blob/main/src/Router/Router.php) implements [`Centum\Interfaces\Router\RouterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/RouterInterface.php).
 
 The Router is the central component that connects incoming HTTP requests to the appropriate controller logic, and returns a HTTP response.

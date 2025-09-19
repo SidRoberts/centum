@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Templates
-parent: Forms
-grand_parent: Components
+parent: Forms Component
 permalink: forms/templates
 nav_order: 2
 ---

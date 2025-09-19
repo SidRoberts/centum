@@ -1,7 +1,6 @@
 ---
 layout: default
-title: App
-parent: Components
+title: App Component
 has_children: true
 permalink: app
 ---

@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/interfaces
 nav_order: 102
 ---

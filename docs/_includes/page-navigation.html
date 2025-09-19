@@ -1,0 +1,149 @@
+{%- if page.parent == nil -%}
+    {%- assign candidates = site.pages
+        | where_exp: "item", "item.title != nil"
+        | where_exp: "item", "item.nav_exclude != true"
+        | where_exp: "item", "item.parent == nil" -%}
+
+    {%- include nav-sorter.html candidates=candidates -%}
+    {%- assign siblings = __return -%}
+
+    {%- assign prev_index = nil -%}
+    {%- assign index = nil -%}
+    {%- assign next_index = nil -%}
+
+    {% for sibling in siblings %}
+        {% if sibling.title == page.title %}
+            {% assign prev_index = forloop.index0 | minus: 1 %}
+            {% assign index = forloop.index0 %}
+            {% assign next_index = forloop.index0 | plus: 1 %}
+        {% endif %}
+    {% endfor %}
+
+
+
+    {%- assign candidates = site.pages
+        | where_exp: "item", "item.title != nil"
+        | where_exp: "item", "item.nav_exclude != true"
+        | where: "parent", page.title -%}
+
+    {%- include nav-sorter.html candidates=candidates -%}
+    {%- assign children = __return -%}
+
+    {%- assign first_child = children[0] -%}
+
+    <div class="page-navigation">
+        {%- if prev_index >= 0 -%}
+            {%- assign prev = siblings[prev_index] -%}
+
+            <a href="{{ site.baseurl }}{{ prev.url }}" class="prev">
+                <span class="fa-solid fa-chevron-left fa-fw"></span>
+
+                {{ prev.title }}
+            </a>
+        {%- endif -%}
+
+        {%- if first_child -%}
+            <a href="{{ site.baseurl }}{{ first_child.url }}" class="next">
+                {{ first_child.title }}
+
+                <span class="fa-solid fa-chevron-right fa-fw"></span>
+            </a>
+        {%- elsif next_index >= 0 and siblings[next_index] -%}
+            {%- assign next = siblings[next_index] -%}
+
+            <a href="{{ site.baseurl }}{{ next.url }}" class="next">
+                {{ next.title }}
+
+                <span class="fa-solid fa-chevron-right fa-fw"></span>
+            </a>
+        {%- endif -%}
+    </div>
+{%- endif -%}
+
+
+
+{%- if page.parent != nil -%}
+    {%- assign candidates = site.pages
+        | where_exp: "item", "item.title != nil"
+        | where_exp: "item", "item.nav_exclude != true"
+        | where: "parent", page.parent -%}
+
+    {%- include nav-sorter.html candidates=candidates -%}
+    {%- assign siblings = __return -%}
+
+    {%- assign prev_index = nil -%}
+    {%- assign next_index = nil -%}
+
+    {% for sibling in siblings %}
+        {% if sibling.url == page.url %}
+            {% assign prev_index = forloop.index0 | minus: 1 %}
+            {% assign next_index = forloop.index0 | plus: 1 %}
+        {% endif %}
+    {% endfor %}
+
+
+
+
+
+    {%- assign candidates = site.pages
+        | where_exp: "item", "item.title != nil"
+        | where_exp: "item", "item.nav_exclude != true"
+        | where_exp: "item", "item.parent == nil" -%}
+
+    {%- include nav-sorter.html candidates=candidates -%}
+    {%- assign uncles = __return -%}
+
+    {%- assign prev_uncle_index = nil -%}
+    {%- assign parent_index = nil -%}
+    {%- assign next_uncle_index = nil -%}
+
+    {% for uncle in uncles %}
+        {% if uncle.title == page.parent %}
+            {% assign prev_uncle_index = forloop.index0 | minus: 1 %}
+            {% assign parent_index = forloop.index0 %}
+            {% assign next_uncle_index = forloop.index0 | plus: 1 %}
+        {% endif %}
+    {% endfor %}
+
+
+
+    <div class="page-navigation">
+        {%- if prev_index >= 0 -%}
+            {%- assign prev = siblings[prev_index] -%}
+
+            <a href="{{ site.baseurl }}{{ prev.url }}" class="prev">
+                <span class="fa-solid fa-chevron-left fa-fw"></span>
+
+                {{ prev.title }}
+            </a>
+        {%- else -%}
+            {%- if parent_index >= 0 -%}
+                {%- assign parent = uncles[parent_index] -%}
+
+                <a href="{{ site.baseurl }}{{ parent.url }}" class="parent">
+                    <span class="fa-solid fa-chevron-left fa-fw"></span>
+
+                    {{ parent.title }}
+                </a>
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if next_index < siblings.size -%}
+            {%- assign next = siblings[next_index] -%}
+
+            <a href="{{ site.baseurl }}{{ next.url }}" class="next">
+                {{ next.title }}
+
+                <span class="fa-solid fa-chevron-right fa-fw"></span>
+            </a>
+        {%- elsif next_uncle_index >= 0 and next_uncle_index < uncles.size -%}
+            {%- assign next_uncle = uncles[next_uncle_index] -%}
+
+            <a href="{{ site.baseurl }}{{ next_uncle.url }}" class="parent">
+                {{ next_uncle.title }}
+
+                <span class="fa-solid fa-chevron-right fa-fw"></span>
+            </a>
+        {%- endif -%}
+    </div>
+{%- endif -%}

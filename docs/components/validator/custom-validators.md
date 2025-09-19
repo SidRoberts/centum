@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Custom Validators
-parent: Validator
-grand_parent: Components
+parent: Validator Component
 permalink: validator/custom-validators
 nav_order: 1
 ---
@@ -13,7 +12,7 @@ nav_order: 1
 
 Custom Validators can be used anywhere you need to validate data, such as in Forms or Controllers.
 
-{: .note }
+{: .callout.info }
 Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Validator/ValidatorInterface.php).
 
 Validators require the following public method:

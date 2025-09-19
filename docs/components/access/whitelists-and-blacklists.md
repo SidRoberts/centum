@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Whitelists and Blacklists
-parent: Access
-grand_parent: Components
+parent: Access Component
 permalink: access/whitelists-and-blacklists
 nav_order: 1
 ---

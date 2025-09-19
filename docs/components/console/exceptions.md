@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Console
-grand_parent: Components
+parent: Console Component
 permalink: console/exceptions
 nav_order: 101
 ---

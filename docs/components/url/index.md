@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Url
-parent: Components
+title: Url Component
 has_children: true
 permalink: url
 ---
@@ -20,7 +19,7 @@ Centum\Url\Url(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/main/src/Url/Url.php) implements [`Centum\Interfaces\Url\UrlInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Url/UrlInterface.php).
 
 [`Centum\Url\Url`](https://github.com/SidRoberts/centum/blob/main/src/Url/Url.php) has 2 public methods:

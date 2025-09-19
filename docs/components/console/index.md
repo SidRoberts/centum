@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Console
-parent: Components
+title: Console Component
 has_children: true
 permalink: console
 ---
@@ -17,7 +16,7 @@ These Commands contain all of the code and all of the metadata is stored in a [`
 
 [`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/main/src/Console/Application.php) extracts the command name from `$argv`, finds the appropriate Command, and then executes the Command's code.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Console\Application`](https://github.com/SidRoberts/centum/blob/main/src/Console/Application.php) implements [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ApplicationInterface.php).
 
 

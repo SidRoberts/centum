@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Aliases
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/aliases
 nav_order: 1
 ---
@@ -18,7 +17,7 @@ As the Container cannot assume which class to inject, the Alias Manager exists t
 Centum\Container\AliasManager();
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Container\AliasManager`](https://github.com/SidRoberts/centum/blob/main/src/Container/AliasManager.php) implements [`Centum\Interfaces\Container\AliasManagerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/AliasManagerInterface.php).
 
 You can obtain the Alias Manager from a Container:

@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Forms Extension
-parent: Twig
-grand_parent: Components
+parent: Twig Component
 permalink: twig/forms
 nav_order: 3
 ---

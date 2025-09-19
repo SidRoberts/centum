@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Replacements
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/replacements
 nav_order: 4
 ---
@@ -15,7 +14,7 @@ Replacements in Centum are particularly useful for preprocessing URL parameters 
 They allow you to transform raw URL data, such as an ID number, into a fully usable object.
 This can greatly simplify your controllers by offloading validation and data retrieval responsibilities to a dedicated class.
 
-{: .note }
+{: .callout.info }
 Replacements must implement [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ReplacementInterface.php).
 
 Here’s an example of a Replacement that converts a numeric post ID into a `Post` object from the database:
@@ -85,7 +84,7 @@ $group->get("/post/{post:Post}", PostController::class, "view");
 
 With this setup, the `{post:Post}` parameter in the route URL will only match integers and is automatically replaced with a `Post` object, which is then injected into the controller method.
 
-{: .note }
+{: .callout.info }
 It's good practice to capitalise replacement identifiers for models or PHP objects and use lowercase for basic scalar values.
 
 In the controller, you can now work directly with fully-formed `Post` objects without having to manually fetch or validate them:

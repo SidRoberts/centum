@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Flash
-grand_parent: Components
+parent: Flash Component
 permalink: flash/interfaces
 nav_order: 102
 ---

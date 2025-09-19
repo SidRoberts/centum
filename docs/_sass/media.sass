@@ -1,0 +1,40 @@
+img, video, audio
+    @extend .vertical-spacing-md
+
+    display:    block
+    font-style: italic
+    height:     auto
+    max-width:  100%
+
+audio, video
+    border-radius: $border-radius
+
+audio
+    width: 100%
+
+
+
+iframe[src^="https://www.youtube.com/embed/"]
+    aspect-ratio: 16 / 9
+    height:       auto
+    max-width:    100%
+
+    @media screen
+        border-radius: $border-radius
+
+
+
+figure:has(img)
+    @extend .vertical-spacing-md
+
+    border:        solid $border-sm darker($white)
+    border-radius: $border-radius
+    overflow:      hidden
+
+    img
+        margin: 0
+
+    figcaption
+        color:      dark($white)
+        font-style: italic
+        padding:    $spacing-sm

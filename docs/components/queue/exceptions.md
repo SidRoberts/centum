@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Queue
-grand_parent: Components
+parent: Queue Component
 permalink: queue/exceptions
 nav_order: 101
 ---

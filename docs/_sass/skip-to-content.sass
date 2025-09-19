@@ -1,0 +1,35 @@
+a.skip-to-content
+    align-self:       center
+    background-color: $yellow
+    border-radius:    $border-radius
+    color:            light-dark($black, $white)
+    display:          flex
+    font-weight:      600
+    height:           1px
+    left:             -999px
+    padding:          $spacing-sm
+    position:         absolute
+    overflow:         hidden
+    text-align:       center
+    text-decoration:  none
+    top:              auto
+    width:            1px
+    z-index:          -999
+
+    &:focus, &:active
+        height:     auto
+        left:       auto
+        overflow:   auto
+        top:        0.5rem
+        transition: top $transition-speed ease-out
+        width:      max-content
+        z-index:    999
+
+        @media (prefers-reduced-motion)
+            transition: none
+
+        & > span.text
+            margin:                    0 $spacing-sm
+            text-decoration:           underline
+            text-decoration-thickness: $border-sm
+            text-underline-offset:     $border-md

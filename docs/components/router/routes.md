@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Routes
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/routes
 nav_order: 1
 ---
@@ -16,7 +15,7 @@ nav_order: 1
 Controllers are classes that are responsible for returning [`Centum\Interfaces\Http\ResponseInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/ResponseInterface.php) objects.
 When a user visits a URL or submits a form, the Router will direct the request to the appropriate Controller method, which will then generate and return a Response.
 
-{: .highlight }
+{: .callout.info }
 Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ControllerInterface.php).
 
 A Controller can be as simple as the following example, which returns plain text:
@@ -40,7 +39,7 @@ class LoginController implements ControllerInterface
 However, Controllers can do far more: they can use dependency injection to receive services, apply filters and middlewares, and perform tasks such as form validation.
 These advanced features will be explained in later sections, but it is important to know that these things are possible.
 
-{: .note }
+{: .callout.info }
 [`Centum\Http\Response\HtmlResponse`](https://github.com/SidRoberts/centum/blob/main/src/Http/Response/HtmlResponse.php) can be used for HTML responses and [`Centum\Http\Response\JsonResponse`](https://github.com/SidRoberts/centum/blob/main/src/Http/Response/JsonResponse.php) can be used for JSON responses.
 
 
@@ -51,7 +50,7 @@ Routes are not added to the Router directly.
 Instead, to keep the Router class simple and organised, Routes are stored inside [Group](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) objects.
 Grouping routes together helps you organise related routes (for example, all the routes for user accounts or all the routes for an admin area).
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Router\Group`](https://github.com/SidRoberts/centum/blob/main/src/Router/Group.php) implements [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/GroupInterface.php).
 
 You can create a new group using the `group()` method on the Router:

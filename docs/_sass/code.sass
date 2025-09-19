@@ -1,0 +1,42 @@
+pre, code
+    font-family: $monospace-font
+    font-weight: 300
+
+
+
+pre
+    @extend .vertical-spacing-md
+
+    border:        solid $border-sm $purple
+    border-radius: $border-radius
+    color:         light-dark($black, $white)
+    font-size:     0.9rem
+    overflow:      auto
+    padding:       $spacing-sm
+    white-space:   pre-wrap
+
+    @media (max-width: $view-md-cutoff)
+        padding: $spacing-md $spacing-sm
+
+    @media print
+        border:       solid $border-sm $purple
+        break-inside: avoid // Avoid it getting broken across two pages.
+        word-break:   break-word
+
+    & > code
+        color:   inherit
+        padding: 0
+
+code
+    overflow:   hidden
+    word-break: keep-all
+
+
+
+p
+    code
+        color: light-dark(dark($purple), light($purple))
+
+a
+    code
+        color: inherit

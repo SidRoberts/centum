@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Array Queue
-parent: Queue
-grand_parent: Components
+parent: Queue Component
 permalink: queue/array-queue
 nav_order: 1
 ---
