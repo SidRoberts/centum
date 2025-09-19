@@ -8,10 +8,20 @@
     padding-top:     $spacing-lg
 
     & > .prev
-        margin-right: auto
+        text-align: left
 
     & > .next
-        margin-left: auto
+        text-align: right
+
+    @media (min-width: $view-md-cutoff)
+        flex-direction:  row
+        justify-content: space-between
+
+        & > .prev
+            margin-right: auto
+
+        & > .next
+            margin-left: auto
 
     a[href]
         border:          solid $border-md $blue
