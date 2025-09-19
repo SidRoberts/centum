@@ -73,3 +73,11 @@ Centum\Paginator\Page(
 - `getPreviousPageNumber(): int|null`
 - `getNextPageNumber(): int|null`
 - `getPageRange(int $i): array`
+
+
+
+## Links
+
+- [Source code (`src/Paginator/`)](https://github.com/SidRoberts/centum/blob/main/src/Paginator/)
+- [Interfaces (`src/Interfaces/Paginator/`)](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Paginator/)
+- [Unit tests (`tests/Unit/Paginator/`)](https://github.com/SidRoberts/centum/blob/main/tests/Unit/Paginator/)
