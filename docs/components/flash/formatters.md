@@ -20,7 +20,7 @@ Currently, there are 2 formatters:
 
 
 
-## [`Centum\Flash\Formatter\HtmlFormatter`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Formatter/HtmlFormatter.php)
+## [`HtmlFormatter`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Formatter/HtmlFormatter.php)
 
 ```html
 <div class="alert alert-danger">This is an example message.</div>
@@ -28,7 +28,7 @@ Currently, there are 2 formatters:
 
 
 
-## [`Centum\Flash\Formatter\TextFormatter`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Formatter/TextFormatter.php)
+## [`TextFormatter`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Formatter/TextFormatter.php)
 
 ```text
 [DANGER] This is an example message.
