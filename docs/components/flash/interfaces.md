@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Flash\FlashInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FlashInterface.php)
+## [`FlashInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FlashInterface.php)
 
 ```php
 success(
@@ -47,7 +47,7 @@ output(): string
 
 
 
-## [`Centum\Interfaces\Flash\FormatterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FormatterInterface.php)
+## [`FormatterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FormatterInterface.php)
 
 ```php
 output(
@@ -57,7 +57,7 @@ output(
 
 
 
-## [`Centum\Interfaces\Flash\MessageBagInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/MessageBagInterface.php)
+## [`MessageBagInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/MessageBagInterface.php)
 
 ```php
 add(
@@ -71,7 +71,7 @@ getMessages(): array<Centum\Interfaces\Flash\MessageInterface>
 
 
 
-## [`Centum\Interfaces\Flash\MessageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/MessageInterface.php)
+## [`MessageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/MessageInterface.php)
 
 ```php
 getLevel(): non-empty-string
@@ -83,7 +83,7 @@ getText(): string
 
 
 
-## [`Centum\Interfaces\Flash\StorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/StorageInterface.php)
+## [`StorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/StorageInterface.php)
 
 ```php
 get(): Centum\Interfaces\Flash\MessageBagInterface

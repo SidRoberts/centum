@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Cron\CronInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Cron/CronInterface.php)
+## [`CronInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Cron/CronInterface.php)
 
 ```php
 add(
@@ -35,7 +35,7 @@ getAllJobs(): array<Centum\Interfaces\Cron\JobInterface>
 
 
 
-## [`Centum\Interfaces\Cron\JobInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Cron/JobInterface.php)
+## [`JobInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Cron/JobInterface.php)
 
 ```php
 getExpression(): non-empty-string

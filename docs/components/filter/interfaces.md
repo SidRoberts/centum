@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Filter/FilterInterface.php)
+## [`FilterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Filter/FilterInterface.php)
 
 ```php
 filter(

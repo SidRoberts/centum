@@ -15,13 +15,13 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ControllerInterface.php)
+## [`ControllerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ControllerInterface.php)
 
 No methods.
 
 
 
-## [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ExceptionHandlerInterface.php)
+## [`ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ExceptionHandlerInterface.php)
 
 ```php
 handle(
@@ -32,7 +32,7 @@ handle(
 
 
 
-## [`Centum\Interfaces\Router\GroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/GroupInterface.php)
+## [`GroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/GroupInterface.php)
 
 ```php
 getMiddleware(): Centum\Interfaces\Router\MiddlewareInterface
@@ -130,7 +130,7 @@ submission(
 
 
 
-## [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/MiddlewareInterface.php)
+## [`MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/MiddlewareInterface.php)
 
 ```php
 check(
@@ -140,7 +140,7 @@ check(
 
 
 
-## [`Centum\Interfaces\Router\ParametersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ParametersInterface.php)
+## [`ParametersInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ParametersInterface.php)
 
 ```php
 get(
@@ -161,7 +161,7 @@ toArray(): array<non-empty-string, mixed>
 
 
 
-## [`Centum\Interfaces\Router\ReplacementInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ReplacementInterface.php)
+## [`ReplacementInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ReplacementInterface.php)
 
 ```php
 getIdentifier(): non-empty-string
@@ -179,7 +179,7 @@ process(
 
 
 
-## [`Centum\Interfaces\Router\RouteInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/RouteInterface.php)
+## [`RouteInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/RouteInterface.php)
 
 ```php
 getHttpMethod(): non-empty-string
@@ -203,7 +203,7 @@ getParameters(): array<non-empty-string, string>
 
 
 
-## [`Centum\Interfaces\Router\RouterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/RouterInterface.php)
+## [`RouterInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/RouterInterface.php)
 
 ```php
 group(

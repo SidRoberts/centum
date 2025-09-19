@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Console\ApplicationInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ApplicationInterface.php)
+## [`ApplicationInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ApplicationInterface.php)
 
 ```php
 addCommand(
@@ -41,7 +41,7 @@ handle(
 
 
 
-## [`Centum\Interfaces\Console\CommandInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/CommandInterface.php)
+## [`CommandInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/CommandInterface.php)
 
 ```php
 execute(
@@ -51,7 +51,7 @@ execute(
 
 
 
-## [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ExceptionHandlerInterface.php)
+## [`ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ExceptionHandlerInterface.php)
 
 ```php
 handle(
@@ -62,7 +62,7 @@ handle(
 
 
 
-## [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/TerminalInterface.php)
+## [`TerminalInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/TerminalInterface.php)
 
 ```php
 getArguments(): Centum\Interfaces\Console\Terminal\ArgumentsInterface
@@ -106,7 +106,7 @@ writeErrorLine(
 
 
 
-## [`Centum\Interfaces\Console\Terminal\ArgumentsInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/Terminal/ArgumentsInterface.php)
+## [`Terminal/ArgumentsInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/Terminal/ArgumentsInterface.php)
 
 ```php
 getFilename(): string

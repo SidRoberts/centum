@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FieldInterface.php)
+## [`FieldInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FieldInterface.php)
 
 ```php
 getName(): non-empty-string
@@ -61,7 +61,7 @@ getMessages(
 
 
 
-## [`Centum\Interfaces\Forms\FormInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FormInterface.php)
+## [`FormInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FormInterface.php)
 
 ```php
 add(
@@ -83,7 +83,7 @@ validate(
 
 
 
-## [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/StatusInterface.php)
+## [`StatusInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/StatusInterface.php)
 
 ```php
 isValid(): bool

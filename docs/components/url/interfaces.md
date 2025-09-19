@@ -15,7 +15,7 @@ nav_order: 102
 
 
 
-## [`Centum\Interfaces\Url\UrlInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Url/UrlInterface.php)
+## [`UrlInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Url/UrlInterface.php)
 
 ```php
 getBaseUri(): string
