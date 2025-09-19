@@ -33,9 +33,7 @@ Handle situations where a Command is not found by catching [`CommandNotFoundExce
 ```php
 use App\Console\ExceptionHandlers\CommandNotFoundExceptionHandler;
 
-$application->addExceptionHandler(
-    CommandNotFoundExceptionHandler::class
-);
+$application->addExceptionHandler(CommandNotFoundExceptionHandler::class);
 ```
 
 ```php
@@ -77,9 +75,7 @@ Exception Handlers are processed in the order they are added, so this should be 
 ```php
 use App\Console\ExceptionHandlers\ThrowableExceptionHandler;
 
-$application->addExceptionHandler(
-    ThrowableExceptionHandler::class
-);
+$application->addExceptionHandler(ThrowableExceptionHandler::class);
 ```
 
 ```php

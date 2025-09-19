@@ -34,6 +34,12 @@ If any of these parts are not explicitly set, then the Container will create a d
 {: .highlight }
 [`Centum\Container\Container`](https://github.com/SidRoberts/centum/blob/main/src/Container/Container.php) implements [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ContainerInterface.php).
 
+```php
+use Centum\Container\Container;
+
+$container = new Container();
+```
+
 
 
 ## Retrieving objects
@@ -41,10 +47,7 @@ If any of these parts are not explicitly set, then the Container will create a d
 Classes can be retreived using the `get()` method:
 
 ```php
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\RouterInterface;
-
-/** @var ContainerInterface $container */
 
 $router = $container->get(RouterInterface::class);
 ```

@@ -61,14 +61,14 @@ You can then access individual arguments or options as needed.
 
 ## Output
 
-### Writing to STDOUT
+### Writing to `STDOUT`
 
 ```php
 $terminal->write("hello");     // Writes without newline
 $terminal->writeLine("hello"); // Writes with newline
 ```
 
-### Writing to STDERR
+### Writing to `STDERR`
 
 ```php
 $terminal->writeError("error");     // Writes error message without newline
