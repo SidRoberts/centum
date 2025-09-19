@@ -32,10 +32,6 @@ Although constructor parameters will be saved in the Object Storage, the typehin
 Methods can be called using the `typehintMethod()` method:
 
 ```php
-use Centum\Interfaces\Container\ContainerInterface;
-
-/** @var ContainerInterface $container */
-
 $response = $container->typehintMethod($postController, "index");
 ```
 
@@ -54,8 +50,6 @@ function my_special_function(ContainerInterface $container, RequestInterface $re
     /* ... */
 }
 
-/** @var ContainerInterface $container */
-
 $result = $container->typehintFunction("my_special_function");
 ```
 
@@ -64,9 +58,7 @@ $result = $container->typehintFunction("my_special_function");
 ## Typehinting Services
 
 ```php
-use Centum\Interfaces\Container\ContainerInterface;
-
-/** @var ContainerInterface $container */
+use App\Services\FlashService;
 
 $flash = $container->typehintService(FlashService::class);
 ```

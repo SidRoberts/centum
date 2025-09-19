@@ -83,12 +83,7 @@ Adding a Service to the Service Storage is done through the `set()` method:
 
 ```php
 use App\Services\RouterService;
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\RouterInterface;
-
-/** @var ContainerInterface $container */
-
-$serviceStorage = $container->getServiceStorage();
 
 $serviceStorage->set(RouterInterface::class, RouterService::class);
 ```
@@ -96,10 +91,7 @@ $serviceStorage->set(RouterInterface::class, RouterService::class);
 It is then possible to retreive that object from the Container:
 
 ```php
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Router\RouterInterface;
-
-/** @var ContainerInterface $container */
 
 $router = $container->get(RouterInterface::class);
 ```

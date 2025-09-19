@@ -34,10 +34,7 @@ Aliases can be added using the `add()` method:
 
 ```php
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
-
-/** @var AliasManagerInterface $aliasManager */
 
 $aliasManager->add(FormatterInterface::class, HtmlFormatter::class);
 ```
@@ -46,10 +43,7 @@ Now, any call with [`FormatterInterface`](https://github.com/SidRoberts/centum/b
 
 ```php
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
-
-/** @var AliasManagerInterface $aliasManager */
 
 $alias = $aliasManager->get(FormatterInterface::class); // = HtmlFormatter::class
 ```
@@ -57,22 +51,14 @@ $alias = $aliasManager->get(FormatterInterface::class); // = HtmlFormatter::clas
 If an alias hasn't been set, then the original class will be returned:
 
 ```php
-use Centum\Interfaces\Console\TerminalInterface;
-use Centum\Interfaces\Container\AliasManagerInterface;
-
-/** @var AliasManagerInterface $aliasManager */
-
-$alias = $aliasManager->get(TerminalInterface::class); // = TerminalInterface::class
+$alias = $aliasManager->get(RandomClass::class); // = RandomClass::class
 ```
 
 The Container will implicitly handle aliases internally so getting `FormatterInterface` from the Container will now actually return a `HtmlFormatter` object:
 
 ```php
 use Centum\Flash\Formatter\HtmlFormatter;
-use Centum\Interfaces\Container\ContainerInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
-
-/** @var ContainerInterface $container */
 
 $formatter = $container->get(FormatterInterface::class); // = HtmlFormatter object
 ```

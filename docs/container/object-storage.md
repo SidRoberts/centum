@@ -36,10 +36,7 @@ $objectStorage = $container->getObjectStorage();
 You can check if objects exist using the `has()` method:
 
 ```php
-use Centum\Interfaces\Container\ObjectStorageInterface;
 use Centum\Interfaces\Router\RouterInterface;
-
-/** @var ObjectStorageInterface $objectStorage */
 
 if ($objectStorage->has(RouterInterface::class)) {
     echo "There is a `RouterInterface` in the object storage.";
@@ -57,10 +54,7 @@ If the object does not exist, then `null` will be returned.
 Objects can be retreived using the `get()` method:
 
 ```php
-use Centum\Interfaces\Container\ObjectStorageInterface;
 use Centum\Interfaces\Router\RouterInterface;
-
-/** @var ObjectStorageInterface $objectStorage */
 
 $router = $objectStorage->get(RouterInterface::class);
 ```
@@ -75,10 +69,7 @@ Objects can be set using the `set()` method:
 
 ```php
 use Centum\Clock\Clock;
-use Centum\Interfaces\Container\ObjectStorageInterface;
 use Centum\Interfaces\Clock\ClockInterface;
-
-/** @var ObjectStorageInterface $objectStorage */
 
 $clock = new Clock();
 
@@ -92,10 +83,7 @@ $objectStorage->set(ClockInterface::class, $clock);
 You can remove objects using the `remove()` method:
 
 ```php
-use Centum\Interfaces\Container\ObjectStorageInterface;
 use Centum\Interfaces\Router\RouterInterface;
-
-/** @var ObjectStorageInterface $objectStorage */
 
 $objectStorage->remove(RouterInterface::class);
 ```
