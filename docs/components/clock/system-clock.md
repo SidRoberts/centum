@@ -50,6 +50,16 @@ $clock = new SystemClock(
 
 
 
+## Sleeping
+
+The `sleep()` method internally calls the `sleep()` function, so it will delay the program execution by the given number of seconds.
+
+```php
+$clock->sleep(5);
+```
+
+
+
 ## Getting the Current Time
 
 The `now()` method returns a `DateTimeImmutable` instance representing the current system time:

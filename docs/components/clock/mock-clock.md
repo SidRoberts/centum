@@ -82,6 +82,17 @@ $clock->stop();
 
 
 
+## Sleeping
+
+The `sleep()` method will advance the Clock's time by the given number of seconds, but it will not delay the program execution.
+This command will execute near instantaneously, but will give the code the appearance of time passing.
+
+```php
+$clock->sleep(5);
+```
+
+
+
 ## Benefits for Testing
 
 By injecting a clock with a fixed time, you can ensure your tests are consistent and repeatable, avoiding flaky tests caused by real-time changes.
