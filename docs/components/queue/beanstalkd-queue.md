@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Beanstalkd Queue
-parent: Queue
-grand_parent: Components
+parent: Queue Component
 permalink: queue/beanstalkd-queue
 nav_order: 2
 ---

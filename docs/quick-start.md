@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Quick Start
+permalink: quick-start
 nav_order: 2
 ---
 

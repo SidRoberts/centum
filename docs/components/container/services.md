@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Services
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/services
 nav_order: 4
 ---
@@ -51,7 +50,7 @@ class RouterService implements ServiceInterface
 }
 ```
 
-{: .note }
+{: .callout.info }
 Services must implement [`Centum\Interfaces\Container\ServiceInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ServiceInterface.php).
 
 In the previous case, we needed the Container object to instantiate a new Router object.
@@ -67,7 +66,7 @@ Services are stored in a `ServiceStorageInterface` object which is accessible to
 Centum\Container\ServiceStorage();
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Container\ServiceStorage`](https://github.com/SidRoberts/centum/blob/main/src/Container/ServiceStorage.php) implements [`Centum\Interfaces\Container\ServiceStorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ServiceStorageInterface.php).
 
 You can obtain the Service Storage from a Container:

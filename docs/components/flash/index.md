@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Flash
-parent: Components
+title: Flash Component
 has_children: true
 permalink: flash
 ---
@@ -20,7 +19,7 @@ Centum\Flash\Flash(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Flash\Flash`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Flash.php) implements [`Centum\Interfaces\Flash\FlashInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Flash/FlashInterface.php).
 
 To add a message to the Flash, use any of the following methods:

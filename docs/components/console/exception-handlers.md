@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exception Handlers
-parent: Console
-grand_parent: Components
+parent: Console Component
 permalink: console/exception-handlers
 nav_order: 4
 ---
@@ -13,7 +12,7 @@ nav_order: 4
 
 Exception Handlers allow you to catch and handle exceptions that occur during command execution in your Centum console application.
 
-{: .note }
+{: .callout.info }
 Exception Handlers must implement [`Centum\Interfaces\Console\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/ExceptionHandlerInterface.php).
 
 Exception Handlers require the following public method:

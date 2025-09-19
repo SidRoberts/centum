@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Input / Output
-parent: Console
-grand_parent: Components
+parent: Console Component
 permalink: console/input-output
 nav_order: 2
 ---
@@ -27,7 +26,7 @@ Centum\Console\Terminal(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Console\Terminal`](https://github.com/SidRoberts/centum/blob/main/src/Console/Terminal.php) implements [`Centum\Interfaces\Console\TerminalInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Console/TerminalInterface.php).
 
 

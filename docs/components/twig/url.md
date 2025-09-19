@@ -1,8 +1,7 @@
 ---
 layout: default
 title: URL Extension
-parent: Twig
-grand_parent: Components
+parent: Twig Component
 permalink: twig/url
 nav_order: 4
 ---

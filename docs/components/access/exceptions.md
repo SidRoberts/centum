@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Access
-grand_parent: Components
+parent: Access Component
 permalink: access/exceptions
 nav_order: 101
 ---

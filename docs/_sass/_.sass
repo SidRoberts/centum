@@ -1,0 +1,82 @@
+$view-sm-cutoff: 20rem
+$view-md-cutoff: 40rem
+$view-lg-cutoff: 60rem
+
+$spacing-sm: 1rem
+$spacing-md: 2rem
+$spacing-lg: 4rem
+
+$border-sm: calc(1rem / 16)
+$border-md: calc(1rem / 8)
+$border-lg: calc(1rem / 4)
+
+$line-height: 1.6
+
+$border-radius: calc(1rem / 4)
+
+$transition-speed: 0.125s
+
+
+
+\:root
+    color-scheme: light dark
+
+    @media (max-width: $view-md-cutoff)
+        font-size: 1rem
+
+    @media (min-width: $view-md-cutoff)
+        font-size: 1.125rem
+
+    @media (min-width: $view-lg-cutoff)
+        font-size: 1.25rem
+
+
+
+@import "fonts"
+
+$monospace-font: "Fira Code", monospace
+
+@import "colours"
+
+$colour-variations: "red" $red, "orange" $orange, "yellow" $yellow, "green" $green, "blue" $blue, "purple" $purple, "pink" $pink
+
+@import "reset"
+
+@import "utilities"
+
+@import "text"
+
+@import "code"
+
+@import "code-highlighting"
+
+@import "lists"
+
+@import "headings"
+
+@import "tables"
+
+@import "text-colours"
+
+@import "skip-to-content"
+
+@import "horizontal-rules"
+
+@import "layout"
+
+@import "buttons"
+
+@import "callouts"
+
+@import "media"
+
+@import "dialogs"
+
+@import "offcanvas"
+
+@import "page-navigation"
+
+
+
+section
+    break-inside: avoid

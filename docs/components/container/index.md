@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Container
-parent: Components
+title: Container Component
 has_children: true
 permalink: container
 ---
@@ -31,7 +30,7 @@ Centum\Container\Container(
 
 If any of these parts are not explicitly set, then the Container will create a default for that part.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Container\Container`](https://github.com/SidRoberts/centum/blob/main/src/Container/Container.php) implements [`Centum\Interfaces\Container\ContainerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ContainerInterface.php).
 
 ```php

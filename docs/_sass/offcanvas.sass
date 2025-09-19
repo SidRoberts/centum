@@ -1,0 +1,55 @@
+dialog.offcanvas
+    bottom:        0
+    border-radius: 0
+    height:        100%
+    margin:        0
+    max-height:    unset
+    max-width:     calc(100% - #{$spacing-lg})
+    min-width:     unset !important
+    padding:       $spacing-md
+    position:      fixed
+    top:           0
+    width:         25rem
+
+    &, &.end
+        margin-left: auto
+
+    &.start
+        margin-left:  0
+        margin-right: auto
+
+        & > .header
+            flex-direction: row-reverse
+
+    & > .header, & > .content, & > .footer
+        @extend .vertical-spacing-none
+
+    & > .content
+        flex-grow: 1
+
+    &[open]
+        display:        flex
+        flex-direction: column
+        gap:            $spacing-md
+
+        &, &.end
+            animation: animateFromRight ($transition-speed * 2) ease-in forwards
+
+        &.start
+            animation: animateFromLeft ($transition-speed * 2) ease-in forwards
+
+
+
+@keyframes animateFromLeft
+    from
+        left: -$view-sm-cutoff
+
+    to
+        left: 0
+
+@keyframes animateFromRight
+    from
+        right: -$view-sm-cutoff
+
+    to
+        right: 0

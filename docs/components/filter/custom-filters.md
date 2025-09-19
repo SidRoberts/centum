@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Custom Filters
-parent: Filter
-grand_parent: Components
+parent: Filter Component
 permalink: filter/custom-filters
 nav_order: 2
 ---
@@ -11,7 +10,7 @@ nav_order: 2
 
 # Custom Filters
 
-{: .note }
+{: .callout.info }
 Filters must implement [`Centum\Interfaces\Filter\FilterInterface`](https://github.com/SidRoberts/centum/tree/development/src/Interfaces/Filter/FilterInterface.php).
 
 Filters only require one public method:

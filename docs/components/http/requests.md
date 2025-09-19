@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Requests
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/requests
 nav_order: 1
 ---
@@ -28,7 +27,7 @@ Centum\Http\Request(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Request`](https://github.com/SidRoberts/centum/blob/main/src/Http/Request.php) implements [`Centum\Interfaces\Http\RequestInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/RequestInterface.php).
 
 

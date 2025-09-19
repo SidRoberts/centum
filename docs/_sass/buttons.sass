@@ -1,0 +1,66 @@
+button, input[type="button"], input[type="reset"], input[type="image"], input[type="submit"], a.button
+    align-content:   center
+    border:          none
+    border-radius:   $border-radius
+    cursor:          pointer
+    display:         inline-block
+    font-family:     inherit
+    font-size:       inherit
+    font-weight:     600
+    line-height:     1
+    min-width:       max-content
+    overflow:        auto
+    padding:         $spacing-sm
+    text-decoration: none
+
+    @media print
+        border: solid $border-sm currentcolor
+
+    &[disabled]
+        cursor: not-allowed
+
+    &[type="image"][src]:not([src=""])
+        padding: 0
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    &
+        background-color: $blue
+        color:            $black
+
+        @media print
+            border-color: $blue
+
+        &[disabled]
+            background-color: light-dark(lighter($blue), darker($blue))
+            color:            light-dark(lighter($black), darker($black))
+
+            @media print
+                border-color: lighter($blue)
+
+    @each $word, $colour in $colour-variations
+        &.#{$word}
+            background-color: $colour
+
+            @media print
+                border-color: $colour
+
+            &[disabled]
+                background-color: light-dark(lighter($colour), darker($colour))
+
+                @media print
+                    border-color: lighter($colour)
+
+    &.no-bg
+        background-color: transparent
+        color:            light-dark($black, $white)
+
+        @media print
+            border-color: transparent
+
+        &[disabled]
+            background-color: transparent
+            color:            $red
+
+            @media print
+                border-color: transparent

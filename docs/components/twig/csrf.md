@@ -1,8 +1,7 @@
 ---
 layout: default
 title: CSRF Extension
-parent: Twig
-grand_parent: Components
+parent: Twig Component
 permalink: twig/csrf
 nav_order: 1
 ---

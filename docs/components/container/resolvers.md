@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Resolvers
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/resolvers
 nav_order: 2
 ---
@@ -14,7 +13,7 @@ nav_order: 2
 A Resolver takes a parameter from a method or a function and tries to resolve it into an object or a value.
 Resolved values/objects are not stored in the Container unless the Resolver specifically adds it to the Object Storage.
 
-{: .note }
+{: .callout.info }
 Resolvers must implement [`Centum\Interfaces\Container\ResolverInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ResolverInterface.php).
 
 Centum has the following Resolvers:
@@ -35,7 +34,7 @@ After all the Resolvers have been tried, the Resolver Group which will try to fi
 Centum\Container\ResolverGroup();
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Container\ResolverGroup`](https://github.com/SidRoberts/centum/blob/main/src/Container/ResolverGroup.php) implements [`Centum\Interfaces\Container\ResolverGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ResolverGroupInterface.php).
 
 You can obtain the Resolver Group from a Container:

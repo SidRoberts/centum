@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/interfaces
 nav_order: 102
 ---

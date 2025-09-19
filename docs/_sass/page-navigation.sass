@@ -1,0 +1,24 @@
+.page-navigation
+    display:         flex
+    gap:             0.5rem
+    justify-content: space-between
+
+    & > .prev
+        margin-right: auto
+
+    & > .next
+        margin-left: auto
+
+    a[href]
+        border:          solid $border-md $blue
+        border-radius:   $border-radius
+        color:           inherit
+        display:         block
+        font-weight:     600
+        overflow:        hidden
+        padding:         0.5rem
+        text-decoration: none
+
+        &:focus, &:hover
+            background-color: $blue
+            border-color:     $blue

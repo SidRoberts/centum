@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Whitelisted Functions Extension
-parent: Twig
-grand_parent: Components
+parent: Twig Component
 permalink: twig/whitelisted-functions
 nav_order: 5
 ---

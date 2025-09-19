@@ -1,0 +1,42 @@
+.callout
+    @extend .vertical-spacing-md
+
+    border-radius: $border-radius
+    padding:       $spacing-sm
+
+    @media print
+        border: solid $border-lg currentcolor
+
+    a[href]
+        color:                     inherit
+        text-decoration-color:     $blue
+        text-decoration-thickness: $border-md
+        text-underline-offset:     $border-lg
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    &, &.info
+        background-color: light-dark(light($blue), dark($blue))
+        color:            light-dark($black, $white)
+
+        @media print
+            border-color: light($blue)
+
+    &.success
+        background-color: light-dark(light($green), dark($green))
+
+        @media print
+            border-color: light($green)
+
+    &.warning
+        background-color: light-dark(light($yellow), dark($yellow))
+
+        @media print
+            border-color: light($yellow)
+
+    &.danger
+        background-color: light-dark(light($red), dark($red))
+
+        @media print
+            border-color: light($red)
+

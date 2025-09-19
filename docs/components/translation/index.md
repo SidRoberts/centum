@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Translation
-parent: Components
+title: Translation Component
 has_children: true
 permalink: translation
 ---
@@ -21,7 +20,7 @@ Centum\Translate\Locale(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Translation\Locale`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Locale.php) implements [`Centum\Interfaces\Translation\LocaleInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/LocaleInterface.php).
 
 ```php
@@ -55,7 +54,7 @@ use Centum\Translation\Translator;
 $translator = new Translator($enLocale);
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Translation\Translator`](https://github.com/SidRoberts/centum/blob/main/src/Translation/Translator.php) implements [`Centum\Interfaces\Translation\TranslatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Translation/TranslatorInterface.php).
 
 

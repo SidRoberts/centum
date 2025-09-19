@@ -1,0 +1,45 @@
+main
+    line-height: $line-height
+
+p
+    @extend .vertical-spacing-md
+
+
+
+a[href]
+    color:                     $blue
+    text-decoration-thickness: $border-md
+    text-underline-offset:     $border-lg
+
+
+
+strong
+    font-weight: 800
+
+
+
+u
+    text-decoration-thickness: $border-sm
+    text-underline-offset:     $border-md
+
+
+
+ins
+    color:                     $green
+    text-decoration-thickness: $border-sm
+    text-underline-offset:     $border-md
+
+del
+    color:                     light($red)
+    text-decoration-thickness: $border-sm
+
+
+
+small
+    font-variant: small-caps
+
+
+
+s
+    color:                     light-dark(lighter($black), darker($white))
+    text-decoration-thickness: $border-sm

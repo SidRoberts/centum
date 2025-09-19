@@ -1,7 +1,7 @@
 ---
 layout: default
 title: System Clock
-parent: Clock
+parent: Clock Component
 permalink: clock/system-clock
 nav_order: 1
 ---

@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Example
-parent: Paginator
-grand_parent: Components
+parent: Paginator Component
 permalink: paginator/example
 nav_order: 1
 ---

@@ -1,0 +1,264 @@
+html, body
+    height: 100%
+
+body
+    background-color: light-dark($white, $black)
+    color:            light-dark($black, $white)
+
+    @extend .font-urbanist
+
+    @media screen
+        display:        flex
+        flex-direction: column
+
+    @media print
+        background: none
+
+    & > header, & > main, & > footer
+        padding: $spacing-sm
+
+        @media print
+            background:    none
+            padding-left:  0
+            padding-right: 0
+
+    & > header > nav, & > main > #content, & > footer > .nav-links
+        @media screen
+            margin:    0 auto
+            max-width: $view-lg-cutoff
+
+    & > header, & > footer
+        @media screen
+            padding-top:    $spacing-sm
+            padding-bottom: $spacing-sm
+
+        @media print
+            padding: $spacing-sm
+
+    & > header
+        @media screen
+            border-bottom: solid $border-md $orange
+
+        .nav-branding
+            align-items:    center
+            display:        flex
+            flex-direction: row
+            flex-wrap:      wrap
+            line-height:    1
+            gap:            $spacing-md
+            row-gap:        $spacing-sm
+
+            .brand, .permalink, .nav-toggle
+                display:     block
+                font-family: $monospace-font
+
+            .brand, .nav-toggle
+                color:           light-dark($black, $white)
+                text-decoration: none
+                overflow:        hidden
+
+            @media print
+                .brand, .permalink > a[href]
+                    color: $black
+
+            .brand
+                align-items: center
+                display:     flex
+                font-weight: 500
+                font-family: "Exo 2", sans-serif
+
+                &:focus, &:hover
+                    color: $orange
+
+            .permalink
+                @media screen
+                    display: none
+
+                @media print
+                    & > a[href]
+                        text-decoration: none
+
+            @media screen
+                .brand
+                    margin-right: auto
+
+            @media print
+                .permalink
+                    flex-grow: 1
+
+                .nav-toggle
+                    display: none
+
+        .nav-toggle, dialog .header button
+            align-content: center
+            border-radius: $border-radius
+            color:         light-dark($black, $white)
+            font-size:     1.5rem
+            height:        2rem
+
+            &:focus, &:hover
+                color: $orange
+
+            &.active
+                color: $blue
+
+        dialog
+            padding: $spacing-sm !important
+
+            .header > .title
+                align-content: center
+
+            h5 a[href]
+                color:           light-dark($black, $white)
+                text-decoration: none
+
+                &:focus, &:hover
+                    color: $orange
+
+                &.active
+                    color: $blue
+
+                @media print
+                    color: $black
+
+            menu.nav-links
+                @extend .vertical-spacing-md
+
+                display:        flex
+                flex-direction: column
+                gap:            $spacing-sm
+                list-style:     none
+
+                & > li
+                    display: block
+                    margin:  0
+                    padding: 0
+
+                    &.nav-link > a[href]
+                        color:           light-dark($black, $white)
+                        font-family:     $monospace-font
+                        font-weight:     300
+                        text-decoration: none
+
+                        &:focus, &:hover
+                            color: $orange
+
+                        &.active
+                            color: $blue
+
+                        @media print
+                            color: $black
+
+            .nav-section
+                @extend .vertical-spacing-md
+
+                h5, menu.nav-links
+                    @extend .vertical-spacing-sm
+
+        @media print
+            background:    none
+            border:        solid $border-lg $orange
+            border-radius: $border-radius
+            overflow:      hidden
+
+        .nav-links
+            .nav-link
+                @media print
+                    display: none
+
+    & > main
+        padding-top:    $spacing-md
+        padding-bottom: $spacing-md
+
+        @media screen
+            flex-grow: 1
+
+        @media print
+            padding: $spacing-md 0
+
+    & > footer
+        @media screen
+            border-top: solid $border-md $orange
+
+        @media print
+            margin-top: $spacing-lg
+
+        .copyright
+            align-content:  center
+            display:        inline-block
+            font-size:      0.75rem
+            font-family:    $monospace-font
+            text-transform: uppercase
+
+            &, & > a[href]
+                color:                     light-dark($black, $white)
+                text-decoration-thickness: $border-sm
+                text-underline-offset:     $border-md
+
+                @media print
+                    color: $black
+
+        .nav-links
+            font-size: 0.75rem
+
+            &, & > .nav-links-start, & > .nav-links-end
+                display:        flex
+                flex-direction: row
+                flex-wrap:      wrap
+                gap:            calc(#{$spacing-sm} / 2)
+
+            .nav-links-start
+                flex-grow: 1
+
+            & > menu
+                list-style: none
+                margin:     0
+
+                & > li
+                    display: inline
+                    margin:  0
+                    padding: 0
+
+                    &.nav-link, &.nav-text
+                        &, & > a[href]
+                            color: light-dark($black, $white)
+
+                            @media print
+                                color: $black
+
+                    &.nav-link > a[href], &.nav-text
+                        display:         inline-block
+                        font-family:     $monospace-font
+                        padding:         calc(#{$spacing-sm} / 2)
+                        text-transform:  uppercase
+
+                    &.nav-link
+                        & > a[href]
+                            border:           solid $border-sm $blue
+                            border-radius:    $border-radius
+                            overflow:         auto
+                            text-decoration:  none
+
+                            &:focus, &:hover
+                                background-color: $orange
+                                border-color:     $orange
+
+                            &.active
+                                background-color: $blue
+                                border-color:     $blue
+
+                    &.nav-text
+                        a[href]
+                            text-decoration-thickness: $border-sm
+                            text-underline-offset:     $border-md
+
+        @media print
+            background:    none
+            border:        solid $border-lg $orange
+            border-radius: $border-radius
+            overflow:      hidden
+
+        .nav-links
+            .nav-link
+                @media print
+                    display: none

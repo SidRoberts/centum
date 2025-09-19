@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Cookies
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/cookies
 nav_order: 3
 ---
@@ -29,7 +28,7 @@ Centum\Http\Cookie(
 );
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Cookie`](https://github.com/SidRoberts/centum/blob/main/src/Http/Cookie.php) implements [`Centum\Interfaces\Http\CookieInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookieInterface.php).
 
 
@@ -38,7 +37,7 @@ Centum\Http\Cookie(
 
 Represents a collection of cookies.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Cookies`](https://github.com/SidRoberts/centum/blob/main/src/Http/Cookies.php) implements [`Centum\Interfaces\Http\CookiesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/CookiesInterface.php).
 
 ### Example

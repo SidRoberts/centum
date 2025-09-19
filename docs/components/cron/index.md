@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Cron
-parent: Components
+title: Cron Component
 has_children: true
 permalink: cron
 ---
@@ -42,7 +41,7 @@ $job3 = new Job(
 
 Cron Jobs can be added to a [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/main/src/Cron/Cron.php) object that determines which jobs are due at any given time.
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Cron\Cron`](https://github.com/SidRoberts/centum/blob/main/src/Cron/Cron.php) implements [`Centum\Interfaces\Cron\CronInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Cron/CronInterface.php).
 
 ```php

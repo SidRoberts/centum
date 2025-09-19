@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Example
-parent: Forms
-grand_parent: Components
+parent: Forms Component
 permalink: forms/example
 nav_order: 1
 ---
@@ -22,7 +21,7 @@ $emailField = new Field("email");
 $passwordField = new Field("password");
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Forms\Field`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Field.php) implements [`Centum\Interfaces\Forms\FieldInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/FieldInterface.php).
 
 Now we need to add some filters and validators to these fields.
@@ -78,7 +77,7 @@ It has 2 public methods:
 - `isValid(): bool`
 - `getMessages(): array<string, array<string>>`
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Forms\Status`](https://github.com/SidRoberts/centum/blob/main/src/Forms/Status.php) implements [`Centum\Interfaces\Forms\StatusInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Forms/StatusInterface.php).
 
 Validating data against these filters and validators is as easy as:

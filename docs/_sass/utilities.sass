@@ -1,0 +1,71 @@
+.visually-hidden:not(:focus):not(:active)
+    border:      0
+    clip:        rect(0 0 0 0)
+    clip-path:   inset(50%)
+    height:      0
+    margin:      0
+    overflow:    hidden
+    padding:     0
+    position:    absolute
+    white-space: nowrap
+    width:       0
+
+
+
+.screen-only
+    @media print
+        display: none !important
+
+.print-only
+    @media screen
+        display: none !important
+
+
+
+@mixin vertical-spacing($amount)
+    margin-top:    $amount
+    margin-bottom: $amount
+
+    &:first-child
+        margin-top: 0
+
+    &:last-child
+        margin-bottom: 0
+
+.vertical-spacing-none
+    @include vertical-spacing(0)
+
+
+
+.vertical-spacing-sm
+    margin-top:    $spacing-sm
+    margin-bottom: $spacing-sm
+
+.vertical-spacing-md
+    margin-top:    $spacing-md
+    margin-bottom: $spacing-md
+
+.vertical-spacing-lg
+    margin-top:    $spacing-lg
+    margin-bottom: $spacing-lg
+
+.vertical-spacing-sm, .vertical-spacing-md, .vertical-spacing-lg
+    &:first-child
+        margin-top: 0
+
+    &:last-child
+        margin-bottom: 0
+
+
+
+.padding-none
+    padding: 0
+
+.padding-sm
+    padding: $spacing-sm
+
+.padding-md
+    padding: $spacing-md
+
+.padding-lg
+    padding: $spacing-lg

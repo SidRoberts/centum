@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Translation
-grand_parent: Components
+parent: Translation Component
 permalink: translation/interfaces
 nav_order: 102
 ---

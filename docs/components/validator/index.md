@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Validator
-parent: Components
+title: Validator Component
 has_children: true
 permalink: validator
 ---
@@ -12,7 +11,7 @@ permalink: validator
 
 Validators are used to validate data and provide useful error messages explaining why a piece of data failed.
 
-{: .note }
+{: .callout.info }
 Validators must implement [`Centum\Interfaces\Validator\ValidatorInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Validator/ValidatorInterface.php).
 
 Validators require one public method:

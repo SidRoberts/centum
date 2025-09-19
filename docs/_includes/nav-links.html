@@ -1,0 +1,27 @@
+{% for nav_page in include.nav_pages %}
+    <div class="nav-section">
+        <h5>
+            <a href="{{ site.baseurl }}{{ nav_page.url }}" {% if page.url == nav_page.url %}class="active"{% endif %}>
+                {{ nav_page.title }}
+            </a>
+        </h5>
+
+        <menu class="nav-links">
+            {%- assign candidates = site.pages
+                | where_exp: "item", "item.title != nil"
+                | where_exp: "item", "item.nav_exclude != true"
+                | where: "parent", nav_page.title -%}
+
+            {%- include nav-sorter.html candidates=candidates -%}
+            {%- assign children = __return -%}
+
+            {% for child in children %}
+                <li class="nav-link">
+                    <a href="{{ site.baseurl }}{{ child.url }}" {% if page.url == child.url %}class="active"{% endif %}>
+                        <span class="nav-title">{{ child.title }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </menu>
+    </div>
+{% endfor %}

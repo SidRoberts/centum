@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Console
-grand_parent: Components
+parent: Console Component
 permalink: console/interfaces
 nav_order: 102
 ---

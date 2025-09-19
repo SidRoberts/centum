@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Building from an array
-parent: Cron
-grand_parent: Components
+parent: Cron Component
 permalink: cron/building-from-an-array
 nav_order: 2
 ---

@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Form Requests
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/form-requests
 nav_order: 6
 ---

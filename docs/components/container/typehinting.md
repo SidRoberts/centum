@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Typehinting Classes, Methods, and Functions
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/typehinting
 nav_order: 5
 ---

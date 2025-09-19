@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Middlewares
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/middlewares
 nav_order: 5
 ---
@@ -15,7 +14,7 @@ We already know about Route Groups but we haven't used them yet in a meaningful 
 The main purpose of Route Groups is to be able to easily assign a Middleware to a collection of Routes.
 This allows you to apply common logic (like authentication, access control, or request filtering) to multiple routes at once without duplicating code.
 
-{: .note }
+{: .callout.info }
 Middlewares must implement [`Centum\Interfaces\Router\MiddlewareInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/MiddlewareInterface.php).
 
 Middlewares only require one public method:

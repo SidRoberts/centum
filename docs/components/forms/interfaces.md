@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Forms
-grand_parent: Components
+parent: Forms Component
 permalink: forms/interfaces
 nav_order: 102
 ---

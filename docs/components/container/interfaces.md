@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Interfaces
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/interfaces
 nav_order: 102
 ---

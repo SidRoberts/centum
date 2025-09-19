@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exceptions
-parent: Translation
-grand_parent: Components
+parent: Translation Component
 permalink: translation/exceptions
 nav_order: 101
 ---

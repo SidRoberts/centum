@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Setting Rules
-parent: Access
-grand_parent: Components
+parent: Access Component
 permalink: access/setting-rules
 nav_order: 2
 ---

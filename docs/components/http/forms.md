@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Forms
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/forms
 nav_order: 7
 ---

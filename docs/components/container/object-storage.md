@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Object Storage
-parent: Container
-grand_parent: Components
+parent: Container Component
 permalink: container/object-storage
 nav_order: 3
 ---
@@ -17,7 +16,7 @@ Within a Container, objects are stored in an [`ObjectStorageInterface`](https://
 Centum\Container\ObjectStorage();
 ```
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Container\ObjectStorage`](https://github.com/SidRoberts/centum/blob/main/src/Container/ObjectStorage.php) implements [`Centum\Interfaces\Container\ObjectStorageInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Container/ObjectStorageInterface.php).
 
 You can obtain the Object Storage from a Container:

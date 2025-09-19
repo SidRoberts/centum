@@ -1,7 +1,6 @@
 ---
 layout: default
-title: Clock
-parent: Components
+title: Clock Component
 has_children: true
 permalink: clock
 ---

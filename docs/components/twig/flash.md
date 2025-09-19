@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Flash Extension
-parent: Twig
-grand_parent: Components
+parent: Twig Component
 permalink: twig/flash
 nav_order: 2
 ---

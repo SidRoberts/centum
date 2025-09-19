@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Built-In Filters
-parent: Filter
-grand_parent: Components
+parent: Filter Component
 permalink: filter/built-in
 nav_order: 1
 ---

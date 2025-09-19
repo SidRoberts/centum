@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Dynamic URLs
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/dynamic-urls
 nav_order: 2
 ---

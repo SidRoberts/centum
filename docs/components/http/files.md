@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Files
-parent: Http
-grand_parent: Components
+parent: Http Component
 permalink: http/files
 nav_order: 5
 ---
@@ -17,13 +16,13 @@ HTTP Files are encapsulated in 3 classes in Centum:
 - [`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/main/src/Http/FileGroup.php)
 - [`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/main/src/Http/File.php)
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\Files`](https://github.com/SidRoberts/centum/blob/main/src/Http/Files.php) implements [`Centum\Interfaces\Http\FilesInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FilesInterface.php).
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\FileGroup`](https://github.com/SidRoberts/centum/blob/main/src/Http/FileGroup.php) implements [`Centum\Interfaces\Http\FileGroupInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FileGroupInterface.php).
 
-{: .highlight }
+{: .callout.info }
 [`Centum\Http\File`](https://github.com/SidRoberts/centum/blob/main/src/Http/File.php) implements [`Centum\Interfaces\Http\FileGroupInte`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Http/FileGroupInte.php).
 
 In an effort to simplify file uploads, both from the complexity of HTML file inputs in forms and the complexity of the `$_FILES` superglobal, a FileGroup represents all files that share the `name` property.

@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Exception Handlers
-parent: Router
-grand_parent: Components
+parent: Router Component
 permalink: router/exception-handlers
 nav_order: 7
 ---
@@ -14,7 +13,7 @@ nav_order: 7
 Exception Handlers are used to catch and handle Exceptions in Controllers.
 They act as a centralised mechanism to respond to errors in a consistent and controlled manner, rather than allowing the application to crash or display raw error messages.
 
-{: .note }
+{: .callout.info }
 Exception Handlers must implement [`Centum\Interfaces\Router\ExceptionHandlerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ExceptionHandlerInterface.php).
 
 Exception Handlers only require the following public method:
