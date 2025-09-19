@@ -77,18 +77,9 @@ psalm.xml
 
 ## Custom Composer Scripts
 
-### `composer analyse`
-
-Run Psalm static analyser.
-
-### `composer test`
-
-Run Codeception tests.
-
-### `composer test-coverage`
-
-Run Codeception tests with code coverage (see `tests/_output/coverage/index.html` after running).
-
-### `composer format`
-
-Fix any coding standard issues in the code.
+| Command                  | Description                                                                                       |
+| ------------------------ | ------------------------------------------------------------------------------------------------- |
+| `composer analyse`       | Run Psalm static analyser.                                                                        |
+| `composer test`          | Run Codeception tests.                                                                            |
+| `composer test-coverage` | Run Codeception tests with code coverage (see `tests/_output/coverage/index.html` after running). |
+| `composer format`        | Fix any coding standard issues in the code.                                                       |
