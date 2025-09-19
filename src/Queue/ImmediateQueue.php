@@ -11,7 +11,7 @@ use Throwable;
 class ImmediateQueue implements QueueInterface
 {
     /**
-     * @var array<TaskInterface>
+     * @var list<TaskInterface>
      */
     protected array $buriedTasks = [];
 
@@ -51,7 +51,7 @@ class ImmediateQueue implements QueueInterface
 
 
     /**
-     * @return array<TaskInterface>
+     * @return list<TaskInterface>
      */
     public function getBuriedTasks(): array
     {
