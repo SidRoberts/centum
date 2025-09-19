@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Filter Interfaces
 parent: Filter Component
 permalink: filter/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Filter Interfaces
 
 (all in the `Centum\Interfaces\Filter` namespace)
 

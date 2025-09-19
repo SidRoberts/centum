@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Cron Interfaces
 parent: Cron Component
 permalink: cron/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Cron Interfaces
 
 (all in the `Centum\Interfaces\Cron` namespace)
 

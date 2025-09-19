@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Router Exceptions
 parent: Router Component
 permalink: router/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Router Exceptions
 
 (all in the `Centum\Router\Exception` namespace)
 

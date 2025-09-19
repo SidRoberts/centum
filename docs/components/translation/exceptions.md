@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Translation Exceptions
 parent: Translation Component
 permalink: translation/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Translation Exceptions
 
 (all in the `Centum\Translation\Exception` namespace)
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Access Exceptions
 parent: Access Component
 permalink: access/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Access Exceptions
 
 (all in the `Centum\Access\Exception` namespace)
 

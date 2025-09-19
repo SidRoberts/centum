@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Translation Interfaces
 parent: Translation Component
 permalink: translation/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Translation Interfaces
 
 (all in the `Centum\Interfaces\Translation` namespace)
 

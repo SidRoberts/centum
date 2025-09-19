@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Http Interfaces
 parent: Http Component
 permalink: http/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Http Interfaces
 
 (all in the `Centum\Interfaces\Http` namespace)
 

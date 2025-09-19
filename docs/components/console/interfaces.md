@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Console Interfaces
 parent: Console Component
 permalink: console/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Console Interfaces
 
 (all in the `Centum\Interfaces\Console` namespace)
 

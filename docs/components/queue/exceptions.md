@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Queue Exceptions
 parent: Queue Component
 permalink: queue/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Queue Exceptions
 
 (all in the `Centum\Queue\Exception` namespace)
 

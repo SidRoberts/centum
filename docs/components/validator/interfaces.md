@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Validator Interfaces
 parent: Validator Component
 permalink: validator/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Validator Interfaces
 
 (all in the `Centum\Interfaces\Validator` namespace)
 

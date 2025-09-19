@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Console Exceptions
 parent: Console Component
 permalink: console/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Console Exceptions
 
 (all in the `Centum\Console\Exception` namespace)
 

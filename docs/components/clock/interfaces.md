@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Clock Interfaces
 parent: Clock Component
 permalink: clock/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Clock Interfaces
 
 (all in the `Centum\Interfaces\Clock` namespace)
 

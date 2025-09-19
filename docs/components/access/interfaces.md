@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Access Interfaces
 parent: Access Component
 permalink: access/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Access Interfaces
 
 (all in the `Centum\Interfaces\Access` namespace)
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Queue Interfaces
 parent: Queue Component
 permalink: queue/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Queue Interfaces
 
 (all in the `Centum\Interfaces\Queue` namespace)
 

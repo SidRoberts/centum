@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Paginator Interfaces
 parent: Paginator Component
 permalink: paginator/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Paginator Interfaces
 
 (all in the `Centum\Interfaces\Paginator` namespace)
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Flash Interfaces
 parent: Flash Component
 permalink: flash/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Flash Interfaces
 
 (all in the `Centum\Interfaces\Flash` namespace)
 

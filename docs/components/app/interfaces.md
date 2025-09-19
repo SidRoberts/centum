@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: App Interfaces
 parent: App Component
 permalink: app/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# App Interfaces
 
 (all in the `Centum\Interfaces\App` namespace)
 

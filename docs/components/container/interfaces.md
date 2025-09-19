@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Container Interfaces
 parent: Container Component
 permalink: container/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Container Interfaces
 
 (all in the `Centum\Interfaces\Container` namespace)
 

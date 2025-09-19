@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Forms Interfaces
 parent: Forms Component
 permalink: forms/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Forms Interfaces
 
 (all in the `Centum\Interfaces\Forms` namespace)
 

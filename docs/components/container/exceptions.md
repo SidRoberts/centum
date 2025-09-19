@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Container Exceptions
 parent: Container Component
 permalink: container/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Container Exceptions
 
 (all in the `Centum\Container\Exception` namespace)
 

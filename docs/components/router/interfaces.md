@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Router Interfaces
 parent: Router Component
 permalink: router/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Router Interfaces
 
 (all in the `Centum\Interfaces\Router` namespace)
 

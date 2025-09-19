@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exceptions
+title: Http Exceptions
 parent: Http Component
 permalink: http/exceptions
 nav_order: 101
@@ -8,7 +8,7 @@ nav_order: 101
 
 
 
-# Exceptions
+# Http Exceptions
 
 (all in the `Centum\Http\Exception` namespace)
 

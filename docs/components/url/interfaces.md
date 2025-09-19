@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Url Interfaces
 parent: Url Component
 permalink: url/interfaces
 nav_order: 102
@@ -8,7 +8,7 @@ nav_order: 102
 
 
 
-# Interfaces
+# Url Interfaces
 
 (all in the `Centum\Interfaces\Url` namespace)
 
