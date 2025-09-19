@@ -27,9 +27,7 @@ To check if a user or group is allowed to perform an action, use `isAllowed()`:
 ```php
 use Exception;
 
-$userType = "moderator";
-
-if (!$access->isAllowed($userType, "delete-a-user")) {
+if (!$access->isAllowed("moderator", "delete-a-user")) {
     throw new Exception("Access denied.");
 }
 
@@ -40,13 +38,11 @@ $user->delete();
 
 ## Enforcing Permissions
 
-For convenience, use `verify()`.
+For convenience, you can use the `verify()` method.
 This method will throw an [`AccessDeniedException`](https://github.com/SidRoberts/centum/blob/main/src/Access/Exception/AccessDeniedException.php) if the user is not allowed:
 
 ```php
-$userType = "moderator";
-
-$access->verify($userType, "delete-a-user");
+$access->verify("moderator", "delete-a-user");
 
 $user->delete();
 ```
