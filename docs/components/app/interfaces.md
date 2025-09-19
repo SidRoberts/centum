@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: App Interfaces
 parent: App Component
 permalink: app/interfaces
 nav_order: 102

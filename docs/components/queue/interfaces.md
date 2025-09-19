@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Queue Interfaces
 parent: Queue Component
 permalink: queue/interfaces
 nav_order: 102

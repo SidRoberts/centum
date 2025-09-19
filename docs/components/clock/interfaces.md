@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Clock Interfaces
 parent: Clock Component
 permalink: clock/interfaces
 nav_order: 102

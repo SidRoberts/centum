@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Access Interfaces
 parent: Access Component
 permalink: access/interfaces
 nav_order: 102

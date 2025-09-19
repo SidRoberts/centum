@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Twig Interfaces
 parent: Twig Component
 permalink: twig/interfaces
 nav_order: 102

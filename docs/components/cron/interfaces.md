@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interfaces
+title: Cron Interfaces
 parent: Cron Component
 permalink: cron/interfaces
 nav_order: 102
