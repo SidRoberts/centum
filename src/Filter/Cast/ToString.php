@@ -6,6 +6,9 @@ use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 use JsonException;
 
+/**
+ * Casts values to a string. Objects are cast using `__toString()` or are serialised; arrays are JSON encoded.
+ */
 class ToString implements FilterInterface
 {
     /**

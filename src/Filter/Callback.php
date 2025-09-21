@@ -4,6 +4,9 @@ namespace Centum\Filter;
 
 use Centum\Interfaces\Filter\FilterInterface;
 
+/**
+ * Filters a value based on a callback.
+ */
 class Callback implements FilterInterface
 {
     /**

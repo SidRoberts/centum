@@ -14,23 +14,31 @@ nav_order: 1
 
 ## [`Centum\Filter\Blacklist`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Blacklist.php)
 
+Filters out any values in a blacklist.
+
 
 
 ## [`Centum\Filter\Callback`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Callback.php)
+
+Filters a value based on a callback.
 
 
 
 ## [`Centum\Filter\Cast\ToArray`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Cast/ToArray.php)
 
+Casts any value to an array.
+
 
 
 ## [`Centum\Filter\Cast\ToBool`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Cast/ToBool.php)
 
-Filters any value to a boolean.
+Casts any value to a boolean.
 
 
 
 ## [`Centum\Filter\Cast\ToInteger`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Cast/ToInteger.php)
+
+Casts resources, scalars, and null values to integers.
 
 
 
@@ -41,6 +49,8 @@ Filters any value to `null`.
 
 
 ## [`Centum\Filter\Cast\ToString`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Cast/ToString.php)
+
+Casts values to a string. Objects are cast using `__toString()` or are serialised; arrays are JSON encoded.
 
 
 
@@ -76,9 +86,13 @@ Base64 encodes a string.
 
 ## [`Centum\Filter\String\CamelCaseToSlug`](https://github.com/SidRoberts/centum/blob/main/src/Filter/String/CamelCaseToSlug.php)
 
+Converts camel case to a slug (lowercase, alphanumeric with dashes).
+
 
 
 ## [`Centum\Filter\String\FileName`](https://github.com/SidRoberts/centum/blob/main/src/Filter/String/FileName.php)
+
+Filters a value to only allow valid characters for a file name.
 
 
 
@@ -90,6 +104,8 @@ Adds a prefix to a string.
 
 ## [`Centum\Filter\String\Replace`](https://github.com/SidRoberts/centum/blob/main/src/Filter/String/Replace.php)
 
+Replace all occurrences of the search string with the replacement string.
+
 
 
 ## [`Centum\Filter\String\Rot13`](https://github.com/SidRoberts/centum/blob/main/src/Filter/String/Rot13.php)
@@ -99,6 +115,8 @@ Performs the `rot13` transformation on a string.
 
 
 ## [`Centum\Filter\String\SlugToCamelCase`](https://github.com/SidRoberts/centum/blob/main/src/Filter/String/SlugToCamelCase.php)
+
+Converts a slug (lowercase, alphanumeric with dashes) to camel case.
 
 
 
@@ -127,3 +145,5 @@ Trims a string.
 
 
 ## [`Centum\Filter\Whitelist`](https://github.com/SidRoberts/centum/blob/main/src/Filter/Whitelist.php)
+
+Filters only values in a whitelist.

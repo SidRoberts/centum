@@ -5,6 +5,9 @@ namespace Centum\Filter\Cast;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Casts resources, scalars, and null values to integers.
+ */
 class ToInteger implements FilterInterface
 {
     /**

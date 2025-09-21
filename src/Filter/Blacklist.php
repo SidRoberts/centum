@@ -4,6 +4,9 @@ namespace Centum\Filter;
 
 use Centum\Interfaces\Filter\FilterInterface;
 
+/**
+ * Filters out any values in a blacklist.
+ */
 class Blacklist implements FilterInterface
 {
     /**

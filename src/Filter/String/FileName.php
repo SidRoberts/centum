@@ -6,6 +6,9 @@ use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 use RuntimeException;
 
+/**
+ * Filters a value to only allow valid characters for a file name.
+ */
 class FileName implements FilterInterface
 {
     /**

@@ -5,7 +5,7 @@ namespace Centum\Filter\Cast;
 use Centum\Interfaces\Filter\FilterInterface;
 
 /**
- * Filters any value to a boolean.
+ * Casts any value to a boolean.
  */
 class ToBool implements FilterInterface
 {

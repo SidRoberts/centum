@@ -5,6 +5,9 @@ namespace Centum\Filter\Cast;
 use Centum\Interfaces\Filter\FilterInterface;
 use UnexpectedValueException;
 
+/**
+ * Casts any value to an array.
+ */
 class ToArray implements FilterInterface
 {
     /**

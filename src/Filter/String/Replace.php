@@ -5,6 +5,9 @@ namespace Centum\Filter\String;
 use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 
+/**
+ * Replace all occurrences of the search string with the replacement string.
+ */
 class Replace implements FilterInterface
 {
     /**

@@ -4,6 +4,9 @@ namespace Centum\Filter;
 
 use Centum\Interfaces\Filter\FilterInterface;
 
+/**
+ * Filters only values in a whitelist.
+ */
 class Whitelist implements FilterInterface
 {
     /**

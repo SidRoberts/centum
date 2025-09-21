@@ -6,6 +6,9 @@ use Centum\Interfaces\Filter\FilterInterface;
 use InvalidArgumentException;
 use RuntimeException;
 
+/**
+ * Converts camel case to a slug (lowercase, alphanumeric with dashes).
+ */
 class CamelCaseToSlug implements FilterInterface
 {
     /**
