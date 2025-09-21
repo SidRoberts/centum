@@ -13,8 +13,11 @@ nav_order: 2
 You can define access control rules using the `allow()` and `deny()` methods:
 
 ```php
-$access->allow("admin", "delete-a-user");      // Allow "admin" to delete a user
-$access->deny("moderator", "delete-a-user");   // Deny "moderator" from deleting a user
+// Allow "admin" to delete a user
+$access->allow("admin", "delete-a-user");
+
+// Deny "moderator" from deleting a user
+$access->deny("moderator", "delete-a-user");
 ```
 
 
