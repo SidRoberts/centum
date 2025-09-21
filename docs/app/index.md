@@ -44,7 +44,7 @@ $bootstrap->boot($container);
 
 ## CLI Example
 
-To start the CLI application, use `bin/centum`:
+To start the CLI application, use `bin/console`:
 
 ```php
 #!/usr/bin/env php

@@ -28,11 +28,9 @@ $style = new Style();
 ### Displaying a List
 
 ```php
-use Centum\Console\Terminal\Style;
 use Centum\Interfaces\Console\TerminalInterface;
 
 /** @var TerminalInterface $terminal */
-/** @var Style $style */
 
 $terminal->write(
     $style->list(

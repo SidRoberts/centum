@@ -40,7 +40,7 @@ By default, the `App` namespace is used and has this folder structure:
 
 ```text
 bin/
-    centum
+    console
 config/
     console.php
     container.php

@@ -22,11 +22,17 @@ Commands must implement [`Centum\Interfaces\Console\CommandInterface`](https://g
 Commands require one public method:
 
 - `execute(Centum\Interfaces\Console\TerminalInterface $terminal): int`
-  The return value is the exit code.
+  This method is invoked when the command runs, and its return value is used as the exit code.
 
 ### Exit Codes
 
-Three constants exist to clearly describe an exit code:
+Exit codes are the way your command communicates success or failure back to the operating system or to other programs that may call it.
+They are integers in the range **0–255**.
+
+- An exit code of `0` is universally understood as “success”.
+- Non-zero values indicate some kind of error or exceptional condition, with different numbers often used to represent different types of problems.
+
+Centum provides three predefined constants to make your code clearer and more self-documenting:
 
 - `Centum\Interfaces\Console\CommandInterface::SUCCESS = 0`
 - `Centum\Interfaces\Console\CommandInterface::FAILURE = 1`
@@ -34,12 +40,14 @@ Three constants exist to clearly describe an exit code:
 
 Within a Command, you can use the `self` keyword (for example: `return self::SUCCESS;`).
 
+If needed, you are free to use any integer between `0` and `255` as an exit code, though sticking to the defined constants will keep your commands easier to read and maintain.
+
 
 
 ## Metadata
 
 Use the [`CommandMetadata`](https://github.com/SidRoberts/centum/blob/main/src/Console/CommandMetadata.php) attribute to define the command’s name and description.
-This is separated so that this information can be validated without instantiating the Command.
+This separation of metadata allows Centum to validate and register commands without instantiating them first, improving performance and flexibility.
 
 
 
@@ -65,7 +73,8 @@ class IndexCommand implements CommandInterface
 ```
 
 **Command names** must follow a slug pattern: all lowercase, alphanumeric with dashes, and must begin and end with alphanumeric characters.
-Empty names are allowed for default commands (e.g., `php cli.php`).
+You can also use a colon to group similar Commands together.
+Empty names are permitted for default commands (e.g., `php bin/console` without arguments).
 
 
 
@@ -74,11 +83,11 @@ Empty names are allowed for default commands (e.g., `php cli.php`).
 Commands can accept arguments via the CLI:
 
 ```bash
-php cli.php hello --first-name Sid --loud
+php bin/console hello --first-name Sid --loud
 ```
 
 Declare arguments in the constructor with `string` or `bool` types.
-Arguments are converted to camel-case, so `--first-name` becomes `$firstName`.
+Arguments are automatically converted to camel case, so `--first-name` becomes `$firstName`.
 
 ```php
 namespace App\Console\Commands;
@@ -115,7 +124,8 @@ class HelloCommand implements CommandInterface
 
 ## Injecting Services
 
-You can inject services from the Container into your command’s constructor:
+You can inject services from the Container into your command’s constructor.
+This makes it possible to use application services directly in your command without having to manage them manually.
 
 ```php
 namespace App\Console\Commands;
@@ -153,19 +163,19 @@ class HelloCommand implements CommandInterface
 
 ## Adding Commands to the Application
 
-Add Commands to the Application using the `addCommand()` method:
+Commands must be registered with the Application before they can be used.
+You do this with the `addCommand()` method:
 
 ```php
-use App\Console\Commands\IndexCommand;
+use App\Console\Commands\HelloCommand;
 use Centum\Interfaces\Console\ApplicationInterface;
 
 /** @var ApplicationInterface $application */
 
-$application->addCommand(IndexCommand::class);
+$application->addCommand(HelloCommand::class);
 ```
 
-The Application will be able to determine Command's name from the `CommandMetadata` attribute.
-Commands are processed in the order they are added.
-A later Command with the same name will overwrite an earlier one.
+The Application determines a Command’s name from the `CommandMetadata` attribute.
+Commands are processed in the order they are added, and if two commands share the same name, the later one will overwrite the earlier.
 
-If the Command's name is invalid, [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/main/src/Console/Exception/InvalidCommandNameException.php) will be thrown.
+If a Command has an invalid name, an [`InvalidCommandNameException`](https://github.com/SidRoberts/centum/blob/main/src/Console/Exception/InvalidCommandNameException.php) will be thrown.

@@ -44,43 +44,22 @@ Centum\Console\Application(
 
 ## Default Commands
 
-*The following code snippets assume that the console application will be stored in `cli.php`.*
+*The following code snippets assume that the console application will be stored in `bin/console`.*
 
-### [`Centum\Console\Command\ListCommand`](https://github.com/SidRoberts/centum/blob/main/src/Console/Command/ListCommand.php)
+### [`ListCommand`](https://github.com/SidRoberts/centum/blob/main/src/Console/Command/ListCommand.php)
 
 Will list all registered `Centum\Console\Command` objects:
 
 ```bash
-php cli.php list
+php bin/console list
 ```
 
-### [`Centum\Console\Command\QueueConsumeCommand`](https://github.com/SidRoberts/centum/blob/main/src/Console/Command/QueueConsumeCommand.php)
+### [`QueueConsumeCommand`](https://github.com/SidRoberts/centum/blob/main/src/Console/Command/QueueConsumeCommand.php)
 
 Will take the next available Task from the Queue and consume it ([see Queue docs](../queue/index.md)):
 
 ```bash
-php cli.php queue:consume
-```
-
-
-
-## Example: Defining a Custom Command
-
-```php
-use Centum\Console\CommandMetadata;
-use Centum\Interfaces\Console\CommandInterface;
-use Centum\Interfaces\Console\TerminalInterface;
-
-#[CommandMetadata("greet")]
-class GreetCommand implements CommandInterface
-{
-    public function execute(TerminalInterface $terminal): int
-    {
-        $terminal->writeLine("Hello from Centum Console!");
-
-        return self::SUCCESS;
-    }
-}
+php bin/console queue:consume
 ```
 
 
