@@ -74,7 +74,7 @@ consumeFromQueue(): Centum\Interfaces\Queue\TaskInterface
 ## `grabQueueTasks`
 
 ```php
-grabQueueTasks(): array<Centum\Interfaces\Queue\TaskInterface>
+grabQueueTasks(): list<Centum\Interfaces\Queue\TaskInterface>
 ```
 
 
@@ -82,7 +82,7 @@ grabQueueTasks(): array<Centum\Interfaces\Queue\TaskInterface>
 ## `grabQueueBuriedTasks`
 
 ```php
-grabQueueBuriedTasks(): array<Centum\Interfaces\Queue\TaskInterface>
+grabQueueBuriedTasks(): list<Centum\Interfaces\Queue\TaskInterface>
 ```
 
 

@@ -21,11 +21,11 @@ getName(): non-empty-string
 ```
 
 ```php
-getFilters(): array<Centum\Interfaces\Filter\FilterInterface>
+getFilters(): list<Centum\Interfaces\Filter\FilterInterface>
 ```
 
 ```php
-getValidators(): array<Centum\Interfaces\Validator\ValidatorInterface>
+getValidators(): list<Centum\Interfaces\Validator\ValidatorInterface>
 ```
 
 ```php
@@ -55,7 +55,7 @@ isValid(
 ```php
 getMessages(
     mixed $value
-): array<non-empty-string>
+): list<non-empty-string>
 ```
 
 

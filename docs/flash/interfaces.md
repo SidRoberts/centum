@@ -65,7 +65,7 @@ add(
 ```
 
 ```php
-getMessages(): array<Centum\Interfaces\Flash\MessageInterface>
+getMessages(): list<Centum\Interfaces\Flash\MessageInterface>
 ```
 
 

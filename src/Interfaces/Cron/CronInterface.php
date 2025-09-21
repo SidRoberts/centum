@@ -9,12 +9,12 @@ interface CronInterface
     public function add(JobInterface $job): void;
 
     /**
-     * @return array<JobInterface>
+     * @return list<JobInterface>
      */
     public function getDueJobs(?DateTimeInterface $datetime = null): array;
 
     /**
-     * @return array<JobInterface>
+     * @return list<JobInterface>
      */
     public function getAllJobs(): array;
 }

@@ -133,11 +133,11 @@ add(
 ```
 
 ```php
-all(): array<Centum\Interfaces\Http\FileInterface>
+all(): list<Centum\Interfaces\Http\FileInterface>
 ```
 
 ```php
-toArray(): array<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>
+toArray(): list<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>
 ```
 
 

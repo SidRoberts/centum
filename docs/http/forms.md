@@ -144,7 +144,7 @@ use Centum\Interfaces\Http\FormInterface;
 class FriendsForm implements FormInterface
 {
     /**
-     * @param array<string> $friends
+     * @param list<string> $friends
      */
     public function __construct(
         protected readonly array $friends

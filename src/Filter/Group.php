@@ -10,14 +10,14 @@ use Centum\Interfaces\Filter\FilterInterface;
 class Group implements FilterInterface
 {
     /**
-     * @var array<FilterInterface>
+     * @var list<FilterInterface>
      */
     protected array $filters = [];
 
 
 
     /**
-     * @return array<FilterInterface>
+     * @return list<FilterInterface>
      */
     public function getFilters(): array
     {

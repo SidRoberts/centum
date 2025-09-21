@@ -5,7 +5,7 @@ namespace Centum\Console\Terminal;
 class Style
 {
     /**
-     * @param array<string> $items
+     * @param list<string> $items
      */
     public function list(array $items): string
     {

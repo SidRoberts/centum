@@ -24,7 +24,7 @@ class Application implements ApplicationInterface
     protected array $commands = [];
 
     /**
-     * @var array<class-string<ExceptionHandlerInterface>>
+     * @var list<class-string<ExceptionHandlerInterface>>
      */
     protected array $exceptionHandlers = [];
 

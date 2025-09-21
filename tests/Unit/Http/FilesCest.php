@@ -132,7 +132,7 @@ final class FilesCest
     #[DataProvider("providerAll")]
     public function testAll(UnitTester $I, Example $example): void
     {
-        /** @var array<FileGroup> */
+        /** @var list<FileGroup> */
         $fileGroups = $example["fileGroups"];
 
         $files = new Files($fileGroups);
@@ -172,7 +172,7 @@ final class FilesCest
     #[DataProvider("providerToArray")]
     public function testToArray(UnitTester $I, Example $example): void
     {
-        /** @var array<FileGroup> */
+        /** @var list<FileGroup> */
         $fileGroups = $example["fileGroups"];
 
         $files = new Files($fileGroups);

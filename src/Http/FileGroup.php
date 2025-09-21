@@ -8,7 +8,7 @@ use Centum\Interfaces\Http\FileInterface;
 class FileGroup implements FileGroupInterface
 {
     /**
-     * @var array<FileInterface>
+     * @var list<FileInterface>
      */
     protected array $files = [];
 

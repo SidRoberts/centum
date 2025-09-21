@@ -15,12 +15,12 @@ interface FieldInterface
 
 
     /**
-     * @return array<FilterInterface>
+     * @return list<FilterInterface>
      */
     public function getFilters(): array;
 
     /**
-     * @return array<ValidatorInterface>
+     * @return list<ValidatorInterface>
      */
     public function getValidators(): array;
 
@@ -41,7 +41,7 @@ interface FieldInterface
 
 
     /**
-     * @return array<non-empty-string>
+     * @return list<non-empty-string>
      */
     public function getMessages(mixed $value): array;
 }

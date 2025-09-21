@@ -42,7 +42,7 @@ class Router implements RouterInterface
     protected array $replacements = [];
 
     /**
-     * @var array<class-string<ExceptionHandlerInterface>>
+     * @var list<class-string<ExceptionHandlerInterface>>
      */
     protected array $exceptionHandlers = [];
 

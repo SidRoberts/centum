@@ -9,7 +9,7 @@ interface MessageBagInterface
 
 
     /**
-     * @return array<MessageInterface>
+     * @return list<MessageInterface>
      */
     public function getMessages(): array;
 }

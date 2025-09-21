@@ -11,12 +11,12 @@ use Throwable;
 class ArrayQueue implements QueueInterface
 {
     /**
-     * @var array<TaskInterface>
+     * @var list<TaskInterface>
      */
     protected array $tasks = [];
 
     /**
-     * @var array<TaskInterface>
+     * @var list<TaskInterface>
      */
     protected array $buriedTasks = [];
 
@@ -60,7 +60,7 @@ class ArrayQueue implements QueueInterface
 
 
     /**
-     * @return array<TaskInterface>
+     * @return list<TaskInterface>
      */
     public function getTasks(): array
     {
@@ -68,7 +68,7 @@ class ArrayQueue implements QueueInterface
     }
 
     /**
-     * @return array<TaskInterface>
+     * @return list<TaskInterface>
      */
     public function getBuriedTasks(): array
     {

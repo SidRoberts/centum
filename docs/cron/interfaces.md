@@ -25,11 +25,11 @@ add(
 ```php
 getDueJobs(
     DateTimeInterface $datetime = null
-): array<Centum\Interfaces\Cron\JobInterface>
+): list<Centum\Interfaces\Cron\JobInterface>
 ```
 
 ```php
-getAllJobs(): array<Centum\Interfaces\Cron\JobInterface>
+getAllJobs(): list<Centum\Interfaces\Cron\JobInterface>
 ```
 
 

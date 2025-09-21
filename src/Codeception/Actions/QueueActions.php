@@ -96,7 +96,7 @@ trait QueueActions
 
 
     /**
-     * @return array<TaskInterface>
+     * @return list<TaskInterface>
      */
     public function grabQueueTasks(): array
     {
@@ -115,7 +115,7 @@ trait QueueActions
     }
 
     /**
-     * @return array<TaskInterface>
+     * @return list<TaskInterface>
      */
     public function grabQueueBuriedTasks(): array
     {

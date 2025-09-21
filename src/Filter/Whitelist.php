@@ -7,7 +7,7 @@ use Centum\Interfaces\Filter\FilterInterface;
 class Whitelist implements FilterInterface
 {
     /**
-     * @param array<mixed> $whitelist
+     * @param list<mixed> $whitelist
      */
     public function __construct(
         protected readonly array $whitelist,

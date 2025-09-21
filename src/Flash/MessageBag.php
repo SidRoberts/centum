@@ -8,7 +8,7 @@ use Centum\Interfaces\Flash\MessageInterface;
 class MessageBag implements MessageBagInterface
 {
     /**
-     * @var array<MessageInterface>
+     * @var list<MessageInterface>
      */
     protected array $messages = [];
 

@@ -12,7 +12,7 @@ use InvalidArgumentException;
 class Cron implements CronInterface
 {
     /**
-     * @var array<JobInterface>
+     * @var list<JobInterface>
      */
     protected array $jobs = [];
 
@@ -25,6 +25,7 @@ class Cron implements CronInterface
 
     public function getDueJobs(?DateTimeInterface $datetime = null): array
     {
+        /** @var list<JobInterface> */
         $jobs = array_filter(
             $this->jobs,
             function (JobInterface $job) use ($datetime): bool {

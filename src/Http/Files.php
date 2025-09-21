@@ -17,7 +17,7 @@ class Files implements FilesInterface
 
 
     /**
-     * @param array<FileGroupInterface> $fileGroups
+     * @param list<FileGroupInterface> $fileGroups
      */
     public function __construct(array $fileGroups = [])
     {

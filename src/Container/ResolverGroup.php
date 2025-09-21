@@ -11,7 +11,7 @@ use Centum\Interfaces\Container\ResolverInterface;
 class ResolverGroup implements ResolverGroupInterface
 {
     /**
-     * @var array<ResolverInterface>
+     * @var list<ResolverInterface>
      */
     protected array $resolvers = [];
 
