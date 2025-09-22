@@ -1,5 +1,7 @@
 # Centum
 
+![Centum PHP Framework logo featuring stylised waves and buildings in blue tones](docs/_assets/logo.svg "Centum PHP Framework")
+
 Centum is an all-encompassing framework designed to simplify the building of MVC-style web applications.
 
 
