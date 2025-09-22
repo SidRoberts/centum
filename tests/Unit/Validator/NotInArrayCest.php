@@ -15,7 +15,7 @@ final class NotInArrayCest
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {
-        $allowedValues = [
+        $disallowedValues = [
             "Monday",
             "Tuesday",
             "Wednesday",
@@ -23,7 +23,7 @@ final class NotInArrayCest
             "Friday",
         ];
 
-        $validator = new NotInArray($allowedValues);
+        $validator = new NotInArray($disallowedValues);
 
         $I->seeValidatorPasses(
             $validator,
@@ -47,7 +47,7 @@ final class NotInArrayCest
     #[DataProvider("providerBad")]
     public function testBad(UnitTester $I, Example $example): void
     {
-        $allowedValues = [
+        $disallowedValues = [
             "Monday",
             "Tuesday",
             "Wednesday",
@@ -55,7 +55,7 @@ final class NotInArrayCest
             "Friday",
         ];
 
-        $validator = new NotInArray($allowedValues);
+        $validator = new NotInArray($disallowedValues);
 
         $I->seeValidatorFails(
             $validator,
