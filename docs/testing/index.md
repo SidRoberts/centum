@@ -38,24 +38,24 @@ These methods are available in your Tester classes (`tests/Support/UnitTester.ph
 
 ## Traits
 
-To futher enhance testing, these traits are available:
+To futher enhance testing, these traits are available in the `Centum\Codeception\Actions` namespace:
 
-- [`Centum\Codeception\Actions\AccessActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/AccessActions.php)
-- [`Centum\Codeception\Actions\AjaxActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/AjaxActions.php)
-- [`Centum\Codeception\Actions\ConsoleActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ConsoleActions.php)
-- [`Centum\Codeception\Actions\ContainerActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ContainerActions.php)
-- [`Centum\Codeception\Actions\CookieActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/CookieActions.php)
-- [`Centum\Codeception\Actions\CsrfActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/CsrfActions.php)
-- [`Centum\Codeception\Actions\FilterActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/FilterActions.php)
-- [`Centum\Codeception\Actions\HeaderActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HeaderActions.php)
-- [`Centum\Codeception\Actions\HtmlActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HtmlActions.php)
-- [`Centum\Codeception\Actions\HttpFormActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HttpFormActions.php)
-- [`Centum\Codeception\Actions\JsonActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/JsonActions.php)
-- [`Centum\Codeception\Actions\QueueActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/QueueActions.php)
-- [`Centum\Codeception\Actions\RouterActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/RouterActions.php)
-- [`Centum\Codeception\Actions\RouterReplacementActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/RouterReplacementActions.php)
-- [`Centum\Codeception\Actions\SessionActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/SessionActions.php)
-- [`Centum\Codeception\Actions\UnitTestActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/UnitTestActions.php)
-- [`Centum\Codeception\Actions\ValidatorActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ValidatorActions.php)
+- [`AccessActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/AccessActions.php)
+- [`AjaxActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/AjaxActions.php)
+- [`ConsoleActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ConsoleActions.php)
+- [`ContainerActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ContainerActions.php)
+- [`CookieActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/CookieActions.php)
+- [`CsrfActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/CsrfActions.php)
+- [`FilterActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/FilterActions.php)
+- [`HeaderActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HeaderActions.php)
+- [`HtmlActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HtmlActions.php)
+- [`HttpFormActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/HttpFormActions.php)
+- [`JsonActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/JsonActions.php)
+- [`QueueActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/QueueActions.php)
+- [`RouterActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/RouterActions.php)
+- [`RouterReplacementActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/RouterReplacementActions.php)
+- [`SessionActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/SessionActions.php)
+- [`UnitTestActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/UnitTestActions.php)
+- [`ValidatorActions`](https://github.com/SidRoberts/centum/blob/main/src/Codeception/Actions/ValidatorActions.php)
 
 These traits can be used at will in your Tester classes (`tests/Support/UnitTester.php`, for example).
