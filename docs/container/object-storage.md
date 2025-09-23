@@ -45,8 +45,6 @@ if ($objectStorage->has(RouterInterface::class)) {
 }
 ```
 
-If the object does not exist, then `null` will be returned.
-
 
 
 ## Retrieving objects
