@@ -79,9 +79,10 @@ final class JsonResponseCest
             []
         );
 
-        $I->assertEquals(
-            "application/json",
-            $response->getHeaders()->toArray()["Content-Type"]
+        $responseHeaders = $response->getHeaders();
+
+        $I->assertTrue(
+            $responseHeaders->matches("Content-Type", "application/json")
         );
     }
 
