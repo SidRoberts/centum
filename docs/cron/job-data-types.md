@@ -58,7 +58,7 @@ foreach ($dueJobs as $job) {
 ```
 
 To enforce a particular type, you can extend `Centum\Cron\Job`.
-For example, you can use this class to enforce that all jobs use a [`Centum\Interfaces\Queue\TaskInterface` object](../queue/index.md):
+For example, you can use this class to enforce that all jobs use a [`Centum\Interfaces\Queue\TaskInterface`](../queue/index.md) object:
 
 ```php
 namespace App;

@@ -53,7 +53,7 @@ $router = $container->get(RouterInterface::class);
 
 If the object does not exist within the Container, then a new instance will be created and returned.
 
-If the Container is unable to resolve a parameter, it will throw a [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/main/src/Container/Exception/UnresolvableParameterException.php).
+If the Container is unable to resolve a parameter, it will throw [`Centum\Container\Exception\UnresolvableParameterException`](https://github.com/SidRoberts/centum/blob/main/src/Container/Exception/UnresolvableParameterException.php).
 
 
 
