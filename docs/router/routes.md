@@ -18,6 +18,8 @@ When a user visits a URL or submits a form, the Router will direct the request t
 {: .callout.info }
 Controllers must implement [`Centum\Interfaces\Router\ControllerInterface`](https://github.com/SidRoberts/centum/blob/main/src/Interfaces/Router/ControllerInterface.php).
 
+A Controller can have as many methods as you'd like and although it is not able to be enforced by `ControllerInterface`, every method should return a `ResponseInterface`.
+
 A Controller can be as simple as the following example, which returns plain text:
 
 ```php

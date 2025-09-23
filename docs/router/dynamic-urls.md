@@ -12,15 +12,15 @@ nav_order: 2
 
 Dynamic URLs allow you to define routes that include variable segments within the path.
 This is useful when you want to capture values from the URL itself and pass them into your controller actions.
-To define a dynamic URL, place the parameter name inside curly brackets (for example, `{id}`) within the route path:
+To define a dynamic URL, place the parameter name inside curly brackets (for example, `{username}`) within the route path:
 
 ```php
-use App\Web\Controllers\PostController;
+use App\Web\Controllers\UserController;
 
-$group->get("/post/{id}", PostController::class, "view");
+$group->get("/user/{username}", UserController::class, "view");
 ```
 
-In this example, when a user visits a URL such as `/post/123`, the value `123` will be captured and passed into the controller as the `$id` argument.
+In this example, when a user visits a URL such as `/user/sidroberts`, the value `sidroberts` will be captured and passed into the controller as the `$username` argument.
 This makes it easy to retrieve resources or perform logic based on the value supplied in the URL.
 
 Inside the controller, you can access the captured parameter just like any other method argument:
@@ -32,11 +32,11 @@ use Centum\Http\Response;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\ControllerInterface;
 
-class PostController implements ControllerInterface
+class UserController implements ControllerInterface
 {
-    public function view(string $id): ResponseInterface
+    public function view(string $username): ResponseInterface
     {
-        return new Response("hello $id");
+        return new Response("Hello {$username}.");
     }
 }
 ```
@@ -63,10 +63,13 @@ class CalendarController implements ControllerInterface
 {
     public function day(string $year, string $month, string $day): ResponseInterface
     {
-        return new Response("The date is $year-$month-$day.");
+        return new Response("The date is {$year}-{$month}-{$day}.");
     }
 }
 ```
+
+{: .callout.info }
+The parameters exist as strings because we're taking them straight from the URL.
 
 This approach keeps your routes flexible and makes it easy to create clean, meaningful URLs that reflect the data they represent.
 
@@ -94,7 +97,7 @@ If no type is specified, the Router will default to using `any`, which accepts a
 
 You can also extend this list with your own custom types by using [Replacements](replacements.md).
 
-For example, reusing the `PostController` from earlier, you can restrict the `{id}` parameter so it only matches numeric values:
+For example, this route definition ensures that only valid numeric IDs are passed to the controller, so URLs like `/post/1`, `/post/2`, and `/post/42` will match, but `/post/abc` will not:
 
 ```php
 use App\Web\Controllers\PostController;
@@ -102,10 +105,8 @@ use App\Web\Controllers\PostController;
 $group->get("/post/{id:int}", PostController::class, "view");
 ```
 
-This route definition ensures that only valid numeric IDs are passed to the controller, so URLs like `/post/1`, `/post/2`, and `/post/42` will match, but `/post/abc` will not.
-
 Also, note that when you specify a parameter type, the Router is able to cast the value to the correct PHP type if applicable.
-For example, the `int` type will convert the parameter into an integer, so your controller method should declare the parameter as an `int`:
+The `int` type will convert the parameter into an integer, so your controller method should declare the parameter as an `int`:
 
 ```php
 namespace App\Web\Controllers;
@@ -118,7 +119,7 @@ class PostController implements ControllerInterface
 {
     public function view(int $id): ResponseInterface
     {
-        return new Response("hello $id");
+        return new Response("This is post #{$id}.");
     }
 }
 ```
