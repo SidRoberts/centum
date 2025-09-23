@@ -28,6 +28,9 @@ final class IsACest
         );
     }
 
+    /**
+     * @return array<array{0: Throwable}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -50,6 +53,9 @@ final class IsACest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

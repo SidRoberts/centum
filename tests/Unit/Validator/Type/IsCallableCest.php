@@ -24,6 +24,9 @@ final class IsCallableCest
         );
     }
 
+    /**
+     * @return array<array{0: callable}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -47,6 +50,9 @@ final class IsCallableCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

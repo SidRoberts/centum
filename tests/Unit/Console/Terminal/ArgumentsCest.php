@@ -67,7 +67,7 @@ final class ArgumentsCest
     #[DataProvider("providerGet")]
     public function testGet(UnitTester $I, Example $example): void
     {
-        /** @var bool */
+        /** @var string|bool */
         $expected = $example["expected"];
 
         $parameters = $this->getArguments();
@@ -81,6 +81,9 @@ final class ArgumentsCest
         );
     }
 
+    /**
+     * @return array<array{key: non-empty-string, expected: string|bool}>
+     */
     protected function providerGet(): array
     {
         return [

@@ -57,6 +57,9 @@ final class StatusCest
         );
     }
 
+    /**
+     * @return array<array{0: int, 1: string}>
+     */
     protected function providerStatusTexts(): array
     {
         return [
@@ -141,6 +144,9 @@ final class StatusCest
         );
     }
 
+    /**
+     * @return array<array{status: Status, isRedirect: bool}>
+     */
     protected function providerIsRedirect(): array
     {
         return [
@@ -173,6 +179,9 @@ final class StatusCest
         );
     }
 
+    /**
+     * @return array<array{status: Status, headerString: string}>
+     */
     protected function providerGetHeaderString(): array
     {
         return [

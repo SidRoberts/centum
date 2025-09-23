@@ -26,6 +26,9 @@ final class ToIntegerCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed, output: int}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -69,6 +72,9 @@ final class ToIntegerCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

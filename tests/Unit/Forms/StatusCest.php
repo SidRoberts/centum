@@ -15,7 +15,7 @@ final class StatusCest
     #[DataProvider("providerIsValid")]
     public function testIsValid(UnitTester $I, Example $example): void
     {
-        /** @var array<non-empty-string, array<non-empty-string>> */
+        /** @var array<non-empty-string, list<non-empty-string>> */
         $messages = $example["messages"];
 
         $status = new Status($messages);
@@ -29,6 +29,9 @@ final class StatusCest
         );
     }
 
+    /**
+     * @return array<array{messages: array<non-empty-string, list<non-empty-string>>, expected: bool}>
+     */
     protected function providerIsValid(): array
     {
         return [
@@ -59,7 +62,7 @@ final class StatusCest
     #[DataProvider("providerGetMessages")]
     public function testGetMessages(UnitTester $I, Example $example): void
     {
-        /** @var array<non-empty-string, array<non-empty-string>> */
+        /** @var array<non-empty-string, list<non-empty-string>> */
         $messages = $example["messages"];
 
         $status = new Status($messages);
@@ -70,6 +73,9 @@ final class StatusCest
         );
     }
 
+    /**
+     * @return array<array{messages: array<non-empty-string, list<non-empty-string>>}>
+     */
     protected function providerGetMessages(): array
     {
         return [

@@ -35,6 +35,9 @@ final class FileNameCest
         );
     }
 
+    /**
+     * @return array<array{input: string, replacement: string, expected: string}>
+     */
     protected function providerGood(): array
     {
         return [

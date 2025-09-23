@@ -62,6 +62,9 @@ final class ValidatorCest
         }
     }
 
+    /**
+     * @return array<array{isValid: bool, value: string}>
+     */
     protected function providerValidate(): array
     {
         return [

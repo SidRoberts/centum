@@ -25,6 +25,9 @@ final class IsIterableCest
         );
     }
 
+    /**
+     * @return array<array{0: iterable}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -50,6 +53,9 @@ final class IsIterableCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

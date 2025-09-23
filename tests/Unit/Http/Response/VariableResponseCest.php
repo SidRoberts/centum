@@ -28,6 +28,9 @@ final class VariableResponseCest
         );
     }
 
+    /**
+     * @return array<array{variable: mixed, expected: string}>
+     */
     protected function provider(): array
     {
         return [

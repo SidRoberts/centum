@@ -6,6 +6,7 @@ use Centum\Flash\Formatter\HtmlFormatter;
 use Centum\Validator\Type\IsResource;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
+use RuntimeException;
 use stdClass;
 use Tests\Support\UnitTester;
 
@@ -25,10 +26,19 @@ final class IsResourceCest
         );
     }
 
+    /**
+     * @return array<array{0: resource}>
+     */
     protected function providerGood(): array
     {
+        $resource = fopen("php://memory", "r+");
+
+        if ($resource === false) {
+            throw new RuntimeException("Unable to make a resource.");
+        }
+
         return [
-            [fopen("/dev/null", "w")],
+            [$resource],
         ];
     }
 
@@ -46,6 +56,9 @@ final class IsResourceCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

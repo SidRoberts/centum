@@ -24,6 +24,9 @@ final class IsNullCest
         );
     }
 
+    /**
+     * @return array<array{0: null}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -45,6 +48,9 @@ final class IsNullCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

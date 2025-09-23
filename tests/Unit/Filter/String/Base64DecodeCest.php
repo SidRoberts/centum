@@ -25,6 +25,9 @@ final class Base64DecodeCest
         );
     }
 
+    /**
+     * @return array<array{input: string, output: string}>
+     */
     protected function provider(): array
     {
         return [
@@ -59,6 +62,9 @@ final class Base64DecodeCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed}>
+     */
     protected function providerExceptionNotString(): array
     {
         return [
@@ -98,6 +104,9 @@ final class Base64DecodeCest
         );
     }
 
+    /**
+     * @return array<array{input: string}>
+     */
     protected function providerExceptionBase64(): array
     {
         return [

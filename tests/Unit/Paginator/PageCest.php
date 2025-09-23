@@ -77,6 +77,9 @@ final class PageCest
         );
     }
 
+    /**
+     * @return array<array{pageNumber: int, expected: array}>
+     */
     protected function providerGetData(): array
     {
         return [
@@ -127,6 +130,9 @@ final class PageCest
         );
     }
 
+    /**
+     * @return array<array{pageNumber: int, expected: int|null}>
+     */
     protected function providerGetPreviousPageNumber(): array
     {
         return [
@@ -172,6 +178,9 @@ final class PageCest
         );
     }
 
+    /**
+     * @return array<array{pageNumber: int, expected: int|null}>
+     */
     protected function providerGetNextPageNumber(): array
     {
         return [
@@ -220,6 +229,9 @@ final class PageCest
         );
     }
 
+    /**
+     * @return array<array{pageNumber: int, expected: array, i: positive-int}>
+     */
     protected function providerGetPageRange(): array
     {
         return [

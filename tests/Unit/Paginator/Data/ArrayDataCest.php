@@ -66,6 +66,9 @@ final class ArrayDataCest
         );
     }
 
+    /**
+     * @return array<array{offset: int, length: int, expected: array}>
+     */
     protected function providerSlice(): array
     {
         return [

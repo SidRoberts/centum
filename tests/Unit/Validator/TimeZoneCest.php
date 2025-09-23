@@ -23,6 +23,9 @@ final class TimeZoneCest
         );
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -46,6 +49,9 @@ final class TimeZoneCest
         );
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     protected function providerBad(): array
     {
         return [
@@ -70,6 +76,9 @@ final class TimeZoneCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerNonString(): array
     {
         return [

@@ -41,6 +41,9 @@ final class FormResolverCest
         );
     }
 
+    /**
+     * @return array<array{data: DataInterface, expected: array{username: string, password: string}}>
+     */
     protected function provider(): array
     {
         return [
@@ -79,6 +82,9 @@ final class FormResolverCest
         );
     }
 
+    /**
+     * @return array<array{data: DataInterface, throwable: Throwable}>
+     */
     protected function providerBad(): array
     {
         return [
@@ -181,6 +187,9 @@ final class FormResolverCest
         );
     }
 
+    /**
+     * @return array<array{data: DataInterface, expected: array{username: string, password: string}}>
+     */
     protected function providerCsrf(): array
     {
         return [
@@ -216,6 +225,9 @@ final class FormResolverCest
         );
     }
 
+    /**
+     * @return array<array{data: DataInterface}>
+     */
     protected function providerCsrfBad(): array
     {
         return [

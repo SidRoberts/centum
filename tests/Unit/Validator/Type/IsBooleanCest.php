@@ -24,6 +24,9 @@ final class IsBooleanCest
         );
     }
 
+    /**
+     * @return array<array{0: bool}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -46,6 +49,9 @@ final class IsBooleanCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

@@ -91,6 +91,9 @@ final class RequestFactoryCest
         );
     }
 
+    /**
+     * @return array<array{method: string}>
+     */
     protected function providerCreateFromArrays(): array
     {
         return [
@@ -174,6 +177,9 @@ final class RequestFactoryCest
         );
     }
 
+    /**
+     * @return array<array{content: string, expected: array}>
+     */
     protected function providerCreateFromArraysFormEncoded(): array
     {
         return [
@@ -227,6 +233,9 @@ final class RequestFactoryCest
         );
     }
 
+    /**
+     * @return array<array{content: string, expected: array}>
+     */
     protected function providerCreateFromArraysJsonContent(): array
     {
         return [

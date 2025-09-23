@@ -56,6 +56,9 @@ final class UrlExtensionCest
         );
     }
 
+    /**
+     * @return array<array{baseUri: string, expected: string, uri: string}>
+     */
     protected function provider(): array
     {
         return [

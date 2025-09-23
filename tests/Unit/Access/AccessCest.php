@@ -41,6 +41,9 @@ final class AccessCest
         );
     }
 
+    /**
+     * @return array<array{access: Access, expected: bool}>
+     */
     protected function providerInitialState(): array
     {
         return [
@@ -76,6 +79,9 @@ final class AccessCest
         );
     }
 
+    /**
+     * @return array<array{access: Access}>
+     */
     protected function providerAllow(): array
     {
         return [
@@ -108,6 +114,9 @@ final class AccessCest
         );
     }
 
+    /**
+     * @return array<array{access: Access}>
+     */
     protected function providerDeny(): array
     {
         return [
@@ -146,6 +155,9 @@ final class AccessCest
         );
     }
 
+    /**
+     * @return array<array{access: Access}>
+     */
     protected function providerAllowDeny(): array
     {
         return [
@@ -190,6 +202,9 @@ final class AccessCest
         );
     }
 
+    /**
+     * @return array<array{access: Access, expected: bool}>
+     */
     protected function providerRemove(): array
     {
         return [

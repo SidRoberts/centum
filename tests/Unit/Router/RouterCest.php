@@ -160,6 +160,9 @@ final class RouterCest
         );
     }
 
+    /**
+     * @return array<array{uri: string, expected: string}>
+     */
     protected function providerReplacementsGood(): array
     {
         return [
@@ -207,6 +210,9 @@ final class RouterCest
         );
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     protected function providerReplacementsBad(): array
     {
         return [
@@ -242,6 +248,9 @@ final class RouterCest
         }
     }
 
+    /**
+     * @return array<array{url: string, shouldPass: bool}>
+     */
     protected function providerMiddlewares(): array
     {
         return [
@@ -292,6 +301,9 @@ final class RouterCest
         }
     }
 
+    /**
+     * @return array<array{url: string, shouldPass: bool}>
+     */
     protected function providerRequirements(): array
     {
         return [
@@ -336,6 +348,9 @@ final class RouterCest
         );
     }
 
+    /**
+     * @return array<array{method: Method}>
+     */
     protected function providerHttpMethods(): array
     {
         $methods = [
@@ -415,6 +430,9 @@ final class RouterCest
         );
     }
 
+    /**
+     * @return array<array{uri: string, method: Method, content: string}>
+     */
     protected function providerCrud(): array
     {
         return [
@@ -498,6 +516,9 @@ final class RouterCest
         );
     }
 
+    /**
+     * @return array<array{uri: string, method: Method, content: string}>
+     */
     protected function providerSubmission(): array
     {
         return [

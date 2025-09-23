@@ -48,6 +48,9 @@ final class UrlCest
         );
     }
 
+    /**
+     * @return array<array{baseUri: string, expected: string, uri: string}>
+     */
     protected function providerUrl(): array
     {
         return [
@@ -111,6 +114,9 @@ final class UrlCest
         );
     }
 
+    /**
+     * @return array<array{expected: string, uri: string, arguments: array}>
+     */
     protected function providerArguments(): array
     {
         return [

@@ -31,6 +31,9 @@ final class InArrayCest
         );
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -64,6 +67,9 @@ final class InArrayCest
         );
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     protected function providerBad(): array
     {
         return [

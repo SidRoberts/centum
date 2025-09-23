@@ -75,6 +75,9 @@ final class FilesCest
         );
     }
 
+    /**
+     * @return array<array{key: string, expected: bool}>
+     */
     protected function providerHas(): array
     {
         return [
@@ -137,7 +140,7 @@ final class FilesCest
 
         $files = new Files($fileGroups);
 
-        /** @var array<FileGroup> */
+        /** @var array<non-empty-string, FileGroup> */
         $expected = $example["expected"];
 
         $I->assertEquals(
@@ -148,6 +151,9 @@ final class FilesCest
         $I->markTestIncomplete();
     }
 
+    /**
+     * @return array<array{fileGroups: list<FileGroup>, expected: array<non-empty-string, FileGroup>}>
+     */
     protected function providerAll(): array
     {
         return [
@@ -177,7 +183,7 @@ final class FilesCest
 
         $files = new Files($fileGroups);
 
-        /** @var array<FileGroup> */
+        /** @var array<non-empty-string, array<array{name:?string, type:?string, size:int, location:?string, error:int}>> */
         $expected = $example["expected"];
 
         $I->assertEquals(
@@ -188,6 +194,9 @@ final class FilesCest
         $I->markTestIncomplete();
     }
 
+    /**
+     * @return array<array{fileGroups: list<FileGroup>, expected: array<non-empty-string, array<array{name:?string, type:?string, size:int, location:?string, error:int}>>}>
+     */
     protected function providerToArray(): array
     {
         $emptyFileGroup = new FileGroup("images");

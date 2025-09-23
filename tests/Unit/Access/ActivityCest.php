@@ -39,6 +39,9 @@ final class ActivityCest
         );
     }
 
+    /**
+     * @return array<array{activity: Activity, expected: bool}>
+     */
     protected function providerInitialState(): array
     {
         return [
@@ -74,6 +77,9 @@ final class ActivityCest
         );
     }
 
+    /**
+     * @return array<array{activity: Activity}>
+     */
     protected function providerAllow(): array
     {
         return [
@@ -106,6 +112,9 @@ final class ActivityCest
         );
     }
 
+    /**
+     * @return array<array{activity: Activity}>
+     */
     protected function providerDeny(): array
     {
         return [
@@ -144,6 +153,9 @@ final class ActivityCest
         );
     }
 
+    /**
+     * @return array<array{activity: Activity}>
+     */
     protected function providerAllowDeny(): array
     {
         return [
@@ -188,6 +200,9 @@ final class ActivityCest
         );
     }
 
+    /**
+     * @return array<array{activity: Activity, expected: bool}>
+     */
     protected function providerRemove(): array
     {
         return [

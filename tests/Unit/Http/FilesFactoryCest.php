@@ -33,6 +33,9 @@ final class FilesFactoryCest
         );
     }
 
+    /**
+     * @return array<array{array: array<non-empty-string, array>, expected: array<non-empty-string, array>}>
+     */
     protected function providerCreateFromArray(): array
     {
         return [

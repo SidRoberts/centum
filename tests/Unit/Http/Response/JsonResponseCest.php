@@ -30,6 +30,9 @@ final class JsonResponseCest
         );
     }
 
+    /**
+     * @return array<array{variable: mixed, expected: string}>
+     */
     protected function provider(): array
     {
         $object = new stdClass();

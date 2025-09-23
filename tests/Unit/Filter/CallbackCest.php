@@ -33,6 +33,9 @@ final class CallbackCest
         );
     }
 
+    /**
+     * @return array<array{input: string, output: string}>
+     */
     protected function provider(): array
     {
         return [

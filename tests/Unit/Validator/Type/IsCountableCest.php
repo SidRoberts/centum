@@ -6,6 +6,7 @@ use ArrayIterator;
 use Centum\Validator\Type\IsCountable;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
+use Countable;
 use stdClass;
 use Tests\Support\UnitTester;
 
@@ -25,6 +26,9 @@ final class IsCountableCest
         );
     }
 
+    /**
+     * @return array<array{0: array|Countable}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -48,6 +52,9 @@ final class IsCountableCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

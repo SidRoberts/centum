@@ -36,6 +36,9 @@ final class BlacklistCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed, strict: bool, output: mixed}>
+     */
     protected function provider(): array
     {
         return [

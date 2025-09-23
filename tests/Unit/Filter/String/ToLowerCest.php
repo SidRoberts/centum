@@ -25,6 +25,9 @@ final class ToLowerCest
         );
     }
 
+    /**
+     * @return array<array{input: string, output: string}>
+     */
     protected function provider(): array
     {
         return [
@@ -64,6 +67,9 @@ final class ToLowerCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed}>
+     */
     protected function providerException(): array
     {
         return [

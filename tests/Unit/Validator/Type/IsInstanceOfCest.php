@@ -29,6 +29,9 @@ final class IsInstanceOfCest
         );
     }
 
+    /**
+     * @return array<array{0: FilterInterface}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -52,6 +55,9 @@ final class IsInstanceOfCest
         );
     }
 
+    /**
+     * @return array<array{0: object}>
+     */
     protected function providerBad(): array
     {
         return [
@@ -77,6 +83,9 @@ final class IsInstanceOfCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerNonObject(): array
     {
         return [

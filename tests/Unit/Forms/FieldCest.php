@@ -163,6 +163,9 @@ final class FieldCest
         );
     }
 
+    /**
+     * @return array<array{value: string, isValid: bool, messages: list<string>}>
+     */
     protected function providerValidator(): array
     {
         return [

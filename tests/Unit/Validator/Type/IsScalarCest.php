@@ -25,6 +25,9 @@ final class IsScalarCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -52,6 +55,9 @@ final class IsScalarCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

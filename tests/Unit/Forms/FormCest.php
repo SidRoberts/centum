@@ -137,6 +137,9 @@ final class FormCest
         );
     }
 
+    /**
+     * @return array<array{data: array, isValid: bool, messages: array<non-empty-string, list<non-empty-string>>}>
+     */
     protected function providerActualForm(): array
     {
         return [

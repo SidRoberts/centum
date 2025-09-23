@@ -36,6 +36,9 @@ final class JobCest
         );
     }
 
+    /**
+     * @return array<array{expression: string, data: mixed}>
+     */
     protected function providerGetters(): array
     {
         return [

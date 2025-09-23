@@ -25,6 +25,9 @@ final class ToBoolCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed, output: bool}>
+     */
     protected function provider(): array
     {
         return [

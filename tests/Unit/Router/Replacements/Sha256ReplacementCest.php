@@ -48,6 +48,9 @@ final class Sha256ReplacementCest
         $I->assertRouterReplacementDoesNotMatch($replacement, $value);
     }
 
+    /**
+     * @return array<array{value: string}>
+     */
     protected function providerBad(): array
     {
         return [

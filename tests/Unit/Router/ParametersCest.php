@@ -80,6 +80,9 @@ final class ParametersCest
         );
     }
 
+    /**
+     * @return array<array{key: non-empty-string, expected: bool}>
+     */
     protected function providerHas(): array
     {
         return [

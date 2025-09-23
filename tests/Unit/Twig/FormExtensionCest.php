@@ -43,6 +43,9 @@ final class FormExtensionCest
         );
     }
 
+    /**
+     * @return array<array{template: string, expected: string}>
+     */
     protected function provider(): array
     {
         return [

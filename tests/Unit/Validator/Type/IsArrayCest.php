@@ -25,6 +25,9 @@ final class IsArrayCest
         );
     }
 
+    /**
+     * @return array<array{0: array}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -47,6 +50,9 @@ final class IsArrayCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerBad(): array
     {
         return [

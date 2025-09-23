@@ -53,14 +53,14 @@ final class FileGroupCest
     {
         $fileGroup = new FileGroup("images");
 
-        /** @var array<File> */
+        /** @var list<File> */
         $files = $example["files"];
 
         foreach ($files as $file) {
             $fileGroup->add($file);
         }
 
-        /** @var array<File> */
+        /** @var list<File> */
         $expected = $example["expected"];
 
         $I->assertEquals(
@@ -71,6 +71,9 @@ final class FileGroupCest
         $I->markTestIncomplete();
     }
 
+    /**
+     * @return array<array{files: list<File>, expected: list<File>}>
+     */
     protected function providerAll(): array
     {
         $file1 = new File("image.png", "image/png", 123456, "/tmp/php/php1aaa11", UPLOAD_ERR_OK);
@@ -99,14 +102,14 @@ final class FileGroupCest
     {
         $fileGroup = new FileGroup("images");
 
-        /** @var array<File> */
+        /** @var list<File> */
         $files = $example["files"];
 
         foreach ($files as $file) {
             $fileGroup->add($file);
         }
 
-        /** @var array<File> */
+        /** @var list<File> */
         $expected = $example["expected"];
 
         $I->assertEquals(
@@ -117,6 +120,9 @@ final class FileGroupCest
         $I->markTestIncomplete();
     }
 
+    /**
+     * @return array<array{files: list<File>, expected: list<array{name: ?string, type: ?string, size: int, location: ?string, error: int}>}>
+     */
     protected function providerToArray(): array
     {
         $file1 = new File("image.png", "image/png", 123456, "/tmp/php/php1aaa11", UPLOAD_ERR_OK);

@@ -27,6 +27,9 @@ final class ToArrayCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed, output: array}>
+     */
     protected function provider(): array
     {
         return [

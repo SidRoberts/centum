@@ -203,6 +203,9 @@ final class FileCest
         );
     }
 
+    /**
+     * @return array<array{error: int, throwable: Throwable}>
+     */
     protected function providerValidateBadFileWithError(): array
     {
         return [

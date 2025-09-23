@@ -31,6 +31,9 @@ final class NotInArrayCest
         );
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     protected function providerGood(): array
     {
         return [
@@ -64,6 +67,9 @@ final class NotInArrayCest
         );
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     protected function providerBad(): array
     {
         return [

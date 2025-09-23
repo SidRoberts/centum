@@ -25,6 +25,9 @@ final class SlugToCamelCaseCest
         );
     }
 
+    /**
+     * @return array<array{input: string, output: string}>
+     */
     protected function provider(): array
     {
         return [
@@ -49,6 +52,9 @@ final class SlugToCamelCaseCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed}>
+     */
     protected function providerExceptionNotAString(): array
     {
         return [

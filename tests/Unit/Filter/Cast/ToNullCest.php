@@ -25,6 +25,9 @@ final class ToNullCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed}>
+     */
     protected function provider(): array
     {
         return [

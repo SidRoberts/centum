@@ -26,6 +26,9 @@ final class ToStringCest
         );
     }
 
+    /**
+     * @return array<array{input: mixed, output: string}>
+     */
     protected function provider(): array
     {
         return [
