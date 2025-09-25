@@ -11,6 +11,7 @@ permalink: flash
 
 [`Centum\Flash\Flash`](https://github.com/SidRoberts/centum/blob/main/src/Flash/Flash.php) is used to display messages to users.
 Messages are stored in the session so they are useful for providing information after a form submission or redirect.
+This makes it easy to provide feedback that persists across requests, such as error messages, success confirmations, or informational notices.
 
 ```php
 Centum\Flash\Flash(
@@ -31,13 +32,21 @@ $flash->danger(
 );
 ```
 
+Each of these methods sets the appropriate message type, which can later be styled differently in your templates.
+For example, you might display `danger` messages in red to indicate errors, while `success` messages appear in green to highlight positive feedback.
+This separation helps guide the user’s attention and improves overall usability.
+
 And now you can output the messages in your view:
 
 ```php
 echo $flash->output();
 ```
 
+The `output()` method will automatically fetch all stored messages, apply the formatter to ensure consistent presentation, and clear them from the session so that they are not displayed again.
+This behaviour follows the typical "show once" nature of Flash messages.
+
 If you're using Twig, you can also use the [Flash Twig extension](../twig/flash.md).
+This makes it even easier to integrate messages into your templates without writing additional boilerplate code.
 
 
 
