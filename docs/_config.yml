@@ -4,9 +4,9 @@ baseurl: "/centum"
 
 copyright: "2021-2025 <a href=\"https://sidroberts.co.uk/\">Sid Roberts</a>"
 
-gh_repository:      "https://github.com/SidRoberts/centum"
+gh_repository:      "SidRoberts/centum"
 gh_dir:             "docs"
-gh_edit_branch:     "main"
+gh_branch:          "main"
 gh_edit_view_mode:  "edit"
 
 include:

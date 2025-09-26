@@ -115,29 +115,27 @@
                 </div>
             </menu>
 
-            <menu class="nav-links-end" role="navigation">
-                {% if
-                    site.gh_repository and
-                    site.gh_edit_branch and
-                    site.gh_edit_view_mode
-                %}
-                    <li class="nav-link">
-                        <a href="{{ site.gh_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}{% if site.gh_dir %}/{{ site.gh_dir }}{% endif %}/{{ page.path }}">
-                            <span class="fa-solid fa-edit fa-fw"></span>
+            {% if site.gh_repository %}
+                <menu class="nav-links-end" role="navigation">
+                    {% if site.gh_branch and site.gh_edit_view_mode %}
+                        <li class="nav-link">
+                            <a href="https://github.com/{{ site.gh_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_branch }}{% if site.gh_dir %}/{{ site.gh_dir }}{% endif %}/{{ page.path }}">
+                                <span class="fa-solid fa-edit fa-fw"></span>
 
-                            Edit on GitHub
+                                Edit on GitHub
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-link">
+                        <a href="https://github.com/{{ site.gh_repository }}">
+                            <span class="fa-brands fa-github fa-fw"></span>
+
+                            <span class="visually-hidden">GitHub repository</span>
                         </a>
                     </li>
-                {% endif %}
-
-                <li class="nav-link">
-                    <a href="{{ site.gh_repository }}">
-                        <span class="fa-brands fa-github fa-fw"></span>
-
-                        <span class="visually-hidden">GitHub repository</span>
-                    </a>
-                </li>
-            </menu>
+                </menu>
+            {% endif %}
         </div>
     </footer>
 
