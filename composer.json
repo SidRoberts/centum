@@ -27,7 +27,7 @@
         "codeception/lib-innerbrowser": "~4.0",
 
         "dragonmantank/cron-expression": "~3.0",
-        "pda/pheanstalk": "~7.0",
+        "pda/pheanstalk": "~7.0 || ~8.0",
 
         "symfony/css-selector": "~7.0",
         "symfony/dom-crawler": "~7.0",
