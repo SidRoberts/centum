@@ -7,7 +7,7 @@ use Centum\Interfaces\Translation\TranslatorInterface;
 use Centum\Translation\Exception\MissingTranslationException;
 use MessageFormatter;
 
-final class Translator implements TranslatorInterface
+class Translator implements TranslatorInterface
 {
     public function __construct(
         protected readonly LocaleInterface $locale

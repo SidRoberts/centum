@@ -4,7 +4,7 @@ namespace Centum\Translation\Exception;
 
 use RuntimeException;
 
-final class LocaleFileNotFoundException extends RuntimeException
+class LocaleFileNotFoundException extends RuntimeException
 {
     public function __construct(
         protected readonly string $localePath

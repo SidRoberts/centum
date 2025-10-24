@@ -4,7 +4,7 @@ namespace Centum\Translation;
 
 use Centum\Interfaces\Translation\LocaleInterface;
 
-final class Locale implements LocaleInterface
+class Locale implements LocaleInterface
 {
     /**
      * @param non-empty-string                                                   $code

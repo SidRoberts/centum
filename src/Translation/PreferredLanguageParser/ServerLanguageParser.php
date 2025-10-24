@@ -8,7 +8,7 @@ use RuntimeException;
  * Parses the `$_SERVER["LANG"]` variable to determine the preferred language.
  * If a language-region pair is specified, it will return the language as well.
  */
-final class ServerLanguageParser
+class ServerLanguageParser
 {
     /**
      * @param non-empty-string $serverLang

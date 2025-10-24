@@ -5,7 +5,7 @@ namespace Centum\Translation\Exception;
 use Centum\Interfaces\Translation\LocaleInterface;
 use RuntimeException;
 
-final class MissingTranslationException extends RuntimeException
+class MissingTranslationException extends RuntimeException
 {
     public function __construct(
         protected readonly LocaleInterface $locale,

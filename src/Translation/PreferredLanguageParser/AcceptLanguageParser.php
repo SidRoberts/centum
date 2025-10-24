@@ -6,7 +6,7 @@ namespace Centum\Translation\PreferredLanguageParser;
  * Parses the HTTP "Accept-Language" HTTP request header into an ordered list of
  * preferred languages.
  */
-final class AcceptLanguageParser
+class AcceptLanguageParser
 {
     /**
      * @return list<non-empty-string>

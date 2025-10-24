@@ -4,7 +4,7 @@ namespace Centum\Translation\Exception;
 
 use RuntimeException;
 
-final class LocaleKeyNotFoundException extends RuntimeException
+class LocaleKeyNotFoundException extends RuntimeException
 {
     /**
      * @param non-empty-string $localeCode

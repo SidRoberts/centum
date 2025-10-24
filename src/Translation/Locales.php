@@ -7,7 +7,7 @@ use Centum\Interfaces\Translation\LocalesInterface;
 use Centum\Translation\Exception\LocaleFileNotFoundException;
 use Centum\Translation\Exception\LocaleKeyNotFoundException;
 
-final class Locales implements LocalesInterface
+class Locales implements LocalesInterface
 {
     /**
      * @param array<non-empty-string, non-empty-string> $locales
