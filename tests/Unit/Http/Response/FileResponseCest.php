@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\Response;
 
 use Centum\Http\Response\FileResponse;
+use Centum\Interfaces\Http\ResponseInterface;
 use Exception;
 use Tests\Support\UnitTester;
 
@@ -11,6 +12,15 @@ use Tests\Support\UnitTester;
  */
 final class FileResponseCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $response = $I->mock(FileResponse::class);
+
+        $I->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+
+
     public function test(UnitTester $I): void
     {
         $I->markTestIncomplete();

@@ -5,6 +5,7 @@ namespace Tests\Unit\Http\Csrf;
 use Centum\Http\Csrf\Storage;
 use Centum\Http\Session\ArraySession;
 use Centum\Interfaces\Http\Csrf\GeneratorInterface;
+use Centum\Interfaces\Http\Csrf\StorageInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class StorageCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $storage = $I->mock(Storage::class);
+
+        $I->assertInstanceOf(StorageInterface::class, $storage);
+    }
+
+
+
     public function testGet(UnitTester $I): void
     {
         $generatedValue = "abcdefghijkl";

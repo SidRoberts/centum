@@ -3,6 +3,7 @@
 namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
+use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\ArrayQueue;
 use Centum\Queue\Exception\NoTasksInQueueException;
@@ -18,6 +19,15 @@ use Throwable;
  */
 final class ArrayQueueCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $queue = $I->mock(ArrayQueue::class);
+
+        $I->assertInstanceOf(QueueInterface::class, $queue);
+    }
+
+
+
     public function testPublish(UnitTester $I): void
     {
         $task = new DoNothingTask();

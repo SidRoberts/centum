@@ -3,6 +3,7 @@
 namespace Tests\Unit\Clock;
 
 use Centum\Clock\SystemClock;
+use Centum\Interfaces\Clock\ClockInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class SystemClockCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $clock = $I->mock(SystemClock::class);
+
+        $I->assertInstanceOf(ClockInterface::class, $clock);
+    }
+
+
+
     public function testNow(UnitTester $I): void
     {
         $clock = new SystemClock();

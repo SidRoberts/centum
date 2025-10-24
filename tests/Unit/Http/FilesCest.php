@@ -6,6 +6,7 @@ use Centum\Http\Exception\FileGroupNotFoundException;
 use Centum\Http\File;
 use Centum\Http\FileGroup;
 use Centum\Http\Files;
+use Centum\Interfaces\Http\FilesInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use OverflowException;
@@ -16,6 +17,15 @@ use Tests\Support\UnitTester;
  */
 final class FilesCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $files = $I->mock(Files::class);
+
+        $I->assertInstanceOf(FilesInterface::class, $files);
+    }
+
+
+
     public function testAdd(UnitTester $I): void
     {
         $id = "images";

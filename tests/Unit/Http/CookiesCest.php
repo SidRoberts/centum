@@ -5,6 +5,7 @@ namespace Tests\Unit\Http;
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
 use Centum\Interfaces\Http\CookieInterface;
+use Centum\Interfaces\Http\CookiesInterface;
 use Mockery\MockInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class CookiesCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $cookies = $I->mock(Cookies::class);
+
+        $I->assertInstanceOf(CookiesInterface::class, $cookies);
+    }
+
+
+
     public function testConstructor(UnitTester $I): void
     {
         $cookie1 = new Cookie("username", "SidRoberts");

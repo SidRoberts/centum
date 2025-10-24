@@ -3,6 +3,7 @@
 namespace Tests\Http;
 
 use Centum\Http\Data;
+use Centum\Interfaces\Http\DataInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
 
@@ -11,6 +12,15 @@ use Tests\Support\UnitTester;
  */
 final class DataCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $data = $I->mock(Data::class);
+
+        $I->assertInstanceOf(DataInterface::class, $data);
+    }
+
+
+
     public function testGet(UnitTester $I): void
     {
         $data = new Data(

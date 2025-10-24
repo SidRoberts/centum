@@ -4,6 +4,7 @@ namespace Tests\Unit\Forms;
 
 use Centum\Filter\String\ToUpper;
 use Centum\Forms\Field;
+use Centum\Interfaces\Forms\FieldInterface;
 use Centum\Validator\Callback;
 use Centum\Validator\NotEmpty;
 use Centum\Validator\RegularExpression;
@@ -17,6 +18,15 @@ use Tests\Support\UnitTester;
  */
 final class FieldCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $field = $I->mock(Field::class);
+
+        $I->assertInstanceOf(FieldInterface::class, $field);
+    }
+
+
+
     public function testGetters(UnitTester $I): void
     {
         $field = new Field("thisIsTheName");

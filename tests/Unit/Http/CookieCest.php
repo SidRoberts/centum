@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http;
 
 use Centum\Http\Cookie;
+use Centum\Interfaces\Http\CookieInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class CookieCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $cookie = $I->mock(Cookie::class);
+
+        $I->assertInstanceOf(CookieInterface::class, $cookie);
+    }
+
+
+
     public function testGetters(UnitTester $I): void
     {
         $cookie = new Cookie("logged_in", "yes");

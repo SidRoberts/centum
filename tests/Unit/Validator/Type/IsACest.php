@@ -3,6 +3,7 @@
 namespace Tests\Unit\Validator\Type;
 
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Validator\ValidatorInterface;
 use Centum\Validator\Type\IsA;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -17,6 +18,15 @@ use Throwable;
  */
 final class IsACest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $validator = $I->mock(IsA::class);
+
+        $I->assertInstanceOf(ValidatorInterface::class, $validator);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

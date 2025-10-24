@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\String;
 
 use Centum\Filter\String\FileName;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class FileNameCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(FileName::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

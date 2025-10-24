@@ -6,6 +6,7 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response\JsonResponse;
 use Centum\Http\Status;
+use Centum\Interfaces\Http\ResponseInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use stdClass;
@@ -16,6 +17,15 @@ use Tests\Support\UnitTester;
  */
 final class JsonResponseCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $response = $I->mock(JsonResponse::class);
+
+        $I->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

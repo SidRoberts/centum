@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\Cest;
 
 use Centum\Filter\Cast\ToInteger;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use InvalidArgumentException;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class ToIntegerCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(ToInteger::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

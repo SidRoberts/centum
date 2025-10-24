@@ -6,6 +6,7 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response\HtmlResponse;
 use Centum\Http\Status;
+use Centum\Interfaces\Http\ResponseInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class HtmlResponseCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $response = $I->mock(HtmlResponse::class);
+
+        $I->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+
+
     public function testContentType(UnitTester $I): void
     {
         $response = new HtmlResponse(

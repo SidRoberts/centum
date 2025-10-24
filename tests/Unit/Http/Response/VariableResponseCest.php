@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\Response;
 
 use Centum\Http\Response\VariableResponse;
+use Centum\Interfaces\Http\ResponseInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use stdClass;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class VariableResponseCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $response = $I->mock(VariableResponse::class);
+
+        $I->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

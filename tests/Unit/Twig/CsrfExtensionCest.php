@@ -7,6 +7,7 @@ use Centum\Twig\CsrfExtension;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 use Twig\Environment;
+use Twig\Extension\ExtensionInterface;
 use Twig\Loader\ArrayLoader;
 
 /**
@@ -24,6 +25,15 @@ final class CsrfExtensionCest
         );
 
         return new Environment($loader);
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $extension = $I->mock(CsrfExtension::class);
+
+        $I->assertInstanceOf(ExtensionInterface::class, $extension);
     }
 
 

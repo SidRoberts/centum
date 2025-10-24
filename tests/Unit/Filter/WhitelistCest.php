@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter;
 
 use Centum\Filter\Whitelist;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class WhitelistCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(Whitelist::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

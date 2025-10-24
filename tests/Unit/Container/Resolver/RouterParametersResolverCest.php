@@ -2,7 +2,9 @@
 
 namespace Tests\Unit\Container\Resolver;
 
+use Centum\Container\Resolver\RouterParametersResolver;
 use Centum\Http\Request;
+use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Centum\Router\Router;
 use Tests\Support\Controllers\ParametersController;
@@ -13,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class RouterParametersResolverCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $resolver = $I->mock(RouterParametersResolver::class);
+
+        $I->assertInstanceOf(ResolverInterface::class, $resolver);
+    }
+
+
+
     public function testRegularParameter(UnitTester $I): void
     {
         $container = $I->grabContainer();

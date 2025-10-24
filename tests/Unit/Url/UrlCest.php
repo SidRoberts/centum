@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Url;
 
+use Centum\Interfaces\Url\UrlInterface;
 use Centum\Url\Url;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class UrlCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $url = $I->mock(Url::class);
+
+        $I->assertInstanceOf(UrlInterface::class, $url);
+    }
+
+
+
     public function testGetBaseUrl(UnitTester $I): void
     {
         $baseUri = "http://www.example.com";

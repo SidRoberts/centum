@@ -3,6 +3,7 @@
 namespace Tests\Unit\Validator\Type;
 
 use Centum\Flash\Formatter\HtmlFormatter;
+use Centum\Interfaces\Validator\ValidatorInterface;
 use Centum\Validator\Type\IsObject;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class IsObjectCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $validator = $I->mock(IsObject::class);
+
+        $I->assertInstanceOf(ValidatorInterface::class, $validator);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

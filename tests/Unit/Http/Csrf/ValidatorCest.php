@@ -5,6 +5,7 @@ namespace Tests\Unit\Http\Csrf;
 use Centum\Http\Csrf\Validator;
 use Centum\Http\Exception\CsrfException;
 use Centum\Interfaces\Http\Csrf\StorageInterface;
+use Centum\Interfaces\Http\Csrf\ValidatorInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -16,6 +17,15 @@ use Tests\Support\UnitTester;
  */
 final class ValidatorCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $validator = $I->mock(Validator::class);
+
+        $I->assertInstanceOf(ValidatorInterface::class, $validator);
+    }
+
+
+
     #[DataProvider("providerValidate")]
     public function testValidate(UnitTester $I, Example $example): void
     {

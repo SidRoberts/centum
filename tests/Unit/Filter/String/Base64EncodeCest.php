@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\String;
 
 use Centum\Filter\String\Base64Encode;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use InvalidArgumentException;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class Base64EncodeCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(Base64Encode::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

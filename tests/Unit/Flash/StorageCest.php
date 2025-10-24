@@ -4,6 +4,7 @@ namespace Tests\Unit\Flash;
 
 use Centum\Flash\Storage;
 use Centum\Interfaces\Flash\MessageBagInterface;
+use Centum\Interfaces\Flash\StorageInterface;
 use Centum\Interfaces\Http\SessionInterface;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class StorageCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $storage = $I->mock(Storage::class);
+
+        $I->assertInstanceOf(StorageInterface::class, $storage);
+    }
+
+
+
     public function testGet(UnitTester $I): void
     {
         $messageBag = $I->mock(MessageBagInterface::class);

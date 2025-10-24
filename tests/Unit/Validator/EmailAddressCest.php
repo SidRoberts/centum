@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
 use Centum\Validator\EmailAddress;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class EmailAddressCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $validator = $I->mock(EmailAddress::class);
+
+        $I->assertInstanceOf(ValidatorInterface::class, $validator);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

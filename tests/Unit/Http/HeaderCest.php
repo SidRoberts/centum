@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http;
 
 use Centum\Http\Header;
+use Centum\Interfaces\Http\HeaderInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class HeaderCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $header = $I->mock(Header::class);
+
+        $I->assertInstanceOf(HeaderInterface::class, $header);
+    }
+
+
+
     public function testGetters(UnitTester $I): void
     {
         $header = new Header("cache-control", "max-age=600");

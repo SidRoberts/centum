@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\Csrf;
 
 use Centum\Http\Csrf\Generator;
+use Centum\Interfaces\Http\Csrf\GeneratorInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class GeneratorCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $generator = $I->mock(Generator::class);
+
+        $I->assertInstanceOf(GeneratorInterface::class, $generator);
+    }
+
+
+
     public function testGenerateIsDifferentEveryTime(UnitTester $I): void
     {
         $generator = new Generator();

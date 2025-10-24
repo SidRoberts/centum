@@ -3,6 +3,7 @@
 namespace Tests\Unit\Router;
 
 use Centum\Http\Method;
+use Centum\Interfaces\Router\RouteInterface;
 use Centum\Router\Route;
 use Tests\Support\Controllers\IndexController;
 use Tests\Support\UnitTester;
@@ -20,6 +21,15 @@ final class RouteCest
             IndexController::class,
             "index"
         );
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $route = $I->mock(Route::class);
+
+        $I->assertInstanceOf(RouteInterface::class, $route);
     }
 
 

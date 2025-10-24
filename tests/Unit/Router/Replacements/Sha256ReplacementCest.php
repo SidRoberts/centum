@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router\Replacements;
 
+use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Router\Replacements\Sha256Replacement;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class Sha256ReplacementCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $replacement = $I->mock(Sha256Replacement::class);
+
+        $I->assertInstanceOf(ReplacementInterface::class, $replacement);
+    }
+
+
+
     public function testGetIdentifier(UnitTester $I): void
     {
         $replacement = new Sha256Replacement();

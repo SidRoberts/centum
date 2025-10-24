@@ -6,6 +6,7 @@ use Centum\Filter\Group;
 use Centum\Filter\String\Prefix;
 use Centum\Filter\String\ToLower;
 use Centum\Filter\String\Trim;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -15,6 +16,15 @@ use Tests\Support\UnitTester;
  */
 final class GroupCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(Group::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

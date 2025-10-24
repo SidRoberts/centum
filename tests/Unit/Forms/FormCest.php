@@ -6,6 +6,7 @@ use Centum\Filter\Callback;
 use Centum\Filter\String\ToLower;
 use Centum\Forms\Field;
 use Centum\Forms\Form;
+use Centum\Interfaces\Forms\FormInterface;
 use Centum\Validator\NotEmpty;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -17,6 +18,15 @@ use Tests\Support\UnitTester;
  */
 final class FormCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $form = $I->mock(Form::class);
+
+        $I->assertInstanceOf(FormInterface::class, $form);
+    }
+
+
+
     public function testEmptyForm(UnitTester $I): void
     {
         $form = new Form();

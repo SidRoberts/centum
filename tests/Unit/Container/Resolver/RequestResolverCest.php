@@ -3,6 +3,7 @@
 namespace Tests\Unit\Container\Resolver;
 
 use Centum\Container\Exception\FileGroupNotFoundException;
+use Centum\Container\Resolver\RequestResolver;
 use Centum\Http\Cookie;
 use Centum\Http\Cookies;
 use Centum\Http\Data;
@@ -11,6 +12,7 @@ use Centum\Http\FileGroup;
 use Centum\Http\Files;
 use Centum\Http\Method;
 use Centum\Http\Request;
+use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Router;
 use Tests\Support\Controllers\CookiesController;
@@ -23,6 +25,15 @@ use Tests\Support\UnitTester;
  */
 final class RequestResolverCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $resolver = $I->mock(RequestResolver::class);
+
+        $I->assertInstanceOf(ResolverInterface::class, $resolver);
+    }
+
+
+
     public function test(UnitTester $I): void
     {
         $container = $I->grabContainer();

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Paginator;
 
+use Centum\Interfaces\Paginator\DataInterface;
 use Centum\Paginator\Data\ArrayData;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class ArrayDataCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $data = $I->mock(ArrayData::class);
+
+        $I->assertInstanceOf(DataInterface::class, $data);
+    }
+
+
+
     public function testToArray(UnitTester $I): void
     {
         $array = range(1, 100);

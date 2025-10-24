@@ -5,6 +5,7 @@ namespace Tests\Unit\Router;
 use Centum\Http\Method;
 use Centum\Http\Request;
 use Centum\Interfaces\Container\ContainerInterface;
+use Centum\Interfaces\Router\RouterInterface;
 use Centum\Router\Exception\RouteNotFoundException;
 use Centum\Router\Middleware\FalseMiddleware;
 use Centum\Router\Middleware\TrueMiddleware;
@@ -92,6 +93,15 @@ final class RouterCest
 
 
         return $router;
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $router = $I->mock(Router::class);
+
+        $I->assertInstanceOf(RouterInterface::class, $router);
     }
 
 

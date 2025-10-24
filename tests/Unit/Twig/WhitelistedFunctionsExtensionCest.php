@@ -6,6 +6,7 @@ use Centum\Twig\WhitelistedFunctionsExtension;
 use Tests\Support\UnitTester;
 use Twig\Environment;
 use Twig\Error\SyntaxError;
+use Twig\Extension\ExtensionInterface;
 use Twig\Loader\ArrayLoader;
 
 /**
@@ -33,6 +34,15 @@ final class WhitelistedFunctionsExtensionCest
         );
 
         return $twig;
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $extension = $I->mock(WhitelistedFunctionsExtension::class);
+
+        $I->assertInstanceOf(ExtensionInterface::class, $extension);
     }
 
 

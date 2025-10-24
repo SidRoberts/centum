@@ -3,6 +3,7 @@
 namespace Tests\Unit\Router;
 
 use Centum\Http\Method;
+use Centum\Interfaces\Router\GroupInterface;
 use Centum\Router\Group;
 use Centum\Router\Middleware\TrueMiddleware;
 use Centum\Router\Route;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class GroupCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $group = $I->mock(Group::class);
+
+        $I->assertInstanceOf(GroupInterface::class, $group);
+    }
+
+
+
     public function testGetMiddleware(UnitTester $I): void
     {
         $middleware = new TrueMiddleware();

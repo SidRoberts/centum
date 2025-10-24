@@ -3,6 +3,7 @@
 namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
+use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\BeanstalkdQueue;
 use Centum\Queue\TaskRunner;
@@ -23,6 +24,15 @@ use UnexpectedValueException;
  */
 final class BeanstalkdQueueCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $queue = $I->mock(BeanstalkdQueue::class);
+
+        $I->assertInstanceOf(QueueInterface::class, $queue);
+    }
+
+
+
     public function testPublish(UnitTester $I): void
     {
         $task = new DoNothingTask();

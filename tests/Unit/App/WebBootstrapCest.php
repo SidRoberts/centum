@@ -3,6 +3,7 @@
 namespace Tests\Unit\App;
 
 use Centum\App\WebBootstrap;
+use Centum\Interfaces\App\BootstrapInterface;
 use Centum\Interfaces\Http\RequestInterface;
 use Centum\Interfaces\Http\ResponseInterface;
 use Centum\Interfaces\Router\RouterInterface;
@@ -14,6 +15,13 @@ use Tests\Support\UnitTester;
  */
 final class WebBootstrapCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $bootstrap = $I->mock(WebBootstrap::class);
+
+        $I->assertInstanceOf(BootstrapInterface::class, $bootstrap);
+    }
+
     public function test(UnitTester $I): void
     {
         $request = $I->mockInContainer(RequestInterface::class);

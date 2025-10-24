@@ -19,6 +19,7 @@ use Centum\Interfaces\Access\AccessInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Console\TerminalInterface;
+use Centum\Interfaces\Container\AliasManagerInterface;
 use Centum\Interfaces\Cron\CronInterface;
 use Centum\Interfaces\Flash\FlashInterface;
 use Centum\Interfaces\Flash\FormatterInterface;
@@ -45,6 +46,15 @@ use Tests\Support\UnitTester;
  */
 final class AliasManagerCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $aliasManager = $I->mock(AliasManager::class);
+
+        $I->assertInstanceOf(AliasManagerInterface::class, $aliasManager);
+    }
+
+
+
     public function testAdd(UnitTester $I): void
     {
         $aliasManager = new AliasManager();

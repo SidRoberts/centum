@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Translation;
 
+use Centum\Interfaces\Translation\TranslatorInterface;
 use Centum\Translation\Locale;
 use Centum\Translation\Translator;
 use Tests\Support\UnitTester;
@@ -11,6 +12,15 @@ use Tests\Support\UnitTester;
  */
 final class TranslatorCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $translator = $I->mock(Translator::class);
+
+        $I->assertInstanceOf(TranslatorInterface::class, $translator);
+    }
+
+
+
     public function test(UnitTester $I): void
     {
         $locale = new Locale(

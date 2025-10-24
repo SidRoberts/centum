@@ -3,6 +3,7 @@
 namespace Tests\Unit\Container;
 
 use Centum\Container\Parameter;
+use Centum\Interfaces\Container\ParameterInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class ParameterCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $parameter = $I->mock(Parameter::class);
+
+        $I->assertInstanceOf(ParameterInterface::class, $parameter);
+    }
+
+
+
     public function testHasType(UnitTester $I): void
     {
         $parameter = new Parameter("string");

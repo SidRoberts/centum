@@ -3,6 +3,7 @@
 namespace Tests\Unit\Container;
 
 use Centum\Container\ServiceStorage;
+use Centum\Interfaces\Container\ServiceStorageInterface;
 use Tests\Support\Container\Incrementer;
 use Tests\Support\Container\Services\IncrementerService;
 use Tests\Support\UnitTester;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class ServiceStorageCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $serviceStorage = $I->mock(ServiceStorage::class);
+
+        $I->assertInstanceOf(ServiceStorageInterface::class, $serviceStorage);
+    }
+
+
+
     public function testHas(UnitTester $I): void
     {
         $I->markTestIncomplete();

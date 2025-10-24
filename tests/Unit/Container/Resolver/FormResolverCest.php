@@ -3,8 +3,10 @@
 namespace Tests\Unit\Container\Resolver;
 
 use Centum\Container\Exception\FormFieldNotFoundException;
+use Centum\Container\Resolver\FormResolver;
 use Centum\Http\Data;
 use Centum\Http\Exception\CsrfException;
+use Centum\Interfaces\Container\ResolverInterface;
 use Centum\Interfaces\Http\DataInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -19,6 +21,15 @@ use Throwable;
  */
 final class FormResolverCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $resolver = $I->mock(FormResolver::class);
+
+        $I->assertInstanceOf(ResolverInterface::class, $resolver);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

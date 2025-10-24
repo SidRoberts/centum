@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\String;
 
 use Centum\Filter\String\Replace;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use InvalidArgumentException;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class ReplaceCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(Replace::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

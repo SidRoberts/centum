@@ -7,6 +7,7 @@ use Centum\Translation\Translator;
 use Centum\Twig\TranslationExtension;
 use Tests\Support\UnitTester;
 use Twig\Environment;
+use Twig\Extension\ExtensionInterface;
 use Twig\Loader\ArrayLoader;
 
 /**
@@ -23,6 +24,15 @@ final class TranslationExtensionCest
         );
 
         return new Environment($loader);
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $extension = $I->mock(TranslationExtension::class);
+
+        $I->assertInstanceOf(ExtensionInterface::class, $extension);
     }
 
 

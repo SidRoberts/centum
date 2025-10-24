@@ -3,6 +3,7 @@
 namespace Tests\Unit\Queue;
 
 use Centum\Container\Container;
+use Centum\Interfaces\Queue\QueueInterface;
 use Centum\Interfaces\Queue\TaskInterface;
 use Centum\Interfaces\Queue\TaskRunnerInterface;
 use Centum\Queue\Exception\NoTasksInQueueException;
@@ -20,6 +21,15 @@ use Throwable;
  */
 final class ImmediateQueueCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $queue = $I->mock(ImmediateQueue::class);
+
+        $I->assertInstanceOf(QueueInterface::class, $queue);
+    }
+
+
+
     public function testPublish(UnitTester $I): void
     {
         $task = $I->mock(TaskInterface::class);

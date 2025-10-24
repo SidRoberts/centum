@@ -5,6 +5,7 @@ namespace Tests\Unit\Flash;
 use Centum\Flash\Level;
 use Centum\Flash\Message;
 use Centum\Flash\MessageBag;
+use Centum\Interfaces\Flash\MessageBagInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class MessageBagCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $messageBag = $I->mock(MessageBag::class);
+
+        $I->assertInstanceOf(MessageBagInterface::class, $messageBag);
+    }
+
+
+
     public function testGetMessages(UnitTester $I): void
     {
         $messageBag = new MessageBag();

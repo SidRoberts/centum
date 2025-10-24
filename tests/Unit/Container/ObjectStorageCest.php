@@ -3,6 +3,7 @@
 namespace Tests\Unit\Container;
 
 use Centum\Container\ObjectStorage;
+use Centum\Interfaces\Container\ObjectStorageInterface;
 use Tests\Support\Container\Incrementer;
 use Tests\Support\UnitTester;
 
@@ -11,6 +12,15 @@ use Tests\Support\UnitTester;
  */
 final class ObjectStorageCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $objectStorage = $I->mock(ObjectStorage::class);
+
+        $I->assertInstanceOf(ObjectStorageInterface::class, $objectStorage);
+    }
+
+
+
     public function testHas(UnitTester $I): void
     {
         $I->markTestIncomplete();

@@ -4,6 +4,7 @@ namespace Tests\Http;
 
 use Centum\Http\File;
 use Centum\Http\FileGroup;
+use Centum\Interfaces\Http\FileGroupInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class FileGroupCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $fileGroup = $I->mock(FileGroup::class);
+
+        $I->assertInstanceOf(FileGroupInterface::class, $fileGroup);
+    }
+
+
+
     public function testGetID(UnitTester $I): void
     {
         $id = "images";

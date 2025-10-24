@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\Session;
 
 use Centum\Http\Session\GlobalSession;
+use Centum\Interfaces\Http\SessionInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -47,6 +48,15 @@ final class GlobalSessionCest
                 return $this->startState;
             }
         };
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $session = $I->mock(GlobalSession::class);
+
+        $I->assertInstanceOf(SessionInterface::class, $session);
     }
 
 

@@ -5,6 +5,7 @@ namespace Tests\Unit\App;
 use Centum\App\ConsoleBootstrap;
 use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
+use Centum\Interfaces\App\BootstrapInterface;
 use Centum\Interfaces\Console\ApplicationInterface;
 use Mockery;
 use Mockery\MockInterface;
@@ -16,6 +17,13 @@ use Tests\Support\UnitTester;
  */
 final class ConsoleBootstrapCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $bootstrap = $I->mock(ConsoleBootstrap::class);
+
+        $I->assertInstanceOf(BootstrapInterface::class, $bootstrap);
+    }
+
     public function test(UnitTester $I): void
     {
         $arguments = new Arguments(

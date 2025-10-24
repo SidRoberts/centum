@@ -27,6 +27,15 @@ use Throwable;
  */
 final class ContainerCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $container = $I->mock(Container::class);
+
+        $I->assertInstanceOf(ContainerInterface::class, $container);
+    }
+
+
+
     public function testGetAliasManagerDefault(UnitTester $I): void
     {
         $container = new Container();

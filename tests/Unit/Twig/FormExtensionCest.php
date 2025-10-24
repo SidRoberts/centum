@@ -7,6 +7,7 @@ use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
 use Twig\Environment;
+use Twig\Extension\ExtensionInterface;
 use Twig\Loader\ArrayLoader;
 
 /**
@@ -14,6 +15,15 @@ use Twig\Loader\ArrayLoader;
  */
 final class FormExtensionCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $extension = $I->mock(FormExtension::class);
+
+        $I->assertInstanceOf(ExtensionInterface::class, $extension);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

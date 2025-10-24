@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter;
 
 use Centum\Filter\Blacklist;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class BlacklistCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(Blacklist::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

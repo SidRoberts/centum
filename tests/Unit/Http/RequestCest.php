@@ -12,6 +12,7 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Method;
 use Centum\Http\Request;
+use Centum\Interfaces\Http\RequestInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -19,6 +20,15 @@ use Tests\Support\UnitTester;
  */
 final class RequestCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $request = $I->mock(Request::class);
+
+        $I->assertInstanceOf(RequestInterface::class, $request);
+    }
+
+
+
     public function testGetters(UnitTester $I): void
     {
         $data = new Data(

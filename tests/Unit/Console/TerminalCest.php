@@ -4,6 +4,7 @@ namespace Tests\Unit\Console;
 
 use Centum\Console\Terminal;
 use Centum\Console\Terminal\Arguments;
+use Centum\Interfaces\Console\TerminalInterface;
 use RuntimeException;
 use Tests\Support\UnitTester;
 
@@ -33,6 +34,13 @@ final class TerminalCest
     }
 
 
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $terminal = $I->mock(Terminal::class);
+
+        $I->assertInstanceOf(TerminalInterface::class, $terminal);
+    }
 
     public function testGetArguments(UnitTester $I): void
     {

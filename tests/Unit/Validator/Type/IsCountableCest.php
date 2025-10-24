@@ -3,6 +3,7 @@
 namespace Tests\Unit\Validator\Type;
 
 use ArrayIterator;
+use Centum\Interfaces\Validator\ValidatorInterface;
 use Centum\Validator\Type\IsCountable;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -15,6 +16,15 @@ use Tests\Support\UnitTester;
  */
 final class IsCountableCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $validator = $I->mock(IsCountable::class);
+
+        $I->assertInstanceOf(ValidatorInterface::class, $validator);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

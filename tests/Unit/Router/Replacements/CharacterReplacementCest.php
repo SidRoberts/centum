@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router\Replacements;
 
+use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Router\Replacements\CharacterReplacement;
 use Tests\Support\UnitTester;
 
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class CharacterReplacementCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $replacement = $I->mock(CharacterReplacement::class);
+
+        $I->assertInstanceOf(ReplacementInterface::class, $replacement);
+    }
+
+
+
     public function testGetIdentifier(UnitTester $I): void
     {
         $replacement = new CharacterReplacement();

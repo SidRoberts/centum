@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router\Replacements;
 
+use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Router\Replacements\SlugReplacement;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class SlugReplacementCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $replacement = $I->mock(SlugReplacement::class);
+
+        $I->assertInstanceOf(ReplacementInterface::class, $replacement);
+    }
+
+
+
     public function testGetIdentifier(UnitTester $I): void
     {
         $replacement = new SlugReplacement();

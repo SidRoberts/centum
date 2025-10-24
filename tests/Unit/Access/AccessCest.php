@@ -4,6 +4,7 @@ namespace Tests\Unit\Access;
 
 use Centum\Access\Access;
 use Centum\Access\Exception\AccessDeniedException;
+use Centum\Interfaces\Access\AccessInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class AccessCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $access = $I->mock(Access::class);
+
+        $I->assertInstanceOf(AccessInterface::class, $access);
+    }
+
+
+
     public function testDefault(UnitTester $I): void
     {
         $access = new Access();

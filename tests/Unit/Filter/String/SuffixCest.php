@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\String;
 
 use Centum\Filter\String\Suffix;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use InvalidArgumentException;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class SuffixCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(Suffix::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Centum\Access\Access;
 use Centum\Access\Activity;
+use Centum\Interfaces\Access\ActivityInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class ActivityCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $activity = $I->mock(Activity::class);
+
+        $I->assertInstanceOf(ActivityInterface::class, $activity);
+    }
+
+
+
     public function testGetName(UnitTester $I): void
     {
         $name = "component";

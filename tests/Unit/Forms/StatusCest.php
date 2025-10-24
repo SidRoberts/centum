@@ -3,6 +3,7 @@
 namespace Tests\Unit\Forms;
 
 use Centum\Forms\Status;
+use Centum\Interfaces\Forms\StatusInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class StatusCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $status = $I->mock(Status::class);
+
+        $I->assertInstanceOf(StatusInterface::class, $status);
+    }
+
+
+
     #[DataProvider("providerIsValid")]
     public function testIsValid(UnitTester $I, Example $example): void
     {

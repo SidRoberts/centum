@@ -2,6 +2,7 @@
 
 namespace Tests\Console;
 
+use Centum\Interfaces\Translation\LocaleInterface;
 use Centum\Translation\Locale;
 use Tests\Support\UnitTester;
 
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class LocaleCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $locale = $I->mock(Locale::class);
+
+        $I->assertInstanceOf(LocaleInterface::class, $locale);
+    }
+
+
+
     public function testGetCode(UnitTester $I): void
     {
         $locale = new Locale(

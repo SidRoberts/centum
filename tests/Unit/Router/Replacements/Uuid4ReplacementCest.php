@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router\Replacements;
 
+use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Router\Replacements\Uuid4Replacement;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class Uuid4ReplacementCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $replacement = $I->mock(Uuid4Replacement::class);
+
+        $I->assertInstanceOf(ReplacementInterface::class, $replacement);
+    }
+
+
+
     public function testGetIdentifier(UnitTester $I): void
     {
         $replacement = new Uuid4Replacement();

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Cron;
 
 use Centum\Cron\Job;
+use Centum\Interfaces\Cron\JobInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class JobCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $job = $I->mock(Job::class);
+
+        $I->assertInstanceOf(JobInterface::class, $job);
+    }
+
+
+
     #[DataProvider("providerGetters")]
     public function testGetters(UnitTester $I, Example $example): void
     {

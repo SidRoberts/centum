@@ -3,6 +3,7 @@
 namespace Tests\Http;
 
 use Centum\Http\File;
+use Centum\Interfaces\Http\FileInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Exception;
@@ -14,6 +15,15 @@ use Throwable;
  */
 final class FileCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $file = $I->mock(File::class);
+
+        $I->assertInstanceOf(FileInterface::class, $file);
+    }
+
+
+
     public function testGetters(UnitTester $I): void
     {
         $name     = "image.png";

@@ -8,6 +8,7 @@ use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Http\Response;
 use Centum\Http\Status;
+use Centum\Interfaces\Http\ResponseInterface;
 use Mockery\MockInterface;
 use Tests\Support\UnitTester;
 
@@ -16,6 +17,15 @@ use Tests\Support\UnitTester;
  */
 final class ResponseCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $response = $I->mock(Response::class);
+
+        $I->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+
+
     public function testGetters(UnitTester $I): void
     {
         $content = "Page cannot be found.";

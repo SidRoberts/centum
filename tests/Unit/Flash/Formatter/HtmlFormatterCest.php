@@ -5,6 +5,7 @@ namespace Tests\Unit\Flash\Formatter;
 use Centum\Flash\Formatter\HtmlFormatter;
 use Centum\Flash\Level;
 use Centum\Flash\Message;
+use Centum\Interfaces\Flash\FormatterInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class HtmlFormatterCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $formatter = $I->mock(HtmlFormatter::class);
+
+        $I->assertInstanceOf(FormatterInterface::class, $formatter);
+    }
+
+
+
     public function testOutput(UnitTester $I): void
     {
         $formatter = new HtmlFormatter();

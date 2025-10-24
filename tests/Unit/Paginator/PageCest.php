@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Paginator;
 
+use Centum\Interfaces\Paginator\PageInterface;
 use Centum\Paginator\Data\ArrayData;
 use Centum\Paginator\Page;
 use Centum\Paginator\Paginator;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class PageCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $page = $I->mock(Page::class);
+
+        $I->assertInstanceOf(PageInterface::class, $page);
+    }
+
+
+
     public function testGetPaginator(UnitTester $I): void
     {
         $data = new ArrayData(

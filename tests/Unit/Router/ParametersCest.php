@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router;
 
+use Centum\Interfaces\Router\ParametersInterface;
 use Centum\Router\Parameters;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class ParametersCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $parameters = $I->mock(Parameters::class);
+
+        $I->assertInstanceOf(ParametersInterface::class, $parameters);
+    }
+
+
+
     public function test(UnitTester $I): void
     {
         $parameters = new Parameters(

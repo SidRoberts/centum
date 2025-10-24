@@ -3,6 +3,7 @@
 namespace Tests\Unit\Console\Terminal;
 
 use Centum\Console\Terminal\Arguments;
+use Centum\Interfaces\Console\Terminal\ArgumentsInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Tests\Support\UnitTester;
@@ -27,6 +28,13 @@ final class ArgumentsCest
     }
 
 
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $arguments = $I->mock(Arguments::class);
+
+        $I->assertInstanceOf(ArgumentsInterface::class, $arguments);
+    }
 
     public function testGetFilename(UnitTester $I): void
     {

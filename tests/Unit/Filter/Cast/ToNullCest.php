@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\Cast;
 
 use Centum\Filter\Cast\ToNull;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use stdClass;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class ToNullCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(ToNull::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

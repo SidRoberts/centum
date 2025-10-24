@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\Session;
 
 use Centum\Http\Session\ArraySession;
+use Centum\Interfaces\Http\SessionInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class ArraySessionCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $session = $I->mock(ArraySession::class);
+
+        $I->assertInstanceOf(SessionInterface::class, $session);
+    }
+
+
+
     public function testStart(UnitTester $I): void
     {
         $session = new ArraySession();

@@ -9,6 +9,7 @@ use Centum\Http\Session\ArraySession;
 use Centum\Twig\FlashExtension;
 use Tests\Support\UnitTester;
 use Twig\Environment;
+use Twig\Extension\ExtensionInterface;
 use Twig\Loader\ArrayLoader;
 
 /**
@@ -25,6 +26,15 @@ final class FlashExtensionCest
         );
 
         return new Environment($loader);
+    }
+
+
+
+    public function testInterfaces(UnitTester $I): void
+    {
+        $extension = $I->mock(FlashExtension::class);
+
+        $I->assertInstanceOf(ExtensionInterface::class, $extension);
     }
 
 

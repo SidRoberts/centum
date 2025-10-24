@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Validator;
 
+use Centum\Interfaces\Validator\ValidatorInterface;
 use Centum\Validator\RegularExpression;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class RegularExpressionCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $validator = $I->mock(RegularExpression::class);
+
+        $I->assertInstanceOf(ValidatorInterface::class, $validator);
+    }
+
+
+
     #[DataProvider("providerGood")]
     public function testGood(UnitTester $I, Example $example): void
     {

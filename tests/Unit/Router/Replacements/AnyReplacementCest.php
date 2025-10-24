@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Router\Replacements;
 
+use Centum\Interfaces\Router\ReplacementInterface;
 use Centum\Router\Replacements\AnyReplacement;
 use Tests\Support\UnitTester;
 
@@ -10,6 +11,15 @@ use Tests\Support\UnitTester;
  */
 final class AnyReplacementCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $replacement = $I->mock(AnyReplacement::class);
+
+        $I->assertInstanceOf(ReplacementInterface::class, $replacement);
+    }
+
+
+
     public function testGetIdentifier(UnitTester $I): void
     {
         $replacement = new AnyReplacement();

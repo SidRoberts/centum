@@ -4,6 +4,7 @@ namespace Tests\Unit\Cron;
 
 use Centum\Cron\Cron;
 use Centum\Cron\Job;
+use Centum\Interfaces\Cron\CronInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -11,6 +12,15 @@ use Tests\Support\UnitTester;
  */
 final class CronCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $cron = $I->mock(Cron::class);
+
+        $I->assertInstanceOf(CronInterface::class, $cron);
+    }
+
+
+
     public function testAddJobsToCron(UnitTester $I): void
     {
         $cron = new Cron();

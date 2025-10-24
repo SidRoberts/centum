@@ -3,6 +3,7 @@
 namespace Tests\Unit\Filter\Cast;
 
 use Centum\Filter\Cast\ToArray;
+use Centum\Interfaces\Filter\FilterInterface;
 use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use stdClass;
@@ -15,6 +16,15 @@ use UnexpectedValueException;
  */
 final class ToArrayCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $filter = $I->mock(ToArray::class);
+
+        $I->assertInstanceOf(FilterInterface::class, $filter);
+    }
+
+
+
     #[DataProvider("provider")]
     public function test(UnitTester $I, Example $example): void
     {

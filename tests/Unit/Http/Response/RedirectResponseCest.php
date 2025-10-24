@@ -4,6 +4,7 @@ namespace Tests\Unit\Http\Response;
 
 use Centum\Http\Response\RedirectResponse;
 use Centum\Http\Status;
+use Centum\Interfaces\Http\ResponseInterface;
 use InvalidArgumentException;
 use Tests\Support\UnitTester;
 
@@ -12,6 +13,15 @@ use Tests\Support\UnitTester;
  */
 final class RedirectResponseCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $response = $I->mock(RedirectResponse::class);
+
+        $I->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+
+
     public function testEmptyUrl(UnitTester $I): void
     {
         $I->expectThrowable(

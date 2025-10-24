@@ -5,6 +5,7 @@ namespace Tests\Unit\Http;
 use Centum\Http\Header;
 use Centum\Http\Headers;
 use Centum\Interfaces\Http\HeaderInterface;
+use Centum\Interfaces\Http\HeadersInterface;
 use Mockery\MockInterface;
 use OutOfRangeException;
 use Tests\Support\UnitTester;
@@ -14,6 +15,15 @@ use Tests\Support\UnitTester;
  */
 final class HeadersCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $headers = $I->mock(Headers::class);
+
+        $I->assertInstanceOf(HeadersInterface::class, $headers);
+    }
+
+
+
     public function testConstructor(UnitTester $I): void
     {
         $header1 = new Header("Content-Type", "text/plain");

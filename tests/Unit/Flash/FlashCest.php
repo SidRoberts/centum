@@ -6,6 +6,7 @@ use Centum\Flash\Flash;
 use Centum\Flash\Formatter\TextFormatter;
 use Centum\Flash\Storage;
 use Centum\Http\Session\ArraySession;
+use Centum\Interfaces\Flash\FlashInterface;
 use Tests\Support\UnitTester;
 
 /**
@@ -13,6 +14,15 @@ use Tests\Support\UnitTester;
  */
 final class FlashCest
 {
+    public function testInterfaces(UnitTester $I): void
+    {
+        $flash = $I->mock(Flash::class);
+
+        $I->assertInstanceOf(FlashInterface::class, $flash);
+    }
+
+
+
     public function testOutput(UnitTester $I): void
     {
         $message1 = "sample message 1";
