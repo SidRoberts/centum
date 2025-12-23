@@ -29,9 +29,9 @@
         "dragonmantank/cron-expression": "~3.0",
         "pda/pheanstalk": "~7.0 || ~8.0",
 
-        "symfony/css-selector": "~7.0",
-        "symfony/dom-crawler": "~7.0",
-        "symfony/browser-kit": "~7.0",
+        "symfony/css-selector": "~8.0",
+        "symfony/dom-crawler": "~8.0",
+        "symfony/browser-kit": "~8.0",
 
         "twig/twig": "~3.0"
     },
