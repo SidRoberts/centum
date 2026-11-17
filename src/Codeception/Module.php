@@ -31,12 +31,10 @@ class Module extends CodeceptionModule
     /**
      * @param array<mixed> $settings
      *
-     * @return void
-     *
      * @throws Exception
      * @throws TypeError
      */
-    public function _beforeSuite(array $settings = [])
+    public function _beforeSuite(array $settings = []): void
     {
         parent::_beforeSuite($settings);
 
@@ -44,32 +42,24 @@ class Module extends CodeceptionModule
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      * @throws TypeError
      */
-    public function _before(TestInterface $test)
+    public function _before(TestInterface $test): void
     {
         parent::_before($test);
 
         $this->makeNewContainer();
     }
 
-    /**
-     * @return void
-     */
-    public function _after(TestInterface $test)
+    public function _after(TestInterface $test): void
     {
         parent::_after($test);
 
         $this->container = null;
     }
 
-    /**
-     * @return void
-     */
-    public function _afterSuite()
+    public function _afterSuite(): void
     {
         $this->container = null;
     }
