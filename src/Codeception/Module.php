@@ -10,6 +10,7 @@ use Codeception\TestInterface;
 use Exception;
 use Mockery;
 use Mockery\MockInterface;
+use Throwable;
 use TypeError;
 
 class Module extends CodeceptionModule
@@ -130,6 +131,8 @@ class Module extends CodeceptionModule
      * @param class-string<T> $class
      *
      * @return T
+     *
+     * @throws Throwable
      */
     public function mock(string $class, ?callable $callable = null): object
     {
