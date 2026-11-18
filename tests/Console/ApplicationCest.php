@@ -5,6 +5,7 @@ namespace Tests\Console;
 use Centum\Console\Application;
 use Centum\Console\Exception\CommandNotFoundException;
 use Centum\Console\Exception\InvalidCommandNameException;
+use Centum\Interfaces\Console\ApplicationInterface;
 use Exception;
 use Tests\Support\Commands\BadNameCommand;
 use Tests\Support\Commands\BoringCommand;
@@ -20,6 +21,15 @@ use Tests\Support\ConsoleTester;
  */
 final class ApplicationCest
 {
+    public function testInterfaces(ConsoleTester $I): void
+    {
+        $application = $I->mock(Application::class);
+
+        $I->assertInstanceOf(ApplicationInterface::class, $application);
+    }
+
+
+
     public function testBasicHandle(ConsoleTester $I): void
     {
         $argv = [

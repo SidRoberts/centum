@@ -3,6 +3,7 @@
 namespace Tests\Console;
 
 use Centum\Console\Command\QueueConsumeCommand;
+use Centum\Interfaces\Console\CommandInterface;
 use Centum\Interfaces\Queue\QueueInterface;
 use Mockery\MockInterface;
 use Tests\Support\ConsoleTester;
@@ -12,6 +13,15 @@ use Tests\Support\ConsoleTester;
  */
 final class QueueConsumeCommandCest
 {
+    public function testInterfaces(ConsoleTester $I): void
+    {
+        $command = $I->mock(QueueConsumeCommand::class);
+
+        $I->assertInstanceOf(CommandInterface::class, $command);
+    }
+
+
+
     public function testName(ConsoleTester $I): void
     {
         $I->seeCommandNameIs(

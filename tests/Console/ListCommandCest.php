@@ -3,6 +3,7 @@
 namespace Tests\Console;
 
 use Centum\Console\Command\ListCommand;
+use Centum\Interfaces\Console\CommandInterface;
 use Tests\Support\ConsoleTester;
 
 /**
@@ -10,6 +11,15 @@ use Tests\Support\ConsoleTester;
  */
 final class ListCommandCest
 {
+    public function testInterfaces(ConsoleTester $I): void
+    {
+        $command = $I->mock(ListCommand::class);
+
+        $I->assertInstanceOf(CommandInterface::class, $command);
+    }
+
+
+
     public function testName(ConsoleTester $I): void
     {
         $I->seeCommandNameIs(
