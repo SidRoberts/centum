@@ -7,6 +7,8 @@ use Centum\Interfaces\Container\ObjectStorageInterface;
 class ObjectStorage implements ObjectStorageInterface
 {
     /**
+     * @template T of object
+     *
      * @var class-string-map<T, T>
      */
     protected array $objects = [];

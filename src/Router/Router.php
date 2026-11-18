@@ -171,7 +171,7 @@ class Router implements RouterInterface
             throw new RouteMismatchException();
         }
 
-        /** @var array<non-empty-string, mixed> $params */
+        /** @var array<non-empty-string, string> $params */
         $params = $this->removeIntegerKeys($params);
 
 

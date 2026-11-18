@@ -18,6 +18,8 @@ class Files implements FilesInterface
 
     /**
      * @param list<FileGroupInterface> $fileGroups
+     *
+     * @throws FileGroupAlreadyExistsException
      */
     public function __construct(array $fileGroups = [])
     {

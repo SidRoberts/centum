@@ -2,12 +2,16 @@
 
 namespace Centum\Http;
 
+use Centum\Http\Exception\FileGroupAlreadyExistsException;
 use Centum\Interfaces\Http\FilesInterface;
 use Exception;
 use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 class FilesFactory
 {
+    /**
+     * @throws FileGroupAlreadyExistsException
+     */
     public function createFromGlobal(): FilesInterface
     {
         /** @var array<non-empty-string, array> $_FILES */
@@ -17,6 +21,8 @@ class FilesFactory
 
     /**
      * @param array<non-empty-string, array> $array
+     *
+     * @throws FileGroupAlreadyExistsException
      */
     public function createFromArray(array $array): FilesInterface
     {

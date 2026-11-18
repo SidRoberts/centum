@@ -3,6 +3,7 @@
 namespace Centum\Http;
 
 use Centum\Http\Exception\FailedToOpenInputStreamException;
+use Centum\Http\Exception\FileGroupAlreadyExistsException;
 use Centum\Http\Exception\UriParseException;
 use Centum\Interfaces\Http\RequestInterface;
 use Exception;
@@ -12,6 +13,7 @@ class RequestFactory
 {
     /**
      * @throws FailedToOpenInputStreamException
+     * @throws FileGroupAlreadyExistsException
      * @throws UriParseException
      */
     public function createFromGlobals(): RequestInterface
@@ -32,6 +34,11 @@ class RequestFactory
     }
 
     /**
+     * @param array<non-empty-string, mixed>                     $server
+     * @param array<non-empty-array<array<mixed>|string>|string> $get
+     * @param array<non-empty-array<array<mixed>|string>|string> $post
+     *
+     * @throws FileGroupAlreadyExistsException
      * @throws UriParseException
      */
     public function createFromArrays(array $server, array $get, array $post, string $content): RequestInterface

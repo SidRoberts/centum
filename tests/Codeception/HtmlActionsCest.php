@@ -129,6 +129,9 @@ final class HtmlActionsCest
         );
     }
 
+    /**
+     * @return array<array{method: non-empty-string, expected: string}>
+     */
     protected function providerGrabPageTitle(): array
     {
         return [

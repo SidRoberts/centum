@@ -10,7 +10,7 @@ class FormFactory
     {
         $form = new Form();
 
-        /** @var list<non-empty-string> */
+        /** @var list<non-falsy-string> */
         $methods = get_class_methods($template);
 
         foreach ($methods as $method) {
