@@ -42,3 +42,14 @@ getPropertyValue(
     non-empty-string $name
 ): mixed
 ```
+
+
+
+## `retry`
+
+```php
+retry(
+    callable $callback,
+    int $times
+): mixed
+```

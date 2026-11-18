@@ -57,4 +57,27 @@ trait UnitTestActions
 
         return $property->getValue($object);
     }
+
+
+
+    /**
+     * @param callable(): void $callback
+     * @param positive-int     $times
+     *
+     * @return void
+     */
+    public function retry(callable $callback, int $times = 2): void
+    {
+        for ($i = 1; $i <= $times; $i++) {
+            try {
+                call_user_func($callback);
+
+                break;
+            } catch (Throwable $throwable) {
+                if ($i === $times) {
+                    throw $throwable;
+                }
+            }
+        }
+    }
 }
