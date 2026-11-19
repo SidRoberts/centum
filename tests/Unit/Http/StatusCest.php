@@ -33,6 +33,7 @@ final class StatusCest
         $I->expectThrowable(
             ValueError::class,
             function (): void {
+                /** @psalm-suppress UnusedMethodCall */
                 Status::from(999);
             }
         );
