@@ -47,8 +47,8 @@
 
         "mockery/mockery": "~1.0",
 
-        "vimeo/psalm": "~6.0",
-        "psalm/plugin-mockery": "~1.2"
+        "vimeo/psalm": "~7.0",
+        "psalm/plugin-mockery": "~1.3"
     },
 
 
