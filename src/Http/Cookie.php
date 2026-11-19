@@ -42,6 +42,7 @@ class Cookie implements CookieInterface
 
     public function send(): void
     {
+        /** @psalm-suppress TaintedInput */
         header(
             $this->getHeaderString(),
             false

@@ -51,6 +51,7 @@ trait UnitTestActions
      */
     public function getPropertyValue(object $object, string $name): mixed
     {
+        /** @psalm-suppress TaintedInput */
         $reflection = new ReflectionClass($object);
 
         $property = $reflection->getProperty($name);

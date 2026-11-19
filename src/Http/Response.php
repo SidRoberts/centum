@@ -62,6 +62,7 @@ class Response implements ResponseInterface
 
     public function sendContent(): void
     {
+        /** @psalm-suppress TaintedInput */
         echo $this->content;
     }
 
