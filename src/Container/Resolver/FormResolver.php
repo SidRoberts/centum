@@ -39,6 +39,10 @@ class FormResolver implements ResolverInterface
         $name = $parameter->getName();
         $type = $parameter->getType();
 
+        if ($name === null) {
+            throw new UnresolvableParameterException($parameter);
+        }
+
         if ($type === "bool") {
             return $this->data->has($name);
         }

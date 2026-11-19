@@ -42,6 +42,10 @@ class RequestResolver implements ResolverInterface
         $name = $parameter->getName();
         $type = $parameter->getType();
 
+        if ($name === null) {
+            throw new UnresolvableParameterException($parameter);
+        }
+
         if ($type === CookieInterface::class) {
             $cookies = $this->request->getCookies();
 
